@@ -1128,5 +1128,225 @@
     "profession": "",
     "keywords": [],
     "aliases": []
+  },
+  {
+    "id": "mayor-taipei",
+    "name": "蔣萬安",
+    "party": "國民黨",
+    "district": "臺北市",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-new-taipei",
+    "name": "侯友宜",
+    "party": "國民黨",
+    "district": "新北市",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-taoyuan",
+    "name": "張善政",
+    "party": "國民黨",
+    "district": "桃園市",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-taichung",
+    "name": "盧秀燕",
+    "party": "國民黨",
+    "district": "臺中市",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-tainan",
+    "name": "黃偉哲",
+    "party": "民進黨",
+    "district": "臺南市",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-kaohsiung",
+    "name": "陳其邁",
+    "party": "民進黨",
+    "district": "高雄市",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-keelung",
+    "name": "謝國樑",
+    "party": "國民黨",
+    "district": "基隆市",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-hsinchu-city",
+    "name": "高虹安",
+    "party": "民眾黨",
+    "district": "新竹市",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-hsinchu-county",
+    "name": "楊文科",
+    "party": "國民黨",
+    "district": "新竹縣",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-miaoli",
+    "name": "鍾東錦",
+    "party": "無黨籍",
+    "district": "苗栗縣",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-changhua",
+    "name": "王惠美",
+    "party": "國民黨",
+    "district": "彰化縣",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-nantou",
+    "name": "許淑華",
+    "party": "國民黨",
+    "district": "南投縣",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-yunlin",
+    "name": "張麗善",
+    "party": "國民黨",
+    "district": "雲林縣",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-chiayi-city",
+    "name": "黃敏惠",
+    "party": "國民黨",
+    "district": "嘉義市",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-chiayi-county",
+    "name": "翁章梁",
+    "party": "民進黨",
+    "district": "嘉義縣",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-pingtung",
+    "name": "周春米",
+    "party": "民進黨",
+    "district": "屏東縣",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-yilan",
+    "name": "林姿妙",
+    "party": "國民黨",
+    "district": "宜蘭縣",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-hualien",
+    "name": "徐榛蔚",
+    "party": "國民黨",
+    "district": "花蓮縣",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-taitung",
+    "name": "饒慶鈴",
+    "party": "國民黨",
+    "district": "臺東縣",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-penghu",
+    "name": "陳光復",
+    "party": "民進黨",
+    "district": "澎湖縣",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-kinmen",
+    "name": "陳福海",
+    "party": "無黨籍",
+    "district": "金門縣",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mayor-lienchiang",
+    "name": "王忠銘",
+    "party": "無黨籍",
+    "district": "連江縣",
+    "office": "mayor_magistrate",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
   }
 ]
