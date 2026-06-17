@@ -10,6 +10,9 @@ export function scoreMatch(c: MatchInput, t: MatchTarget): { confidence: number;
   let score = 0;
 
   const names = [t.name, ...t.aliases].filter(Boolean);
+  // No candidate name (e.g. no defendant could be extracted) → cannot match. Guard against
+  // `''.includes()` / `n.includes('')` falsely firing name-partial below.
+  if (!c.candidateName) return { confidence: 0, signals: [] };
   if (names.some((n) => c.candidateName === n)) {
     signals.push('name-exact');
     score += 0.4;

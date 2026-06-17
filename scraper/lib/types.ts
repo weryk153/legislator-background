@@ -27,6 +27,9 @@ export interface CandidateAsset {
 export interface CandidateJudgment {
   caseReason: string; court: string; caseNumber: string; outcome: string; isFinal: boolean;
   judgmentDate: string; judgmentUrl: string; source: EvidenceSource;
+  // Names of 被告/當事人 extracted from the judgment; used for identity matching and
+  // shown to human reviewers. NOT persisted into the published Official.
+  defendantNames: string[];
   match: { confidence: number; signals: string[] };
 }
 

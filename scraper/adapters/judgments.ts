@@ -70,6 +70,20 @@ function extractCaseReason(text: string): string {
   return m2 ? m2[1].trim() : '';
 }
 
+// Pull the names of 被告 / 上訴人 / 聲請人 (defendant / appellant / petitioner) from the
+// page text, for identity matching and human review. Tolerant: captures the 2–4 char
+// Chinese name following one of those party labels. Returns the unique names in order;
+// empty if none found.
+function extractDefendantNames(text: string): string[] {
+  const re = /(?:被告|上訴人|聲請人)\s*([一-龥]{2,4})/gu;
+  const names: string[] = [];
+  for (const m of text.matchAll(re)) {
+    const name = m[1];
+    if (name && !names.includes(name)) names.push(name);
+  }
+  return names;
+}
+
 // Pull the 主文 (disposition / outcome) — the operative ruling. Grab the text after a
 // "主文" heading up to the next major heading (事實/理由/犯罪事實) or end of text.
 function extractOutcome(text: string): string {
@@ -106,6 +120,7 @@ export function parseJudgment(html: string, sourceUrl: string, retrievedAt: stri
   const outcome = extractOutcome(text);
   const isFinal = extractIsFinal(text);
   const judgmentDate = extractDate(text);
+  const defendantNames = extractDefendantNames(text);
 
   const source: EvidenceSource = {
     url: sourceUrl,
@@ -123,16 +138,22 @@ export function parseJudgment(html: string, sourceUrl: string, retrievedAt: stri
     judgmentDate,
     judgmentUrl: sourceUrl,
     source,
+    defendantNames,
     match: { confidence: 0, signals: [] },
   };
 }
 
 /**
- * Pure scorer: run the shared matcher against the judgment's text content and attach
- * the resulting confidence/signals. Does NOT mutate the input.
+ * Pure scorer: run the shared matcher using the judgment's OWN extracted defendant name
+ * (NOT the target's name) so the same-name-collision guard actually works — a judgment
+ * about a different person scores zero. Does NOT mutate the input.
  */
 export function scoreCandidate(j: CandidateJudgment, t: MatchTarget): CandidateJudgment {
-  const match = scoreMatch({ candidateName: t.name, text: `${j.outcome} ${j.caseReason}` }, t);
+  const names = [t.name, ...t.aliases];
+  // prefer a defendant name that matches the target; else the first defendant; else '' (no name match)
+  const candidateName =
+    j.defendantNames.find((n) => names.includes(n)) ?? j.defendantNames[0] ?? '';
+  const match = scoreMatch({ candidateName, text: `${j.outcome} ${j.caseReason}` }, t);
   return { ...j, match };
 }
 

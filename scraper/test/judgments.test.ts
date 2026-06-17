@@ -28,12 +28,33 @@ describe('parseJudgment', () => {
   });
 });
 
+describe('parseJudgment defendant extraction', () => {
+  it('extracts the 被告 name from the judgment body', () => {
+    const j = parseJudgment(html, 'https://judgments.judicial.gov.tw/...', '2026-06-17');
+    expect(j.defendantNames).toContain('徐巧芯');
+  });
+});
+
 describe('scoreCandidate', () => {
   it('attaches a match score with confidence and signals', () => {
     const j = parseJudgment(html, 'https://judgments.judicial.gov.tw/...', '2026-06-17');
     const scored = scoreCandidate(j, { name: '徐巧芯', keywords: ['大安'], aliases: [] });
     expect(scored.match.confidence).toBeGreaterThanOrEqual(0);
     expect(Array.isArray(scored.match.signals)).toBe(true);
+  });
+
+  it('scores name-exact when the judgment defendant IS the target', () => {
+    const j = parseJudgment(html, 'https://judgments.judicial.gov.tw/...', '2026-06-17');
+    const scored = scoreCandidate(j, { name: '徐巧芯', keywords: [], aliases: [] });
+    expect(scored.match.signals).toContain('name-exact');
+    expect(scored.match.confidence).toBeGreaterThanOrEqual(0.4);
+  });
+
+  it('scores zero when the target is NOT among the judgment defendants (same-name guard)', () => {
+    const j = parseJudgment(html, 'https://judgments.judicial.gov.tw/...', '2026-06-17');
+    const scored = scoreCandidate(j, { name: '王小明', keywords: [], aliases: [] });
+    expect(scored.match.confidence).toBe(0);
+    expect(scored.match.signals).toEqual([]);
   });
 });
 
