@@ -1,0 +1,10 @@
+---
+import type { Source } from "../lib/types";
+const { sources } = Astro.props as { sources: Source[] };
+---
+<div style="font-size:12px;color:var(--muted);margin-top:4px">
+  出處：
+  {sources.map((s, i) => (
+    <a href={s.url} target="_blank" rel="noopener">{s.title}{i < sources.length - 1 ? "、" : ""}</a>
+  ))}
+</div>

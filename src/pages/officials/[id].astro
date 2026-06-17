@@ -1,0 +1,61 @@
+---
+import Base from "../../layouts/Base.astro";
+import Sources from "../../components/Sources.astro";
+import { loadOfficials } from "../../lib/data";
+
+export async function getStaticPaths() {
+  const officials = await loadOfficials();
+  return officials.map((o) => ({ params: { id: o.id }, props: { official: o } }));
+}
+
+const { official: o } = Astro.props;
+const statusLabel = {
+  investigating: "偵查中", indicted: "已起訴", first_instance: "一審",
+  settled: "已和解", cleared: "查無不法", other: "其他",
+};
+const fmt = (n: number) => new Intl.NumberFormat("zh-Hant").format(n);
+---
+<Base title={`${o.name}｜公職人員背景`}>
+  <h1 style="margin:0 0 2px">{o.name}</h1>
+  <p style="color:var(--muted);margin:0 0 24px">{o.party}・{o.district}・第{o.term}屆　{o.bio}</p>
+
+  <h2 style="font-size:18px;border-bottom:1px solid var(--line);padding-bottom:6px">經歷</h2>
+  {o.careers.length === 0 && <p class="dim">尚無資料</p>}
+  {o.careers.map((c) => (
+    <div style="margin:10px 0">
+      <strong>{c.startDate}–{c.endDate ?? "現任"}</strong>　{c.organization}　{c.title}
+      <Sources sources={[c.source]} />
+    </div>
+  ))}
+
+  <h2 style="font-size:18px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:32px">司法判決</h2>
+  <p style="font-size:12px;color:var(--muted)">判決結果不代表最終定罪；未定讞案件當事人受無罪推定保障。</p>
+  {o.judgments.length === 0 && <p class="dim">尚無資料</p>}
+  {o.judgments.map((j) => (
+    <div style="margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:8px">
+      <div style="font-weight:700">{j.caseReason}　<span class="accent">{j.outcome}</span></div>
+      <div style="font-size:13px;color:var(--muted)">{j.court}　{j.caseNumber}　{j.judgmentDate}　{j.isFinal ? "已定讞" : "尚未定讞"}</div>
+      <Sources sources={[j.source]} />
+    </div>
+  ))}
+
+  <h2 style="font-size:18px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:32px">爭議事件</h2>
+  {o.controversies.length === 0 && <p class="dim">尚無資料</p>}
+  {o.controversies.map((c) => (
+    <div style="margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:8px">
+      <div style="font-weight:700">{c.title}　<span style="font-size:12px;border:1px solid var(--line);border-radius:99px;padding:1px 8px">{statusLabel[c.status]}</span></div>
+      <div style="font-size:13px;margin:4px 0">{c.summary}</div>
+      <div style="font-size:12px;color:var(--muted)">報導日期：{c.reportDate}</div>
+      <Sources sources={c.sources} />
+    </div>
+  ))}
+
+  <h2 style="font-size:18px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:32px">財產申報</h2>
+  {o.assets.length === 0 && <p class="dim">尚無資料</p>}
+  {o.assets.map((a) => (
+    <div style="margin:10px 0">
+      <strong>{a.year}</strong>　NT$ <span class="num">{fmt(a.totalAmount)}</span>
+      <Sources sources={[a.source]} />
+    </div>
+  ))}
+</Base>
