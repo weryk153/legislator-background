@@ -1,15 +1,1132 @@
 [
-  { "id": "han-kuo-yu", "name": "韓國瑜", "party": "國民黨", "district": "不分區", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
-  { "id": "fu-kun-chi", "name": "傅崐萁", "party": "國民黨", "district": "花蓮", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
-  { "id": "hsu-chiao-hsin", "name": "徐巧芯", "party": "國民黨", "district": "台北市", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
-  { "id": "chiang-chi-chen", "name": "江啟臣", "party": "國民黨", "district": "台中市", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
-  { "id": "lo-chih-chiang", "name": "羅智強", "party": "國民黨", "district": "台北市", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
-  { "id": "wang-hung-wei", "name": "王鴻薇", "party": "國民黨", "district": "台北市", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
-  { "id": "yeh-yuan-chih", "name": "葉元之", "party": "國民黨", "district": "新北市", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
-  { "id": "puma-shen", "name": "沈伯洋", "party": "民進黨", "district": "不分區", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
-  { "id": "wang-shih-chien", "name": "王世堅", "party": "民進黨", "district": "台北市", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
-  { "id": "wu-szu-yao", "name": "吳思瑤", "party": "民進黨", "district": "台北市", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
-  { "id": "huang-kuo-chang", "name": "黃國昌", "party": "民眾黨", "district": "不分區", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
-  { "id": "huang-shan-shan", "name": "黃珊珊", "party": "民眾黨", "district": "不分區", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
-  { "id": "kao-chin-su-mei", "name": "高金素梅", "party": "無黨籍", "district": "山地原住民", "office": "legislator", "profession": "", "keywords": [], "aliases": [] }
+  {
+    "id": "tinghsueh-chung",
+    "name": "丁學忠",
+    "party": "國民黨",
+    "district": "雲林縣第1選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "niu-hsu-ting",
+    "name": "牛煦庭",
+    "party": "國民黨",
+    "district": "桃園市第1選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "wangshih-chien",
+    "name": "王世堅",
+    "party": "民進黨",
+    "district": "臺北市第2選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "wangting-yu",
+    "name": "王定宇",
+    "party": "民進黨",
+    "district": "臺南市第6選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "wangmei-hui",
+    "name": "王美惠",
+    "party": "民進黨",
+    "district": "嘉義市選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "wang-hung-wei",
+    "name": "王鴻薇",
+    "party": "國民黨",
+    "district": "臺北市第3選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "wuli-hua",
+    "name": "伍麗華Saidhai‧Tahovecahe",
+    "party": "民進黨",
+    "district": "山地原住民選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chiang-chi-chen",
+    "name": "江啟臣",
+    "party": "國民黨",
+    "district": "臺中市第8選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "ho-hsin-chun",
+    "name": "何欣純",
+    "party": "民進黨",
+    "district": "臺中市第7選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "wupei-yi",
+    "name": "吳沛憶",
+    "party": "民進黨",
+    "district": "臺北市第5選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "wutsung-hsien",
+    "name": "吳宗憲",
+    "party": "國民黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "wuping-jui",
+    "name": "吳秉叡",
+    "party": "民進黨",
+    "district": "新北市第4選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "wuszu-yao",
+    "name": "吳思瑤",
+    "party": "民進黨",
+    "district": "臺北市第1選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "wuchi-ming",
+    "name": "吳琪銘",
+    "party": "民進黨",
+    "district": "新北市第10選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "leekun-tse",
+    "name": "李昆澤",
+    "party": "民進黨",
+    "district": "高雄市第5選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lee-yen-hsiu",
+    "name": "李彥秀",
+    "party": "國民黨",
+    "district": "臺北市第4選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lee-po-yi",
+    "name": "李柏毅",
+    "party": "民進黨",
+    "district": "高雄市第3選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lini-chin",
+    "name": "林宜瑾",
+    "party": "民進黨",
+    "district": "臺南市第4選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "daihua-lin",
+    "name": "林岱樺",
+    "party": "民進黨",
+    "district": "高雄市第4選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lin-chun-hsien",
+    "name": "林俊憲",
+    "party": "民進黨",
+    "district": "臺南市第5選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "linszu-ming",
+    "name": "林思銘",
+    "party": "國民黨",
+    "district": "新竹縣第2選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lin-te-fu",
+    "name": "林德福",
+    "party": "國民黨",
+    "district": "新北市第9選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chiu-jo-hua",
+    "name": "邱若華",
+    "party": "國民黨",
+    "district": "桃園市第6選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "ko-chih-en",
+    "name": "柯志恩",
+    "party": "國民黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "kerchien-ming",
+    "name": "柯建銘",
+    "party": "民進黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "hsuchiao-hsin",
+    "name": "徐巧芯",
+    "party": "國民黨",
+    "district": "臺北市第7選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "hsu-hsin-ying",
+    "name": "徐欣瑩",
+    "party": "國民黨",
+    "district": "新竹縣第1選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "hsufu-kuei",
+    "name": "徐富癸",
+    "party": "民進黨",
+    "district": "屏東縣第2選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "mawen-chun",
+    "name": "馬文君",
+    "party": "國民黨",
+    "district": "南投縣第1選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "kao-chin-su-mei",
+    "name": "高金素梅",
+    "party": "無黨籍",
+    "district": "山地原住民選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chang-hung-lu",
+    "name": "張宏陸",
+    "party": "民進黨",
+    "district": "新北市第6選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "changchih-lun",
+    "name": "張智倫",
+    "party": "國民黨",
+    "district": "新北市第8選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "hsuchih-chieh",
+    "name": "許智傑",
+    "party": "民進黨",
+    "district": "高雄市第7選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "kuo-kuo-wen",
+    "name": "郭國文",
+    "party": "民進黨",
+    "district": "臺南市第2選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chenyu-jen",
+    "name": "陳玉珍",
+    "party": "國民黨",
+    "district": "金門縣選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chen-hsiu-pao",
+    "name": "陳秀寳",
+    "party": "民進黨",
+    "district": "彰化縣第1選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chun-yu-chen",
+    "name": "陳俊宇",
+    "party": "民進黨",
+    "district": "宜蘭縣選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chen-kuan-ting",
+    "name": "陳冠廷",
+    "party": "民進黨",
+    "district": "嘉義縣第2選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chensu-yueh",
+    "name": "陳素月",
+    "party": "民進黨",
+    "district": "彰化縣第4選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chenhsuen-sheng",
+    "name": "陳雪生",
+    "party": "國民黨",
+    "district": "連江縣選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "fu-kun-chi",
+    "name": "傅崐萁",
+    "party": "國民黨",
+    "district": "花蓮縣選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "yu-hao",
+    "name": "游顥",
+    "party": "國民黨",
+    "district": "南投縣第2選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "huang-jen",
+    "name": "黃仁",
+    "party": "國民黨",
+    "district": "平地原住民選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "huang-chien-pin",
+    "name": "黃建賓",
+    "party": "國民黨",
+    "district": "臺東縣選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "huang-chien-hao",
+    "name": "黃健豪",
+    "party": "國民黨",
+    "district": "臺中市第5選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "huang-jie",
+    "name": "黃捷",
+    "party": "民進黨",
+    "district": "高雄市第6選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "wanmei-ling",
+    "name": "萬美玲",
+    "party": "國民黨",
+    "district": "桃園市第4選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "yeh-yuan-chih",
+    "name": "葉元之",
+    "party": "國民黨",
+    "district": "新北市第7選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "liao-hsien-hsiang",
+    "name": "廖先翔",
+    "party": "國民黨",
+    "district": "新北市第12選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "tsai-chi-chang",
+    "name": "蔡其昌",
+    "party": "民進黨",
+    "district": "臺中市第1選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lu-ming-che",
+    "name": "魯明哲",
+    "party": "國民黨",
+    "district": "桃園市第3選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lai-shyh-bao",
+    "name": "賴士葆",
+    "party": "國民黨",
+    "district": "臺北市第8選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lai-hui-yuan",
+    "name": "賴惠員",
+    "party": "民進黨",
+    "district": "臺南市第1選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "hsieh-lung-chieh",
+    "name": "謝龍介",
+    "party": "國民黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "kuo-yu-han",
+    "name": "韓國瑜",
+    "party": "國民黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "yen-kuan-heng",
+    "name": "顏寬恒",
+    "party": "國民黨",
+    "district": "臺中市第2選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "ting-wei-lo",
+    "name": "羅廷瑋",
+    "party": "國民黨",
+    "district": "臺中市第6選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "loming-tsai",
+    "name": "羅明才",
+    "party": "國民黨",
+    "district": "新北市第11選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "suchiao-hui",
+    "name": "蘇巧慧",
+    "party": "民進黨",
+    "district": "新北市第5選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lee-kuen-cheng",
+    "name": "李坤城",
+    "party": "民進黨",
+    "district": "新北市第3選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "wangan-hsiang",
+    "name": "王安祥",
+    "party": "民眾黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chenching-lung",
+    "name": "陳清龍",
+    "party": "民眾黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chiu-chih-wei",
+    "name": "邱志偉",
+    "party": "民進黨",
+    "district": "高雄市第2選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chiu-yi-ying",
+    "name": "邱議瑩",
+    "party": "民進黨",
+    "district": "高雄市第1選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chang-chia-chun",
+    "name": "張嘉郡",
+    "party": "國民黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chen-ting-fei",
+    "name": "陳亭妃",
+    "party": "民進黨",
+    "district": "臺南市第3選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chen-chao-ming",
+    "name": "陳超明",
+    "party": "無黨籍",
+    "district": "苗栗縣第1選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "yangchiung-ying",
+    "name": "楊瓊瓔",
+    "party": "國民黨",
+    "district": "臺中市第3選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "tsai-yi-yu",
+    "name": "蔡易餘",
+    "party": "民進黨",
+    "district": "嘉義縣第1選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chengcheng-chien",
+    "name": "鄭正鈐",
+    "party": "國民黨",
+    "district": "新竹市選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "laijui-lung",
+    "name": "賴瑞隆",
+    "party": "民進黨",
+    "district": "高雄市第8選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "hsieh-yi-fong",
+    "name": "謝衣鳯",
+    "party": "國民黨",
+    "district": "彰化縣第3選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chia-pin-chung",
+    "name": "鍾佳濱",
+    "party": "民進黨",
+    "district": "屏東縣第1選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "luyu-ling",
+    "name": "呂玉玲",
+    "party": "國民黨",
+    "district": "桃園市第5選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "hungyu-shiang",
+    "name": "洪毓祥",
+    "party": "民眾黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "weng-hsiao-ling",
+    "name": "翁曉玲",
+    "party": "國民黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "shenpao-yang",
+    "name": "沈伯洋",
+    "party": "民進黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "shenfa-hui",
+    "name": "沈發惠",
+    "party": "民進黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lin-yueh-chin",
+    "name": "林月琴",
+    "party": "民進黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lin-pei-hsiang",
+    "name": "林沛祥",
+    "party": "國民黨",
+    "district": "基隆市選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lin-chien-chi",
+    "name": "林倩綺",
+    "party": "國民黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "yun-fan",
+    "name": "范雲",
+    "party": "民進黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "tu-chuan-chi",
+    "name": "涂權吉",
+    "party": "國民黨",
+    "district": "桃園市第2選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "kuo-yu-ching",
+    "name": "郭昱晴",
+    "party": "民進黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chen-yeong-kang",
+    "name": "陳永康",
+    "party": "國民黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chenpei-yu",
+    "name": "陳培瑜",
+    "party": "民進黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "ching-hui-chen",
+    "name": "陳菁徽",
+    "party": "國民黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "ko-ju-chun",
+    "name": "葛如鈞",
+    "party": "國民黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lu-hsien-yi",
+    "name": "盧縣一",
+    "party": "國民黨",
+    "district": "山地原住民選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lohmeei-ling",
+    "name": "羅美玲",
+    "party": "民進黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lo-chih-chiang",
+    "name": "羅智強",
+    "party": "國民黨",
+    "district": "臺北市第6選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lin-shu-fen",
+    "name": "林淑芬",
+    "party": "民進黨",
+    "district": "新北市第2選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chiucheng-chun",
+    "name": "邱鎮軍",
+    "party": "國民黨",
+    "district": "苗栗縣第2選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chen-ying",
+    "name": "陳瑩",
+    "party": "民進黨",
+    "district": "平地原住民選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "huang-shiou-fang",
+    "name": "黃秀芳",
+    "party": "民進黨",
+    "district": "彰化縣第2選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "yang-yao",
+    "name": "楊曜",
+    "party": "民進黨",
+    "district": "澎湖縣選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "liaowei-hsiang",
+    "name": "廖偉翔",
+    "party": "國民黨",
+    "district": "臺中市第4選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "liu-chien-kuo",
+    "name": "劉建國",
+    "party": "民進黨",
+    "district": "雲林縣第2選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "su-ching-chuan",
+    "name": "蘇清泉",
+    "party": "國民黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chiu-hui-ju",
+    "name": "邱慧洳",
+    "party": "民眾黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "yu-min-wang",
+    "name": "王育敏",
+    "party": "國民黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "lin-chu-yin",
+    "name": "林楚茵",
+    "party": "民進黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "ngalim-tiunn",
+    "name": "張雅琳",
+    "party": "民進黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "hsuyuchen",
+    "name": "許宇甄",
+    "party": "國民黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "jeng-tian-tsair",
+    "name": "鄭天財Sra Kacaw",
+    "party": "國民黨",
+    "district": "平地原住民選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "wangcheng-hsu",
+    "name": "王正旭",
+    "party": "民進黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "tsai-chun-chou",
+    "name": "蔡春綢",
+    "party": "民眾黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chuangjui-hsiung",
+    "name": "莊瑞雄",
+    "party": "民進黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "wang-yi-chuan",
+    "name": "王義川",
+    "party": "民進黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "liushu-pin",
+    "name": "劉書彬",
+    "party": "民眾黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "hsu-chung-hsin",
+    "name": "許忠信",
+    "party": "民眾黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "chengau-tzu",
+    "name": "陳昭姿",
+    "party": "民眾黨",
+    "district": "全國不分區及僑居國外國民",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "hungmong-kai",
+    "name": "洪孟楷",
+    "party": "國民黨",
+    "district": "新北市第1選舉區",
+    "office": "legislator",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  }
 ]
