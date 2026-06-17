@@ -2,26 +2,55 @@
 import Base from "../layouts/Base.astro";
 ---
 <Base title="關於｜公職人員背景資料庫">
-  <h1>關於本站</h1>
-  <h2 style="font-size:18px">資料來源</h2>
-  <ul style="line-height:1.9">
-    <li>司法判決：司法院裁判書查詢系統（公開判決）</li>
-    <li>經歷／背景：立法院官方資料、中選會候選人學經歷申報</li>
-    <li>爭議事件：新聞報導與事實查核，標註報導日期與目前狀態</li>
-    <li>財產申報：監察院公職人員財產申報公報</li>
-  </ul>
+  <article class="about">
+    <header class="head">
+      <span class="kicker">About</span>
+      <h1>關於本站</h1>
+      <p class="lede">以可查證、附出處的方式，公開現任公職人員的背景，協助選民判讀。</p>
+    </header>
 
-  <h2 style="font-size:18px">方法論與原則</h2>
-  <ul style="line-height:1.9">
-    <li>每一筆事實資料都附可點擊的出處，無出處者不上架。</li>
-    <li>「司法判決」與「媒體爭議」分開呈現，各自標示狀態。</li>
-    <li>本站不使用「前科」概念；個人刑事紀錄屬受個資法保護資料，本站僅引用公開判決。</li>
-    <li>本站僅陳述事實與出處，不對個人作價值判斷或評分。</li>
-  </ul>
+    <section class="sec">
+      <h2>資料來源</h2>
+      <ul>
+        <li>司法判決：司法院裁判書查詢系統（公開判決）</li>
+        <li>經歷／背景：立法院官方資料、中選會候選人學經歷申報</li>
+        <li>爭議事件：新聞報導與事實查核，標註報導日期與目前狀態</li>
+        <li>財產申報：監察院公職人員財產申報公報</li>
+      </ul>
+    </section>
 
-  <h2 style="font-size:18px">無罪推定</h2>
-  <p>判決結果不代表最終定罪。未定讞之案件，當事人依法受無罪推定保障，請讀者審慎判讀。</p>
+    <section class="sec">
+      <h2>方法論與原則</h2>
+      <ul>
+        <li>每一筆事實資料都附可點擊的出處，無出處者不上架。</li>
+        <li>「司法判決」與「媒體爭議」分開呈現，各自標示狀態。</li>
+        <li>本站不使用「前科」概念；個人刑事紀錄屬受個資法保護資料，本站僅引用公開判決。</li>
+        <li>本站僅陳述事實與出處，不對個人作價值判斷或評分。</li>
+      </ul>
+    </section>
 
-  <h2 style="font-size:18px">更正與申訴</h2>
-  <p>若發現資料有誤或需更新狀態，請來信告知，我們會查核後更正。</p>
+    <section class="sec">
+      <h2>無罪推定</h2>
+      <p>判決結果不代表最終定罪。未定讞之案件，當事人依法受無罪推定保障，請讀者審慎判讀。</p>
+    </section>
+
+    <section class="sec">
+      <h2>更正與申訴</h2>
+      <p>若發現資料有誤或需更新狀態，請來信告知，我們會查核後更正。</p>
+    </section>
+  </article>
+
+  <style>
+    .about { max-width: 62ch; }
+    .head { margin-bottom: 36px; }
+    .head h1 { font-size: var(--t-xl); margin: 8px 0 8px; }
+    .head .lede { margin: 0; }
+    .sec { margin-bottom: 32px; }
+    .sec h2 {
+      font-size: 1.25rem; margin: 0 0 12px;
+      padding-bottom: 8px; border-bottom: 1px solid var(--line-strong);
+    }
+    .sec ul { line-height: 1.9; padding-left: 1.2em; margin: 0; }
+    .sec p { margin: 0; }
+  </style>
 </Base>

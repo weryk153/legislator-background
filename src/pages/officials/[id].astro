@@ -14,48 +14,83 @@ const statusLabel = {
   settled: "已和解", cleared: "查無不法", other: "其他",
 };
 const fmt = (n: number) => new Intl.NumberFormat("zh-Hant").format(n);
+const officeName: Record<string, string> = { legislator: "立委", mayor_magistrate: "縣市首長", councilor: "議員" };
 ---
 <Base title={`${o.name}｜公職人員背景`}>
-  <h1 style="margin:0 0 2px">{o.name}</h1>
-  <p style="color:var(--muted);margin:0 0 24px">{o.party}・{o.district}・第{o.term}屆　{o.bio}</p>
+  <a href="/" class="back">← 返回總覽</a>
 
-  <h2 style="font-size:18px;border-bottom:1px solid var(--line);padding-bottom:6px">經歷</h2>
-  {o.careers.length === 0 && <p class="dim">尚無資料</p>}
-  {o.careers.map((c) => (
-    <div style="margin:10px 0">
-      <strong>{c.startDate}–{c.endDate ?? "現任"}</strong>　{c.organization}　{c.title}
-      <Sources sources={[c.source]} />
-    </div>
-  ))}
+  <header class="head">
+    <span class="pill">{officeName[o.officeType]}</span>
+    <h1>{o.name}</h1>
+    <p class="lede">{o.party}・{o.district}・第{o.term}屆{o.bio ? `　${o.bio}` : ""}</p>
+  </header>
 
-  <h2 style="font-size:18px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:32px">司法判決</h2>
-  <p style="font-size:12px;color:var(--muted)">判決結果不代表最終定罪；未定讞案件當事人受無罪推定保障。</p>
-  {o.judgments.length === 0 && <p class="dim">尚無資料</p>}
-  {o.judgments.map((j) => (
-    <div style="margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:8px">
-      <div style="font-weight:700">{j.caseReason}　<span class="accent">{j.outcome}</span></div>
-      <div style="font-size:13px;color:var(--muted)">{j.court}　{j.caseNumber}　{j.judgmentDate}　{j.isFinal ? "已定讞" : "尚未定讞"}</div>
-      <Sources sources={[j.source]} />
-    </div>
-  ))}
+  <section class="sec">
+    <h2>經歷</h2>
+    {o.careers.length === 0 && <p class="dim none">尚無資料</p>}
+    {o.careers.map((c) => (
+      <div class="item">
+        <div><strong class="num">{c.startDate}–{c.endDate ?? "現任"}</strong>　{c.organization}　{c.title}</div>
+        <Sources sources={[c.source]} />
+      </div>
+    ))}
+  </section>
 
-  <h2 style="font-size:18px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:32px">爭議事件</h2>
-  {o.controversies.length === 0 && <p class="dim">尚無資料</p>}
-  {o.controversies.map((c) => (
-    <div style="margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:8px">
-      <div style="font-weight:700">{c.title}　<span style="font-size:12px;border:1px solid var(--line);border-radius:99px;padding:1px 8px">{statusLabel[c.status]}</span></div>
-      <div style="font-size:13px;margin:4px 0">{c.summary}</div>
-      <div style="font-size:12px;color:var(--muted)">報導日期：{c.reportDate}</div>
-      <Sources sources={c.sources} />
-    </div>
-  ))}
+  <section class="sec">
+    <h2>司法判決</h2>
+    <p class="note">判決結果不代表最終定罪；未定讞案件當事人依法受無罪推定保障。</p>
+    {o.judgments.length === 0 && <p class="dim none">尚無資料</p>}
+    {o.judgments.map((j) => (
+      <article class="card entry">
+        <div class="entry-head">{j.caseReason}　<span class="accent">{j.outcome}</span></div>
+        <div class="entry-meta">{j.court}　{j.caseNumber}　<span class="num">{j.judgmentDate}</span>　<span class="pill">{j.isFinal ? "已定讞" : "尚未定讞"}</span></div>
+        <Sources sources={[j.source]} />
+      </article>
+    ))}
+  </section>
 
-  <h2 style="font-size:18px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:32px">財產申報</h2>
-  {o.assets.length === 0 && <p class="dim">尚無資料</p>}
-  {o.assets.map((a) => (
-    <div style="margin:10px 0">
-      <strong>{a.year}</strong>　NT$ <span class="num">{fmt(a.totalAmount)}</span>
-      <Sources sources={[a.source]} />
-    </div>
-  ))}
+  <section class="sec">
+    <h2>爭議事件</h2>
+    {o.controversies.length === 0 && <p class="dim none">尚無資料</p>}
+    {o.controversies.map((c) => (
+      <article class="card entry">
+        <div class="entry-head">{c.title}　<span class="pill">{statusLabel[c.status]}</span></div>
+        <p class="entry-body">{c.summary}</p>
+        <div class="entry-meta">報導日期：<span class="num">{c.reportDate}</span></div>
+        <Sources sources={c.sources} />
+      </article>
+    ))}
+  </section>
+
+  <section class="sec">
+    <h2>財產申報</h2>
+    {o.assets.length === 0 && <p class="dim none">尚無資料</p>}
+    {o.assets.map((a) => (
+      <div class="item">
+        <div><strong class="num">{a.year}</strong>　NT$ <span class="num asset">{fmt(a.totalAmount)}</span></div>
+        <Sources sources={[a.source]} />
+      </div>
+    ))}
+  </section>
+
+  <style>
+    .back { font-size: 0.8125rem; color: var(--muted); }
+    .back:hover { color: var(--accent); }
+    .head { margin: 14px 0 36px; }
+    .head h1 { font-size: var(--t-xl); margin: 10px 0 6px; }
+    .head .lede { margin: 0; }
+    .sec { margin-bottom: 40px; }
+    .sec h2 {
+      font-size: 1.25rem; margin: 0 0 14px;
+      padding-bottom: 8px; border-bottom: 1px solid var(--line-strong);
+    }
+    .note { font-size: var(--t-sm); color: var(--muted); margin: -4px 0 16px; }
+    .none { padding: 4px 0; }
+    .item { margin: 12px 0; }
+    .entry { margin: 12px 0; }
+    .entry-head { font-weight: 700; font-size: 1.0625rem; }
+    .entry-body { margin: 6px 0; font-size: 0.9375rem; }
+    .entry-meta { font-size: var(--t-sm); color: var(--muted); margin-top: 4px; }
+    .asset { font-weight: 700; }
+  </style>
 </Base>

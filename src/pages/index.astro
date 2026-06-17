@@ -8,8 +8,17 @@ const officials = await loadOfficials();
 const rows = officials.map(toListRow);
 ---
 <Base title="公職人員背景資料庫">
-  <p style="color:var(--muted);font-size:14px;margin:0 0 18px">
-    經歷・司法判決・爭議事件・財產申報　·　每筆皆附出處
-  </p>
+  <section class="intro">
+    <h1>看見公職人員的背景</h1>
+    <p class="lede">
+      經歷・司法判決・爭議事件・財產申報，彙整自公開來源，每一筆都附上可查證的出處。
+    </p>
+  </section>
   <OfficialTable client:load rows={rows} />
+
+  <style>
+    .intro { margin: 4px 0 28px; }
+    .intro h1 { font-size: var(--t-xl); margin: 0 0 10px; }
+    .intro .lede { margin: 0; max-width: 56ch; }
+  </style>
 </Base>

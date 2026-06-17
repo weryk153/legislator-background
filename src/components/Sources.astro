@@ -2,9 +2,19 @@
 import type { Source } from "../lib/types";
 const { sources } = Astro.props as { sources: Source[] };
 ---
-<div style="font-size:12px;color:var(--muted);margin-top:4px">
-  出處：
+<div class="sources">
+  <span class="lbl">出處</span>
   {sources.map((s, i) => (
     <a href={s.url} target="_blank" rel="noopener">{s.title}{i < sources.length - 1 ? "、" : ""}</a>
   ))}
 </div>
+
+<style>
+  .sources { font-size: var(--t-sm); color: var(--muted); margin-top: 8px; }
+  .lbl {
+    font-size: var(--t-xs); letter-spacing: 0.1em; color: var(--faint);
+    margin-right: 6px;
+  }
+  .sources a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--line-strong); }
+  .sources a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+</style>
