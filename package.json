@@ -9,7 +9,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "scrape": "tsx scraper/run.ts",
+    "scrape:import": "tsx scraper/import.ts"
   },
   "dependencies": {
     "@astrojs/svelte": "^7.1.0",
@@ -19,6 +21,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "playwright": "^1.61.0",
+    "tsx": "^4.22.4",
     "typescript": "^5.9.3",
     "vitest": "^3.2.0"
   }
