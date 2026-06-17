@@ -101,10 +101,15 @@ async function main() {
       .eq('official_id', oid).eq('year', a.data.year).maybeSingle();
     if (existing) { stat.skipped += 1; continue; }
     const sourceId = await insertSource(supabase, a.data.source);
-    const { error } = await supabase.from('asset_declarations').insert({
-      official_id: oid, year: a.data.year, total_amount: null, source_id: sourceId,
-    });
-    if (error) throw new Error(`insert asset (${a.key}) failed: ${error.message}`);
+    const { data: decl, error } = await supabase.from('asset_declarations')
+      .insert({ official_id: oid, year: a.data.year, total_amount: null, source_id: sourceId })
+      .select('id').single();
+    if (error || !decl) throw new Error(`insert asset (${a.key}) failed: ${error?.message ?? 'no row'}`);
+    for (const it of a.data.items) {
+      const { error: itErr } = await supabase.from('asset_items')
+        .insert({ declaration_id: decl.id, category: it.category, amount: it.amount, label: it.label ?? null });
+      if (itErr) throw new Error(`insert asset_item (${a.key}/${it.category}) failed: ${itErr.message}`);
+    }
     stat.inserted += 1;
   }
 
