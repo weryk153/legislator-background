@@ -24,7 +24,8 @@ async function main() {
   const outDir = join(here, 'out');
   mkdirSync(outDir, { recursive: true });
 
-  const targets = loadTargets().filter((t) => !only || t.id === only);
+  const office = arg('office');
+  const targets = loadTargets().filter((t) => (!only || t.id === only) && (!office || t.office === office));
   const active = adapters.filter((a) => !sourceFilter || a.name === sourceFilter);
 
   for (const target of targets) {
