@@ -178,7 +178,10 @@ export const cyAdapter: SourceAdapter = {
       // Any failure (no PDF for old 期別, network, pdftotext) leaves items: [] — a
       // reviewer fills those from the declaration's PDF link. This must NEVER throw
       // through to fail the whole adapter, so each record is guarded individually.
-      for (const { asset, row } of paired) {
+      // Gazette PDF enrichment downloads a multi-MB PDF per declaration — far too heavy
+      // for a full-roster run (100+ people × ~18 declarations). Set SKIP_GAZETTE=1 to
+      // populate index-only assets (items: []); enrich per-person later during review.
+      for (const { asset, row } of (process.env.SKIP_GAZETTE ? [] : paired)) {
         try {
           const pdfUrl = await resolvePdfUrl(String(row.Period));
           // PublishPage looks like "P25-29" / "p149-153" / "P6-6" — the gazette's PRINTED

@@ -1,9 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import { planInserts } from '../lib/insert';
-import { loadTargets } from '../lib/targets';
-import type { ReviewFile } from '../lib/types';
+import type { ReviewFile, Target } from '../lib/types';
 
 const src = { url: 'https://x', title: 't', type: 'court' as const, retrievedAt: '2026-06-01' };
+
+// Self-contained target fixture (don't depend on the live roster file).
+const targets: Target[] = [
+  { id: 'wang-shih-chien', name: '王世堅', party: '民進黨', district: '臺北市', office: 'legislator', keywords: [], aliases: [] },
+];
 
 function reviewWith(judgmentSource: typeof src | undefined): ReviewFile {
   return {
@@ -19,14 +23,14 @@ function reviewWith(judgmentSource: typeof src | undefined): ReviewFile {
 
 describe('planInserts', () => {
   it('rejects approved judgments missing a source (validation gate)', () => {
-    const plan = planInserts([reviewWith(undefined)], loadTargets());
+    const plan = planInserts([reviewWith(undefined)], targets);
     expect(plan.rejected.length).toBe(1);
     expect(plan.rejected[0].reason).toMatch(/missing source/);
     expect(plan.judgments.length).toBe(0);
   });
 
   it('accepts a valid approved judgment and assigns its natural key', () => {
-    const plan = planInserts([reviewWith(src)], loadTargets());
+    const plan = planInserts([reviewWith(src)], targets);
     expect(plan.judgments.length).toBe(1);
     expect(plan.judgments[0].key).toBe('北院|1');
   });
