@@ -67,7 +67,11 @@ const officeName: Record<string, string> = { legislator: "立委", mayor_magistr
     {o.assets.length === 0 && <p class="dim none">尚無資料</p>}
     {o.assets.map((a) => (
       <div class="item">
-        <div><strong class="num">{a.year}</strong>　NT$ <span class="num asset">{fmt(a.totalAmount)}</span></div>
+        <div><strong class="num">{a.year}</strong></div>
+        {a.items.length === 0 && <div class="dim" style="font-size:13px">金額待人工從公報補錄</div>}
+        {a.items.map((it) => (
+          <div style="font-size:13px;display:flex;gap:10px"><span style="color:var(--muted);min-width:5em">{it.label ?? it.category}</span><span class="num">NT$ {fmt(it.amount)}</span></div>
+        ))}
         <Sources sources={[a.source]} />
       </div>
     ))}

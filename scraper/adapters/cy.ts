@@ -25,15 +25,14 @@
 //       OverFiveYear             // "Y"/"N"
 //   } ] } }
 //
-// PROVENANCE / HONESTY NOTE on totalAmount:
+// PROVENANCE / HONESTY NOTE on amounts:
 // The 監察院 publishes the declarations themselves as 廉政專刊 (gazette) PDFs; the
-// JSON API above is a *gazette index* and does NOT expose a machine-readable monetary
-// total — the NT$ figures live only inside the PDF addressed by `Id` (fetched via the
+// JSON API above is a *gazette index* and does NOT expose machine-readable monetary
+// figures — the NT$ amounts live only inside the PDF addressed by `Id` (fetched via the
 // WAF-protected POST Query/getFile, which returns a binary blob). So parseCy emits one
-// CandidateAsset per declaration with a real `year` (from the ROC PublishDate) and a
-// gazette `source`, and sets totalAmount from any amount the source carries — which for
-// this index is absent, so it defaults to 0. parseAmount is exported and unit-tested so
-// that a future PDF-extraction step can populate the amount from the same shape.
+// CandidateAsset per declaration with a real `year` (from the ROC PublishDate), a
+// gazette `source`, and an empty `items` array. parseAmount is exported and unit-tested
+// so that a future PDF-extraction step can populate the itemized amounts from the PDF.
 // source.type is 'gazette' (the underlying authoritative form is the 監察院公報/廉政專刊).
 import type { AdapterResult, CandidateAsset, EvidenceSource, SourceAdapter, Target } from '../lib/types';
 
@@ -116,10 +115,10 @@ export function parseCy(input: string | object, sourceUrl: string, retrievedAt: 
     if (!row) continue;
     const year = yearFromPublishDate(trim(row.PublishDate) || trim(row.publishDate));
     if (year <= 0) continue;
-    // The gazette index carries no monetary total; honour any amount field the source
-    // might provide (e.g. a future PDF-extraction enriched record) and default to 0.
-    const totalAmount = parseAmount(trim(row.TotalAmount ?? row.totalAmount ?? row.Amount ?? ''));
-    assets.push({ year, totalAmount, source });
+    // The gazette index carries no machine-readable monetary detail; items start empty and
+    // are populated by a later PDF/公報 extraction task. parseAmount is kept (exported and
+    // unit-tested) for that future enrichment step.
+    assets.push({ year, items: [], source });
   }
 
   return assets;

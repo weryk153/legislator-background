@@ -24,9 +24,7 @@ export interface CandidateCareer {
 export type AssetCategory =
   | 'land' | 'building' | 'cash' | 'deposit' | 'securities' | 'investment' | 'claim' | 'debt' | 'other';
 export interface AssetItem { category: AssetCategory; amount: number; label?: string; }
-export interface CandidateAsset {
-  year: number; totalAmount: number; source: EvidenceSource;
-}
+export interface CandidateAsset { year: number; items: AssetItem[]; source: EvidenceSource; }
 export interface CandidateJudgment {
   caseReason: string; court: string; caseNumber: string; outcome: string; isFinal: boolean;
   judgmentDate: string; judgmentUrl: string; source: EvidenceSource;

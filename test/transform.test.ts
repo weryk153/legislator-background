@@ -11,8 +11,8 @@ const raw: RawOfficial = {
   judgments: [{ id: 'j1', case_reason: '背信', court: '中院', case_number: '110-1', outcome: '一審有罪', is_final: false, judgment_date: '2024-03-01', judgment_url: 'https://j', source: rawSrc }],
   controversies: [{ id: 'c1', title: '爭議', summary: '摘要', status: 'indicted', event_date: '2023-01-01', report_date: '2023-02-01', controversy_sources: [{ source: rawSrc }, { source: rawSrc }] }],
   asset_declarations: [
-    { id: 'a1', year: 2023, total_amount: 100, source: rawSrc },
-    { id: 'a2', year: 2024, total_amount: 580000000, source: rawSrc },
+    { id: 'a1', year: 2023, source: rawSrc, asset_items: [] },
+    { id: 'a2', year: 2024, source: rawSrc, asset_items: [{ category: 'deposit', amount: 580000000, label: null }] },
   ],
 };
 
@@ -23,7 +23,7 @@ describe('toOfficial', () => {
     expect(o.careers[0].source.retrievedAt).toBe('2026-01-01');
     expect(o.judgments[0].isFinal).toBe(false);
     expect(o.controversies[0].sources).toHaveLength(2);
-    expect(o.assets[1].totalAmount).toBe(580000000);
+    expect(o.assets[1].items[0].amount).toBe(580000000);
   });
 });
 

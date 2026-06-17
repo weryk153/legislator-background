@@ -26,7 +26,8 @@ export function toOfficial(r: RawOfficial): Official {
       sources: c.controversy_sources.map((cs) => toSource(cs.source)),
     })),
     assets: r.asset_declarations.map((a) => ({
-      id: a.id, year: a.year, totalAmount: a.total_amount, source: toSource(a.source),
+      id: a.id, year: a.year, source: toSource(a.source),
+      items: (a.asset_items ?? []).map((it) => ({ category: it.category, amount: it.amount, label: it.label })),
     })),
   };
 }
@@ -35,10 +36,13 @@ export function toListRow(o: Official): OfficialListRow {
   const latest = o.assets.length
     ? o.assets.reduce((max, a) => (a.year > max.year ? a : max))
     : null;
+  const latestAssetTotal = latest
+    ? latest.items.filter((i) => i.category !== 'debt').reduce((sum, i) => sum + i.amount, 0)
+    : null;
   return {
     id: o.id, name: o.name, party: o.party, officeType: o.officeType, district: o.district,
     judgmentCount: o.judgments.length,
     controversyCount: o.controversies.length,
-    latestAssetTotal: latest ? latest.totalAmount : null,
+    latestAssetTotal,
   };
 }

@@ -48,7 +48,7 @@ describe('validateOfficial', () => {
   it('flags a career and an asset missing a source', () => {
     const o = baseOfficial({
       careers: [{ id: 'k1', title: 'x', organization: 'y', startDate: '2020', endDate: null, source: undefined as unknown as Source }],
-      assets: [{ id: 'a1', year: 2024, totalAmount: 1000, source: undefined as unknown as Source }],
+      assets: [{ id: 'a1', year: 2024, items: [], source: undefined as unknown as Source }],
     });
     const errs = validateOfficial(o);
     expect(errs).toContain('career k1: missing source');

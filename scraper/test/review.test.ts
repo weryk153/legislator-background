@@ -7,7 +7,7 @@ const src = { url: 'https://x', title: 't', type: 'gov' as const, retrievedAt: '
 
 const results: AdapterResult[] = [
   { source: 'ly', ok: true, careers: [{ title: '議員', organization: '台北市議會', startDate: '2010', endDate: '2024', source: src }] },
-  { source: 'cy', ok: true, assets: [{ year: 2024, totalAmount: 0, source: { ...src, type: 'gazette' } }] },
+  { source: 'cy', ok: true, assets: [{ year: 2024, items: [], source: { ...src, type: 'gazette' } }] },
   { source: 'judgments', ok: true, judgments: [{ caseReason: '妨害名譽', court: '北院', caseNumber: '1', outcome: '無罪', isFinal: false, judgmentDate: '2024', judgmentUrl: 'https://j', source: { ...src, type: 'court' }, defendantNames: [], match: { confidence: 0.4, signals: ['name-exact'] } }] },
 ];
 

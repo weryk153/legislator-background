@@ -22,11 +22,11 @@ describe('parseAmount', () => {
 });
 
 describe('parseCy', () => {
-  it('extracts at least one asset declaration with year and amount', () => {
+  it('extracts at least one asset declaration with year and items', () => {
     const assets = parseCy(fixture, 'https://priso.cy.gov.tw/layout/baselist', '2026-06-17');
     expect(assets.length).toBeGreaterThan(0);
     expect(assets[0].year).toBeGreaterThan(2000);
-    expect(typeof assets[0].totalAmount).toBe('number');
+    expect(Array.isArray(assets[0].items)).toBe(true);
     expect(assets[0].source.type).toBe('gazette');
   });
 

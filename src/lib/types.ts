@@ -7,7 +7,10 @@ export interface Source { id: string; url: string; type: SourceType; title: stri
 export interface Career { id: string; title: string; organization: string; startDate: string; endDate: string | null; source: Source; }
 export interface Judgment { id: string; caseReason: string; court: string; caseNumber: string; outcome: string; isFinal: boolean; judgmentDate: string; judgmentUrl: string; source: Source; }
 export interface Controversy { id: string; title: string; summary: string; status: ControversyStatus; eventDate: string; reportDate: string; sources: Source[]; }
-export interface AssetDeclaration { id: string; year: number; totalAmount: number; source: Source; }
+export type AssetCategory =
+  | 'land' | 'building' | 'cash' | 'deposit' | 'securities' | 'investment' | 'claim' | 'debt' | 'other';
+export interface AssetItem { category: AssetCategory; amount: number; label: string | null; }
+export interface AssetDeclaration { id: string; year: number; items: AssetItem[]; source: Source; }
 
 export interface Official {
   id: string; name: string; party: string; officeType: OfficeType; district: string;
@@ -28,5 +31,5 @@ export interface RawOfficial {
   careers: { id: string; title: string; organization: string; start_date: string; end_date: string | null; source: RawSource }[];
   judgments: { id: string; case_reason: string; court: string; case_number: string; outcome: string; is_final: boolean; judgment_date: string; judgment_url: string; source: RawSource }[];
   controversies: { id: string; title: string; summary: string; status: ControversyStatus; event_date: string; report_date: string; controversy_sources: { source: RawSource }[] }[];
-  asset_declarations: { id: string; year: number; total_amount: number; source: RawSource }[];
+  asset_declarations: { id: string; year: number; source: RawSource; asset_items: { category: AssetCategory; amount: number; label: string | null }[] }[];
 }

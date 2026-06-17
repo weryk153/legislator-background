@@ -8,7 +8,7 @@ const SELECT = `
   careers ( id, title, organization, start_date, end_date, source:sources(*) ),
   judgments ( id, case_reason, court, case_number, outcome, is_final, judgment_date, judgment_url, source:sources(*) ),
   controversies ( id, title, summary, status, event_date, report_date, controversy_sources ( source:sources(*) ) ),
-  asset_declarations ( id, year, total_amount, source:sources(*) )
+  asset_declarations ( id, year, source:sources(*), asset_items ( category, amount, label ) )
 `;
 
 // Pure assembly + validation gate — unit tested without a network call.

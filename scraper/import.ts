@@ -102,7 +102,7 @@ async function main() {
     if (existing) { stat.skipped += 1; continue; }
     const sourceId = await insertSource(supabase, a.data.source);
     const { error } = await supabase.from('asset_declarations').insert({
-      official_id: oid, year: a.data.year, total_amount: a.data.totalAmount, source_id: sourceId,
+      official_id: oid, year: a.data.year, total_amount: null, source_id: sourceId,
     });
     if (error) throw new Error(`insert asset (${a.key}) failed: ${error.message}`);
     stat.inserted += 1;
