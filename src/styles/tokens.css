@@ -1,0 +1,25 @@
+:root {
+  --bg: #faf9f6;
+  --fg: #1b1a17;
+  --muted: #5a5a5a;
+  --line: rgba(120, 120, 120, 0.18);
+  --accent: #b3271e;
+  --serif: "Noto Serif TC", Georgia, "Songti TC", serif;
+  --sans: system-ui, "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --maxw: 920px;
+}
+:root[data-theme="dark"] {
+  --bg: #141414;
+  --fg: #ece9e2;
+  --muted: #9a978f;
+  --line: rgba(180, 180, 180, 0.16);
+  --accent: #e4574c;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--sans); }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+h1, h2, h3 { font-family: var(--serif); }
+a { color: inherit; }
+.num { font-variant-numeric: tabular-nums; }
+.accent { color: var(--accent); }
+.dim { opacity: 0.4; }

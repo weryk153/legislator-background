@@ -1,0 +1,43 @@
+---
+import "../styles/tokens.css";
+const { title = "公職人員背景資料庫" } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;800&display=swap" rel="stylesheet" />
+    <script is:inline>
+      const t = localStorage.getItem("theme");
+      if (t) document.documentElement.dataset.theme = t;
+    </script>
+  </head>
+  <body>
+    <header class="wrap" style="display:flex;justify-content:space-between;align-items:center;padding-top:20px;padding-bottom:14px;border-bottom:2px solid var(--fg)">
+      <a href="/" style="text-decoration:none">
+        <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Public Office Watch</div>
+        <div style="font-family:var(--serif);font-size:22px;font-weight:800">公職人員背景</div>
+      </a>
+      <nav style="display:flex;gap:16px;align-items:center;font-size:14px">
+        <a href="/about">關於</a>
+        <button id="theme-toggle" style="background:none;border:1px solid var(--line);border-radius:6px;padding:4px 10px;color:inherit;cursor:pointer">切換深淺</button>
+      </nav>
+    </header>
+    <main class="wrap" style="padding-top:24px;padding-bottom:64px">
+      <slot />
+    </main>
+    <footer class="wrap" style="border-top:1px solid var(--line);padding:24px 20px;font-size:12px;color:var(--muted)">
+      本站僅呈現合法公開資料並標註出處，不對個人作價值判斷。判決資訊不代表最終定罪，當事人受無罪推定保障。更正請來信。
+    </footer>
+    <script is:inline>
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        const cur = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = cur;
+        localStorage.setItem("theme", cur);
+      });
+    </script>
+  </body>
+</html>
