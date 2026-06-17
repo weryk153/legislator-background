@@ -21,6 +21,9 @@ export interface EvidenceSource {
 export interface CandidateCareer {
   title: string; organization: string; startDate: string; endDate: string | null; source: EvidenceSource;
 }
+export type AssetCategory =
+  | 'land' | 'building' | 'cash' | 'deposit' | 'securities' | 'investment' | 'claim' | 'debt' | 'other';
+export interface AssetItem { category: AssetCategory; amount: number; label?: string; }
 export interface CandidateAsset {
   year: number; totalAmount: number; source: EvidenceSource;
 }
