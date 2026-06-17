@@ -35,6 +35,7 @@
 // so that a future PDF-extraction step can populate the itemized amounts from the PDF.
 // source.type is 'gazette' (the underlying authoritative form is the 監察院公報/廉政專刊).
 import type { AdapterResult, CandidateAsset, EvidenceSource, SourceAdapter, Target } from '../lib/types';
+import { resolvePdfUrl, pdfPageText, parseDeclaration } from '../lib/gazette';
 
 const UA = 'legislator-background-bot/1.0 (public-data; contact: weryk153@gmail.com)';
 const PRISO_BASE = 'https://priso.cy.gov.tw';
@@ -84,6 +85,19 @@ const trim = (v: unknown): string => (v == null ? '' : String(v).trim());
  * under `Data.Data` (the real envelope) or as a bare array.
  */
 export function parseCy(input: string | object, sourceUrl: string, retrievedAt: string): CandidateAsset[] {
+  return parseCyRows(input, sourceUrl, retrievedAt).map((r) => r.asset);
+}
+
+/**
+ * Like {@link parseCy} but keeps each built asset paired with its originating index row
+ * so the adapter can enrich `items` from the gazette PDF addressed by the row's 期別 /
+ * 公報頁次. Pure (no network); the adapter does the best-effort PDF fetch.
+ */
+export function parseCyRows(
+  input: string | object,
+  sourceUrl: string,
+  retrievedAt: string,
+): Array<{ asset: CandidateAsset; row: any }> {
   let json: any;
   if (typeof input === 'string') {
     try {
@@ -110,18 +124,16 @@ export function parseCy(input: string | object, sourceUrl: string, retrievedAt: 
     retrievedAt,
   };
 
-  const assets: CandidateAsset[] = [];
+  const out: Array<{ asset: CandidateAsset; row: any }> = [];
   for (const row of rows) {
     if (!row) continue;
     const year = yearFromPublishDate(trim(row.PublishDate) || trim(row.publishDate));
     if (year <= 0) continue;
-    // The gazette index carries no machine-readable monetary detail; items start empty and
-    // are populated by a later PDF/公報 extraction task. parseAmount is kept (exported and
-    // unit-tested) for that future enrichment step.
-    assets.push({ year, items: [], source });
+    // Items start empty; the adapter populates them best-effort from the gazette PDF.
+    out.push({ asset: { year, items: [], source }, row });
   }
 
-  return assets;
+  return out;
 }
 
 // The priso.cy.gov.tw search is a POST JSON API, so we cannot reuse fetchPolite (which
@@ -159,7 +171,34 @@ export const cyAdapter: SourceAdapter = {
         Page: { PageNo: 1, PageSize: 100 },
       });
       const text = await res.text();
-      const assets = parseCy(text, PUBLIC_PAGE, new Date().toISOString().slice(0, 10));
+      const paired = parseCyRows(text, PUBLIC_PAGE, new Date().toISOString().slice(0, 10));
+
+      // Best-effort per-declaration enrichment: resolve the 期別 to its gazette PDF,
+      // pull the text of the declaration's 公報頁次 range, and itemize the amounts.
+      // Any failure (no PDF for old 期別, network, pdftotext) leaves items: [] — a
+      // reviewer fills those from the declaration's PDF link. This must NEVER throw
+      // through to fail the whole adapter, so each record is guarded individually.
+      for (const { asset, row } of paired) {
+        try {
+          const pdfUrl = await resolvePdfUrl(String(row.Period));
+          // PublishPage looks like "P25-29" / "p149-153" / "P6-6" — the gazette's PRINTED
+          // page numbers, which are offset from the PDF's physical page index by a few
+          // front-matter pages. Anchor at the start page and pad the declared range so
+          // the offset declaration form is captured, but cap the span tight enough to
+          // avoid bleeding deep into adjacent persons' forms (parseDeclaration also
+          // anchors on the target name).
+          const pages = String(row.PublishPage).match(/\d+/g) ?? [];
+          const start = Number(pages[0] ?? '1');
+          const end = Number(pages[1] ?? pages[0] ?? '1');
+          const span = Math.min(Math.max(end - start, 0) + 3, 8);
+          const declText = await pdfPageText(pdfUrl, start, span);
+          asset.items = parseDeclaration(declText, target.name);
+        } catch {
+          /* leave items: [] — reviewer fills from the PDF link */
+        }
+      }
+
+      const assets = paired.map((p) => p.asset);
       return { source: 'cy', ok: true, assets };
     } catch (err) {
       return { source: 'cy', ok: false, error: err instanceof Error ? err.message : String(err) };
