@@ -7,18 +7,19 @@ const src = { url: 'https://x', title: 't', type: 'gov' as const, retrievedAt: '
 
 const results: AdapterResult[] = [
   { source: 'ly', ok: true, careers: [{ title: '議員', organization: '台北市議會', startDate: '2010', endDate: '2024', source: src }] },
+  { source: 'cy', ok: true, assets: [{ year: 2024, totalAmount: 0, source: { ...src, type: 'gazette' } }] },
   { source: 'judgments', ok: true, judgments: [{ caseReason: '妨害名譽', court: '北院', caseNumber: '1', outcome: '無罪', isFinal: false, judgmentDate: '2024', judgmentUrl: 'https://j', source: { ...src, type: 'court' }, match: { confidence: 0.4, signals: ['name-exact'] } }] },
-  { source: 'cy', ok: false, error: 'timeout' },
 ];
 
 describe('buildReviewFile', () => {
-  it('groups candidates, defaults careers approved, judgments needs_review and NOT approved', () => {
+  it('groups candidates, careers approved, assets+judgments need human approval', () => {
     const rf = buildReviewFile(target, results, '2026-06-17T00:00:00Z');
     expect(rf.targetId).toBe('t1');
     expect(rf.careers[0].approved).toBe(true);
+    expect(rf.assets[0].approved).toBe(false); // gazette amount unknown → must be reviewed
     expect(rf.judgments[0].approved).toBe(false);
     expect(rf.judgments[0].status).toBe('needs_review');
-    expect(rf.report.find((r) => r.source === 'cy')?.ok).toBe(false);
+    expect(rf.report.find((r) => r.source === 'cy')?.ok).toBe(true);
   });
 });
 

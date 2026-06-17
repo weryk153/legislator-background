@@ -4,7 +4,10 @@ import type {
 
 export function buildReviewFile(target: Target, results: AdapterResult[], generatedAt: string): ReviewFile {
   const careers = results.flatMap((r) => r.careers ?? []).map((data) => ({ approved: true, data }));
-  const assets = results.flatMap((r) => r.assets ?? []).map((data) => ({ approved: true, data }));
+  // Assets require human approval: current gazette sources expose no machine-readable
+  // amount (totalAmount defaults to 0), so a reviewer must fill the real figure from the
+  //公報 PDF before publish — never auto-publish a misleading "NT$ 0".
+  const assets = results.flatMap((r) => r.assets ?? []).map((data) => ({ approved: false, data }));
   // Judgments require explicit human approval — always start approved:false / needs_review.
   const judgments = results.flatMap((r) => r.judgments ?? []).map((data) => ({
     approved: false,
