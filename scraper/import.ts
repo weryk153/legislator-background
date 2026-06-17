@@ -72,12 +72,18 @@ async function main() {
   if (!url || !key) throw new Error('Missing PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY');
   const supabase = createClient(url, key);
 
-  const slugs = [...new Set([
-    ...plan.careers.map((x) => x.targetId),
-    ...plan.assets.map((x) => x.targetId),
-    ...plan.judgments.map((x) => x.targetId),
-  ])];
+  // --ensure-all upserts every target as an official straight from the authoritative
+  // roster (no scraped facts needed) — used to seed the full directory of people.
+  const ensureAll = process.argv.includes('--ensure-all');
+  const slugs = ensureAll
+    ? targets.map((t) => t.id)
+    : [...new Set([
+        ...plan.careers.map((x) => x.targetId),
+        ...plan.assets.map((x) => x.targetId),
+        ...plan.judgments.map((x) => x.targetId),
+      ])];
   const officialId = await ensureOfficials(supabase, targets, slugs);
+  if (ensureAll) console.log(`ensured ${officialId.size} officials from roster`);
 
   const stat = { inserted: 0, skipped: 0 };
 

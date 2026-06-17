@@ -28,7 +28,16 @@ export async function loadOfficials(): Promise<Official[]> {
   if (!url || !key) throw new Error('Missing PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY');
 
   const supabase = createClient(url, key);
-  const { data, error } = await supabase.from('officials').select(SELECT);
-  if (error) throw new Error(`Supabase query failed: ${error.message}`);
-  return assembleOfficials((data ?? []) as unknown as RawOfficial[]);
+  // PostgREST caps a response at ~1000 rows, so page through with .range() until
+  // a short page signals the end (the roster now exceeds 1000 officials).
+  const pageSize = 1000;
+  const rows: unknown[] = [];
+  for (let from = 0; ; from += pageSize) {
+    const { data, error } = await supabase.from('officials').select(SELECT).range(from, from + pageSize - 1);
+    if (error) throw new Error(`Supabase query failed: ${error.message}`);
+    const page = data ?? [];
+    rows.push(...page);
+    if (page.length < pageSize) break;
+  }
+  return assembleOfficials(rows as RawOfficial[]);
 }
