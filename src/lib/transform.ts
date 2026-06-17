@@ -1,6 +1,9 @@
 import type { Official, OfficialListRow, RawOfficial, RawSource, Source } from './types';
 
 function toSource(r: RawSource): Source {
+  // A missing source must survive transform so the validation gate can flag it
+  // (`missing source`) instead of crashing with a raw TypeError.
+  if (!r) return r as unknown as Source;
   return { id: r.id, url: r.url, type: r.type, title: r.title, retrievedAt: r.retrieved_at };
 }
 
