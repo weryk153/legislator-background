@@ -27,6 +27,7 @@
     <option value="">全部職位</option>
     <option value="legislator">立委</option>
     <option value="mayor_magistrate">縣市首長</option>
+    <option value="councilor">議員</option>
   </select>
   <select class="ctrl" aria-label="排序方式" bind:value={sort}>
     <option value="judgments">判決最多</option>

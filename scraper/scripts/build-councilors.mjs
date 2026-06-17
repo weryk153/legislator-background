@@ -65,7 +65,8 @@ async function main() {
           let slug = slugify(name, party, district);
           const n = (seenSlug.get(slug) || 0) + 1; seenSlug.set(slug, n);
           if (n > 1) slug = `${slug}-${n}`;
-          out.push({ id: slug, name, party, district, office: 'councilor', profession: '', keywords: [], aliases: [] });
+          const birthYear = String(c.cand_birthyear ?? '').trim();
+          out.push({ id: slug, name, party, district, office: 'councilor', birthYear, profession: '', keywords: [], aliases: [] });
         }
         await sleep(150);
       }
@@ -73,13 +74,14 @@ async function main() {
   }
 
   const existing = JSON.parse(readFileSync(targetsPath, 'utf8'));
-  const haveIds = new Set(existing.map((t) => t.id));
-  const fresh = out.filter((t) => !haveIds.has(t.id));
-  const merged = existing.concat(fresh);
+  // Replace all councilor entries (re-runnable): keep non-councilors, then add the
+  // freshly-built councilor roster (now carrying birthYear).
+  const nonCouncilor = existing.filter((t) => t.office !== 'councilor');
+  const merged = nonCouncilor.concat(out);
   writeFileSync(targetsPath, JSON.stringify(merged, null, 2) + '\n');
 
   const byOffice = merged.reduce((m, t) => ((m[t.office] = (m[t.office] || 0) + 1), m), {});
-  console.log(`councilor winners found: ${out.length}; new added: ${fresh.length}`);
+  console.log(`councilor winners found: ${out.length} (replaced existing councilor entries)`);
   console.log(`targets total: ${merged.length}`, JSON.stringify(byOffice));
   console.log('uniq ids:', new Set(merged.map((t) => t.id)).size);
 }

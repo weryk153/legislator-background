@@ -5,8 +5,9 @@ export interface Target {
   name: string;
   party: string;
   district: string;
-  office: 'legislator';
+  office: 'legislator' | 'mayor_magistrate' | 'councilor';
   profession?: string;
+  birthYear?: string;  // 中選會 roster birth year — disambiguates same-name candidates
   keywords: string[];  // organizations, schools, district place-names — used for matching
   aliases: string[];
 }

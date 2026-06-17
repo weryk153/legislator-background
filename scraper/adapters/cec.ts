@@ -46,7 +46,7 @@ function organizationFor(themeName: string): string {
  * fallback (the legacy db.cec.gov.tw surfaces are HTML) we also accept an HTML string
  * containing an embedded JSON payload and recover the candidate list from it.
  */
-export function parseCec(input: string, sourceUrl: string, retrievedAt: string): CandidateCareer[] {
+export function parseCec(input: string, sourceUrl: string, retrievedAt: string, birthYear?: string): CandidateCareer[] {
   const json = parseInput(input);
   const list: any[] = Array.isArray(json?.cand_data_list)
     ? json.cand_data_list
@@ -61,6 +61,10 @@ export function parseCec(input: string, sourceUrl: string, retrievedAt: string):
 
   for (const row of list) {
     if (!row) continue;
+    // Same Chinese name collides across the island; when the target's birth year is
+    // known (councilors carry it from the 中選會 roster), keep only matching rows so a
+    // different same-named candidate's elections aren't mis-attributed.
+    if (birthYear && trim(row.cand_birthyear) !== birthYear) continue;
     const themeName = trim(row.theme_name);
     const organization = organizationFor(themeName);
     if (!organization) continue;
@@ -115,7 +119,7 @@ export const cecAdapter: SourceAdapter = {
       }).toString()}`;
       const res = await fetchPolite(url);
       const text = await res.text();
-      const careers = parseCec(text, url, new Date().toISOString().slice(0, 10));
+      const careers = parseCec(text, url, new Date().toISOString().slice(0, 10), target.birthYear);
       return { source: 'cec', ok: true, careers };
     } catch (err) {
       return { source: 'cec', ok: false, error: err instanceof Error ? err.message : String(err) };
