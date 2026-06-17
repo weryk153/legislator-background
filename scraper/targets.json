@@ -1,0 +1,15 @@
+[
+  { "id": "han-kuo-yu", "name": "韓國瑜", "party": "國民黨", "district": "不分區", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
+  { "id": "fu-kun-chi", "name": "傅崐萁", "party": "國民黨", "district": "花蓮", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
+  { "id": "hsu-chiao-hsin", "name": "徐巧芯", "party": "國民黨", "district": "台北市", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
+  { "id": "chiang-chi-chen", "name": "江啟臣", "party": "國民黨", "district": "台中市", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
+  { "id": "lo-chih-chiang", "name": "羅智強", "party": "國民黨", "district": "台北市", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
+  { "id": "wang-hung-wei", "name": "王鴻薇", "party": "國民黨", "district": "台北市", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
+  { "id": "yeh-yuan-chih", "name": "葉元之", "party": "國民黨", "district": "新北市", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
+  { "id": "puma-shen", "name": "沈伯洋", "party": "民進黨", "district": "不分區", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
+  { "id": "wang-shih-chien", "name": "王世堅", "party": "民進黨", "district": "台北市", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
+  { "id": "wu-szu-yao", "name": "吳思瑤", "party": "民進黨", "district": "台北市", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
+  { "id": "huang-kuo-chang", "name": "黃國昌", "party": "民眾黨", "district": "不分區", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
+  { "id": "huang-shan-shan", "name": "黃珊珊", "party": "民眾黨", "district": "不分區", "office": "legislator", "profession": "", "keywords": [], "aliases": [] },
+  { "id": "kao-chin-su-mei", "name": "高金素梅", "party": "無黨籍", "district": "山地原住民", "office": "legislator", "profession": "", "keywords": [], "aliases": [] }
+]
