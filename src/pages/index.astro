@@ -1,13 +1,15 @@
 ---
----
+import Base from "../layouts/Base.astro";
+import OfficialTable from "../components/OfficialTable.svelte";
+import { loadOfficials } from "../lib/data";
+import { toListRow } from "../lib/transform";
 
-<html lang="zh-Hant">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>公職人員背景資料庫</title>
-  </head>
-  <body>
-    <h1>公職人員背景資料庫</h1>
-  </body>
-</html>
+const officials = await loadOfficials();
+const rows = officials.map(toListRow);
+---
+<Base title="公職人員背景資料庫">
+  <p style="color:var(--muted);font-size:14px;margin:0 0 18px">
+    經歷・司法判決・爭議事件・財產申報　·　每筆皆附出處
+  </p>
+  <OfficialTable client:load rows={rows} />
+</Base>
