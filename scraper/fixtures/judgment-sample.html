@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+  REPRESENTATIVE fixture (NOT real data).
+
+  The live 司法院裁判書查詢系統 (https://judgments.judicial.gov.tw/FJUD/...) was
+  unreachable from the build environment (DNS did not resolve; no outbound network)
+  and the site is known to gate automation behind a verification challenge. Per
+  Task 12's ~5-minute time-box, the live capture was abandoned and this hand-built
+  fixture was constructed to mirror the structure of a single judgment-detail page so
+  the pure parser + scorer can be unit-tested.
+
+  Structure mirrors the real detail page: a header table carrying the 法院 (court),
+  裁判字號 (case number) and 裁判日期 (date), followed by the judgment body that opens
+  with party lines and a 主文 (disposition) block. Class/id names below
+  (.jud-title, #jud, .htmlcontent, the "主文" label) are representative; parseJudgment
+  reads the visible text rather than relying on brittle exact selectors.
+-->
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <title>裁判書查詢結果</title>
+</head>
+<body>
+  <div id="jud">
+    <div class="jud-title">
+      <h2>臺灣臺北地方法院刑事判決</h2>
+      <table class="tab-list">
+        <tr>
+          <td class="col1">裁判字號：</td>
+          <td class="col2">臺灣臺北地方法院 111 年度易字第 1 號刑事判決</td>
+        </tr>
+        <tr>
+          <td class="col1">裁判日期：</td>
+          <td class="col2">民國 111 年 03 月 15 日</td>
+        </tr>
+        <tr>
+          <td class="col1">裁判案由：</td>
+          <td class="col2">妨害名譽</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="htmlcontent">
+      <pre>
+臺灣臺北地方法院刑事判決　　　　　　　111年度易字第1號
+公　訴　人　臺灣臺北地方檢察署檢察官
+被　　　告　徐巧芯　　　住臺北市大安區○○路○○號
+上列被告因妨害名譽案件，經檢察官提起公訴（111年度偵字第1號），本院判決如下：
+
+    主    文
+徐巧芯犯公然侮辱罪，處罰金新臺幣壹萬元，如易服勞役，以新臺幣壹仟元折算壹日。
+
+    事    實
+一、徐巧芯於民國110年間，在臺北市大安區公開場合，基於公然侮辱之犯意……（略）。
+
+    理    由
+一、上開犯罪事實，業據被告坦承不諱，並有相關證據在卷可稽，事證明確，犯行堪以認定。
+二、本件得上訴。
+
+中　華　民　國　111　年　03　月　15　日
+                                    刑事第一庭  法  官  ○○○
+      </pre>
+    </div>
+  </div>
+</body>
+</html>
