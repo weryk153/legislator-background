@@ -1,6 +1,6 @@
 import type { CandidateControversy, EvidenceSource, SourceType } from './types';
 
-const SECTION_RE = /爭議|爭論|事件|風波|訴訟|醜聞|弊|案$|案件/;
+const SECTION_RE = /爭議|爭論|風波|訴訟|醜聞|弊案|貪|詐|案件|遭控|爭端/;
 
 export interface WikiSection { index: string; line: string; }
 
@@ -13,6 +13,12 @@ export function wikitextToSummary(wikitext: string, max = 300): string {
   t = t.replace(/<!--[\s\S]*?-->/g, '');
   t = t.replace(/<ref[^>]*>[\s\S]*?<\/ref>/g, '');
   t = t.replace(/<ref[^>]*\/>/g, '');
+  // MediaWiki language-conversion markup: -{准}-, -{zh-tw:臺;zh-cn:台}-, -{R|foo}-
+  t = t.replace(/-\{([^{}]*)\}-/g, (_m, body) => {
+    const tw = body.match(/zh(?:-(?:tw|hant|hk|mo))?\s*:\s*([^;]*)/);
+    if (tw) return tw[1].trim();
+    return body.replace(/^[A-Za-z-]+\|/, '').trim(); // drop a leading flag like "R|"
+  });
   // Collapse nested templates from the inside out until none remain.
   let prev: string;
   do {

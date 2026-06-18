@@ -33,6 +33,27 @@ describe('extractRefUrls', () => {
   });
 });
 
+describe('wikitextToSummary conversion markup', () => {
+  it('resolves -{}- conversion markup and fully cleans the real lead (no template leak)', () => {
+    const s = wikitextToSummary(fx.lead, 400);
+    expect(s).not.toMatch(/\{\{|\}\}|-\{|\}-/);
+  });
+  it('keeps the display text of zh-tw conversion', () => {
+    expect(wikitextToSummary('自請退黨獲-{准}-。')).toBe('自請退黨獲准。');
+    expect(wikitextToSummary('-{zh-tw:臺灣;zh-cn:台湾}-民主')).toContain('臺灣');
+  });
+});
+
+describe('pickControversySections precision', () => {
+  it('does not flag benign 提案/法案/方案 sections', () => {
+    const benign = [{ index: '1', line: '提案' }, { index: '2', line: '重要法案' }, { index: '3', line: '政見方案' }];
+    expect(pickControversySections(benign)).toHaveLength(0);
+  });
+  it('still flags real controversy sections from the fixture', () => {
+    expect(pickControversySections(fx.sections).length).toBeGreaterThan(0);
+  });
+});
+
 describe('isLikelyPerson', () => {
   it('accepts a lead mentioning the office/party keywords', () => {
     expect(isLikelyPerson(fx.lead, ['立法委員', '民眾黨', '新竹'])).toBe(true);
