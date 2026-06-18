@@ -1,4 +1,5 @@
-import type { CandidateControversy, EvidenceSource, SourceType } from './types';
+import { fetchPolite } from './fetchPolite';
+import type { AdapterResult, CandidateControversy, EvidenceSource, SourceAdapter, SourceType, Target } from './types';
 
 const SECTION_RE = /爭議|爭論|風波|訴訟|醜聞|弊案|貪|詐|案件|遭控|爭端/;
 
@@ -67,3 +68,54 @@ export function buildSources(pageUrl: string, refUrls: string[], retrievedAt: st
   const refs: EvidenceSource[] = refUrls.map((u) => ({ url: u, title: '報導/原始出處', type: sourceTypeFor(u), retrievedAt }));
   return [wiki, ...refs];
 }
+
+const API = 'https://zh.wikipedia.org/w/api.php';
+const pageUrl = (name: string) => `https://zh.wikipedia.org/wiki/${encodeURIComponent(name)}`;
+
+async function apiJson(params: Record<string, string>): Promise<any> {
+  const qs = new URLSearchParams({ ...params, format: 'json' }).toString();
+  const res = await fetchPolite(`${API}?${qs}`);
+  return res.json();
+}
+
+export async function fetchWikiControversies(target: Target): Promise<CandidateControversy[]> {
+  const retrievedAt = new Date().toISOString().slice(0, 10);
+  const secResp = await apiJson({ action: 'parse', page: target.name, prop: 'sections' });
+  if (secResp.error) return []; // no such article
+  const sections: WikiSection[] = secResp.parse?.sections ?? [];
+
+  const leadResp = await apiJson({ action: 'parse', page: target.name, prop: 'wikitext', section: '0' });
+  const lead = leadResp.parse?.wikitext?.['*'] ?? '';
+  const keywords = [target.party, target.district, '立法委員', '議員', '市長', '縣長'].filter(Boolean);
+  if (!isLikelyPerson(lead, keywords)) return [];
+
+  const picked = pickControversySections(sections);
+  const out: CandidateControversy[] = [];
+  for (const s of picked) {
+    const r = await apiJson({ action: 'parse', page: target.name, prop: 'wikitext', section: s.index });
+    const wt = r.parse?.wikitext?.['*'] ?? '';
+    const summary = wikitextToSummary(wt, 300);
+    if (!summary) continue;
+    out.push({
+      title: s.line,
+      summary,
+      status: 'other',
+      eventDate: '',
+      reportDate: '',
+      sources: buildSources(pageUrl(target.name), extractRefUrls(wt), retrievedAt),
+    });
+  }
+  return out;
+}
+
+export const wikiAdapter: SourceAdapter = {
+  name: 'wiki',
+  async fetchFor(target: Target): Promise<AdapterResult> {
+    try {
+      const controversies = await fetchWikiControversies(target);
+      return { source: 'wiki', ok: true, controversies };
+    } catch (err) {
+      return { source: 'wiki', ok: false, error: err instanceof Error ? err.message : String(err) };
+    }
+  },
+};
