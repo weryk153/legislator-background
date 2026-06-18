@@ -7,10 +7,11 @@ import { lyAdapter } from './adapters/ly';
 import { cecAdapter } from './adapters/cec';
 import { cyAdapter } from './adapters/cy';
 import { judgmentsAdapter } from './adapters/judgments';
+import { wikiAdapter } from './lib/wiki';
 import type { SourceAdapter } from './lib/types';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const adapters: SourceAdapter[] = [lyAdapter, cecAdapter, cyAdapter, judgmentsAdapter];
+const adapters: SourceAdapter[] = [lyAdapter, cecAdapter, cyAdapter, judgmentsAdapter, wikiAdapter];
 
 function arg(name: string): string | undefined {
   const hit = process.argv.find((a) => a.startsWith(`--${name}=`));

@@ -63,7 +63,7 @@ async function main() {
   const targets = loadTargets();
   const plan = planInserts(files, targets);
 
-  console.log(`planned → careers:${plan.careers.length} assets:${plan.assets.length} judgments:${plan.judgments.length} rejected:${plan.rejected.length}`);
+  console.log(`planned → careers:${plan.careers.length} assets:${plan.assets.length} judgments:${plan.judgments.length} controversies:${plan.controversies.length} rejected:${plan.rejected.length}`);
   for (const r of plan.rejected) console.warn(`REJECTED ${r.targetId}: ${r.reason}`);
   if (dryRun) { console.log('(dry-run: nothing written)'); return; }
 
@@ -81,6 +81,7 @@ async function main() {
         ...plan.careers.map((x) => x.targetId),
         ...plan.assets.map((x) => x.targetId),
         ...plan.judgments.map((x) => x.targetId),
+        ...plan.controversies.map((x) => x.targetId),
       ])];
   const officialId = await ensureOfficials(supabase, targets, slugs);
   if (ensureAll) console.log(`ensured ${officialId.size} officials from roster`);
@@ -131,6 +132,23 @@ async function main() {
       source_id: sourceId,
     });
     if (error) throw new Error(`insert judgment (${j.key}) failed: ${error.message}`);
+    stat.inserted += 1;
+  }
+
+  for (const c of plan.controversies) {
+    const oid = officialId.get(c.targetId)!;
+    const { data: existing } = await supabase.from('controversies').select('id')
+      .eq('official_id', oid).eq('title', c.data.title).maybeSingle();
+    if (existing) { stat.skipped += 1; continue; }
+    const { data: row, error } = await supabase.from('controversies')
+      .insert({ official_id: oid, title: c.data.title, summary: c.data.summary, status: c.data.status, event_date: c.data.eventDate, report_date: c.data.reportDate })
+      .select('id').single();
+    if (error || !row) throw new Error(`insert controversy (${c.key}) failed: ${error?.message ?? 'no row'}`);
+    for (const s of c.data.sources) {
+      const sid = await insertSource(supabase, s);
+      const { error: jErr } = await supabase.from('controversy_sources').insert({ controversy_id: row.id, source_id: sid });
+      if (jErr) throw new Error(`insert controversy_source (${c.key}) failed: ${jErr.message}`);
+    }
     stat.inserted += 1;
   }
 

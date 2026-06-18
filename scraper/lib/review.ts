@@ -49,7 +49,7 @@ export function collectApproved(files: ReviewFile[]): ApprovedBundle {
     for (const c of f.careers) if (c.approved) bundle.careers.push({ targetId: f.targetId, data: c.data });
     for (const a of f.assets) if (a.approved) bundle.assets.push({ targetId: f.targetId, data: a.data });
     for (const j of f.judgments) if (j.approved) bundle.judgments.push({ targetId: f.targetId, data: j.data });
-    for (const c of f.wikiControversies) if (c.approved) bundle.controversies.push({ targetId: f.targetId, data: c.data });
+    for (const c of f.wikiControversies ?? []) if (c.approved) bundle.controversies.push({ targetId: f.targetId, data: c.data });
   }
   return bundle;
 }
