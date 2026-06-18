@@ -59,7 +59,20 @@ async function main() {
         body: JSON.stringify({ token: json.Token }),
       });
       const jlText = await jl.text();
-      console.log('JList HTTP', jl.status, '— sample:', jlText.slice(0, 200));
+      console.log('JList HTTP', jl.status);
+      try {
+        const days = JSON.parse(jlText);
+        let total = 0;
+        for (const d of days) {
+          const n = Array.isArray(d.list) ? d.list.length : 0;
+          total += n;
+          console.log(`  ${d.date}: ${n} 筆異動`);
+        }
+        console.log(`📊 當日異動裁判書總數: ${total}（要逐筆抓全文比對姓名的量）`);
+        console.log('  sample jids:', (days[0]?.list ?? []).slice(0, 3));
+      } catch {
+        console.log('JList non-JSON sample:', jlText.slice(0, 200));
+      }
     } else {
       console.log('❌ no token:', json.error ?? text.slice(0, 200));
     }
