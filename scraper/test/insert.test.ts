@@ -17,6 +17,7 @@ function reviewWith(judgmentSource: typeof src | undefined): ReviewFile {
       caseReason: 'x', court: '北院', caseNumber: '1', outcome: '無罪', isFinal: false,
       judgmentDate: '2024', judgmentUrl: 'u', source: judgmentSource as never, defendantNames: [], match: { confidence: 0.4, signals: [] },
     } }],
+    wikiControversies: [],
     report: [],
   };
 }

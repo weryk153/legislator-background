@@ -7,3 +7,6 @@ export function assetKey(targetId: string, a: { year: number }): string {
 export function careerKey(targetId: string, c: { organization: string; startDate: string }): string {
   return `${targetId}|${c.organization}|${c.startDate}`;
 }
+export function controversyKey(targetId: string, c: { title: string }): string {
+  return `${targetId}|${c.title}`;
+}

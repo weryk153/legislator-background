@@ -71,5 +71,6 @@ export interface ReviewFile {
   careers: ReviewItem<CandidateCareer>[];
   assets: ReviewItem<CandidateAsset>[];
   judgments: Array<ReviewItem<CandidateJudgment> & { status: 'needs_review' }>;
+  wikiControversies: Array<ReviewItem<CandidateControversy> & { status: 'needs_review' }>;
   report: Array<{ source: string; ok: boolean; error?: string; counts: Record<string, number> }>;
 }

@@ -1,5 +1,5 @@
 import type { Official, Source } from '../../src/lib/types';
-import type { CandidateAsset, CandidateCareer, CandidateJudgment, EvidenceSource, Target } from './types';
+import type { CandidateAsset, CandidateCareer, CandidateControversy, CandidateJudgment, EvidenceSource, Target } from './types';
 
 function toSource(e: EvidenceSource): Source {
   // EvidenceSource already matches Source's view-model shape (camelCase). Pass undefined
@@ -12,6 +12,7 @@ export interface ApprovedForTarget {
   careers: CandidateCareer[];
   assets: CandidateAsset[];
   judgments: CandidateJudgment[];
+  controversies: CandidateControversy[];
 }
 
 // Assemble a partial Official so we can reuse src/lib/validate.ts as the single
@@ -29,7 +30,11 @@ export function approvedToOfficial(t: Target, a: ApprovedForTarget): Official {
       outcome: j.outcome, isFinal: j.isFinal, judgmentDate: j.judgmentDate, judgmentUrl: j.judgmentUrl,
       source: toSource(j.source),
     })),
-    controversies: [],
+    controversies: a.controversies.map((c, i) => ({
+      id: `controversy-${i}`, title: c.title, summary: c.summary, status: c.status,
+      eventDate: c.eventDate, reportDate: c.reportDate,
+      sources: c.sources.map((s) => toSource(s)),
+    })),
     assets: a.assets.map((as, i) => ({
       id: `asset-${i}`, year: as.year, source: toSource(as.source),
       items: as.items.map((it) => ({ category: it.category, amount: it.amount, label: it.label ?? null })),

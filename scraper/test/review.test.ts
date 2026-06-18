@@ -19,6 +19,7 @@ describe('buildReviewFile', () => {
     expect(rf.assets[0].approved).toBe(false); // gazette amount unknown → must be reviewed
     expect(rf.judgments[0].approved).toBe(false);
     expect(rf.judgments[0].status).toBe('needs_review');
+    expect(rf.wikiControversies).toEqual([]);
     expect(rf.report.find((r) => r.source === 'cy')?.ok).toBe(true);
   });
 });

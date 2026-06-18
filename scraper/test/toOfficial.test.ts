@@ -9,7 +9,7 @@ const src = { url: 'https://x', title: 't', type: 'court' as const, retrievedAt:
 describe('approvedToOfficial', () => {
   it('builds an Official whose judgments carry sources (passes validateOfficial)', () => {
     const o = approvedToOfficial(target, {
-      careers: [], assets: [],
+      careers: [], assets: [], controversies: [],
       judgments: [{ caseReason: 'x', court: 'c', caseNumber: '1', outcome: '無罪', isFinal: false, judgmentDate: '2024', judgmentUrl: 'u', source: src, defendantNames: [], match: { confidence: 0.4, signals: [] } }],
     });
     expect(o.judgments[0].source.url).toBe('https://x');
@@ -18,7 +18,7 @@ describe('approvedToOfficial', () => {
 
   it('a judgment missing a source is caught by validateOfficial', () => {
     const o = approvedToOfficial(target, {
-      careers: [], assets: [],
+      careers: [], assets: [], controversies: [],
       judgments: [{ caseReason: 'x', court: 'c', caseNumber: '1', outcome: '無罪', isFinal: false, judgmentDate: '2024', judgmentUrl: 'u', source: undefined as never, defendantNames: [], match: { confidence: 0.4, signals: [] } }],
     });
     expect(validateOfficial(o)).toContain('judgment c-1: missing source');
