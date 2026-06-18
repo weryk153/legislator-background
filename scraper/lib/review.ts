@@ -4,10 +4,11 @@ import type {
 
 export function buildReviewFile(target: Target, results: AdapterResult[], generatedAt: string): ReviewFile {
   const careers = results.flatMap((r) => r.careers ?? []).map((data) => ({ approved: true, data }));
-  // Assets require human approval: current gazette sources expose no machine-readable
-  // amounts (items start empty), so a reviewer must fill the real figures from the
-  // 公報 PDF before publish — never auto-publish a misleading empty declaration.
-  const assets = results.flatMap((r) => r.assets ?? []).map((data) => ({ approved: false, data }));
+  // Assets auto-approve: the declaration RECORD (year + 監察院公報 source) is factual and
+  // citable. Amounts live in WAF-protected gazette PDFs, so items start empty and the UI
+  // shows "金額待補錄" — an honest pending-state, not a misleading NT$0. A reviewer can
+  // fill the real figures later from the linked 公報 PDF.
+  const assets = results.flatMap((r) => r.assets ?? []).map((data) => ({ approved: true, data }));
   // Judgments require explicit human approval — always start approved:false / needs_review.
   const judgments = results.flatMap((r) => r.judgments ?? []).map((data) => ({
     approved: false,

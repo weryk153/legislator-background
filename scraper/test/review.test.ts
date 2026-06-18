@@ -12,11 +12,11 @@ const results: AdapterResult[] = [
 ];
 
 describe('buildReviewFile', () => {
-  it('groups candidates, careers approved, assets+judgments need human approval', () => {
+  it('groups candidates, careers+assets approved, judgments+controversies need human approval', () => {
     const rf = buildReviewFile(target, results, '2026-06-17T00:00:00Z');
     expect(rf.targetId).toBe('t1');
     expect(rf.careers[0].approved).toBe(true);
-    expect(rf.assets[0].approved).toBe(false); // gazette amount unknown → must be reviewed
+    expect(rf.assets[0].approved).toBe(true); // declaration record (year+公報 source); amount shown as 待補錄
     expect(rf.judgments[0].approved).toBe(false);
     expect(rf.judgments[0].status).toBe('needs_review');
     expect(rf.wikiControversies).toEqual([]);
