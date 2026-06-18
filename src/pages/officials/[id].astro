@@ -51,6 +51,7 @@ const officeName: Record<string, string> = { legislator: "立委", mayor_magistr
 
   <section class="sec">
     <h2>爭議事件</h2>
+    {o.controversies.length > 0 && <p class="note">以下整理自維基百科及所附報導，未經本站逐筆查核；請點出處核對，並注意當事人受無罪推定保障。</p>}
     {o.controversies.length === 0 && <p class="dim none">尚無資料</p>}
     {o.controversies.map((c) => (
       <article class="card entry">
