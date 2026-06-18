@@ -1,4 +1,5 @@
 import type { SourceType } from '../../src/lib/types';
+export type { SourceType };
 
 export interface Target {
   id: string;          // slug, becomes officials.id mapping at import time
