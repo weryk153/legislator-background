@@ -164,23 +164,19 @@ export function parseGazetteAmount(s: string): number {
   return digits ? Number(digits) : 0;
 }
 
-// 土地/建物 list each holding by 取得價額 with no section total. Within a section's
-// MAIN holdings (before its 變動情形 / changes subsection, which would double-count),
-// each holding row carries its 取得原因 (買賣/贈與/…) followed by the 取得價額 as the
-// row's last number. Sum those.
+// 土地/建物 have no section total, and the per-holding 取得價額 is frequently
+// "(超過五年)" — by law the value is exempt from disclosure when held >5 years — so a
+// money sum is both incomplete and easy to corrupt (the row's other numbers are 面積/
+// 權利範圍). We therefore report a reliable PARCEL COUNT instead of a bogus amount.
+// Each holding row in a section's MAIN holdings (before the 變動情形 changes subsection)
+// carries a 取得原因 (買賣/贈與/…); count those lines.
 const ACQUIRE_REASON = /(贈與|買賣|繼承|拍賣|分割|交換|徵收|設定|信託|自[行力]|起造|配偶|其他)/;
-export function sumAcquisitionValues(section: string): number {
+export function countParcels(section: string): number {
   const changeIdx = section.search(/變\s*動\s*情\s*形/);
   const holdings = changeIdx >= 0 ? section.slice(0, changeIdx) : section;
-  let total = 0;
-  for (const line of holdings.split('\n')) {
-    if (!ACQUIRE_REASON.test(line)) continue;
-    const nums = line.match(/[\d,]{2,}/g);
-    if (!nums) continue;
-    const amt = Number(nums[nums.length - 1].replace(/,/g, ''));
-    if (amt > 0) total += amt;
-  }
-  return total;
+  let n = 0;
+  for (const line of holdings.split('\n')) if (ACQUIRE_REASON.test(line)) n += 1;
+  return n;
 }
 
 export function parseDeclaration(text: string, name: string): AssetItem[] {
@@ -225,19 +221,20 @@ export function parseDeclaration(text: string, name: string): AssetItem[] {
     }
   }
 
-  // 土地/建物: sum per-parcel 取得價額 from each section's main holdings.
+  // 土地/建物: report a parcel COUNT (取得價額 is often 超過五年 免申報, so a money sum
+  // would be wrong). amount = number of parcels; label flags it as a count for the UI.
   const landIdx = block.indexOf('1.土地');
   const bldgIdx = block.indexOf('2.建物');
   const propEnd = block.search(/（[三四五六七]）/); // 現金/存款/… section ends the real-estate block
   if (landIdx >= 0) {
     const end = bldgIdx > landIdx ? bldgIdx : propEnd > landIdx ? propEnd : landIdx + 6000;
-    const amt = sumAcquisitionValues(block.slice(landIdx, end));
-    if (amt > 0) items.push({ category: 'land', amount: amt, label: '土地（取得價額合計）' });
+    const n = countParcels(block.slice(landIdx, end));
+    if (n > 0) items.push({ category: 'land', amount: n, label: 'count' });
   }
   if (bldgIdx >= 0) {
     const end = propEnd > bldgIdx ? propEnd : bldgIdx + 6000;
-    const amt = sumAcquisitionValues(block.slice(bldgIdx, end));
-    if (amt > 0) items.push({ category: 'building', amount: amt, label: '建物（取得價額合計）' });
+    const n = countParcels(block.slice(bldgIdx, end));
+    if (n > 0) items.push({ category: 'building', amount: n, label: 'count' });
   }
 
   return items;
