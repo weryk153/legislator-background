@@ -35,6 +35,17 @@ export interface CandidateJudgment {
   match: { confidence: number; signals: string[] };
 }
 
+export type ControversyStatus =
+  | 'investigating' | 'indicted' | 'first_instance' | 'settled' | 'cleared' | 'other';
+export interface CandidateControversy {
+  title: string;
+  summary: string;
+  status: ControversyStatus;
+  eventDate: string;
+  reportDate: string;
+  sources: EvidenceSource[];
+}
+
 export interface AdapterResult {
   source: string;
   ok: boolean;
@@ -42,6 +53,7 @@ export interface AdapterResult {
   careers?: CandidateCareer[];
   assets?: CandidateAsset[];
   judgments?: CandidateJudgment[];
+  controversies?: CandidateControversy[];
 }
 
 export interface SourceAdapter {
