@@ -85,6 +85,32 @@ function periodFromBase64Name(encoded: string): string | null {
 
 const PDFTOTEXT = execSync('brew --prefix').toString().trim() + '/bin/pdftotext';
 
+// Fetch a 監察院 declaration PDF by its encrypted file Id and return its text.
+// The priso getFile endpoint returns the person's own declaration PDF (not WAF-blocked —
+// the parameter key is `FileId`). Throws on failure (the cy adapter swallows it).
+export async function getDeclarationText(fileId: string): Promise<string> {
+  const res = await fetch('https://priso.cy.gov.tw/api/Query/getFile', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', 'user-agent': 'Mozilla/5.0', referer: 'https://priso.cy.gov.tw/' },
+    body: JSON.stringify({ FileId: fileId }),
+  });
+  if (!res.ok) throw new Error(`getFile HTTP ${res.status}`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  if (!buf.subarray(0, 5).toString('latin1').includes('%PDF')) {
+    throw new Error(`getFile not a PDF: ${buf.subarray(0, 40).toString('utf8')}`);
+  }
+  const dir = mkdtempSync(join(tmpdir(), 'decl-'));
+  const pdf = join(dir, 'd.pdf');
+  const txt = join(dir, 'd.txt');
+  try {
+    writeFileSync(pdf, buf);
+    execFileSync(PDFTOTEXT, ['-layout', pdf, txt]);
+    return readFileSync(txt, 'utf8');
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+}
+
 // Download a gazette PDF and return the text of pages [page, page+span]. Best-effort
 // for callers: it can throw (network / pdftotext failure) and the cy adapter swallows
 // that to leave items: [].

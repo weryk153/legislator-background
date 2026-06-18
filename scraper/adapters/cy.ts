@@ -35,7 +35,7 @@
 // so that a future PDF-extraction step can populate the itemized amounts from the PDF.
 // source.type is 'gazette' (the underlying authoritative form is the 監察院公報/廉政專刊).
 import type { AdapterResult, CandidateAsset, EvidenceSource, SourceAdapter, Target } from '../lib/types';
-import { resolvePdfUrl, pdfPageText, parseDeclaration } from '../lib/gazette';
+import { getDeclarationText, parseDeclaration } from '../lib/gazette';
 
 const UA = 'legislator-background-bot/1.0 (public-data; contact: weryk153@gmail.com)';
 const PRISO_BASE = 'https://priso.cy.gov.tw';
@@ -175,29 +175,20 @@ export const cyAdapter: SourceAdapter = {
 
       // Best-effort per-declaration enrichment: resolve the 期別 to its gazette PDF,
       // pull the text of the declaration's 公報頁次 range, and itemize the amounts.
-      // Any failure (no PDF for old 期別, network, pdftotext) leaves items: [] — a
-      // reviewer fills those from the declaration's PDF link. This must NEVER throw
-      // through to fail the whole adapter, so each record is guarded individually.
-      // Gazette PDF enrichment downloads a multi-MB PDF per declaration — far too heavy
-      // for a full-roster run (100+ people × ~18 declarations). Set SKIP_GAZETTE=1 to
-      // populate index-only assets (items: []); enrich per-person later during review.
-      for (const { asset, row } of (process.env.SKIP_GAZETTE ? [] : paired)) {
+      // Enrich the LATEST declaration with real amounts: fetch that declaration's PDF via
+      // the priso getFile endpoint (by the row's encrypted Id), then parse category
+      // totals. One PDF per person keeps a full-roster run bounded. Best-effort: any
+      // failure leaves items: []. SKIP_GAZETTE=1 skips all enrichment (roster-only run).
+      if (!process.env.SKIP_GAZETTE && paired.length) {
+        let latest = paired[0];
+        for (const p of paired) if ((p.asset.year || 0) > (latest.asset.year || 0)) latest = p;
         try {
-          const pdfUrl = await resolvePdfUrl(String(row.Period));
-          // PublishPage looks like "P25-29" / "p149-153" / "P6-6" — the gazette's PRINTED
-          // page numbers, which are offset from the PDF's physical page index by a few
-          // front-matter pages. Anchor at the start page and pad the declared range so
-          // the offset declaration form is captured, but cap the span tight enough to
-          // avoid bleeding deep into adjacent persons' forms (parseDeclaration also
-          // anchors on the target name).
-          const pages = String(row.PublishPage).match(/\d+/g) ?? [];
-          const start = Number(pages[0] ?? '1');
-          const end = Number(pages[1] ?? pages[0] ?? '1');
-          const span = Math.min(Math.max(end - start, 0) + 3, 8);
-          const declText = await pdfPageText(pdfUrl, start, span);
-          asset.items = parseDeclaration(declText, target.name);
+          if (latest.row?.Id) {
+            const declText = await getDeclarationText(String(latest.row.Id));
+            latest.asset.items = parseDeclaration(declText, target.name);
+          }
         } catch {
-          /* leave items: [] — reviewer fills from the PDF link */
+          /* leave items: [] */
         }
       }
 

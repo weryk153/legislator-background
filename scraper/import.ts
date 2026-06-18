@@ -106,7 +106,24 @@ async function main() {
     const oid = officialId.get(a.targetId)!;
     const { data: existing } = await supabase.from('asset_declarations').select('id')
       .eq('official_id', oid).eq('year', a.data.year).maybeSingle();
-    if (existing) { stat.skipped += 1; continue; }
+    if (existing) {
+      // Declaration already imported. Enrich it if it has no items yet and we now have some
+      // (e.g. amounts extracted from the getFile PDF on a later run).
+      if (a.data.items.length) {
+        const { data: anyItem } = await supabase.from('asset_items').select('id').eq('declaration_id', existing.id).limit(1).maybeSingle();
+        if (!anyItem) {
+          for (const it of a.data.items) {
+            const { error: itErr } = await supabase.from('asset_items')
+              .insert({ declaration_id: existing.id, category: it.category, amount: it.amount, label: it.label ?? null });
+            if (itErr) throw new Error(`enrich asset_item (${a.key}/${it.category}) failed: ${itErr.message}`);
+          }
+          stat.inserted += 1;
+          continue;
+        }
+      }
+      stat.skipped += 1;
+      continue;
+    }
     const sourceId = await insertSource(supabase, a.data.source);
     const { data: decl, error } = await supabase.from('asset_declarations')
       .insert({ official_id: oid, year: a.data.year, total_amount: null, source_id: sourceId })
