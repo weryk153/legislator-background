@@ -1570,17 +1570,6 @@
     "aliases": []
   },
   {
-    "id": "c-李彥秀-國民黨-臺北市第02選舉區",
-    "name": "李彥秀",
-    "party": "國民黨",
-    "district": "臺北市第02選舉區",
-    "office": "councilor",
-    "birthYear": "1971",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
     "id": "c-張文潔-民進黨-臺北市第03選舉區",
     "name": "張文潔",
     "party": "民進黨",
@@ -1625,45 +1614,12 @@
     "aliases": []
   },
   {
-    "id": "c-徐巧芯-國民黨-臺北市第03選舉區",
-    "name": "徐巧芯",
-    "party": "國民黨",
-    "district": "臺北市第03選舉區",
-    "office": "councilor",
-    "birthYear": "1989",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
     "id": "c-戴錫欽-國民黨-臺北市第03選舉區",
     "name": "戴錫欽",
     "party": "國民黨",
     "district": "臺北市第03選舉區",
     "office": "councilor",
     "birthYear": "1966",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
-    "id": "c-許淑華-民進黨-臺北市第03選舉區",
-    "name": "許淑華",
-    "party": "民進黨",
-    "district": "臺北市第03選舉區",
-    "office": "councilor",
-    "birthYear": "1973",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
-    "id": "c-王鴻薇-國民黨-臺北市第03選舉區",
-    "name": "王鴻薇",
-    "party": "國民黨",
-    "district": "臺北市第03選舉區",
-    "office": "councilor",
-    "birthYear": "1964",
     "profession": "",
     "keywords": [],
     "aliases": []
@@ -1708,17 +1664,6 @@
     "district": "臺北市第04選舉區",
     "office": "councilor",
     "birthYear": "1971",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
-    "id": "c-王世堅-民進黨-臺北市第04選舉區",
-    "name": "王世堅",
-    "party": "民進黨",
-    "district": "臺北市第04選舉區",
-    "office": "councilor",
-    "birthYear": "1960",
     "profession": "",
     "keywords": [],
     "aliases": []
@@ -1785,17 +1730,6 @@
     "district": "臺北市第05選舉區",
     "office": "councilor",
     "birthYear": "1962",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
-    "id": "c-吳沛憶-民進黨-臺北市第05選舉區",
-    "name": "吳沛憶",
-    "party": "民進黨",
-    "district": "臺北市第05選舉區",
-    "office": "councilor",
-    "birthYear": "1987",
     "profession": "",
     "keywords": [],
     "aliases": []
@@ -1873,17 +1807,6 @@
     "district": "臺北市第06選舉區",
     "office": "councilor",
     "birthYear": "1975",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
-    "id": "c-李柏毅-國民黨-臺北市第06選舉區",
-    "name": "李柏毅",
-    "party": "國民黨",
-    "district": "臺北市第06選舉區",
-    "office": "councilor",
-    "birthYear": "1981",
     "profession": "",
     "keywords": [],
     "aliases": []
@@ -2318,17 +2241,6 @@
     "aliases": []
   },
   {
-    "id": "c-葉元之-國民黨-新北市第05選舉區",
-    "name": "葉元之",
-    "party": "國民黨",
-    "district": "新北市第05選舉區",
-    "office": "councilor",
-    "birthYear": "1974",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
     "id": "c-山田摩衣-民進黨-新北市第05選舉區",
     "name": "山田摩衣",
     "party": "民進黨",
@@ -2648,17 +2560,6 @@
     "aliases": []
   },
   {
-    "id": "c-廖先翔-國民黨-新北市第11選舉區",
-    "name": "廖先翔",
-    "party": "國民黨",
-    "district": "新北市第11選舉區",
-    "office": "councilor",
-    "birthYear": "1988",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
     "id": "c-白珮茹-國民黨-新北市第11選舉區",
     "name": "白珮茹",
     "party": "國民黨",
@@ -2819,17 +2720,6 @@
     "district": "桃園市第02選舉區",
     "office": "councilor",
     "birthYear": "1993",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
-    "id": "c-牛煦庭-無黨籍及未經政黨推薦-桃園市第02選舉區",
-    "name": "牛煦庭",
-    "party": "無黨籍及未經政黨推薦",
-    "district": "桃園市第02選舉區",
-    "office": "councilor",
-    "birthYear": "1990",
     "profession": "",
     "keywords": [],
     "aliases": []
@@ -3198,17 +3088,6 @@
     "aliases": []
   },
   {
-    "id": "c-涂權吉-國民黨-桃園市第09選舉區",
-    "name": "涂權吉",
-    "party": "國民黨",
-    "district": "桃園市第09選舉區",
-    "office": "councilor",
-    "birthYear": "1970",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
     "id": "c-鄭淑方-民進黨-桃園市第09選舉區",
     "name": "鄭淑方",
     "party": "民進黨",
@@ -3484,17 +3363,6 @@
     "aliases": []
   },
   {
-    "id": "c-陳清龍-無黨籍及未經政黨推薦-臺中市第04選舉區",
-    "name": "陳清龍",
-    "party": "無黨籍及未經政黨推薦",
-    "district": "臺中市第04選舉區",
-    "office": "councilor",
-    "birthYear": "1965",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
     "id": "c-蕭隆澤-民進黨-臺中市第05選舉區",
     "name": "蕭隆澤",
     "party": "民進黨",
@@ -3704,17 +3572,6 @@
     "aliases": []
   },
   {
-    "id": "c-黃健豪-國民黨-臺中市第08選舉區",
-    "name": "黃健豪",
-    "party": "國民黨",
-    "district": "臺中市第08選舉區",
-    "office": "councilor",
-    "birthYear": "1988",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
     "id": "c-賴順仁-國民黨-臺中市第08選舉區",
     "name": "賴順仁",
     "party": "國民黨",
@@ -3787,17 +3644,6 @@
     "district": "臺中市第10選舉區",
     "office": "councilor",
     "birthYear": "1986",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
-    "id": "c-羅廷瑋-國民黨-臺中市第11選舉區",
-    "name": "羅廷瑋",
-    "party": "國民黨",
-    "district": "臺中市第11選舉區",
-    "office": "councilor",
-    "birthYear": "1989",
     "profession": "",
     "keywords": [],
     "aliases": []
@@ -4705,17 +4551,6 @@
     "aliases": []
   },
   {
-    "id": "c-李柏毅-民進黨-高雄市第04選舉區",
-    "name": "李柏毅",
-    "party": "民進黨",
-    "district": "高雄市第04選舉區",
-    "office": "councilor",
-    "birthYear": "1977",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
     "id": "c-白喬茵-國民黨-高雄市第04選舉區",
     "name": "白喬茵",
     "party": "國民黨",
@@ -5079,17 +4914,6 @@
     "aliases": []
   },
   {
-    "id": "c-黃捷-無黨籍及未經政黨推薦-高雄市第09選舉區",
-    "name": "黃捷",
-    "party": "無黨籍及未經政黨推薦",
-    "district": "高雄市第09選舉區",
-    "office": "councilor",
-    "birthYear": "1993",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
     "id": "c-陳慧文-民進黨-高雄市第09選舉區",
     "name": "陳慧文",
     "party": "民進黨",
@@ -5338,17 +5162,6 @@
     "district": "桃園市第13選舉區",
     "office": "councilor",
     "birthYear": "1966",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
-    "id": "c-黃仁-國民黨-臺中市第15選舉區",
-    "name": "黃仁",
-    "party": "國民黨",
-    "district": "臺中市第15選舉區",
-    "office": "councilor",
-    "birthYear": "1962",
     "profession": "",
     "keywords": [],
     "aliases": []
@@ -5613,17 +5426,6 @@
     "district": "宜蘭縣第03選舉區",
     "office": "councilor",
     "birthYear": "1950",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
-    "id": "c-陳俊宇-民進黨-宜蘭縣第04選舉區",
-    "name": "陳俊宇",
-    "party": "民進黨",
-    "district": "宜蘭縣第04選舉區",
-    "office": "councilor",
-    "birthYear": "1975",
     "profession": "",
     "keywords": [],
     "aliases": []
@@ -7450,17 +7252,6 @@
     "district": "南投縣第04選舉區",
     "office": "councilor",
     "birthYear": "1957",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
-    "id": "c-游顥-國民黨-南投縣第04選舉區",
-    "name": "游顥",
-    "party": "國民黨",
-    "district": "南投縣第04選舉區",
-    "office": "councilor",
-    "birthYear": "1983",
     "profession": "",
     "keywords": [],
     "aliases": []
@@ -10090,17 +9881,6 @@
     "district": "基隆市第05選舉區",
     "office": "councilor",
     "birthYear": "1953",
-    "profession": "",
-    "keywords": [],
-    "aliases": []
-  },
-  {
-    "id": "c-林沛祥-國民黨-基隆市第05選舉區",
-    "name": "林沛祥",
-    "party": "國民黨",
-    "district": "基隆市第05選舉區",
-    "office": "councilor",
-    "birthYear": "1977",
     "profession": "",
     "keywords": [],
     "aliases": []
