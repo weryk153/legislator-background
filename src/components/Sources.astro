@@ -1,11 +1,26 @@
 ---
 import type { Source } from "../lib/types";
 const { sources } = Astro.props as { sources: Source[] };
+
+function hostname(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
+// Generic ref titles ("報導/原始出處") are uninformative when repeated — show the
+// source's domain instead. Keep meaningful titles (維基百科, 立法院/中選會/監察院…).
+// Then dedupe by the displayed label so a single outlet doesn't repeat many times.
+const seen = new Set<string>();
+const shown = (sources ?? [])
+  .map((s) => ({ url: s.url, label: s.title && s.title !== "報導/原始出處" ? s.title : hostname(s.url) }))
+  .filter((s) => (seen.has(s.label) ? false : (seen.add(s.label), true)));
 ---
 <div class="sources">
   <span class="lbl">出處</span>
-  {sources.map((s, i) => (
-    <a href={s.url} target="_blank" rel="noopener">{s.title}{i < sources.length - 1 ? "、" : ""}</a>
+  {shown.map((s, i) => (
+    <a href={s.url} target="_blank" rel="noopener">{s.label}{i < shown.length - 1 ? "、" : ""}</a>
   ))}
 </div>
 
