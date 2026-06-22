@@ -173,22 +173,33 @@ export const cyAdapter: SourceAdapter = {
       const text = await res.text();
       const paired = parseCyRows(text, PUBLIC_PAGE, new Date().toISOString().slice(0, 10));
 
-      // Best-effort per-declaration enrichment: resolve the 期別 to its gazette PDF,
-      // pull the text of the declaration's 公報頁次 range, and itemize the amounts.
-      // Enrich the LATEST declaration with real amounts: fetch that declaration's PDF via
-      // the priso getFile endpoint (by the row's encrypted Id), then parse category
-      // totals. One PDF per person keeps a full-roster run bounded. Best-effort: any
-      // failure leaves items: []. SKIP_GAZETTE=1 skips all enrichment (roster-only run).
+      // Best-effort per-declaration enrichment: fetch a declaration's PDF via the priso
+      // getFile endpoint (by the row's encrypted Id), then parse category totals.
+      // By default enrich only the LATEST declaration (one PDF per person keeps a full-roster
+      // run bounded). Set ENRICH_YEAR=<gregorian year> to enrich that year's declaration
+      // instead (for backfilling a specific year), or ENRICH_ALL=1 for every declaration.
+      // Best-effort: any failure leaves items: []. SKIP_GAZETTE=1 skips all enrichment.
       if (!process.env.SKIP_GAZETTE && paired.length) {
-        let latest = paired[0];
-        for (const p of paired) if ((p.asset.year || 0) > (latest.asset.year || 0)) latest = p;
-        try {
-          if (latest.row?.Id) {
-            const declText = await getDeclarationText(String(latest.row.Id));
-            latest.asset.items = parseDeclaration(declText, target.name);
+        const wantYear = process.env.ENRICH_YEAR ? Number(process.env.ENRICH_YEAR) : 0;
+        let picks: typeof paired = [];
+        if (process.env.ENRICH_ALL) {
+          picks = paired;
+        } else if (wantYear) {
+          picks = paired.filter((p) => (p.asset.year || 0) === wantYear);
+        } else {
+          let latest = paired[0];
+          for (const p of paired) if ((p.asset.year || 0) > (latest.asset.year || 0)) latest = p;
+          picks = [latest];
+        }
+        for (const pick of picks) {
+          try {
+            if (pick.row?.Id) {
+              const declText = await getDeclarationText(String(pick.row.Id));
+              pick.asset.items = parseDeclaration(declText, target.name);
+            }
+          } catch {
+            /* leave items: [] */
           }
-        } catch {
-          /* leave items: [] */
         }
       }
 
