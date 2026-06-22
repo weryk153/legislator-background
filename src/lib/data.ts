@@ -1,17 +1,11 @@
-import { createClient } from '@supabase/supabase-js';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import type { Official, RawOfficial } from './types';
 import { toOfficial } from './transform';
 import { validateAll } from './validate';
 
-const SELECT = `
-  id, name, party, office_type, district, term, photo_url, bio, is_incumbent,
-  careers ( id, title, organization, start_date, end_date, source:sources(*) ),
-  judgments ( id, case_reason, court, case_number, outcome, is_final, judgment_date, judgment_url, source:sources(*) ),
-  controversies ( id, title, summary, status, event_date, report_date, controversy_sources ( source:sources(*) ) ),
-  asset_declarations ( id, year, source:sources(*), asset_items ( category, amount, label ) )
-`;
-
-// Pure assembly + validation gate — unit tested without a network call.
+// Pure assembly + validation gate (raw DB rows → Official[]). Used by the export step
+// (scraper/export-officials.ts) and unit-tested without a network call.
 export function assembleOfficials(raw: RawOfficial[]): Official[] {
   const officials = raw.map(toOfficial);
   const errors = validateAll(officials);
@@ -21,23 +15,17 @@ export function assembleOfficials(raw: RawOfficial[]): Official[] {
   return officials;
 }
 
-// Build-time fetch. Uses the service-role key (server-only, never shipped to the client).
+// Build-time data source: the committed snapshot at src/data/officials.json, produced by
+// `pnpm run export:data` from local Supabase. The site builds with NO database, so CI or
+// any machine can build & deploy it. The validation gate still runs (defence in depth).
 export async function loadOfficials(): Promise<Official[]> {
-  const url = import.meta.env.PUBLIC_SUPABASE_URL;
-  const key = import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) throw new Error('Missing PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY');
-
-  const supabase = createClient(url, key);
-  // PostgREST caps a response at ~1000 rows, so page through with .range() until
-  // a short page signals the end (the roster now exceeds 1000 officials).
-  const pageSize = 1000;
-  const rows: unknown[] = [];
-  for (let from = 0; ; from += pageSize) {
-    const { data, error } = await supabase.from('officials').select(SELECT).range(from, from + pageSize - 1);
-    if (error) throw new Error(`Supabase query failed: ${error.message}`);
-    const page = data ?? [];
-    rows.push(...page);
-    if (page.length < pageSize) break;
+  // Resolved from the project root (cwd at build time) so it works regardless of where
+  // Vite bundles this module.
+  const path = join(process.cwd(), 'src', 'data', 'officials.json');
+  const officials = JSON.parse(readFileSync(path, 'utf8')) as Official[];
+  const errors = validateAll(officials);
+  if (errors.length > 0) {
+    throw new Error(`Data validation failed (build aborted):\n- ${errors.join('\n- ')}`);
   }
-  return assembleOfficials(rows as RawOfficial[]);
+  return officials;
 }

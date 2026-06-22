@@ -12,7 +12,8 @@
     "test:watch": "vitest",
     "scrape": "tsx scraper/run.ts",
     "scrape:import": "tsx scraper/import.ts",
-    "judicial:auth": "node scraper/scripts/test-judicial-auth.mjs"
+    "judicial:auth": "node scraper/scripts/test-judicial-auth.mjs",
+    "export:data": "tsx scraper/export-officials.ts"
   },
   "dependencies": {
     "@astrojs/svelte": "^7.1.0",
