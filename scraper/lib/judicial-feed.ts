@@ -28,9 +28,11 @@ async function postJson(path: string, body: unknown): Promise<any> {
 }
 
 // Returns a token, or throws with the API's message (e.g. "目前非本 API 服務時間。").
+// The Auth response returns the token as `Token` (capitalised); request params are lowercase.
 export async function authJudicial(user: string, password: string): Promise<string> {
   const j = await postJson('Auth', { user, password });
-  if (j?.token) return j.token as string;
+  const token = j?.Token ?? j?.token;
+  if (token) return token as string;
   throw new Error(j?.error ? String(j.error) : 'auth failed: no token returned');
 }
 
@@ -41,7 +43,8 @@ export function flattenJList(j: any): string[] {
   const ids: string[] = [];
   for (const d of days) {
     if (typeof d === 'string') { if (d.trim()) ids.push(d.trim()); continue; }
-    const list = Array.isArray(d?.LIST) ? d.LIST : Array.isArray(d) ? d : [];
+    // Real JList shape uses lowercase `list` (per day); tolerate the uppercase variants too.
+    const list = Array.isArray(d?.list) ? d.list : Array.isArray(d?.LIST) ? d.LIST : Array.isArray(d) ? d : [];
     for (const id of list) if (typeof id === 'string' && id.trim()) ids.push(id.trim());
   }
   return [...new Set(ids)];
@@ -58,15 +61,16 @@ export interface JDoc {
 // Returns the parsed JDoc, or null if the API says the judgment was removed / not public.
 export async function fetchJDoc(token: string, jid: string): Promise<JDoc | null> {
   const j = await postJson('JDoc', { token, j: jid });
-  if (j?.error) return null;
+  if (!j || j.error) return null;
+  // JDoc fields are uppercase per spec; tolerate lowercase defensively.
   return {
-    jid: j.JID ?? jid,
-    year: j.JYEAR ?? '',
-    jcase: j.JCASE ?? '',
-    no: j.JNO ?? '',
-    date: j.JDATE ?? '',
-    title: j.JTITLE ?? '',
-    text: j.JFULLX?.JFULLCONTENT ?? '',
+    jid: j.JID ?? j.jid ?? jid,
+    year: j.JYEAR ?? j.jyear ?? '',
+    jcase: j.JCASE ?? j.jcase ?? '',
+    no: j.JNO ?? j.jno ?? '',
+    date: j.JDATE ?? j.jdate ?? '',
+    title: j.JTITLE ?? j.jtitle ?? '',
+    text: j.JFULLX?.JFULLCONTENT ?? j.jfullx?.jfullcontent ?? j.JFULLCONTENT ?? '',
   };
 }
 

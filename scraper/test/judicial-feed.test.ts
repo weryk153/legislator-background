@@ -11,6 +11,10 @@ describe('flattenJList', () => {
     expect(flattenJList({ LIST: ['X,1'] })).toEqual(['X,1']);
     expect(flattenJList(['Y,1', 'Y,1'])).toEqual(['Y,1']);
   });
+  it('handles the REAL lowercase {date,list} shape from the live API', () => {
+    expect(flattenJList([{ date: '20260615', list: ['A,1', 'B,2'] }, { date: '20260616', list: ['C,3'] }]))
+      .toEqual(['A,1', 'B,2', 'C,3']);
+  });
 });
 
 // Realistic open-data full text: padded party labels ("被        告") and names that wrap
