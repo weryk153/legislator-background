@@ -59,7 +59,11 @@ async function main() {
   mkdirSync(outDir, { recursive: true });
   const outFile = join(outDir, 'officials.json');
   writeFileSync(outFile, JSON.stringify(officials));
-  console.log(`exported ${officials.length} officials → src/data/officials.json`);
+
+  // Freshness stamp for the site footer — when this snapshot was generated (not build time).
+  const generatedAt = new Date().toISOString().slice(0, 10);
+  writeFileSync(join(outDir, 'meta.json'), JSON.stringify({ generatedAt, officials: officials.length }, null, 2) + '\n');
+  console.log(`exported ${officials.length} officials → src/data/officials.json (generated ${generatedAt})`);
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });
