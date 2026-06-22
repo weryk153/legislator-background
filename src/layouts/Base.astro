@@ -57,9 +57,13 @@ try {
 
     <footer class="site-foot">
       <div class="wrap">
-        <p>本站僅呈現合法公開資料並標註出處，不對個人作價值判斷。司法判決與爭議資訊不代表最終定罪，當事人受無罪推定保障。</p>
-        <p>本站非官方網站；資料來源為監察院公報、中選會、立法院、司法院與維基百科等公開資料。部分內容依 CC BY-SA 4.0 授權。</p>
-        <p class="foot-meta">{dataDate && <>資料更新：{dataDate}　·　</>}資料如有誤或需更正，歡迎至 <a href="https://github.com/weryk153/legislator-background/issues" target="_blank" rel="noopener">GitHub 回報</a>。　·　<a href="/about#correction">更正與權利</a>　·　<a href="/about">資料來源與方法論</a></p>
+        <p class="disc">本站非官方網站，僅彙整公開資料並標註出處。判決與爭議資訊不代表最終定罪，未定讞前當事人受無罪推定保障；爭議報導未經逐筆查核，以官方資料為準。</p>
+        <p class="foot-meta">
+          {dataDate && <span class="upd">資料更新 {dataDate}</span>}
+          <a href="/about">關於與免責</a>
+          <a href="/about#correction">更正</a>
+          <a href="https://github.com/weryk153/legislator-background/issues" target="_blank" rel="noopener">回報問題</a>
+        </p>
       </div>
     </footer>
 
@@ -99,8 +103,10 @@ try {
         padding: 28px 0 40px;
         font-size: var(--t-sm); color: var(--muted); line-height: 1.7;
       }
-      .site-foot p { margin: 0 0 6px; max-width: 70ch; }
-      .foot-meta { color: var(--faint); }
+      .site-foot p { margin: 0; max-width: 72ch; }
+      .disc { margin-bottom: 14px; }
+      .foot-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; color: var(--faint); }
+      .foot-meta .upd { color: var(--muted); }
       .foot-meta a { text-decoration: underline; text-underline-offset: 2px; }
       .foot-meta a:hover { color: var(--accent); }
     </style>
