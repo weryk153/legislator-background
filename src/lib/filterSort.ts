@@ -3,6 +3,7 @@ import type { OfficeType, OfficialListRow } from './types';
 export type SortKey = 'judgments' | 'controversies' | 'assets' | 'name';
 export interface ListQuery {
   search?: string;
+  region?: string;
   party?: string;
   officeType?: OfficeType;
   sort?: SortKey;
@@ -11,6 +12,7 @@ export interface ListQuery {
 export function queryList(rows: OfficialListRow[], q: ListQuery): OfficialListRow[] {
   let out = rows.slice();
 
+  if (q.region) out = out.filter((r) => r.region === q.region);
   if (q.party) out = out.filter((r) => r.party === q.party);
   if (q.officeType) out = out.filter((r) => r.officeType === q.officeType);
   if (q.search?.trim()) {

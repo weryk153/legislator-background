@@ -19,7 +19,7 @@ export interface Official {
 }
 
 export interface OfficialListRow {
-  id: string; slug: string; name: string; party: string; officeType: OfficeType; district: string;
+  id: string; slug: string; name: string; party: string; officeType: OfficeType; district: string; region: string;
   judgmentCount: number; controversyCount: number; latestAssetTotal: number | null;
 }
 

@@ -5,12 +5,21 @@
   export let rows: OfficialListRow[] = [];
 
   let search = '';
+  let region = '';
   let party = '';
   let officeType = '';
   let sort: SortKey = 'judgments';
 
+  // North-to-south + outlying islands, so the 縣市 dropdown reads geographically.
+  const REGION_ORDER = [
+    '基隆市', '臺北市', '新北市', '桃園市', '新竹市', '新竹縣', '苗栗縣', '臺中市', '彰化縣',
+    '南投縣', '雲林縣', '嘉義市', '嘉義縣', '臺南市', '高雄市', '屏東縣', '宜蘭縣', '花蓮縣',
+    '臺東縣', '澎湖縣', '金門縣', '連江縣', '其他',
+  ];
+  $: regions = Array.from(new Set(rows.map((r) => r.region)))
+    .sort((a, b) => (REGION_ORDER.indexOf(a) + 1 || 99) - (REGION_ORDER.indexOf(b) + 1 || 99));
   $: parties = Array.from(new Set(rows.map((r) => r.party)));
-  $: q = { search, party: party || undefined, officeType: (officeType || undefined) as ListQuery['officeType'], sort } as ListQuery;
+  $: q = { search, region: region || undefined, party: party || undefined, officeType: (officeType || undefined) as ListQuery['officeType'], sort } as ListQuery;
   $: view = queryList(rows, q);
 
   const fmt = (n: number | null) => (n === null ? '—' : new Intl.NumberFormat('zh-Hant').format(n));
@@ -19,6 +28,10 @@
 
 <div class="controls">
   <input class="ctrl" type="search" placeholder="搜尋姓名" aria-label="搜尋姓名" bind:value={search} />
+  <select class="ctrl" aria-label="篩選縣市" bind:value={region}>
+    <option value="">全部縣市</option>
+    {#each regions as r}<option value={r}>{r}</option>{/each}
+  </select>
   <select class="ctrl" aria-label="篩選政黨" bind:value={party}>
     <option value="">全部政黨</option>
     {#each parties as p}<option value={p}>{p}</option>{/each}

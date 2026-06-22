@@ -39,8 +39,11 @@ export function toListRow(o: Official): OfficialListRow {
   const latestAssetTotal = latest
     ? latest.items.filter((i) => i.category !== 'debt').reduce((sum, i) => sum + i.amount, 0)
     : null;
+  // Pull the 縣市 from the district for the region filter; nationwide/aboriginal/不分區
+  // constituencies have no county → grouped as 其他.
+  const region = o.district.match(/^(.+?[縣市])/)?.[1] ?? '其他';
   return {
-    id: o.id, slug: o.slug, name: o.name, party: o.party, officeType: o.officeType, district: o.district,
+    id: o.id, slug: o.slug, name: o.name, party: o.party, officeType: o.officeType, district: o.district, region,
     judgmentCount: o.judgments.length,
     controversyCount: o.controversies.length,
     latestAssetTotal,
