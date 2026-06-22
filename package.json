@@ -13,7 +13,8 @@
     "scrape": "tsx scraper/run.ts",
     "scrape:import": "tsx scraper/import.ts",
     "judicial:auth": "node scraper/scripts/test-judicial-auth.mjs",
-    "export:data": "tsx scraper/export-officials.ts"
+    "export:data": "tsx scraper/export-officials.ts",
+    "seed:from-json": "tsx scraper/seed-from-json.ts"
   },
   "dependencies": {
     "@astrojs/svelte": "^7.1.0",
