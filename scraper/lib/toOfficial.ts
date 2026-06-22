@@ -19,7 +19,7 @@ export interface ApprovedForTarget {
 // validation gate. Judgment ids are court-casenumber for readable error messages.
 export function approvedToOfficial(t: Target, a: ApprovedForTarget): Official {
   return {
-    id: t.id, name: t.name, party: t.party, officeType: 'legislator', district: t.district,
+    id: t.id, slug: t.id, name: t.name, party: t.party, officeType: 'legislator', district: t.district,
     term: '11', photoUrl: null, bio: '', isIncumbent: true,
     careers: a.careers.map((c, i) => ({
       id: `career-${i}`, title: c.title, organization: c.organization,

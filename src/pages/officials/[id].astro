@@ -5,7 +5,9 @@ import { loadOfficials } from "../../lib/data";
 
 export async function getStaticPaths() {
   const officials = await loadOfficials();
-  return officials.map((o) => ({ params: { id: o.id }, props: { official: o } }));
+  // URL = the stable slug (derived from name+office+district), NOT the random DB UUID, so
+  // profile URLs survive a full DB rebuild / scheduled refresh.
+  return officials.map((o) => ({ params: { id: o.slug }, props: { official: o } }));
 }
 
 const { official: o } = Astro.props;

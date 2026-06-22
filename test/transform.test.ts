@@ -5,7 +5,7 @@ import type { RawOfficial, RawSource } from '../src/lib/types';
 const rawSrc: RawSource = { id: 's1', url: 'https://x', type: 'court', title: 't', retrieved_at: '2026-01-01' };
 
 const raw: RawOfficial = {
-  id: 'o1', name: '王〇〇', party: '民眾黨', office_type: 'legislator', district: '中市5',
+  id: 'o1', slug: 'o1', name: '王〇〇', party: '民眾黨', office_type: 'legislator', district: '中市5',
   term: '11', photo_url: null, bio: '企業主', is_incumbent: true,
   careers: [{ id: 'k1', title: '董事長', organization: 'ACME', start_date: '2010', end_date: null, source: rawSrc }],
   judgments: [{ id: 'j1', case_reason: '背信', court: '中院', case_number: '110-1', outcome: '一審有罪', is_final: false, judgment_date: '2024-03-01', judgment_url: 'https://j', source: rawSrc }],

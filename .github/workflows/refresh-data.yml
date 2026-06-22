@@ -18,12 +18,9 @@
 # from the committed snapshot AFTER import. Validated locally (225 controversies survive a
 # delete + reseed round-trip). The post-export guard below is a second line of defence.
 #
-# KNOWN CAVEAT — stable URLs (resolve before relying on this for the LIVE site):
-# A fresh CI DB regenerates official UUIDs, and pages live at /officials/<uuid>/. So an
-# automated rebuild currently CHANGES every profile URL (breaks bookmarks/SEO). Fix before
-# enabling on the live site: include `slug` in the snapshot + seed officials with their
-# committed id BEFORE import (import upserts by slug, keeping the id stable). Until then this
-# workflow is safe for DATA but should be treated as preview, not the live deploy trigger.
+# Stable URLs: RESOLVED. Profile pages live at /officials/<slug>/ where slug is deterministic
+# from name+office+district (set by import from targets.json), so a fresh CI rebuild yields
+# the SAME URLs. The official UUID still churns but is no longer used in any URL.
 #
 # The judicial open-data feed (00–06 Taipei window, no CAPTCHA, reachable from CI) is a
 # SEPARATE job — see judicial-feed.yml (pending the feed adapter). It only accumulates

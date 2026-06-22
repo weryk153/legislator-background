@@ -50,7 +50,7 @@
 {/if}
 
 {#each view as r}
-  <a class="row" href={`/officials/${r.id}`}>
+  <a class="row" href={`/officials/${r.slug}`}>
     <div class="who">
       <div class="name">{r.name}<span class="meta">{r.party}・{r.district}</span></div>
       <div class="office">{officeName[r.officeType]}</div>

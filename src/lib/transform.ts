@@ -9,7 +9,7 @@ function toSource(r: RawSource): Source {
 
 export function toOfficial(r: RawOfficial): Official {
   return {
-    id: r.id, name: r.name, party: r.party, officeType: r.office_type, district: r.district,
+    id: r.id, slug: r.slug, name: r.name, party: r.party, officeType: r.office_type, district: r.district,
     term: r.term, photoUrl: r.photo_url, bio: r.bio, isIncumbent: r.is_incumbent,
     careers: r.careers.map((c) => ({
       id: c.id, title: c.title, organization: c.organization,
@@ -40,7 +40,7 @@ export function toListRow(o: Official): OfficialListRow {
     ? latest.items.filter((i) => i.category !== 'debt').reduce((sum, i) => sum + i.amount, 0)
     : null;
   return {
-    id: o.id, name: o.name, party: o.party, officeType: o.officeType, district: o.district,
+    id: o.id, slug: o.slug, name: o.name, party: o.party, officeType: o.officeType, district: o.district,
     judgmentCount: o.judgments.length,
     controversyCount: o.controversies.length,
     latestAssetTotal,
