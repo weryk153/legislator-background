@@ -36,8 +36,18 @@ const assetCategoryName: Record<string, string> = {
   securities: "有價證券", investment: "事業投資", claim: "債權", debt: "債務", other: "其他",
 };
 const officeName: Record<string, string> = { legislator: "立委", mayor_magistrate: "縣市首長", councilor: "議員" };
+const desc = `${o.name}（${o.party}・${officeName[o.officeType]}・${o.district}）的經歷、財產申報與相關爭議報導整理，每筆皆附公開資料出處。`;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: o.name,
+  jobTitle: officeName[o.officeType],
+  affiliation: { "@type": "Organization", name: o.party },
+  url: Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined,
+};
 ---
-<Base title={`${o.name}｜公職人員背景`}>
+<Base title={`${o.name}｜公職人員背景`} description={desc}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <a href="/" class="back">← 返回總覽</a>
 
   <header class="head">

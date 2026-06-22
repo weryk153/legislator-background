@@ -6,8 +6,9 @@ import { toListRow } from "../lib/transform";
 
 const officials = await loadOfficials();
 const rows = officials.map(toListRow);
+const desc = `查詢台灣 ${officials.length} 位立法委員、縣市首長與縣市議員的經歷、司法判決、爭議報導與財產申報，每筆皆附公開資料出處。`;
 ---
-<Base title="公職人員背景資料庫">
+<Base title="公職人員背景資料庫" description={desc}>
   <section class="intro">
     <h1>看見公職人員的背景</h1>
     <p class="lede">
