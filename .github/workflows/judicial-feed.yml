@@ -1,0 +1,77 @@
+# Judicial open-data feed — accumulate judgment CANDIDATES for human review.
+#
+# The 司法院 open-data API (data.judicial.gov.tw) is the legal, CAPTCHA-free path to
+# judgments, BUT: (1) it only serves 00:00–06:00 Taipei, (2) it has no name search — it is a
+# daily change feed, so we fetch each changed judgment and match the roster by 被告 name.
+# GitHub's cloud runners CAN reach it (unlike the sandbox), so this is exactly where it runs.
+#
+# LEGAL SENSITIVITY: this job NEVER publishes. It writes scraper/out-judicial/candidates.json
+# (matched judgments, approved:false). A human reviews each candidate, confirms identity, and
+# only then is it added to the curated data — after which seed-from-json carries it into the
+# site on the next refresh. Same review gate as every other judgment in this project.
+#
+# FIRST-RUN NOTE (validate in-window): run manually with the "measure only" path first to see
+# the daily volume, then tune MAX_FETCH so the job fits the 6h window + the API service hours.
+
+name: Judicial feed
+
+on:
+  workflow_dispatch:
+    inputs:
+      measure_only:
+        description: "Only count the day's changed judgments (no JDoc fetch / matching)"
+        type: boolean
+        default: false
+  schedule:
+    # 18:00 UTC = 02:00 Taipei — inside the API's 00:00–06:00 service window.
+    - cron: "0 18 * * *"
+
+concurrency:
+  group: judicial-feed
+  cancel-in-progress: false
+
+env:
+  MAX_FETCH: "3000"   # cap JDoc fetches per run so the job fits the window; raise after measuring
+
+jobs:
+  feed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330   # under GitHub's 6h job limit; the API window is also ~6h
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      # Persist the accumulating state (processed jids + candidates) across runs. The feed is
+      # forward-only, so without this every run would refetch the same change list.
+      - name: Restore judicial state
+        uses: actions/cache@v4
+        with:
+          path: scraper/out-judicial
+          key: judicial-state-${{ github.run_id }}
+          restore-keys: judicial-state-
+
+      - name: Auth check / measure
+        env:
+          JUDICIAL_API_USER: ${{ secrets.JUDICIAL_API_USER }}
+          JUDICIAL_API_PASSWORD: ${{ secrets.JUDICIAL_API_PASSWORD }}
+        run: pnpm run judicial:measure
+
+      - name: Feed (fetch + match + accumulate candidates)
+        if: ${{ github.event.inputs.measure_only != 'true' }}
+        env:
+          JUDICIAL_API_USER: ${{ secrets.JUDICIAL_API_USER }}
+          JUDICIAL_API_PASSWORD: ${{ secrets.JUDICIAL_API_PASSWORD }}
+        run: pnpm run judicial:feed -- --max=${{ env.MAX_FETCH }}
+
+      - name: Upload candidates for review
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: judicial-candidates
+          path: scraper/out-judicial/candidates.json
+          if-no-files-found: ignore
