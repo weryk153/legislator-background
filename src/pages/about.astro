@@ -12,11 +12,12 @@ import Base from "../layouts/Base.astro";
     <section class="sec">
       <h2>資料來源</h2>
       <ul>
-        <li>司法判決：司法院裁判書查詢系統（公開判決）</li>
+        <li>司法判決：司法院裁判書開放資料（公開判決，經人工確認身分後上架）</li>
         <li>經歷／背景：立法院官方資料、中選會候選人學經歷申報</li>
-        <li>爭議事件：新聞報導與事實查核，標註報導日期與目前狀態</li>
-        <li>財產申報：監察院公職人員財產申報公報</li>
+        <li>爭議報導：維基百科與所附媒體報導之整理（程式擷取，未經本站逐筆查核）</li>
+        <li>財產申報：監察院公職人員財產申報公報（程式自動解析 PDF）</li>
       </ul>
+      <p>本站<strong>非官方網站</strong>，僅彙整上述公開資料並標註出處。</p>
     </section>
 
     <section class="sec">
@@ -34,9 +35,22 @@ import Base from "../layouts/Base.astro";
       <p>判決結果不代表最終定罪。未定讞之案件，當事人依法受無罪推定保障，請讀者審慎判讀。</p>
     </section>
 
+    <section class="sec" id="correction">
+      <h2>更正與權利</h2>
+      <p>若發現資料有誤、需更新狀態，或您是當事人希望更正或移除特定資料，請來信
+        <a href="mailto:weryk153@gmail.com?subject=【公職人員背景】資料更正">weryk153@gmail.com</a>，
+        並附上對應頁面與佐證；我們會查核後盡速更正或移除。</p>
+      <p>依《個人資料保護法》，當事人得就本站所載個人資料請求查詢、更正或刪除。本站對爭議報導不主張為事實認定，並以官方資料為準。</p>
+    </section>
+
     <section class="sec">
-      <h2>更正與申訴</h2>
-      <p>若發現資料有誤或需更新狀態，請來信告知，我們會查核後更正。</p>
+      <h2>授權</h2>
+      <ul>
+        <li>政府公開資料（監察院、中選會、立法院、司法院）依其開放授權條款使用，並標註出處。</li>
+        <li>「爭議報導」部分內容改寫自維基百科，依
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>
+          授權，相同方式分享；原文與貢獻者見各筆出處連結。</li>
+      </ul>
     </section>
   </article>
 

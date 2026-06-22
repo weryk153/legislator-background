@@ -13,8 +13,23 @@ export async function getStaticPaths() {
 const { official: o } = Astro.props;
 const statusLabel = {
   investigating: "偵查中", indicted: "已起訴", first_instance: "一審",
-  settled: "已和解", cleared: "查無不法", other: "其他",
+  settled: "已和解", cleared: "查無不法", other: "未分類",
 };
+
+// Conservatively infer a legal stage from the report text, ONLY on unambiguous wording, so
+// the badge reflects what the cited reports say rather than asserting a verdict. Anything
+// unclear stays "未分類". Real data (a non-'other' status) is respected as-is. The section
+// disclaimer makes clear this is per-report and 以官方資料為準.
+function inferStatus(c: { status: string; summary: string; title: string }): string {
+  if (c.status && c.status !== "other") return c.status;
+  const s = `${c.title} ${c.summary}`;
+  if (/不起訴|無罪|查無不法|簽結|不予起訴/.test(s)) return "cleared";
+  if (/和解|撤回(告訴|起訴)|撤告/.test(s)) return "settled";
+  if (/起訴|提起公訴|聲請簡易判決|遭訴/.test(s)) return "indicted";
+  if (/偵查|檢調|約談|搜索|聲押|分他字|列為被告/.test(s)) return "investigating";
+  if (/一審|二審|更一審|地方法院.{0,6}判|高等法院.{0,6}判|判處|判刑|有期徒刑/.test(s)) return "first_instance";
+  return "other";
+}
 const fmt = (n: number) => new Intl.NumberFormat("zh-Hant").format(n);
 const assetCategoryName: Record<string, string> = {
   land: "土地", building: "建物", cash: "現金", deposit: "存款",
@@ -56,14 +71,21 @@ const officeName: Record<string, string> = { legislator: "立委", mayor_magistr
   </section>
 
   <section class="sec">
-    <h2>爭議事件</h2>
-    {o.controversies.length > 0 && <p class="note">以下整理自維基百科及所附報導，未經本站逐筆查核；請點出處核對，並注意當事人受無罪推定保障。</p>}
+    <h2>相關爭議報導</h2>
+    {o.controversies.length > 0 && (
+      <p class="note">
+        以下為維基百科與所附媒體報導之<strong>整理</strong>，屬外部報導與指控，
+        <strong>非本站認定之事實，亦未經本站逐筆查核</strong>。法律狀態以司法、官方資料為準；
+        未定讞前當事人依法受無罪推定保障。狀態標示係依報導文字研判，僅供參考。請逕點各筆出處核對。
+        部分內容改寫自維基百科，依 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> 授權。
+      </p>
+    )}
     {o.controversies.length === 0 && <p class="dim none">尚無資料</p>}
     {o.controversies.map((c) => (
       <article class="card entry">
-        <div class="entry-head">{c.title}　<span class="pill">{statusLabel[c.status]}</span></div>
+        <div class="entry-head">{c.title}　<span class="pill">{statusLabel[inferStatus(c)]}</span></div>
         <p class="entry-body">{c.summary}</p>
-        <div class="entry-meta">報導日期：<span class="num">{c.reportDate}</span></div>
+        <div class="entry-meta">整理日期：<span class="num">{c.reportDate}</span></div>
         <Sources sources={c.sources} />
       </article>
     ))}
@@ -71,6 +93,7 @@ const officeName: Record<string, string> = { legislator: "立委", mayor_magistr
 
   <section class="sec">
     <h2>財產申報</h2>
+    {o.assets.length > 0 && <p class="note">金額由程式自動解析監察院公報 PDF，可能有解析誤差；土地/建物因多數逾五年免申報價額，僅列筆數。請點出處核對。</p>}
     {o.assets.length === 0 && <p class="dim none">尚無資料</p>}
     {o.assets.map((a) => (
       <div class="item">
