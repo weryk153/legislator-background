@@ -5,3 +5,4 @@ dist/
 .env
 .DS_Store
 scraper/out/*.json
+scraper/out-wiki-backup/
