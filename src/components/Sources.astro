@@ -12,8 +12,12 @@ function hostname(url: string): string {
 // Generic ref titles ("報導/原始出處") are uninformative when repeated — show the
 // source's domain instead. Keep meaningful titles (維基百科, 立法院/中選會/監察院…).
 // Then dedupe by the displayed label so a single outlet doesn't repeat many times.
+// Show original-media sources before Wikipedia (Wikipedia is secondary; the credible
+// primary report should lead). Stable sort preserves the original order within each group.
+const isWiki = (url: string) => /wikipedia\.org/.test(url || "");
 const seen = new Set<string>();
-const shown = (sources ?? [])
+const shown = [...(sources ?? [])]
+  .sort((a, b) => (isWiki(a.url) ? 1 : 0) - (isWiki(b.url) ? 1 : 0))
   .map((s) => ({ url: s.url, label: s.title && s.title !== "報導/原始出處" ? s.title : hostname(s.url) }))
   .filter((s) => (seen.has(s.label) ? false : (seen.add(s.label), true)));
 ---

@@ -39,6 +39,19 @@ async function main() {
 
   // assembleOfficials transforms raw rows → Official[] AND runs the validation gate.
   const officials = assembleOfficials(rows as RawOfficial[]);
+
+  // Publish only controversies backed by at least one NON-Wikipedia (original media) source.
+  // Wikipedia is user-edited and not a credible primary source for 合理查證; a controversy we
+  // can only point to a wiki page for is too weakly sourced to publish about a real person.
+  const isWiki = (url: string) => /wikipedia\.org/u.test(url || '');
+  let dropped = 0;
+  for (const o of officials) {
+    const before = o.controversies.length;
+    o.controversies = o.controversies.filter((c) => (c.sources ?? []).some((s) => !isWiki(s.url)));
+    dropped += before - o.controversies.length;
+  }
+  if (dropped) console.log(`dropped ${dropped} wiki-only controvers${dropped === 1 ? 'y' : 'ies'} (no original-media source)`);
+
   // stable order so the committed JSON diff is meaningful
   officials.sort((a, b) => a.id.localeCompare(b.id));
 
