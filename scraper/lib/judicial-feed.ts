@@ -17,14 +17,25 @@ import { scoreMatch } from '../match/score';
 const BASE = 'https://data.judicial.gov.tw/jdg/api';
 const UA = 'legislator-background-bot/1.0 (public-data; contact: weryk153@gmail.com)';
 
-async function postJson(path: string, body: unknown): Promise<any> {
-  const res = await fetch(`${BASE}/${path}`, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json', 'user-agent': UA },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) throw new Error(`${path} HTTP ${res.status}`);
-  return res.json();
+async function postJson(path: string, body: unknown, retries = 4): Promise<any> {
+  let lastErr: unknown;
+  for (let attempt = 0; attempt <= retries; attempt += 1) {
+    if (attempt > 0) await new Promise((r) => setTimeout(r, 2000 * attempt));
+    try {
+      const res = await fetch(`${BASE}/${path}`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', 'user-agent': UA },
+        body: JSON.stringify(body),
+        // 司法院 API connectivity from cloud runners is flaky; allow a generous window.
+        signal: AbortSignal.timeout(30000),
+      });
+      if (!res.ok) throw new Error(`${path} HTTP ${res.status}`);
+      return await res.json();
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw lastErr instanceof Error ? lastErr : new Error(String(lastErr));
 }
 
 // Returns a token, or throws with the API's message (e.g. "目前非本 API 服務時間。").
