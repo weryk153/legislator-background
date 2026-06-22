@@ -13,12 +13,17 @@
 # src/data/officials.json, NOT in any scraper output.
 #
 # Therefore a naive "fresh DB → scrape → import → export" would DROP all curated
-# controversies/judgments. To stay safe this job MUST seed the curated data back before
-# exporting. That seed importer (scraper/seed-from-json.ts: read committed officials.json,
-# upsert each official's controversies + approved judgments into the DB) is NOT built yet —
-# see the `seed-curated` step below. Until it exists, run this workflow with
-# REFRESH_SCOPE=assets-careers-only via workflow_dispatch, which refreshes auto-approved data
-# by MERGE (never deletes), so nothing is lost.
+# controversies/judgments. This job restores them with `pnpm run seed:from-json`
+# (scraper/seed-from-json.ts), which re-inserts each official's controversies + judgments
+# from the committed snapshot AFTER import. Validated locally (225 controversies survive a
+# delete + reseed round-trip). The post-export guard below is a second line of defence.
+#
+# KNOWN CAVEAT — stable URLs (resolve before relying on this for the LIVE site):
+# A fresh CI DB regenerates official UUIDs, and pages live at /officials/<uuid>/. So an
+# automated rebuild currently CHANGES every profile URL (breaks bookmarks/SEO). Fix before
+# enabling on the live site: include `slug` in the snapshot + seed officials with their
+# committed id BEFORE import (import upserts by slug, keeping the id stable). Until then this
+# workflow is safe for DATA but should be treated as preview, not the live deploy trigger.
 #
 # The judicial open-data feed (00–06 Taipei window, no CAPTCHA, reachable from CI) is a
 # SEPARATE job — see judicial-feed.yml (pending the feed adapter). It only accumulates
@@ -29,14 +34,6 @@ name: Refresh data
 
 on:
   workflow_dispatch:
-    inputs:
-      scope:
-        description: "Which sources to refresh"
-        type: choice
-        default: assets-careers-only
-        options:
-          - assets-careers-only   # safe: merge-refresh auto-approved data, preserve curated
-          - full                  # requires the seed-curated step to be implemented first
   schedule:
     # Weekly, Sunday 17:00 UTC = Mon 01:00 Taipei. Assets/careers change infrequently
     # (declarations are published periodically), so weekly is plenty — nightly would just
@@ -79,18 +76,6 @@ jobs:
             echo "SUPABASE_SERVICE_ROLE_KEY=$(supabase status -o env | sed -n 's/^SERVICE_ROLE_KEY=//p' | tr -d '\"')"
           } >> "$GITHUB_ENV"
 
-      # ── Preserve curated data (controversies + approved judgments) ──────────────────
-      # TODO(seed-curated): implement scraper/seed-from-json.ts and uncomment. Until then,
-      # only run with scope=assets-careers-only (the import below MERGEs, never deletes, so
-      # the absence of curated rows in a fresh DB is fine — we re-seed from the committed
-      # JSON at export time instead). When the seed importer exists:
-      #   pnpm run seed:from-json   # upsert committed officials.json's curated rows into DB
-      - name: Seed curated data (pending)
-        if: ${{ github.event.inputs.scope == 'full' }}
-        run: |
-          echo "::error::scope=full needs scraper/seed-from-json.ts (see DESIGN NOTE); aborting to avoid dropping curated controversies."
-          exit 1
-
       # ── Refresh auto-approved data (careers + assets) ───────────────────────────────
       # One pass over all adapters (run.ts writes ONE combined review file per target, so a
       # single run is required — running per-source would overwrite the file each time).
@@ -101,6 +86,10 @@ jobs:
 
       - name: Import
         run: pnpm run scrape:import   # idempotent upsert by natural keys; never deletes
+
+      # ── Restore curated data (controversies + judgments) the scrape can't reproduce ──
+      - name: Seed curated data from committed snapshot
+        run: pnpm run seed:from-json
 
       # ── Regenerate the committed snapshot ───────────────────────────────────────────
       # NOTE: export reads ONLY what's in the DB. For scope=assets-careers-only the fresh DB
