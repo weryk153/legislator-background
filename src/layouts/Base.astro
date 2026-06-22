@@ -5,6 +5,7 @@ import "../styles/tokens.css";
 const DEFAULT_DESC = "以可查證、附出處的方式，公開現任公職人員的經歷、司法判決、爭議事件與財產申報。";
 const { title = "公職人員背景資料庫", description = DEFAULT_DESC } = Astro.props;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.pathname;
+const ogImage = Astro.site ? new URL("/og.png", Astro.site).href : "/og.png";
 let dataDate = "";
 try {
   dataDate = JSON.parse(readFileSync(join(process.cwd(), "src", "data", "meta.json"), "utf8")).generatedAt ?? "";
@@ -24,9 +25,13 @@ try {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
