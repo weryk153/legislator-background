@@ -46,7 +46,7 @@ const jsonLd = {
   url: Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined,
 };
 ---
-<Base title={`${o.name}｜公職人員背景`} description={desc}>
+<Base title={`${o.name}｜政治人物背景`} description={desc}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <a href="/" class="back">← 返回總覽</a>
 

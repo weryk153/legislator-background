@@ -8,9 +8,9 @@ const officials = await loadOfficials();
 const rows = officials.map(toListRow);
 const desc = `查詢台灣 ${officials.length} 位立法委員、縣市首長與縣市議員的經歷、司法判決、爭議報導與財產申報，每筆皆附公開資料出處。`;
 ---
-<Base title="公職人員背景資料庫" description={desc}>
+<Base title="政治人物背景資料庫" description={desc}>
   <section class="intro">
-    <h1>看見公職人員的背景</h1>
+    <h1>看見政治人物的背景</h1>
     <p class="lede">
       經歷・司法判決・爭議事件・財產申報，彙整自公開來源，每一筆都附上可查證的出處。
     </p>
