@@ -68,13 +68,13 @@
       <div class="name">{r.name}<span class="meta">{r.party}・{r.district}</span></div>
       <div class="office">{officeName[r.officeType]}{#if r.departed}<span class="departed"> · 已解職</span>{/if}</div>
     </div>
-    <div class="stat">
+    <div class="stat"><span class="slabel">判決</span>
       <div class="num v" class:accent={r.judgmentCount > 0} class:dim={r.judgmentCount === 0}>{r.judgmentCount}</div>
     </div>
-    <div class="stat">
+    <div class="stat"><span class="slabel">爭議</span>
       <div class="num v" class:accent={r.controversyCount > 0} class:dim={r.controversyCount === 0}>{r.controversyCount}</div>
     </div>
-    <div class="stat">
+    <div class="stat"><span class="slabel">申報財產</span>
       <div class="num asset">{fmt(r.latestAssetTotal)}</div>
     </div>
   </a>
@@ -112,5 +112,25 @@
   .stat { text-align: right; }
   .v { font-size: var(--t-md); font-weight: 800; line-height: 1.1; }
   .asset { font-size: 0.9375rem; font-weight: 700; }
+  .slabel { display: none; }
   .empty { color: var(--faint); padding: 28px 6px; text-align: center; }
+
+  /* Mobile: stack each row as a card — name spans the full width, the three stats
+     sit in a labelled row below, so the 政黨・選舉區 text no longer wraps awkwardly. */
+  @media (max-width: 560px) {
+    .thead { display: none; }
+    .row {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px 12px; align-items: center; padding: 14px 4px;
+    }
+    .who { grid-column: 1 / -1; }
+    .name .meta { display: block; margin-left: 0; margin-top: 3px; }
+    .stat {
+      text-align: left; display: flex; flex-direction: column; gap: 1px;
+      padding-top: 9px; border-top: 1px solid var(--line);
+    }
+    .slabel { display: block; font-size: 0.7rem; color: var(--faint); letter-spacing: 0.04em; }
+    .v { font-size: 1.05rem; line-height: 1.2; }
+    .asset { font-size: 0.9rem; }
+  }
 </style>
