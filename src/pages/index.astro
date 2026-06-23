@@ -14,6 +14,7 @@ const desc = `查詢台灣 ${officials.length} 位立法委員、縣市首長與
     <p class="lede">
       經歷・司法判決・爭議事件・財產申報，彙整自公開來源，每一筆都附上可查證的出處。
     </p>
+    <p class="term-note">收錄對象：第11屆立法委員（2024年當選）、2022年當選之縣市首長與縣市議員（任期至2026）。任內已解職者保留並標註「已解職」。</p>
   </section>
   <OfficialTable client:load rows={rows} />
 
@@ -21,5 +22,6 @@ const desc = `查詢台灣 ${officials.length} 位立法委員、縣市首長與
     .intro { margin: 4px 0 28px; }
     .intro h1 { font-size: var(--t-xl); margin: 0 0 10px; }
     .intro .lede { margin: 0; max-width: 56ch; }
+    .term-note { margin: 10px 0 0; font-size: 0.8125rem; color: var(--faint); max-width: 64ch; line-height: 1.6; }
   </style>
 </Base>

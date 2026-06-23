@@ -52,8 +52,10 @@ const jsonLd = {
 
   <header class="head">
     <span class="pill">{officeName[o.officeType]}</span>
+    {o.departedReason && <span class="pill departed">已解職</span>}
     <h1>{o.name}</h1>
     <p class="lede">{o.party}・{o.district}・第{o.term}屆{o.bio ? `　${o.bio}` : ""}</p>
+    {o.departedReason && <p class="departed-note">本人已非現任：{o.departedReason}。以下為其任內（第{o.term}屆當選時）之公開資料。</p>}
   </header>
 
   <section class="sec">
@@ -128,6 +130,8 @@ const jsonLd = {
     .head { margin: 14px 0 36px; }
     .head h1 { font-size: var(--t-xl); margin: 10px 0 6px; }
     .head .lede { margin: 0; }
+    .pill.departed { margin-left: 6px; color: #b3261e; border-color: #b3261e; }
+    .departed-note { margin: 12px 0 0; font-size: 0.8125rem; color: #b3261e; max-width: 64ch; line-height: 1.6; }
     .sec { margin-bottom: 40px; }
     .sec h2 {
       font-size: 1.25rem; margin: 0 0 14px;

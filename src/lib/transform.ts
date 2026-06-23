@@ -11,6 +11,7 @@ export function toOfficial(r: RawOfficial): Official {
   return {
     id: r.id, slug: r.slug, name: r.name, party: r.party, officeType: r.office_type, district: r.district,
     term: r.term, photoUrl: r.photo_url, bio: r.bio, isIncumbent: r.is_incumbent,
+    departedReason: r.departed_reason ?? null,
     careers: r.careers.map((c) => ({
       id: c.id, title: c.title, organization: c.organization,
       startDate: c.start_date, endDate: c.end_date, source: toSource(c.source),
@@ -47,5 +48,6 @@ export function toListRow(o: Official): OfficialListRow {
     judgmentCount: o.judgments.length,
     controversyCount: o.controversies.length,
     latestAssetTotal,
+    departed: !o.isIncumbent,
   };
 }

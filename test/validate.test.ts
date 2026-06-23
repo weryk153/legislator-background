@@ -6,7 +6,7 @@ const src: Source = { id: 's1', url: 'https://x', type: 'court', title: 't', ret
 
 function baseOfficial(over: Partial<Official> = {}): Official {
   return {
-    id: 'o1', slug: 'o1', name: '陳〇〇', party: '無', officeType: 'legislator', district: '北市3',
+    id: 'o1', slug: 'o1', name: '陳〇〇', party: '無', officeType: 'legislator', district: '北市3', departedReason: null,
     term: '11', photoUrl: null, bio: '', isIncumbent: true,
     careers: [], judgments: [], controversies: [], assets: [], ...over,
   };

@@ -14,7 +14,7 @@ loadEnv();
 const here = dirname(fileURLToPath(import.meta.url));
 
 const SELECT = `
-  id, slug, name, party, office_type, district, term, photo_url, bio, is_incumbent,
+  id, slug, name, party, office_type, district, term, photo_url, bio, is_incumbent, departed_reason,
   careers ( id, title, organization, start_date, end_date, source:sources(*) ),
   judgments ( id, case_reason, court, case_number, outcome, is_final, judgment_date, judgment_url, source:sources(*) ),
   controversies ( id, title, summary, status, event_date, report_date, controversy_sources ( source:sources(*) ) ),

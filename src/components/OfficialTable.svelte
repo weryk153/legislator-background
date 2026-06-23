@@ -66,7 +66,7 @@
   <a class="row" href={`/officials/${r.slug}`}>
     <div class="who">
       <div class="name">{r.name}<span class="meta">{r.party}・{r.district}</span></div>
-      <div class="office">{officeName[r.officeType]}</div>
+      <div class="office">{officeName[r.officeType]}{#if r.departed}<span class="departed"> · 已解職</span>{/if}</div>
     </div>
     <div class="stat">
       <div class="num v" class:accent={r.judgmentCount > 0} class:dim={r.judgmentCount === 0}>{r.judgmentCount}</div>
@@ -108,6 +108,7 @@
   .name { font-family: var(--serif); font-size: var(--t-md); font-weight: 700; }
   .name .meta { font-family: var(--sans); font-size: 0.75rem; font-weight: 400; color: var(--faint); margin-left: 9px; }
   .office { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+  .office .departed { color: #b3261e; }
   .stat { text-align: right; }
   .v { font-size: var(--t-md); font-weight: 800; line-height: 1.1; }
   .asset { font-size: 0.9375rem; font-weight: 700; }

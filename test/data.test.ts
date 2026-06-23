@@ -6,7 +6,7 @@ const rawSrc: RawSource = { id: 's1', url: 'https://x', type: 'court', title: 't
 
 function rawOfficial(over: Partial<RawOfficial> = {}): RawOfficial {
   return {
-    id: 'o1', slug: 'o1', name: '測試', party: '無', office_type: 'legislator', district: 'd', term: '11',
+    id: 'o1', slug: 'o1', name: '測試', party: '無', office_type: 'legislator', district: 'd', term: '11', departed_reason: null,
     photo_url: null, bio: '', is_incumbent: true,
     careers: [], judgments: [], controversies: [], asset_declarations: [], ...over,
   };

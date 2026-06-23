@@ -20,7 +20,7 @@ export interface ApprovedForTarget {
 export function approvedToOfficial(t: Target, a: ApprovedForTarget): Official {
   return {
     id: t.id, slug: t.id, name: t.name, party: t.party, officeType: 'legislator', district: t.district,
-    term: '11', photoUrl: null, bio: '', isIncumbent: true,
+    term: '11', photoUrl: null, bio: '', isIncumbent: true, departedReason: null,
     careers: a.careers.map((c, i) => ({
       id: `career-${i}`, title: c.title, organization: c.organization,
       startDate: c.startDate, endDate: c.endDate, source: toSource(c.source),
