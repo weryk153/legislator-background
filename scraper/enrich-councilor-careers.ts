@@ -14,6 +14,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 function cleanOffice(s: string): string {
   return s
+    .replace(/<!--[\s\S]*?-->/g, '')
     .replace(/<ref[^>]*>[\s\S]*?<\/ref>/g, '').replace(/<ref[^>]*\/>/g, '')
     .replace(/\[\[(?:File|檔案|Image):[^\]]*\]\]/gi, '')
     .replace(/<sup>[\s\S]*?<\/sup>/g, '')
@@ -38,6 +39,8 @@ function parseCareers(wt: string): Array<{ title: string; start: string; end: st
   for (const [k, raw] of offices) {
     const title = cleanOffice(raw);
     if (!title || title.length < 2 || title.length > 40 || seen.has(title)) continue;
+    // Reject malformed captures (stray infobox metadata, date-only fragments, no CJK role word).
+    if (/[=|｜]|term_|start|end/i.test(title) || /^\d{4}年/.test(title) || !/[一-鿿]/.test(title)) continue;
     seen.add(title);
     const endRaw = ends.get(k) ?? '';
     const end = /現任|至今|incumbent/.test(endRaw) || !endRaw.trim() ? null : yearOf(endRaw) || null;
