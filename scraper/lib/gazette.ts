@@ -182,9 +182,12 @@ export function countParcels(section: string): number {
 export function parseDeclaration(text: string, name: string): AssetItem[] {
   const idx = text.indexOf(name);
   if (idx === -1) return [];
-  // A single declaration spans well over 4 KB once pdftotext fragments the
-  // vertical table text, so scan generously from the name onward.
-  const block = text.slice(idx, idx + 20000);
+  // getDeclarationText returns ONE person's full declaration PDF, but pdftotext -layout
+  // fragments the vertical table into a LOT of whitespace: an asset-heavy declaration runs
+  // 50 KB+, pushing 存款/有價證券/債權 well past any fixed window. A too-small slice silently
+  // drops the monetary sections (leaving only 土地/建物). Scan the whole declaration from the
+  // name onward; the single-person PDF means there is no sibling declaration to bleed into.
+  const block = text.slice(idx);
   const lines = block.split('\n');
   const items: AssetItem[] = [];
   for (const [category, keywords] of CATEGORY_KEYWORDS) {

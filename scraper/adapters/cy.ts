@@ -171,7 +171,19 @@ export const cyAdapter: SourceAdapter = {
         Page: { PageNo: 1, PageSize: 100 },
       });
       const text = await res.text();
-      const paired = parseCyRows(text, PUBLIC_PAGE, new Date().toISOString().slice(0, 10));
+      const allPaired = parseCyRows(text, PUBLIC_PAGE, new Date().toISOString().slice(0, 10));
+
+      // Keep only 01一般申報 (the full annual declaration). 02更補正/09變動申報 are partial
+      // amendments that touch a single field, so enriching them yields a misleading "year"
+      // with e.g. only 債權. Per year keep the highest-期別 一般申報 (newest correction of it).
+      const byYear = new Map<number, (typeof allPaired)[number]>();
+      for (const p of allPaired) {
+        if (!String(p.row?.PublishType ?? '').includes('一般申報')) continue;
+        const y = p.asset.year || 0;
+        const cur = byYear.get(y);
+        if (!cur || Number(p.row?.Period ?? 0) > Number(cur.row?.Period ?? 0)) byYear.set(y, p);
+      }
+      const paired = [...byYear.values()];
 
       // Best-effort per-declaration enrichment: fetch a declaration's PDF via the priso
       // getFile endpoint (by the row's encrypted Id), then parse category totals.
