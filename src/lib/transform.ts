@@ -26,10 +26,12 @@ export function toOfficial(r: RawOfficial): Official {
       eventDate: c.event_date, reportDate: c.report_date,
       sources: c.controversy_sources.map((cs) => toSource(cs.source)),
     })),
-    assets: r.asset_declarations.map((a) => ({
-      id: a.id, year: a.year, source: toSource(a.source),
-      items: (a.asset_items ?? []).map((it) => ({ category: it.category, amount: it.amount, label: it.label })),
-    })),
+    assets: r.asset_declarations
+      .map((a) => ({
+        id: a.id, year: a.year, source: toSource(a.source),
+        items: (a.asset_items ?? []).map((it) => ({ category: it.category, amount: it.amount, label: it.label })),
+      }))
+      .sort((a, b) => b.year - a.year), // newest year first
   };
 }
 
