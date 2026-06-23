@@ -15,7 +15,7 @@ import { parseJudgment } from '../adapters/judgments';
 import { scoreMatch } from '../match/score';
 
 const BASE = 'https://data.judicial.gov.tw/jdg/api';
-const UA = 'legislator-background-bot/1.0 (public-data; contact: weryk153@gmail.com)';
+const UA = 'legislator-background-bot/1.0 (public-data; +https://github.com/weryk153/legislator-background)';
 
 async function postJson(path: string, body: unknown, retries = 4): Promise<any> {
   let lastErr: unknown;

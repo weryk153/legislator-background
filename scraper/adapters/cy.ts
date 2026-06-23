@@ -37,7 +37,7 @@
 import type { AdapterResult, CandidateAsset, EvidenceSource, SourceAdapter, Target } from '../lib/types';
 import { getDeclarationText, parseDeclaration } from '../lib/gazette';
 
-const UA = 'legislator-background-bot/1.0 (public-data; contact: weryk153@gmail.com)';
+const UA = 'legislator-background-bot/1.0 (public-data; +https://github.com/weryk153/legislator-background)';
 const PRISO_BASE = 'https://priso.cy.gov.tw';
 const QUERY_DATA_URL = `${PRISO_BASE}/api/Query/QueryData`;
 const PUBLIC_PAGE = `${PRISO_BASE}/layout/baselist`;

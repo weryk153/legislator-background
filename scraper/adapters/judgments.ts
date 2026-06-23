@@ -17,7 +17,7 @@ import type { AdapterResult, CandidateJudgment, EvidenceSource, SourceAdapter, T
 import { scoreMatch, type MatchTarget } from '../match/score';
 
 const SEARCH_URL = 'https://judgment.judicial.gov.tw/FJUD/default.aspx';
-const UA = 'legislator-background-bot/1.0 (public-data; contact: weryk153@gmail.com)';
+const UA = 'legislator-background-bot/1.0 (public-data; +https://github.com/weryk153/legislator-background)';
 
 // Convert a ROC ("民國") year to Gregorian. 民國1 = 1912, so add 1911.
 function toGregorianYear(year: number): number {

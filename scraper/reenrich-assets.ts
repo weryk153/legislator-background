@@ -7,7 +7,7 @@ import { loadEnv } from './lib/loadEnv';
 import { getDeclarationText, parseDeclaration } from './lib/gazette';
 
 loadEnv();
-const UA = 'legislator-background-bot/1.0 (public-data; contact: weryk153@gmail.com)';
+const UA = 'legislator-background-bot/1.0 (public-data; +https://github.com/weryk153/legislator-background)';
 const QUERY = 'https://priso.cy.gov.tw/api/Query/QueryData';
 const PAGE = 'https://priso.cy.gov.tw/layout/baselist';
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));

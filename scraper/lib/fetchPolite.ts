@@ -1,4 +1,4 @@
-const UA = 'legislator-background-bot/1.0 (public-data; contact: weryk153@gmail.com)';
+const UA = 'legislator-background-bot/1.0 (public-data; +https://github.com/weryk153/legislator-background)';
 
 export interface PoliteOptions {
   retries?: number;

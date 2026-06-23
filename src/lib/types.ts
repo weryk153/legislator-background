@@ -1,7 +1,7 @@
 export type OfficeType = 'legislator' | 'mayor_magistrate' | 'councilor';
 export type ControversyStatus =
   | 'investigating' | 'indicted' | 'first_instance' | 'settled' | 'cleared' | 'other';
-export type SourceType = 'court' | 'news' | 'gov' | 'gazette' | 'factcheck';
+export type SourceType = 'court' | 'news' | 'gov' | 'gazette' | 'factcheck' | 'wiki';
 
 export interface Source { id: string; url: string; type: SourceType; title: string; retrievedAt: string; }
 export interface Career { id: string; title: string; organization: string; startDate: string; endDate: string | null; source: Source; }
