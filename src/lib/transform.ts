@@ -1,5 +1,13 @@
 import type { Official, OfficialListRow, RawOfficial, RawSource, Source } from './types';
 
+// Stable display order for asset categories so the same person's declarations read the
+// same way across years (real estate → liquid → securities → investments → claims → debts).
+const ASSET_CATEGORY_ORDER = ['land', 'building', 'deposit', 'cash', 'securities', 'investment', 'claim', 'debt'];
+function assetCategoryRank(c: string): number {
+  const i = ASSET_CATEGORY_ORDER.indexOf(c);
+  return i === -1 ? ASSET_CATEGORY_ORDER.length : i;
+}
+
 function toSource(r: RawSource): Source {
   // A missing source must survive transform so the validation gate can flag it
   // (`missing source`) instead of crashing with a raw TypeError.
@@ -29,7 +37,9 @@ export function toOfficial(r: RawOfficial): Official {
     assets: r.asset_declarations
       .map((a) => ({
         id: a.id, year: a.year, source: toSource(a.source),
-        items: (a.asset_items ?? []).map((it) => ({ category: it.category, amount: it.amount, label: it.label })),
+        items: (a.asset_items ?? [])
+          .map((it) => ({ category: it.category, amount: it.amount, label: it.label }))
+          .sort((x, y) => assetCategoryRank(x.category) - assetCategoryRank(y.category)), // stable category order across years
       }))
       .sort((a, b) => b.year - a.year), // newest year first
   };
