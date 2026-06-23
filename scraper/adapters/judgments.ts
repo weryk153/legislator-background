@@ -7,7 +7,7 @@
 //
 // FIXTURE PROVENANCE: the unit tests run against scraper/fixtures/judgment-sample.html,
 // which is a REPRESENTATIVE (hand-built) judgment-detail page — NOT real data. The live
-// site (https://judgments.judicial.gov.tw/FJUD/...) was unreachable from the build
+// site (https://judgment.judicial.gov.tw/FJUD/...) was unreachable from the build
 // environment (DNS did not resolve) and is known to gate automation behind a 驗證碼
 // (CAPTCHA), so per the task time-box the live capture was abandoned. Only the pure
 // parseJudgment/scoreCandidate/looksBlocked functions are exercised by tests; fetchFor
@@ -16,7 +16,7 @@ import { parse } from 'node-html-parser';
 import type { AdapterResult, CandidateJudgment, EvidenceSource, SourceAdapter, Target } from '../lib/types';
 import { scoreMatch, type MatchTarget } from '../match/score';
 
-const SEARCH_URL = 'https://judgments.judicial.gov.tw/FJUD/default.aspx';
+const SEARCH_URL = 'https://judgment.judicial.gov.tw/FJUD/default.aspx';
 const UA = 'legislator-background-bot/1.0 (public-data; contact: weryk153@gmail.com)';
 
 // Convert a ROC ("民國") year to Gregorian. 民國1 = 1912, so add 1911.

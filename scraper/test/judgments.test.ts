@@ -11,14 +11,14 @@ const html = readFileSync(join(here, '..', 'fixtures', 'judgment-sample.html'), 
 
 describe('parseJudgment', () => {
   it('extracts court, case number, date and sets a court source', () => {
-    const j = parseJudgment(html, 'https://judgments.judicial.gov.tw/...', '2026-06-17');
+    const j = parseJudgment(html, 'https://judgment.judicial.gov.tw/...', '2026-06-17');
     expect(j.court.length).toBeGreaterThan(0);
     expect(j.caseNumber.length).toBeGreaterThan(0);
     expect(j.source.type).toBe('court');
   });
 
   it('captures the disposition (主文) and the case reason', () => {
-    const j = parseJudgment(html, 'https://judgments.judicial.gov.tw/...', '2026-06-17');
+    const j = parseJudgment(html, 'https://judgment.judicial.gov.tw/...', '2026-06-17');
     expect(j.outcome.length).toBeGreaterThan(0);
     expect(j.caseReason).toContain('妨害名譽');
     // The fixture says "本件得上訴" → not yet final.
@@ -30,28 +30,28 @@ describe('parseJudgment', () => {
 
 describe('parseJudgment defendant extraction', () => {
   it('extracts the 被告 name from the judgment body', () => {
-    const j = parseJudgment(html, 'https://judgments.judicial.gov.tw/...', '2026-06-17');
+    const j = parseJudgment(html, 'https://judgment.judicial.gov.tw/...', '2026-06-17');
     expect(j.defendantNames).toContain('徐巧芯');
   });
 });
 
 describe('scoreCandidate', () => {
   it('attaches a match score with confidence and signals', () => {
-    const j = parseJudgment(html, 'https://judgments.judicial.gov.tw/...', '2026-06-17');
+    const j = parseJudgment(html, 'https://judgment.judicial.gov.tw/...', '2026-06-17');
     const scored = scoreCandidate(j, { name: '徐巧芯', keywords: ['大安'], aliases: [] });
     expect(scored.match.confidence).toBeGreaterThanOrEqual(0);
     expect(Array.isArray(scored.match.signals)).toBe(true);
   });
 
   it('scores name-exact when the judgment defendant IS the target', () => {
-    const j = parseJudgment(html, 'https://judgments.judicial.gov.tw/...', '2026-06-17');
+    const j = parseJudgment(html, 'https://judgment.judicial.gov.tw/...', '2026-06-17');
     const scored = scoreCandidate(j, { name: '徐巧芯', keywords: [], aliases: [] });
     expect(scored.match.signals).toContain('name-exact');
     expect(scored.match.confidence).toBeGreaterThanOrEqual(0.4);
   });
 
   it('scores zero when the target is NOT among the judgment defendants (same-name guard)', () => {
-    const j = parseJudgment(html, 'https://judgments.judicial.gov.tw/...', '2026-06-17');
+    const j = parseJudgment(html, 'https://judgment.judicial.gov.tw/...', '2026-06-17');
     const scored = scoreCandidate(j, { name: '王小明', keywords: [], aliases: [] });
     expect(scored.match.confidence).toBe(0);
     expect(scored.match.signals).toEqual([]);

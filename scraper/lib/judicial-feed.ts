@@ -93,7 +93,7 @@ function fmtDate(d: string): string {
 
 // Best-effort citable public URL for the judgment (the search site's detail page by jid).
 export function judgmentUrl(jid: string): string {
-  return `https://judgments.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=${encodeURIComponent(jid)}`;
+  return `https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=${encodeURIComponent(jid)}`;
 }
 
 // Build a CandidateJudgment from a JDoc: reuse parseJudgment on the full text (court /
