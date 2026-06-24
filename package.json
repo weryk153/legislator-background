@@ -14,6 +14,7 @@
     "scrape:import": "tsx scraper/import.ts",
     "judicial:auth": "node scraper/scripts/test-judicial-auth.mjs",
     "export:data": "tsx scraper/export-officials.ts",
+    "export:graph": "tsx scraper/export-graph.ts",
     "seed:from-json": "tsx scraper/seed-from-json.ts",
     "judicial:measure": "tsx scraper/judicial.ts --measure",
     "judicial:feed": "tsx scraper/judicial.ts"
