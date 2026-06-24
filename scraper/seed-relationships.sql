@@ -23,7 +23,7 @@ begin
 
   -- 來源（各關係使用其起點議員之判決 URL）
   insert into sources(url,type,title,retrieved_at) values
-    ('https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=ULDM,113,%E7%9F%9A%E8%A8%B4,1&ot=in','court','雲林地院113年度矚訴字第1號','2026-06-24') returning id into s_sun;
+    ('https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=ULDM,113,矚訴,1,20250825,7&ot=in','court','臺灣雲林地方法院113年度矚訴字第1號','2026-06-24') returning id into s_sun;
   insert into sources(url,type,title,retrieved_at) values
     ('https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TPDM,113,金訴,32,20241227,3&ot=in','court','臺北地院113年度金訴字第32號','2026-06-24') returning id into s_chen;
   insert into sources(url,type,title,retrieved_at) values
