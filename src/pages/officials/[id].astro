@@ -2,15 +2,20 @@
 import Base from "../../layouts/Base.astro";
 import Sources from "../../components/Sources.astro";
 import { loadOfficials } from "../../lib/data";
+import RelationshipGraph from "../../components/RelationshipGraph.svelte";
+import { egoSubgraph } from "../../lib/graph";
+import { loadGraph } from "../../lib/loadGraph";
 
 export async function getStaticPaths() {
   const officials = await loadOfficials();
-  // URL = the stable slug (derived from name+office+district), NOT the random DB UUID, so
-  // profile URLs survive a full DB rebuild / scheduled refresh.
-  return officials.map((o) => ({ params: { id: o.slug }, props: { official: o } }));
+  const graph = loadGraph();
+  return officials.map((o) => ({
+    params: { id: o.slug },
+    props: { official: o, ego: egoSubgraph(graph, `official:${o.id}`, 2) },
+  }));
 }
 
-const { official: o } = Astro.props;
+const { official: o, ego } = Astro.props;
 const statusLabel = {
   investigating: "偵查中", indicted: "已起訴", first_instance: "一審",
   settled: "已和解", cleared: "查無不法", other: "未分類",
@@ -123,6 +128,14 @@ const jsonLd = {
       </div>
     ))}
   </section>
+
+  {ego.edges.length > 0 && (
+    <section class="sec">
+      <h2>人物關係</h2>
+      <p class="note">關係資料整理自司法判決、媒體報導與公開資料，每條皆附出處，僅呈現已查證者。實心為公職人員（可點入檔案），外框為其他公眾人物。</p>
+      <RelationshipGraph client:visible nodes={ego.nodes} edges={ego.edges} centerKey={`official:${o.id}`} />
+    </section>
+  )}
 
   <style>
     .back { font-size: 0.8125rem; color: var(--muted); }
