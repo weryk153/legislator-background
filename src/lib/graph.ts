@@ -1,10 +1,20 @@
 import type {
-  GraphData, GraphEdge, GraphNode, OfficeType,
+  GraphData, GraphEdge, GraphNode, OfficeType, RelationType,
   RawEntity, RawOfficial, RawRelationship,
 } from './types';
 
 type RawOfficialNode = Pick<RawOfficial, 'id' | 'slug' | 'name' | 'party' | 'office_type'>;
 const keyOf = (type: 'official' | 'entity', id: string) => `${type}:${id}`;
+
+// relation_type → 白話標籤。單一來源，供檔案頁文字清單與（Phase 2）全局關係圖共用。
+export const RELATION_LABEL: Record<RelationType, string> = {
+  spouse: '配偶', parent_child: '親子', sibling: '手足', relative: '親屬',
+  faction: '同派系', mentor: '師徒', party_bloc: '同黨團', aide: '助理', backer: '金主', co_case: '共同被告',
+};
+// 家族類關係（其餘為政治類）。
+export const FAMILY_RELATIONS: ReadonlySet<RelationType> = new Set<RelationType>([
+  'spouse', 'parent_child', 'sibling', 'relative',
+]);
 
 // Pure: raw rows → GraphData + validation errors. No fs / no network (unit-testable, browser-safe).
 export function buildGraphData(

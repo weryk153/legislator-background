@@ -2,8 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import Sources from "../../components/Sources.astro";
 import { loadOfficials } from "../../lib/data";
-import RelationshipGraph from "../../components/RelationshipGraph.svelte";
-import { egoSubgraph } from "../../lib/graph";
+import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS } from "../../lib/graph";
 import { loadGraph } from "../../lib/loadGraph";
 
 export async function getStaticPaths() {
@@ -11,11 +10,20 @@ export async function getStaticPaths() {
   const graph = loadGraph();
   return officials.map((o) => ({
     params: { id: o.slug },
-    props: { official: o, ego: egoSubgraph(graph, `official:${o.id}`, 2) },
+    props: { official: o, ego: egoSubgraph(graph, `official:${o.id}`, 1) },
   }));
 }
 
 const { official: o, ego } = Astro.props;
+// 本人的直接人物關係（取與本人相連的邊，找出對方節點），以文字清單呈現。
+const centerKey = `official:${o.id}`;
+const egoByKey = new Map(ego.nodes.map((n) => [n.key, n]));
+const relations = ego.edges
+  .filter((e) => e.source === centerKey || e.target === centerKey)
+  .map((e) => {
+    const otherKey = e.source === centerKey ? e.target : e.source;
+    return { other: egoByKey.get(otherKey)!, type: e.type, note: e.note, sourceUrl: e.sourceUrl };
+  });
 const statusLabel = {
   investigating: "偵查中", indicted: "已起訴", first_instance: "一審",
   settled: "已和解", cleared: "查無不法", other: "未分類",
@@ -129,11 +137,20 @@ const jsonLd = {
     ))}
   </section>
 
-  {ego.edges.length > 0 && (
+  {relations.length > 0 && (
     <section class="sec">
       <h2>人物關係</h2>
-      <p class="note">關係資料整理自司法判決、媒體報導與公開資料，每條皆附出處，僅呈現已查證者。實心為公職人員（可點入檔案），外框為其他公眾人物。</p>
-      <RelationshipGraph client:visible nodes={ego.nodes} edges={ego.edges} centerKey={`official:${o.id}`} />
+      <p class="note">關係資料整理自司法判決、媒體報導與公開資料，每條皆附出處，僅呈現已查證者。連結者為公職人員（可點入檔案），其餘為其他公眾人物。</p>
+      {relations.map((r) => (
+        <div class="item rel">
+          <span class={`pill rel-kind ${FAMILY_RELATIONS.has(r.type) ? "fam" : "pol"}`}>{RELATION_LABEL[r.type]}</span>
+          {r.other.slug
+            ? <a class="rel-name" href={`/officials/${r.other.slug}`}>{r.other.name}</a>
+            : <span class="rel-name plain">{r.other.name}<span class="rel-ext">（非公職）</span></span>}
+          {r.note && <span class="rel-note">{r.note}</span>}
+          {r.sourceUrl && <a class="rel-src" href={r.sourceUrl} target="_blank" rel="noopener">出處 ↗</a>}
+        </div>
+      ))}
     </section>
   )}
 
@@ -158,5 +175,15 @@ const jsonLd = {
     .entry-body { margin: 6px 0; font-size: 0.9375rem; }
     .entry-meta { font-size: var(--t-sm); color: var(--muted); margin-top: 4px; }
     .asset { font-weight: 700; }
+    .rel { display: flex; flex-wrap: wrap; align-items: baseline; gap: 7px 11px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+    .rel-kind { flex: none; }
+    .rel-kind.pol { border-style: dashed; }
+    .rel-name { font-family: var(--serif); font-weight: 700; font-size: 1.0625rem; }
+    a.rel-name:hover { color: var(--accent); }
+    .rel-name.plain { color: var(--muted); }
+    .rel-ext { font-family: var(--sans); font-weight: 400; font-size: var(--t-sm); color: var(--faint); }
+    .rel-note { color: var(--muted); font-size: 0.9375rem; }
+    .rel-src { margin-left: auto; font-size: var(--t-sm); color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+    .rel-src:hover { color: var(--accent); }
   </style>
 </Base>

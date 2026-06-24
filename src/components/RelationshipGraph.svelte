@@ -1,15 +1,10 @@
+<!-- 保留給 Phase 2 全局關係網頁；檔案頁的人物關係改用文字清單（見 officials/[id].astro），不再用此元件。 -->
 <script lang="ts">
   import { onMount } from 'svelte';
   import type { GraphNode, GraphEdge } from '../lib/types';
+  import { RELATION_LABEL, FAMILY_RELATIONS } from '../lib/graph';
 
   let { nodes, edges, centerKey }: { nodes: GraphNode[]; edges: GraphEdge[]; centerKey: string } = $props();
-
-  // relation_type → 白話標籤。家族＝實線、政治＝虛線。
-  const REL_LABEL: Record<string, string> = {
-    spouse: '配偶', parent_child: '親子', sibling: '手足', relative: '親屬',
-    faction: '同派系', mentor: '師徒', party_bloc: '同黨團', aide: '助理', backer: '金主', co_case: '共同被告',
-  };
-  const FAMILY = new Set(['spouse', 'parent_child', 'sibling', 'relative']);
 
   let container: HTMLDivElement;
 
@@ -65,7 +60,7 @@
         ...nodes.map((n) => ({ data: { id: n.key, label: n.name, slug: n.slug ?? '', kind: n.kind, center: n.key === centerKey ? 1 : 0 } })),
         ...edges.map((e) => ({ data: {
           id: e.id, source: e.source, target: e.target,
-          label: REL_LABEL[e.type] ?? e.type, fam: FAMILY.has(e.type) ? 1 : 0, dir: e.directed ? 1 : 0,
+          label: RELATION_LABEL[e.type] ?? e.type, fam: FAMILY_RELATIONS.has(e.type) ? 1 : 0, dir: e.directed ? 1 : 0,
           note: e.note ?? '', sourceUrl: e.sourceUrl ?? '',
         } })),
       ],
