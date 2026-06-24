@@ -23,7 +23,7 @@ describe('toOfficial', () => {
     expect(o.careers[0].source.retrievedAt).toBe('2026-01-01');
     expect(o.judgments[0].isFinal).toBe(false);
     expect(o.controversies[0].sources).toHaveLength(2);
-    expect(o.assets[1].items[0].amount).toBe(580000000);
+    expect(o.assets[0].items[0].amount).toBe(580000000); // assets sorted newest-year-first → 2024 at index 0
   });
 });
 
