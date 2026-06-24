@@ -50,16 +50,28 @@ const assetCategoryName: Record<string, string> = {
 };
 const officeName: Record<string, string> = { legislator: "立委", mayor_magistrate: "縣市首長", councilor: "議員" };
 const desc = `${o.name}（${o.party}・${officeName[o.officeType]}・${o.district}）的經歷、財產申報與相關爭議報導整理，每筆皆附公開資料出處。`;
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: o.name,
-  jobTitle: officeName[o.officeType],
-  affiliation: { "@type": "Organization", name: o.party },
-  url: Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined,
-};
+const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const homeUrl = Astro.site ? Astro.site.href : undefined;
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: o.name,
+    jobTitle: officeName[o.officeType],
+    affiliation: { "@type": "Organization", name: o.party },
+    url: pageUrl,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "總覽", item: homeUrl },
+      { "@type": "ListItem", position: 2, name: o.name, item: pageUrl },
+    ],
+  },
+];
 ---
-<Base title={`${o.name}｜政治人物背景`} description={desc}>
+<Base title={`${o.name}｜政治人物背景`} description={desc} ogType="profile">
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <a href="/" class="back">← 返回總覽</a>
 

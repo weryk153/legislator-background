@@ -7,8 +7,28 @@ import { toListRow } from "../lib/transform";
 const officials = await loadOfficials();
 const rows = officials.map(toListRow);
 const desc = `查詢台灣 ${officials.length} 位立法委員、縣市首長與縣市議員的經歷、司法判決、爭議報導與財產申報，每筆皆附公開資料出處。`;
+const siteUrl = Astro.site ? Astro.site.href.replace(/\/$/, "") : "";
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "政治人物背景資料庫",
+    description: desc,
+    url: siteUrl || undefined,
+    inLanguage: "zh-Hant",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "政治人物背景資料庫",
+    description: "以可查證、附出處的方式公開台灣政治人物的背景資料。",
+    url: siteUrl || undefined,
+    logo: siteUrl ? `${siteUrl}/og.png` : undefined,
+  },
+];
 ---
 <Base title="政治人物背景資料庫" description={desc}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <section class="intro">
     <h1>看見政治人物的背景</h1>
     <p class="lede">
