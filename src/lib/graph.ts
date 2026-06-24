@@ -1,5 +1,5 @@
 import type {
-  GraphData, GraphEdge, GraphNode, OfficeType, RelationType,
+  EntityType, GraphData, GraphEdge, GraphNode, OfficeType, RelationType,
   RawEntity, RawOfficial, RawRelationship,
 } from './types';
 
@@ -15,6 +15,11 @@ export const RELATION_LABEL: Record<RelationType, string> = {
 export const FAMILY_RELATIONS: ReadonlySet<RelationType> = new Set<RelationType>([
   'spouse', 'parent_child', 'sibling', 'relative',
 ]);
+// 外部公眾人物（非本站政治人物）的類別標籤。
+export const ENTITY_LABEL: Record<EntityType, string> = {
+  businessperson: '企業界', religious: '宗教界', celebrity: '演藝界', media: '媒體界',
+  family_member: '家屬', organization: '組織／法人', other: '其他公眾人物',
+};
 
 // Pure: raw rows → GraphData + validation errors. No fs / no network (unit-testable, browser-safe).
 export function buildGraphData(

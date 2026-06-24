@@ -2,7 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import Sources from "../../components/Sources.astro";
 import { loadOfficials } from "../../lib/data";
-import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS } from "../../lib/graph";
+import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL } from "../../lib/graph";
 import { loadGraph } from "../../lib/loadGraph";
 
 export async function getStaticPaths() {
@@ -140,13 +140,13 @@ const jsonLd = {
   {relations.length > 0 && (
     <section class="sec">
       <h2>人物關係</h2>
-      <p class="note">關係資料整理自司法判決、媒體報導與公開資料，每條皆附出處，僅呈現已查證者。連結者為公職人員（可點入檔案），其餘為其他公眾人物。</p>
+      <p class="note">關係資料整理自司法判決、媒體報導與公開資料，每條皆附出處，僅呈現已查證者。可點選的姓名為本站收錄之政治人物（連至其檔案頁），其餘為相關之其他公眾人物。</p>
       {relations.map((r) => (
         <div class="item rel">
           <span class={`pill rel-kind ${FAMILY_RELATIONS.has(r.type) ? "fam" : "pol"}`}>{RELATION_LABEL[r.type]}</span>
           {r.other.slug
             ? <a class="rel-name" href={`/officials/${r.other.slug}`}>{r.other.name}</a>
-            : <span class="rel-name plain">{r.other.name}<span class="rel-ext">（非公職）</span></span>}
+            : <span class="rel-name plain">{r.other.name}<span class="rel-ext">（{ENTITY_LABEL[r.other.subtype as keyof typeof ENTITY_LABEL] ?? "其他公眾人物"}）</span></span>}
           {r.note && <span class="rel-note">{r.note}</span>}
           {r.sourceUrl && <a class="rel-src" href={r.sourceUrl} target="_blank" rel="noopener">出處 ↗</a>}
         </div>
