@@ -17,7 +17,8 @@
     "export:graph": "tsx scraper/export-graph.ts",
     "seed:from-json": "tsx scraper/seed-from-json.ts",
     "judicial:measure": "tsx scraper/judicial.ts --measure",
-    "judicial:feed": "tsx scraper/judicial.ts"
+    "judicial:feed": "tsx scraper/judicial.ts",
+    "import:relationships": "tsx scraper/import-relationships.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
