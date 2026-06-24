@@ -23,6 +23,40 @@ export interface OfficialListRow {
   judgmentCount: number; controversyCount: number; latestAssetTotal: number | null; departed: boolean;
 }
 
+export type EntityType =
+  | 'businessperson' | 'religious' | 'celebrity' | 'media' | 'family_member' | 'organization' | 'other';
+export type RelationType =
+  | 'spouse' | 'parent_child' | 'sibling' | 'relative'
+  | 'faction' | 'mentor' | 'party_bloc' | 'aide' | 'backer' | 'co_case';
+export type NodeRefType = 'official' | 'entity';
+
+// Raw DB rows (snake_case), source nested via PostgREST join.
+export interface RawEntity {
+  id: string; name: string; entity_type: EntityType; description: string;
+  photo_url: string | null; wikipedia_url: string | null;
+}
+export interface RawRelationship {
+  id: string; from_type: NodeRefType; from_id: string; to_type: NodeRefType; to_id: string;
+  relation_type: RelationType; directed: boolean; note: string | null; source: RawSource;
+}
+
+// Clean graph (committed to src/data/graph.json).
+export interface GraphNode {
+  key: string;            // `${kind}:${id}`
+  name: string;
+  kind: NodeRefType;
+  subtype: string;        // official: officeType；entity: entity_type
+  slug?: string;          // official 才有，可連回檔案頁
+  party?: string;         // official
+  officeType?: OfficeType;// official
+  description?: string;   // entity
+}
+export interface GraphEdge {
+  id: string; source: string; target: string;  // source/target = node key
+  type: RelationType; directed: boolean; note: string | null; sourceUrl: string;
+}
+export interface GraphData { nodes: GraphNode[]; edges: GraphEdge[]; }
+
 // Raw rows as returned by Supabase (snake_case). `*_sources` are nested via PostgREST joins.
 export interface RawSource { id: string; url: string; type: SourceType; title: string; retrieved_at: string; }
 export interface RawOfficial {
