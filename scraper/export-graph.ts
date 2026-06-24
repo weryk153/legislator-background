@@ -35,7 +35,8 @@ async function main() {
 
   const { data: relationships, error: rErr } = await supabase
     .from('relationships')
-    .select('id, from_type, from_id, to_type, to_id, relation_type, directed, note, source:sources(*)');
+    .select('id, from_type, from_id, to_type, to_id, relation_type, directed, note, source:sources(*)')
+    .order('id', { ascending: true });
   if (rErr) throw new Error(`relationships query failed: ${rErr.message}`);
 
   const { data, errors } = buildGraphData(

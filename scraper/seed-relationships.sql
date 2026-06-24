@@ -21,15 +21,15 @@ begin
   insert into entities(name, entity_type, description) values
     ('李雲強','other','前桃園縣／市議員，桃園市議員孫韻璇之配偶') returning id into e_li;
 
-  -- 來源（沿用各該判決 URL）
+  -- 來源（各關係使用其起點議員之判決 URL）
   insert into sources(url,type,title,retrieved_at) values
     ('https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=ULDM,113,%E7%9F%9A%E8%A8%B4,1&ot=in','court','雲林地院113年度矚訴字第1號','2026-06-24') returning id into s_sun;
   insert into sources(url,type,title,retrieved_at) values
-    ('https://www.cna.com.tw/','news','臺北市議員陳重文貪污案報導','2026-06-24') returning id into s_chen;
+    ('https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TPDM,113,金訴,32,20241227,3&ot=in','court','臺北地院113年度金訴字第32號','2026-06-24') returning id into s_chen;
   insert into sources(url,type,title,retrieved_at) values
-    ('https://www.cna.com.tw/','news','臺北市議員陳怡君貪污案報導','2026-06-24') returning id into s_chenyi;
+    ('https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=SLDM,114,訴,629,20260112,2&ot=in','court','士林地院114年度訴字第629號','2026-06-24') returning id into s_chenyi;
   insert into sources(url,type,title,retrieved_at) values
-    ('https://www.cna.com.tw/','news','桃園市議員孫韻璇貪污案報導','2026-06-24') returning id into s_yun;
+    ('https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TYDM,111,訴,1159,20240708,1&ot=in','court','桃園地院111年度訴字第1159號','2026-06-24') returning id into s_yun;
 
   -- 關係（端點都存在才插）
   if id_wang is not null and id_shen is not null then
