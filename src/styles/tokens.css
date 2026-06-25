@@ -9,6 +9,7 @@
   --line-strong: rgba(60, 55, 50, 0.42);
   --accent: #b3271e;
   --accent-wash: rgba(179, 39, 30, 0.06);
+  --row-hover: rgba(120, 110, 100, 0.07); /* 中性暖灰，列表 hover（避免紅 wash 變粉紅） */
 
   /* type */
   --serif: "Noto Serif TC", "Libre Bodoni", Georgia, "Songti TC", serif;
@@ -37,6 +38,7 @@
   --line-strong: rgba(210, 205, 195, 0.34);
   --accent: #e8635a;
   --accent-wash: rgba(232, 99, 90, 0.10);
+  --row-hover: rgba(210, 205, 195, 0.07);
 }
 
 * { box-sizing: border-box; }

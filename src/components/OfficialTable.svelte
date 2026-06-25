@@ -103,7 +103,7 @@
     padding: 15px 6px; border-bottom: 1px solid var(--line);
     transition: background-color var(--ease);
   }
-  .row:hover { background: var(--accent-wash); }
+  .row:hover { background: var(--row-hover); }
   .who { min-width: 0; }
   .name { font-family: var(--serif); font-size: var(--t-md); font-weight: 700; }
   .name .meta { font-family: var(--sans); font-size: 0.75rem; font-weight: 400; color: var(--faint); margin-left: 9px; }
