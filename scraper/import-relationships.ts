@@ -45,9 +45,26 @@ async function main() {
     return pool.length === 1 ? pool[0].id : null; // 僅唯一匹配才連，避免同名錯掛
   };
 
-  // 冪等：清掉先前由本匯入產生的資料（wiki/news 來源的關係 + 之後變孤立的 entity）。
-  await supabase.from('relationships').delete().in('source_id',
-    (await supabase.from('sources').select('id').in('type', ['wiki', 'news'])).data?.map((s) => s.id) ?? ['00000000-0000-0000-0000-000000000000']);
+  // 冪等清除：刪掉先前由本匯入產生的關係（保留判決 court 來源的種子關係）。
+  // 注意：sources 表有上萬筆（官員生涯/判決/公報來源），不可用 .select('id').in('type',[...])
+  // 反查 source_id —— PostgREST 預設上限 1000 會漏抓，導致殘留關係跨次累積成重複邊。
+  // 改為分頁掃描 relationships＋其來源型別，逐批刪除所有非 court 者。
+  {
+    const stale: string[] = [];
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await supabase
+        .from('relationships').select('id, source:sources(type)').range(from, from + 999);
+      if (error) throw new Error(`relationships scan failed: ${error.message}`);
+      for (const r of (data ?? []) as { id: string; source?: { type?: string } }[]) {
+        if (r.source?.type !== 'court') stale.push(r.id);
+      }
+      if ((data?.length ?? 0) < 1000) break;
+    }
+    for (let i = 0; i < stale.length; i += 100) {
+      const { error } = await supabase.from('relationships').delete().in('id', stale.slice(i, i + 100));
+      if (error) throw new Error(`relationship clear failed: ${error.message}`);
+    }
+  }
 
   // entity 去重快取（name → id）
   const entityCache = new Map<string, string>();
@@ -97,7 +114,31 @@ async function main() {
     inserted++;
   }
 
-  console.log(`匯入完成：${inserted} 筆關係、entity ${entityCache.size} 筆；略過 ${skipped}`);
+  // 清除孤立 entity（未被任何現存關係引用者）—— 每次匯入都會新建 entity，需回收前次殘留。
+  const referenced = new Set<string>();
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await supabase
+      .from('relationships').select('from_type, from_id, to_type, to_id').range(from, from + 999);
+    if (error) throw new Error(`relationships scan (orphan) failed: ${error.message}`);
+    for (const r of (data ?? []) as { from_type: string; from_id: string; to_type: string; to_id: string }[]) {
+      if (r.from_type === 'entity') referenced.add(r.from_id);
+      if (r.to_type === 'entity') referenced.add(r.to_id);
+    }
+    if ((data?.length ?? 0) < 1000) break;
+  }
+  const orphans: string[] = [];
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await supabase.from('entities').select('id').range(from, from + 999);
+    if (error) throw new Error(`entities scan failed: ${error.message}`);
+    for (const e of (data ?? []) as { id: string }[]) if (!referenced.has(e.id)) orphans.push(e.id);
+    if ((data?.length ?? 0) < 1000) break;
+  }
+  for (let i = 0; i < orphans.length; i += 100) {
+    const { error } = await supabase.from('entities').delete().in('id', orphans.slice(i, i + 100));
+    if (error) throw new Error(`orphan entity cleanup failed: ${error.message}`);
+  }
+
+  console.log(`匯入完成：${inserted} 筆關係、entity ${entityCache.size} 筆；清孤立 entity ${orphans.length} 筆；略過 ${skipped}`);
   if (skips.length) console.log('略過明細:\n  ' + skips.join('\n  '));
 }
 
