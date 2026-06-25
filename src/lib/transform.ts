@@ -61,5 +61,6 @@ export function toListRow(o: Official): OfficialListRow {
     controversyCount: o.controversies.length,
     latestAssetTotal,
     departed: !o.isIncumbent,
+    photoUrl: o.photoUrl,
   };
 }

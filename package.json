@@ -18,7 +18,8 @@
     "seed:from-json": "tsx scraper/seed-from-json.ts",
     "judicial:measure": "tsx scraper/judicial.ts --measure",
     "judicial:feed": "tsx scraper/judicial.ts",
-    "import:relationships": "tsx scraper/import-relationships.ts"
+    "import:relationships": "tsx scraper/import-relationships.ts",
+    "enrich:photos": "tsx scraper/enrich-legislator-photos.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

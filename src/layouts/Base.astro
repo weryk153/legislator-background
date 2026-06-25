@@ -75,6 +75,7 @@ try {
     <footer class="site-foot">
       <div class="wrap">
         <p class="disc">本站非官方網站，僅彙整公開資料並標註出處。判決與爭議資訊不代表最終定罪，未定讞前當事人受無罪推定保障；爭議報導未經逐筆查核，以官方資料為準。</p>
+        <p class="foot-src">資料來源：立法院開放資料、中央選舉委員會、司法院裁判書系統、監察院公職人員財產申報、維基百科</p>
         <p class="foot-meta">
           {dataDate && <span class="upd">資料更新 {dataDate}</span>}
           <a href="/about">關於與免責</a>
@@ -121,7 +122,8 @@ try {
         font-size: var(--t-sm); color: var(--muted); line-height: 1.7;
       }
       .site-foot p { margin: 0; max-width: 72ch; }
-      .disc { margin-bottom: 14px; }
+      .disc { margin-bottom: 10px; }
+      .foot-src { color: var(--faint); font-size: var(--t-xs); margin-bottom: 14px; }
       .foot-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; color: var(--faint); }
       .foot-meta .upd { color: var(--muted); }
       .foot-meta a { text-decoration: underline; text-underline-offset: 2px; }
