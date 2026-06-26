@@ -1,4 +1,5 @@
 [
   {"name":"高虹安","case_reason":"貪污治罪條例等（助理費案）","court":"臺灣高等法院","case_number":"113年度矚上重訴字第36號","outcome":"二審撤銷一審判決，改判共同犯使公務員登載不實罪，處有期徒刑6月（得易科罰金）；利用職務機會詐取財物（貪污）部分不另為無罪","is_final":false,"judgment_date":"2025-12-16","judgment_url":"https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TPHM,113,矚上重訴,36,20251216,4"},
-  {"name":"高虹安","case_reason":"誣告","court":"臺灣高等法院","case_number":"113年度上訴字第5670號","outcome":"二審：原判決撤銷，高虹安犯誣告罪，處有期徒刑6月（得上訴）","is_final":false,"judgment_date":"2025-07-31","judgment_url":"https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TPHM,113,上訴,5670,20250731,1"}
+  {"name":"高虹安","case_reason":"誣告","court":"臺灣高等法院","case_number":"113年度上訴字第5670號","outcome":"二審：原判決撤銷，高虹安犯誣告罪，處有期徒刑6月（得上訴）","is_final":false,"judgment_date":"2025-07-31","judgment_url":"https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TPHM,113,上訴,5670,20250731,1"},
+  {"name":"顏寬恒","case_reason":"貪污治罪條例等","court":"臺灣臺中地方法院","case_number":"112年度訴字第853號","outcome":"一審：共同犯使公務員登載不實罪，處有期徒刑6月（得易科罰金），併宣告沒收；得上訴（案經上訴，二審/最高法院審理中）","is_final":false,"judgment_date":"2024-07-26","judgment_url":"https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TCDM,112,訴,853,20240726,1"}
 ]
