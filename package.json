@@ -19,7 +19,8 @@
     "judicial:measure": "tsx scraper/judicial.ts --measure",
     "judicial:feed": "tsx scraper/judicial.ts",
     "import:relationships": "tsx scraper/import-relationships.ts",
-    "enrich:photos": "tsx scraper/enrich-legislator-photos.ts"
+    "enrich:photos": "tsx scraper/enrich-legislator-photos.ts",
+    "enrich:mayor-photos": "tsx scraper/enrich-mayor-photos.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
