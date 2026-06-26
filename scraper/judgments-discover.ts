@@ -15,7 +15,7 @@
 //   ONLY=高虹安,林淑芬 pnpm run judgments:discover
 //   LIMIT=5 PAGES=3 pnpm run judgments:discover    # 前5位、每人最多抓3頁
 import { chromium, type Frame } from 'playwright';
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -43,7 +43,7 @@ function classify(reason: string): Candidate['category'] {
   return 'other';
 }
 function courtCounty(title: string): string | null {
-  const m = title.match(/臺灣(.+?)地方法院/) || title.match(/高等法院(.+?)分院/);
+  const m = title.match(/(?:臺灣|福建)(.+?)地方法院/) || title.match(/高等法院(.+?)分院/); // 連江/金門為福建法院
   return m ? stem(m[1]) : null; // 高等/最高法院→null（上訴審無轄區訊號）
 }
 function personCounty(district: string): string | null {
@@ -54,9 +54,12 @@ function personCounty(district: string): string | null {
 
 function loadPeople(): Person[] {
   const all = JSON.parse(readFileSync(join(here, '..', 'src', 'data', 'officials.json'), 'utf8'));
+  // OFFICE：逗號分隔 office_type；預設 立委+首長。OFFICE=councilor 掃議員。
+  const offices = process.env.OFFICE ? process.env.OFFICE.split(',') : ['legislator', 'mayor_magistrate'];
   let people: Person[] = all
-    .filter((o: any) => o.officeType === 'legislator' || o.officeType === 'mayor_magistrate')
+    .filter((o: any) => offices.includes(o.officeType))
     .map((o: any) => ({ name: o.name, slug: o.slug, party: o.party, district: o.district, officeType: o.officeType }));
+  if (process.env.COUNTY) people = people.filter((p) => p.district.startsWith(process.env.COUNTY!)); // 議員分縣市批次
   if (process.env.ONLY) { const set = new Set(process.env.ONLY.split(',')); people = people.filter((p) => set.has(p.name)); }
   if (process.env.LIMIT) people = people.slice(0, Number(process.env.LIMIT));
   return people;
@@ -89,7 +92,8 @@ async function extractPage(frame: Frame): Promise<Omit<Candidate, 'category' | '
 async function main() {
   mkdirSync(OUT_DIR, { recursive: true });
   const people = loadPeople();
-  console.log(`discovery：${people.length} 位（立委＋首長），刑事＋主文=姓名，每人最多 ${MAX_PAGES} 頁\n`);
+  const scope = process.env.OFFICE || '立委+首長';
+  console.log(`discovery：${people.length} 位（${scope}${process.env.COUNTY ? '・' + process.env.COUNTY : ''}），刑事＋主文=姓名，每人最多 ${MAX_PAGES} 頁\n`);
 
   const browser = await chromium.launch({ headless: true });
   const ctx = await browser.newContext({ locale: 'zh-TW' });
@@ -98,8 +102,10 @@ async function main() {
   const summary: any[] = [];
 
   for (const p of people) {
+    // RESUME=1：已有輸出檔者跳過（維護中斷後補跑；失敗者不寫檔故會被重試）
+    if (process.env.RESUME && existsSync(join(OUT_DIR, `${p.slug}.json`))) { console.log('↩', p.name, '已有檔，跳過'); continue; }
     const pCounty = personCounty(p.district);
-    let candidates: Candidate[] = []; let total = 0; let cut = false;
+    let candidates: Candidate[] = []; let total = 0; let cut = false; let failed = false;
     try {
       await page.goto(AD_URL, { waitUntil: 'domcontentloaded', timeout: 30_000 });
       await page.check('input[name="jud_sys"][value="M"]', { timeout: 15_000 });
@@ -139,15 +145,24 @@ async function main() {
           const category = classify(c.reason);
           const cc = courtCounty(c.title);
           const regionMatch = cc && pCounty ? cc === pCounty : null;
-          const confidence: Candidate['confidence'] =
-            category === 'official_crime' ? 'high' : (category === 'street_crime' && regionMatch === false) ? 'low' : 'medium';
+          let confidence: Candidate['confidence'];
+          if (p.officeType === 'councilor') {
+            // 議員為地方民代，案件幾乎在自己縣市法院 → 轄區相符為主要消歧訊號。
+            if (regionMatch === false) confidence = 'low';                    // 外縣市 → 多為同名他人
+            else if (regionMatch === true) confidence = category === 'official_crime' ? 'high' : 'medium';
+            else confidence = category === 'official_crime' ? 'medium' : 'low'; // 上訴審無轄區訊號
+          } else {
+            confidence = category === 'official_crime' ? 'high' : (category === 'street_crime' && regionMatch === false) ? 'low' : 'medium';
+          }
           return { ...c, category, regionMatch, confidence } as Candidate;
         });
         cut = total > candidates.length;
       }
     } catch (e) {
+      failed = true;
       console.log('✗', p.name, e instanceof Error ? e.message : String(e));
     }
+    if (failed) { await sleep(1000); continue; } // 失敗不寫檔，供 RESUME 補跑
 
     const byConf = { high: 0, medium: 0, low: 0 };
     candidates.forEach((c) => byConf[c.confidence]++);
