@@ -158,15 +158,5 @@
     "is_final": false,
     "judgment_date": "2026-03-06",
     "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=KSHM%2C113%2C%E4%B8%8A%E8%A8%B4%2C775%2C20260306%2C2"
-  },
-  {
-    "name": "黃瓊慧",
-    "case_reason": "偽造文書/貪污治罪條例等",
-    "court": "臺灣高等法院",
-    "case_number": "113年度上易字第1199號",
-    "outcome": "二審：撤銷原判決關於刑及沒收部分，黃瓊慧改判如附表所示之刑（有罪定讞，上易案不得上訴三審）",
-    "is_final": true,
-    "judgment_date": "2024-09-25",
-    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TPHM%2C113%2C%E4%B8%8A%E6%98%93%2C1199%2C20240925%2C1"
   }
 ]
