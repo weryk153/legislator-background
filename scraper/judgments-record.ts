@@ -29,7 +29,7 @@ async function main() {
 
   // 名冊：立委＋首長 name → id[]（同名不唯一者標記，避免錯掛）
   const { data: offs, error } = await sb.from('officials')
-    .select('id, name, office_type').in('office_type', ['legislator', 'mayor_magistrate']);
+    .select('id, name, office_type').in('office_type', ['legislator', 'mayor_magistrate', 'councilor']);
   if (error) throw new Error(`officials query failed: ${error.message}`);
   const byName = new Map<string, string[]>();
   for (const o of offs as { id: string; name: string }[]) (byName.get(o.name) ?? byName.set(o.name, []).get(o.name)!).push(o.id);
