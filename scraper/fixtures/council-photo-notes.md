@@ -116,3 +116,45 @@
 - **關鍵發現**：照片網址可用代碼直接組出，不必真的訪問個人頁——`https://www.ilcc.gov.tw/pictures/people/{代碼}.JPG`（如 `A2001.JPG`），實測全部 33 筆皆為 200 真實圖片；`PBrowse.aspx` 轉址本身依賴 session cookie 才能跳轉到正確個人頁（純 curl 不帶 cookie 會 500），但既然照片路徑可直接構造，可完全略過這一步。
 - 姓名內偶有全形空白排版雜訊（如「林　麗」需清成「林麗」，經 Web 查證確認本名為二字）。
 - 13 選區加總 33 人（單號選區為區域、11/12 為山地原住民、13 為平地原住民），代碼序號 A2001~A2036 中有缺號（如 A2007/A2012/A2030 未出現），判斷為卸任/從缺席次，比對不到即留 null，不用特別處理。
+
+## 臺北市議會
+
+- 名單頁 `https://www.tcc.gov.tw/cp.aspx?n=13898`：純靜態 HTML（非 iframe/JS），一次抓完整頁即含全部 8 選區。頁面內選區標題（如「第一選區<br>北投/士林」）出現兩次——一次在頁首快速跳轉選單（`<a href="#GroupXXX" ... target="_self">`，跳轉錨點連結，非內容分節）、一次在真正內容區塊（`<div data-index="0"><span><a title="..." id="">`，無 `target` 屬性）；用 regex 分節時務必只匹配後者，否則會把導覽選單也算進某個選區導致人數對不上。
+- 每位議員卡：`<li><a class="div" href="Councilor_Content.aspx?n=13898&s={id}" title="{姓名}"><div class="img"><span style="background-image: url('{img_url}')">`，img_url 為 `ws.tcc.gov.tw` 絕對網址可直接用。
+- 頁面另有 `議員人數：` 標記可佐證官方選區應選席次（12+9+9+8+8+13+1+1=61，與臺北市議會法定 61 席一致），但實際抓到現任僅 53 人（各選區均有缺額，缺額最多的第三選區 松山/信義 應選 9 僅見 6 人），研判為多人於 2024 立委選舉後轉任、遞補/補選尚未完成或未更新於此頁，屬正常現象，比對不到的席次留 null 即可，不用特別處理。
+
+## 新北市議會
+
+- 名單頁 `https://www.ntp.gov.tw/councilor-all?program=37`：純靜態 HTML，13 選區一次全部列在同頁（`<h4><span>第N選區議員介紹</span></h4>` 分節），免翻頁/免 API。
+- 每位議員卡：`<a href="councilor-detail?program=37&A={area}&C={id} "><img src="{img_url}"/><p>{姓名}</p></a>`（注意 href 尾端與 `<p>` 內文字前後都帶多餘空白，需 trim）。
+- 少數原住民選區姓名含族語，且**姓名內含空白**（如「宋雨蓁 Nikar‧Falong」「馬見Lahuy．Ipin」），regex 抓取時不能用 `[^\s<]+`（會漏掉這類姓名），需改用 `[^<]+` 再對整段 trim/正規化空白。
+- 13 選區加總 64 人，與新北市議會應選 66 席（扣 2 缺額）大致相符，無明顯異常。
+
+## 桃園市議會
+
+- 名單頁 `councilor-info.aspx?mid=39` 本身是空殼（`iframe`/前端渲染），純 curl 抓不到任何議員資料，**需改抓分選區列表頁**：`https://www.tycc.gov.tw/tc/councilor-all.aspx?mid=39&area={1..14}`（14 個選區各自一頁，逐一 fetch，1s 節流）。
+- 每位議員卡：`<a id="ltLink" href="councilor-detail.aspx?mid=39&num={id}"><b><img id="ltImage" title="{姓名} {職稱}" src="{img_url}" border="0" /></b>`，`title` 屬性格式為「姓名 職稱」（職稱為「議員」「副議長」或「議長」），需 strip 職稱尾碼還原姓名。
+- **img src 內含反斜線 `\`**（如 `/tc/file\person\app\a635836...jpg`，站方 Windows 路徑風格未轉換），必須手動把 `\` 換成 `/` 才是合法 URL，否則抓不到圖（實測直接請求含反斜線的原始字串瀏覽器/curl 仍可 200，但保險起見統一轉換）。
+- 選區標題在 `<h4><span>第一選區 桃園區 介紹</span></h4>`，需去掉尾端「介紹」字樣。
+- 14 選區加總 61 人（12+3+5+4+2+2+11+6+3+3+1+2+4+3），與桃園市議會應選 63 席（扣 2 缺額）相符。
+
+## 臺中市議會
+
+- `main.asp?uno=16`（選單標示的「議員一覽表」）與 `main.asp?uno=92&zno={id}`（分選區頁）本身都是外殼頁，真正內容在 `<iframe src="wb_introductionNN.asp?...">` 內；**議員一覽表的 iframe 固定指向 `wb_introduction01.asp`（不帶查參）**，直接 fetch 這支頁面即可拿到全部 17 選區內容（單頁全列出，免逐選區迴圈）。
+- 每位議員卡：`<div class="Mcouncillor_title">第N選區<span>鄉鎮清單</span></div>` 分節，卡片為 `<div class="list_img"><a href="main.asp?uno=14&cno={id}"><img src="{img_url}" .../></a></div><div class="list_note"><a ...>{姓名}</a>`。
+- 圖片走站方縮圖服務 `Conn2/ConnThumb.asp?F={檔名}&P=Pic\Councillor&U=1&LW=100&LH=130`（P 參數同樣含反斜線，需轉正斜線）；**移除 `&LW=&LH=` 兩個尺寸參數會回傳原圖尺寸**（實測 content-length 從 12150 漲到 19670 bytes），比列表頁預設的 100x130 縮圖更適合當 img_url 來源。
+- 17 選區（含第十五~十七選區為原住民選區）加總 62 人，與臺中市議會應選 65 席（扣 3 缺額）相符。
+
+## 臺南市議會
+
+- 名單首頁 `subhome.asp?orcaid=C56635AE-3C35-4233-8561-7B2CAA2DF01F`（不帶 `orcaid2`）只會顯示**預設的第一選區**內容，其餘 12 選區需帶 `&orcaid2={district_guid}` 逐一 fetch（district_guid 從首頁選單的 `<a href="subhome.asp?orcaid=...&orcaid2=...">` 取得，1s 節流）。
+- 每位議員卡：`<a href="councilorpage.asp?mainid={guid}"><div class="rounded-circle overlay-container" style="...background-image:url({img_url});..."></div><div class="body..."><div class="title"><span class="peoplebold"...>{姓名}</span>`，img_url 為站方相對路徑（`warehouse/{district_guid}/{姓名}.jpg`），需用 `new URL()` 解出絕對網址。
+- 少數原住民選區姓名內含 `<br/>` 換行（如「施余興望<br/>Tjakumay Tagaw」），regex 抓取 `<span>` 內容時要用 `.*?` 非貪婪並允許跨標籤，取到後再把 `<br/>` 換成空白、正規化空白。
+- 13 選區加總 57 人（6+5+3+1+5+6+7+6+6+5+5+1+1），與臺南市議會第四屆現任總席次一致，無明顯異常。
+
+## 高雄市議會
+
+- 名單頁 `Member_List1.aspx?n=39&sms=9028` 有分頁（`PageSize=20`，共 4 頁：`&page={1..4}`），需逐頁 fetch（1s 節流）合併，單頁只有 20~25 筆不是完整名單。
+- 每位議員卡：`<a title="{姓名}_ContentPage" href="MemberInfo_New.aspx?n=39&sms=9028&msn={id}"><div class="img"><img alt="{姓名}_大頭照" src="{img_url}"></div><div class="name">{姓名}</div><div title="{黨籍}" class="detail ..."`>第 <span>{選區號}</span> 選區</div>`，選區與姓名皆結構化欄位，不需另外解析選區標題文字。
+- 圖片為 PNG（`ws.kcc.gov.tw/.../xxx@190x260.png`），非 jpg，記錄時勿假設副檔名。
+- 4 頁加總 65 人，剛好等於高雄市議會法定 65 席，**目前無缺額**（與設計文件預估的「65-3缺」不同，以實際抓到結果為準）。
