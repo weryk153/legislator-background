@@ -34,16 +34,21 @@ const CITY_NAMES = [
   '屏東縣', '臺東縣', '花蓮縣', '澎湖縣', '金門縣', '連江縣',
 ];
 
-type Official = { id: string; slug: string; name: string; district: string; photo_url: string | null };
+type Official = {
+  id: string; slug: string; name: string; district: string; photo_url: string | null; is_incumbent: boolean;
+};
 
 async function fetchAllCouncilors(sb: any): Promise<Official[]> {
+  // 撈全部（含非現任）：matchManifest 需要非現任者才能判斷「已解職/轉任」skip 原因
+  // （manifest 帶「(轉任立委)/(解職...)/(歿)」等狀態註記時，用來與純粹查無此人的
+  // 「查無現任」區分）；實際掛照片仍只會配到現任者，matchManifest 內部自行過濾。
   // PostgREST 預設單次回傳上限 1000 筆——本repo已在此踩雷 3 次，務必分頁，否則尾端議員被靜默漏掉。
   const PAGE = 1000;
   const out: Official[] = [];
   for (let from = 0; ; from += PAGE) {
     const { data, error } = await sb.from('officials')
-      .select('id, slug, name, district, photo_url')
-      .eq('office_type', 'councilor').eq('is_incumbent', true)
+      .select('id, slug, name, district, photo_url, is_incumbent')
+      .eq('office_type', 'councilor')
       .order('id', { ascending: true }).range(from, from + PAGE - 1);
     if (error) throw new Error(`officials query failed: ${error.message}`);
     out.push(...((data ?? []) as Official[]));
@@ -72,9 +77,12 @@ async function main() {
   if (!DRY_RUN) mkdirSync(OUT_DIR, { recursive: true });
 
   const allCouncilors = await fetchAllCouncilors(sb);
+  const asLite = (o: Official): OfficialLite => (
+    { id: o.id, slug: o.slug, name: o.name, district: o.district, isIncumbent: o.is_incumbent }
+  );
   const officialsByCounty = new Map<string, OfficialLite[]>();
   for (const county of CITY_NAMES) {
-    officialsByCounty.set(county, allCouncilors.filter((o) => o.district.startsWith(county)));
+    officialsByCounty.set(county, allCouncilors.filter((o) => o.district.startsWith(county)).map(asLite));
   }
   const byId = new Map(allCouncilors.map((o) => [o.id, o]));
 

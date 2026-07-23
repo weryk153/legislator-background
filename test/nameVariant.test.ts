@@ -37,4 +37,11 @@ describe('normalizeNameChars', () => {
   it('不影響不含異體字的一般姓名', () => {
     expect(normalizeNameChars('陳一')).toBe('陳一');
   });
+
+  it('新增異體字組: 啓啟/釆采/姫姬/顔顏', () => {
+    expect(normalizeNameChars('李啓維')).toBe(normalizeNameChars('李啟維'));
+    expect(normalizeNameChars('許釆蓁')).toBe(normalizeNameChars('許采蓁'));
+    expect(normalizeNameChars('陳玉姫')).toBe(normalizeNameChars('陳玉姬'));
+    expect(normalizeNameChars('顔翎熹')).toBe(normalizeNameChars('顏翎熹'));
+  });
 });
