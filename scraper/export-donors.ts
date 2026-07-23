@@ -25,7 +25,7 @@ async function main() {
 
   type Rep = { official_id: string; election_name: string; total_income: number; officials: { name: string; slug: string; party: string; office_type: string; district: string } };
   const reps = await fetchAll<Rep>((a, b) => sb.from('donation_reports')
-    .select('official_id, election_name, total_income, officials!inner(name, slug, party, office_type, district)').range(a, b));
+    .select('official_id, election_name, total_income, officials!inner(name, slug, party, office_type, district)').order('id', { ascending: true }).range(a, b));
 
   const offAgg = new Map<string, { name: string; slug: string; party: string; officeType: string; district: string; totalIncome: number }>();
   const offMeta = new Map<string, { slug: string; party: string; officeType: string }>();
@@ -39,7 +39,7 @@ async function main() {
 
   type Corp = { donor_uid: string; donor_name: string; recipient_name: string; election_name: string; amount: number; official_id: string | null };
   const corp = await fetchAll<Corp>((a, b) => sb.from('corp_donations')
-    .select('donor_uid, donor_name, recipient_name, election_name, amount, official_id').range(a, b));
+    .select('donor_uid, donor_name, recipient_name, election_name, amount, official_id').order('id', { ascending: true }).range(a, b));
 
   const donorMap = new Map<string, { uid: string; name: string; total: number; recipients: { name: string; election: string; amount: number; slug: string | null; party: string | null; officeType: string | null }[] }>();
   for (const c of corp) {

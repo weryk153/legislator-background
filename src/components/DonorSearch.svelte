@@ -50,7 +50,7 @@
     <h2>捐給最多位現任政治人物的企業</h2>
     {#each ranking as { d, n } (d.uid)}
       <article class="card donor">
-        <button class="donor-head" on:click={() => (expanded[d.uid] = !expanded[d.uid])}>
+        <button class="donor-head" aria-expanded={!!expanded[d.uid]} on:click={() => (expanded[d.uid] = !expanded[d.uid])}>
           <span class="donor-name">{d.name}</span>
           <span class="donor-meta num">{n} 位現任・NT$ {fmt(d.total)}</span>
         </button>
@@ -83,7 +83,7 @@
       <h2>營利事業</h2>
       {#each donorHits as d (d.uid)}
         <article class="card donor">
-          <button class="donor-head" on:click={() => (expanded[d.uid] = !expanded[d.uid])}>
+          <button class="donor-head" aria-expanded={!!expanded[d.uid]} on:click={() => (expanded[d.uid] = !expanded[d.uid])}>
             <span class="donor-name">{d.name}</span>
             <span class="donor-meta num">{d.uid.startsWith('name:') ? '' : `統編 ${d.uid}・`}NT$ {fmt(d.total)}</span>
           </button>

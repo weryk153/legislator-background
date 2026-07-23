@@ -15,9 +15,11 @@ export function aggregateCorpDonations(rows: DonationRow[]): CorpDonation[] {
   const sums = new Map<string, CorpDonation>();         // uid|recipient|election → 累計
   for (const r of rows) {
     if (r.category !== '營利事業捐贈收入' || r.income <= 0 || !r.counterparty) continue;
-    const uid = UID_RE.test(r.idNumber) ? r.idNumber : `name:${r.counterparty}`;
+    const counterparty = r.counterparty.replace(/[|\s]+$/, '');
+    if (!counterparty) continue;
+    const uid = UID_RE.test(r.idNumber) ? r.idNumber : `name:${counterparty}`;
     const prev = canonical.get(uid) ?? '';
-    if (r.counterparty.length > prev.length) canonical.set(uid, r.counterparty);
+    if (counterparty.length > prev.length) canonical.set(uid, counterparty);
     const key = `${uid}|${r.account}|${r.electionName}`;
     const cur = sums.get(key);
     if (cur) cur.amount += r.income;

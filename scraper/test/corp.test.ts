@@ -45,4 +45,13 @@ describe('aggregateCorpDonations', () => {
   it('金額為0的列略過', () => {
     expect(aggregateCorpDonations([row({ income: 0 })])).toHaveLength(0);
   });
+  it('counterparty 尾端有 | 與空白 → trim 後才作為 donorName/canonical，且與乾淨版本合併', () => {
+    const out = aggregateCorpDonations([
+      row({ idNumber: '22222222', counterparty: '信實鋼鋁股份有限公司| ', income: 10000 }),
+      row({ idNumber: '22222222', counterparty: '信實鋼鋁股份有限公司', income: 5000 }),
+    ]);
+    expect(out).toHaveLength(1);
+    expect(out[0].donorName).toBe('信實鋼鋁股份有限公司');
+    expect(out[0].amount).toBe(15000);
+  });
 });

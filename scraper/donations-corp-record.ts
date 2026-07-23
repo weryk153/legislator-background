@@ -33,6 +33,7 @@ async function main() {
   for (let from = 0; ; from += PAGE) {
     const { data: chunk, error: re } = await sb.from('donation_reports')
       .select('official_id, election_name, officials!inner(name)')
+      .order('id', { ascending: true })
       .range(from, from + PAGE - 1);
     if (re) throw new Error(`donation_reports query: ${re.message}`);
     reps.push(...((chunk ?? []) as typeof reps));
@@ -48,7 +49,7 @@ async function main() {
       officialByKey.delete(key);
       skipped.add(key);
       console.warn(`⚠ 同名同選舉多人衝突，跳過: ${key} (${existing} vs ${r.official_id})`);
-    } else if (!existing) {
+    } else if (!existing && !skipped.has(key)) {
       officialByKey.set(key, r.official_id);
     }
   }
