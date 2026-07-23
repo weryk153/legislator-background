@@ -82,3 +82,37 @@
 - 結構：議長/副議長在最上方一個沒有 `.cont`/`h6` 包裹的 `a.ho_trans` 區塊，其餘 8 選區各自一個 `div.cont#district{N}`，內含 `h6.h5` 標題（格式「第一選區：南投市、名間鄉」，取「：」前半當 district）；每位議員卡是 `a.ho_trans`，`href` 格式 `p02.aspx?district={N}&period=20#姓名`（**#後面的錨點文字就是最乾淨的姓名來源**，比卡片內 `p.sub`/`p.title` 文字更穩定，因為議長/副議長卡的職稱文字擠在 `p.title` 位置、姓名才是 `p.sub`，兩種卡版型不同容易取錯欄位）。議長/副議長卡沒有獨立 `.cont`，需靠 `href` 裡的 `district=N` 反查前面建好的「N→選區文字」map 才能補上選區。
 - 圖片：`App_Script/MDisplayCut.ashx?file=member/xxx.jpg&w=140&h=170`（動態裁切服務，非靜態檔案路徑，但可直接下載）。
 - 34 人（含議長何勝豐＝第四選區、副議長潘一全＝第五選區＋8 選區 32 人），其中原住民選區姓名含族語括號（如「林庭秝(Ali Walis)」），原樣保留未拆解。
+
+## 雲林縣議會
+
+- 名單頁 `https://www.ylcc.gov.tw/cp.aspx?n=22126`：單頁全部列出（6 個選區各自一個 `div.news-card` 區塊，選區標題在 `div.hd a[title]`），照片也在同頁，免翻頁/免 API。
+- 每位議員是 `li > a.div`，`href` 為 `Congress_Detail.aspx?n=...&sms=...&s=...` 個人頁連結，`.img img[src]` 為照片、`.caption` 純文字姓名（無職稱前綴混入，議長/副議長也是純姓名）。
+- 6 選區加總 42 人（10+6+9+6+7+4），官網掛牌應選 43 席，少 1（判斷為懸缺，比對不到即留 null，不用特別處理）。
+
+## 嘉義市議會
+
+- 名單頁 `.../web/UnitStaff_New/listUnitStaff.aspx?c0=3716` 本身只是選區入口（2 個選區圖示連結），實際名單要進 `.../web/UnitStaff_New/Default.aspx?c0=3716&d0=3680&p0={0,1}`（p0=0 第一選區、p0=1 第二選區）各自一頁。
+- 每位議員是 `li > img` + 相鄰 `a#a_font`（`href` 為 `Default2.aspx?c0=3716&p0={id}` 個人頁），**姓名藏在 `a` 的 `title`/文字裡且格式是「姓+職稱+名」**（如「張副議長榮藏」「陳議長姿妏」），需用正則整段移除「副議長」「議長」「議員」字串（不能只 strip 開頭，職稱在姓名中間）還原本名。
+- 圖片路徑為站方相對路徑 `/_admin/_upload/UnitStaff/.../*.jpg`，需補 `https://www.cycc.gov.tw` 前綴。
+- 2 選區加總 20 人（8+12），與嘉義市議會應選席次相符，無懸缺。
+
+## 嘉義縣議會
+
+- 名單頁 `https://www.cyscc.gov.tw/Parliamentary_index/315/` 是前端 Vue 頁殼，資料來自乾淨的 JSON API：`GET https://api.cyscc.gov.tw/1/Parliamentary_index/315?handler=News&PageIndex=1&PageSize=100`（一次拿全部，免分頁迴圈）。
+- 回傳欄位直接是中文鍵（`姓名`、`選區`、`FirstPicFullPath`、`Path`），照片是完整絕對網址可直接用，`Path` 拼 `https://www.cyscc.gov.tw` 前綴即 profile_url。
+- 唯一例外：議長（張明達）的 `姓名` 欄位同樣混入職稱變成「張議長明達」，其餘 36 人姓名皆乾淨，寫入前對全體跑一次「移除副議長/議長/議員」正則即可安全處理。
+- `DataCount` 回報 37，與抓到筆數一致，無懸缺（7 個選區，含第七選區山地原住民 1 席）。
+
+## 屏東縣議會
+
+- 名單頁 `https://www.ptcc.gov.tw/?Page=Persional&Guid=1c445ed1-8f2f-4c7f-75f6-6d6aafa3516e`：16 個選區（含 9 個原住民鄉個別選區）的 table，`td.list.evacategory` 為選區文字、隨後 `td.list.borderleft` 內一串 `a[href*="Guid="]` 即議員姓名＋個人頁連結，**但列表頁本身沒有照片**。
+- 需對全部 51 個 `?Page=PersionalDetail&Guid=...` 個人頁逐一 fetch（1s 節流），照片為 `img[src^="./upload/upimage/"][alt$="相片"]`（檔名格式 `{guid}-S.jpg`），需用 `new URL(相對路徑, 站根)` 解出絕對網址。
+- 16 選區加總 51 人（12+6+10+7+3+3+9×1），與抓到筆數一致，無懸缺；其中一位原住民選區議員姓名含族語（「李紀財 Mulaneng Paliuliu」），原樣保留未拆解。
+
+## 宜蘭縣議會
+
+- **整站為舊式 frameset + Big5 編碼**（`<meta charset="big5">`），curl 需用 `iconv -f big5 -t utf-8` 或等效解碼，否則姓名全亂碼。
+- 名單頁在 `Html/H_05/H_05.asp`（從首頁 `left.htm` 選單「議員便民服務」→ `Incfiles/PBrowse.aspx?Sys_id=PH_05` 轉址過去），13 個選區（含山地/平地原住民各自獨立選區）依序列出，每位議員的連結是 `href="../../Incfiles/PBrowse.aspx?Sys_id=PMZ{姓名},{選區號},{黨籍},{代碼},"`（**Sys_id 裡直接編碼了姓名/選區號/代碼**，等於列表頁本身已含全部所需欄位，不用再逐一開個人頁）。
+- **關鍵發現**：照片網址可用代碼直接組出，不必真的訪問個人頁——`https://www.ilcc.gov.tw/pictures/people/{代碼}.JPG`（如 `A2001.JPG`），實測全部 33 筆皆為 200 真實圖片；`PBrowse.aspx` 轉址本身依賴 session cookie 才能跳轉到正確個人頁（純 curl 不帶 cookie 會 500），但既然照片路徑可直接構造，可完全略過這一步。
+- 姓名內偶有全形空白排版雜訊（如「林　麗」需清成「林麗」，經 Web 查證確認本名為二字）。
+- 13 選區加總 33 人（單號選區為區域、11/12 為山地原住民、13 為平地原住民），代碼序號 A2001~A2036 中有缺號（如 A2007/A2012/A2030 未出現），判斷為卸任/從缺席次，比對不到即留 null，不用特別處理。
