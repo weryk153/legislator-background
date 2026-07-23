@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parseArdataCsv, aggregateAccounts } from '../lib/ardata';
+import { parseArdataCsv, aggregateAccounts, type DonationRow } from '../lib/ardata';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const csv = readFileSync(join(here, '..', 'fixtures', 'ardata-sample.csv'), 'utf8');
@@ -54,5 +54,31 @@ describe('aggregateAccounts', () => {
     const top1 = aggregateAccounts(parseArdataCsv(csv), 1).find((s) => s.name === '王測試')!;
     expect(top1.topDonors.filter((d) => d.donorType === '個人')).toHaveLength(1);
     expect(top1.topDonors.filter((d) => d.donorType === '營利事業')).toHaveLength(1);
+  });
+});
+
+describe('aggregateAccounts — area（同名同選舉但不同地區的檔案不可被誤併）', () => {
+  // area 非 CSV 欄位，是 donations-record.ts 依檔名附加上去的；同一姓名/選舉名稱/年度
+  // 若出現在不同地區的檔案（理論上不會，但分組鍵仍須涵蓋 area 以防萬一）應各自成一筆摘要。
+  const rows: DonationRow[] = [
+    { account: '張志豪', electionName: '111年臺北市議員選舉', reportSeq: '首次申報', category: '個人捐贈收入', counterparty: '甲', income: 1000, expense: 0, area: '臺北市' },
+    { account: '張志豪', electionName: '111年新北市議員選舉', reportSeq: '首次申報', category: '個人捐贈收入', counterparty: '乙', income: 2000, expense: 0, area: '新北市' },
+  ];
+  it('area 併入分組鍵，各自彙總並帶出 area', () => {
+    const summaries = aggregateAccounts(rows);
+    expect(summaries).toHaveLength(2);
+    const taipei = summaries.find((s) => s.area === '臺北市')!;
+    const newTaipei = summaries.find((s) => s.area === '新北市')!;
+    expect(taipei.totalIncome).toBe(1000);
+    expect(newTaipei.totalIncome).toBe(2000);
+  });
+  it('同 area 的列仍正常合併（不因加了分組維度而拆散同一專戶)', () => {
+    const sameArea: DonationRow[] = [
+      { account: '甲候選人', electionName: '111年臺北市議員選舉', reportSeq: '首次申報', category: '個人捐贈收入', counterparty: 'X', income: 100, expense: 0, area: '臺北市' },
+      { account: '甲候選人', electionName: '111年臺北市議員選舉', reportSeq: '首次申報', category: '個人捐贈收入', counterparty: 'Y', income: 200, expense: 0, area: '臺北市' },
+    ];
+    const summaries = aggregateAccounts(sameArea);
+    expect(summaries).toHaveLength(1);
+    expect(summaries[0].totalIncome).toBe(300);
   });
 });

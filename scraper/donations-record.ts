@@ -26,9 +26,18 @@ async function main() {
   if (files.length === 0) throw new Error(`no CSVs in ${DATA_DIR} — 先完成 Task 1 整批下載`);
   // 整批包內可能混有彙總表/資產負債表等不同欄位的 CSV：解析不了的檔跳過並列出，
   // 只要有至少一個明細檔成功即可。
+  // 檔名格式 <選舉名>_<area>_incomes.csv / <選舉名>_<area>_expenditures.csv：area 是
+  // incomes/expenditures 前一個 `_` 與再前一個 `_` 之間的區段（縣市或 山地/平地原住民）。
+  const areaOfFilename = (f: string): string | undefined => {
+    const m = f.match(/_([^_]+)_(?:incomes|expenditures)\.csv$/);
+    return m?.[1];
+  };
   const rows: ReturnType<typeof parseArdataCsv> = [];
   for (const f of files) {
-    try { rows.push(...parseArdataCsv(readFileSync(join(DATA_DIR, f), 'utf8'))); }
+    const area = areaOfFilename(f);
+    try {
+      rows.push(...parseArdataCsv(readFileSync(join(DATA_DIR, f), 'utf8')).map((r) => ({ ...r, area })));
+    }
     catch (e) { console.log(`⤫ 跳過 ${f}: ${(e as Error).message}`); }
   }
   if (rows.length === 0) throw new Error('沒有任何明細列被解析出來 — 檢查欄名/編碼(ardata-notes.md)');
@@ -39,21 +48,30 @@ async function main() {
   // DONOR_TYPE_BY_CATEGORY（否則該類捐贈者不會進大額捐贈者表）。
   console.log('收支科目一覽:', [...new Set(rows.map((r) => r.category))].sort().join('、'));
 
-  const { data: offs, error } = await sb.from('officials')
-    .select('id, name, office_type, district, is_incumbent');
-  if (error) throw new Error(`officials query failed: ${error.message}`);
-  const officials = offs as OfficialLite[];
+  // PostgREST 預設單次回傳上限 1000 筆，officials 已超過（1034+），須分頁抓全部，
+  // 否則排序落在後段的 officials（如部分市長）會被靜默漏掉、比對時誤判查無此人。
+  const officials: OfficialLite[] = [];
+  const PAGE = 1000;
+  for (let from = 0; ; from += PAGE) {
+    const { data: offs, error } = await sb.from('officials')
+      .select('id, name, office_type, district, is_incumbent')
+      .range(from, from + PAGE - 1);
+    if (error) throw new Error(`officials query failed: ${error.message}`);
+    officials.push(...((offs ?? []) as OfficialLite[]));
+    if (!offs || offs.length < PAGE) break;
+  }
 
   const review: Array<{ account: AccountSummary; status: string; reason: string }> = [];
   let inserted = 0, dup = 0;
   for (const s of summaries) {
-    const m = matchAccount({ name: s.name, electionName: s.electionName }, officials);
+    const m = matchAccount({ name: s.name, electionName: s.electionName, area: s.area }, officials);
     if (m.status !== 'matched') {
       review.push({ account: { ...s, topDonors: [] }, status: m.status, reason: m.reason });
       continue;
     }
-    const { data: existing } = await sb.from('donation_reports')
+    const { data: existing, error: qe } = await sb.from('donation_reports')
       .select('id').eq('official_id', m.officialId).eq('election_name', s.electionName);
+    if (qe) throw new Error(`existing report query (${s.name}): ${qe.message}`);
     if ((existing ?? []).length > 0) { dup++; continue; }
     if (process.env.DRY_RUN) { inserted++; console.log('✓(dry)', s.name, s.electionName, s.totalIncome); continue; }
 

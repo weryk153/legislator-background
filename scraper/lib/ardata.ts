@@ -11,12 +11,13 @@ export interface DonationRow {
   counterparty: string; // 捐贈者/支出對象
   income: number;       // 收入金額（元）
   expense: number;      // 支出金額（元）
+  area?: string;        // 下載檔案所屬地區（縣市或 山地/平地原住民 等），非 CSV 欄位，由呼叫端附加
 }
 
 export interface TopDonor { donorName: string; donorType: string; amount: number; rank: number; }
 
 export interface AccountSummary {
-  name: string; electionName: string; reportSeq: string;
+  name: string; electionName: string; reportSeq: string; area?: string;
   totalIncome: number; totalExpense: number;
   incomeByType: Record<string, number>;
   expenseByType: Record<string, number>;
@@ -96,13 +97,15 @@ const DONOR_TYPE_BY_CATEGORY: Record<string, string> = {
 export function aggregateAccounts(rows: DonationRow[], topIndividuals = 20): AccountSummary[] {
   const byAccount = new Map<string, DonationRow[]>();
   for (const r of rows) {
-    const key = `${r.account}|${r.electionName}|${r.reportSeq}`;
+    // area 併入分組鍵：一個專戶只會出現在單一地區的檔案裡，此鍵不會拆散同一專戶。
+    const key = `${r.account}|${r.electionName}|${r.reportSeq}|${r.area ?? ''}`;
     (byAccount.get(key) ?? byAccount.set(key, []).get(key)!).push(r);
   }
   const out: AccountSummary[] = [];
   for (const group of byAccount.values()) {
     const s: AccountSummary = {
       name: group[0].account, electionName: group[0].electionName, reportSeq: group[0].reportSeq,
+      area: group[0].area,
       totalIncome: 0, totalExpense: 0, incomeByType: {}, expenseByType: {}, topDonors: [],
     };
     const donorAmounts = new Map<string, { donorName: string; donorType: string; amount: number }>();
