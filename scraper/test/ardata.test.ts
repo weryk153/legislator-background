@@ -27,6 +27,11 @@ describe('parseArdataCsv', () => {
     expect(rows[0].income).toBe(1234567);
     expect(rows[1].income).toBe(162000); // digit-strip 會錯成 16200000，必須用小數解析
   });
+  it('解析身分證／統一編號欄', () => {
+    const rows = parseArdataCsv(csv);
+    expect(rows[1].idNumber).toBe('12345678');
+    expect(rows[0].idNumber).toBe('A12*******');
+  });
 });
 
 describe('splitCsv — 不成對引號不吞列（回歸：臺中市議員收入檔遮罩電話吞掉 6,356 列）', () => {

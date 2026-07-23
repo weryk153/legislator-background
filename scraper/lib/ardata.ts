@@ -9,6 +9,7 @@ export interface DonationRow {
   reportSeq: string;    // 申報序次(年度)
   category: string;     // 收支科目
   counterparty: string; // 捐贈者/支出對象
+  idNumber: string;     // 身分證／統一編號原文，trim
   income: number;       // 收入金額（元）
   expense: number;      // 支出金額（元）
   area?: string;        // 下載檔案所屬地區（縣市或 山地/平地原住民 等），非 CSV 欄位，由呼叫端附加
@@ -31,6 +32,7 @@ const HEADER_ALIASES: Record<string, keyof DonationRow> = {
   '申報序號／年度': 'reportSeq', '申報序號/年度': 'reportSeq', '申報序號': 'reportSeq',
   '收支科目': 'category',
   '捐贈者／支出對象': 'counterparty', '捐贈者/支出對象': 'counterparty',
+  '身分證／統一編號': 'idNumber', '身分證/統一編號': 'idNumber',
   '收入金額': 'income', '支出金額': 'expense',
 };
 
@@ -127,6 +129,7 @@ export function parseArdataCsv(text: string): DonationRow[] {
       reportSeq: cell(r, 'reportSeq'),
       category: cell(r, 'category'),
       counterparty: cell(r, 'counterparty'),
+      idNumber: cell(r, 'idNumber'),
       income: toAmount(cell(r, 'income')),
       expense: toAmount(cell(r, 'expense')),
     });
