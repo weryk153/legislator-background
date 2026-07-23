@@ -101,18 +101,18 @@ git commit -m "chore(donations): ardata 整批下載端點偵察+原始檔目錄
 
 - [ ] **Step 1: 建 fixture**
 
-`scraper/fixtures/ardata-sample.csv`（合成資料，欄位依官方格式；含引號內逗號、兩個專戶、匿名捐贈、同一捐贈者多筆）：
+`scraper/fixtures/ardata-sample.csv`（合成資料，**欄名與格式依 Task 1 實測的 ardata ZIP 內 incomes.csv/expenditures.csv**：全形斜線欄名、金額為小數字串、匿名捐贈的捐贈者欄有「匿名N」佔位；含引號內逗號、兩個專戶、同一捐贈者多筆）：
 
 ```csv
-序號,擬參選人/政黨,選舉名稱,申報序次(年度),交易日期,收支科目,捐贈者/支出對象,身分證/統一編號,收入金額,支出金額,支出用途,金錢類,地址,聯絡電話
-1,王測試,第11屆立法委員選舉,1,1121001,個人捐贈收入,陳大文,A12***6789,100000,0,,是,臺北市,
-2,王測試,第11屆立法委員選舉,1,1121002,營利事業捐贈收入,"大安建設股份有限公司, 籌備處",12345678,300000,0,,是,臺北市,
-3,王測試,第11屆立法委員選舉,1,1121003,個人捐贈收入,陳大文,A12***6789,50000,0,,是,臺北市,
-4,王測試,第11屆立法委員選舉,1,1121004,個人捐贈收入,林小美,B22***1234,80000,0,,是,新北市,
-5,王測試,第11屆立法委員選舉,1,1121005,匿名捐贈,,,3000,0,,是,,
-6,王測試,第11屆立法委員選舉,1,1121101,宣傳支出,某某廣告公司,87654321,0,200000,文宣印製,是,臺北市,
-7,李試驗,111年地方公職人員選舉(縣市議員),1,1110901,政黨捐贈收入,某某黨,55555555,60000,0,,是,南投縣,
-8,李試驗,111年地方公職人員選舉(縣市議員),1,1110902,人事費用支出,張助理,C12***0000,0,30000,薪資,是,南投縣,
+序號,擬參選人／政黨,選舉名稱,申報序號／年度,交易日期,收支科目,捐贈者／支出對象,身分證／統一編號,收入金額,支出金額,捐贈方式,存入專戶日期,返還/繳庫,支出用途,金錢類,地址,聯絡電話
+1,王測試,113年立法委員選舉,首次申報,1121001,個人捐贈收入,陳大文,A12*******,100000.00,0.00,匯款,1121001,,,金錢,臺北市中正區****,0912*****,
+2,王測試,113年立法委員選舉,首次申報,1121002,營利事業捐贈收入,"大安建設股份有限公司, 籌備處",12345678,300000.00,0.00,匯款,1121002,,,金錢,臺北市****,02－2*****,
+3,王測試,113年立法委員選舉,首次申報,1121003,個人捐贈收入,陳大文,A12*******,50000.00,0.00,匯款,1121003,,,金錢,臺北市****,0912*****,
+4,王測試,113年立法委員選舉,首次申報,1121004,個人捐贈收入,林小美,B22*******,80000.00,0.00,匯款,1121004,,,金錢,新北市****,0915*****,
+5,王測試,113年立法委員選舉,首次申報,1121005,匿名捐贈,匿名1,,3000.00,0.00,匯款,1121005,,,金錢,,,
+6,王測試,113年立法委員選舉,首次申報,1121101,宣傳支出,某某廣告公司,87654321,0.00,200000.00,,,,文宣印製,金錢,臺北市****,02-2*****,
+7,李試驗,111年縣(市)議員選舉,首次申報,1110901,政黨捐贈收入,某某黨,55555555,60000.00,0.00,匯款,1110901,,,金錢,南投縣****,049*****,
+8,李試驗,111年縣(市)議員選舉,首次申報,1110902,人事費用支出,張助理,C12*******,0.00,30000.00,,,,薪資,金錢,南投縣****,0918*****,
 ```
 
 - [ ] **Step 2: 寫 failing test**
@@ -137,13 +137,16 @@ describe('parseArdataCsv', () => {
     expect(rows[1].income).toBe(300000);
     expect(rows[5].expense).toBe(200000);
     expect(rows[0].account).toBe('王測試');
-    expect(rows[0].electionName).toBe('第11屆立法委員選舉');
+    expect(rows[0].electionName).toBe('113年立法委員選舉');
+    expect(rows[0].reportSeq).toBe('首次申報');
   });
-  it('金額欄容忍千分位與空白', () => {
+  it('金額欄為小數字串(元)，容忍千分位；一律取整數元', () => {
     const rows = parseArdataCsv(
-      '擬參選人/政黨,選舉名稱,申報序次(年度),收支科目,捐贈者/支出對象,收入金額,支出金額\n' +
-      '甲,某選舉,1,個人捐贈收入,乙,"1,234,567",0\n');
+      '擬參選人／政黨,選舉名稱,申報序號／年度,收支科目,捐贈者／支出對象,收入金額,支出金額\n' +
+      '甲,某選舉,首次申報,個人捐贈收入,乙,"1,234,567.00",0.00\n' +
+      '甲,某選舉,首次申報,個人捐贈收入,丙,162000.00,0.00\n');
     expect(rows[0].income).toBe(1234567);
+    expect(rows[1].income).toBe(162000); // digit-strip 會錯成 16200000，必須用小數解析
   });
 });
 
@@ -152,7 +155,7 @@ describe('aggregateAccounts', () => {
   const wang = summaries.find((s) => s.name === '王測試')!;
   it('每專戶一筆摘要', () => {
     expect(summaries).toHaveLength(2);
-    expect(wang.electionName).toBe('第11屆立法委員選舉');
+    expect(wang.electionName).toBe('113年立法委員選舉');
   });
   it('總額與分類小計', () => {
     expect(wang.totalIncome).toBe(533000);
@@ -212,11 +215,11 @@ export interface AccountSummary {
 
 // 欄名 → 內部鍵。左邊列出目前已知變體；遇到新變體加在這裡。
 const HEADER_ALIASES: Record<string, keyof DonationRow> = {
-  '擬參選人/政黨': 'account', '擬參選人／政黨': 'account', '政黨/擬參選人': 'account',
+  '擬參選人／政黨': 'account', '擬參選人/政黨': 'account', '擬參選人': 'account',
   '選舉名稱': 'electionName',
-  '申報序次(年度)': 'reportSeq', '申報序次／年度': 'reportSeq', '申報序次': 'reportSeq',
+  '申報序號／年度': 'reportSeq', '申報序號/年度': 'reportSeq', '申報序號': 'reportSeq',
   '收支科目': 'category',
-  '捐贈者/支出對象': 'counterparty', '捐贈者／支出對象': 'counterparty',
+  '捐贈者／支出對象': 'counterparty', '捐贈者/支出對象': 'counterparty',
   '收入金額': 'income', '支出金額': 'expense',
 };
 
@@ -244,9 +247,11 @@ export function splitCsv(text: string): string[][] {
   return rows;
 }
 
+// 實際資料的金額是小數字串（如 "162000.00"），可能含千分位。digit-strip 會把小數點
+// 後兩位併進整數（162000.00 → 16200000），所以必須走浮點解析再四捨五入取整數元。
 const toAmount = (s: string): number => {
-  const digits = String(s ?? '').replace(/[^\d]/g, '');
-  return digits ? Number.parseInt(digits, 10) : 0;
+  const n = Number.parseFloat(String(s ?? '').replace(/[,\s]/g, ''));
+  return Number.isFinite(n) ? Math.round(n) : 0;
 };
 
 export function parseArdataCsv(text: string): DonationRow[] {
@@ -426,33 +431,37 @@ const offs: OfficialLite[] = [
 
 describe('officeTypeOfElection', () => {
   it('從選舉名稱推公職類型', () => {
-    expect(officeTypeOfElection('第11屆立法委員選舉')).toBe('legislator');
-    expect(officeTypeOfElection('第11屆立法委員臺北市第6選舉區缺額補選')).toBe('legislator');
-    expect(officeTypeOfElection('111年地方公職人員選舉(縣市議員)')).toBe('councilor');
-    expect(officeTypeOfElection('111年地方公職人員選舉(直轄市議員)')).toBe('councilor');
-    expect(officeTypeOfElection('111年地方公職人員選舉(縣市長)')).toBe('mayor_magistrate');
-    expect(officeTypeOfElection('111年地方公職人員選舉(直轄市長)')).toBe('mayor_magistrate');
-    expect(officeTypeOfElection('第16任總統副總統選舉')).toBeNull();
+    expect(officeTypeOfElection('113年立法委員選舉')).toBe('legislator');
+    expect(officeTypeOfElection('第10屆南投縣立法委員補選')).toBe('legislator');
+    expect(officeTypeOfElection('111年縣(市)議員選舉')).toBe('councilor');
+    expect(officeTypeOfElection('111年直轄市議員選舉')).toBe('councilor');
+    expect(officeTypeOfElection('第20屆臺東縣議員補選')).toBe('councilor');
+    expect(officeTypeOfElection('111年縣(市)長選舉')).toBe('mayor_magistrate');
+    expect(officeTypeOfElection('111年直轄市市長選舉')).toBe('mayor_magistrate');
+    expect(officeTypeOfElection('113年總統、副總統選舉')).toBeNull();
+    expect(officeTypeOfElection('第12屆苗栗縣苗栗市市長補選')).toBeNull(); // 鄉鎮市長，非本站範圍
+    expect(officeTypeOfElection('111年鄉(鎮、市)長選舉')).toBeNull();
+    expect(officeTypeOfElection('111年村(里)長選舉')).toBeNull();
   });
 });
 
 describe('matchAccount', () => {
   it('同名不同職類 → 由選舉類型分離', () => {
-    expect(matchAccount({ name: '王測試', electionName: '第11屆立法委員選舉' }, offs))
+    expect(matchAccount({ name: '王測試', electionName: '113年立法委員選舉' }, offs))
       .toEqual({ status: 'matched', officialId: 'L1' });
-    expect(matchAccount({ name: '王測試', electionName: '111年地方公職人員選舉(縣市議員)' }, offs))
+    expect(matchAccount({ name: '王測試', electionName: '111年縣(市)議員選舉' }, offs))
       .toEqual({ status: 'matched', officialId: 'C1' });
   });
   it('同名同職類多人 → ambiguous', () => {
-    const r = matchAccount({ name: '李試驗', electionName: '111年地方公職人員選舉(縣市議員)' }, offs);
+    const r = matchAccount({ name: '李試驗', electionName: '111年縣(市)議員選舉' }, offs);
     expect(r.status).toBe('ambiguous');
   });
   it('查無此人 / 選舉類型不明 → none', () => {
-    expect(matchAccount({ name: '不存在', electionName: '第11屆立法委員選舉' }, offs).status).toBe('none');
-    expect(matchAccount({ name: '王測試', electionName: '第16任總統副總統選舉' }, offs).status).toBe('none');
+    expect(matchAccount({ name: '不存在', electionName: '113年立法委員選舉' }, offs).status).toBe('none');
+    expect(matchAccount({ name: '王測試', electionName: '113年總統、副總統選舉' }, offs).status).toBe('none');
   });
   it('非現任不掛', () => {
-    expect(matchAccount({ name: '陳離任', electionName: '第11屆立法委員選舉' }, offs).status).toBe('none');
+    expect(matchAccount({ name: '陳離任', electionName: '113年立法委員選舉' }, offs).status).toBe('none');
   });
 });
 ```
@@ -484,7 +493,10 @@ export function officeTypeOfElection(electionName: string): OfficialLite['office
   const s = electionName ?? '';
   if (/立法委員/.test(s)) return 'legislator';
   if (/議員/.test(s)) return 'councilor';
-  if (/(縣市長|直轄市長|市長|縣長)/.test(s)) return 'mayor_magistrate';
+  // 平台實際名稱：「111年縣(市)長選舉」「111年直轄市市長選舉」。鄉鎮市長/村里長/區長等
+  // 非本站範圍，且名稱都帶「鄉/鎮/村/里/區/苗栗市市長補選」等前綴 — 用排除法擋掉。
+  if (/(鄉|鎮|村|里|區)/.test(s)) return null;
+  if (/(縣\(市\)長|直轄市市長|市長|縣長)/.test(s)) return 'mayor_magistrate';
   return null;
 }
 
@@ -553,13 +565,14 @@ loadEnv();
 const here = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(here, 'out-ardata');
 // ardata 專戶查詢頁（整批檔的人類可核對入口）；實際樣式見 scraper/fixtures/ardata-notes.md
-const SOURCE_URL = 'https://ardata.cy.gov.tw/home';
+const SOURCE_URL = 'https://ardata.cy.gov.tw/data/downloads/election';
 const RETRIEVED_AT = '2026-07-23'; // Task 1 下載日
 
 async function main() {
   const sb = createClient(process.env.PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
 
-  const files = readdirSync(DATA_DIR).filter((f) => f.endsWith('.csv'));
+  // Task 1 下載腳本攤平命名為 <選舉>_<縣市>_incomes.csv / _expenditures.csv，只讀這兩類
+  const files = readdirSync(DATA_DIR).filter((f) => f.endsWith('_incomes.csv') || f.endsWith('_expenditures.csv'));
   if (files.length === 0) throw new Error(`no CSVs in ${DATA_DIR} — 先完成 Task 1 整批下載`);
   // 整批包內可能混有彙總表/資產負債表等不同欄位的 CSV：解析不了的檔跳過並列出，
   // 只要有至少一個明細檔成功即可。
