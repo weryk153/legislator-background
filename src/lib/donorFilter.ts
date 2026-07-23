@@ -54,11 +54,12 @@ function hasIdentityFilter(q: FilterFields): boolean {
 /**
  * 判斷單一受贈者是否符合政黨/職務/選舉篩選（可 AND 組合）。
  * 無任何篩選時一律視為符合（含落選人）。
- * 選舉篩選單獨啟用時不排除落選人，僅比對 election；政黨/職務篩選啟用時，落選人（slug 為 null）一律排除。
+ * 選舉篩選單獨啟用時不排除落選人，僅比對 electionGroup(r.election) 是否等於篩選之粗分類；
+ * 政黨/職務篩選啟用時，落選人（slug 為 null）一律排除。
  */
 export function matchRecipient(r: Recipient, q: FilterFields): boolean {
   if (!hasActiveFilter(q)) return true;
-  if (q.election && r.election !== q.election) return false;
+  if (q.election && electionGroup(r.election) !== q.election) return false;
   if (hasIdentityFilter(q)) {
     if (!r.slug) return false;
     if (q.party && r.party !== q.party) return false;
@@ -129,15 +130,29 @@ export function collectParties(donors: Donor[]): string[] {
     .map(([party]) => party);
 }
 
-/** 收集所有受贈紀錄（含未連結受贈者）的 distinct 選舉名稱，依受贈筆數降冪排序。 */
-export function collectElections(donors: Donor[]): string[] {
-  const counts = new Map<string, number>();
+/** 選舉粗分類固定順序（select 選項與 collectElectionGroups 皆依此排序）。 */
+const ELECTION_GROUP_ORDER = ['立委選舉', '議員選舉', '縣市長選舉', '議員補選', '其他'] as const;
+
+/**
+ * 將選舉紀錄名稱（如「113年立法委員選舉」「第4屆臺中市議員補選」）分類為粗分類。
+ * 依序判斷：含「立法委員」→立委選舉；含「議員」且含「補選」→議員補選；
+ * 含「議員」→議員選舉；以「市長選舉」或「縣長選舉」結尾→縣市長選舉；否則→其他。
+ */
+export function electionGroup(name: string): string {
+  if (name.includes('立法委員')) return '立委選舉';
+  if (name.includes('議員') && name.includes('補選')) return '議員補選';
+  if (name.includes('議員')) return '議員選舉';
+  if (/(市長|縣長)選舉$/.test(name)) return '縣市長選舉';
+  return '其他';
+}
+
+/** 收集所有受贈紀錄（含未連結受贈者）出現過的選舉粗分類，依固定順序排列，只列有出現者。 */
+export function collectElectionGroups(donors: Donor[]): string[] {
+  const present = new Set<string>();
   for (const d of donors) {
     for (const r of d.recipients) {
-      counts.set(r.election, (counts.get(r.election) ?? 0) + 1);
+      present.add(electionGroup(r.election));
     }
   }
-  return Array.from(counts.entries())
-    .sort((a, b) => b[1] - a[1])
-    .map(([election]) => election);
+  return ELECTION_GROUP_ORDER.filter((g) => present.has(g));
 }

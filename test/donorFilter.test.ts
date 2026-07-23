@@ -5,7 +5,8 @@ import {
   rankDonors,
   filterOfficials,
   collectParties,
-  collectElections,
+  electionGroup,
+  collectElectionGroups,
   type Donor,
   type Official,
 } from '../src/lib/donorFilter';
@@ -155,80 +156,117 @@ describe('collectParties', () => {
   });
 });
 
-// 增補（2026-07-23）：選舉篩選
+// 增補（2026-07-23）：選舉篩選（粗分類）
+describe('electionGroup', () => {
+  it('含「立法委員」→立委選舉', () => {
+    expect(electionGroup('113年立法委員選舉')).toBe('立委選舉');
+  });
+
+  it('含「議員」且含「補選」→議員補選', () => {
+    expect(electionGroup('第4屆臺中市議員補選')).toBe('議員補選');
+  });
+
+  it('含「議員」（無補選）→議員選舉', () => {
+    expect(electionGroup('111年臺北市議員選舉')).toBe('議員選舉');
+  });
+
+  it('以「市長選舉」或「縣長選舉」結尾→縣市長選舉', () => {
+    expect(electionGroup('111年臺中市市長選舉')).toBe('縣市長選舉');
+    expect(electionGroup('111年南投縣縣長選舉')).toBe('縣市長選舉');
+  });
+
+  it('皆不符→其他', () => {
+    expect(electionGroup('某某其他投票')).toBe('其他');
+  });
+});
+
 const electionDonors: Donor[] = [
   {
     uid: 'D',
     name: '丁公司',
     total: 500,
     recipients: [
-      { name: '陳一', election: 'e1', amount: 100, slug: 's1', party: '國民黨', officeType: 'legislator' },
-      { name: '林二', election: 'e2', amount: 150, slug: 's2', party: '民進黨', officeType: 'councilor' },
-      { name: '落選人', election: 'e1', amount: 250, slug: null, party: null, officeType: null },
+      { name: '陳一', election: '113年立法委員選舉', amount: 100, slug: 's1', party: '國民黨', officeType: 'legislator' },
+      { name: '林二', election: '111年臺北市議員選舉', amount: 150, slug: 's2', party: '民進黨', officeType: 'councilor' },
+      { name: '落選人', election: '113年立法委員選舉', amount: 250, slug: null, party: null, officeType: null },
     ],
   },
 ];
 
-describe('matchRecipient（選舉篩選）', () => {
-  const linked = electionDonors[0].recipients[0]; // 陳一, e1, 國民黨
-  const unlinked = electionDonors[0].recipients[2]; // 落選人, e1, slug null
+describe('matchRecipient（選舉篩選，粗分類）', () => {
+  const linked = electionDonors[0].recipients[0]; // 陳一, 立委選舉, 國民黨
+  const unlinked = electionDonors[0].recipients[2]; // 落選人, 立委選舉, slug null
 
-  it('選舉篩選單獨啟用時不排除落選人，僅依 election 比對', () => {
-    expect(matchRecipient(unlinked, { election: 'e1' })).toBe(true);
-    expect(matchRecipient(unlinked, { election: 'e2' })).toBe(false);
+  it('選舉篩選單獨啟用時不排除落選人，僅依 electionGroup 比對', () => {
+    expect(matchRecipient(unlinked, { election: '立委選舉' })).toBe(true);
+    expect(matchRecipient(unlinked, { election: '議員選舉' })).toBe(false);
   });
 
   it('選舉篩選可與政黨/職務 AND 組合；政黨/職務啟用時仍排除落選人', () => {
-    expect(matchRecipient(linked, { election: 'e1', party: '國民黨' })).toBe(true);
-    expect(matchRecipient(linked, { election: 'e2', party: '國民黨' })).toBe(false); // 選舉不符
-    expect(matchRecipient(unlinked, { election: 'e1', party: '國民黨' })).toBe(false); // 政黨啟用排除落選人
+    expect(matchRecipient(linked, { election: '立委選舉', party: '國民黨' })).toBe(true);
+    expect(matchRecipient(linked, { election: '議員選舉', party: '國民黨' })).toBe(false); // 選舉分類不符
+    expect(matchRecipient(unlinked, { election: '立委選舉', party: '國民黨' })).toBe(false); // 政黨啟用排除落選人
   });
 });
 
-describe('donorView（選舉篩選）', () => {
+describe('donorView（選舉篩選，粗分類）', () => {
   it('選舉篩選單獨啟用：保留落選人，人數＝連結子集合去重，總額＝子集合全額（含落選人）', () => {
-    const v = donorView(electionDonors[0], { election: 'e1' });
+    const v = donorView(electionDonors[0], { election: '立委選舉' });
     expect(v.filtered).toBe(true);
     expect(v.recipients.map((r) => r.name)).toEqual(['陳一', '落選人']);
     expect(v.count).toBe(1); // 僅 陳一 有連結
     expect(v.total).toBe(350); // 100 + 250，落選人金額仍計入
   });
 
-  it('選舉＋政黨 AND 組合：政黨篩選排除落選人與跨選舉受贈者', () => {
-    const v = donorView(electionDonors[0], { election: 'e1', party: '國民黨' });
+  it('選舉＋政黨 AND 組合：政黨篩選排除落選人與跨分類受贈者', () => {
+    const v = donorView(electionDonors[0], { election: '立委選舉', party: '國民黨' });
     expect(v.recipients.map((r) => r.name)).toEqual(['陳一']);
     expect(v.count).toBe(1);
     expect(v.total).toBe(100);
   });
 
-  it('選舉＋政黨 AND 組合：選舉不符則整批排除', () => {
-    const v = donorView(electionDonors[0], { election: 'e2', party: '國民黨' });
+  it('選舉＋政黨 AND 組合：選舉分類不符則整批排除', () => {
+    const v = donorView(electionDonors[0], { election: '議員選舉', party: '國民黨' });
     expect(v.recipients).toEqual([]);
     expect(v.count).toBe(0);
     expect(v.total).toBe(0);
   });
 });
 
-describe('collectElections', () => {
-  it('依受贈紀錄筆數降冪排序（含未連結受贈者）', () => {
+describe('collectElectionGroups', () => {
+  it('依固定順序（立委/議員/縣市長/議員補選/其他）排列，只列有出現者，不受出現筆數影響', () => {
+    // 刻意讓「議員選舉」筆數遠多於「立委選舉」，驗證排序是固定分類順序而非依筆數。
     const ds: Donor[] = [
       {
         uid: 'X',
         name: 'X',
         total: 0,
         recipients: [
-          { name: 'a', election: 'e1', amount: 1, slug: 's1', party: 'p', officeType: 'legislator' },
-          { name: 'b', election: 'e1', amount: 1, slug: null, party: null, officeType: null },
-          { name: 'c', election: 'e2', amount: 1, slug: 's2', party: 'p', officeType: 'legislator' },
+          { name: 'a', election: '111年臺北市議員選舉', amount: 1, slug: 's1', party: 'p', officeType: 'councilor' },
+          { name: 'b', election: '111年新北市議員選舉', amount: 1, slug: null, party: null, officeType: null },
+          { name: 'c', election: '111年桃園市議員選舉', amount: 1, slug: 's2', party: 'p', officeType: 'councilor' },
+          { name: 'd', election: '113年立法委員選舉', amount: 1, slug: 's3', party: 'p', officeType: 'legislator' },
         ],
       },
       {
         uid: 'Y',
         name: 'Y',
         total: 0,
-        recipients: [{ name: 'd', election: 'e1', amount: 1, slug: 's3', party: 'p', officeType: 'legislator' }],
+        recipients: [{ name: 'e', election: '第4屆臺中市議員補選', amount: 1, slug: 's4', party: 'p', officeType: 'councilor' }],
       },
     ];
-    expect(collectElections(ds)).toEqual(['e1', 'e2']); // e1: 3 筆, e2: 1 筆
+    expect(collectElectionGroups(ds)).toEqual(['立委選舉', '議員選舉', '議員補選']);
+  });
+
+  it('缺席的分類不出現（如無縣市長/其他資料）', () => {
+    const ds: Donor[] = [
+      {
+        uid: 'Z',
+        name: 'Z',
+        total: 0,
+        recipients: [{ name: 'f', election: '111年宜蘭縣縣長選舉', amount: 1, slug: 's5', party: 'p', officeType: 'mayor_magistrate' }],
+      },
+    ];
+    expect(collectElectionGroups(ds)).toEqual(['縣市長選舉']);
   });
 });

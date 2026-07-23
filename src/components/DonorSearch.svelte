@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { rankDonors, filterOfficials, collectParties, collectElections, type DonorSort, type Donor, type Official } from '../lib/donorFilter';
+  import { rankDonors, filterOfficials, collectParties, collectElectionGroups, type DonorSort, type Donor, type Official } from '../lib/donorFilter';
 
   type Data = { generatedAt: string; elections: string[]; officials: Official[]; donors: Donor[] };
 
@@ -27,7 +27,7 @@
   $: q = search.trim();
   $: filterQuery = { party: party || undefined, officeType: officeType || undefined, election: election || undefined, sort };
   $: parties = data ? collectParties(data.donors) : [];
-  $: elections = data ? collectElections(data.donors) : [];
+  $: elections = data ? collectElectionGroups(data.donors) : [];
   $: officialHits = data && q.length >= 2 ? filterOfficials(data.officials.filter((o) => o.name.includes(q)), filterQuery) : [];
   $: donorHits = data && q.length >= 2
     ? rankDonors(data.donors.filter((d) => d.name.includes(q) || d.uid.startsWith(q)), filterQuery, { limit: 50 })
