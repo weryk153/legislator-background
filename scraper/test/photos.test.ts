@@ -249,4 +249,11 @@ describe('matchManifest', () => {
       expect(r.skipped).toEqual([{ name: '李柏毅', reason: '查無現任' }]);
     });
   });
+
+  it('羅馬拼音在前的原民名(Ingay Tali穎艾達利)以中文段比對', () => {
+    const offs = [{ id: 'x1', slug: 's1', name: '穎艾達利 Ingay Tali', district: '臺南市第12選舉區' }];
+    const { matched, skipped } = matchManifest(offs as any, [{ name: 'Ingay Tali穎艾達利', district: '第12選區', img_url: 'https://x/a.jpg' }], '臺南市');
+    expect(matched).toHaveLength(1);
+    expect(skipped).toHaveLength(0);
+  });
 });

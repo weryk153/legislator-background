@@ -79,7 +79,10 @@ function districtsCorrespond(officialDistrict: string, manifestDistrict: string)
 function chinesePrefixOf(name: string): string {
   const norm = normalizeNameChars(name);
   const m = norm.match(/^[一-鿿]+/);
-  return m ? m[0] : norm;
+  if (m) return m[0];
+  // 開頭非 CJK（如臺南「Ingay Tali穎艾達利」羅馬拼音在前）：取字串中第一段 CJK 連續字元。
+  const anywhere = norm.match(/[一-鿿]+/);
+  return anywhere ? anywhere[0] : norm;
 }
 
 // manifest 姓名的中文前綴：先去除任一括號/圓括號內文字（羅馬拼音常見寫法如

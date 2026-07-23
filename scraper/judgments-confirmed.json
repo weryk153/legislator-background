@@ -238,5 +238,55 @@
     "is_final": true,
     "judgment_date": "2024-01-31",
     "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=KSHV,112%2c%E9%81%B8%E4%B8%8A%2c29%2c20240131%2c1"
+  },
+  {
+    "name": "曾振炎",
+    "case_reason": "當選無效之訴（賄選）",
+    "court": "臺灣南投地方法院",
+    "case_number": "111年度選字第2號",
+    "outcome": "當選無效確定（一審確定）",
+    "is_final": true,
+    "judgment_date": "2023-06-14",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=NTDV,111%2c%E9%81%B8%2c2%2c20230614%2c1"
+  },
+  {
+    "name": "莊淑如",
+    "case_reason": "當選無效之訴（賄選）",
+    "court": "臺灣高等法院",
+    "case_number": "112年度選上字第18號",
+    "outcome": "當選無效確定（二審維持一審）",
+    "is_final": true,
+    "judgment_date": "2024-10-22",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TPHV,112%2c%E9%81%B8%E4%B8%8A%2c18%2c20241022%2c1"
+  },
+  {
+    "name": "張再興",
+    "case_reason": "當選無效之訴（賄選）",
+    "court": "臺灣高等法院高雄分院",
+    "case_number": "112年度選上字第8號",
+    "outcome": "當選無效確定（二審維持一審）",
+    "is_final": true,
+    "judgment_date": "2023-12-20",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=KSHV,112%2c%E9%81%B8%E4%B8%8A%2c8%2c20231220%2c1"
+  },
+  {
+    "name": "嚴惠美 Simoy．Sapod",
+    "case_reason": "當選無效之訴（賄選）",
+    "court": "臺灣高等法院花蓮分院",
+    "case_number": "112年度原選上字第2號",
+    "outcome": "當選無效確定（二審維持一審）",
+    "is_final": true,
+    "judgment_date": "2024-02-22",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=HLHV,112%2c%E5%8E%9F%E9%81%B8%E4%B8%8A%2c2%2c20240222%2c1"
+  },
+  {
+    "name": "黃聲全",
+    "case_reason": "當選無效之訴（代付餐費賄選）",
+    "court": "臺灣高等法院臺中分院",
+    "case_number": "112年度選上字第23號",
+    "outcome": "當選無效確定（二審維持一審）",
+    "is_final": true,
+    "judgment_date": "2024-03-06",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TCHV,112%2c%E9%81%B8%E4%B8%8A%2c23%2c20240306%2c1"
   }
 ]

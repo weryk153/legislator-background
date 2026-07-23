@@ -352,5 +352,15 @@
     "start_date": "2024-04-09",
     "source_url": "https://www.cna.com.tw/news/aloc/202404090145.aspx",
     "source_title": "中央社：鄭聚然遞補"
+  },
+  {
+    "op": "rename",
+    "from": "林婷立Ali．Walis",
+    "to": "林庭秝 Ali．Walis",
+    "office_type": "councilor",
+    "district": "南投縣第08選舉區",
+    "note": "CEC 2022名冊為林婷立Ali．Walis;南投縣議會官網現載林庭秝(AliWalis),同選區同拼音為同一人(疑就任後改名)。以議會現載為準",
+    "source_url": "https://www.ntcc.gov.tw/tw/rep/p02.aspx?district=8&period=20",
+    "source_title": "南投縣議會-第八選區議員-林庭秝(Ali Walis)"
   }
 ]
