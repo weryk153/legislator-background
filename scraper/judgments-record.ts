@@ -27,10 +27,18 @@ async function main() {
   const sb = createClient(process.env.PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
   const rows = JSON.parse(readFileSync(join(here, 'judgments-confirmed.json'), 'utf8')) as Confirmed[];
 
-  // 名冊：立委＋首長 name → id[]（同名不唯一者標記，避免錯掛）
-  const { data: offs, error } = await sb.from('officials')
-    .select('id, name, office_type').in('office_type', ['legislator', 'mayor_magistrate', 'councilor']);
-  if (error) throw new Error(`officials query failed: ${error.message}`);
+  // 名冊：立委＋首長 name → id[]（同名不唯一者標記，避免錯掛）。
+  // PostgREST 預設單次回傳上限 1000 筆，officials 已超過 → 必須分頁，否則尾端的人被靜默漏掉。
+  const offs: { id: string; name: string }[] = [];
+  const PAGE = 1000;
+  for (let from = 0; ; from += PAGE) {
+    const { data, error } = await sb.from('officials')
+      .select('id, name, office_type').in('office_type', ['legislator', 'mayor_magistrate', 'councilor'])
+      .order('id', { ascending: true }).range(from, from + PAGE - 1);
+    if (error) throw new Error(`officials query failed: ${error.message}`);
+    offs.push(...((data ?? []) as { id: string; name: string }[]));
+    if ((data ?? []).length < PAGE) break;
+  }
   const byName = new Map<string, string[]>();
   for (const o of offs as { id: string; name: string }[]) (byName.get(o.name) ?? byName.set(o.name, []).get(o.name)!).push(o.id);
 
@@ -50,7 +58,7 @@ async function main() {
     if (process.env.DRY_RUN) { inserted++; console.log('✓(dry)', r.name, r.case_number); continue; }
 
     const { data: src, error: se } = await sb.from('sources')
-      .insert({ url: r.judgment_url, type: 'court', title: `司法院裁判書 ${r.case_number}`, retrieved_at: '2026-06-26' })
+      .insert({ url: r.judgment_url, type: 'court', title: `司法院裁判書 ${r.case_number}`, retrieved_at: '2026-07-24' })
       .select('id').single();
     if (se) { skipped++; console.log('✗', r.name, 'source:', se.message); continue; }
     const { error: je } = await sb.from('judgments').insert({
