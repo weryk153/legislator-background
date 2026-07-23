@@ -149,6 +149,47 @@ const jsonLd = [
     ))}
   </section>
 
+  <section class="sec">
+    <h2>政治獻金</h2>
+    {o.officeType === "legislator" && /不分區|全國/.test(o.district) ? (
+      <p class="dim none">不分區立法委員之政治獻金依法申報於推薦政黨名下，無個人專戶。</p>
+    ) : o.donations.length === 0 ? (
+      <p class="dim none">尚無資料（查無其現任該席選舉之申報專戶）</p>
+    ) : (
+      o.donations.map((d) => (
+        <article class="card entry">
+          <div class="entry-head">{d.electionName}</div>
+          <div class="entry-meta">
+            總收入 <span class="num">NT$ {fmt(d.totalIncome)}</span>
+            總支出 <span class="num">NT$ {fmt(d.totalExpense)}</span>
+          </div>
+          <div class="don-types">
+            {Object.entries(d.incomeByType).sort((a, b) => b[1] - a[1]).map(([k, v]) => (
+              <div class="don-type"><span class="don-label">{k}</span><span class="num">NT$ {fmt(v)}</span></div>
+            ))}
+          </div>
+          {d.topDonors.length > 0 && (
+            <details class="don-donors">
+              <summary>大額捐贈者（營利事業全列、個人前 20）</summary>
+              <table>
+                <thead><tr><th>捐贈者</th><th>類別</th><th class="amt">金額</th></tr></thead>
+                <tbody>
+                  {d.topDonors.map((t) => (
+                    <tr><td>{t.donorName}</td><td>{t.donorType}</td><td class="amt num">NT$ {fmt(t.amount)}</td></tr>
+                  ))}
+                </tbody>
+              </table>
+            </details>
+          )}
+          <Sources sources={[d.source]} />
+        </article>
+      ))
+    )}
+    {o.donations.length > 0 && (
+      <p class="note">金額由程式彙總監察院政治獻金公開查閱平臺整批電子檔，分類依申報之收支科目；請點出處至平臺核對原始明細。</p>
+    )}
+  </section>
+
   {relations.length > 0 && (
     <section class="sec">
       <h2>人物關係</h2>
@@ -197,5 +238,13 @@ const jsonLd = [
     .rel-note { color: var(--muted); font-size: 0.9375rem; }
     .rel-src { margin-left: auto; font-size: var(--t-sm); color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
     .rel-src:hover { color: var(--accent); }
+    .don-types { margin: 8px 0 4px; font-size: 13px; }
+    .don-type { display: flex; gap: 10px; }
+    .don-type .don-label { color: var(--muted); min-width: 9em; }
+    .don-donors { margin: 8px 0 4px; font-size: 13px; }
+    .don-donors summary { cursor: pointer; color: var(--muted); }
+    .don-donors table { border-collapse: collapse; margin-top: 6px; width: 100%; max-width: 480px; }
+    .don-donors th, .don-donors td { text-align: left; padding: 3px 8px 3px 0; border-bottom: 1px solid var(--line); }
+    .don-donors .amt { text-align: right; }
   </style>
 </Base>
