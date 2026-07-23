@@ -362,5 +362,158 @@
     "note": "CEC 2022名冊為林婷立Ali．Walis;南投縣議會官網現載林庭秝(AliWalis),同選區同拼音為同一人(疑就任後改名)。以議會現載為準",
     "source_url": "https://www.ntcc.gov.tw/tw/rep/p02.aspx?district=8&period=20",
     "source_title": "南投縣議會-第八選區議員-林庭秝(Ali Walis)"
+  },
+  {
+    "op": "depart",
+    "name": "徐永煌",
+    "office_type": "councilor",
+    "district": "苗栗縣第03選舉區",
+    "reason": "貪污治罪條例違法圖利罪經最高法院2026年6月24日駁回上訴判刑確定（2年10月、褫奪公權2年），6月25日發監執行，依地方制度法第79條解職；議會官網名單已不含其名",
+    "date": "2026-06-25",
+    "source_url": "https://news.ltn.com.tw/news/society/breakingnews/5484080",
+    "source_title": "自由時報：苗栗縣議員徐永煌涉貪部分判刑確定 檢廉拘提到案發監"
+  },
+  {
+    "op": "depart",
+    "name": "余文忠",
+    "office_type": "councilor",
+    "district": "苗栗縣第01選舉區",
+    "reason": "2024年4月當選苗栗市長補選並於4月30日就職，依法辭去議員；缺額未辦理遞補",
+    "date": "2024-04-30",
+    "source_url": "https://news.ltn.com.tw/news/politics/breakingnews/4657584",
+    "source_title": "自由時報：余文忠就職苗栗市長"
+  },
+  {
+    "op": "depart",
+    "name": "吳亮慶",
+    "office_type": "councilor",
+    "district": "屏東縣第02選舉區",
+    "reason": "2023年10月17日經臺灣高等法院高雄分院二審逆轉判決當選無效定讞（買票），由張振亮遞補",
+    "date": "2023-10-17",
+    "source_url": "https://news.ltn.com.tw/news/politics/paper/1609491",
+    "source_title": "自由時報：吳亮慶買票案 二審逆轉判當選無效定讞"
+  },
+  {
+    "op": "add",
+    "name": "張振亮",
+    "office_type": "councilor",
+    "district": "屏東縣第02選舉區",
+    "party": "民進黨",
+    "term": "11",
+    "career_title": "遞補就任",
+    "career_org": "屏東縣議員（屏東縣第02選舉區，吳亮慶當選無效缺額遞補）",
+    "start_date": "2023-11-10",
+    "source_url": "https://news.ltn.com.tw/news/politics/breakingnews/4485818",
+    "source_title": "自由時報：張振亮遞補屏東縣第2選舉區縣議員宣誓就職"
+  },
+  {
+    "op": "depart",
+    "name": "張振亮",
+    "office_type": "councilor",
+    "district": "屏東縣第02選舉區",
+    "reason": "2024年8月22日最高法院就預備行賄罪判刑8個月定讞，內政部公告依法解職；非選罷法所定遞補事由，遺缺不再遞補",
+    "date": "2024-08-22",
+    "source_url": "https://www.moi.gov.tw/News_Content.aspx?n=4&sms=9009&s=320062",
+    "source_title": "內政部：屏東縣議員張振亮犯預備行賄罪判決確定 依法解職遺缺不遞補"
+  },
+  {
+    "op": "depart",
+    "name": "林哲凌",
+    "office_type": "councilor",
+    "district": "雲林縣第06選舉區",
+    "reason": "原任口湖鄉長任內收賄400萬，經最高法院2026年5月7日判刑10年4月、褫奪公權8年確定，依法解職；未見遞補",
+    "date": "2026-05-07",
+    "source_url": "https://news.ltn.com.tw/news/society/breakingnews/5429044",
+    "source_title": "自由時報：向光電業者索賄400萬 雲林縣議員林哲凌判刑定讞"
+  },
+  {
+    "op": "depart",
+    "name": "趙怡翔",
+    "office_type": "councilor",
+    "district": "臺北市第06選舉區",
+    "reason": "2025年9月1日請辭議員轉任國家安全會議副秘書長；缺額未達門檻不補選、無遞補",
+    "date": "2025-09-01",
+    "source_url": "https://news.ltn.com.tw/news/politics/breakingnews/5162844",
+    "source_title": "自由時報：趙怡翔接任國安會副秘書長 請辭北市議員"
+  },
+  {
+    "op": "depart",
+    "name": "蔡文旭",
+    "office_type": "councilor",
+    "district": "嘉義市第02選舉區",
+    "reason": "2023年12月13日因病逝世（享年60歲）；缺額不辦理遞補",
+    "date": "2023-12-13",
+    "source_url": "https://news.ltn.com.tw/news/politics/breakingnews/4519641",
+    "source_title": "自由時報：民進黨嘉市議員蔡文旭60歲病逝"
+  },
+  {
+    "op": "depart",
+    "name": "李奕德",
+    "office_type": "councilor",
+    "district": "嘉義市第01選舉區",
+    "reason": "2025年3月26日因肝癌病逝（享年43歲）；缺額不辦理遞補",
+    "date": "2025-03-26",
+    "source_url": "https://news.ltn.com.tw/news/politics/breakingnews/4992228",
+    "source_title": "自由時報：43歲議員李奕德病逝"
+  },
+  {
+    "op": "depart",
+    "name": "吳瑞芳",
+    "office_type": "councilor",
+    "district": "南投縣第04選舉區",
+    "reason": "詐領助理費512萬違反貪污治罪條例判刑確定（緩刑5年、褫奪公權3年），2024年9月經內政部依地方制度法解職；無須遞補或補選",
+    "date": "2024-10-01",
+    "source_url": "https://news.ltn.com.tw/news/politics/breakingnews/4816438",
+    "source_title": "自由時報：南投議員吳瑞芳詐領助理費解職"
+  },
+  {
+    "op": "depart",
+    "name": "張正治",
+    "office_type": "councilor",
+    "district": "花蓮縣第03選舉區",
+    "reason": "2023年1月19日因病逝世（4連霸議員）；缺額未辦理遞補",
+    "date": "2023-01-19",
+    "source_url": "https://udn.com/news/story/7328/6923521",
+    "source_title": "聯合報：國民黨花蓮4連霸議員張正治病逝"
+  },
+  {
+    "op": "depart",
+    "name": "張秉鈞",
+    "office_type": "councilor",
+    "district": "基隆市第04選舉區",
+    "reason": "詐領助理費案判處緩刑5年確定並褫奪公權，2025年3月6日依法解職",
+    "date": "2025-03-06",
+    "source_url": "https://www.cna.com.tw/news/asoc/202503060236.aspx",
+    "source_title": "中央社：基隆議員張秉鈞詐領助理費緩刑定讞將解職"
+  },
+  {
+    "op": "depart",
+    "name": "簡賜勝",
+    "office_type": "councilor",
+    "district": "南投縣第02選舉區",
+    "reason": "2025年1月10日主動請辭議員參選草屯鎮長補選並於1月18日當選就任；缺額未辦理遞補",
+    "date": "2025-01-10",
+    "source_url": "https://www.cna.com.tw/news/aloc/202501100119.aspx",
+    "source_title": "中央社：南投草屯鎮長補選 簡賜勝辭縣議員"
+  },
+  {
+    "op": "depart",
+    "name": "許家蓓",
+    "office_type": "councilor",
+    "district": "臺北市第03選舉區",
+    "reason": "2024年9月18日因子宮內膜癌病逝；缺額未達補選門檻，無人遞補",
+    "date": "2024-09-18",
+    "source_url": "https://news.ltn.com.tw/news/politics/breakingnews/4803631",
+    "source_title": "自由時報：許家蓓癌逝"
+  },
+  {
+    "op": "depart",
+    "name": "洪本成",
+    "office_type": "councilor",
+    "district": "彰化縣第05選舉區",
+    "reason": "因2003年貪污罪判決免刑確定致候選人資格不符，2023年10月17日經臺中高分院終審判決當選無效定讞；屬資格不符事由，缺額不遞補",
+    "date": "2023-10-17",
+    "source_url": "https://news.ltn.com.tw/news/politics/breakingnews/4461464",
+    "source_title": "自由時報：彰化縣議員洪本成當選無效確定"
   }
 ]
