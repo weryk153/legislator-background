@@ -131,16 +131,15 @@ export function collectParties(donors: Donor[]): string[] {
 }
 
 /** 選舉粗分類固定順序（select 選項與 collectElectionGroups 皆依此排序）。 */
-const ELECTION_GROUP_ORDER = ['立委選舉', '議員選舉', '縣市長選舉', '議員補選', '其他'] as const;
+const ELECTION_GROUP_ORDER = ['立委選舉', '議員選舉', '縣市長選舉', '其他'] as const;
 
 /**
  * 將選舉紀錄名稱（如「113年立法委員選舉」「第4屆臺中市議員補選」）分類為粗分類。
- * 依序判斷：含「立法委員」→立委選舉；含「議員」且含「補選」→議員補選；
- * 含「議員」→議員選舉；以「市長選舉」或「縣長選舉」結尾→縣市長選舉；否則→其他。
+ * 依序判斷：含「立法委員」→立委選舉；含「議員」（含補選）→議員選舉；
+ * 以「市長選舉」或「縣長選舉」結尾→縣市長選舉；否則→其他。
  */
 export function electionGroup(name: string): string {
   if (name.includes('立法委員')) return '立委選舉';
-  if (name.includes('議員') && name.includes('補選')) return '議員補選';
   if (name.includes('議員')) return '議員選舉';
   if (/(市長|縣長)選舉$/.test(name)) return '縣市長選舉';
   return '其他';

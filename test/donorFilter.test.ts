@@ -162,11 +162,8 @@ describe('electionGroup', () => {
     expect(electionGroup('113年立法委員選舉')).toBe('立委選舉');
   });
 
-  it('含「議員」且含「補選」→議員補選', () => {
-    expect(electionGroup('第4屆臺中市議員補選')).toBe('議員補選');
-  });
-
-  it('含「議員」（無補選）→議員選舉', () => {
+  it('含「議員」（含補選）一律→議員選舉，不再獨立分類（使用者回饋：議員補選併入議員選舉）', () => {
+    expect(electionGroup('第4屆臺中市議員補選')).toBe('議員選舉');
     expect(electionGroup('111年臺北市議員選舉')).toBe('議員選舉');
   });
 
@@ -177,6 +174,34 @@ describe('electionGroup', () => {
 
   it('皆不符→其他', () => {
     expect(electionGroup('某某其他投票')).toBe('其他');
+  });
+});
+
+describe('議員補選併入議員選舉（使用者回饋）', () => {
+  // 模擬真實資料規模：8 筆「第4屆臺中市議員補選」紀錄，須能在「議員選舉」篩選下被找到。
+  const byElectionDonor: Donor = {
+    uid: 'BX',
+    name: '補選公司',
+    total: 800,
+    recipients: Array.from({ length: 8 }, (_, i) => ({
+      name: `補選候選人${i}`,
+      election: '第4屆臺中市議員補選',
+      amount: 100,
+      slug: `bs${i}`,
+      party: '國民黨',
+      officeType: 'councilor',
+    })),
+  };
+
+  it('以「議員選舉」篩選時，全數 8 筆議員補選紀錄皆符合', () => {
+    const v = donorView(byElectionDonor, { election: '議員選舉' });
+    expect(v.recipients).toHaveLength(8);
+    expect(v.count).toBe(8);
+    expect(v.total).toBe(800);
+  });
+
+  it('選項中不再有「議員補選」獨立分類', () => {
+    expect(collectElectionGroups([byElectionDonor])).toEqual(['議員選舉']);
   });
 });
 
@@ -234,7 +259,7 @@ describe('donorView（選舉篩選，粗分類）', () => {
 });
 
 describe('collectElectionGroups', () => {
-  it('依固定順序（立委/議員/縣市長/議員補選/其他）排列，只列有出現者，不受出現筆數影響', () => {
+  it('依固定順序（立委/議員/縣市長/其他）排列，只列有出現者，不受出現筆數影響；議員補選併入議員選舉', () => {
     // 刻意讓「議員選舉」筆數遠多於「立委選舉」，驗證排序是固定分類順序而非依筆數。
     const ds: Donor[] = [
       {
@@ -255,7 +280,7 @@ describe('collectElectionGroups', () => {
         recipients: [{ name: 'e', election: '第4屆臺中市議員補選', amount: 1, slug: 's4', party: 'p', officeType: 'councilor' }],
       },
     ];
-    expect(collectElectionGroups(ds)).toEqual(['立委選舉', '議員選舉', '議員補選']);
+    expect(collectElectionGroups(ds)).toEqual(['立委選舉', '議員選舉']);
   });
 
   it('缺席的分類不出現（如無縣市長/其他資料）', () => {
