@@ -27,12 +27,30 @@ async function main() {
   console.log(`${files.length} 檔 → 營利事業配對 ${corp.length} 筆, 公司 ${new Set(corp.map((c) => c.donorUid)).size} 家`);
 
   // (official姓名, election_name) → official_id：沿用既有 donation_reports 配對
-  const { data: reps, error: re } = await sb.from('donation_reports')
-    .select('official_id, election_name, officials!inner(name)');
-  if (re) throw new Error(`donation_reports query: ${re.message}`);
+  // PostgREST 預設單次回傳上限 1000 筆，須分頁抓全部，否則末段 donation_reports 會靜默漏掉。
+  const reps: Array<{ official_id: string; election_name: string; officials: { name: string } }> = [];
+  const PAGE = 1000;
+  for (let from = 0; ; from += PAGE) {
+    const { data: chunk, error: re } = await sb.from('donation_reports')
+      .select('official_id, election_name, officials!inner(name)')
+      .range(from, from + PAGE - 1);
+    if (re) throw new Error(`donation_reports query: ${re.message}`);
+    reps.push(...((chunk ?? []) as typeof reps));
+    if (!chunk || chunk.length < PAGE) break;
+  }
   const officialByKey = new Map<string, string>();
-  for (const r of reps as unknown as { official_id: string; election_name: string; officials: { name: string } }[]) {
-    officialByKey.set(`${r.officials.name}|${r.election_name}`, r.official_id);
+  const skipped = new Set<string>();
+  for (const r of reps) {
+    const key = `${r.officials.name}|${r.election_name}`;
+    const existing = officialByKey.get(key);
+    if (existing && existing !== r.official_id) {
+      // 同名同選舉但指向不同 official_id — 寧缺勿錯，刪掉該 key，加入 skipped
+      officialByKey.delete(key);
+      skipped.add(key);
+      console.warn(`⚠ 同名同選舉多人衝突，跳過: ${key} (${existing} vs ${r.official_id})`);
+    } else if (!existing) {
+      officialByKey.set(key, r.official_id);
+    }
   }
   const linked = corp.filter((c) => officialByKey.has(`${c.recipientName}|${c.electionName}`)).length;
   console.log(`可連結現任: ${linked} / ${corp.length}`);
@@ -47,7 +65,8 @@ async function main() {
     if (ce) throw new Error(`corp_donations count: ${ce.message}`);
     if (!count) break;
   }
-  const { data: oldSrc } = await sb.from('sources').select('id').eq('url', SOURCE_URL).eq('title', '監察院政治獻金公開查閱平臺 營利事業捐贈整批檔');
+  const { data: oldSrc, error: qe } = await sb.from('sources').select('id').eq('url', SOURCE_URL).eq('title', '監察院政治獻金公開查閱平臺 營利事業捐贈整批檔');
+  if (qe) throw new Error(`sources query: ${qe.message}`);
   for (const s of oldSrc ?? []) await sb.from('sources').delete().eq('id', s.id);
   const { data: src, error: se } = await sb.from('sources')
     .insert({ url: SOURCE_URL, type: 'gov', title: '監察院政治獻金公開查閱平臺 營利事業捐贈整批檔', retrieved_at: RETRIEVED_AT })
