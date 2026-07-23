@@ -11280,5 +11280,60 @@
     "profession": "",
     "keywords": [],
     "aliases": []
+  },
+  {
+    "id": "c-張秀枝-無黨籍及未經政黨推薦-南投縣第01選舉區",
+    "name": "張秀枝",
+    "party": "無黨籍及未經政黨推薦",
+    "district": "南投縣第01選舉區",
+    "office": "councilor",
+    "birthYear": "1958",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-黃惠慈-民進黨-宜蘭縣第01選舉區",
+    "name": "黃惠慈",
+    "party": "民進黨",
+    "district": "宜蘭縣第01選舉區",
+    "office": "councilor",
+    "birthYear": "1994",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-莊光大-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
+    "name": "莊光大",
+    "party": "無黨籍及未經政黨推薦",
+    "district": "澎湖縣第01選舉區",
+    "office": "councilor",
+    "birthYear": "1968",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-高美珠-無黨籍及未經政黨推薦-臺東縣第11選舉區",
+    "name": "高美珠",
+    "party": "無黨籍及未經政黨推薦",
+    "district": "臺東縣第11選舉區",
+    "office": "councilor",
+    "birthYear": "1970",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-鄭聚然-國民黨-苗栗縣第05選舉區",
+    "name": "鄭聚然",
+    "party": "國民黨",
+    "district": "苗栗縣第05選舉區",
+    "office": "councilor",
+    "birthYear": "1960",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
   }
 ]
