@@ -70,7 +70,8 @@ export function toListRow(o: Official): OfficialListRow {
     judgmentCount: o.judgments.length,
     controversyCount: o.controversies.length,
     latestAssetTotal,
-    departed: !o.isIncumbent,
+    // departed_reason 存在但 is_incumbent 未翻的資料不一致曾實際發生過——兩者取聯集防禦。
+    departed: !o.isIncumbent || !!o.departedReason,
     photoUrl: o.photoUrl,
   };
 }
