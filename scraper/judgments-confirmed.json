@@ -288,5 +288,45 @@
     "is_final": true,
     "judgment_date": "2024-03-06",
     "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TCHV,112%2c%E9%81%B8%E4%B8%8A%2c23%2c20240306%2c1"
+  },
+  {
+    "name": "吳亮慶",
+    "case_reason": "當選無效之訴（賄選）",
+    "court": "臺灣高等法院高雄分院",
+    "case_number": "112年度選上字第18號",
+    "outcome": "當選無效確定（二審廢棄改判）",
+    "is_final": true,
+    "judgment_date": "2023-10-11",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=KSHV,112%2c%e9%81%b8%e4%b8%8a%2c18%2c20231011%2c1"
+  },
+  {
+    "name": "洪本成",
+    "case_reason": "當選無效之訴（候選人消極資格：曾犯貪污經判決免刑確定）",
+    "court": "臺灣高等法院臺中分院",
+    "case_number": "112年度選上字第9號",
+    "outcome": "當選無效確定（二審維持一審）",
+    "is_final": true,
+    "judgment_date": "2023-10-17",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TCHV,112%2c%e9%81%b8%e4%b8%8a%2c9%2c20231017%2c2"
+  },
+  {
+    "name": "張振亮",
+    "case_reason": "公職人員選舉罷免法預備行求賄賂罪",
+    "court": "臺灣高等法院高雄分院",
+    "case_number": "112年度選上訴字第19號",
+    "outcome": "有期徒刑8月、褫奪公權3年確定（最高法院113年度台上字第3026號程序駁回上訴）",
+    "is_final": true,
+    "judgment_date": "2024-05-07",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=KSHM,112%2c%e9%81%b8%e4%b8%8a%e8%a8%b4%2c19%2c20240507%2c1"
+  },
+  {
+    "name": "林哲凌",
+    "case_reason": "貪污治罪條例職務上收受賄賂罪等",
+    "court": "臺灣高等法院臺南分院",
+    "case_number": "112年度上訴字第1254號",
+    "outcome": "有期徒刑10年、褫奪公權8年確定（最高法院114年度台上字第4748號程序駁回上訴）",
+    "is_final": true,
+    "judgment_date": "2025-05-29",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TNHM,112%2c%e4%b8%8a%e8%a8%b4%2c1254%2c20250529%2c2"
   }
 ]
