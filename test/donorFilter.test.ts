@@ -5,6 +5,7 @@ import {
   rankDonors,
   filterOfficials,
   collectParties,
+  collectElections,
   type Donor,
   type Official,
 } from '../src/lib/donorFilter';
@@ -151,5 +152,83 @@ describe('filterOfficials', () => {
 describe('collectParties', () => {
   it('僅收集有連結受贈者（slug 非 null）的政黨，依出現次數降冪', () => {
     expect(collectParties(donors)).toEqual(['國民黨', '民進黨']);
+  });
+});
+
+// 增補（2026-07-23）：選舉篩選
+const electionDonors: Donor[] = [
+  {
+    uid: 'D',
+    name: '丁公司',
+    total: 500,
+    recipients: [
+      { name: '陳一', election: 'e1', amount: 100, slug: 's1', party: '國民黨', officeType: 'legislator' },
+      { name: '林二', election: 'e2', amount: 150, slug: 's2', party: '民進黨', officeType: 'councilor' },
+      { name: '落選人', election: 'e1', amount: 250, slug: null, party: null, officeType: null },
+    ],
+  },
+];
+
+describe('matchRecipient（選舉篩選）', () => {
+  const linked = electionDonors[0].recipients[0]; // 陳一, e1, 國民黨
+  const unlinked = electionDonors[0].recipients[2]; // 落選人, e1, slug null
+
+  it('選舉篩選單獨啟用時不排除落選人，僅依 election 比對', () => {
+    expect(matchRecipient(unlinked, { election: 'e1' })).toBe(true);
+    expect(matchRecipient(unlinked, { election: 'e2' })).toBe(false);
+  });
+
+  it('選舉篩選可與政黨/職務 AND 組合；政黨/職務啟用時仍排除落選人', () => {
+    expect(matchRecipient(linked, { election: 'e1', party: '國民黨' })).toBe(true);
+    expect(matchRecipient(linked, { election: 'e2', party: '國民黨' })).toBe(false); // 選舉不符
+    expect(matchRecipient(unlinked, { election: 'e1', party: '國民黨' })).toBe(false); // 政黨啟用排除落選人
+  });
+});
+
+describe('donorView（選舉篩選）', () => {
+  it('選舉篩選單獨啟用：保留落選人，人數＝連結子集合去重，總額＝子集合全額（含落選人）', () => {
+    const v = donorView(electionDonors[0], { election: 'e1' });
+    expect(v.filtered).toBe(true);
+    expect(v.recipients.map((r) => r.name)).toEqual(['陳一', '落選人']);
+    expect(v.count).toBe(1); // 僅 陳一 有連結
+    expect(v.total).toBe(350); // 100 + 250，落選人金額仍計入
+  });
+
+  it('選舉＋政黨 AND 組合：政黨篩選排除落選人與跨選舉受贈者', () => {
+    const v = donorView(electionDonors[0], { election: 'e1', party: '國民黨' });
+    expect(v.recipients.map((r) => r.name)).toEqual(['陳一']);
+    expect(v.count).toBe(1);
+    expect(v.total).toBe(100);
+  });
+
+  it('選舉＋政黨 AND 組合：選舉不符則整批排除', () => {
+    const v = donorView(electionDonors[0], { election: 'e2', party: '國民黨' });
+    expect(v.recipients).toEqual([]);
+    expect(v.count).toBe(0);
+    expect(v.total).toBe(0);
+  });
+});
+
+describe('collectElections', () => {
+  it('依受贈紀錄筆數降冪排序（含未連結受贈者）', () => {
+    const ds: Donor[] = [
+      {
+        uid: 'X',
+        name: 'X',
+        total: 0,
+        recipients: [
+          { name: 'a', election: 'e1', amount: 1, slug: 's1', party: 'p', officeType: 'legislator' },
+          { name: 'b', election: 'e1', amount: 1, slug: null, party: null, officeType: null },
+          { name: 'c', election: 'e2', amount: 1, slug: 's2', party: 'p', officeType: 'legislator' },
+        ],
+      },
+      {
+        uid: 'Y',
+        name: 'Y',
+        total: 0,
+        recipients: [{ name: 'd', election: 'e1', amount: 1, slug: 's3', party: 'p', officeType: 'legislator' }],
+      },
+    ];
+    expect(collectElections(ds)).toEqual(['e1', 'e2']); // e1: 3 筆, e2: 1 筆
   });
 });

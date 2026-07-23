@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { rankDonors, filterOfficials, collectParties, type DonorSort, type Donor, type Official } from '../lib/donorFilter';
+  import { rankDonors, filterOfficials, collectParties, collectElections, type DonorSort, type Donor, type Official } from '../lib/donorFilter';
 
   type Data = { generatedAt: string; elections: string[]; officials: Official[]; donors: Donor[] };
 
@@ -11,6 +11,7 @@
   let sort: DonorSort = 'count';
   let party = '';
   let officeType = '';
+  let election = '';
 
   onMount(async () => {
     try {
@@ -24,8 +25,9 @@
   const officeName: Record<string, string> = { legislator: '立委', mayor_magistrate: '縣市首長', councilor: '議員' };
 
   $: q = search.trim();
-  $: filterQuery = { party: party || undefined, officeType: officeType || undefined, sort };
+  $: filterQuery = { party: party || undefined, officeType: officeType || undefined, election: election || undefined, sort };
   $: parties = data ? collectParties(data.donors) : [];
+  $: elections = data ? collectElections(data.donors) : [];
   $: officialHits = data && q.length >= 2 ? filterOfficials(data.officials.filter((o) => o.name.includes(q)), filterQuery) : [];
   $: donorHits = data && q.length >= 2
     ? rankDonors(data.donors.filter((d) => d.name.includes(q) || d.uid.startsWith(q)), filterQuery, { limit: 50 })
@@ -51,6 +53,10 @@
     <option value="legislator">立委</option>
     <option value="councilor">議員</option>
     <option value="mayor_magistrate">縣市長</option>
+  </select>
+  <select class="ctrl" aria-label="篩選選舉" bind:value={election}>
+    <option value="">全部選舉</option>
+    {#each elections as e}<option value={e}>{e}</option>{/each}
   </select>
 </div>
 
