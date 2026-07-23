@@ -26,7 +26,15 @@ async function main() {
   mkdirSync(outDir, { recursive: true });
 
   const office = arg('office');
-  const targets = loadTargets().filter((t) => (!only || t.id === only) && (!office || t.office === office));
+  // TARGETS_FILTER=id1,id2,... restricts the run to an explicit subset of target ids
+  // without touching targets.json or the review files of the other 1000+ targets —
+  // useful for enriching a small newly-added batch (--only only supports a single id).
+  const filterIds = process.env.TARGETS_FILTER
+    ? new Set(process.env.TARGETS_FILTER.split(',').map((s) => s.trim()).filter(Boolean))
+    : null;
+  const targets = loadTargets().filter(
+    (t) => (!only || t.id === only) && (!office || t.office === office) && (!filterIds || filterIds.has(t.id)),
+  );
   const active = adapters.filter((a) => !sourceFilter || a.name === sourceFilter);
 
   for (const target of targets) {

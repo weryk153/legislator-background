@@ -11138,5 +11138,147 @@
     "profession": "",
     "keywords": [],
     "aliases": []
+  },
+  {
+    "id": "c-許淑華-民進黨-臺北市第03選舉區",
+    "name": "許淑華",
+    "party": "民進黨",
+    "district": "臺北市第03選舉區",
+    "office": "councilor",
+    "birthYear": "1973",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-李柏毅-國民黨-臺北市第06選舉區",
+    "name": "李柏毅",
+    "party": "國民黨",
+    "district": "臺北市第06選舉區",
+    "office": "councilor",
+    "birthYear": "1981",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-石一佑-民進黨-新北市第05選舉區",
+    "name": "石一佑",
+    "party": "民進黨",
+    "district": "新北市第05選舉區",
+    "office": "councilor",
+    "birthYear": "1966",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-吳佩雯-無黨籍及未經政黨推薦-金門縣第02選舉區",
+    "name": "吳佩雯",
+    "party": "無黨籍及未經政黨推薦",
+    "district": "金門縣第02選舉區",
+    "office": "councilor",
+    "birthYear": "1982",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-陳栢誠-國民黨-新竹縣第02選舉區",
+    "name": "陳栢誠",
+    "party": "國民黨",
+    "district": "新竹縣第02選舉區",
+    "office": "councilor",
+    "birthYear": "1967",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-吳韋達-無黨籍及未經政黨推薦-彰化縣第01選舉區",
+    "name": "吳韋達",
+    "party": "無黨籍及未經政黨推薦",
+    "district": "彰化縣第01選舉區",
+    "office": "councilor",
+    "birthYear": "1984",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-蕭文雄-無黨籍及未經政黨推薦-彰化縣第03選舉區",
+    "name": "蕭文雄",
+    "party": "無黨籍及未經政黨推薦",
+    "district": "彰化縣第03選舉區",
+    "office": "councilor",
+    "birthYear": "1958",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-林哲凌-無黨籍及未經政黨推薦-雲林縣第06選舉區",
+    "name": "林哲凌",
+    "party": "無黨籍及未經政黨推薦",
+    "district": "雲林縣第06選舉區",
+    "office": "councilor",
+    "birthYear": "1963",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-黃建溢-民進黨-屏東縣第03選舉區",
+    "name": "黃建溢",
+    "party": "民進黨",
+    "district": "屏東縣第03選舉區",
+    "office": "councilor",
+    "birthYear": "1981",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-黃雯如-無黨籍及未經政黨推薦-宜蘭縣第04選舉區",
+    "name": "黃雯如",
+    "party": "無黨籍及未經政黨推薦",
+    "district": "宜蘭縣第04選舉區",
+    "office": "councilor",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-陳星宏-國民黨-新竹縣第07選舉區",
+    "name": "陳星宏",
+    "party": "國民黨",
+    "district": "新竹縣第07選舉區",
+    "office": "councilor",
+    "birthYear": "1975",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-吳建德-國民黨-臺中市第15選舉區",
+    "name": "吳建德",
+    "party": "國民黨",
+    "district": "臺中市第15選舉區",
+    "office": "councilor",
+    "birthYear": "1996",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
+  },
+  {
+    "id": "c-董昌華-無黨籍及未經政黨推薦-臺東縣第16選舉區",
+    "name": "董昌華",
+    "party": "無黨籍及未經政黨推薦",
+    "district": "臺東縣第16選舉區",
+    "office": "councilor",
+    "birthYear": "1968",
+    "profession": "",
+    "keywords": [],
+    "aliases": []
   }
 ]
