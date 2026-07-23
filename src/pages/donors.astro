@@ -1,0 +1,22 @@
+---
+import Base from "../layouts/Base.astro";
+import DonorSearch from "../components/DonorSearch.svelte";
+const desc = "查詢政治人物的政治獻金，或以公司名稱／統一編號反查營利事業捐贈給哪些候選人。資料來源：監察院政治獻金公開查閱平臺整批電子檔。";
+---
+<Base title="政治獻金查詢｜政治人物背景" description={desc}>
+  <header class="head">
+    <h1>政治獻金查詢</h1>
+    <p class="lede">輸入政治人物姓名，或營利事業名稱／統一編號，反查政治獻金流向。</p>
+  </header>
+  <DonorSearch client:load />
+  <p class="note">
+    資料彙總自<a href="https://ardata.cy.gov.tw/data/downloads/election" target="_blank" rel="noopener">監察院政治獻金公開查閱平臺</a>整批電子檔（113年立法委員選舉、111年地方公職選舉及現任屆議員補選之首次申報），僅含營利事業捐贈；
+    同統一編號之名稱變體已合併。個人捐贈不在本頁範圍。金額為程式彙總，請以平臺原始明細為準。
+  </p>
+  <style>
+    .head { margin: 14px 0 22px; }
+    .head h1 { font-size: var(--t-xl); margin: 0 0 6px; }
+    .lede { margin: 0; color: var(--muted); }
+    .note { font-size: var(--t-sm); color: var(--muted); margin-top: 28px; max-width: 72ch; }
+  </style>
+</Base>
