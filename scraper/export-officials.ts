@@ -18,7 +18,8 @@ const SELECT = `
   careers ( id, title, organization, start_date, end_date, source:sources(*) ),
   judgments ( id, case_reason, court, case_number, outcome, is_final, judgment_date, judgment_url, source:sources(*) ),
   controversies ( id, title, summary, status, event_date, report_date, controversy_sources ( source:sources(*) ) ),
-  asset_declarations ( id, year, source:sources(*), asset_items ( category, amount, label ) )
+  asset_declarations ( id, year, source:sources(*), asset_items ( category, amount, label ) ),
+  donation_reports ( id, election_name, report_seq, total_income, total_expense, income_by_type, expense_by_type, source:sources(*), donation_top_donors ( donor_name, donor_type, amount, rank ) )
 `;
 
 async function main() {

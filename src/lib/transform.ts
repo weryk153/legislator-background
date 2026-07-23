@@ -42,6 +42,16 @@ export function toOfficial(r: RawOfficial): Official {
           .sort((x, y) => assetCategoryRank(x.category) - assetCategoryRank(y.category)), // stable category order across years
       }))
       .sort((a, b) => b.year - a.year), // newest year first
+    donations: (r.donation_reports ?? [])
+      .map((d) => ({
+        id: d.id, electionName: d.election_name, reportSeq: d.report_seq,
+        totalIncome: d.total_income, totalExpense: d.total_expense,
+        incomeByType: d.income_by_type ?? {}, expenseByType: d.expense_by_type ?? {},
+        topDonors: (d.donation_top_donors ?? [])
+          .map((t) => ({ donorName: t.donor_name, donorType: t.donor_type, amount: t.amount, rank: t.rank }))
+          .sort((a, b) => a.rank - b.rank),
+        source: toSource(d.source),
+      })),
   };
 }
 

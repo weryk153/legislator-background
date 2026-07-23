@@ -19,6 +19,11 @@ export function validateOfficial(o: Official): string[] {
   for (const a of o.assets) {
     if (!a.source) errors.push(`asset ${a.id}: missing source`);
   }
+  for (const d of o.donations ?? []) {
+    if (!d.source) errors.push(`donation ${d.id}: missing source`);
+    if (!d.electionName?.trim()) errors.push(`donation ${d.id}: missing electionName`);
+    if (d.totalIncome < 0 || d.totalExpense < 0) errors.push(`donation ${d.id}: negative total`);
+  }
   return errors;
 }
 

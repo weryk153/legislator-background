@@ -11,11 +11,19 @@ export type AssetCategory =
   | 'land' | 'building' | 'cash' | 'deposit' | 'securities' | 'investment' | 'claim' | 'debt' | 'other';
 export interface AssetItem { category: AssetCategory; amount: number; label: string | null; }
 export interface AssetDeclaration { id: string; year: number; items: AssetItem[]; source: Source; }
+export interface DonationDonor { donorName: string; donorType: string; amount: number; rank: number; }
+export interface DonationReport {
+  id: string; electionName: string; reportSeq: string;
+  totalIncome: number; totalExpense: number;
+  incomeByType: Record<string, number>; expenseByType: Record<string, number>;
+  topDonors: DonationDonor[]; source: Source;
+}
 
 export interface Official {
   id: string; slug: string; name: string; party: string; officeType: OfficeType; district: string;
   term: string; photoUrl: string | null; bio: string; isIncumbent: boolean; departedReason: string | null;
   careers: Career[]; judgments: Judgment[]; controversies: Controversy[]; assets: AssetDeclaration[];
+  donations: DonationReport[];
 }
 
 export interface OfficialListRow {
@@ -67,4 +75,5 @@ export interface RawOfficial {
   judgments: { id: string; case_reason: string; court: string; case_number: string; outcome: string; is_final: boolean; judgment_date: string; judgment_url: string; source: RawSource }[];
   controversies: { id: string; title: string; summary: string; status: ControversyStatus; event_date: string; report_date: string; controversy_sources: { source: RawSource }[] }[];
   asset_declarations: { id: string; year: number; source: RawSource; asset_items: { category: AssetCategory; amount: number; label: string | null }[] }[];
+  donation_reports: { id: string; election_name: string; report_seq: string; total_income: number; total_expense: number; income_by_type: Record<string, number>; expense_by_type: Record<string, number>; source: RawSource; donation_top_donors: { donor_name: string; donor_type: string; amount: number; rank: number }[] }[];
 }

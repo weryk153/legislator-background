@@ -8,7 +8,7 @@ function baseOfficial(over: Partial<Official> = {}): Official {
   return {
     id: 'o1', slug: 'o1', name: '陳〇〇', party: '無', officeType: 'legislator', district: '北市3', departedReason: null,
     term: '11', photoUrl: null, bio: '', isIncumbent: true,
-    careers: [], judgments: [], controversies: [], assets: [], ...over,
+    careers: [], judgments: [], controversies: [], assets: [], donations: [], ...over,
   };
 }
 
@@ -53,6 +53,16 @@ describe('validateOfficial', () => {
     const errs = validateOfficial(o);
     expect(errs).toContain('career k1: missing source');
     expect(errs).toContain('asset a1: missing source');
+  });
+
+  it('flags donation report without source', () => {
+    const valid = baseOfficial();
+    const bad = {
+      ...valid,
+      donations: [{ id: 'd1', electionName: 'x', reportSeq: '', totalIncome: 1, totalExpense: 0,
+        incomeByType: {}, expenseByType: {}, topDonors: [], source: undefined as unknown as Source }],
+    };
+    expect(validateOfficial(bad).some((e) => e.includes('donation'))).toBe(true);
   });
 });
 

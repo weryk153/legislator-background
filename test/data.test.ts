@@ -8,7 +8,7 @@ function rawOfficial(over: Partial<RawOfficial> = {}): RawOfficial {
   return {
     id: 'o1', slug: 'o1', name: '測試', party: '無', office_type: 'legislator', district: 'd', term: '11', departed_reason: null,
     photo_url: null, bio: '', is_incumbent: true,
-    careers: [], judgments: [], controversies: [], asset_declarations: [], ...over,
+    careers: [], judgments: [], controversies: [], asset_declarations: [], donation_reports: [], ...over,
   };
 }
 

@@ -39,5 +39,6 @@ export function approvedToOfficial(t: Target, a: ApprovedForTarget): Official {
       id: `asset-${i}`, year: as.year, source: toSource(as.source),
       items: as.items.map((it) => ({ category: it.category, amount: it.amount, label: it.label ?? null })),
     })),
+    donations: [],
   };
 }
