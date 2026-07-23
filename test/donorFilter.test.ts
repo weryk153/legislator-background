@@ -7,6 +7,8 @@ import {
   collectParties,
   electionGroup,
   collectElectionGroups,
+  ELECTION_GROUP_ORDER,
+  ELECTION_GROUP_LABEL,
   matchName,
   filterOfficialsByName,
   filterDonorsByName,
@@ -296,6 +298,14 @@ describe('collectElectionGroups', () => {
       },
     ];
     expect(collectElectionGroups(ds)).toEqual(['縣市長選舉']);
+  });
+});
+
+describe('ELECTION_GROUP_LABEL', () => {
+  it('每個 ELECTION_GROUP_ORDER 分類皆有對應顯示標籤（UI 加年份，內部 key 不變）', () => {
+    for (const g of ELECTION_GROUP_ORDER) {
+      expect(ELECTION_GROUP_LABEL[g]).toBeTruthy();
+    }
   });
 });
 

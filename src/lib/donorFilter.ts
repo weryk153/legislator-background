@@ -133,7 +133,18 @@ export function collectParties(donors: Donor[]): string[] {
 }
 
 /** 選舉粗分類固定順序（select 選項與 collectElectionGroups 皆依此排序）。 */
-const ELECTION_GROUP_ORDER = ['立委選舉', '議員選舉', '縣市長選舉', '其他'] as const;
+export const ELECTION_GROUP_ORDER = ['立委選舉', '議員選舉', '縣市長選舉', '其他'] as const;
+
+/**
+ * 選舉粗分類 UI 顯示標籤（僅畫面文字，內部分類 key／篩選比對值不變）。
+ * 依使用者回饋加上年份，方便辨識目前資料涵蓋的選舉屆別。
+ */
+export const ELECTION_GROUP_LABEL: Record<string, string> = {
+  立委選舉: '113年立委選舉',
+  議員選舉: '111年議員選舉（含補選）',
+  縣市長選舉: '111年縣市長選舉',
+  其他: '其他',
+};
 
 /**
  * 將選舉紀錄名稱（如「113年立法委員選舉」「第4屆臺中市議員補選」）分類為粗分類。

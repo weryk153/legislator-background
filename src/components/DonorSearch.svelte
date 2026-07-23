@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { rankDonors, filterOfficials, collectParties, collectElectionGroups, filterOfficialsByName, filterDonorsByName, type DonorSort, type Donor, type Official } from '../lib/donorFilter';
+  import { rankDonors, filterOfficials, collectParties, collectElectionGroups, ELECTION_GROUP_LABEL, filterOfficialsByName, filterDonorsByName, type DonorSort, type Donor, type Official } from '../lib/donorFilter';
 
   type Data = { generatedAt: string; elections: string[]; officials: Official[]; donors: Donor[] };
 
@@ -56,7 +56,7 @@
   </select>
   <select class="ctrl" aria-label="篩選選舉" bind:value={election}>
     <option value="">全部選舉</option>
-    {#each elections as e}<option value={e}>{e}</option>{/each}
+    {#each elections as e}<option value={e}>{ELECTION_GROUP_LABEL[e] ?? e}</option>{/each}
   </select>
 </div>
 
