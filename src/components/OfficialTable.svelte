@@ -46,7 +46,6 @@
     <option value="judgments">判決最多</option>
     <option value="controversies">爭議最多</option>
     <option value="assets">財產最高</option>
-    <option value="name">姓名</option>
   </select>
   <span class="count">{view.length} 筆</span>
 </div>
