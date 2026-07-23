@@ -7,6 +7,9 @@ import {
   collectParties,
   electionGroup,
   collectElectionGroups,
+  matchName,
+  filterOfficialsByName,
+  filterDonorsByName,
   type Donor,
   type Official,
 } from '../src/lib/donorFilter';
@@ -293,5 +296,47 @@ describe('collectElectionGroups', () => {
       },
     ];
     expect(collectElectionGroups(ds)).toEqual(['縣市長選舉']);
+  });
+});
+
+// 增補：站內搜尋異體字不敏感（背景：officials.name 訂正為「戴瑋姍」，但使用者常打「戴瑋姗」）
+describe('matchName（異體字不敏感搜尋）', () => {
+  it('查詢異體字「戴瑋姗」可比對到候選字串「戴瑋姍」', () => {
+    expect(matchName('戴瑋姍', '戴瑋姗')).toBe(true);
+  });
+
+  it('查詢標準字「戴瑋姍」也可比對到候選異體字「戴瑋姗」（反向亦成立）', () => {
+    expect(matchName('戴瑋姗', '戴瑋姍')).toBe(true);
+  });
+
+  it('子字串比對維持原有行為', () => {
+    expect(matchName('陳一', '陳')).toBe(true);
+    expect(matchName('陳一', '林')).toBe(false);
+  });
+});
+
+describe('filterOfficialsByName', () => {
+  const officialsForSearch: Official[] = [
+    { name: '戴瑋姍', slug: 'dai', party: '民進黨', officeType: 'legislator', district: '新北市', totalIncome: 100 },
+    { name: '陳一', slug: 's1', party: '國民黨', officeType: 'legislator', district: '北市', totalIncome: 50 },
+  ];
+
+  it('查詢「戴瑋姗」（異體字）可找到資料中的「戴瑋姍」', () => {
+    expect(filterOfficialsByName(officialsForSearch, '戴瑋姗').map((o) => o.slug)).toEqual(['dai']);
+  });
+});
+
+describe('filterDonorsByName', () => {
+  const donorsForSearch: Donor[] = [
+    { uid: '12345678', name: '戴瑋姍服務處', total: 0, recipients: [] },
+    { uid: '87654321', name: '甲公司', total: 0, recipients: [] },
+  ];
+
+  it('查詢「戴瑋姗」（異體字）可找到名稱含「戴瑋姍」的捐贈者', () => {
+    expect(filterDonorsByName(donorsForSearch, '戴瑋姗').map((d) => d.uid)).toEqual(['12345678']);
+  });
+
+  it('uid 前綴比對維持原始字串，不做異體字正規化', () => {
+    expect(filterDonorsByName(donorsForSearch, '1234').map((d) => d.uid)).toEqual(['12345678']);
   });
 });

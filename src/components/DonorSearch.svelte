@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { rankDonors, filterOfficials, collectParties, collectElectionGroups, type DonorSort, type Donor, type Official } from '../lib/donorFilter';
+  import { rankDonors, filterOfficials, collectParties, collectElectionGroups, filterOfficialsByName, filterDonorsByName, type DonorSort, type Donor, type Official } from '../lib/donorFilter';
 
   type Data = { generatedAt: string; elections: string[]; officials: Official[]; donors: Donor[] };
 
@@ -28,9 +28,9 @@
   $: filterQuery = { party: party || undefined, officeType: officeType || undefined, election: election || undefined, sort };
   $: parties = data ? collectParties(data.donors) : [];
   $: elections = data ? collectElectionGroups(data.donors) : [];
-  $: officialHits = data && q.length >= 2 ? filterOfficials(data.officials.filter((o) => o.name.includes(q)), filterQuery) : [];
+  $: officialHits = data && q.length >= 2 ? filterOfficials(filterOfficialsByName(data.officials, q), filterQuery) : [];
   $: donorHits = data && q.length >= 2
-    ? rankDonors(data.donors.filter((d) => d.name.includes(q) || d.uid.startsWith(q)), filterQuery, { limit: 50 })
+    ? rankDonors(filterDonorsByName(data.donors, q), filterQuery, { limit: 50 })
     : [];
   // 預設排行：捐給最多位現任者前 50（篩選啟用時以符合條件之子集合重新計算並自然剔除不足者）
   $: ranking = data && q.length < 2 ? rankDonors(data.donors, filterQuery, { minCount: 2, limit: 50 }) : [];

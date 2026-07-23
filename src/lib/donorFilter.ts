@@ -1,3 +1,5 @@
+import { normalizeNameChars } from './nameVariant';
+
 export type Recipient = {
   name: string;
   election: string;
@@ -143,6 +145,27 @@ export function electionGroup(name: string): string {
   if (name.includes('議員')) return '議員選舉';
   if (/(市長|縣長)選舉$/.test(name)) return '縣市長選舉';
   return '其他';
+}
+
+/**
+ * 依姓名比對候選字串是否符合查詢子字串（查詢與候選皆先以 normalizeNameChars 正規化異體字，
+ * 如「姍/姗」「台/臺」），讓使用者輸入異體字仍能搜到正確寫法的資料，反之亦然。
+ */
+export function matchName(candidate: string, query: string): boolean {
+  return normalizeNameChars(candidate).includes(normalizeNameChars(query));
+}
+
+/** 依（正規化後）姓名篩選政治人物清單。 */
+export function filterOfficialsByName(officials: Official[], query: string): Official[] {
+  return officials.filter((o) => matchName(o.name, query));
+}
+
+/**
+ * 依（正規化後）名稱或統一編號篩選捐贈者清單。
+ * 名稱比對套用異體字正規化；uid 前綴比對維持原始字串（統編為數字/固定格式，不涉異體字）。
+ */
+export function filterDonorsByName(donors: Donor[], query: string): Donor[] {
+  return donors.filter((d) => matchName(d.name, query) || d.uid.startsWith(query));
 }
 
 /** 收集所有受贈紀錄（含未連結受贈者）出現過的選舉粗分類，依固定順序排列，只列有出現者。 */

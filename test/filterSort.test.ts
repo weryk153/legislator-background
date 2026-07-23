@@ -29,6 +29,14 @@ describe('queryList', () => {
     expect(queryList(rows, { search: '王' }).map((r) => r.id)).toEqual(['3']);
   });
 
+  it('搜尋異體字不敏感：資料為「戴瑋姍」，查詢「戴瑋姗」仍可找到', () => {
+    const variantRows: OfficialListRow[] = [
+      ...rows,
+      { id: '4', slug: '4', name: '戴瑋姍', party: '民進黨', officeType: 'legislator', district: '新北市', region: '新北市', judgmentCount: 0, controversyCount: 0, latestAssetTotal: null, departed: false },
+    ];
+    expect(queryList(variantRows, { search: '戴瑋姗' }).map((r) => r.id)).toEqual(['4']);
+  });
+
   it('sorts by judgments descending', () => {
     expect(queryList(rows, { sort: 'judgments' }).map((r) => r.id)).toEqual(['1', '3', '2']);
   });
