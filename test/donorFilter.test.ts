@@ -133,6 +133,19 @@ describe('filterOfficials', () => {
   it('依職務篩選', () => {
     expect(filterOfficials(officials, { officeType: 'mayor_magistrate' }).map((o) => o.slug)).toEqual(['s3']);
   });
+
+  it('預設限制 30 筆結果', () => {
+    const manyOfficials = Array.from({ length: 50 }, (_, i) => ({
+      name: `官員${i}`,
+      slug: `s${i}`,
+      party: '測試黨',
+      officeType: 'legislator',
+      district: '測試區',
+      totalIncome: 5000 - i * 10,
+    }));
+    const result = filterOfficials(manyOfficials, {});
+    expect(result).toHaveLength(30);
+  });
 });
 
 describe('collectParties', () => {

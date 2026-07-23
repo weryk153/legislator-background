@@ -91,14 +91,17 @@ export function rankDonors(
     .slice(0, limit);
 }
 
-/** 政治人物搜尋結果套用政黨/職務篩選（依 official 本人屬性），排序固定依獻金總收入 desc。 */
+/** 政治人物搜尋結果套用政黨/職務篩選（依 official 本人屬性），排序固定依獻金總收入 desc；預設限 30 筆。 */
 export function filterOfficials(
   officials: Official[],
   q: Pick<DonorFilterQuery, 'party' | 'officeType'>,
+  opts: { limit?: number } = {},
 ): Official[] {
+  const { limit = 30 } = opts;
   return officials
     .filter((o) => (!q.party || o.party === q.party) && (!q.officeType || o.officeType === q.officeType))
-    .sort((a, b) => b.totalIncome - a.totalIncome);
+    .sort((a, b) => b.totalIncome - a.totalIncome)
+    .slice(0, limit);
 }
 
 /** 從有連結受贈者（slug 非 null）動態收集 distinct 政黨，依出現次數降冪排序。 */
