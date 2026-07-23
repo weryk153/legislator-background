@@ -6,6 +6,7 @@ import { parseArdataCsv, aggregateAccounts, type DonationRow } from '../lib/arda
 
 const here = dirname(fileURLToPath(import.meta.url));
 const csv = readFileSync(join(here, '..', 'fixtures', 'ardata-sample.csv'), 'utf8');
+const malformedCsv = readFileSync(join(here, '..', 'fixtures', 'ardata-malformed.csv'), 'utf8');
 
 describe('parseArdataCsv', () => {
   it('解析所有列，含引號內逗號', () => {
@@ -25,6 +26,59 @@ describe('parseArdataCsv', () => {
       '甲,某選舉,首次申報,個人捐贈收入,丙,162000.00,0.00\n');
     expect(rows[0].income).toBe(1234567);
     expect(rows[1].income).toBe(162000); // digit-strip 會錯成 16200000，必須用小數解析
+  });
+});
+
+describe('splitCsv — 不成對引號不吞列（回歸：臺中市議員收入檔遮罩電話吞掉 6,356 列）', () => {
+  it('遮罩電話等不成對引號視為字面字元，不進入「吞到下一個引號」的黑洞', () => {
+    const rows = parseArdataCsv(malformedCsv);
+    // 前後正常列都要在：不因中間一列的不成對引號/裸換行斷列而被吞掉或跟後面合併
+    expect(rows.some((r) => r.counterparty === '陳大文' && r.income === 50000)).toBe(true);
+    expect(rows.some((r) => r.counterparty === '林小美' && r.income === 30000)).toBe(true);
+    expect(rows.some((r) => r.counterparty === '王小明' && r.income === 15000)).toBe(true);
+    expect(rows.some((r) => r.counterparty === '李大同' && r.income === 40000)).toBe(true);
+  });
+  it('未加引號欄位中的裸換行造成的殘段列被跳過，不與後面的正常列合併', () => {
+    const rows = parseArdataCsv(malformedCsv);
+    // 被裸換行斷開的「測試協會」列欄數對不上 header，應整筆跳過，不產生半調子資料
+    expect(rows.some((r) => r.counterparty === '測試協會')).toBe(false);
+    // 緊接在殘段之後的正常列（李大同）金額不受影響（沒被錯位污染）
+    const li = rows.find((r) => r.counterparty === '李大同')!;
+    expect(li.income).toBe(40000);
+    expect(li.account).toBe('乙候選人');
+  });
+  it('正確加引號且內含逗號的欄位仍正常解析（既有能力不因硬化引號規則而喪失）', () => {
+    const rows = parseArdataCsv(malformedCsv);
+    const row = rows.find((r) => r.counterparty === '測試建設股份有限公司, 分公司');
+    expect(row).toBeDefined();
+    expect(row!.income).toBe(200000);
+  });
+  it('欄位以字面 " 開頭但同列內找不到合法關閉引號，不當作開引號（回歸：111年臺北市議員選舉支出檔某支出用途欄以 " 開頭卻無配對關閉引號，曾把中間 273 列的裸換行吞成同一欄位、把 洪健益 支出吞成 0）', () => {
+    const header = '擬參選人／政黨,選舉名稱,申報序號／年度,收支科目,捐贈者／支出對象,收入金額,支出金額,支出用途\n';
+    const rows = parseArdataCsv(
+      header +
+      '甲,某選舉,首次申報,宣傳支出,某廠商,0,1000,"NO.雄獅奇異筆-紅色未關閉引號的自由文字\n' +
+      '乙,某選舉,首次申報,個人捐贈收入,某人,2000,0,正常列\n',
+    );
+    // 兩列都要各自成立：前一列的未關閉引號不可把後一列的換行吞掉、合併成一列
+    expect(rows).toHaveLength(2);
+    expect(rows[0].account).toBe('甲');
+    expect(rows[0].expense).toBe(1000);
+    expect(rows[1].account).toBe('乙');
+    expect(rows[1].income).toBe(2000);
+  });
+});
+
+describe('parseArdataCsv — 列形驗證與跳過門檻', () => {
+  it('跳過筆數在門檻內：正常回傳可解析的列，不拋錯', () => {
+    // ardata-malformed.csv 只有 1 筆（3 個裸換行殘段）形狀不符，遠低於門檻，不應拋錯
+    expect(() => parseArdataCsv(malformedCsv)).not.toThrow();
+  });
+  it('跳過筆數超過門檻（max(20, 1%)）時，寧可整體失敗也不要吞資料', () => {
+    const header = '擬參選人／政黨,選舉名稱,申報序號／年度,收支科目,捐贈者／支出對象,收入金額,支出金額\n';
+    // 25 列全部欄數不符（只有 3 欄，header 是 7 欄），總列數 25 → 門檻 max(20, 1) = 20，25 > 20 應拋錯
+    const badRows = Array.from({ length: 25 }, (_, i) => `甲,乙,丙${i}\n`).join('');
+    expect(() => parseArdataCsv(header + badRows)).toThrow(/列形不符跳過 25 列/);
   });
 });
 

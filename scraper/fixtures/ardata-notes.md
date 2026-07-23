@@ -49,3 +49,13 @@ https://ardata.cy.gov.tw/api/v1/Search/download
 （截至偵察日，平台上沒有第11屆立委補選的資料包；其餘補選均非本站涵蓋職務或非現任屆。）
 
 人類可核對入口（source.url 用）：https://ardata.cy.gov.tw/data/downloads/election
+
+## 已知限制（殘餘風險，未觀測到實例）
+
+同姓名、同縣市、同職務類型，但一位是現任、一位是落選人：ardata-match.ts 的比對邏輯以
+`姓名 + office_type + district 前綴 + is_incumbent` 篩選 officials，落選人本來就不在
+officials 的現任名單裡，理論上不會被選進候選池，故不會混淆。但彙總（aggregateAccounts）
+本身是「依姓名/選舉名稱/年度/area 分組」，若監察院整批檔裡剛好也有同姓名的落選人專戶
+被下載進同一批來源檔（現況抓取範圍限縮在現任該屆選舉，理論上不會發生），兩人的收支會被
+併成同一筆、無法從遮罩後的 CSV 資料反查區分。目前驗證未發現任何實際案例，僅記錄為
+殘餘風險，供未來擴大抓取範圍或發現異常彙總數字時排查方向。

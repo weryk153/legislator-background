@@ -34,27 +34,64 @@ const HEADER_ALIASES: Record<string, keyof DonationRow> = {
   '收入金額': 'income', '支出金額': 'expense',
 };
 
-/** RFC4180 風格 CSV 拆列（支援雙引號包裹、引號內逗號與換行、"" 跳脫）。 */
+// 實際資料的引號常不成對（如遮罩電話 `"+ "*****"`），不能用「見到 " 就切換模式」的天真
+// 作法 — 那會在下一個不成對的 " 出現前，把後面整段（可能數千列）都吞進同一欄位。
+// 規則改為：" 只在欄位開頭才視為「開引號」；引號內的 " 只有在後面緊接逗號/換行/EOF 時
+// 才視為「關引號」，否則是字面 "；不在欄位開頭出現的 " 一律是字面字元。
+//
+// 這仍不夠：實際資料裡也有「支出用途」等自由文字欄位，內容本身以 " 開頭（當作引號/吋
+// 符號用，非 CSV 引號語意），但整欄之後再也找不到配對的關閉引號（例：某列的支出用途
+// 開頭是 "NO.雄獅奇異筆...，直到 273 列後才出現下一個 "）。若仍無條件開引號模式，會把
+// 中間所有列的換行都當成欄位內容吞掉——欄數剛好還是會對上 header（因為只有一個欄位被
+// 撐大），列數驗證抓不到，是比遮罩電話更隱蔽的吞列（曾在此發現 洪健益 支出被吞成 0）。
+// 因此加一個「同列內是否找得到合法關閉引號」的前瞻：找不到就不當作開引號（該 " 視為
+// 字面字元，欄位照未加引號規則處理），避免引號狀態跨越真正的裸換行列邊界。此資料集本來
+// 就沒有合法的「跨列加引號」欄位（唯一的裸換行案例是未加引號的，見 parseArdataCsv）。
+function closesOnSameLine(text: string, from: number): boolean {
+  for (let i = from; i < text.length; i++) {
+    const ch = text[i];
+    if (ch === '"') {
+      const next = text[i + 1];
+      if (next === undefined || next === ',' || next === '\n' || next === '\r') return true;
+      continue; // 字面 "，繼續往後找
+    }
+    if (ch === '\n' || ch === '\r') return false; // 撞到裸換行仍未關閉 → 這個 " 不算開引號
+  }
+  return true; // 到 EOF 都沒撞到換行，直接關在檔尾也算合法
+}
+
+/** RFC4180 風格 CSV 拆列，但引號規則對真實資料的不成對引號較寬容（見上）。 */
 export function splitCsv(text: string): string[][] {
   const rows: string[][] = [];
-  let field = '', row: string[] = [], inQuotes = false;
+  let field = '', row: string[] = [], inQuotes = false, fieldStart = true;
+  const pushField = () => { row.push(field); field = ''; fieldStart = true; };
+  const pushRow = () => {
+    if (row.some((c) => c.trim() !== '')) rows.push(row);
+    row = [];
+  };
   for (let i = 0; i < text.length; i++) {
     const ch = text[i];
     if (inQuotes) {
       if (ch === '"') {
-        if (text[i + 1] === '"') { field += '"'; i++; } else inQuotes = false;
+        const next = text[i + 1];
+        if (next === undefined || next === ',' || next === '\n' || next === '\r') inQuotes = false;
+        else field += '"'; // 引號內的 " 但後面不是分隔字元 → 字面 "，不關閉引號
       } else field += ch;
-    } else if (ch === '"') inQuotes = true;
-    else if (ch === ',') { row.push(field); field = ''; }
-    else if (ch === '\n' || ch === '\r') {
+      continue;
+    }
+    if (fieldStart && ch === '"' && closesOnSameLine(text, i + 1)) { inQuotes = true; fieldStart = false; continue; }
+    if (ch === ',') { pushField(); continue; }
+    if (ch === '\n' || ch === '\r') {
       if (ch === '\r' && text[i + 1] === '\n') i++;
-      row.push(field); field = '';
-      if (row.some((c) => c.trim() !== '')) rows.push(row);
-      row = [];
-    } else field += ch;
+      pushField();
+      pushRow();
+      continue;
+    }
+    field += ch;
+    fieldStart = false;
   }
-  row.push(field);
-  if (row.some((c) => c.trim() !== '')) rows.push(row);
+  pushField();
+  pushRow();
   return rows;
 }
 
@@ -66,7 +103,7 @@ const toAmount = (s: string): number => {
 };
 
 export function parseArdataCsv(text: string): DonationRow[] {
-  const table = splitCsv(text.replace(/^﻿/, ''));
+  const table = splitCsv(text.replace(/^\uFEFF/, ''));
   if (table.length === 0) return [];
   const header = table[0].map((h) => h.trim());
   const idx = new Map<keyof DonationRow, number>();
@@ -75,15 +112,32 @@ export function parseArdataCsv(text: string): DonationRow[] {
     .filter((k) => !idx.has(k));
   if (missing.length) throw new Error(`ardata CSV 缺必要欄位: ${missing.join(',')}（header: ${header.join('|')}）`);
   const cell = (r: string[], k: keyof DonationRow) => (idx.has(k) ? (r[idx.get(k)!] ?? '').trim() : '');
-  return table.slice(1).map((r) => ({
-    account: cell(r, 'account'),
-    electionName: cell(r, 'electionName'),
-    reportSeq: cell(r, 'reportSeq'),
-    category: cell(r, 'category'),
-    counterparty: cell(r, 'counterparty'),
-    income: toAmount(cell(r, 'income')),
-    expense: toAmount(cell(r, 'expense')),
-  })).filter((r) => r.account !== '');
+
+  // 列形驗證：欄數與 header 不符的列（通常是未加引號欄位裡混進的裸換行，把一列拆成
+  // 好幾個殘段）一律跳過，不強行對位塞值——否則統編/日期等字串會錯位跑進金額欄。
+  // 跳過筆數若異常多，代表拆列本身壞了（如引號硬化失效），寧可整檔失敗也不要吞資料。
+  const dataRows = table.slice(1);
+  const rows: DonationRow[] = [];
+  let skipped = 0;
+  for (const r of dataRows) {
+    if (r.length !== header.length) { skipped++; continue; }
+    rows.push({
+      account: cell(r, 'account'),
+      electionName: cell(r, 'electionName'),
+      reportSeq: cell(r, 'reportSeq'),
+      category: cell(r, 'category'),
+      counterparty: cell(r, 'counterparty'),
+      income: toAmount(cell(r, 'income')),
+      expense: toAmount(cell(r, 'expense')),
+    });
+  }
+  const threshold = Math.max(20, Math.ceil(dataRows.length * 0.01));
+  if (skipped > threshold) {
+    throw new Error(
+      `ardata CSV 列形不符跳過 ${skipped} 列（門檻 ${threshold}，總資料列 ${dataRows.length}）— 疑似拆列失敗，中止解析`,
+    );
+  }
+  return rows.filter((r) => r.account !== '');
 }
 
 // 收支科目 → 捐贈者類別（大額捐贈者表用）。匿名/其他不進捐贈者表。

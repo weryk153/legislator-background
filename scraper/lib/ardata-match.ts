@@ -11,7 +11,8 @@ export type MatchResult =
   | { status: 'matched'; officialId: string }
   | { status: 'none' | 'ambiguous'; reason: string };
 
-/** 從 ardata 選舉名稱推公職類型；認不出（總統、鄉鎮市長/村里長等）回 null。 */
+/** 從 ardata 選舉名稱推公職類型；認不出（總統、鄉鎮市長/村里長等）回 null。
+ * 本站抓取範圍（現任席次）對照表見 scraper/fixtures/ardata-notes.md 的「本專案抓取範圍」表。 */
 export function officeTypeOfElection(electionName: string): OfficialLite['office_type'] | null {
   const s = electionName ?? '';
   if (/立法委員/.test(s)) return 'legislator';

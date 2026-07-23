@@ -154,14 +154,13 @@ const jsonLd = [
     {o.officeType === "legislator" && /不分區|全國/.test(o.district) ? (
       <p class="dim none">不分區立法委員之政治獻金依法申報於推薦政黨名下，無個人專戶。</p>
     ) : o.donations.length === 0 ? (
-      <p class="dim none">尚無資料（查無其現任該席選舉之申報專戶）</p>
+      <p class="dim none">尚無資料（本站未自監察院整批檔取得其申報專戶）</p>
     ) : (
       o.donations.map((d) => (
         <article class="card entry">
           <div class="entry-head">{d.electionName}</div>
           <div class="entry-meta">
-            總收入 <span class="num">NT$ {fmt(d.totalIncome)}</span>
-            總支出 <span class="num">NT$ {fmt(d.totalExpense)}</span>
+            總收入 <span class="num">NT$ {fmt(d.totalIncome)}</span>　總支出 <span class="num">NT$ {fmt(d.totalExpense)}</span>
           </div>
           <div class="don-types">
             {Object.entries(d.incomeByType).sort((a, b) => b[1] - a[1]).map(([k, v]) => (
