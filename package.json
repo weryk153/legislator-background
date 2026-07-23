@@ -22,7 +22,8 @@
     "enrich:photos": "tsx scraper/enrich-legislator-photos.ts",
     "enrich:mayor-photos": "tsx scraper/enrich-mayor-photos.ts",
     "judgments:discover": "tsx scraper/judgments-discover.ts",
-    "judgments:record": "tsx scraper/judgments-record.ts"
+    "judgments:record": "tsx scraper/judgments-record.ts",
+    "donations:record": "tsx scraper/donations-record.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
