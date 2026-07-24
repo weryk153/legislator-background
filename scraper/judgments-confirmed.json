@@ -328,5 +328,35 @@
     "is_final": true,
     "judgment_date": "2025-05-29",
     "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TNHM,112%2c%e4%b8%8a%e8%a8%b4%2c1254%2c20250529%2c2"
+  },
+  {
+    "name": "徐永煌",
+    "case_reason": "貪污治罪條例違法圖利罪等",
+    "court": "最高法院",
+    "case_number": "114年度台上字第3467號",
+    "outcome": "對於主管事務違法圖利罪處有期徒刑2年10月、褫奪公權2年確定（三審上訴駁回）；經辦公用工程收取回扣罪（更二審判9年4月）部分經最高法院撤銷發回臺中高分院更審中，尚未確定",
+    "is_final": true,
+    "judgment_date": "2026-06-24",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TPSM,114,台上,3467,20260624,1"
+  },
+  {
+    "name": "吳瑞芳",
+    "case_reason": "貪污治罪條例（詐領公費助理費）",
+    "court": "臺灣高等法院臺中分院",
+    "case_number": "113年度上更一字第8號",
+    "outcome": "詐領公費助理費（貪污治罪條例），更一審應執行有期徒刑2年、緩刑5年、向公庫支付150萬元，未再上訴而確定；內政部依法解職",
+    "is_final": true,
+    "judgment_date": "2024-07-31",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TCHM,113,上更一,8,20240731,1"
+  },
+  {
+    "name": "張秉鈞",
+    "case_reason": "貪污治罪條例（利用職務機會詐取財物）",
+    "court": "最高法院",
+    "case_number": "114年度台上字第497號",
+    "outcome": "公務員利用職務機會詐取財物罪處有期徒刑1年11月、褫奪公權4年、附負擔緩刑5年確定（三審上訴駁回，維持高院113年度上訴字第2310號）",
+    "is_final": true,
+    "judgment_date": "2025-03-06",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TPSM,114,台上,497,20250306,1"
   }
 ]
