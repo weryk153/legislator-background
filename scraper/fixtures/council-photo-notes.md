@@ -173,3 +173,11 @@
 - 彰化縣 施嘉華：唯一個人頁快照（2023-09-25）引用之圖檔未被抓存。
 - 雲林縣 蕭慧敏：舊版頁照片為 inline base64（無獨立圖檔 URL），新版 CMS 快照始於 2026-04（已離任）。
 - 新竹縣 陳德木：離任前僅兩次全站掃描（2022-12-30/2023-02-14），其個人頁皆未被涵蓋。
+
+**2026-07-24 補記：以上 15 位已全數用中選會選舉公報補齊**（`eebulletin.cec.gov.tw/?dir=111/<縣市>`
+→ `02縣議員` 分類 → 對應選舉區 PDF，B/W 掃描但姓名可精確比對）。逐一來源與裁切方式見
+`scraper/fixtures/photo-attributions.md`；照片已直接寫入 `public/photos/councilors/` 並更新
+`officials.photo_url`（`scraper/set-bulletin-photos.ts`，因 photos-record.ts 的下載器僅支援
+http(s) 而非本機檔案，故未走 manifest 比對流程）。此公報站點無 API/清單頁，只能靠「先列出
+`?dir=` 目錄結構找到縣市/選區 PDF 檔名，再用 PyMuPDF 轉圖、人工比對姓名鎖定相片格」的方式取得，
+若日後重跑同類任務可直接沿用此站點與流程。
