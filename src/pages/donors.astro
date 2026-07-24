@@ -12,8 +12,15 @@ const desc = "查詢政治人物的政治獻金，或以公司名稱／統一編
 // 靜態輸出成純 HTML，供爬蟲索引；瀏覽器端 JS 成功載入資料後會移除此區塊（見 DonorSearch.svelte）。
 type DonorsFile = { generatedAt: string; donors: Donor[] };
 const donorsPath = join(process.cwd(), "public", "data", "donors.json");
-const donorsFile: DonorsFile = JSON.parse(readFileSync(donorsPath, "utf8"));
-const staticRanking = rankDonors(donorsFile.donors, { sort: "count" }, { minCount: 2, limit: 50 });
+// 檔案缺漏/損毀時退化為無靜態排行（頁面仍可由 client fetch 運作），不讓整個 build 失敗——
+// 與 astro.config.mjs / Base.astro 讀 meta.json 的防護慣例一致。
+let staticRanking: ReturnType<typeof rankDonors> = [];
+try {
+  const donorsFile: DonorsFile = JSON.parse(readFileSync(donorsPath, "utf8"));
+  staticRanking = rankDonors(donorsFile.donors, { sort: "count" }, { minCount: 2, limit: 50 });
+} catch (e) {
+  console.warn(`donors.json 讀取失敗，/donors 靜態排行略過：${(e as Error).message}`);
+}
 const fmt = (n: number) => new Intl.NumberFormat("zh-Hant").format(n);
 const officeName: Record<string, string> = { legislator: "立委", mayor_magistrate: "縣市首長", councilor: "議員" };
 ---
