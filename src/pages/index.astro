@@ -25,6 +25,15 @@ const jsonLd = [
     url: siteUrl || undefined,
     logo: siteUrl ? `${siteUrl}/og.png` : undefined,
   },
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    name: "政治人物背景資料庫 資料集",
+    description: desc,
+    url: siteUrl || undefined,
+    creator: { "@type": "Organization", name: "政治人物背景資料庫（本站）" },
+    license: "資料彙整自公開來源（立法院開放資料、中央選舉委員會、司法院裁判書系統、監察院公職人員財產申報、維基百科），非官方資料，請以原始出處為準。",
+  },
 ];
 ---
 <Base title="政治人物背景資料庫" description={desc}>

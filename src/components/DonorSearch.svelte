@@ -18,6 +18,9 @@
       const res = await fetch('/data/donors.json');
       if (!res.ok) throw new Error(String(res.status));
       data = await res.json();
+      // donors.astro 於建置時預先輸出同一份排行榜的純 HTML（供爬蟲索引，見該檔註解）。
+      // 一旦本元件成功接手（互動版可搜尋/篩選），移除靜態版避免重複內容；載入失敗則保留靜態版作為後備內容。
+      document.getElementById('static-ranking')?.remove();
     } catch { failed = true; }
   });
 

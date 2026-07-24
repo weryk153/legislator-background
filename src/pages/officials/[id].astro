@@ -49,9 +49,12 @@ const assetCategoryName: Record<string, string> = {
   securities: "有價證券", investment: "事業投資", claim: "債權", debt: "債務", other: "其他",
 };
 const officeName: Record<string, string> = { legislator: "立委", mayor_magistrate: "縣市首長", councilor: "議員" };
-const desc = `${o.name}（${o.party}・${officeName[o.officeType]}・${o.district}）的經歷、財產申報與相關爭議報導整理，每筆皆附公開資料出處。`;
+const title = `${o.name}（${o.party}・${officeName[o.officeType]}・${o.district}）經歷、判決、財產申報與政治獻金｜政治人物背景`;
+const desc = `${o.name}（${o.party}・${officeName[o.officeType]}・${o.district}）的經歷、財產申報、政治獻金與相關爭議報導整理，每筆皆附公開資料出處。`;
 const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const homeUrl = Astro.site ? Astro.site.href : undefined;
+// 大頭照為站內收錄之直式照片（非標準 1200x630），供 og:image 與 JSON-LD image 使用。
+const photoUrl = o.photoUrl && Astro.site ? new URL(o.photoUrl, Astro.site).href : undefined;
 const jsonLd = [
   {
     "@context": "https://schema.org",
@@ -60,6 +63,7 @@ const jsonLd = [
     jobTitle: officeName[o.officeType],
     affiliation: { "@type": "Organization", name: o.party },
     url: pageUrl,
+    ...(photoUrl && { image: photoUrl }),
   },
   {
     "@context": "https://schema.org",
@@ -71,7 +75,14 @@ const jsonLd = [
   },
 ];
 ---
-<Base title={`${o.name}｜政治人物背景`} description={desc} ogType="profile">
+<Base
+  title={title}
+  description={desc}
+  ogType="profile"
+  ogImage={photoUrl}
+  ogImagePortrait={Boolean(photoUrl)}
+  ogImageAlt={photoUrl ? o.name : undefined}
+>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <a href="/" class="back">← 返回總覽</a>
 
