@@ -70,7 +70,6 @@
 {:else}
   {#if q.length < 2}
     <p class="stats num">收錄營利事業 {fmt(data.donors.length)} 家・捐贈總額 NT$ {fmt(totalAmount)}・{data.elections.length} 場選舉（{data.generatedAt} 匯出）</p>
-    <h2>捐給最多位現任政治人物的企業</h2>
     {#each ranking as { donor, view } (donor.uid)}
       <article class="card donor">
         <button class="donor-head" aria-expanded={!!expanded[donor.uid]} on:click={() => (expanded[donor.uid] = !expanded[donor.uid])}>

@@ -31,7 +31,6 @@ const officeName: Record<string, string> = { legislator: "立委", mayor_magistr
   </header>
   <DonorSearch client:load />
   <div id="static-ranking">
-    <h2>捐給最多位現任政治人物的企業</h2>
     <ol class="static-list">
       {staticRanking.map(({ donor, view }) => (
         <li>
