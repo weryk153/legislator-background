@@ -16,7 +16,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import sharp from 'sharp';
 import { loadEnv } from './lib/loadEnv';
-import { matchManifest, type ManifestEntry, type OfficialLite } from './lib/photos';
+import { manifestFilenameMatchesCounty, matchManifest, type ManifestEntry, type OfficialLite } from './lib/photos';
 
 loadEnv();
 const here = dirname(fileURLToPath(import.meta.url));
@@ -25,6 +25,9 @@ const OUT_DIR = join(here, '..', 'public', 'photos', 'councilors');
 const UA = 'legislator-background-bot/1.0 (public-data; +https://github.com/weryk153/legislator-background)';
 const DRY_RUN = !!process.env.DRY_RUN;
 const FORCE = !!process.env.FORCE;
+// 開啟後：候選池含已解職議員（見 scraper/lib/photos.ts matchManifest 的 includeDeparted），
+// 用於比對 archived- 前綴的歷史 manifest（web.archive.org 圖片網址，下載流程本身不變）。
+const INCLUDE_DEPARTED = !!process.env.INCLUDE_DEPARTED;
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 // 22 縣市（沿用 scraper/lib/ardata-match.ts 的全名清單）。逐一檢查對應 manifest 是否已到齊。
@@ -78,7 +81,7 @@ async function main() {
 
   const allCouncilors = await fetchAllCouncilors(sb);
   const asLite = (o: Official): OfficialLite => (
-    { id: o.id, slug: o.slug, name: o.name, district: o.district, isIncumbent: o.is_incumbent }
+    { id: o.id, slug: o.slug, name: o.name, district: o.district, isIncumbent: o.is_incumbent, photoUrl: o.photo_url }
   );
   const officialsByCounty = new Map<string, OfficialLite[]>();
   for (const county of CITY_NAMES) {
@@ -88,67 +91,81 @@ async function main() {
 
   // 蒐集 agent 的檔名慣例偶有出入（如「雲林縣議會.json」而非設計文件的「雲林縣.json」）：
   // 以「檔名開頭是否為該縣市全名」寬鬆比對，而非要求精確檔名。22 縣市全名彼此皆非前綴關係，
-  // 故此寬鬆比對不會造成跨縣市誤讀。
+  // 故此寬鬆比對不會造成跨縣市誤讀。「archived-」前綴的歷史 manifest（已解職議員，
+  // web.archive.org 圖片網址）視為同一縣市的另一份 manifest，兩者並存時皆會處理
+  // （見 manifestFilenameMatchesCounty）。
   const manifestFiles = existsSync(MANIFEST_DIR) ? readdirSync(MANIFEST_DIR).filter((f) => f.endsWith('.json')) : [];
-  const manifestFileOf = (county: string): string | undefined => manifestFiles.find((f) => f.startsWith(county));
+  const manifestFilesOf = (county: string): string[] =>
+    manifestFiles.filter((f) => manifestFilenameMatchesCounty(f, county));
 
   const missing: string[] = [];
   let totalMatched = 0, totalSkipped = 0;
   let downloaded = 0, idempotentSkip = 0, failed = 0;
 
   for (const county of CITY_NAMES) {
-    const manifestFile = manifestFileOf(county);
-    if (!manifestFile) { missing.push(county); continue; }
-    const manifestPath = join(MANIFEST_DIR, manifestFile);
+    const manifestFilesForCounty = manifestFilesOf(county);
+    if (manifestFilesForCounty.length === 0) { missing.push(county); continue; }
 
-    let manifest: ManifestEntry[];
-    try {
-      manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
-    } catch (e) {
-      console.log(`✗ ${county}: manifest JSON 解析失敗 — ${e instanceof Error ? e.message : String(e)}`);
-      continue;
-    }
-
-    const officials = officialsByCounty.get(county) ?? [];
-    const { matched, skipped } = matchManifest(officials, manifest, county);
-    totalMatched += matched.length;
-    totalSkipped += skipped.length;
-
+    let countyMatched = 0, countySkipped = 0;
     let countyOk = 0, countySkipIdem = 0, countyFail = 0;
-    for (const m of matched) {
-      const off = byId.get(m.officialId);
-      if (!off) continue; // 理論上不會發生：matched 只可能來自傳入的 officials
-      const filePath = join(OUT_DIR, `${off.slug}.jpg`);
 
-      if (!FORCE && off.photo_url && existsSync(filePath)) {
-        countySkipIdem++; idempotentSkip++;
+    for (const manifestFile of manifestFilesForCounty) {
+      const manifestPath = join(MANIFEST_DIR, manifestFile);
+
+      let manifest: ManifestEntry[];
+      try {
+        manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+      } catch (e) {
+        console.log(`✗ ${county} (${manifestFile}): manifest JSON 解析失敗 — ${e instanceof Error ? e.message : String(e)}`);
         continue;
       }
 
-      try {
-        const buf = await downloadWithRetry(m.imgUrl);
-        const thumb = await sharp(buf).rotate().resize({ width: 320, withoutEnlargement: true })
-          .jpeg({ quality: 80, mozjpeg: true }).toBuffer();
-        const localPath = `/photos/councilors/${off.slug}.jpg`;
-        if (DRY_RUN) {
-          console.log(`✓(dry) ${county} ${off.name} ← ${m.imgUrl} ${(thumb.length / 1024).toFixed(0)}KB`);
-        } else {
-          writeFileSync(filePath, thumb);
-          const { error: ue } = await sb.from('officials').update({ photo_url: localPath }).eq('id', off.id);
-          if (ue) throw new Error(`db update: ${ue.message}`);
-          console.log(`✓ ${county} ${off.name} → ${localPath} ${(thumb.length / 1024).toFixed(0)}KB`);
+      const officials = officialsByCounty.get(county) ?? [];
+      const { matched, skipped } = matchManifest(officials, manifest, county, { includeDeparted: INCLUDE_DEPARTED });
+      countyMatched += matched.length;
+      countySkipped += skipped.length;
+
+      for (const m of matched) {
+        const off = byId.get(m.officialId);
+        if (!off) continue; // 理論上不會發生：matched 只可能來自傳入的 officials
+        const filePath = join(OUT_DIR, `${off.slug}.jpg`);
+
+        if (!FORCE && off.photo_url && existsSync(filePath)) {
+          countySkipIdem++; idempotentSkip++;
+          continue;
         }
-        countyOk++; downloaded++;
-      } catch (e) {
-        countyFail++; failed++;
-        console.log(`✗ ${county} ${off.name}: ${e instanceof Error ? e.message : String(e)}`);
+
+        try {
+          const buf = await downloadWithRetry(m.imgUrl);
+          const thumb = await sharp(buf).rotate().resize({ width: 320, withoutEnlargement: true })
+            .jpeg({ quality: 80, mozjpeg: true }).toBuffer();
+          const localPath = `/photos/councilors/${off.slug}.jpg`;
+          if (DRY_RUN) {
+            console.log(`✓(dry) ${county} ${off.name} ← ${m.imgUrl} ${(thumb.length / 1024).toFixed(0)}KB`);
+          } else {
+            writeFileSync(filePath, thumb);
+            const { error: ue } = await sb.from('officials').update({ photo_url: localPath }).eq('id', off.id);
+            if (ue) throw new Error(`db update: ${ue.message}`);
+            console.log(`✓ ${county} ${off.name} → ${localPath} ${(thumb.length / 1024).toFixed(0)}KB`);
+          }
+          // 同一次執行內若多份 manifest 重複列到同一人（如 archived 與現行檔並存），
+          // 就地更新本機快取，讓後續遇到同一人時的冪等判斷即時生效。
+          off.photo_url = localPath;
+          countyOk++; downloaded++;
+        } catch (e) {
+          countyFail++; failed++;
+          console.log(`✗ ${county} ${off.name}: ${e instanceof Error ? e.message : String(e)}`);
+        }
+        await sleep(1000);
       }
-      await sleep(1000);
+
+      for (const s of skipped) console.log(`— ${county} ${s.name}: ${s.reason}`);
     }
 
-    for (const s of skipped) console.log(`— ${county} ${s.name}: ${s.reason}`);
+    totalMatched += countyMatched;
+    totalSkipped += countySkipped;
     console.log(
-      `=== ${county}：matched ${matched.length}（下載 ${countyOk}、冪等跳過 ${countySkipIdem}、失敗 ${countyFail}）、skipped ${skipped.length} ===`,
+      `=== ${county}：matched ${countyMatched}（下載 ${countyOk}、冪等跳過 ${countySkipIdem}、失敗 ${countyFail}）、skipped ${countySkipped} ===`,
     );
   }
 

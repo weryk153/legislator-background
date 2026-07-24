@@ -27,8 +27,18 @@ export interface OfficialLite {
   district: string;
   // 現任與否；省略視為 true（呼叫端若只傳現任名冊，原有行為不變）。
   // 僅用於「狀態註記」skip 原因判斷（已解職/轉任 vs 查無現任）——實際掛照片
-  // 仍只會配對到現任者。
+  // 仍只會配對到現任者（除非 includeDeparted 開啟，見 MatchManifestOptions）。
   isIncumbent?: boolean;
+  // 目前的 photo_url（可能為 null/undefined）。僅在 includeDeparted 模式下用於
+  // 篩選候選池（已有照片者不再納入候選，交由呼叫端冪等機制處理）；預設模式不使用此欄位。
+  photoUrl?: string | null;
+}
+
+export interface MatchManifestOptions {
+  // 開啟後，候選池改為「該縣市尚無 photo_url 的議員（含現任與已解職/卸任）」，
+  // 而非預設的「僅現任」。用於比對 archived- 歷史 manifest，讓已解職議員也能配到照片。
+  // 其餘規則（normalize、中文前綴 fallback、同名消歧、縣市隔離）不受影響。
+  includeDeparted?: boolean;
 }
 
 export interface ManifestEntry {
@@ -51,6 +61,16 @@ export interface SkippedEntry {
 export interface MatchManifestResult {
   matched: MatchedPhoto[];
   skipped: SkippedEntry[];
+}
+
+// manifest 檔名是否屬於某縣市：接受「<縣市全名>...」（現任，如「臺北市議會.json」）
+// 或「archived-<縣市全名>...」（已解職，web.archive.org 抓取的歷史名單，如
+// 「archived-臺北市議會.json」）兩種慣例。22 縣市全名彼此皆非前綴關係，此寬鬆比對
+// 不會造成跨縣市誤讀（見 photos-record.ts 對此假設的說明）。
+const ARCHIVED_PREFIX = 'archived-';
+export function manifestFilenameMatchesCounty(filename: string, county: string): boolean {
+  const base = filename.startsWith(ARCHIVED_PREFIX) ? filename.slice(ARCHIVED_PREFIX.length) : filename;
+  return base.startsWith(county);
 }
 
 // 從選區字串抽出選區號碼（去除前導零的效果由 parseInt 天然達成），涵蓋
@@ -123,10 +143,14 @@ export function matchManifest(
   officials: OfficialLite[],
   manifest: ManifestEntry[],
   county: string,
+  options: MatchManifestOptions = {},
 ): MatchManifestResult {
   const countyOfficials = officials.filter((o) => o.district.startsWith(county));
-  // 實際掛照片只能配到現任者；isIncumbent 省略視為現任（呼叫端若只傳現任名冊維持原行為）。
-  const incumbentPool = countyOfficials.filter((o) => o.isIncumbent !== false);
+  // 預設：實際掛照片只能配到現任者；isIncumbent 省略視為現任（呼叫端若只傳現任名冊維持原行為）。
+  // includeDeparted 開啟：改納入「尚無 photo_url」的現任＋已解職者（用於比對 archived- manifest）。
+  const incumbentPool = options.includeDeparted
+    ? countyOfficials.filter((o) => !o.photoUrl)
+    : countyOfficials.filter((o) => o.isIncumbent !== false);
   const matched: MatchedPhoto[] = [];
   const skipped: SkippedEntry[] = [];
 

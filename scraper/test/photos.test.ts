@@ -1,8 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { matchManifest, type OfficialLite, type ManifestEntry } from '../lib/photos';
+import { manifestFilenameMatchesCounty, matchManifest, type OfficialLite, type ManifestEntry } from '../lib/photos';
 
-const off = (id: string, name: string, district: string, slug?: string, isIncumbent = true): OfficialLite => ({
-  id, slug: slug ?? `c-${name}`, name, district, isIncumbent,
+const off = (
+  id: string, name: string, district: string, slug?: string, isIncumbent = true, photoUrl: string | null = null,
+): OfficialLite => ({
+  id, slug: slug ?? `c-${name}`, name, district, isIncumbent, photoUrl,
 });
 
 describe('matchManifest', () => {
@@ -255,5 +257,57 @@ describe('matchManifest', () => {
     const { matched, skipped } = matchManifest(offs as any, [{ name: 'Ingay Tali穎艾達利', district: '第12選區', img_url: 'https://x/a.jpg' }], '臺南市');
     expect(matched).toHaveLength(1);
     expect(skipped).toHaveLength(0);
+  });
+
+  describe('includeDeparted (archived manifest 已解職議員)', () => {
+    it('flag on: 已解職且尚無 photo_url 的議員能被 archived manifest 配對到', () => {
+      const officials = [off('1', '陳退職', '臺北市第1選舉區', undefined, false)];
+      const manifest: ManifestEntry[] = [{ name: '陳退職', img_url: 'http://web.archive.org/x/ab.jpg' }];
+      const r = matchManifest(officials, manifest, '臺北市', { includeDeparted: true });
+      expect(r.matched).toEqual([{ officialId: '1', slug: 'c-陳退職', imgUrl: 'http://web.archive.org/x/ab.jpg' }]);
+      expect(r.skipped).toEqual([]);
+    });
+
+    it('flag off (default): 同一份 archived manifest 對已解職議員仍寧缺勿錯（查無現任）', () => {
+      const officials = [off('1', '陳退職', '臺北市第1選舉區', undefined, false)];
+      const manifest: ManifestEntry[] = [{ name: '陳退職', img_url: 'http://web.archive.org/x/ab.jpg' }];
+      const r = matchManifest(officials, manifest, '臺北市');
+      expect(r.matched).toEqual([]);
+      expect(r.skipped).toEqual([{ name: '陳退職', reason: '查無現任' }]);
+    });
+
+    it('flag on: 已有 photo_url 的議員（含現任）不再進入候選池，寧缺勿錯', () => {
+      const officials = [off('1', '已有照片', '臺北市第1選舉區', undefined, true, '/photos/councilors/x.jpg')];
+      const manifest: ManifestEntry[] = [{ name: '已有照片', img_url: 'http://web.archive.org/x/ac.jpg' }];
+      const r = matchManifest(officials, manifest, '臺北市', { includeDeparted: true });
+      expect(r.matched).toEqual([]);
+      expect(r.skipped).toEqual([{ name: '已有照片', reason: '查無現任' }]);
+    });
+
+    it('flag on: 現任且尚無 photo_url 者仍照常配對（不影響既有現任行為）', () => {
+      const officials = [off('1', '王小明', '臺北市第3選舉區')];
+      const manifest: ManifestEntry[] = [{ name: '王小明', img_url: 'http://x/a.jpg' }];
+      const r = matchManifest(officials, manifest, '臺北市', { includeDeparted: true });
+      expect(r.matched).toEqual([{ officialId: '1', slug: 'c-王小明', imgUrl: 'http://x/a.jpg' }]);
+      expect(r.skipped).toEqual([]);
+    });
+  });
+
+  describe('manifestFilenameMatchesCounty (archived- 檔名縣市解析)', () => {
+    it('一般檔名：開頭為縣市全名即為該縣市', () => {
+      expect(manifestFilenameMatchesCounty('臺北市議會.json', '臺北市')).toBe(true);
+      expect(manifestFilenameMatchesCounty('雲林縣議會.json', '雲林縣')).toBe(true);
+    });
+
+    it('archived- 前綴：剝除前綴後開頭為縣市全名即為該縣市', () => {
+      expect(manifestFilenameMatchesCounty('archived-臺北市議會.json', '臺北市')).toBe(true);
+      expect(manifestFilenameMatchesCounty('archived-雲林縣議會.json', '雲林縣')).toBe(true);
+    });
+
+    it('不比對到其他縣市，也不因 archived- 前綴誤配', () => {
+      expect(manifestFilenameMatchesCounty('archived-臺北市議會.json', '新北市')).toBe(false);
+      expect(manifestFilenameMatchesCounty('臺北市議會.json', '新北市')).toBe(false);
+      expect(manifestFilenameMatchesCounty('新北市議會.json', '臺北市')).toBe(false);
+    });
   });
 });
