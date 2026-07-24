@@ -94,7 +94,10 @@ async function main() {
   // 故此寬鬆比對不會造成跨縣市誤讀。「archived-」前綴的歷史 manifest（已解職議員，
   // web.archive.org 圖片網址）視為同一縣市的另一份 manifest，兩者並存時皆會處理
   // （見 manifestFilenameMatchesCounty）。
-  const manifestFiles = existsSync(MANIFEST_DIR) ? readdirSync(MANIFEST_DIR).filter((f) => f.endsWith('.json')) : [];
+  // archived- 開頭為 Wayback 歷史名冊（含大量「當時在任、現仍在任」者的舊照）——
+  // 只有 INCLUDE_DEPARTED 模式才讀，否則一般執行可能把現任者配到過時舊照。
+  const manifestFiles = (existsSync(MANIFEST_DIR) ? readdirSync(MANIFEST_DIR).filter((f) => f.endsWith('.json')) : [])
+    .filter((f) => INCLUDE_DEPARTED || !f.startsWith('archived-'));
   const manifestFilesOf = (county: string): string[] =>
     manifestFiles.filter((f) => manifestFilenameMatchesCounty(f, county));
 
