@@ -4,8 +4,8 @@ import type { RawEntity, RawRelationship, RawSource } from '../src/lib/types';
 
 const src: RawSource = { id: 's1', url: 'https://j', type: 'court', title: '判決', retrieved_at: '2026-06-24' };
 const officials = [
-  { id: 'a', slug: 'wang', name: '王又民', party: '無', office_type: 'councilor' as const },
-  { id: 'b', slug: 'shen', name: '沈宗隆', party: '無', office_type: 'councilor' as const },
+  { id: 'a', slug: 'wang', name: '王又民', party: '無', office_type: 'councilor' as const, photo_url: '/photos/councilors/a.jpg' },
+  { id: 'b', slug: 'shen', name: '沈宗隆', party: '無', office_type: 'councilor' as const, photo_url: null },
 ];
 const entities: RawEntity[] = [
   { id: 'e1', name: '白惠萍', entity_type: 'family_member', description: '配偶', photo_url: null, wikipedia_url: null },
@@ -55,6 +55,16 @@ describe('buildGraphData', () => {
       rel({ id: 'r2', from_id: 'b', to_id: 'a', relation_type: 'parent_child', directed: true }),
     ]);
     expect(data.edges).toHaveLength(2);
+  });
+
+  it('帶出 official 的 photoUrl', () => {
+    const { data } = buildGraphData(officials, entities, [rel({})]);
+    expect(data.nodes.find((n) => n.key === 'official:a')).toMatchObject({ photoUrl: '/photos/councilors/a.jpg' });
+  });
+
+  it('photo_url 為 null 的 official 不帶 photoUrl 欄位', () => {
+    const { data } = buildGraphData(officials, entities, [rel({})]);
+    expect(data.nodes.find((n) => n.key === 'official:b')).not.toHaveProperty('photoUrl');
   });
 });
 

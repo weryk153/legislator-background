@@ -3,7 +3,7 @@ import type {
   RawEntity, RawOfficial, RawRelationship,
 } from './types';
 
-type RawOfficialNode = Pick<RawOfficial, 'id' | 'slug' | 'name' | 'party' | 'office_type'>;
+type RawOfficialNode = Pick<RawOfficial, 'id' | 'slug' | 'name' | 'party' | 'office_type' | 'photo_url'>;
 const keyOf = (type: 'official' | 'entity', id: string) => `${type}:${id}`;
 
 // relation_type → 白話標籤。單一來源，供檔案頁文字清單與（Phase 2）全局關係圖共用。
@@ -20,6 +20,10 @@ export const ENTITY_LABEL: Record<EntityType, string> = {
   businessperson: '企業界', religious: '宗教界', celebrity: '演藝界', media: '媒體界',
   family_member: '家屬', organization: '組織／法人', other: '其他公眾人物',
 };
+// 公職類別 → 白話標籤。供關係圖節點標籤與檔案頁標題共用。
+export const OFFICE_LABEL: Record<OfficeType, string> = {
+  legislator: '立委', mayor_magistrate: '縣市首長', councilor: '議員',
+};
 
 // Pure: raw rows → GraphData + validation errors. No fs / no network (unit-testable, browser-safe).
 export function buildGraphData(
@@ -35,6 +39,8 @@ export function buildGraphData(
     allNodes.set(keyOf('official', o.id), {
       key: keyOf('official', o.id), name: o.name, kind: 'official',
       subtype: o.office_type, slug: o.slug, party: o.party, officeType: o.office_type as OfficeType,
+      // photo_url 為 null 時整個欄位省略，讓 graph.json 不長出一堆 "photoUrl":null
+      ...(o.photo_url ? { photoUrl: o.photo_url } : {}),
     });
   }
   for (const e of entities) {

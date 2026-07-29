@@ -58,6 +58,7 @@ export interface GraphNode {
   slug?: string;          // official 才有，可連回檔案頁
   party?: string;         // official
   officeType?: OfficeType;// official
+  photoUrl?: string;      // official 才有；photo_url 為 null 時不帶此欄位
   description?: string;   // entity
 }
 export interface GraphEdge {

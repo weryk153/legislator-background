@@ -18,11 +18,11 @@ async function main() {
   const supabase = createClient(url, key);
 
   // officials（只取建節點需要的欄位，分頁撈）
-  const officials: { id: string; slug: string; name: string; party: string; office_type: string }[] = [];
+  const officials: { id: string; slug: string; name: string; party: string; office_type: string; photo_url: string | null }[] = [];
   const pageSize = 1000;
   for (let from = 0; ; from += pageSize) {
     const { data, error } = await supabase
-      .from('officials').select('id, slug, name, party, office_type').range(from, from + pageSize - 1);
+      .from('officials').select('id, slug, name, party, office_type, photo_url').range(from, from + pageSize - 1);
     if (error) throw new Error(`officials query failed: ${error.message}`);
     const page = data ?? [];
     officials.push(...(page as typeof officials));
