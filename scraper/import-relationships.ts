@@ -66,14 +66,19 @@ async function main() {
     }
   }
 
-  // entity 去重快取（name → id）
+  // entity 去重快取。鍵須為「姓名＋描述」而非姓名單獨——同名不同人時常見（如「李佳芬」
+  // 同時是謝龍介之妻〔民宿經營者〕與韓國瑜之妻〔前雲林縣議員、維多利亞學校財團法人董事長〕）。
+  // 若只用姓名當鍵，兩人會被收斂成同一筆 entity，後寫入者的 counterpartRole 遭靜默丟棄，
+  // 在關係圖上畫出「謝龍介與韓國瑜共用配偶」這種錯誤連線——正是本站「常見名寧缺勿錯」
+  // 原則要防止的那種失誤。
   const entityCache = new Map<string, string>();
   async function ensureEntity(name: string, etype: string, desc: string): Promise<string> {
-    if (entityCache.has(name)) return entityCache.get(name)!;
+    const cacheKey = `${name}::${desc}`;
+    if (entityCache.has(cacheKey)) return entityCache.get(cacheKey)!;
     const subtype = ENTITY_TYPES.has(etype) ? etype : 'other';
     const { data, error } = await supabase.from('entities').insert({ name, entity_type: subtype, description: desc }).select('id').single();
     if (error) throw new Error(`entity insert failed (${name}): ${error.message}`);
-    entityCache.set(name, data.id);
+    entityCache.set(cacheKey, data.id);
     return data.id;
   }
 
@@ -140,6 +145,22 @@ async function main() {
 
   console.log(`匯入完成：${inserted} 筆關係、entity ${entityCache.size} 筆；清孤立 entity ${orphans.length} 筆；略過 ${skipped}`);
   if (skips.length) console.log('略過明細:\n  ' + skips.join('\n  '));
+
+  // 覆核警示：entity 姓名若能在 officials 唯一匹配，很可能是「同一人被記成兩筆」
+  // （本站已發生過的真實問題，見 scraper/merge-duplicate-entities.ts）。
+  // 這裡只列出來供人工核對，絕不自動合併/升級為 official——姓名單獨判定正是
+  // 「常見名寧缺勿錯」原則要防止的錯誤，合併與否須由人查證職務描述後手動處理。
+  const { data: allEntities, error: entScanErr } = await supabase.from('entities').select('id, name, description');
+  if (entScanErr) throw new Error(`entities scan (覆核警示) failed: ${entScanErr.message}`);
+  const suspects = ((allEntities ?? []) as { id: string; name: string; description: string | null }[])
+    .map((e) => ({ ...e, matchOfficialId: officialId(e.name) }))
+    .filter((e) => e.matchOfficialId);
+  if (suspects.length) {
+    console.log(`\n⚠️ 待人工覆核（${suspects.length} 筆）：以下 entity 姓名可在 officials 唯一匹配，疑為同一人重複記錄，未自動處理：`);
+    for (const s of suspects) console.log(`  - ${s.name}（entity ${s.id} ↔ official ${s.matchOfficialId}）：${s.description ?? '（無描述）'}`);
+  } else {
+    console.log('\n覆核：沒有 entity 姓名可唯一匹配 officials，未發現疑似重複記錄。');
+  }
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });
