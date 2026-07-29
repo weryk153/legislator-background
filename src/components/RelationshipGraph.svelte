@@ -76,7 +76,8 @@
 
   onMount(() => {
     let cy: { destroy: () => void; style: (s: unknown) => { update: () => void };
-             layout: (o: unknown) => { run: () => void }; on: (...a: unknown[]) => void } | null = null;
+             layout: (o: unknown) => { run: () => void }; on: (...a: unknown[]) => void;
+             zoom: () => number; minZoom: (z: number) => unknown } | null = null;
     let mo: MutationObserver | null = null;
     let tip: HTMLDivElement | null = null;
     let hideTimer: ReturnType<typeof setTimeout>;
@@ -119,6 +120,13 @@
               levelWidth: () => 1, minNodeSpacing: 44, padding: 28, animate: false, startAngle: Math.PI / 4 }
           : { name: 'cose', padding: 30, animate: false, nodeRepulsion: 9000, idealEdgeLength: 110 };
         cy!.layout(layout).run();
+
+        // global（/graph，363 節點）：layout 的 fit（預設開啟）跑完後，此刻的縮放
+        // 就是「整張圖剛好塞進畫布」的比例。把它訂為 minZoom 下限——使用者仍可自由
+        // 放大，但滾輪縮小到底也只會停在全圖可見，不會縮到一小撮塞在畫布角落的縮圖。
+        // 必須放在 layout().run() 之後才讀得到 fit 完成後的值；ego 模式已用 maxZoom
+        // 控制上限，不加下限（fit 後的縮放本來就小，不需要再限制）。
+        if (mode === 'global') cy!.minZoom(cy!.zoom());
 
         // 通知頁面實例已就緒（/graph 的篩選/搜尋需要它，見 src/pages/graph.astro）。
         // bubbles 讓 document 層級的監聽收得到；不用輪詢，先後掛載都不會漏。
