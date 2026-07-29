@@ -85,6 +85,11 @@ const peopleList = [...graph.nodes]
     // 派發 rg:ready（bubbles: true），事件的 detail 即為該實例——不必輪詢或猜時序。
     let cy: any = null;
 
+    // global 模式刻意無 maxZoom 上限（見 RelationshipGraph.svelte 註解，供使用者手動放大）；
+    // 但 fit() 不受 maxZoom 約束會直接設定 _private.zoom，篩到只剩兩三個散開的節點時
+    // 算出的縮放會誇張到失真，因此另外夾住。
+    const MAX_FIT_ZOOM = 1.6;
+
     function apply() {
       if (!cy) return;
       const q = (document.getElementById("q") as HTMLInputElement).value.trim();
@@ -104,6 +109,18 @@ const peopleList = [...graph.nodes]
           n.style("display", hasVisibleEdge && matches ? "element" : "none");
         });
       });
+
+      // 倖存節點仍停在全圖佈局時的原始座標；不重新 fit 會讓少數倖存節點散落在
+      // 幾乎全空的畫布上、小到讀不清。兩個篩選框都關掉時可見元素為空集合，
+      // cy.fit() 對空集合本身就是 no-op（見 cytoscape 原始碼 getFitViewport），
+      // 這裡仍明確跳過以避免呼叫 cy.zoom() 時以目前（篩選前）的縮放做夾取判斷。
+      const visible = cy.nodes().filter((n: any) => n.style("display") !== "none");
+      if (visible.length === 0) return;
+      cy.fit(visible, 40);
+      if (cy.zoom() > MAX_FIT_ZOOM) {
+        const mid = { x: cy.width() / 2, y: cy.height() / 2 };
+        cy.zoom({ level: MAX_FIT_ZOOM, renderedPosition: mid });
+      }
     }
 
     // island 可能在本 script 之後才掛好；監聽事件即可，無論先後都收得到。
