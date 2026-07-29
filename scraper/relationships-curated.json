@@ -197,7 +197,7 @@
     "counterpartRole": "中華民國總統",
     "counterpartKind": "entity",
     "counterpartEntityType": "other",
-    "relationType": "mentor",
+    "relationType": "aide",
     "parentName": "",
     "note": "林俊憲於2010年及2014年兩度出任賴清德競選大台南市長執行總幹事，是賴清德的核心幕僚。",
     "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%9E%97%E4%BF%8A%E6%86%B2",
@@ -269,7 +269,7 @@
     "counterpartRole": "前中華民國總統",
     "counterpartKind": "entity",
     "counterpartEntityType": "other",
-    "relationType": "mentor",
+    "relationType": "aide",
     "parentName": "",
     "note": "徐巧芯於2016至2018年擔任前總統馬英九辦公室發言人。",
     "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%BE%90%E5%B7%A7%E8%8A%AF",
@@ -473,7 +473,7 @@
     "counterpartRole": "前行政院長、前台北縣長",
     "counterpartKind": "entity",
     "counterpartEntityType": "other",
-    "relationType": "mentor",
+    "relationType": "aide",
     "parentName": "",
     "note": "吳秉叡曾任台北縣長蘇貞昌之機要秘書，長期被視為蘇系人馬。",
     "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%90%B3%E7%A7%89%E5%8F%A1",
@@ -488,18 +488,6 @@
     "relationType": "parent_child",
     "parentName": "吳進風",
     "note": "吳進風為吳沛憶之父，曾任鶯歌陶瓷博物館創館館長。",
-    "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%90%B3%E6%B2%9B%E6%86%B6",
-    "sourceType": "wiki"
-  },
-  {
-    "subject": "吳沛憶",
-    "counterpartName": "許家蓓",
-    "counterpartRole": "民進黨籍臺北市議員（已故）",
-    "counterpartKind": "official",
-    "counterpartEntityType": "family_member",
-    "relationType": "spouse",
-    "parentName": "",
-    "note": "吳沛憶於2024年9月許家蓓辭世後公開兩人伴侶關係。",
     "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%90%B3%E6%B2%9B%E6%86%B6",
     "sourceType": "wiki"
   },
@@ -621,18 +609,6 @@
     "relationType": "spouse",
     "parentName": "",
     "note": "王春英為張宏陸之配偶，載於維基百科個人資料欄。",
-    "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%BC%B5%E5%AE%8F%E9%99%B8",
-    "sourceType": "wiki"
-  },
-  {
-    "subject": "張宏陸",
-    "counterpartName": "蘇貞昌",
-    "counterpartRole": "前行政院長",
-    "counterpartKind": "entity",
-    "counterpartEntityType": "other",
-    "relationType": "mentor",
-    "parentName": "",
-    "note": "張宏陸自1996年起加入蘇貞昌團隊，擔任縣府幕僚及院長秘書，屬蘇系成員。",
     "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%BC%B5%E5%AE%8F%E9%99%B8",
     "sourceType": "wiki"
   },
@@ -1266,7 +1242,7 @@
     "counterpartRole": "臺中市長",
     "counterpartKind": "official",
     "counterpartEntityType": "",
-    "relationType": "mentor",
+    "relationType": "aide",
     "parentName": "",
     "note": "王育敏曾於2022至2024年擔任盧秀燕主政臺中市之副市長。",
     "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%8E%8B%E8%82%B2%E6%95%8F",
@@ -1366,30 +1342,6 @@
     "parentName": "",
     "note": "詹冰為蔡其昌之外祖父，蔡其昌之母為詹冰次女。",
     "sourceUrl": "https://zh.wikipedia.org/wiki/詹冰",
-    "sourceType": "wiki"
-  },
-  {
-    "subject": "翁章梁",
-    "counterpartName": "翁曉玲",
-    "counterpartRole": "全國不分區立法委員（國民黨）",
-    "counterpartKind": "official",
-    "counterpartEntityType": "",
-    "relationType": "relative",
-    "parentName": "",
-    "note": "翁章梁與翁曉玲同屬嘉義縣義竹旺族翁氏，為同族宗親。",
-    "sourceUrl": "https://zh.wikipedia.org/wiki/翁章梁",
-    "sourceType": "wiki"
-  },
-  {
-    "subject": "翁曉玲",
-    "counterpartName": "翁章梁",
-    "counterpartRole": "嘉義縣縣長",
-    "counterpartKind": "official",
-    "counterpartEntityType": "",
-    "relationType": "relative",
-    "parentName": "",
-    "note": "翁曉玲與翁章梁同屬嘉義縣義竹旺族翁氏，為同族宗親。",
-    "sourceUrl": "https://zh.wikipedia.org/wiki/翁章梁",
     "sourceType": "wiki"
   },
   {
@@ -1977,7 +1929,7 @@
     "counterpartRole": "前中華民國總統",
     "counterpartKind": "entity",
     "counterpartEntityType": "other",
-    "relationType": "mentor",
+    "relationType": "backer",
     "parentName": "",
     "note": "陳水扁1989年曾擔任陳光復辯護律師，擔任總統期間任命陳光復為國策顧問，兩人政治淵源深厚。",
     "sourceUrl": "https://zh.wikipedia.org/zh-tw/%E9%99%B3%E5%85%89%E5%BE%A9",
@@ -2124,18 +2076,6 @@
     "relationType": "mentor",
     "parentName": "",
     "note": "陳素月曾擔任翁金珠之國會助理，並於1997年加入翁金珠競選團隊，翁為其政治啟蒙導師。",
-    "sourceUrl": "https://zh.wikipedia.org/wiki/陳素月",
-    "sourceType": "wiki"
-  },
-  {
-    "subject": "陳素月",
-    "counterpartName": "魏明谷",
-    "counterpartRole": "前彰化縣長、前立委",
-    "counterpartKind": "entity",
-    "counterpartEntityType": "other",
-    "relationType": "mentor",
-    "parentName": "",
-    "note": "陳素月曾擔任魏明谷之國會助理，並支持其2014年縣長選舉，後由陳素月接任其立委職位。",
     "sourceUrl": "https://zh.wikipedia.org/wiki/陳素月",
     "sourceType": "wiki"
   },
@@ -2693,18 +2633,6 @@
   },
   {
     "subject": "賴惠員",
-    "counterpartName": "陳唐山",
-    "counterpartRole": "前臺南縣縣長、前監察院監察委員",
-    "counterpartKind": "official",
-    "counterpartEntityType": "",
-    "relationType": "mentor",
-    "parentName": "",
-    "note": "賴惠員早年擔任前臺南縣縣長陳唐山夫人的秘書，因此意外踏上政壇之路，為其從政淵源與提拔關係。",
-    "sourceUrl": "https://zh.wikipedia.org/zh-tw/%E8%B3%B4%E6%83%A0%E5%93%A1",
-    "sourceType": "wiki"
-  },
-  {
-    "subject": "賴惠員",
     "counterpartName": "黃偉哲",
     "counterpartRole": "現任臺南市長",
     "counterpartKind": "official",
@@ -2726,18 +2654,6 @@
     "note": "許忠信攻讀政治大學法律研究所博士班時，蔡英文為其指導教授，並經蔡英文推薦申請進入劍橋大學，取得國際經貿法學博士。許為蔡擔任教授時的門生。",
     "sourceUrl": "https://zh.wikipedia.org/zh-tw/%E8%A8%B1%E5%BF%A0%E4%BF%A1",
     "sourceType": "wiki"
-  },
-  {
-    "subject": "許忠信",
-    "counterpartName": "柯文哲",
-    "counterpartRole": "臺灣民眾黨主席",
-    "counterpartKind": "official",
-    "counterpartEntityType": "",
-    "relationType": "backer",
-    "parentName": "",
-    "note": "許忠信2023年由深綠（台聯）轉投靠白營，加入柯文哲領導的臺灣民眾黨，並參與柯文哲台南掃街輔選，現任民眾黨政策會副主任委員；2025年遞補李貞秀出任民眾黨不分區立委。",
-    "sourceUrl": "https://www.knews.com.tw/news/75EF735A94E1777152C36827995ACE00",
-    "sourceType": "news"
   },
   {
     "subject": "王安祥",
@@ -2800,30 +2716,6 @@
     "sourceType": "wiki"
   },
   {
-    "subject": "王鴻薇",
-    "counterpartName": "新黨",
-    "counterpartRole": "政黨",
-    "counterpartKind": "entity",
-    "counterpartEntityType": "organization",
-    "relationType": "faction",
-    "parentName": "",
-    "note": "王鴻薇因松山信義區原任市議員費鴻泰當選立委出缺，於2006年代表新黨當選臺北市議員，早年政治資歷出身新黨陣營，至2013年才退出新黨加入國民黨。",
-    "sourceUrl": "https://zh.wikipedia.org/zh-tw/%E7%8E%8B%E9%B4%BB%E8%96%87",
-    "sourceType": "wiki"
-  },
-  {
-    "subject": "邱鎮軍",
-    "counterpartName": "徐耀昌",
-    "counterpartRole": "前苗栗縣縣長、前立法委員",
-    "counterpartKind": "official",
-    "counterpartEntityType": "",
-    "relationType": "mentor",
-    "parentName": "",
-    "note": "2023年5月國民黨苗栗縣第2選區（山線）立委初選，邱鎮軍民調勝出徐耀昌。徐耀昌表態肯定邱鎮軍世代交替，邱回應感謝徐耀昌的「提攜與指導」，完成苗栗藍營世代傳承。",
-    "sourceUrl": "https://www.cna.com.tw/news/aipl/202305170274.aspx",
-    "sourceType": "news"
-  },
-  {
     "subject": "游顥",
     "counterpartName": "黃姿倩",
     "counterpartRole": "游顥配偶",
@@ -2865,23 +2757,11 @@
     "counterpartRole": "前立法院副院長、前國民黨主席",
     "counterpartKind": "official",
     "counterpartEntityType": "",
-    "relationType": "mentor",
+    "relationType": "aide",
     "parentName": "",
     "note": "游顥2015年10月至2016年1月任洪秀柱辦公室主任。",
     "sourceUrl": "https://zh.wikipedia.org/zh-tw/%E6%B8%B8%E9%A1%A5",
     "sourceType": "wiki"
-  },
-  {
-    "subject": "劉書彬",
-    "counterpartName": "柯文哲",
-    "counterpartRole": "台灣民眾黨創黨主席、前台北市長",
-    "counterpartKind": "official",
-    "counterpartEntityType": "",
-    "relationType": "backer",
-    "parentName": "",
-    "note": "2023年11月民眾黨公布不分區立委提名名單，東吳大學政治系教授劉書彬列第9名，名單由柯文哲主導的黨選決會決定；劉於2025年2月吳春城請辭後遞補為民眾黨不分區立委。",
-    "sourceUrl": "https://www.cna.com.tw/news/aipl/202311220214.aspx",
-    "sourceType": "news"
   },
   {
     "subject": "林思銘",
@@ -2967,18 +2847,6 @@
     "note": "張啓楷為柯文哲領導的民眾黨於2023年徵召列入2024不分區立委名單第8名而當選。2025年底張獲民眾黨提名參選2026嘉義市長，柯文哲親自南下嘉義造勢、宣布擔任張啓楷競選總幹事並承諾長期駐點助選，是其最高層級背書與支持者。",
     "sourceUrl": "https://udn.com/news/story/124652/9242343",
     "sourceType": "news"
-  },
-  {
-    "subject": "張啓楷",
-    "counterpartName": "朱立倫",
-    "counterpartRole": "時任國民黨新北市長候選人（後任新北市長、國民黨主席）",
-    "counterpartKind": "official",
-    "counterpartEntityType": "",
-    "relationType": "backer",
-    "parentName": "",
-    "note": "2010年張啓楷以政論名嘴身分無酬加入朱立倫的新北市長選舉團隊，出任發言人團隊統籌並暫停政論節目通告；朱立倫公開稱兩人是好朋友，是張早年跨足政治、與藍營要角結盟協助選戰的重要連結。",
-    "sourceUrl": "https://zh.wikipedia.org/zh-tw/%E5%BC%B5%E5%95%93%E6%A5%B7",
-    "sourceType": "wiki"
   },
   {
     "subject": "蘇清泉",
@@ -3255,17 +3123,5 @@
     "note": "2015年范雲醞釀成立社會民主黨時，徵詢苗博雅投入2016立委選舉，苗加入成為創黨黨員並代表社民黨參選；兩人為社民黨同陣營戰友。",
     "sourceUrl": "https://zh.wikipedia.org/zh-tw/%E7%A4%BE%E6%9C%83%E6%B0%91%E4%B8%BB%E9%BB%A8_(%E8%87%BA%E7%81%A3)",
     "sourceType": "wiki"
-  },
-  {
-    "subject": "范雲",
-    "counterpartName": "羅文嘉",
-    "counterpartRole": "時任民主進步黨秘書長",
-    "counterpartKind": "official",
-    "counterpartEntityType": "",
-    "relationType": "backer",
-    "parentName": "",
-    "note": "2019年11月16日由民進黨秘書長羅文嘉宣布范雲加入民進黨，並列入2020不分區立委名單第三順位當選；象徵社民黨與民進黨整合、范雲進入綠營陣營。",
-    "sourceUrl": "https://www.thenewslens.com/article/127389",
-    "sourceType": "news"
   }
 ]
