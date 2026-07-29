@@ -12,3 +12,4 @@ scraper/out-ardata/
 scraper/out-roster/
 scraper/out-photos/
 .worktrees/
+scraper/out-backup/
