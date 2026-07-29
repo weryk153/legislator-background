@@ -49,6 +49,13 @@ describe('avatarDataUri', () => {
     expect(uri.startsWith('data:image/svg+xml;utf8,')).toBe(true);
     expect(decodeURIComponent(uri)).toContain(`>${[...name][0]}<`);
   });
+
+  it('顯式寬高屬性防止瀏覽器使用預設 150×150 尺寸（修正 Cytoscape 高倍放大時裁切問題）', () => {
+    const uri = avatarDataUri('李');
+    const svg = decodeURIComponent(uri);
+    expect(svg).toContain('width="100"');
+    expect(svg).toContain('height="100"');
+  });
 });
 
 describe('toCytoscapeElements', () => {
