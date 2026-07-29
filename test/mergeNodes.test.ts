@@ -88,4 +88,40 @@ describe('planMerges', () => {
     const { updates } = planMerges(rows, facPairs);
     expect(updates[0]).toMatchObject({ from_type: 'entity', from_id: 'KEEP' });
   });
+
+  it('pairs 為空時，任何輸入都不產生 update 或 delete（不可誤刪既有的重複/自連資料）', () => {
+    const rows = [
+      row({ id: 'r1', from_type: 'official', from_id: 'O', to_type: 'official', to_id: 'B' }),
+      row({ id: 'r2', from_type: 'official', from_id: 'B', to_type: 'official', to_id: 'O' }), // 與 r1 互為無向重複
+      row({ id: 'r3', from_type: 'official', from_id: 'X', to_type: 'official', to_id: 'X' }), // 既有自連
+    ];
+    expect(planMerges(rows, [])).toEqual({ updates: [], deletes: [] });
+  });
+
+  it('未被改寫的列即使與其他未改寫列重複，也不能被刪除', () => {
+    const rows = [
+      row({ id: 'r1', from_type: 'official', from_id: 'X', to_type: 'official', to_id: 'Y' }),
+      row({ id: 'r2', from_type: 'official', from_id: 'Y', to_type: 'official', to_id: 'X' }), // 與 r1 無向重複，但兩者都未被 pairs 改到
+    ];
+    expect(planMerges(rows, pairs)).toEqual({ updates: [], deletes: [] });
+  });
+
+  it('合併鏈（A→B 且 B→C）必須拋錯，不可默默算錯', () => {
+    const chainedPairs: MergePair[] = [
+      { label: 'A併入B', from: { type: 'entity', id: 'A' }, to: { type: 'entity', id: 'B' } },
+      { label: 'B併入C', from: { type: 'entity', id: 'B' }, to: { type: 'entity', id: 'C' } },
+    ];
+    expect(() => planMerges([], chainedPairs)).toThrow(/A併入B/);
+    expect(() => planMerges([], chainedPairs)).toThrow(/B併入C/);
+  });
+
+  it('排序具決定性：即使輸入為 id 遞減順序，仍保留 id 較小者、刪除較大者', () => {
+    const rows = [
+      row({ id: 'r2', from_type: 'entity', from_id: 'E', to_type: 'official', to_id: 'B' }),   // 改寫後撞上 r1
+      row({ id: 'r1', from_type: 'official', from_id: 'O', to_type: 'official', to_id: 'B' }), // 既有，陣列中排在 r2 之後
+    ];
+    const { updates, deletes } = planMerges(rows, pairs);
+    expect(deletes).toEqual(['r2']);
+    expect(updates).toEqual([]);
+  });
 });
