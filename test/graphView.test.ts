@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { nodeDepths, avatarDataUri, toCytoscapeElements } from '../src/lib/graphView';
+import { nodeDepths, avatarDataUri, toCytoscapeElements, entityRole, wrapRole } from '../src/lib/graphView';
 import type { GraphData } from '../src/lib/types';
 
 const data: GraphData = {
@@ -58,6 +58,41 @@ describe('avatarDataUri', () => {
   });
 });
 
+describe('entityRole', () => {
+  it('優先用描述，沒有描述才退回類別標籤', () => {
+    expect(entityRole('民宿經營者', 'family_member')).toBe('民宿經營者');
+    expect(entityRole(undefined, 'family_member')).toBe('家屬');
+    expect(entityRole('', 'religious')).toBe('宗教界');
+  });
+
+  it('不截斷（/graph 的伺服器清單用，版面容得下完整描述）', () => {
+    const long = '前雲林縣議員、維多利亞學校財團法人董事長';
+    expect(entityRole(long, 'family_member')).toBe(long);
+  });
+
+  it('未知類別退回「其他公眾人物」', () => {
+    expect(entityRole(undefined, 'nonsense')).toBe('其他公眾人物');
+  });
+});
+
+describe('wrapRole', () => {
+  it('8 字以內不動', () => {
+    expect(wrapRole('民宿經營者')).toBe('民宿經營者');
+    expect(wrapRole('立委')).toBe('立委');
+  });
+
+  it('超過 8 字自行斷行（Cytoscape 的 text-wrap 不會在中文斷行）', () => {
+    expect(wrapRole('前國民黨主席、前中華民國副總統')).toBe('前國民黨主席、前\n中華民國副總統');
+  });
+
+  it('超過兩行即截斷，末字換成省略號', () => {
+    const r = wrapRole('前雲林縣議員、維多利亞學校財團法人董事長');
+    expect(r).toBe('前雲林縣議員、維\n多利亞學校財團…');
+    expect(r.split('\n')).toHaveLength(2);
+    expect(r.split('\n').every((l) => [...l].length <= 8)).toBe(true);
+  });
+});
+
 describe('toCytoscapeElements', () => {
   it('有照片的節點用照片，沒照片的用姓氏字頭像', () => {
     const { nodes } = toCytoscapeElements(data, 'official:a');
@@ -65,10 +100,42 @@ describe('toCytoscapeElements', () => {
     expect(nodes.find((n) => n.data.id === 'entity:e1')!.data.avatar.startsWith('data:image/svg+xml')).toBe(true);
   });
 
-  it('標籤為兩行：姓名 + 括號職稱／類別', () => {
+  it('標籤為兩行：姓名 + 括號職稱（公職）／描述（外部人物）', () => {
     const { nodes } = toCytoscapeElements(data, 'official:a');
     expect(nodes.find((n) => n.data.id === 'official:a')!.data.label).toBe('王又民\n（議員）');
-    expect(nodes.find((n) => n.data.id === 'entity:e1')!.data.label).toBe('白惠萍\n（家屬）');
+    expect(nodes.find((n) => n.data.id === 'entity:e1')!.data.label).toBe('白惠萍\n（配偶）');
+  });
+
+  it('同名不同人的 entity 因描述不同而標籤可區分（不可再顯示為兩個一模一樣的節點）', () => {
+    const dup: GraphData = {
+      nodes: [
+        { key: 'entity:x', name: '李佳芬', kind: 'entity', subtype: 'family_member', description: '民宿經營者' },
+        { key: 'entity:y', name: '李佳芬', kind: 'entity', subtype: 'family_member', description: '前雲林縣議員' },
+        // 兩人的第二行不同 → 節點在圖上可區分
+      ],
+      edges: [],
+    };
+    const labels = toCytoscapeElements(dup, null).nodes.map((n) => n.data.label);
+    expect(labels).toEqual(['李佳芬\n（民宿經營者）', '李佳芬\n（前雲林縣議員）']);
+  });
+
+  it('沒有描述的 entity 退回通用類別標籤', () => {
+    const noDesc: GraphData = {
+      nodes: [{ key: 'entity:z', name: '某人', kind: 'entity', subtype: 'businessperson', description: '  ' }],
+      edges: [],
+    };
+    expect(toCytoscapeElements(noDesc, null).nodes[0].data.label).toBe('某人\n（企業界）');
+  });
+
+  it('圖上的長描述會斷行並截斷（避免單行橫跨畫面蓋掉邊標籤）', () => {
+    const long: GraphData = {
+      nodes: [{
+        key: 'entity:l', name: '李傑', kind: 'entity', subtype: 'other',
+        description: '前國防部長、前海軍總司令、海軍上將',
+      }],
+      edges: [],
+    };
+    expect(toCytoscapeElements(long, null).nodes[0].data.label).toBe('李傑\n（前國防部長、前海\n軍總司令、海軍…）');
   });
 
   it('name 為純姓名，不含職稱與換行，供搜尋比對', () => {

@@ -2,8 +2,8 @@
 import Base from "../layouts/Base.astro";
 import RelationshipGraph from "../components/RelationshipGraph.svelte";
 import { loadGraph } from "../lib/loadGraph";
-import { ENTITY_LABEL, OFFICE_LABEL } from "../lib/graph";
-import type { EntityType } from "../lib/types";
+import { OFFICE_LABEL } from "../lib/graph";
+import { entityRole } from "../lib/graphView";
 
 const graph = loadGraph();
 const title = "政治人物關係圖｜家族、派系、師徒與政治支持關係網";
@@ -12,6 +12,9 @@ const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物�
 // 圖本身完全由 client-side JS（Cytoscape）畫出，無 JS 或爬蟲看不到任何人名。
 // 這裡另外輸出一份 SSG 純文字人物清單，作為圖的文字版本；只列人，不重複列 277 條
 // 關係的 note／出處——那些已經逐筆列在各自的檔案頁，這裡重複只會製造重複內容。
+// 第二行（括號內）：公職用職稱，外部人物優先用其描述而非通用類別——站上刻意保留了
+// 幾組同名不同人（李佳芬、李傑），只印類別會讓兩人在清單裡完全一樣，看起來像重複資料。
+// 圖上的標籤會截斷過長描述（版面所限），這裡有空間，顯示完整描述。
 const peopleList = [...graph.nodes]
   .sort((a, b) => a.name.localeCompare(b.name, "zh-Hant"))
   .map((n) => ({
@@ -20,7 +23,7 @@ const peopleList = [...graph.nodes]
     slug: n.slug,
     role: n.kind === "official"
       ? OFFICE_LABEL[n.officeType!]
-      : ENTITY_LABEL[n.subtype as EntityType] ?? "其他公眾人物",
+      : entityRole(n.description, n.subtype),
   }));
 ---
 
@@ -45,7 +48,8 @@ const peopleList = [...graph.nodes]
         <li>
           {p.slug
             ? <a class="rel-name" href={`/officials/${p.slug}`}>{p.name}</a>
-            : <span class="rel-name plain">{p.name}<span class="rel-ext">（{p.role}）</span></span>}
+            : <span class="rel-name plain">{p.name}</span>}
+          <span class="rel-ext">（{p.role}）</span>
         </li>
       ))}
     </ul>

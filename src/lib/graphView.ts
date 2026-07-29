@@ -38,6 +38,35 @@ export function avatarDataUri(name: string): string {
   return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 }
 
+// 外部公眾人物的第二行：優先用該筆 entity 的描述（如「民宿經營者」／「前雲林縣議員…」），
+// 沒有描述時才退回類別標籤（「家屬」「企業界」…）。這不是裝飾：站上刻意保留了幾組
+// 同名不同人（李佳芬、李傑），若兩人都只顯示通用類別就會長得一模一樣，維護者會把它們
+// 當成重複節點「修好」，而重新合併正是「常見名寧缺勿錯」原則要防止的錯誤。
+// 回傳完整字串不截斷——/graph 的伺服器渲染清單有版面空間，該顯示完整描述；
+// 畫在圖上時才另外交給 wrapRole() 斷行與截斷。
+export function entityRole(description: string | undefined, subtype: string): string {
+  const desc = description?.trim();
+  if (desc) return desc;
+  return ENTITY_LABEL[subtype as EntityType] ?? '其他公眾人物';
+}
+
+// 節點樣式雖設了 text-max-width: 110，但 Cytoscape 的 text-wrap: 'wrap' 只在空白處斷行，
+// 中文沒有空白，等於對本站的標籤完全無效：20 字的描述會拉成一條 350px 寬的單行，
+// 橫跨並蓋掉旁邊的邊標籤。故在這裡自己斷行——每行 8 個漢字（13px 字級下約 110px，
+// 與 text-max-width 一致），最多兩行，超出者截斷加省略號（完整描述在 /graph 清單看得到）。
+const ROLE_CHARS_PER_LINE = 8;
+const ROLE_MAX_LINES = 2;
+export function wrapRole(role: string): string {
+  const chars = [...role];
+  const cap = ROLE_CHARS_PER_LINE * ROLE_MAX_LINES;
+  const kept = chars.length > cap ? [...chars.slice(0, cap - 1), '…'] : chars;
+  const lines: string[] = [];
+  for (let i = 0; i < kept.length; i += ROLE_CHARS_PER_LINE) {
+    lines.push(kept.slice(i, i + ROLE_CHARS_PER_LINE).join(''));
+  }
+  return lines.join('\n');
+}
+
 // BFS：中心為 0，每往外一層 +1。用來決定節點尺寸與第二層的視覺弱化。
 export function nodeDepths(data: GraphData, centerKey: string): Map<string, number> {
   const depths = new Map<string, number>();
@@ -79,7 +108,7 @@ export function toCytoscapeElements(
     const depth = depths.get(n.key) ?? 1;
     const role = n.kind === 'official'
       ? OFFICE_LABEL[n.subtype as OfficeType] ?? ''
-      : ENTITY_LABEL[n.subtype as EntityType] ?? '其他公眾人物';
+      : wrapRole(entityRole(n.description, n.subtype));
     return {
       data: {
         id: n.key,
