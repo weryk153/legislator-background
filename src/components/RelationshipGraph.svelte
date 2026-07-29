@@ -67,74 +67,80 @@
   const esc = (s: string) =>
     s.replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]!));
 
-  onMount(async () => {
+  onMount(() => {
     let cy: { destroy: () => void; style: (s: unknown) => { update: () => void };
              layout: (o: unknown) => { run: () => void }; on: (...a: unknown[]) => void } | null = null;
     let mo: MutationObserver | null = null;
+    let tip: HTMLDivElement | null = null;
 
-    try {
-      const cytoscape = (await import('cytoscape')).default;
-      const elements = toCytoscapeElements(data, centerKey);
+    // Cytoscape 走動態 import（避免 SSR），因此設定過程是非同步的；
+    // 但 Svelte 5 只認同步回傳的 cleanup，故把非同步設定包進 IIFE，
+    // cleanup 先同步回傳，之後再由 IIFE 補上 cy / mo / tip。
+    void (async () => {
+      try {
+        const cytoscape = (await import('cytoscape')).default;
+        const elements = toCytoscapeElements(data, centerKey);
 
-      cy = cytoscape({
-        container,
-        elements: [...elements.nodes, ...elements.edges],
-        style: buildStyle(readColors()),
-        layout: { name: 'preset' },
-        userZoomingEnabled: mode === 'global',
-        autoungrabify: false,
-      }) as unknown as typeof cy;
+        cy = cytoscape({
+          container,
+          elements: [...elements.nodes, ...elements.edges],
+          style: buildStyle(readColors()),
+          layout: { name: 'preset' },
+          userZoomingEnabled: mode === 'global',
+          autoungrabify: false,
+        }) as unknown as typeof cy;
 
-      // ego：本人置中的同心圓（越靠中心 depth 越小）。global：力導向。
-      const layout = mode === 'ego'
-        ? { name: 'concentric', concentric: (n: { data: (k: string) => number }) => 10 - n.data('depth'),
-            levelWidth: () => 1, minNodeSpacing: 44, padding: 28, animate: false }
-        : { name: 'cose', padding: 30, animate: false, nodeRepulsion: 9000, idealEdgeLength: 110 };
-      cy!.layout(layout).run();
+        // ego：本人置中的同心圓（越靠中心 depth 越小）。global：力導向。
+        const layout = mode === 'ego'
+          ? { name: 'concentric', concentric: (n: { data: (k: string) => number }) => 10 - n.data('depth'),
+              levelWidth: () => 1, minNodeSpacing: 44, padding: 28, animate: false }
+          : { name: 'cose', padding: 30, animate: false, nodeRepulsion: 9000, idealEdgeLength: 110 };
+        cy!.layout(layout).run();
 
-      // 點本站收錄的節點 → 進其檔案頁（entity 的 slug 為空字串，不觸發）
-      cy!.on('tap', 'node', (evt: { target: { data: (k: string) => string } }) => {
-        const slug = evt.target.data('slug');
-        if (slug) window.location.href = `/officials/${slug}`;
-      });
+        // 點本站收錄的節點 → 進其檔案頁（entity 的 slug 為空字串，不觸發）
+        cy!.on('tap', 'node', (evt: { target: { data: (k: string) => string } }) => {
+          const slug = evt.target.data('slug');
+          if (slug) window.location.href = `/officials/${slug}`;
+        });
 
-      // hover 連線 → tooltip（關係＋說明＋出處）。tooltip 自身可 hover，方便點出處連結。
-      const tip = document.createElement('div');
-      tip.className = 'rg-tip';
-      container.appendChild(tip);
-      let hideTimer: ReturnType<typeof setTimeout>;
-      const hideSoon = () => {
-        hideTimer = setTimeout(() => { tip.style.opacity = '0'; tip.style.pointerEvents = 'none'; }, 250);
-      };
-      tip.addEventListener('mouseenter', () => clearTimeout(hideTimer));
-      tip.addEventListener('mouseleave', hideSoon);
+        // hover 連線 → tooltip（關係＋說明＋出處）。tooltip 自身可 hover，方便點出處連結。
+        tip = document.createElement('div');
+        tip.className = 'rg-tip';
+        container.appendChild(tip);
+        let hideTimer: ReturnType<typeof setTimeout>;
+        const hideSoon = () => {
+          hideTimer = setTimeout(() => { tip!.style.opacity = '0'; tip!.style.pointerEvents = 'none'; }, 250);
+        };
+        tip.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+        tip.addEventListener('mouseleave', hideSoon);
 
-      cy!.on('mouseover', 'edge', (evt: any) => {
-        clearTimeout(hideTimer);
-        evt.target.addClass('hl');
-        const d = evt.target.data();
-        const note = d.note ? `<div class="rg-note">${esc(d.note)}</div>` : '';
-        const src = d.sourceUrl
-          ? `<a class="rg-src" href="${esc(d.sourceUrl)}" target="_blank" rel="noopener">查看出處 ↗</a>` : '';
-        const m = evt.target.renderedMidpoint();
-        tip.innerHTML = `<div class="rg-rel">${esc(d.label)}</div>${note}${src}`;
-        tip.style.left = `${m.x}px`;
-        tip.style.top = `${m.y}px`;
-        tip.style.opacity = '1';
-        tip.style.pointerEvents = 'auto';
-      });
-      cy!.on('mouseout', 'edge', (evt: any) => { evt.target.removeClass('hl'); hideSoon(); });
+        cy!.on('mouseover', 'edge', (evt: any) => {
+          clearTimeout(hideTimer);
+          evt.target.addClass('hl');
+          const d = evt.target.data();
+          const note = d.note ? `<div class="rg-note">${esc(d.note)}</div>` : '';
+          const src = d.sourceUrl
+            ? `<a class="rg-src" href="${esc(d.sourceUrl)}" target="_blank" rel="noopener">查看出處 ↗</a>` : '';
+          const m = evt.target.renderedMidpoint();
+          tip!.innerHTML = `<div class="rg-rel">${esc(d.label)}</div>${note}${src}`;
+          tip!.style.left = `${m.x}px`;
+          tip!.style.top = `${m.y}px`;
+          tip!.style.opacity = '1';
+          tip!.style.pointerEvents = 'auto';
+        });
+        cy!.on('mouseout', 'edge', (evt: any) => { evt.target.removeClass('hl'); hideSoon(); });
 
-      // 跟著亮/暗模式切換重新上色
-      mo = new MutationObserver(() => cy!.style(buildStyle(readColors())).update());
-      mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-    } catch {
-      // Cytoscape 載入或初始化失敗 → 整區隱藏。下方的文字關係清單為 SSG 靜態 HTML，
-      // 不依賴本元件，仍可正常閱讀。
-      container.style.display = 'none';
-    }
+        // 跟著亮/暗模式切換重新上色
+        mo = new MutationObserver(() => cy!.style(buildStyle(readColors())).update());
+        mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      } catch {
+        // Cytoscape 載入或初始化失敗 → 整區隱藏。下方的文字關係清單為 SSG 靜態 HTML，
+        // 不依賴本元件，仍可正常閱讀。
+        container.style.display = 'none';
+      }
+    })();
 
-    return () => { mo?.disconnect(); cy?.destroy(); };
+    return () => { mo?.disconnect(); cy?.destroy(); tip?.remove(); };
   });
 </script>
 
