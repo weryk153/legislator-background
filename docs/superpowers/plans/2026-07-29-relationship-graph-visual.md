@@ -835,6 +835,21 @@ git commit -m "feat(graph): Cytoscape 資料轉換純函式(深度/尺寸/頭像
 
 本 task 無單元測試——Cytoscape 需要真實 DOM 與版面計算，用 vitest 測沒有意義。驗收方式為 Step 3 的瀏覽器目視檢查。轉換邏輯已在 Task 5 測過。
 
+> **實作與下方程式碼的差異（審查後修正，以 commit 8131b14 的檔案為準）**
+>
+> 下方 Step 1 的 `onMount` 寫成 `async`，這在 Svelte 5 是錯的：`onMount` 以
+> `typeof cleanup === 'function'` 判斷回傳值（見 `node_modules/svelte/src/index-client.js`），
+> 而 async 函式同步回傳的是 Promise，因此 cleanup 從未被註冊，`MutationObserver`
+> 與 Cytoscape 實例在卸載時不會被銷毀。
+>
+> 最終實作改為：外層 `onMount` 維持同步並立即回傳 cleanup，非同步設定包進
+> `void (async () => {...})()`；`cy` / `mo` / `tip` / `hideTimer` 宣告於外層供
+> cleanup 存取；並加上 `disposed` 旗標，在唯一的 `await import('cytoscape')`
+> 之後、建立任何資源之前檢查——否則快速卸載時 IIFE 會在 cleanup 跑完後才把
+> 掛在 `document.documentElement` 上的 MutationObserver 建起來，永遠關不掉。
+>
+> 樣式、佈局參數、色彩 token、tooltip 內容與失敗降級路徑均與下方一致，未更動。
+
 - [ ] **Step 1: 重寫元件**
 
 `src/components/RelationshipGraph.svelte` 全檔替換為：
