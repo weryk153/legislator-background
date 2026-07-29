@@ -15,6 +15,8 @@ type Curated = {
   subject: string; counterpartName: string; counterpartRole: string;
   // 人工判斷的「同名不同人」註記，只有在真的是不同人時才會出現（例如李佳芬同時是
   // 謝龍介之妻與韓國瑜之妻）。由人查證後手寫，不是從 counterpartRole 字串推論。
+  // 一旦標記，此列即：(1) 拆開 entity 去重快取鍵；(2) 絕不走名冊姓名比對（見下方
+  // counterpart 端點）；(3) 不再列入「疑為同一人重複記錄」的覆核警示。
   counterpartDistinct?: string;
   counterpartKind: 'official' | 'entity';
   counterpartEntityType?: string;
@@ -89,15 +91,30 @@ async function main() {
 
   let inserted = 0, skipped = 0;
   const skips: string[] = [];
+  const officialFellThrough: string[] = [];
   for (const r of rows) {
     const subjId = officialId(r.subject, true);
     if (!subjId) { skipped++; skips.push(`subject 未匹配: ${r.subject}`); continue; }
 
-    // counterpart 端點
+    // counterpart 端點。
+    // 帶 counterpartDistinct 的列一律不走名冊姓名比對，強制建 entity：這個欄位的意思是
+    // 「已由人查證，此人與名冊中的同名者是不同人」。若仍讓 officialId() 依姓名連過去，
+    // 這個人工判斷就形同不存在——今天不出事只因名冊剛好沒有同名的公職（例如陳永康的
+    // 老長官李傑），哪天 roster:record 收進一位同名議員，這筆關係就會靜默改連到別人身上。
+    // 姓名單獨判定正是「常見名寧缺勿錯」原則要防止的錯誤。
     let toType: 'official' | 'entity', toId: string;
-    const asOfficial = r.counterpartKind === 'official' ? officialId(r.counterpartName) : null;
+    const asOfficial = r.counterpartKind === 'official' && !r.counterpartDistinct
+      ? officialId(r.counterpartName) : null;
     if (asOfficial) { toType = 'official'; toId = asOfficial; }
-    else { toType = 'entity'; toId = await ensureEntity(r.counterpartName, r.counterpartEntityType ?? 'other', r.counterpartRole || r.note, r.counterpartDistinct); }
+    else {
+      // counterpartKind 標為 official 卻沒對到名冊（多為非本站收錄的中央層級人物，
+      // 如柯文哲、賴清德），會靜默退成 entity。這條路徑以往完全看不見，故記下來報告。
+      if (r.counterpartKind === 'official' && !r.counterpartDistinct) {
+        officialFellThrough.push(`${r.counterpartName}（${r.subject} 的 ${r.relationType}）`);
+      }
+      toType = 'entity';
+      toId = await ensureEntity(r.counterpartName, r.counterpartEntityType ?? 'other', r.counterpartRole || r.note, r.counterpartDistinct);
+    }
 
     // 方向：parent_child 為有向（from=父母）。其餘無向。
     let fromType: 'official' | 'entity' = 'official', fromId = subjId;
@@ -151,22 +168,43 @@ async function main() {
   console.log(`匯入完成：${inserted} 筆關係、entity ${entityCache.size} 筆；清孤立 entity ${orphans.length} 筆；略過 ${skipped}`);
   if (skips.length) console.log('略過明細:\n  ' + skips.join('\n  '));
 
+  // counterpartKind: 'official' 但名冊查不到 → 已退成 entity。多數是本站不收錄的中央層級
+  // 人物，屬正常；但同一份清單也會在名冊日後新增同名者時改變行為（該筆會突然連到那位
+  // 公職），所以每次匯入都印出來，讓這條路徑不再是隱形的。
+  if (officialFellThrough.length) {
+    const uniq = [...new Set(officialFellThrough)];
+    console.log(`\nℹ️ counterpartKind 標為 official 但名冊無唯一匹配、已改建 entity（${uniq.length} 筆）：`);
+    for (const s of uniq) console.log(`  - ${s}`);
+  }
+
   // 覆核警示：entity 姓名若能在 officials 唯一匹配，很可能是「同一人被記成兩筆」
   // （本站已發生過的真實問題；當時的重複源頭已在 relationships-curated.json 修正，
   // 不再需要事後合併腳本）。本函式與下方「覆核警示（二）」是現行的偵測機制，
   // 每次匯入都會印出來供人工核對，絕不自動合併/升級為 official——姓名單獨判定正是
   // 「常見名寧缺勿錯」原則要防止的錯誤，合併與否須由人查證職務描述後手動處理。
+  //
+  // 已由人查證為「同名不同人」者（curated 該列帶 counterpartDistinct）不再列入：這份警示
+  // 唯一能做的動作是合併，對已判定為不同人的案例只會是永久的假警報，反而誘導出錯誤的動作。
+  // 例如張美慧——spec §3.2 已裁定企業高管與花蓮縣議員是不同人，不該每次匯入都再問一次。
   const { data: allEntities, error: entScanErr } = await supabase.from('entities').select('id, name, description');
   if (entScanErr) throw new Error(`entities scan (覆核警示) failed: ${entScanErr.message}`);
-  const suspects = ((allEntities ?? []) as { id: string; name: string; description: string | null }[])
+  // 比對 name＋description（description 即匯入時寫入的 counterpartRole||note），
+  // 只豁免人工實際標記過的那一筆，同姓名的其他 entity 仍會照常被檢出。
+  const confirmedDistinct = new Set(
+    rows.filter((r) => r.counterpartDistinct).map((r) => `${r.counterpartName}::${r.counterpartRole || r.note}`),
+  );
+  const allSuspects = ((allEntities ?? []) as { id: string; name: string; description: string | null }[])
     .map((e) => ({ ...e, matchOfficialId: officialId(e.name) }))
     .filter((e) => e.matchOfficialId);
+  const suspects = allSuspects.filter((e) => !confirmedDistinct.has(`${e.name}::${e.description ?? ''}`));
+  const confirmedCount = allSuspects.length - suspects.length;
   if (suspects.length) {
     console.log(`\n⚠️ 待人工覆核（${suspects.length} 筆）：以下 entity 姓名可在 officials 唯一匹配，疑為同一人重複記錄，未自動處理：`);
     for (const s of suspects) console.log(`  - ${s.name}（entity ${s.id} ↔ official ${s.matchOfficialId}）：${s.description ?? '（無描述）'}`);
   } else {
     console.log('\n覆核：沒有 entity 姓名可唯一匹配 officials，未發現疑似重複記錄。');
   }
+  if (confirmedCount) console.log(`  （另有 ${confirmedCount} 筆姓名可匹配、但已由人工以 counterpartDistinct 確認為不同人，不再列出）`);
 
   // 覆核警示（二）：安全網。同一姓名在 curated 中出現多種不同 counterpartRole
   // 描述，卻沒有 counterpartDistinct 標記——目前仍會依姓名合併為同一筆 entity。
