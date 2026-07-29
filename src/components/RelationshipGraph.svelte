@@ -72,6 +72,8 @@
              layout: (o: unknown) => { run: () => void }; on: (...a: unknown[]) => void } | null = null;
     let mo: MutationObserver | null = null;
     let tip: HTMLDivElement | null = null;
+    let hideTimer: ReturnType<typeof setTimeout>;
+    let disposed = false;
 
     // Cytoscape 走動態 import（避免 SSR），因此設定過程是非同步的；
     // 但 Svelte 5 只認同步回傳的 cleanup，故把非同步設定包進 IIFE，
@@ -79,6 +81,9 @@
     void (async () => {
       try {
         const cytoscape = (await import('cytoscape')).default;
+        // 元件在動態 import 完成前就卸載了 → 不要再建立任何資源，
+        // 否則 cleanup 已經跑過，掛在 document 上的 MutationObserver 會永遠留著。
+        if (disposed) return;
         const elements = toCytoscapeElements(data, centerKey);
 
         cy = cytoscape({
@@ -107,7 +112,6 @@
         tip = document.createElement('div');
         tip.className = 'rg-tip';
         container.appendChild(tip);
-        let hideTimer: ReturnType<typeof setTimeout>;
         const hideSoon = () => {
           hideTimer = setTimeout(() => { tip!.style.opacity = '0'; tip!.style.pointerEvents = 'none'; }, 250);
         };
@@ -140,7 +144,13 @@
       }
     })();
 
-    return () => { mo?.disconnect(); cy?.destroy(); tip?.remove(); };
+    return () => {
+      disposed = true;
+      clearTimeout(hideTimer);
+      mo?.disconnect();
+      cy?.destroy();
+      tip?.remove();
+    };
   });
 </script>
 
