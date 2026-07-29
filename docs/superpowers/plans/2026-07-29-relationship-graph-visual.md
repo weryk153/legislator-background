@@ -382,7 +382,9 @@ main().catch((e) => { console.error(e); process.exit(1); });
 
 Run: `pnpm run merge:entities -- --dry-run`
 
-Expected: 印出關係總數 277；6 組各自的改寫筆數；「--dry-run：未寫入任何資料」。
+Expected: 印出關係總數 **280**；6 組各自的改寫筆數；「--dry-run：未寫入任何資料」。
+（280 是 DB 實際列數；graph.json 只有 277 條邊，差額為 3 列既有重複——匯出時由 `buildGraphData` 去重，
+不會被本腳本刪除，因為 `planMerges` 只刪端點被改寫過的列。）
 **檢查點：若改寫總數為 0，表示 UUID 對不上（DB 與 2026-07-29 快照不同步），停下來查清楚，不要硬跑。**
 
 - [ ] **Step 4: 實際執行合併**
