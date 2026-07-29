@@ -120,6 +120,10 @@
           : { name: 'cose', padding: 30, animate: false, nodeRepulsion: 9000, idealEdgeLength: 110 };
         cy!.layout(layout).run();
 
+        // 通知頁面實例已就緒（/graph 的篩選/搜尋需要它，見 src/pages/graph.astro）。
+        // bubbles 讓 document 層級的監聽收得到；不用輪詢，先後掛載都不會漏。
+        container.dispatchEvent(new CustomEvent('rg:ready', { detail: cy, bubbles: true }));
+
         // 點本站收錄的節點 → 進其檔案頁（entity 的 slug 為空字串，不觸發）
         cy!.on('tap', 'node', (evt: { target: { data: (k: string) => string } }) => {
           const slug = evt.target.data('slug');

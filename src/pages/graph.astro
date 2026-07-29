@@ -1,0 +1,70 @@
+---
+import Base from "../layouts/Base.astro";
+import RelationshipGraph from "../components/RelationshipGraph.svelte";
+import { loadGraph } from "../lib/loadGraph";
+
+const graph = loadGraph();
+const title = "政治人物關係圖｜家族、派系、師徒與金主關係網";
+const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物、${graph.edges.length} 條已查證關係的互動關係圖，每條關係皆附公開資料出處。`;
+---
+
+<Base title={title} description={desc}>
+  <h1>人物關係圖</h1>
+  <p class="lede">{desc}</p>
+  <p class="note">關係資料整理自司法判決、媒體報導與公開資料，僅呈現已查證者。實線圓為本站收錄之政治人物（可點選進入檔案頁），虛線圓為相關之其他公眾人物。實線連線為家族關係，虛線為政治關係。</p>
+
+  <div class="controls">
+    <input id="q" type="search" placeholder="搜尋姓名" aria-label="搜尋姓名" />
+    <label><input type="checkbox" class="kind" value="fam" checked /> 家族關係</label>
+    <label><input type="checkbox" class="kind" value="pol" checked /> 政治關係</label>
+  </div>
+
+  <RelationshipGraph client:load data={graph} centerKey={null} mode="global" />
+
+  <style>
+    h1 { font-size: var(--t-xl); margin: 14px 0 6px; }
+    .lede { margin: 0 0 8px; }
+    .note { font-size: var(--t-sm); color: var(--muted); margin: 0 0 16px; max-width: 72ch; line-height: 1.7; }
+    .controls { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+    .controls input[type="search"] {
+      font-family: var(--sans); font-size: var(--t-sm); padding: 7px 11px;
+      border: 1px solid var(--line-strong); border-radius: var(--radius);
+      background: var(--surface); color: var(--fg); min-width: 200px;
+    }
+    .controls input[type="search"]:focus { outline: none; border-color: var(--accent); }
+    .controls label { font-size: var(--t-sm); color: var(--muted); display: flex; align-items: center; gap: 5px; }
+  </style>
+
+  <script>
+    // 篩選/搜尋直接操作元件掛好的 Cytoscape 實例。元件初始化完成後會在自己的容器上
+    // 派發 rg:ready（bubbles: true），事件的 detail 即為該實例——不必輪詢或猜時序。
+    let cy: any = null;
+
+    function apply() {
+      if (!cy) return;
+      const q = (document.getElementById("q") as HTMLInputElement).value.trim();
+      const kinds = new Set(
+        [...document.querySelectorAll<HTMLInputElement>(".kind")].filter((c) => c.checked).map((c) => c.value),
+      );
+
+      cy.batch(() => {
+        cy.edges().forEach((e: any) => {
+          const want = e.data("fam") === 1 ? "fam" : "pol";
+          e.style("display", kinds.has(want) ? "element" : "none");
+        });
+        cy.nodes().forEach((n: any) => {
+          // 關係全被篩掉的人一併隱藏，避免留下一堆孤點
+          const hasVisibleEdge = n.connectedEdges().some((e: any) => e.style("display") !== "none");
+          const matches = !q || String(n.data("label")).includes(q);
+          n.style("display", hasVisibleEdge && matches ? "element" : "none");
+        });
+      });
+    }
+
+    // island 可能在本 script 之後才掛好；監聽事件即可，無論先後都收得到。
+    document.addEventListener("rg:ready", (e) => { cy = (e as CustomEvent).detail; apply(); });
+
+    document.getElementById("q")?.addEventListener("input", apply);
+    document.querySelectorAll(".kind").forEach((c) => c.addEventListener("change", apply));
+  </script>
+</Base>
