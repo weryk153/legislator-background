@@ -35,11 +35,13 @@
         'text-valign': 'bottom', 'text-margin-y': 7,
         'font-family': c.serif, 'font-size': 13, 'font-weight': 700,
         'line-height': 1.35, color: c.fg,
-        // 節點標籤（尤其第二行的職稱/類別）常疊在連線與邊標籤之上而讀不清，
-        // 比照邊標籤做法：用頁面底色鋪一塊不透明底，讓文字浮在線條上方。
-        // 中心節點會在下方用 --accent 覆寫這兩個屬性，故此處設定不影響中心節點的粉底標示。
-        'text-background-color': c.bg, 'text-background-opacity': 1,
-        'text-background-padding': '3px', 'text-background-shape': 'roundrectangle',
+        // 節點標籤（尤其第二行的職稱/類別）常疊在連線與邊標籤之上而讀不清。
+        // 這裡不能比照邊標籤用不透明底色塊——節點間距近時（如僅一段關係的檔案頁）
+        // 底色塊會整塊蓋掉剛好落在同位置的邊標籤文字，等於用「看不到線」換「看不到關係」。
+        // 改用描邊（text-outline）只沿字形筆畫上色，背後的線與邊標籤仍看得見，是地圖學
+        // 對抗「文字疊圖層」的標準作法。中心節點另有 --accent 底色塊（見下方 center 規則），
+        // 兩者疊加不衝突：描邊在文字本身，底色塊在文字之後。
+        'text-outline-color': c.bg, 'text-outline-width': 2, 'text-outline-opacity': 1,
       } },
       // 外部公眾人物：虛框、灰字，視覺次於本站收錄的公職（沿用文字清單的 .rel-name.plain 語彙）
       { selector: 'node[kind = "entity"]', style: {
