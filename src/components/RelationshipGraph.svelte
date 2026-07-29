@@ -35,6 +35,11 @@
         'text-valign': 'bottom', 'text-margin-y': 7,
         'font-family': c.serif, 'font-size': 13, 'font-weight': 700,
         'line-height': 1.35, color: c.fg,
+        // 節點標籤（尤其第二行的職稱/類別）常疊在連線與邊標籤之上而讀不清，
+        // 比照邊標籤做法：用頁面底色鋪一塊不透明底，讓文字浮在線條上方。
+        // 中心節點會在下方用 --accent 覆寫這兩個屬性，故此處設定不影響中心節點的粉底標示。
+        'text-background-color': c.bg, 'text-background-opacity': 1,
+        'text-background-padding': '3px', 'text-background-shape': 'roundrectangle',
       } },
       // 外部公眾人物：虛框、灰字，視覺次於本站收錄的公職（沿用文字清單的 .rel-name.plain 語彙）
       { selector: 'node[kind = "entity"]', style: {
