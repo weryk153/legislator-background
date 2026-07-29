@@ -152,8 +152,9 @@ async function main() {
   if (skips.length) console.log('略過明細:\n  ' + skips.join('\n  '));
 
   // 覆核警示：entity 姓名若能在 officials 唯一匹配，很可能是「同一人被記成兩筆」
-  // （本站已發生過的真實問題，見 scraper/merge-duplicate-entities.ts）。
-  // 這裡只列出來供人工核對，絕不自動合併/升級為 official——姓名單獨判定正是
+  // （本站已發生過的真實問題；當時的重複源頭已在 relationships-curated.json 修正，
+  // 不再需要事後合併腳本）。本函式與下方「覆核警示（二）」是現行的偵測機制，
+  // 每次匯入都會印出來供人工核對，絕不自動合併/升級為 official——姓名單獨判定正是
   // 「常見名寧缺勿錯」原則要防止的錯誤，合併與否須由人查證職務描述後手動處理。
   const { data: allEntities, error: entScanErr } = await supabase.from('entities').select('id, name, description');
   if (entScanErr) throw new Error(`entities scan (覆核警示) failed: ${entScanErr.message}`);

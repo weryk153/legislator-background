@@ -87,22 +87,37 @@ ego 子圖大小分布（154 位有關係的官員）：
 
 **張美慧** —— entity 為「張國策略傳播集團董事長暨執行長」（businessperson），本站有花蓮縣議員張美慧（民進黨）。**僅縣市相符，職務完全不同**，無從斷定同一人。依「寧缺勿錯」保持兩個獨立節點，不做任何處理。
 
-### 3.3 合併腳本 `scraper/merge-duplicate-entities.ts`
+### 3.3 實際採取的做法：source 端修正（取代原定的合併腳本）
 
-不寫成 SQL migration —— 這是資料校對而非 schema 變更，與既有 `import-relationships.ts` 的人工校對流程一致。
+原規劃是寫一支一次性合併腳本（對照表寫死 UUID、改寫 relationship 端點、刪除重複 entity）。
+實際執行後改採更直接的做法：**問題根源在 `scraper/relationships-curated.json` 本身資料錯誤**——
+韓國瑜／侯友宜／許家蓓／蔡咏鍀本人皆已是站上追蹤的 official，但對應列卻誤標
+`counterpartKind: "entity"`，才會在匯入時另外造出重複節點。修正資料源頭後
+重新 `import:relationships` ＋ `export:graph`，問題自然不再發生，不需要事後合併：
 
-- 對照表**寫死在腳本內**（即 §3.1 的 6 組），不做任何自動比對或模糊匹配。
-- 支援 `--dry-run`：印出將改寫的 relationship 筆數與將刪除的 entity，不寫入。
-- 執行步驟（每組）：
-  1. `UPDATE relationships SET from_type=<新type>, from_id=<新id> WHERE from_type='entity' AND from_id=<舊entity id>`
-  2. 同上處理 `to_type` / `to_id`
-  3. 刪除自連（改寫後 `from` 與 `to` 相同者）
-  4. 依 `buildGraphData` 的同一套規則去重（有向 `from|to|type`；無向排序後配對）
-  5. `DELETE FROM entities WHERE id=<舊entity id>`
-- 步驟 3、4 必須在刪除 entity **之前**完成，否則會留下懸空邊。
-- 腳本結束後印出合併摘要，再由使用者手動跑 `pnpm run export:graph`。
+- **entity → official 修正（4 列）**：張善政→韓國瑜、吳宗憲→侯友宜、吳沛憶→許家蓓、
+  蔡春綢→蔡咏鍀，四列的 `counterpartKind` 由 `entity` 改回 `official`。
+- **派系名稱正規化（1 個名稱，11 列）**：「民主進步黨新潮流系」統一改名為「新潮流系」，
+  與其餘 5 列既有的「新潮流系」寫法一致，於是在 `ensureEntity` 依姓名去重時自然合併為
+  單一節點，不必再用合併腳本事後拼接。
+- **同名不同人**：不能靠字串比對判斷（見 §3.1 的「常見名寧缺勿錯」原則），改為
+  在 curated 資料上新增人工標記欄位 `counterpartDistinct`（例如李佳芬同時是謝龍介之妻
+  與韓國瑜之妻，兩列分別標記 `"謝龍介之妻"` / `"韓國瑜之妻"`），`ensureEntity` 的去重快取
+  鍵僅在該欄位存在時才拆開，預設仍以姓名去重。
+- **匯入時的覆核警示**：`import-relationships.ts` 執行完畢固定印出兩份供人工複查的清單：
+  （一）entity 姓名若能在 officials 唯一匹配，列為疑似重複記錄；
+  （二）同一姓名在 curated 中出現多種 `counterpartRole` 描述卻未標記 `counterpartDistinct`者，
+  列為待檢查（多數是純措辭差異，例如「前行政院長」vs「前行政院院長」）。
+  這兩份警示取代了原本設想的合併腳本，是現在偵測同類問題的常態機制。
 
-**副作用（正面）**：5 位併入 officials 後自動取得站內照片，且節點變為可點進檔案頁（其中 3 位為新入圖節點，淨增 3 張臉）。
+因為重新匯入會把每筆 entity/relationship 重新產生一批新的 id，任何寫死 UUID 的
+一次性合併腳本在下一次匯入後就會失效（對照表指向的舊 id 已不存在，執行只會是
+靜默的 0 筆改寫）。故最終未採用寫死 UUID 的合併腳本，`scraper/merge-duplicate-entities.ts`
+與其純函式 `scraper/lib/mergeNodes.ts` 亦隨之移除。
+
+**結果**：韓國瑜／侯友宜／蔡咏鍀／許家蓓恢復為單一 official 節點並帶站內照片，
+新潮流系合併為單一節點（11 條關係）；張美慧維持兩個獨立節點不動（見 §3.2，
+企業高管 entity 與花蓮縣議員 official 職務不同，本為刻意分開）。
 
 ## 4. 照片
 
@@ -194,20 +209,23 @@ entity 節點不帶 `photoUrl`（`photo_url` 欄位全為 null）。
 - `test/graph.test.ts` 擴充：
   - `buildGraphData` 正確帶出 official 的 `photoUrl`；entity 節點無此欄位。
   - 合併後的資料不產生自連、不產生重複邊。
-- `scraper/merge-duplicate-entities.ts` 的去重／自連邏輯抽為純函式並單元測試（不觸 DB）。
 - build smoke test：檔案頁與 `/graph` 皆可建置。
+
+（原規劃另有「合併腳本的去重／自連邏輯抽為純函式並單元測試」一項；改採 §3.3 的
+source 端修正後，該腳本與其純函式 `scraper/lib/mergeNodes.ts` 已不需要，隨之移除，
+含對應測試 `test/mergeNodes.test.ts`。）
 
 ## 8. 邊界與錯誤處理
 
 - 照片 404 → 退化為文字圓（`background-image` 載入失敗時的 fallback）。
 - Cytoscape 載入失敗 → 圖區塊不顯示，下方文字清單不受影響（清單為 SSG 靜態 HTML，不依賴 JS）。
-- 合併腳本必須可重複執行（第二次跑時對照表中的 entity 已不存在 → 略過，不報錯）。
 - 節點數為 2 的 ego 圖仍照常渲染（視覺單薄但不是錯誤）。
 
 ## 9. 交付階段
 
 **Stage 1（可驗收）**
-1. `merge-duplicate-entities.ts` ＋ dry-run 確認 ＋ 實際合併
+1. 修正 `relationships-curated.json` 源頭資料（entity→official 4 列、派系名稱正規化）＋
+   重新 `import:relationships` ＋ `export:graph`（見 §3.3，取代原定的合併腳本）
 2. photoUrl 管線（types / graph.ts / export-graph.ts）
 3. `RelationshipGraph.svelte` 依 §5 重寫
 4. 檔案頁掛圖、改 2 跳、清單留下方

@@ -19,7 +19,6 @@
     "judicial:measure": "tsx scraper/judicial.ts --measure",
     "judicial:feed": "tsx scraper/judicial.ts",
     "import:relationships": "tsx scraper/import-relationships.ts",
-    "merge:entities": "tsx scraper/merge-duplicate-entities.ts",
     "enrich:photos": "tsx scraper/enrich-legislator-photos.ts",
     "enrich:mayor-photos": "tsx scraper/enrich-mayor-photos.ts",
     "judgments:discover": "tsx scraper/judgments-discover.ts",
