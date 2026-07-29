@@ -100,12 +100,23 @@
           layout: { name: 'preset' },
           userZoomingEnabled: mode === 'global',
           autoungrabify: false,
+          // 稀疏圖（全站有 41 頁只有一段關係）節點少，layout 後的 fit 會把縮放拉到 2.6 倍，
+          // 節點大到與密集頁不成比例。設上限讓各頁節點尺寸接近；密集頁縮放本來就小於 1，不受影響。
+          // 只加在 ego：global（/graph）開放使用者滾輪縮放，設上限會擋住放大檢視。
+          ...(mode === 'ego' ? { maxZoom: 1.2 } : {}),
         }) as unknown as typeof cy;
 
         // ego：本人置中的同心圓（越靠中心 depth 越小）。global：力導向。
+        // startAngle 改成 45°（π/4）：節點標籤掛在節點正下方，所以「垂直的邊」最糟——
+        // 邊標籤畫在中點，恰好落進上下相鄰節點的標籤裡而完全讀不到。concentric 預設
+        // startAngle = 3π/2 會把環上第一個節點放在正上方，鄰居只有一個時（全站 41 頁如此，
+        // 是最常見的圖形狀）必定產生垂直的邊。45° 讓 n=1、2、4 這些常見的鄰居數都避開垂直軸。
+        // 值是實測選的：對 2/9/12/15 節點四頁量測「邊標籤未被節點標籤覆蓋」的比例，
+        // 45° 為 30/35，優於預設 270° 的 23/35 與正右方 0° 的 24/35。
+        // 附帶效果：斜向配置比十字配置更貼合寬扁的容器，密集頁 fit 後的縮放從 0.54 升到 0.72，字更清楚。
         const layout = mode === 'ego'
           ? { name: 'concentric', concentric: (n: { data: (k: string) => number }) => 10 - n.data('depth'),
-              levelWidth: () => 1, minNodeSpacing: 44, padding: 28, animate: false }
+              levelWidth: () => 1, minNodeSpacing: 44, padding: 28, animate: false, startAngle: Math.PI / 4 }
           : { name: 'cose', padding: 30, animate: false, nodeRepulsion: 9000, idealEdgeLength: 110 };
         cy!.layout(layout).run();
 
