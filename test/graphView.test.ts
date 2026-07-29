@@ -41,6 +41,14 @@ describe('avatarDataUri', () => {
   it('空字串不產生破格 SVG', () => {
     expect(decodeURIComponent(avatarDataUri('  '))).toContain('>·<');
   });
+
+  it('姓名第一個字為 non-BMP 字元（如罕見漢字）不拋錯，且完整保留該字元', () => {
+    const name = '\u{20BB7}小明';
+    expect(() => avatarDataUri(name)).not.toThrow();
+    const uri = avatarDataUri(name);
+    expect(uri.startsWith('data:image/svg+xml;utf8,')).toBe(true);
+    expect(decodeURIComponent(uri)).toContain(`>${[...name][0]}<`);
+  });
 });
 
 describe('toCytoscapeElements', () => {

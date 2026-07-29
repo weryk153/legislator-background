@@ -18,7 +18,7 @@ export interface CyEdge {
 
 // 無照片節點的頭像文字色。刻意寫死而非用 token：這個字是畫在 SVG data URI 裡的，
 // 換亮/暗模式時無法重新上色。--faint 在兩種模式下相近（#8c887f / #7d7a72），
-// 取中間值即可雙模式通用。真正的姓名在圓形下方，用 --fg，不受影響。
+// 這裡直接沿用亮模式的 --faint 值，兩模式都可用。真正的姓名在圓形下方，用 --fg，不受影響。
 const AVATAR_FG = '#8c887f';
 
 const escapeXml = (s: string) =>
@@ -27,7 +27,10 @@ const escapeXml = (s: string) =>
 // 無照片節點：姓氏第一個字的 SVG，背景透明讓節點的 --surface 底色透出來，
 // 因此同一張圖在亮/暗模式都適用。
 export function avatarDataUri(name: string): string {
-  const ch = escapeXml(name.trim().charAt(0) || '·');
+  // 用 [...] 取完整 code point，而非 charAt(0) 取 UTF-16 code unit：
+  // 罕見漢字（如 CJK 擴展 B/C 區）或 emoji 屬於 non-BMP，charAt(0) 只會拿到
+  // 半個代理對，交給 encodeURIComponent 會丟出 URI malformed。
+  const ch = escapeXml([...name.trim()][0] || '·');
   const svg =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">' +
     `<text x="50" y="50" fill="${AVATAR_FG}" font-family="Georgia,serif" font-size="52" ` +
@@ -70,6 +73,9 @@ export function toCytoscapeElements(
 
   const nodes: CyNode[] = data.nodes.map((n) => {
     const isCenter = n.key === centerKey;
+    // depths 查不到時 fallback 為第一層：僅在 data 為 centerKey 的 ego subgraph
+    // （每個節點必連回中心），或 centerKey 為 null（depths 恆空）時才正確；
+    // 若餵入完整圖並指定中心，未連通節點會被誤判為第一層。
     const depth = depths.get(n.key) ?? 1;
     const role = n.kind === 'official'
       ? OFFICE_LABEL[n.subtype as OfficeType] ?? ''
