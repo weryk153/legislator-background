@@ -49,6 +49,24 @@ describe('buildGraphData', () => {
     expect(data.edges).toHaveLength(1);
   });
 
+  it('去重的倖存者恆為 id 較小者，與傳入順序無關（重跑匯出不會讓邊悄悄換方向／換說明）', () => {
+    const pair = [
+      rel({ id: 'r2', from_id: 'b', to_id: 'a', note: '乙方寫法' }),
+      rel({ id: 'r1', from_id: 'a', to_id: 'b', note: '甲方寫法' }),
+    ];
+    for (const rows of [pair, [...pair].reverse()]) {
+      const { data } = buildGraphData(officials, entities, rows);
+      expect(data.edges).toHaveLength(1);
+      expect(data.edges[0]).toMatchObject({ id: 'r1', source: 'official:a', target: 'official:b', note: '甲方寫法' });
+    }
+  });
+
+  it('不改動呼叫端傳入的陣列順序', () => {
+    const rows = [rel({ id: 'r2' }), rel({ id: 'r1', from_id: 'b', to_id: 'a' })];
+    buildGraphData(officials, entities, rows);
+    expect(rows.map((r) => r.id)).toEqual(['r2', 'r1']);
+  });
+
   it('keeps both directions distinct for directed edges', () => {
     const { data } = buildGraphData(officials, entities, [
       rel({ id: 'r1', from_id: 'a', to_id: 'b', relation_type: 'parent_child', directed: true }),

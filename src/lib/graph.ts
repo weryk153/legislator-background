@@ -56,7 +56,12 @@ export function buildGraphData(
   const seen = new Set<string>(); // dedup key
   const used = new Set<string>(); // node keys actually referenced
 
-  for (const r of relationships) {
+  // 先依 id 排序再去重：資料庫裡確實有幾組重複的關係列（同一對人、同一類型記了兩筆），
+  // 去重時「誰活下來」決定了邊的 source/target 方向與顯示的 note。若照呼叫端傳入的順序
+  // 處理，勝出者就取決於 DB 回傳的列順序，重跑一次匯出可能讓某條邊悄悄換方向、換說明。
+  // 固定以 id 最小者為準（與下方輸出的排序一致），讓匯出結果可重現。
+  const ordered = [...relationships].sort((a, b) => a.id.localeCompare(b.id));
+  for (const r of ordered) {
     const from = keyOf(r.from_type, r.from_id);
     const to = keyOf(r.to_type, r.to_id);
     if (!allNodes.has(from)) { errors.push(`relationship ${r.id}: endpoint ${from} not found`); continue; }
