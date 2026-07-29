@@ -6,7 +6,7 @@ import { ENTITY_LABEL, OFFICE_LABEL } from "../lib/graph";
 import type { EntityType } from "../lib/types";
 
 const graph = loadGraph();
-const title = "政治人物關係圖｜家族、派系、師徒與金主關係網";
+const title = "政治人物關係圖｜家族、派系、師徒與政治支持關係網";
 const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物、${graph.edges.length} 條已查證關係的互動關係圖，每條關係皆附公開資料出處。`;
 
 // 圖本身完全由 client-side JS（Cytoscape）畫出，無 JS 或爬蟲看不到任何人名。
