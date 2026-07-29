@@ -1,10 +1,12 @@
-<!-- 保留給 Phase 2 全局關係網頁；檔案頁的人物關係改用文字清單（見 officials/[id].astro），不再用此元件。 -->
+<!-- 人物關係圖。ego（檔案頁，以本人為中心）與 global（/graph 全圖）共用同一套視覺。
+     資料轉換在 src/lib/graphView.ts，本檔只負責掛載 Cytoscape 與樣式。 -->
 <script lang="ts">
   import { onMount } from 'svelte';
-  import type { GraphNode, GraphEdge } from '../lib/types';
-  import { RELATION_LABEL, FAMILY_RELATIONS } from '../lib/graph';
+  import type { GraphData } from '../lib/types';
+  import { toCytoscapeElements } from '../lib/graphView';
 
-  let { nodes, edges, centerKey }: { nodes: GraphNode[]; edges: GraphEdge[]; centerKey: string } = $props();
+  let { data, centerKey = null, mode = 'ego' }:
+    { data: GraphData; centerKey?: string | null; mode?: 'ego' | 'global' } = $props();
 
   let container: HTMLDivElement;
 
@@ -15,37 +17,50 @@
     return {
       bg: v('--bg'), surface: v('--surface'), fg: v('--fg'), muted: v('--muted'),
       faint: v('--faint'), line: v('--line-strong'), accent: v('--accent'),
-      accentWash: v('--accent-wash'), serif: v('--serif'), sans: v('--sans'),
+      serif: v('--serif'), sans: v('--sans'),
     };
   }
 
   function buildStyle(c: ReturnType<typeof readColors>) {
     return [
       { selector: 'node', style: {
-        label: 'data(label)', 'font-family': c.serif, 'font-size': 14, 'font-weight': 600,
-        'text-valign': 'center', 'text-halign': 'center', color: c.fg,
-        'background-color': c.surface, 'border-width': 1, 'border-color': c.line,
-        shape: 'round-rectangle', width: 'label', height: 'label',
-        'padding': '11px', 'text-max-width': '120',
+        shape: 'ellipse',
+        width: 'data(size)', height: 'data(size)',
+        'background-color': c.surface,
+        'background-image': 'data(avatar)',
+        'background-fit': 'cover',
+        'background-clip': 'node',
+        'border-width': 1.5, 'border-color': c.line,
+        label: 'data(label)', 'text-wrap': 'wrap', 'text-max-width': '110',
+        'text-valign': 'bottom', 'text-margin-y': 7,
+        'font-family': c.serif, 'font-size': 13, 'font-weight': 700,
+        'line-height': 1.35, color: c.fg,
       } },
-      // 外部公眾人物：虛框、灰字、紙色底，視覺次於公職
+      // 外部公眾人物：虛框、灰字，視覺次於本站收錄的公職（沿用文字清單的 .rel-name.plain 語彙）
       { selector: 'node[kind = "entity"]', style: {
-        'background-color': c.bg, 'border-style': 'dashed', 'border-color': c.line,
-        color: c.muted, 'font-weight': 500,
+        'border-style': 'dashed', color: c.muted, 'font-weight': 500,
       } },
-      // 目前所在人物：朱紅框強調（底維持紙色，克制不搶眼）。Cytoscape 會忽略 rgba alpha，故不用淡紅底。
+      // 第二層＝關係人的關係人，與本人無直接關係，故縮小並淡化以免誤讀
+      { selector: 'node[depth = 2]', style: { opacity: 0.6, 'border-width': 1 } },
+      // 中心人物：姓名加淡紅底色塊。Cytoscape 忽略色彩的 rgba alpha，
+      // 故用實色 --accent 搭配獨立的 text-background-opacity 做出 --accent-wash 效果。
       { selector: 'node[center = 1]', style: {
-        'border-color': c.accent, 'border-width': 2.5,
+        'border-width': 2.5, 'border-color': c.line,
+        'text-background-color': c.accent, 'text-background-opacity': 0.1,
+        'text-background-padding': '5px', 'text-background-shape': 'roundrectangle',
       } },
       { selector: 'edge', style: {
         label: 'data(label)', 'font-family': c.sans, 'font-size': 11, color: c.muted,
-        'curve-style': 'bezier', width: 1.4, 'line-color': c.faint, 'target-arrow-color': c.faint,
+        'curve-style': 'bezier', width: 1.2,
+        'line-color': c.faint, 'target-arrow-color': c.faint,
         'text-background-color': c.bg, 'text-background-opacity': 1, 'text-background-padding': '3px',
       } },
-      { selector: 'edge[fam = 1]', style: { 'line-color': c.muted, 'line-style': 'solid' } },
+      // 家族實線、政治虛線（沿用 FAMILY_RELATIONS 分類）
       { selector: 'edge[fam = 0]', style: { 'line-style': 'dashed' } },
-      { selector: 'edge[dir = 1]', style: { 'target-arrow-shape': 'triangle', 'arrow-scale': 0.9 } },
-      { selector: 'edge.hl', style: { 'line-color': c.accent, 'target-arrow-color': c.accent, color: c.accent, width: 2 } },
+      { selector: 'edge[dir = 1]', style: { 'target-arrow-shape': 'triangle', 'arrow-scale': 0.85 } },
+      { selector: 'edge.hl', style: {
+        'line-color': c.accent, 'target-arrow-color': c.accent, color: c.accent, width: 2,
+      } },
     ];
   }
 
@@ -53,73 +68,87 @@
     s.replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]!));
 
   onMount(async () => {
-    const cytoscape = (await import('cytoscape')).default;
-    const cy = cytoscape({
-      container,
-      elements: [
-        ...nodes.map((n) => ({ data: { id: n.key, label: n.name, slug: n.slug ?? '', kind: n.kind, center: n.key === centerKey ? 1 : 0 } })),
-        ...edges.map((e) => ({ data: {
-          id: e.id, source: e.source, target: e.target,
-          label: RELATION_LABEL[e.type] ?? e.type, fam: FAMILY_RELATIONS.has(e.type) ? 1 : 0, dir: e.directed ? 1 : 0,
-          note: e.note ?? '', sourceUrl: e.sourceUrl ?? '',
-        } })),
-      ],
-      style: buildStyle(readColors()),
-      layout: { name: 'preset' },
-      userZoomingEnabled: true, autoungrabify: false,
-    });
+    let cy: { destroy: () => void; style: (s: unknown) => { update: () => void };
+             layout: (o: unknown) => { run: () => void }; on: (...a: unknown[]) => void } | null = null;
+    let mo: MutationObserver | null = null;
 
-    // 以「目前所在人物」為頂點的由上而下階層：本人在上，關係人在下。
-    cy.layout({ name: 'breadthfirst', roots: cy.getElementById(centerKey), directed: false, spacingFactor: 1.35, padding: 24, animate: false }).run();
+    try {
+      const cytoscape = (await import('cytoscape')).default;
+      const elements = toCytoscapeElements(data, centerKey);
 
-    // 點公職節點 → 進其檔案頁（entity 無 slug，不觸發）
-    cy.on('tap', 'node[slug]', (evt: { target: { data: (k: string) => string } }) => {
-      const slug = evt.target.data('slug');
-      if (slug) window.location.href = `/officials/${slug}`;
-    });
+      cy = cytoscape({
+        container,
+        elements: [...elements.nodes, ...elements.edges],
+        style: buildStyle(readColors()),
+        layout: { name: 'preset' },
+        userZoomingEnabled: mode === 'global',
+        autoungrabify: false,
+      }) as unknown as typeof cy;
 
-    // hover 連線 → tooltip（關係＋說明＋出處）。tooltip 自身可 hover，方便點出處連結。
-    const tip = document.createElement('div');
-    tip.className = 'rg-tip';
-    container.appendChild(tip);
-    let hideTimer: ReturnType<typeof setTimeout>;
-    const hideSoon = () => { hideTimer = setTimeout(() => { tip.style.opacity = '0'; tip.style.pointerEvents = 'none'; }, 250); };
-    tip.addEventListener('mouseenter', () => clearTimeout(hideTimer));
-    tip.addEventListener('mouseleave', hideSoon);
+      // ego：本人置中的同心圓（越靠中心 depth 越小）。global：力導向。
+      const layout = mode === 'ego'
+        ? { name: 'concentric', concentric: (n: { data: (k: string) => number }) => 10 - n.data('depth'),
+            levelWidth: () => 1, minNodeSpacing: 44, padding: 28, animate: false }
+        : { name: 'cose', padding: 30, animate: false, nodeRepulsion: 9000, idealEdgeLength: 110 };
+      cy!.layout(layout).run();
 
-    cy.on('mouseover', 'edge', (evt: any) => {
-      clearTimeout(hideTimer);
-      evt.target.addClass('hl');
-      const d = evt.target.data();
-      const note = d.note ? `<div class="rg-note">${esc(d.note)}</div>` : '';
-      const src = d.sourceUrl ? `<a class="rg-src" href="${esc(d.sourceUrl)}" target="_blank" rel="noopener">查看出處 ↗</a>` : '';
-      const m = evt.target.renderedMidpoint();
-      tip.innerHTML = `<div class="rg-rel">${esc(d.label)}</div>${note}${src}`;
-      tip.style.left = `${m.x}px`;
-      tip.style.top = `${m.y}px`;
-      tip.style.opacity = '1';
-      tip.style.pointerEvents = 'auto';
-    });
-    cy.on('mouseout', 'edge', (evt: any) => { evt.target.removeClass('hl'); hideSoon(); });
+      // 點本站收錄的節點 → 進其檔案頁（entity 的 slug 為空字串，不觸發）
+      cy!.on('tap', 'node', (evt: { target: { data: (k: string) => string } }) => {
+        const slug = evt.target.data('slug');
+        if (slug) window.location.href = `/officials/${slug}`;
+      });
 
-    // 跟著亮/暗模式切換重新上色
-    const mo = new MutationObserver(() => cy.style(buildStyle(readColors())).update());
-    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      // hover 連線 → tooltip（關係＋說明＋出處）。tooltip 自身可 hover，方便點出處連結。
+      const tip = document.createElement('div');
+      tip.className = 'rg-tip';
+      container.appendChild(tip);
+      let hideTimer: ReturnType<typeof setTimeout>;
+      const hideSoon = () => {
+        hideTimer = setTimeout(() => { tip.style.opacity = '0'; tip.style.pointerEvents = 'none'; }, 250);
+      };
+      tip.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+      tip.addEventListener('mouseleave', hideSoon);
 
-    return () => { mo.disconnect(); cy.destroy(); };
+      cy!.on('mouseover', 'edge', (evt: any) => {
+        clearTimeout(hideTimer);
+        evt.target.addClass('hl');
+        const d = evt.target.data();
+        const note = d.note ? `<div class="rg-note">${esc(d.note)}</div>` : '';
+        const src = d.sourceUrl
+          ? `<a class="rg-src" href="${esc(d.sourceUrl)}" target="_blank" rel="noopener">查看出處 ↗</a>` : '';
+        const m = evt.target.renderedMidpoint();
+        tip.innerHTML = `<div class="rg-rel">${esc(d.label)}</div>${note}${src}`;
+        tip.style.left = `${m.x}px`;
+        tip.style.top = `${m.y}px`;
+        tip.style.opacity = '1';
+        tip.style.pointerEvents = 'auto';
+      });
+      cy!.on('mouseout', 'edge', (evt: any) => { evt.target.removeClass('hl'); hideSoon(); });
+
+      // 跟著亮/暗模式切換重新上色
+      mo = new MutationObserver(() => cy!.style(buildStyle(readColors())).update());
+      mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    } catch {
+      // Cytoscape 載入或初始化失敗 → 整區隱藏。下方的文字關係清單為 SSG 靜態 HTML，
+      // 不依賴本元件，仍可正常閱讀。
+      container.style.display = 'none';
+    }
+
+    return () => { mo?.disconnect(); cy?.destroy(); };
   });
 </script>
 
-<div bind:this={container} class="graph" role="img" aria-label="人物關係圖"></div>
+<div bind:this={container} class="graph" class:global={mode === 'global'} role="img" aria-label="人物關係圖"></div>
 
 <style>
   .graph {
     position: relative;
-    width: 100%; height: 380px;
+    width: 100%; height: 420px;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: var(--bg);
   }
+  .graph.global { height: 78vh; min-height: 520px; }
   :global(.rg-tip) {
     position: absolute;
     transform: translate(-50%, calc(-100% - 12px));
