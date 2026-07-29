@@ -246,7 +246,7 @@ export function planMerges(rows: RelRow[], pairs: MergePair[]): MergeResult {
 - [ ] **Step 4: 跑測試確認通過**
 
 Run: `pnpm exec vitest run test/mergeNodes.test.ts`
-Expected: PASS（11 個測試全過）
+Expected: PASS（10 個測試全過）
 
 - [ ] **Step 5: Commit**
 
