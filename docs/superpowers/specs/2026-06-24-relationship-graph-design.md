@@ -50,7 +50,7 @@
 
 ### 2.1 關係類型分類（relation_type enum）
 - **家族**：`spouse` 配偶、`parent_child` 親子、`sibling` 兄弟姊妹、`relative` 其他親屬（翁婿、叔姪等）
-- **政治**：`faction` 同派系、`mentor` 師徒/提拔、`party_bloc` 同陣營、`aide` 助理→參選、`backer` 金主/政治獻金、`co_case` 共同被告/司法關聯
+- **政治**：`faction` 同派系、`mentor` 師徒/提拔、`party_bloc` 同陣營（已停用，2026-07 起不再新增，17 筆舊資料已改標為正確類型）、`aide` 助理→參選、`backer` 政治支持（提拔/站台/背書/引薦/輔選等政治性支持，非必然涉及金錢）、`co_case` 共同被告/司法關聯
 
 ### 2.2 Migration
 `supabase/migrations/0006_relationships.sql`：建立兩個 enum、entities、relationships，必要索引（from_id、to_id、relation_type）。

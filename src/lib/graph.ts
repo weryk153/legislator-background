@@ -9,7 +9,9 @@ const keyOf = (type: 'official' | 'entity', id: string) => `${type}:${id}`;
 // relation_type → 白話標籤。單一來源，供檔案頁文字清單與（Phase 2）全局關係圖共用。
 export const RELATION_LABEL: Record<RelationType, string> = {
   spouse: '配偶', parent_child: '親子', sibling: '手足', relative: '親屬',
-  faction: '同派系', mentor: '師徒', party_bloc: '同陣營', aide: '助理', backer: '金主', co_case: '共同被告',
+  // party_bloc 已於 2026-07 停用：原 17 筆資料經檢視為各種不相干關係的大雜燴，已個別改標為正確類型；
+  // 保留 enum 值僅因移除需改 migration，新資料請勿再使用此類型。
+  faction: '同派系', mentor: '師徒', party_bloc: '同陣營', aide: '助理', backer: '政治支持', co_case: '共同被告',
 };
 // 家族類關係（其餘為政治類）。
 export const FAMILY_RELATIONS: ReadonlySet<RelationType> = new Set<RelationType>([
