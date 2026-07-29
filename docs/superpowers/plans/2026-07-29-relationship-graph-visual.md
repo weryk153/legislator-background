@@ -13,7 +13,7 @@
 ## Global Constraints
 
 - **不新增 npm 依賴。** Cytoscape、Svelte、Astro 皆已在 `package.json`。
-- **用色一律使用 `src/styles/tokens.css` 既有 token**，不得硬寫色碼（唯一例外見 Task 4 的 `AVATAR_FG`，已註明理由）。`--accent`（#b3271e）僅用於 hover 與中心人物，不作內文色。
+- **用色一律使用 `src/styles/tokens.css` 既有 token**，不得硬寫色碼（唯一例外是 Task 5 的 `AVATAR_FG`，該處已註明理由：色值畫在 SVG data URI 內，無法隨主題重新上色）。`--accent`（#b3271e）僅用於 hover 與中心人物，不作內文色。
 - **Cytoscape 忽略色彩的 rgba alpha**（既有元件已註明）。需要半透明時用獨立的 `*-opacity` 屬性，不要傳 rgba 進 color 屬性。
 - 註解、commit message 用繁體中文，比照既有 commit 風格（`feat(graph): …`、`fix(ui): …`）。
 - 每個 task 結束都要 commit。
@@ -246,7 +246,7 @@ export function planMerges(rows: RelRow[], pairs: MergePair[]): MergeResult {
 - [ ] **Step 4: 跑測試確認通過**
 
 Run: `pnpm exec vitest run test/mergeNodes.test.ts`
-Expected: PASS（11 個測試全過）
+Expected: PASS（10 個測試全過）
 
 - [ ] **Step 5: Commit**
 
@@ -382,7 +382,9 @@ main().catch((e) => { console.error(e); process.exit(1); });
 
 Run: `pnpm run merge:entities -- --dry-run`
 
-Expected: 印出關係總數 277；6 組各自的改寫筆數；「--dry-run：未寫入任何資料」。
+Expected: 印出關係總數 **280**；6 組各自的改寫筆數；「--dry-run：未寫入任何資料」。
+（280 是 DB 實際列數；graph.json 只有 277 條邊，差額為 3 列既有重複——匯出時由 `buildGraphData` 去重，
+不會被本腳本刪除，因為 `planMerges` 只刪端點被改寫過的列。）
 **檢查點：若改寫總數為 0，表示 UUID 對不上（DB 與 2026-07-29 快照不同步），停下來查清楚，不要硬跑。**
 
 - [ ] **Step 4: 實際執行合併**
@@ -538,17 +540,28 @@ node -e "
 const g=require('./src/data/graph.json');
 const withPhoto=g.nodes.filter(n=>n.photoUrl).length;
 const names=g.nodes.map(n=>n.name);
-const dup=names.filter((n,i)=>names.indexOf(n)!==i);
+const dup=[...new Set(names.filter((n,i)=>names.indexOf(n)!==i))];
 console.log('nodes',g.nodes.length,'edges',g.edges.length);
 console.log('有照片',withPhoto);
-console.log('剩餘同名節點',[...new Set(dup)]);
+console.log('圖中同名節點',dup);
+const merged=['韓國瑜','侯友宜','蔡咏鍀','謝典霖','許家蓓','新潮流系','民主進步黨新潮流系'];
+merged.forEach(n=>console.log('  '+n+' 出現',names.filter(x=>x===n).length,'次'));
 "
 ```
 
 Expected:
 - `nodes 361`
+- `edges 277`
 - `有照片 157`
-- `剩餘同名節點 [ '張美慧' ]` —— 只剩張美慧，是 spec §3.2 刻意不合併的那組。**若出現韓國瑜／侯友宜／蔡咏鍀／謝典霖／許家蓓／新潮流系，表示 Task 2 沒生效，回頭查。**
+- `圖中同名節點 []` —— 圖內不應有任何同名節點。
+
+  注意：spec §3.2 刻意不合併的張美慧**不會**出現在這裡。花蓮縣議員張美慧沒有任何關係，
+  依 `buildGraphData` 的規則（孤點不入圖）不會成為節點，圖中只有企業界那位張美慧一個。
+  兩人仍是 DB 中的兩筆獨立資料，未被誤併——這才是 §3.2 的重點，而非圖中可見。
+
+- 逐名檢查應為：韓國瑜／侯友宜／蔡咏鍀／謝典霖／許家蓓各出現 **1 次**；
+  `新潮流系` 出現 **1 次**；`民主進步黨新潮流系` 出現 **0 次**（已併入前者）。
+  **任一項不符即表示 Task 2 沒生效，停下來回頭查。**
 
 - [ ] **Step 3: Commit**
 
@@ -716,7 +729,10 @@ const escapeXml = (s: string) =>
 // 無照片節點：姓氏第一個字的 SVG，背景透明讓節點的 --surface 底色透出來，
 // 因此同一張圖在亮/暗模式都適用。
 export function avatarDataUri(name: string): string {
-  const ch = escapeXml(name.trim().charAt(0) || '·');
+  // 用 [...] 取完整 code point，而非 charAt(0) 取 UTF-16 code unit：
+  // 罕見漢字（如 CJK 擴展 B/C 區）或 emoji 屬於 non-BMP，charAt(0) 只會拿到
+  // 半個代理對，交給 encodeURIComponent 會丟出 URI malformed。
+  const ch = escapeXml([...name.trim()][0] || '·');
   const svg =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">' +
     `<text x="50" y="50" fill="${AVATAR_FG}" font-family="Georgia,serif" font-size="52" ` +
@@ -818,6 +834,21 @@ git commit -m "feat(graph): Cytoscape 資料轉換純函式(深度/尺寸/頭像
 - Produces: Svelte 元件，props 為 `{ data: GraphData; centerKey?: string | null; mode?: 'ego' | 'global' }`（Task 7、Task 8 使用）
 
 本 task 無單元測試——Cytoscape 需要真實 DOM 與版面計算，用 vitest 測沒有意義。驗收方式為 Step 3 的瀏覽器目視檢查。轉換邏輯已在 Task 5 測過。
+
+> **實作與下方程式碼的差異（審查後修正，以 commit 8131b14 的檔案為準）**
+>
+> 下方 Step 1 的 `onMount` 寫成 `async`，這在 Svelte 5 是錯的：`onMount` 以
+> `typeof cleanup === 'function'` 判斷回傳值（見 `node_modules/svelte/src/index-client.js`），
+> 而 async 函式同步回傳的是 Promise，因此 cleanup 從未被註冊，`MutationObserver`
+> 與 Cytoscape 實例在卸載時不會被銷毀。
+>
+> 最終實作改為：外層 `onMount` 維持同步並立即回傳 cleanup，非同步設定包進
+> `void (async () => {...})()`；`cy` / `mo` / `tip` / `hideTimer` 宣告於外層供
+> cleanup 存取；並加上 `disposed` 旗標，在唯一的 `await import('cytoscape')`
+> 之後、建立任何資源之前檢查——否則快速卸載時 IIFE 會在 cleanup 跑完後才把
+> 掛在 `document.documentElement` 上的 MutationObserver 建起來，永遠關不掉。
+>
+> 樣式、佈局參數、色彩 token、tooltip 內容與失敗降級路徑均與下方一致，未更動。
 
 - [ ] **Step 1: 重寫元件**
 
@@ -1162,11 +1193,11 @@ const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物�
 
 ```astro
   <script>
-    // 篩選/搜尋直接操作元件掛好的 Cytoscape 實例。元件把實例掛在 .graph 的 __cy 上（見 Step 3）。
-    const graphEl = () => document.querySelector<HTMLElement & { __cy?: any }>(".graph");
+    // 篩選/搜尋直接操作元件掛好的 Cytoscape 實例。元件初始化完成後會在自己的容器上
+    // 派發 rg:ready（bubbles: true），事件的 detail 即為該實例——不必輪詢或猜時序。
+    let cy: any = null;
 
     function apply() {
-      const cy = graphEl()?.__cy;
       if (!cy) return;
       const q = (document.getElementById("q") as HTMLInputElement).value.trim();
       const kinds = new Set(
@@ -1187,25 +1218,25 @@ const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物�
       });
     }
 
-    // client:load 的 island 可能在本 script 之後才掛好，輪詢等它出現。
-    const wait = setInterval(() => {
-      if (graphEl()?.__cy) { clearInterval(wait); apply(); }
-    }, 100);
-    setTimeout(() => clearInterval(wait), 10000);
+    // island 可能在本 script 之後才掛好；監聽事件即可，無論先後都收得到。
+    document.addEventListener("rg:ready", (e) => { cy = (e as CustomEvent).detail; apply(); });
 
     document.getElementById("q")?.addEventListener("input", apply);
     document.querySelectorAll(".kind").forEach((c) => c.addEventListener("change", apply));
   </script>
 ```
 
-- [ ] **Step 3: 讓元件把 Cytoscape 實例掛到 DOM 上**
+- [ ] **Step 3: 讓元件在初始化完成後派發 rg:ready**
 
-`src/components/RelationshipGraph.svelte` 的 `onMount` 內，在 `cy!.layout(layout).run();` 之後加入一行：
+`src/components/RelationshipGraph.svelte` 的 `onMount` 內，在 `cy!.layout(layout).run();` 之後加入：
 
 ```ts
-      // /graph 頁的篩選/搜尋需要存取實例（見 src/pages/graph.astro）
-      (container as HTMLElement & { __cy?: unknown }).__cy = cy;
+      // 通知頁面實例已就緒（/graph 的篩選/搜尋需要它，見 src/pages/graph.astro）。
+      // bubbles 讓 document 層級的監聽收得到；不用輪詢，先後掛載都不會漏。
+      container.dispatchEvent(new CustomEvent('rg:ready', { detail: cy, bubbles: true }));
 ```
+
+此事件只在 Cytoscape 初始化成功時派發；失敗走 catch 分支不派發，`/graph` 的篩選器因此保持停用而非對著壞掉的實例操作。
 
 - [ ] **Step 4: 建置**
 

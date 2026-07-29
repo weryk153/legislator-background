@@ -13,6 +13,11 @@ const here = dirname(fileURLToPath(import.meta.url));
 
 type Curated = {
   subject: string; counterpartName: string; counterpartRole: string;
+  // 人工判斷的「同名不同人」註記，只有在真的是不同人時才會出現（例如李佳芬同時是
+  // 謝龍介之妻與韓國瑜之妻）。由人查證後手寫，不是從 counterpartRole 字串推論。
+  // 一旦標記，此列即：(1) 拆開 entity 去重快取鍵；(2) 絕不走名冊姓名比對（見下方
+  // counterpart 端點）；(3) 不再列入「疑為同一人重複記錄」的覆核警示。
+  counterpartDistinct?: string;
   counterpartKind: 'official' | 'entity';
   counterpartEntityType?: string;
   relationType: string; parentName?: string; note: string;
@@ -66,28 +71,50 @@ async function main() {
     }
   }
 
-  // entity 去重快取（name → id）
+  // entity 去重快取。鍵預設只用姓名（絕大多數同名列都是「同一人的不同寫法」，
+  // 例如柯文哲的職稱在不同列分別寫成「台灣民眾黨創黨主席」「臺灣民眾黨主席」——
+  // 若拿 counterpartRole／描述字串本身當鍵，這種措辭差異會被誤判成不同人，
+  // 讓柯文哲、朱立倫、賴清德…等連結全站最多人的樞紐人物被拆成兩三個節點，
+  // 反而摧毀關係圖存在的意義。同名不同人是罕見例外（如李佳芬同時是謝龍介之妻與
+  // 韓國瑜之妻），必須由人查證後在 curated 資料上手寫 counterpartDistinct 標記
+  // 才能生效——身份判斷只能交給人，不能靠字串比對推論。
   const entityCache = new Map<string, string>();
-  async function ensureEntity(name: string, etype: string, desc: string): Promise<string> {
-    if (entityCache.has(name)) return entityCache.get(name)!;
+  async function ensureEntity(name: string, etype: string, desc: string, distinct?: string): Promise<string> {
+    const cacheKey = distinct ? `${name}::${distinct}` : name;
+    if (entityCache.has(cacheKey)) return entityCache.get(cacheKey)!;
     const subtype = ENTITY_TYPES.has(etype) ? etype : 'other';
     const { data, error } = await supabase.from('entities').insert({ name, entity_type: subtype, description: desc }).select('id').single();
     if (error) throw new Error(`entity insert failed (${name}): ${error.message}`);
-    entityCache.set(name, data.id);
+    entityCache.set(cacheKey, data.id);
     return data.id;
   }
 
   let inserted = 0, skipped = 0;
   const skips: string[] = [];
+  const officialFellThrough: string[] = [];
   for (const r of rows) {
     const subjId = officialId(r.subject, true);
     if (!subjId) { skipped++; skips.push(`subject 未匹配: ${r.subject}`); continue; }
 
-    // counterpart 端點
+    // counterpart 端點。
+    // 帶 counterpartDistinct 的列一律不走名冊姓名比對，強制建 entity：這個欄位的意思是
+    // 「已由人查證，此人與名冊中的同名者是不同人」。若仍讓 officialId() 依姓名連過去，
+    // 這個人工判斷就形同不存在——今天不出事只因名冊剛好沒有同名的公職（例如陳永康的
+    // 老長官李傑），哪天 roster:record 收進一位同名議員，這筆關係就會靜默改連到別人身上。
+    // 姓名單獨判定正是「常見名寧缺勿錯」原則要防止的錯誤。
     let toType: 'official' | 'entity', toId: string;
-    const asOfficial = r.counterpartKind === 'official' ? officialId(r.counterpartName) : null;
+    const asOfficial = r.counterpartKind === 'official' && !r.counterpartDistinct
+      ? officialId(r.counterpartName) : null;
     if (asOfficial) { toType = 'official'; toId = asOfficial; }
-    else { toType = 'entity'; toId = await ensureEntity(r.counterpartName, r.counterpartEntityType ?? 'other', r.counterpartRole || r.note); }
+    else {
+      // counterpartKind 標為 official 卻沒對到名冊（多為非本站收錄的中央層級人物，
+      // 如柯文哲、賴清德），會靜默退成 entity。這條路徑以往完全看不見，故記下來報告。
+      if (r.counterpartKind === 'official' && !r.counterpartDistinct) {
+        officialFellThrough.push(`${r.counterpartName}（${r.subject} 的 ${r.relationType}）`);
+      }
+      toType = 'entity';
+      toId = await ensureEntity(r.counterpartName, r.counterpartEntityType ?? 'other', r.counterpartRole || r.note, r.counterpartDistinct);
+    }
 
     // 方向：parent_child 為有向（from=父母）。其餘無向。
     let fromType: 'official' | 'entity' = 'official', fromId = subjId;
@@ -140,6 +167,65 @@ async function main() {
 
   console.log(`匯入完成：${inserted} 筆關係、entity ${entityCache.size} 筆；清孤立 entity ${orphans.length} 筆；略過 ${skipped}`);
   if (skips.length) console.log('略過明細:\n  ' + skips.join('\n  '));
+
+  // counterpartKind: 'official' 但名冊查不到 → 已退成 entity。多數是本站不收錄的中央層級
+  // 人物，屬正常；但同一份清單也會在名冊日後新增同名者時改變行為（該筆會突然連到那位
+  // 公職），所以每次匯入都印出來，讓這條路徑不再是隱形的。
+  if (officialFellThrough.length) {
+    const uniq = [...new Set(officialFellThrough)];
+    console.log(`\nℹ️ counterpartKind 標為 official 但名冊無唯一匹配、已改建 entity（${uniq.length} 筆）：`);
+    for (const s of uniq) console.log(`  - ${s}`);
+  }
+
+  // 覆核警示：entity 姓名若能在 officials 唯一匹配，很可能是「同一人被記成兩筆」
+  // （本站已發生過的真實問題；當時的重複源頭已在 relationships-curated.json 修正，
+  // 不再需要事後合併腳本）。本函式與下方「覆核警示（二）」是現行的偵測機制，
+  // 每次匯入都會印出來供人工核對，絕不自動合併/升級為 official——姓名單獨判定正是
+  // 「常見名寧缺勿錯」原則要防止的錯誤，合併與否須由人查證職務描述後手動處理。
+  //
+  // 已由人查證為「同名不同人」者（curated 該列帶 counterpartDistinct）不再列入：這份警示
+  // 唯一能做的動作是合併，對已判定為不同人的案例只會是永久的假警報，反而誘導出錯誤的動作。
+  // 例如張美慧——spec §3.2 已裁定企業高管與花蓮縣議員是不同人，不該每次匯入都再問一次。
+  const { data: allEntities, error: entScanErr } = await supabase.from('entities').select('id, name, description');
+  if (entScanErr) throw new Error(`entities scan (覆核警示) failed: ${entScanErr.message}`);
+  // 比對 name＋description（description 即匯入時寫入的 counterpartRole||note），
+  // 只豁免人工實際標記過的那一筆，同姓名的其他 entity 仍會照常被檢出。
+  const confirmedDistinct = new Set(
+    rows.filter((r) => r.counterpartDistinct).map((r) => `${r.counterpartName}::${r.counterpartRole || r.note}`),
+  );
+  const allSuspects = ((allEntities ?? []) as { id: string; name: string; description: string | null }[])
+    .map((e) => ({ ...e, matchOfficialId: officialId(e.name) }))
+    .filter((e) => e.matchOfficialId);
+  const suspects = allSuspects.filter((e) => !confirmedDistinct.has(`${e.name}::${e.description ?? ''}`));
+  const confirmedCount = allSuspects.length - suspects.length;
+  if (suspects.length) {
+    console.log(`\n⚠️ 待人工覆核（${suspects.length} 筆）：以下 entity 姓名可在 officials 唯一匹配，疑為同一人重複記錄，未自動處理：`);
+    for (const s of suspects) console.log(`  - ${s.name}（entity ${s.id} ↔ official ${s.matchOfficialId}）：${s.description ?? '（無描述）'}`);
+  } else {
+    console.log('\n覆核：沒有 entity 姓名可唯一匹配 officials，未發現疑似重複記錄。');
+  }
+  if (confirmedCount) console.log(`  （另有 ${confirmedCount} 筆姓名可匹配、但已由人工以 counterpartDistinct 確認為不同人，不再列出）`);
+
+  // 覆核警示（二）：安全網。同一姓名在 curated 中出現多種不同 counterpartRole
+  // 描述，卻沒有 counterpartDistinct 標記——目前仍會依姓名合併為同一筆 entity。
+  // 絕大多數是純措辭差異（如「前行政院長」vs「前行政院院長」），但也可能是
+  // 尚未被發現的同名不同人（未來新增的真實案例會出現在這份清單，而不是被
+  // 靜默合併）。列出來供人工檢查，多數項目屬措辭差異、無需動作。
+  const roleVariants = new Map<string, Set<string>>();
+  for (const r of rows) {
+    if (r.counterpartDistinct) continue; // 已由人工標記為不同人，不算未解決
+    const asOfficial = r.counterpartKind === 'official' ? officialId(r.counterpartName) : null;
+    if (asOfficial) continue; // 走 official 路徑，不會建立 entity，無合併疑慮
+    const role = r.counterpartRole || r.note;
+    (roleVariants.get(r.counterpartName) ?? roleVariants.set(r.counterpartName, new Set()).get(r.counterpartName)!).add(role);
+  }
+  const variantNames = [...roleVariants.entries()].filter(([, roles]) => roles.size > 1);
+  if (variantNames.length) {
+    console.log(`\n⚠️ 待人工檢查（${variantNames.length} 筆，多數為措辭差異）：以下姓名在 curated 中有多種 counterpartRole 描述、但未標記 counterpartDistinct，目前仍依姓名合併為同一筆 entity。若其中有同名不同人，須在該筆加上 counterpartDistinct：`);
+    for (const [name, roles] of variantNames) console.log(`  - ${name}：${[...roles].join(' / ')}`);
+  } else {
+    console.log('\n覆核：沒有姓名帶有多種未標記的 counterpartRole 描述。');
+  }
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });

@@ -4,8 +4,8 @@ import type { RawEntity, RawRelationship, RawSource } from '../src/lib/types';
 
 const src: RawSource = { id: 's1', url: 'https://j', type: 'court', title: '判決', retrieved_at: '2026-06-24' };
 const officials = [
-  { id: 'a', slug: 'wang', name: '王又民', party: '無', office_type: 'councilor' as const },
-  { id: 'b', slug: 'shen', name: '沈宗隆', party: '無', office_type: 'councilor' as const },
+  { id: 'a', slug: 'wang', name: '王又民', party: '無', office_type: 'councilor' as const, photo_url: '/photos/councilors/a.jpg' },
+  { id: 'b', slug: 'shen', name: '沈宗隆', party: '無', office_type: 'councilor' as const, photo_url: null },
 ];
 const entities: RawEntity[] = [
   { id: 'e1', name: '白惠萍', entity_type: 'family_member', description: '配偶', photo_url: null, wikipedia_url: null },
@@ -49,12 +49,40 @@ describe('buildGraphData', () => {
     expect(data.edges).toHaveLength(1);
   });
 
+  it('去重的倖存者恆為 id 較小者，與傳入順序無關（重跑匯出不會讓邊悄悄換方向／換說明）', () => {
+    const pair = [
+      rel({ id: 'r2', from_id: 'b', to_id: 'a', note: '乙方寫法' }),
+      rel({ id: 'r1', from_id: 'a', to_id: 'b', note: '甲方寫法' }),
+    ];
+    for (const rows of [pair, [...pair].reverse()]) {
+      const { data } = buildGraphData(officials, entities, rows);
+      expect(data.edges).toHaveLength(1);
+      expect(data.edges[0]).toMatchObject({ id: 'r1', source: 'official:a', target: 'official:b', note: '甲方寫法' });
+    }
+  });
+
+  it('不改動呼叫端傳入的陣列順序', () => {
+    const rows = [rel({ id: 'r2' }), rel({ id: 'r1', from_id: 'b', to_id: 'a' })];
+    buildGraphData(officials, entities, rows);
+    expect(rows.map((r) => r.id)).toEqual(['r2', 'r1']);
+  });
+
   it('keeps both directions distinct for directed edges', () => {
     const { data } = buildGraphData(officials, entities, [
       rel({ id: 'r1', from_id: 'a', to_id: 'b', relation_type: 'parent_child', directed: true }),
       rel({ id: 'r2', from_id: 'b', to_id: 'a', relation_type: 'parent_child', directed: true }),
     ]);
     expect(data.edges).toHaveLength(2);
+  });
+
+  it('帶出 official 的 photoUrl', () => {
+    const { data } = buildGraphData(officials, entities, [rel({})]);
+    expect(data.nodes.find((n) => n.key === 'official:a')).toMatchObject({ photoUrl: '/photos/councilors/a.jpg' });
+  });
+
+  it('photo_url 為 null 的 official 不帶 photoUrl 欄位', () => {
+    const { data } = buildGraphData(officials, entities, [rel({})]);
+    expect(data.nodes.find((n) => n.key === 'official:b')).not.toHaveProperty('photoUrl');
   });
 });
 

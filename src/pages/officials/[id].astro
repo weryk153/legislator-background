@@ -2,15 +2,16 @@
 import Base from "../../layouts/Base.astro";
 import Sources from "../../components/Sources.astro";
 import { loadOfficials } from "../../lib/data";
-import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL } from "../../lib/graph";
+import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL, OFFICE_LABEL } from "../../lib/graph";
 import { loadGraph } from "../../lib/loadGraph";
+import RelationshipGraph from "../../components/RelationshipGraph.svelte";
 
 export async function getStaticPaths() {
   const officials = await loadOfficials();
   const graph = loadGraph();
   return officials.map((o) => ({
     params: { id: o.slug },
-    props: { official: o, ego: egoSubgraph(graph, `official:${o.id}`, 1) },
+    props: { official: o, ego: egoSubgraph(graph, `official:${o.id}`, 2) },
   }));
 }
 
@@ -48,9 +49,8 @@ const assetCategoryName: Record<string, string> = {
   land: "土地", building: "建物", cash: "現金", deposit: "存款",
   securities: "有價證券", investment: "事業投資", claim: "債權", debt: "債務", other: "其他",
 };
-const officeName: Record<string, string> = { legislator: "立委", mayor_magistrate: "縣市首長", councilor: "議員" };
-const title = `${o.name}（${o.party}・${officeName[o.officeType]}・${o.district}）經歷、判決、財產申報與政治獻金｜政治人物背景`;
-const desc = `${o.name}（${o.party}・${officeName[o.officeType]}・${o.district}）的經歷、財產申報、政治獻金與相關爭議報導整理，每筆皆附公開資料出處。`;
+const title = `${o.name}（${o.party}・${OFFICE_LABEL[o.officeType]}・${o.district}）經歷、判決、財產申報與政治獻金｜政治人物背景`;
+const desc = `${o.name}（${o.party}・${OFFICE_LABEL[o.officeType]}・${o.district}）的經歷、財產申報、政治獻金與相關爭議報導整理，每筆皆附公開資料出處。`;
 const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const homeUrl = Astro.site ? Astro.site.href : undefined;
 // 大頭照為站內收錄之直式照片（非標準 1200x630），供 og:image 與 JSON-LD image 使用。
@@ -60,7 +60,7 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": "Person",
     name: o.name,
-    jobTitle: officeName[o.officeType],
+    jobTitle: OFFICE_LABEL[o.officeType],
     affiliation: { "@type": "Organization", name: o.party },
     url: pageUrl,
     ...(photoUrl && { image: photoUrl }),
@@ -87,7 +87,7 @@ const jsonLd = [
   <a href="/" class="back">← 返回總覽</a>
 
   <header class="head">
-    <span class="pill">{officeName[o.officeType]}</span>
+    <span class="pill">{OFFICE_LABEL[o.officeType]}</span>
     {o.departedReason && <span class="pill departed">已解職</span>}
     <h1>{o.name}</h1>
     <p class="lede">{o.party}・{o.district}・第{o.term}屆{o.bio ? `　${o.bio}` : ""}</p>
@@ -204,6 +204,8 @@ const jsonLd = [
     <section class="sec">
       <h2>人物關係</h2>
       <p class="note">關係資料整理自司法判決、媒體報導與公開資料，每條皆附出處，僅呈現已查證者。可點選的姓名為本站收錄之政治人物（連至其檔案頁），其餘為相關之其他公眾人物。</p>
+      <RelationshipGraph client:visible data={ego} centerKey={centerKey} mode="ego" />
+      <p class="note graph-note">圖中外圈較小、較淡者為「關係人的關係人」，與本人無直接關係。滑過連線可看說明與出處；下方清單為完整明細。</p>
       {relations.map((r) => (
         <div class="item rel">
           <span class={`pill rel-kind ${FAMILY_RELATIONS.has(r.type) ? "fam" : "pol"}`}>{RELATION_LABEL[r.type]}</span>
@@ -231,6 +233,7 @@ const jsonLd = [
       padding-bottom: 8px; border-bottom: 1px solid var(--line-strong);
     }
     .note { font-size: var(--t-sm); color: var(--muted); margin: -4px 0 16px; }
+    .graph-note { margin: 10px 0 18px; }
     .none { padding: 4px 0; }
     .item { margin: 12px 0; }
     .entry { margin: 12px 0; }
