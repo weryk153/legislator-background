@@ -77,10 +77,14 @@
   onMount(() => {
     let cy: { destroy: () => void; style: (s: unknown) => { update: () => void };
              layout: (o: unknown) => { run: () => void }; on: (...a: unknown[]) => void;
-             zoom: () => number; minZoom: (z: number) => unknown } | null = null;
+             zoom: (level?: number) => number; minZoom: (z: number) => unknown;
+             width: () => number; height: () => number;
+             elements: () => { boundingBox: () => { w: number; h: number } } } | null = null;
     let mo: MutationObserver | null = null;
     let tip: HTMLDivElement | null = null;
     let hideTimer: ReturnType<typeof setTimeout>;
+    let onResize: (() => void) | null = null;
+    let resizeTimer: ReturnType<typeof setTimeout>;
     let disposed = false;
 
     // Cytoscape 走動態 import（避免 SSR），因此設定過程是非同步的；
@@ -121,12 +125,32 @@
           : { name: 'cose', padding: 30, animate: false, nodeRepulsion: 9000, idealEdgeLength: 110 };
         cy!.layout(layout).run();
 
-        // global（/graph，363 節點）：layout 的 fit（預設開啟）跑完後，此刻的縮放
-        // 就是「整張圖剛好塞進畫布」的比例。把它訂為 minZoom 下限——使用者仍可自由
-        // 放大，但滾輪縮小到底也只會停在全圖可見，不會縮到一小撮塞在畫布角落的縮圖。
-        // 必須放在 layout().run() 之後才讀得到 fit 完成後的值；ego 模式已用 maxZoom
-        // 控制上限，不加下限（fit 後的縮放本來就小，不需要再限制）。
-        if (mode === 'global') cy!.minZoom(cy!.zoom());
+        // global（/graph，361 節點）：以「整張圖剛好塞進畫布」的比例為 minZoom 下限——
+        // 使用者仍可自由放大，但滾輪縮小到底也只會停在全圖可見，不會縮到一小撮塞在畫布
+        // 角落的縮圖。ego 模式已用 maxZoom 控制上限，不加下限（fit 後的縮放本來就小）。
+        //
+        // 這個比例取決於畫布大小，不能只在初始化時算一次：視窗一變小（手機轉向、開
+        // devtools），真正的全圖比例會跟著變小，但舊的下限仍夾在高處，使用者就再也縮
+        // 不到全圖、也沒有復原的辦法。故記下佈局後的圖形邊界（graph 座標，不隨視窗變動），
+        // 視窗改變時用 cytoscape 自己 fit 的公式（見 getFitViewport）重算下限即可，
+        // 既不必重跑 layout，也不會動到使用者當下的視角。
+        if (mode === 'global') {
+          const bb = cy!.elements().boundingBox();
+          const FIT_PAD = 30; // 與 cose layout 的 padding 一致，重算結果才等同 fit()
+          const applyFloor = () => {
+            const w = cy!.width(), h = cy!.height();
+            if (!(bb.w > 0 && bb.h > 0 && w > 0 && h > 0)) return;
+            const floor = Math.min((w - 2 * FIT_PAD) / bb.w, (h - 2 * FIT_PAD) / bb.h);
+            cy!.minZoom(floor);
+            // 視窗變大時下限跟著上升，設定 minZoom 本身不會回夾當下的縮放，補一次。
+            if (cy!.zoom() < floor) cy!.zoom(floor);
+          };
+          applyFloor();
+          // resize 事件在拖曳視窗時會連發，debounce 一次即可；也讓 cytoscape 自己的
+          // resize 處理先跑完，再讀 width()/height()。
+          onResize = () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(applyFloor, 150); };
+          window.addEventListener('resize', onResize);
+        }
 
         // 通知頁面實例已就緒（/graph 的篩選/搜尋需要它，見 src/pages/graph.astro）。
         // bubbles 讓 document 層級的監聽收得到；不用輪詢，先後掛載都不會漏。
@@ -177,6 +201,8 @@
     return () => {
       disposed = true;
       clearTimeout(hideTimer);
+      clearTimeout(resizeTimer);
+      if (onResize) window.removeEventListener('resize', onResize);
       mo?.disconnect();
       cy?.destroy();
       tip?.remove();
