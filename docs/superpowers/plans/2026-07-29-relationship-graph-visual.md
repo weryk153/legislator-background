@@ -729,7 +729,10 @@ const escapeXml = (s: string) =>
 // 無照片節點：姓氏第一個字的 SVG，背景透明讓節點的 --surface 底色透出來，
 // 因此同一張圖在亮/暗模式都適用。
 export function avatarDataUri(name: string): string {
-  const ch = escapeXml(name.trim().charAt(0) || '·');
+  // 用 [...] 取完整 code point，而非 charAt(0) 取 UTF-16 code unit：
+  // 罕見漢字（如 CJK 擴展 B/C 區）或 emoji 屬於 non-BMP，charAt(0) 只會拿到
+  // 半個代理對，交給 encodeURIComponent 會丟出 URI malformed。
+  const ch = escapeXml([...name.trim()][0] || '·');
   const svg =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">' +
     `<text x="50" y="50" fill="${AVATAR_FG}" font-family="Georgia,serif" font-size="52" ` +
