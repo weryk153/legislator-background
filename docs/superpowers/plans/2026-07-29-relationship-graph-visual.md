@@ -540,17 +540,28 @@ node -e "
 const g=require('./src/data/graph.json');
 const withPhoto=g.nodes.filter(n=>n.photoUrl).length;
 const names=g.nodes.map(n=>n.name);
-const dup=names.filter((n,i)=>names.indexOf(n)!==i);
+const dup=[...new Set(names.filter((n,i)=>names.indexOf(n)!==i))];
 console.log('nodes',g.nodes.length,'edges',g.edges.length);
 console.log('有照片',withPhoto);
-console.log('剩餘同名節點',[...new Set(dup)]);
+console.log('圖中同名節點',dup);
+const merged=['韓國瑜','侯友宜','蔡咏鍀','謝典霖','許家蓓','新潮流系','民主進步黨新潮流系'];
+merged.forEach(n=>console.log('  '+n+' 出現',names.filter(x=>x===n).length,'次'));
 "
 ```
 
 Expected:
 - `nodes 361`
+- `edges 277`
 - `有照片 157`
-- `剩餘同名節點 [ '張美慧' ]` —— 只剩張美慧，是 spec §3.2 刻意不合併的那組。**若出現韓國瑜／侯友宜／蔡咏鍀／謝典霖／許家蓓／新潮流系，表示 Task 2 沒生效，回頭查。**
+- `圖中同名節點 []` —— 圖內不應有任何同名節點。
+
+  注意：spec §3.2 刻意不合併的張美慧**不會**出現在這裡。花蓮縣議員張美慧沒有任何關係，
+  依 `buildGraphData` 的規則（孤點不入圖）不會成為節點，圖中只有企業界那位張美慧一個。
+  兩人仍是 DB 中的兩筆獨立資料，未被誤併——這才是 §3.2 的重點，而非圖中可見。
+
+- 逐名檢查應為：韓國瑜／侯友宜／蔡咏鍀／謝典霖／許家蓓各出現 **1 次**；
+  `新潮流系` 出現 **1 次**；`民主進步黨新潮流系` 出現 **0 次**（已併入前者）。
+  **任一項不符即表示 Task 2 沒生效，停下來回頭查。**
 
 - [ ] **Step 3: Commit**
 
