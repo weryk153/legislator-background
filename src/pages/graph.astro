@@ -85,9 +85,10 @@ const peopleList = [...graph.nodes]
     // 派發 rg:ready（bubbles: true），事件的 detail 即為該實例——不必輪詢或猜時序。
     let cy: any = null;
 
-    // global 模式刻意無 maxZoom 上限（見 RelationshipGraph.svelte 註解，供使用者手動放大）；
-    // 但 fit() 不受 maxZoom 約束會直接設定 _private.zoom，篩到只剩兩三個散開的節點時
-    // 算出的縮放會誇張到失真，因此另外夾住。
+    // global 模式刻意無 maxZoom 上限（見 RelationshipGraph.svelte 註解，供使用者手動放大）：
+    // 實際值是 cytoscape 的預設 1e50。fit() 本身會用 maxZoom／minZoom 夾住算出的縮放
+    // （見 cytoscape 的 getFitViewport），但這裡的上限等於沒有，篩到只剩兩三個散開的節點時
+    // 算出的縮放仍會誇張到失真，因此在 fit() 之後自己再夾一次。
     const MAX_FIT_ZOOM = 1.6;
 
     function apply() {
@@ -97,16 +98,23 @@ const peopleList = [...graph.nodes]
         [...document.querySelectorAll<HTMLInputElement>(".kind")].filter((c) => c.checked).map((c) => c.value),
       );
 
+      // 搜尋是「以這個人為中心看他的關係網」，不是「只留下名字有命中的節點」：
+      // 命中者的鄰居幾乎都不同名，若把他們一起隱藏，Cytoscape 也畫不出兩端被隱藏的邊，
+      // 結果是搜一個人反而抹掉他所有關係——與這頁的用途完全相反。
+      // 因此改以「邊」為判準：一條邊只要通過關係類型篩選、且任一端命中姓名就顯示，
+      // 節點則跟著自己的可見邊走。兩層篩選因此可疊加：被關係類型關掉的邊不會顯示，
+      // 只能透過那種邊連到的鄰居也就不會被搜尋帶出來。
+      const matches = (n: any) => !q || String(n.data("name")).includes(q);
       cy.batch(() => {
         cy.edges().forEach((e: any) => {
           const want = e.data("fam") === 1 ? "fam" : "pol";
-          e.style("display", kinds.has(want) ? "element" : "none");
+          const show = kinds.has(want) && (matches(e.source()) || matches(e.target()));
+          e.style("display", show ? "element" : "none");
         });
         cy.nodes().forEach((n: any) => {
           // 關係全被篩掉的人一併隱藏，避免留下一堆孤點
           const hasVisibleEdge = n.connectedEdges().some((e: any) => e.style("display") !== "none");
-          const matches = !q || String(n.data("name")).includes(q);
-          n.style("display", hasVisibleEdge && matches ? "element" : "none");
+          n.style("display", hasVisibleEdge ? "element" : "none");
         });
       });
 
