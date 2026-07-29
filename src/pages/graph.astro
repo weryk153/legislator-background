@@ -2,10 +2,26 @@
 import Base from "../layouts/Base.astro";
 import RelationshipGraph from "../components/RelationshipGraph.svelte";
 import { loadGraph } from "../lib/loadGraph";
+import { ENTITY_LABEL, OFFICE_LABEL } from "../lib/graph";
+import type { EntityType } from "../lib/types";
 
 const graph = loadGraph();
 const title = "政治人物關係圖｜家族、派系、師徒與金主關係網";
 const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物、${graph.edges.length} 條已查證關係的互動關係圖，每條關係皆附公開資料出處。`;
+
+// 圖本身完全由 client-side JS（Cytoscape）畫出，無 JS 或爬蟲看不到任何人名。
+// 這裡另外輸出一份 SSG 純文字人物清單，作為圖的文字版本；只列人，不重複列 277 條
+// 關係的 note／出處——那些已經逐筆列在各自的檔案頁，這裡重複只會製造重複內容。
+const peopleList = [...graph.nodes]
+  .sort((a, b) => a.name.localeCompare(b.name, "zh-Hant"))
+  .map((n) => ({
+    key: n.key,
+    name: n.name,
+    slug: n.slug,
+    role: n.kind === "official"
+      ? OFFICE_LABEL[n.officeType!]
+      : ENTITY_LABEL[n.subtype as EntityType] ?? "其他公眾人物",
+  }));
 ---
 
 <Base title={title} description={desc}>
@@ -21,6 +37,20 @@ const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物�
 
   <RelationshipGraph client:load data={graph} centerKey={null} mode="global" />
 
+  <section class="sec people">
+    <h2>圖中人物清單</h2>
+    <p class="note">以上關係圖之文字版本，依姓名排序；可點選的姓名為本站收錄之政治人物（連至其檔案頁），其餘為相關之其他公眾人物。關係說明與出處請至各政治人物之檔案頁查看。</p>
+    <ul class="people-list">
+      {peopleList.map((p) => (
+        <li>
+          {p.slug
+            ? <a class="rel-name" href={`/officials/${p.slug}`}>{p.name}</a>
+            : <span class="rel-name plain">{p.name}<span class="rel-ext">（{p.role}）</span></span>}
+        </li>
+      ))}
+    </ul>
+  </section>
+
   <style>
     h1 { font-size: var(--t-xl); margin: 14px 0 6px; }
     .lede { margin: 0 0 8px; }
@@ -33,6 +63,21 @@ const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物�
     }
     .controls input[type="search"]:focus { outline: none; border-color: var(--accent); }
     .controls label { font-size: var(--t-sm); color: var(--muted); display: flex; align-items: center; gap: 5px; }
+
+    .sec.people { margin: 32px 0 8px; }
+    .sec.people h2 {
+      font-size: 1.25rem; margin: 0 0 14px;
+      padding-bottom: 8px; border-bottom: 1px solid var(--line-strong);
+    }
+    .people-list {
+      list-style: none; margin: 0; padding: 0;
+      columns: 3; column-gap: 24px;
+    }
+    .people-list li { padding: 6px 0; break-inside: avoid; }
+    .rel-name { font-family: var(--serif); font-weight: 700; font-size: 1.0625rem; }
+    a.rel-name:hover { color: var(--accent); }
+    .rel-name.plain { color: var(--muted); }
+    .rel-ext { font-family: var(--sans); font-weight: 400; font-size: var(--t-sm); color: var(--faint); }
   </style>
 
   <script>
