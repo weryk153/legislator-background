@@ -5,7 +5,7 @@ import { RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL, OFFICE_LABEL } from './
 
 export interface CyNode {
   data: {
-    id: string; label: string; slug: string; kind: string;
+    id: string; label: string; name: string; slug: string; kind: string;
     depth: number; center: 0 | 1; size: number; avatar: string;
   };
 }
@@ -86,6 +86,9 @@ export function toCytoscapeElements(
         // Cytoscape 一個節點只有一個 label，無法對兩行分別上色；
         // 第二行加括號讓它讀起來是次要資訊。
         label: role ? `${n.name}\n（${role}）` : n.name,
+        // 純姓名（不含職稱行），供 /graph 的「搜尋姓名」比對用——
+        // label 是兩行文字，直接拿它比對會連職稱字樣（如「立委」）都命中。
+        name: n.name,
         slug: n.slug ?? '',
         kind: n.kind,
         depth,

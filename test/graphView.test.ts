@@ -71,6 +71,12 @@ describe('toCytoscapeElements', () => {
     expect(nodes.find((n) => n.data.id === 'entity:e1')!.data.label).toBe('白惠萍\n（家屬）');
   });
 
+  it('name 為純姓名，不含職稱與換行，供搜尋比對', () => {
+    const { nodes } = toCytoscapeElements(data, 'official:a');
+    expect(nodes.find((n) => n.data.id === 'official:a')!.data.name).toBe('王又民');
+    expect(nodes.find((n) => n.data.id === 'entity:e1')!.data.name).toBe('白惠萍');
+  });
+
   it('尺寸依深度遞減：中心 88 / 第一層 64 / 第二層 48', () => {
     const { nodes } = toCytoscapeElements(data, 'official:a');
     const size = (id: string) => nodes.find((n) => n.data.id === id)!.data.size;

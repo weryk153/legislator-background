@@ -55,7 +55,7 @@ const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物�
         cy.nodes().forEach((n: any) => {
           // 關係全被篩掉的人一併隱藏，避免留下一堆孤點
           const hasVisibleEdge = n.connectedEdges().some((e: any) => e.style("display") !== "none");
-          const matches = !q || String(n.data("label")).includes(q);
+          const matches = !q || String(n.data("name")).includes(q);
           n.style("display", hasVisibleEdge && matches ? "element" : "none");
         });
       });
