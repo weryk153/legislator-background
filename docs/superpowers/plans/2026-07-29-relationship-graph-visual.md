@@ -13,7 +13,7 @@
 ## Global Constraints
 
 - **不新增 npm 依賴。** Cytoscape、Svelte、Astro 皆已在 `package.json`。
-- **用色一律使用 `src/styles/tokens.css` 既有 token**，不得硬寫色碼（唯一例外見 Task 4 的 `AVATAR_FG`，已註明理由）。`--accent`（#b3271e）僅用於 hover 與中心人物，不作內文色。
+- **用色一律使用 `src/styles/tokens.css` 既有 token**，不得硬寫色碼（唯一例外是 Task 5 的 `AVATAR_FG`，該處已註明理由：色值畫在 SVG data URI 內，無法隨主題重新上色）。`--accent`（#b3271e）僅用於 hover 與中心人物，不作內文色。
 - **Cytoscape 忽略色彩的 rgba alpha**（既有元件已註明）。需要半透明時用獨立的 `*-opacity` 屬性，不要傳 rgba 進 color 屬性。
 - 註解、commit message 用繁體中文，比照既有 commit 風格（`feat(graph): …`、`fix(ui): …`）。
 - 每個 task 結束都要 commit。
@@ -1162,11 +1162,11 @@ const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物�
 
 ```astro
   <script>
-    // 篩選/搜尋直接操作元件掛好的 Cytoscape 實例。元件把實例掛在 .graph 的 __cy 上（見 Step 3）。
-    const graphEl = () => document.querySelector<HTMLElement & { __cy?: any }>(".graph");
+    // 篩選/搜尋直接操作元件掛好的 Cytoscape 實例。元件初始化完成後會在自己的容器上
+    // 派發 rg:ready（bubbles: true），事件的 detail 即為該實例——不必輪詢或猜時序。
+    let cy: any = null;
 
     function apply() {
-      const cy = graphEl()?.__cy;
       if (!cy) return;
       const q = (document.getElementById("q") as HTMLInputElement).value.trim();
       const kinds = new Set(
@@ -1187,25 +1187,25 @@ const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物�
       });
     }
 
-    // client:load 的 island 可能在本 script 之後才掛好，輪詢等它出現。
-    const wait = setInterval(() => {
-      if (graphEl()?.__cy) { clearInterval(wait); apply(); }
-    }, 100);
-    setTimeout(() => clearInterval(wait), 10000);
+    // island 可能在本 script 之後才掛好；監聽事件即可，無論先後都收得到。
+    document.addEventListener("rg:ready", (e) => { cy = (e as CustomEvent).detail; apply(); });
 
     document.getElementById("q")?.addEventListener("input", apply);
     document.querySelectorAll(".kind").forEach((c) => c.addEventListener("change", apply));
   </script>
 ```
 
-- [ ] **Step 3: 讓元件把 Cytoscape 實例掛到 DOM 上**
+- [ ] **Step 3: 讓元件在初始化完成後派發 rg:ready**
 
-`src/components/RelationshipGraph.svelte` 的 `onMount` 內，在 `cy!.layout(layout).run();` 之後加入一行：
+`src/components/RelationshipGraph.svelte` 的 `onMount` 內，在 `cy!.layout(layout).run();` 之後加入：
 
 ```ts
-      // /graph 頁的篩選/搜尋需要存取實例（見 src/pages/graph.astro）
-      (container as HTMLElement & { __cy?: unknown }).__cy = cy;
+      // 通知頁面實例已就緒（/graph 的篩選/搜尋需要它，見 src/pages/graph.astro）。
+      // bubbles 讓 document 層級的監聽收得到；不用輪詢，先後掛載都不會漏。
+      container.dispatchEvent(new CustomEvent('rg:ready', { detail: cy, bubbles: true }));
 ```
+
+此事件只在 Cytoscape 初始化成功時派發；失敗走 catch 分支不派發，`/graph` 的篩選器因此保持停用而非對著壞掉的實例操作。
 
 - [ ] **Step 4: 建置**
 
