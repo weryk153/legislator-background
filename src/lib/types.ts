@@ -58,7 +58,9 @@ export interface GraphNode {
   slug?: string;          // official 才有，可連回檔案頁
   party?: string;         // official
   officeType?: OfficeType;// official
-  photoUrl?: string;      // official 才有；photo_url 為 null 時不帶此欄位
+  photoUrl?: string;      // official 或有照片的 entity；photo_url 為 null 時不帶此欄位
+  photoCredit?: string;   // entity 且照片來自 Commons 時：「作者／授權」；來自 scraper/entities-wiki.json
+  wikipediaUrl?: string;  // entity 有維基條目時
   description?: string;   // entity
 }
 export interface GraphEdge {

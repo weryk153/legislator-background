@@ -33,6 +33,9 @@ export function buildGraphData(
   officials: RawOfficialNode[],
   entities: RawEntity[],
   relationships: RawRelationship[],
+  // wikipedia_url → 「作者／授權」。DB 不存授權欄位；export-graph.ts 從 scraper/entities-wiki.json 組好傳入。
+  // 用 wikipedia_url 而非姓名配對：DB entity 沒有 distinct 欄位，同名不同人只有條目 URL 能區分。
+  credits: Map<string, string> = new Map(),
 ): { data: GraphData; errors: string[] } {
   const errors: string[] = [];
 
@@ -47,9 +50,13 @@ export function buildGraphData(
     });
   }
   for (const e of entities) {
+    const credit = e.wikipedia_url ? credits.get(e.wikipedia_url) : undefined;
     allNodes.set(keyOf('entity', e.id), {
       key: keyOf('entity', e.id), name: e.name, kind: 'entity',
       subtype: e.entity_type, description: e.description,
+      ...(e.photo_url ? { photoUrl: e.photo_url } : {}),
+      ...(e.photo_url && credit ? { photoCredit: credit } : {}),
+      ...(e.wikipedia_url ? { wikipediaUrl: e.wikipedia_url } : {}),
     });
   }
 

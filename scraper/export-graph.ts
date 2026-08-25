@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { buildGraphData } from '../src/lib/graph';
 import { loadEnv } from './lib/loadEnv';
+import { loadEntitiesWiki, photoCredit } from './lib/entitiesWiki';
 import type { RawEntity, RawRelationship } from '../src/lib/types';
 
 loadEnv();
@@ -39,10 +40,15 @@ async function main() {
     .order('id', { ascending: true });
   if (rErr) throw new Error(`relationships query failed: ${rErr.message}`);
 
+  // 照片授權：對照表 wikipediaUrl → 「作者／授權」，讓前端 tooltip 能署名（CC BY 系列要求）。
+  const credits = new Map<string, string>();
+  for (const r of loadEntitiesWiki()) if (r.photo) credits.set(r.wikipediaUrl, photoCredit(r.photo));
+
   const { data, errors } = buildGraphData(
     officials as Parameters<typeof buildGraphData>[0],
     (entities ?? []) as RawEntity[],
     (relationships ?? []) as unknown as RawRelationship[],
+    credits,
   );
   if (errors.length > 0) {
     throw new Error(`Graph validation failed (export aborted):\n- ${errors.join('\n- ')}`);
