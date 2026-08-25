@@ -74,16 +74,27 @@ export function findInfobox(wikitext: string): string | null {
 }
 
 // 一個欄位值 → 多個項目：{{ubl|…}}／{{plainlist|…}}／{{unbulleted list|…}} 展開、<br> 與換行、* 條列。
+// 清單模板的收尾用大括號配對（同 findInfobox 的技巧），而非非貪婪 regex 抓到第一個 }}——
+// 因為項目內可能還有巢狀模板（如 {{le|小華|Xiao Hua}}），非貪婪 regex 會在該處提早收尾產生殘缺片段。
 function splitValueItems(value: string): string[] {
   const items: string[] = [];
-  const listRe = /\{\{\s*(?:ubl|unbulleted list|plainlist|flatlist|hlist)\s*\|([\s\S]*?)\}\}/gi;
+  const startRe = /\{\{\s*(?:ubl|unbulleted list|plainlist|flatlist|hlist)\s*\|/gi;
   let rest = value;
   let m: RegExpExecArray | null;
-  while ((m = listRe.exec(value)) !== null) {
-    for (const it of splitTopLevel(m[1], '|')) items.push(it);
-    rest = rest.replace(m[0], '');
+  while ((m = startRe.exec(value)) !== null) {
+    const bodyStart = m.index + m[0].length;
+    let depth = 1;
+    let end = -1;
+    for (let i = bodyStart; i < value.length; i++) {
+      if (value.startsWith('{{', i)) { depth++; i++; continue; }
+      if (value.startsWith('}}', i)) { depth--; i++; if (depth === 0) { end = i; break; } continue; }
+    }
+    if (end < 0) continue; // 沒有配對的 }}，放棄此模板（保留在 rest 內，交由後續 <br>/換行切分）
+    const body = value.slice(bodyStart, end - 1);
+    for (const it of splitTopLevel(body, '|')) items.push(it);
+    rest = rest.replace(value.slice(m.index, end + 1), '');
   }
-  for (const piece of rest.split(/<br\s*\/?>|\n|^\*+/gim)) items.push(piece);
+  for (const piece of rest.split(/<br[^>]*>|\n|^\*+/gim)) items.push(piece);
   return items.map((s) => s.replace(/^\s*[*#]+\s*/, '').trim()).filter(Boolean);
 }
 

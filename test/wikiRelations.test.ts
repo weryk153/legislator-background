@@ -63,4 +63,14 @@ describe('parseInfoboxRelations', () => {
   it('無 infobox → []', () => {
     expect(parseInfoboxRelations('沒有')).toEqual([]);
   });
+  it('{{ubl}} 內含巢狀模板（如 {{le|…}}）不產生殘缺片段', () => {
+    const nested = parseInfoboxRelations('{{Infobox officeholder\n| relatives = {{ubl|[[小明]]|{{le|小華|Xiao Hua}}}}\n}}');
+    const names = nested.filter((r) => r.field === 'relatives').map((r) => r.name);
+    expect(names.every((n) => !n.includes('{{') && n !== '}}')).toBe(true);
+    expect(names).toContain('小明');
+  });
+  it('parents：<br> 帶屬性（clear="all"）也視為分隔', () => {
+    const withAttr = parseInfoboxRelations('{{Infobox officeholder\n| parents = 父親甲<br clear="all">母親乙\n}}');
+    expect(withAttr.filter((r) => r.field === 'parents').map((r) => r.name)).toEqual(['父親甲', '母親乙']);
+  });
 });
