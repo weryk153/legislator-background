@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { findInfobox, splitTopLevel, parseInfoboxRelations, cleanWikitextInline } from '../scraper/lib/wikiRelations';
+import { findInfobox, splitTopLevel, parseInfoboxRelations, cleanWikitextInline, extractRelationSentences } from '../scraper/lib/wikiRelations';
 
 const page = `{{Infobox officeholder
 | name = 柯文哲
@@ -72,5 +72,24 @@ describe('parseInfoboxRelations', () => {
   it('parents：<br> 帶屬性（clear="all"）也視為分隔', () => {
     const withAttr = parseInfoboxRelations('{{Infobox officeholder\n| parents = 父親甲<br clear="all">母親乙\n}}');
     expect(withAttr.filter((r) => r.field === 'parents').map((r) => r.name)).toEqual(['父親甲', '母親乙']);
+  });
+});
+
+describe('extractRelationSentences', () => {
+  const wt = `{{Infobox officeholder|name=甲}}
+'''甲'''是政治人物。<ref>r</ref>其妻[[乙 (醫師)|乙]]為醫師，兩人育有二子。
+2014年甲在[[丙]]力挺下參選。[[File:x.jpg|thumb|說明]]
+甲喜歡騎腳踏車。
+== 家庭 ==
+甲之弟[[丁]]曾任[[戊市]]市議員；師承[[己]]。`;
+  const out = extractRelationSentences(wt);
+  it('只留命中關鍵字的句子，並附上句內連結標題（排除 File）', () => {
+    expect(out).toContainEqual({ sentence: '其妻乙為醫師，兩人育有二子', keywords: ['妻'], wikilinks: ['乙 (醫師)'] });
+    expect(out).toContainEqual({ sentence: '2014年甲在丙力挺下參選', keywords: ['力挺'], wikilinks: ['丙'] });
+    expect(out).toContainEqual({ sentence: '甲之弟丁曾任戊市市議員；師承己', keywords: ['之弟', '師承'], wikilinks: ['丁', '戊市', '己'] });
+  });
+  it('沒關鍵字的句子不出現；infobox 與 ref 內容不出現', () => {
+    expect(out.some((s) => s.sentence.includes('腳踏車'))).toBe(false);
+    expect(out.some((s) => s.sentence.includes('name=甲'))).toBe(false);
   });
 });

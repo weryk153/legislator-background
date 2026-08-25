@@ -129,3 +129,32 @@ export function parseInfoboxRelations(wikitext: string): InfoboxRelation[] {
   }
   return out;
 }
+
+export interface SentenceCandidate { sentence: string; keywords: string[]; wikilinks: string[] }
+
+// 家族／政治關鍵字（spec §7.1）。只是召回用的粗篩，精確與否由人審。
+export const FAMILY_KEYWORDS = /妻|夫|配偶|之子|之女|之兄|之弟|之姊|之妹|長子|次子|長女|次女|女兒|兒子|父親|母親|胞兄|胞弟|胞姊|胞妹|兄長|弟弟|姊姊|妹妹|姪|甥|岳父|女婿|媳/g;
+export const POLITICAL_KEYWORDS = /師承|恩師|門生|子弟兵|提拔|拔擢|幕僚|助理|辦公室主任|派系|新潮流|正國會|湧言會|蘇系|英系|支持|力挺|接班/g;
+
+export function extractRelationSentences(wikitext: string): SentenceCandidate[] {
+  let t = wikitext ?? '';
+  const box = findInfobox(t);
+  if (box) t = t.replace(box, '');
+  t = t.replace(/<!--[\s\S]*?-->/g, '');
+  t = t.replace(/<ref[^>]*>[\s\S]*?<\/ref>/g, '').replace(/<ref[^>]*\/>/g, '');
+  t = resolveLangConv(t);
+  t = stripTemplates(t);
+  t = t.replace(/\[\[(?:File|Image|檔案|文件|分类|分類|Category):[^\]]*\]\]/gi, '');
+  t = t.replace(/^[=]+.*[=]+\s*$/gm, ''); // 章節標題
+  const out: SentenceCandidate[] = [];
+  for (const rawSentence of t.split(/[。！？\n]/)) {
+    const wikilinks: string[] = [];
+    for (const m of rawSentence.matchAll(/\[\[([^|\]]+)(?:\|[^\]]*)?\]\]/g)) wikilinks.push(m[1].trim());
+    const sentence = cleanWikitextInline(rawSentence);
+    if (!sentence) continue;
+    const keywords = [...new Set([...sentence.matchAll(FAMILY_KEYWORDS), ...sentence.matchAll(POLITICAL_KEYWORDS)].map((m) => m[0]))];
+    if (!keywords.length) continue;
+    out.push({ sentence, keywords, wikilinks });
+  }
+  return out;
+}
