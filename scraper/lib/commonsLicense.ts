@@ -11,7 +11,15 @@ export type LicenseVerdict =
 const ALLOWED = /^(CC|Public domain|CC0|PD|Attribution$)/i;
 
 export function stripHtml(s: string): string {
-  return s.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+  return s
+    .replace(/<[^>]+>/g, '')
+    // 常見 HTML 實體（Commons 的 Artist/Credit 欄位是 HTML 片段，直接顯示會露出 &amp; 之類）
+    .replace(/&(amp|lt|gt|quot|#0*39|apos|nbsp);/gi, (_m, e: string) =>
+      ({ amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' } as Record<string, string>)[e.toLowerCase().replace(/^#0*39$/, 'apos')] ?? ' ')
+    // 零寬字元：維基模板常在機關名前留下 U+200B，顯示為看不見的空白
+    .replace(/[\u200B-\u200F\u2060\uFEFF]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 export function pickLicense(meta: ExtMetadata | undefined): LicenseVerdict {

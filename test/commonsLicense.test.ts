@@ -5,6 +5,12 @@ describe('stripHtml', () => {
   it('去標籤、合併空白', () => {
     expect(stripHtml('<a href="//commons.wikimedia.org/wiki/User:Foo">Foo</a>  Bar')).toBe('Foo Bar');
   });
+  it('解 HTML 實體', () => {
+    expect(stripHtml('A &amp; B &quot;C&quot;')).toBe('A & B "C"');
+  });
+  it('去零寬字元（維基模板常在機關名前留下 U+200B）', () => {
+    expect(stripHtml('\u200B苗栗縣政府行政處新聞科')).toBe('苗栗縣政府行政處新聞科');
+  });
 });
 
 describe('pickLicense', () => {
