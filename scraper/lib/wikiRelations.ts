@@ -30,13 +30,45 @@ function stripTemplates(s: string): string {
   return s;
 }
 
+// 移除 HTML 註解與 <ref>…</ref>（含自我閉合）。cleanWikitextInline 與 extractRelationSentences 共用。
+function stripCommentsAndRefs(s: string): string {
+  let t = s.replace(/<!--[\s\S]*?-->/g, '');
+  t = t.replace(/<ref[^>]*>[\s\S]*?<\/ref>/g, '').replace(/<ref[^>]*\/>/g, '');
+  return t;
+}
+
+// 移除 [[File:…]]／[[Image:…]] 等連結整體（含說明文字內的巢狀連結，如 caption 裡又包一個 [[人名]]）。
+// 用中括號配對（同 findInfobox 的技巧）而非「找第一個 ]]」的 regex——說明文字內可能還有巢狀 [[…]]，
+// 非貪婪 regex 會在內層 ]] 處提早收尾，把說明文字的下半段（含殘留的 ]]）留在輸出裡。
+// cleanWikitextInline 與 extractRelationSentences 共用。
+function stripFileLinks(s: string): string {
+  const re = /\[\[(?:File|Image|檔案|文件|分类|分類|Category):/gi;
+  let out = '';
+  let cursor = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(s)) !== null) {
+    if (m.index < cursor) continue; // 已被前一個配對吃掉，略過
+    let depth = 0;
+    let end = -1;
+    for (let i = m.index; i < s.length; i++) {
+      if (s.startsWith('[[', i)) { depth++; i++; continue; }
+      if (s.startsWith(']]', i)) { depth--; i++; if (depth === 0) { end = i + 1; break; } }
+    }
+    if (end < 0) continue; // 沒有配對的 ]]，不動它，避免誤刪到後面不相關的文字
+    out += s.slice(cursor, m.index);
+    cursor = end;
+    re.lastIndex = end;
+  }
+  out += s.slice(cursor);
+  return out;
+}
+
 export function cleanWikitextInline(s: string): string {
   let t = s ?? '';
-  t = t.replace(/<!--[\s\S]*?-->/g, '');
-  t = t.replace(/<ref[^>]*>[\s\S]*?<\/ref>/g, '').replace(/<ref[^>]*\/>/g, '');
+  t = stripCommentsAndRefs(t);
   t = resolveLangConv(t);
   t = stripTemplates(t);
-  t = t.replace(/\[\[(?:File|Image|檔案|文件|分类|分類|Category):[^\]]*\]\]/gi, '');
+  t = stripFileLinks(t);
   let prev: string;
   do { prev = t; t = t.replace(/\[\[(?:[^|\]]*\|)?([^\[\]]+)\]\]/g, '$1'); } while (t !== prev);
   t = t.replace(/'''?/g, '');
@@ -140,19 +172,25 @@ export function extractRelationSentences(wikitext: string): SentenceCandidate[] 
   let t = wikitext ?? '';
   const box = findInfobox(t);
   if (box) t = t.replace(box, '');
-  t = t.replace(/<!--[\s\S]*?-->/g, '');
-  t = t.replace(/<ref[^>]*>[\s\S]*?<\/ref>/g, '').replace(/<ref[^>]*\/>/g, '');
+  t = stripCommentsAndRefs(t);
   t = resolveLangConv(t);
   t = stripTemplates(t);
-  t = t.replace(/\[\[(?:File|Image|檔案|文件|分类|分類|Category):[^\]]*\]\]/gi, '');
+  t = stripFileLinks(t);
   t = t.replace(/^[=]+.*[=]+\s*$/gm, ''); // 章節標題
+  // 單獨換行（後面不是換行、條列符號、表格列、標題或模板邊界）視為排版折行，併成空白後再斷句，
+  // 避免把還沒斷句的敘述文字從中間攔腰截斷（例如關鍵字與其後緊接的連結被拆到不同句子）。
+  t = t.replace(/\n(?![\n*#|!={}:])/g, ' ');
   const out: SentenceCandidate[] = [];
+  // 用 exported 正規表達式的 source 另建乾淨副本：FAMILY_KEYWORDS／POLITICAL_KEYWORDS 是 g 旗標、
+  // 外部若對它們呼叫 .test()／.exec() 會弄髒共用物件的 lastIndex，導致下一次呼叫本函式漏抓。
+  const familyRe = new RegExp(FAMILY_KEYWORDS.source, 'g');
+  const politicalRe = new RegExp(POLITICAL_KEYWORDS.source, 'g');
   for (const rawSentence of t.split(/[。！？\n]/)) {
     const wikilinks: string[] = [];
     for (const m of rawSentence.matchAll(/\[\[([^|\]]+)(?:\|[^\]]*)?\]\]/g)) wikilinks.push(m[1].trim());
     const sentence = cleanWikitextInline(rawSentence);
     if (!sentence) continue;
-    const keywords = [...new Set([...sentence.matchAll(FAMILY_KEYWORDS), ...sentence.matchAll(POLITICAL_KEYWORDS)].map((m) => m[0]))];
+    const keywords = [...new Set([...sentence.matchAll(familyRe), ...sentence.matchAll(politicalRe)].map((m) => m[0]))];
     if (!keywords.length) continue;
     out.push({ sentence, keywords, wikilinks });
   }

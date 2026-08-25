@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { findInfobox, splitTopLevel, parseInfoboxRelations, cleanWikitextInline, extractRelationSentences } from '../scraper/lib/wikiRelations';
+import { findInfobox, splitTopLevel, parseInfoboxRelations, cleanWikitextInline, extractRelationSentences, FAMILY_KEYWORDS, POLITICAL_KEYWORDS } from '../scraper/lib/wikiRelations';
 
 const page = `{{Infobox officeholder
 | name = 柯文哲
@@ -91,5 +91,22 @@ describe('extractRelationSentences', () => {
   it('沒關鍵字的句子不出現；infobox 與 ref 內容不出現', () => {
     expect(out.some((s) => s.sentence.includes('腳踏車'))).toBe(false);
     expect(out.some((s) => s.sentence.includes('name=甲'))).toBe(false);
+  });
+  it('File 說明文字內的巢狀連結不會外洩到句子或 wikilinks', () => {
+    const wt2 = '甲之妻[[乙]]與其合影，[[File:x.jpg|thumb|甲與[[丙]]合影於婚禮]]傳為佳話。';
+    const out2 = extractRelationSentences(wt2);
+    expect(out2).toContainEqual({ sentence: '甲之妻乙與其合影，傳為佳話', keywords: ['妻'], wikilinks: ['乙'] });
+    expect(out2.some((s) => s.sentence.includes(']]') || s.sentence.includes('合影於婚禮'))).toBe(false);
+    expect(out2.some((s) => s.wikilinks.includes('丙'))).toBe(false);
+  });
+  it('換行不會攔腰截斷句子：關鍵字與其後緊接的連結仍在同一句', () => {
+    const out4 = extractRelationSentences('甲之妻為\n[[乙]]，育有二子。');
+    expect(out4).toContainEqual({ sentence: '甲之妻為 乙，育有二子', keywords: ['妻'], wikilinks: ['乙'] });
+  });
+  it('外部呼叫關鍵字正規表達式的 .test() 弄髒 lastIndex 後，extractRelationSentences 仍正確抽取', () => {
+    FAMILY_KEYWORDS.test('甲甲甲甲甲妻'); // 模擬外部誤用：讓 lastIndex 停在非 0 處
+    POLITICAL_KEYWORDS.test('甲甲甲甲師承'); // 同上，弄髒 POLITICAL_KEYWORDS 的 lastIndex
+    const out3 = extractRelationSentences('其妻[[乙]]為醫師，師承[[己]]。');
+    expect(out3).toContainEqual({ sentence: '其妻乙為醫師，師承己', keywords: ['妻', '師承'], wikilinks: ['乙', '己'] });
   });
 });
