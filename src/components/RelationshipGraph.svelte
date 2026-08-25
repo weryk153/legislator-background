@@ -197,7 +197,7 @@
           const wiki = d.wikipediaUrl
             ? `<a class="rg-src" href="${esc(d.wikipediaUrl)}" target="_blank" rel="noopener">維基百科條目 ↗</a>` : '';
           const credit = d.photoCredit ? `<div class="rg-credit">照片：${esc(d.photoCredit)}</div>` : '';
-          if (!desc && !wiki && !credit) return;
+          if (!desc && !wiki && !credit) { hideSoon(); return; }
           const p = evt.target.renderedPosition();
           const r = evt.target.renderedOuterWidth() / 2;
           tip!.innerHTML = `<div class="rg-rel">${esc(d.name)}</div>${desc}${wiki}${credit}`;
