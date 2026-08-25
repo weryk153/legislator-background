@@ -1,6 +1,6 @@
 # 人物關係圖 維基擴充 Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** 補上有維基條目的外部人物照片（含授權標示），並以既有外部人物為起點從維基百科擴充關係到 2 度。
 
@@ -79,7 +79,7 @@
   export const ENTITIES_WIKI_PATH: string
   ```
 
-- [ ] **Step 1: 寫失敗測試**
+- [x] **Step 1: 寫失敗測試**
 
 建立 `test/entitiesWiki.test.ts`：
 
@@ -156,12 +156,12 @@ describe('scraper/entities-wiki.json（實際檔案）', () => {
 });
 ```
 
-- [ ] **Step 2: 跑測試確認失敗**
+- [x] **Step 2: 跑測試確認失敗**
 
 Run: `pnpm exec vitest run test/entitiesWiki.test.ts`
 Expected: FAIL，找不到 `../scraper/lib/entitiesWiki`。
 
-- [ ] **Step 3: 實作模組與空對照表**
+- [x] **Step 3: 實作模組與空對照表**
 
 建立 `scraper/entities-wiki.json`，內容：
 
@@ -266,12 +266,12 @@ scraper/out-wiki-relations/
     "wiki:discover-relations": "tsx scraper/wiki-discover-relations.ts"
 ```
 
-- [ ] **Step 4: 跑測試確認通過**
+- [x] **Step 4: 跑測試確認通過**
 
 Run: `pnpm exec vitest run test/entitiesWiki.test.ts`
 Expected: PASS（9 tests）。
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scraper/lib/entitiesWiki.ts scraper/entities-wiki.json test/entitiesWiki.test.ts .gitignore package.json
@@ -290,7 +290,7 @@ git commit -m "feat(scraper): 外部人物維基對照表模組與驗證"
 - Consumes: `loadEntitiesWiki`、`entityWikiKey`（Task 1）；`wikitextToSummary`、`fetchPolite`（既有）
 - Produces: `scraper/out-wiki-relations/resolve.json`（gitignored），格式 `{ name, description, entity_type, candidates: [{ title, lead }] }[]`；審定後的 `scraper/entities-wiki.json`
 
-- [ ] **Step 1: 寫腳本**
+- [x] **Step 1: 寫腳本**
 
 建立 `scraper/wiki-resolve-entities.ts`：
 
@@ -371,12 +371,12 @@ async function main() {
 main().catch((e) => { console.error(e); process.exit(1); });
 ```
 
-- [ ] **Step 2: 執行**
+- [x] **Step 2: 執行**
 
 Run: `pnpm run wiki:resolve-entities`
 Expected: 逐行印出 202 位外部人物的候選條目；產出 `scraper/out-wiki-relations/resolve.json`。多數 family_member 會是「查無」或命中無關同名條目，屬正常。
 
-- [ ] **Step 3: 人工審定寫入 `scraper/entities-wiki.json`**
+- [x] **Step 3: 人工審定寫入 `scraper/entities-wiki.json`**
 
 逐筆讀 `resolve.json`，對每一位：
 - `candidates` 為空 → 不寫。
@@ -397,12 +397,12 @@ Expected: 逐行印出 202 位外部人物的候選條目；產出 `scraper/out-
 
 `wikipediaUrl` = `https://zh.wikipedia.org/wiki/` + `encodeURIComponent(wikiTitle)`。以 `name` 排序。
 
-- [ ] **Step 4: 驗證**
+- [x] **Step 4: 驗證**
 
 Run: `pnpm exec vitest run test/entitiesWiki.test.ts`
 Expected: PASS（含「實際檔案通過驗證」）。
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scraper/wiki-resolve-entities.ts scraper/entities-wiki.json
@@ -431,7 +431,7 @@ git commit -m "feat(scraper): 維基條目對照候選腳本，並審定 N 位�
   export function stripHtml(s: string): string
   ```
 
-- [ ] **Step 1: 寫失敗測試**
+- [x] **Step 1: 寫失敗測試**
 
 建立 `test/commonsLicense.test.ts`：
 
@@ -466,12 +466,12 @@ describe('pickLicense', () => {
 });
 ```
 
-- [ ] **Step 2: 跑測試確認失敗**
+- [x] **Step 2: 跑測試確認失敗**
 
 Run: `pnpm exec vitest run test/commonsLicense.test.ts`
 Expected: FAIL，模組不存在。
 
-- [ ] **Step 3: 實作**
+- [x] **Step 3: 實作**
 
 建立 `scraper/lib/commonsLicense.ts`：
 
@@ -498,12 +498,12 @@ export function pickLicense(meta: ExtMetadata | undefined): LicenseVerdict {
 }
 ```
 
-- [ ] **Step 4: 跑測試確認通過**
+- [x] **Step 4: 跑測試確認通過**
 
 Run: `pnpm exec vitest run test/commonsLicense.test.ts`
 Expected: PASS（5 tests）。
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scraper/lib/commonsLicense.ts test/commonsLicense.test.ts
@@ -523,7 +523,7 @@ git commit -m "feat(scraper): Commons 授權判定純函式"
 - Consumes: `loadEntitiesWiki`、`photoFileName`、`PHOTO_DIR_URL`、`ENTITIES_WIKI_PATH`、`EntityWiki`（Task 1）；`pickLicense`（Task 3）；`fetchPolite`
 - Produces: 對照表每筆的 `photo` 欄位；`public/photos/entities/<file>`
 
-- [ ] **Step 1: 寫腳本**
+- [x] **Step 1: 寫腳本**
 
 建立 `scraper/enrich-entity-photos.ts`：
 
@@ -633,21 +633,21 @@ async function main() {
 main().catch((e) => { console.error(e); process.exit(1); });
 ```
 
-- [ ] **Step 2: DRY_RUN 並目視核對**
+- [x] **Step 2: DRY_RUN 並目視核對**
 
 Run: `DRY_RUN=1 pnpm run enrich:entity-photos`
 Expected: 每人一行，含圖檔名與授權。逐行看圖檔名：檔名明顯不是本人（合照、建築、logo、黨徽）者，在 `entities-wiki.json` 該筆加 `"noPhoto": true`。派系組織多半是 logo，一律 `noPhoto`。
 
-- [ ] **Step 3: 正式執行**
+- [x] **Step 3: 正式執行**
 
 Run: `pnpm run enrich:entity-photos`
 Expected: `public/photos/entities/` 產生檔案；`entities-wiki.json` 各筆多出 `photo`。
 
-- [ ] **Step 4: 目視抽查照片**
+- [x] **Step 4: 目視抽查照片**
 
 用 Read 工具開 5–10 張 `public/photos/entities/*.jpg`（優先看知名者與 family_member 型的政治人物）確認是人像且看起來是同一人。錯的：刪檔、刪該筆 `photo`、加 `noPhoto: true`。
 
-- [ ] **Step 5: 驗證與 Commit**
+- [x] **Step 5: 驗證與 Commit**
 
 Run: `pnpm exec vitest run test/entitiesWiki.test.ts`
 Expected: PASS。
@@ -678,7 +678,7 @@ git commit -m "feat(scraper): 外部人物維基照片管線，落地 N 張（�
   // credits: wikipedia_url → 「作者／授權」
   ```
 
-- [ ] **Step 1: 寫失敗測試**
+- [x] **Step 1: 寫失敗測試**
 
 在 `test/graph.test.ts` 的 `describe('buildGraphData', …)` 內追加：
 
@@ -708,12 +708,12 @@ git commit -m "feat(scraper): 外部人物維基照片管線，落地 N 張（�
   });
 ```
 
-- [ ] **Step 2: 跑測試確認失敗**
+- [x] **Step 2: 跑測試確認失敗**
 
 Run: `pnpm exec vitest run test/graph.test.ts`
 Expected: 第一個新測試 FAIL（photoUrl undefined）。
 
-- [ ] **Step 3: 實作**
+- [x] **Step 3: 實作**
 
 `src/lib/types.ts` 的 `GraphNode` 改為：
 
@@ -774,12 +774,12 @@ export function buildGraphData(
   );
 ```
 
-- [ ] **Step 4: 跑測試確認通過**
+- [x] **Step 4: 跑測試確認通過**
 
 Run: `pnpm test`
 Expected: 全部 PASS。
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/lib/types.ts src/lib/graph.ts scraper/export-graph.ts test/graph.test.ts
@@ -798,7 +798,7 @@ git commit -m "feat(graph): entity 節點匯出 photoUrl / wikipediaUrl / photoC
 - Consumes: `loadEntitiesWiki`、`indexEntitiesWiki`、`entityWikiKey`（Task 1）
 - Produces: DB `entities.wikipedia_url`、`entities.photo_url` 有值；graph.json entity 節點帶照片
 
-- [ ] **Step 1: 修改 `ensureEntity`**
+- [x] **Step 1: 修改 `ensureEntity`**
 
 檔頭 import 加：
 
@@ -830,7 +830,7 @@ import { loadEntitiesWiki, indexEntitiesWiki, entityWikiKey } from './lib/entiti
 
 （`cacheKey` 的算法 `distinct ? \`${name}::${distinct}\` : name` 與 `entityWikiKey` 相同；把該行改為 `const cacheKey = entityWikiKey(name, distinct);` 以確保單一定義。）
 
-- [ ] **Step 2: 加報告**
+- [x] **Step 2: 加報告**
 
 在「匯入完成」那行 `console.log` 之後加：
 
@@ -844,7 +844,7 @@ import { loadEntitiesWiki, indexEntitiesWiki, entityWikiKey } from './lib/entiti
   }
 ```
 
-- [ ] **Step 3: 重匯與匯出**
+- [x] **Step 3: 重匯與匯出**
 
 Run: `pnpm run import:relationships`
 Expected: 「匯入完成：260 筆關係…」數字與上次相同（見 spec §1.1：260 列，略過 0）；wikiStale 清單為空或只列出確實已不在 curated 的人（有的話從對照表刪除、刪照片檔、重跑）。
@@ -855,7 +855,7 @@ Expected: `exported graph: 352 nodes, 262 edges`（與現況相同）。
 Run: `node -e "const g=require('./src/data/graph.json');const e=g.nodes.filter(n=>n.kind==='entity');console.log('entity',e.length,'photo',e.filter(n=>n.photoUrl).length,'credit',e.filter(n=>n.photoCredit).length,'wiki',e.filter(n=>n.wikipediaUrl).length)"`
 Expected: photo 數 = Task 4 落地張數；credit 數 = photo 數；wiki 數 = 對照表筆數。
 
-- [ ] **Step 4: 測試與 Commit**
+- [x] **Step 4: 測試與 Commit**
 
 Run: `pnpm test`
 Expected: PASS。
@@ -882,7 +882,7 @@ git commit -m "feat(import): 建 entity 時套用維基對照表（wikipedia_url
   export interface CyNode { data: { …既有…; description: string; wikipediaUrl: string; photoCredit: string } }
   ```
 
-- [ ] **Step 1: 寫失敗測試**
+- [x] **Step 1: 寫失敗測試**
 
 `test/graphView.test.ts` 追加一個 describe：
 
@@ -913,12 +913,12 @@ describe('toCytoscapeElements：entity 照片與 tooltip 資料', () => {
 });
 ```
 
-- [ ] **Step 2: 跑測試確認失敗**
+- [x] **Step 2: 跑測試確認失敗**
 
 Run: `pnpm exec vitest run test/graphView.test.ts`
 Expected: 第二個新測試 FAIL（description undefined）；第一個可能已 PASS（avatar 邏輯本就不分 kind）。
 
-- [ ] **Step 3: 實作 graphView**
+- [x] **Step 3: 實作 graphView**
 
 `CyNode` 介面改為：
 
@@ -941,7 +941,7 @@ export interface CyNode {
         photoCredit: n.photoCredit ?? '',
 ```
 
-- [ ] **Step 4: 實作 Svelte 節點 tooltip**
+- [x] **Step 4: 實作 Svelte 節點 tooltip**
 
 `RelationshipGraph.svelte` 在 `cy!.on('mouseout', 'edge', …)` 那行之後加：
 
@@ -975,7 +975,7 @@ export interface CyNode {
 
 （若 `src/styles/tokens.css` 沒有 `--t-xs`，改用 `font-size: 0.85em`，不新增 token。）
 
-- [ ] **Step 5: about 頁**
+- [x] **Step 5: about 頁**
 
 `src/pages/about.astro` 在「已解職議員部分照片」那個 `<li>` 之後加：
 
@@ -983,7 +983,7 @@ export interface CyNode {
         <li>外部人物照片：維基百科條目主圖（Wikimedia Commons，CC 授權／公有領域），逐張作者與授權標示於關係圖節點提示與資料庫附註</li>
 ```
 
-- [ ] **Step 6: 測試、建置、目視**
+- [x] **Step 6: 測試、建置、目視**
 
 Run: `pnpm test`
 Expected: PASS。
@@ -993,7 +993,7 @@ Expected: 成功，無型別錯誤。
 
 Run: `pnpm dev`，開 `http://localhost:4321/graph`，確認：有條目的外部人物節點顯示照片（不再是姓氏字圓）；hover 柯文哲等節點出現描述、「維基百科條目 ↗」、「照片：作者／授權」；hover 連線 tooltip 行為不變；亮／暗模式都可讀。再開任一有柯文哲關係的立委檔案頁確認 ego 圖同樣顯示。
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/lib/graphView.ts src/components/RelationshipGraph.svelte src/pages/about.astro test/graphView.test.ts
@@ -1030,7 +1030,7 @@ git commit -m "feat(graph): 外部人物頭像與節點 tooltip（描述／條�
   export function resolveCounterpart(row: EndpointRow, roster: Roster): CounterpartResolution;
   ```
 
-- [ ] **Step 1: 寫失敗測試**
+- [x] **Step 1: 寫失敗測試**
 
 建立 `test/relEndpoints.test.ts`：
 
@@ -1097,12 +1097,12 @@ describe('resolveCounterpart', () => {
 });
 ```
 
-- [ ] **Step 2: 跑測試確認失敗**
+- [x] **Step 2: 跑測試確認失敗**
 
 Run: `pnpm exec vitest run test/relEndpoints.test.ts`
 Expected: FAIL，模組不存在。
 
-- [ ] **Step 3: 實作模組**
+- [x] **Step 3: 實作模組**
 
 建立 `scraper/lib/relEndpoints.ts`：
 
@@ -1152,12 +1152,12 @@ export function resolveCounterpart(row: EndpointRow, roster: Roster): Counterpar
 }
 ```
 
-- [ ] **Step 4: 跑測試確認通過**
+- [x] **Step 4: 跑測試確認通過**
 
 Run: `pnpm exec vitest run test/relEndpoints.test.ts`
 Expected: PASS（9 tests）。
 
-- [ ] **Step 5: 改 import 腳本改用模組（行為不變）**
+- [x] **Step 5: 改 import 腳本改用模組（行為不變）**
 
 `scraper/import-relationships.ts`：
 - import 加 `import { resolveSubject, resolveCounterpart, officialIdIn, type Roster } from './lib/relEndpoints';`
@@ -1188,7 +1188,7 @@ Expected: PASS（9 tests）。
 - 方向那段 `let fromType: 'official' | 'entity' = 'official', fromId = subjId;` 改為 `let fromType = subj.type, fromId = subj.id;`，而 parent_child 反向那行的 `'official', subjId` 改為 `subj.type, subj.id`。
 - 原本兩段長註解（counterpartDistinct 的理由、fell-through 的理由）已搬到模組檔頭，此處只留一行「端點解析規則見 ./lib/relEndpoints.ts」。
 
-- [ ] **Step 6: 重匯確認行為不變**
+- [x] **Step 6: 重匯確認行為不變**
 
 Run: `pnpm run import:relationships`
 Expected: 「匯入完成」各數字與 Task 6 Step 3 完全相同（260 筆）；fell-through 清單相同。
@@ -1196,7 +1196,7 @@ Expected: 「匯入完成」各數字與 Task 6 Step 3 完全相同（260 筆）
 Run: `pnpm run export:graph && git diff --stat src/data/graph.json`
 Expected: graph.json 只有 UUID 變動（節點數、邊數不變）。
 
-- [ ] **Step 7: 測試與 Commit**
+- [x] **Step 7: 測試與 Commit**
 
 Run: `pnpm test`
 Expected: PASS。
@@ -1217,7 +1217,7 @@ git commit -m "refactor(import): 端點解析抽成純函式 relEndpoints 並補
 - Consumes: `resolveSubject`（Task 8；`subjectKind: 'entity'` 路徑）
 - Produces: curated 內 `subjectKind: 'entity'` 的列可匯入為 entity→official／entity→entity 邊
 
-- [ ] **Step 1: 把主迴圈改成兩輪**
+- [x] **Step 1: 把主迴圈改成兩輪**
 
 把 `for (const r of rows) { … }` 整個迴圈本體抽成 `async function importRow(r: Curated): Promise<void>`（內部沿用 `inserted++`、`skipped++`、`skips`、`officialFellThrough` 這些閉包變數），然後：
 
@@ -1240,7 +1240,7 @@ git commit -m "refactor(import): 端點解析抽成純函式 relEndpoints 並補
 
 （原本 `continue` 改成 `return`。）
 
-- [ ] **Step 2: 報告**
+- [x] **Step 2: 報告**
 
 「匯入完成」那行之後加（在 wikiStale 報告之前）：
 
@@ -1254,7 +1254,7 @@ git commit -m "refactor(import): 端點解析抽成純函式 relEndpoints 並補
   }
 ```
 
-- [ ] **Step 3: 用一筆假資料驗證路徑**
+- [x] **Step 3: 用一筆假資料驗證路徑**
 
 暫時在 `scraper/relationships-curated.json` 末尾加一列：
 
@@ -1282,7 +1282,7 @@ Expected: 260 筆；出現「⚠️ 2 度關係 subject 找不到對應 entity�
 
 **刪掉測試列**，重跑 `pnpm run import:relationships` 回到 260。
 
-- [ ] **Step 4: 測試與 Commit**
+- [x] **Step 4: 測試與 Commit**
 
 Run: `pnpm test`
 Expected: PASS。
@@ -1311,7 +1311,7 @@ git commit -m "feat(import): 兩輪匯入支援 subjectKind entity 的 2 度關�
   export function cleanWikitextInline(s: string): string             // 去 ref/註解/模板/連結/粗體/HTML，-{}- 取 zh-tw
   ```
 
-- [ ] **Step 1: 寫失敗測試**
+- [x] **Step 1: 寫失敗測試**
 
 建立 `test/wikiRelations.test.ts`：
 
@@ -1384,12 +1384,12 @@ describe('parseInfoboxRelations', () => {
 });
 ```
 
-- [ ] **Step 2: 跑測試確認失敗**
+- [x] **Step 2: 跑測試確認失敗**
 
 Run: `pnpm exec vitest run test/wikiRelations.test.ts`
 Expected: FAIL，模組不存在。
 
-- [ ] **Step 3: 實作**
+- [x] **Step 3: 實作**
 
 建立 `scraper/lib/wikiRelations.ts`：
 
@@ -1516,12 +1516,12 @@ export function parseInfoboxRelations(wikitext: string): InfoboxRelation[] {
 }
 ```
 
-- [ ] **Step 4: 跑測試確認通過**
+- [x] **Step 4: 跑測試確認通過**
 
 Run: `pnpm exec vitest run test/wikiRelations.test.ts`
 Expected: PASS。若 `relatives` 的 `{{ubl}}` 展開順序或 `<br />` 切分失敗，先修 `splitValueItems`，不要改測試。
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scraper/lib/wikiRelations.ts test/wikiRelations.test.ts
@@ -1545,7 +1545,7 @@ git commit -m "feat(scraper): wikitext infobox 關係欄位解析純函式"
   export function extractRelationSentences(wikitext: string): SentenceCandidate[]
   ```
 
-- [ ] **Step 1: 寫失敗測試**
+- [x] **Step 1: 寫失敗測試**
 
 `test/wikiRelations.test.ts` 追加：
 
@@ -1572,12 +1572,12 @@ describe('extractRelationSentences', () => {
 });
 ```
 
-- [ ] **Step 2: 跑測試確認失敗**
+- [x] **Step 2: 跑測試確認失敗**
 
 Run: `pnpm exec vitest run test/wikiRelations.test.ts`
 Expected: FAIL，`extractRelationSentences` 不存在。
 
-- [ ] **Step 3: 實作**
+- [x] **Step 3: 實作**
 
 在 `scraper/lib/wikiRelations.ts` 末尾加：
 
@@ -1612,12 +1612,12 @@ export function extractRelationSentences(wikitext: string): SentenceCandidate[] 
 }
 ```
 
-- [ ] **Step 4: 跑測試確認通過**
+- [x] **Step 4: 跑測試確認通過**
 
 Run: `pnpm exec vitest run test/wikiRelations.test.ts`
 Expected: PASS。若「其妻乙為醫師」的關鍵字多抓到「夫」以外的字（例如「子」不在清單，不會），依實際輸出修正 regex 而非測試——但測試裡的三個 keywords 陣列必須維持。
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scraper/lib/wikiRelations.ts test/wikiRelations.test.ts
@@ -1635,7 +1635,7 @@ git commit -m "feat(scraper): wikitext 關係關鍵句候選抽取"
 - Consumes: `loadEntitiesWiki`、`photoFileName`（借用檔名規則，Task 1）；`parseInfoboxRelations`、`extractRelationSentences`（Task 10–11）；`fetchPolite`
 - Produces: `scraper/out-wiki-relations/<name>[-<distinct 前 8 字>].json`，格式見 spec §7.2
 
-- [ ] **Step 1: 寫腳本**
+- [x] **Step 1: 寫腳本**
 
 建立 `scraper/wiki-discover-relations.ts`：
 
@@ -1698,12 +1698,12 @@ async function main() {
 main().catch((e) => { console.error(e); process.exit(1); });
 ```
 
-- [ ] **Step 2: 執行**
+- [x] **Step 2: 執行**
 
 Run: `pnpm run wiki:discover-relations`
 Expected: 對照表每人一個 JSON；總結列印 infobox 項目與關鍵句數。
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add scraper/wiki-discover-relations.ts
@@ -1722,7 +1722,7 @@ git commit -m "feat(scraper): 2 度關係候選腳本（infobox＋關鍵句）"
 **Interfaces:**
 - Consumes: `scraper/out-wiki-relations/*.json`（Task 12）；兩輪匯入（Task 9）
 
-- [ ] **Step 1: 逐檔審定**
+- [x] **Step 1: 逐檔審定**
 
 對每個 `scraper/out-wiki-relations/<name>.json`，依 spec §7.3：
 - infobox 項目：配偶／父母／子女／手足／親屬 → `spouse` / `parent_child`（`parentName` 填父母那方姓名）/ `sibling` / `relative`。只有名字沒有連結、也無法從內文佐證身分的（如「柯承發（父）」），仍可收為 `family_member` entity，`counterpartRole` 寫「柯文哲之父」。
@@ -1751,7 +1751,7 @@ git commit -m "feat(scraper): 2 度關係候選腳本（infobox＋關鍵句）"
 
 subject 有 `distinct` 者加 `"subjectDistinct": "<與 entities-wiki.json 相同的值>"`。
 
-- [ ] **Step 2: 重匯與匯出**
+- [x] **Step 2: 重匯與匯出**
 
 Run: `pnpm run import:relationships`
 Expected: 「匯入完成」筆數 = 260 + 新增列數 − skip；**無**「2 度關係 subject 找不到」警示；fell-through 與覆核警示逐條看過（新出現的同名合併疑慮要處理：加 `counterpartDistinct` 後重跑）。
@@ -1759,7 +1759,7 @@ Expected: 「匯入完成」筆數 = 260 + 新增列數 − skip；**無**「2 �
 Run: `pnpm run export:graph`
 Expected: 節點數與邊數上升；無 validation error。
 
-- [ ] **Step 3: 驗收**
+- [x] **Step 3: 驗收**
 
 Run: `node -e "const g=require('./src/data/graph.json');const ee=g.edges.filter(e=>e.source.startsWith('entity:')&&e.target.startsWith('entity:'));console.log('nodes',g.nodes.length,'edges',g.edges.length,'entity-entity edges',ee.length)"`
 Expected: `entity-entity edges` > 0。
@@ -1769,7 +1769,7 @@ Expected: PASS、build 成功。
 
 `pnpm dev` 開一位與柯文哲有關係的立委檔案頁：第二層出現柯文哲的關係人（較小、較淡）；`/graph` 搜尋「柯文哲」顯示其整個關係網含新關係人。
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add scraper/relationships-curated.json scraper/entities-wiki.json src/data/graph.json
@@ -1785,7 +1785,7 @@ git commit -m "feat(graph): 審定 N 筆 2 度關係（M 位外部人物的維�
 - Modify: 本計畫（勾選 checkbox）
 - Modify: `docs/superpowers/plans/2026-07-29-relationship-graph-visual.md`（把 47 個未勾的 checkbox 勾起來——該計畫早已全部交付，見 merge commit f941078）
 
-- [ ] **Step 1: spec 補完成數字**
+- [x] **Step 1: spec 補完成數字**
 
 在 §1.1 之後加：
 
@@ -1798,7 +1798,7 @@ git commit -m "feat(graph): 審定 N 筆 2 度關係（M 位外部人物的維�
 
 填實際數字。
 
-- [ ] **Step 2: 勾 checkbox 並 commit**
+- [x] **Step 2: 勾 checkbox 並 commit**
 
 ```bash
 git add docs/superpowers
