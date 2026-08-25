@@ -19,7 +19,7 @@
 
 - graph.json：352 節點（150 公職 ＋ 202 外部人物）／262 邊。
 - 外部人物：family_member 139、other 48、organization 8、businessperson 4、media 3；**照片 0 張**；`entities.wikipedia_url` 全為 null。
-- `relationships-curated.json` 315 列，subject 全為立委／首長（`import-relationships.ts` 用 `officialId(subject, restrict=true)` 限制）；DB 內 entity→entity 的邊為 0。
+- `relationships-curated.json` 260 列，subject 全為立委／首長（`import-relationships.ts` 用 `officialId(subject, restrict=true)` 限制）；DB 內 entity→entity 的邊為 0。
 - 關係來源：219 條 zh.wikipedia，其餘新聞。
 
 ## 2. 關鍵限制：entity 沒有穩定身分

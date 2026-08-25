@@ -847,7 +847,7 @@ import { loadEntitiesWiki, indexEntitiesWiki, entityWikiKey } from './lib/entiti
 - [ ] **Step 3: 重匯與匯出**
 
 Run: `pnpm run import:relationships`
-Expected: 「匯入完成：315 筆關係…」數字與上次相同（見 spec §1.1：315 列、少數 skip）；wikiStale 清單為空或只列出確實已不在 curated 的人（有的話從對照表刪除、刪照片檔、重跑）。
+Expected: 「匯入完成：260 筆關係…」數字與上次相同（見 spec §1.1：260 列，略過 0）；wikiStale 清單為空或只列出確實已不在 curated 的人（有的話從對照表刪除、刪照片檔、重跑）。
 
 Run: `pnpm run export:graph`
 Expected: `exported graph: 352 nodes, 262 edges`（與現況相同）。
@@ -1191,7 +1191,7 @@ Expected: PASS（9 tests）。
 - [ ] **Step 6: 重匯確認行為不變**
 
 Run: `pnpm run import:relationships`
-Expected: 「匯入完成」各數字與 Task 6 Step 3 完全相同；fell-through 清單相同。
+Expected: 「匯入完成」各數字與 Task 6 Step 3 完全相同（260 筆）；fell-through 清單相同。
 
 Run: `pnpm run export:graph && git diff --stat src/data/graph.json`
 Expected: graph.json 只有 UUID 變動（節點數、邊數不變）。
@@ -1275,12 +1275,12 @@ git commit -m "refactor(import): 端點解析抽成純函式 relEndpoints 並補
 ```
 
 Run: `pnpm run import:relationships`
-Expected: 「匯入完成：316 筆關係」；無 subjectMissing 警示。
+Expected: 「匯入完成：261 筆關係」；無 subjectMissing 警示。
 
 再把 `"subject": "柯文哲"` 改成 `"subject": "柯文哲x"` 重跑：
-Expected: 315 筆；出現「⚠️ 2 度關係 subject 找不到對應 entity（1 筆）：subject entity 尚未建立: 柯文哲x」。
+Expected: 260 筆；出現「⚠️ 2 度關係 subject 找不到對應 entity（1 筆）：subject entity 尚未建立: 柯文哲x」。
 
-**刪掉測試列**，重跑 `pnpm run import:relationships` 回到 315。
+**刪掉測試列**，重跑 `pnpm run import:relationships` 回到 260。
 
 - [ ] **Step 4: 測試與 Commit**
 
@@ -1754,7 +1754,7 @@ subject 有 `distinct` 者加 `"subjectDistinct": "<與 entities-wiki.json 相�
 - [ ] **Step 2: 重匯與匯出**
 
 Run: `pnpm run import:relationships`
-Expected: 「匯入完成」筆數 = 315 + 新增列數 − skip；**無**「2 度關係 subject 找不到」警示；fell-through 與覆核警示逐條看過（新出現的同名合併疑慮要處理：加 `counterpartDistinct` 後重跑）。
+Expected: 「匯入完成」筆數 = 260 + 新增列數 − skip；**無**「2 度關係 subject 找不到」警示；fell-through 與覆核警示逐條看過（新出現的同名合併疑慮要處理：加 `counterpartDistinct` 後重跑）。
 
 Run: `pnpm run export:graph`
 Expected: 節點數與邊數上升；無 validation error。
