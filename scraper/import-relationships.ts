@@ -104,9 +104,9 @@ async function main() {
   let inserted = 0, skipped = 0;
   const skips: string[] = [];
   const officialFellThrough: string[] = [];
-  for (const r of rows) {
+  async function importRow(r: Curated): Promise<void> {
     const subj = resolveSubject(r, roster, entityCache);
-    if ('skip' in subj) { skipped++; skips.push(subj.skip); continue; }
+    if ('skip' in subj) { skipped++; skips.push(subj.skip); return; }
 
     // 端點解析規則見 ./lib/relEndpoints.ts
     let toType: 'official' | 'entity', toId: string;
@@ -130,6 +130,10 @@ async function main() {
       }
     }
 
+    if (fromType === toType && fromId === toId) {
+      skipped++; skips.push(`自連略過: ${r.subject}-${r.counterpartName}（${r.relationType}）`); return;
+    }
+
     const { data: src, error: se } = await supabase.from('sources')
       .insert({ url: r.sourceUrl, type: r.sourceType, title: `${r.subject}關係資料：${r.relationType}`, retrieved_at: '2026-06-25' })
       .select('id').single();
@@ -139,9 +143,16 @@ async function main() {
       from_type: fromType, from_id: fromId, to_type: toType, to_id: toId,
       relation_type: r.relationType, directed, note: r.note, source_id: src.id,
     });
-    if (re) { skipped++; skips.push(`relationship 失敗 ${r.subject}-${r.counterpartName}: ${re.message}`); continue; }
+    if (re) { skipped++; skips.push(`relationship 失敗 ${r.subject}-${r.counterpartName}: ${re.message}`); return; }
     inserted++;
   }
+
+  // 兩輪：先匯 official-subject 列建出所有 entity，再匯 entity-subject 列（2 度關係，subject
+  // 必須已在第一輪建出；否則 resolveSubject 會 skip 並列報，不會靜默建新節點）。
+  const firstPass = rows.filter((r) => r.subjectKind !== 'entity');
+  const secondPass = rows.filter((r) => r.subjectKind === 'entity');
+  for (const r of firstPass) await importRow(r);
+  for (const r of secondPass) await importRow(r);
 
   // 清除孤立 entity（未被任何現存關係引用者）—— 每次匯入都會新建 entity，需回收前次殘留。
   const referenced = new Set<string>();
@@ -168,6 +179,14 @@ async function main() {
   }
 
   console.log(`匯入完成：${inserted} 筆關係、entity ${entityCache.size} 筆；清孤立 entity ${orphans.length} 筆；略過 ${skipped}`);
+
+  // 2 度關係列的 subject 找不到：curated 拼字或 subjectDistinct 與建立該 entity 的 counterpartDistinct 不一致，
+  // 必須人工處理，故獨立列出而不混在一般 skip 裡。
+  const subjectMissing = skips.filter((s) => s.startsWith('subject entity 尚未建立'));
+  if (subjectMissing.length) {
+    console.log(`\n⚠️ 2 度關係 subject 找不到對應 entity（${subjectMissing.length} 筆）：`);
+    for (const s of subjectMissing) console.log(`  - ${s}`);
+  }
 
   // 對照表有、但本次匯入沒建出對應 entity：代表該人已從 curated 消失（或改走 official 路徑），
   // 對照表該清掉，否則照片檔會變孤兒。
