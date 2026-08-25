@@ -20,6 +20,9 @@ describe('pickLicense', () => {
     expect(pickLicense({ LicenseShortName: { value: 'CC BY 4.0' }, Credit: { value: '總統府' } })).toMatchObject({ author: '總統府' });
     expect(pickLicense({ LicenseShortName: { value: 'CC BY 4.0' } })).toMatchObject({ author: '不詳' });
   });
+  it('Attribution（台灣政府資料開放授權的官方肖像）→ ok', () => {
+    expect(pickLicense({ LicenseShortName: { value: 'Attribution' }, Artist: { value: '外交部' } })).toEqual({ ok: true, license: 'Attribution', author: '外交部' });
+  });
   it('fair use / 無授權資訊 → 不收', () => {
     expect(pickLicense({ LicenseShortName: { value: 'Fair use' } })).toEqual({ ok: false, reason: '授權不符：Fair use' });
     expect(pickLicense({})).toEqual({ ok: false, reason: '無授權資訊' });
