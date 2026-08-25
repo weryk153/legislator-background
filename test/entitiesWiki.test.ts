@@ -18,7 +18,7 @@ describe('entityWikiKey / photoFileName', () => {
   });
   it('有 distinct 用 name::distinct；檔名取 distinct 前 8 字', () => {
     expect(entityWikiKey('李傑', '學者、鴻海副董')).toBe('李傑::學者、鴻海副董');
-    expect(photoFileName('李傑', '前國防部長、前海軍總司令、海軍上將')).toBe('李傑-前國防部長、前海軍.jpg');
+    expect(photoFileName('李傑', '前國防部長、前海軍總司令、海軍上將')).toBe('李傑-前國防部長、前海.jpg');
   });
 });
 

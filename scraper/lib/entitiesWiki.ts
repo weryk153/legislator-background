@@ -34,7 +34,7 @@ export function entityWikiKey(name: string, distinct?: string): string {
 
 // 檔名用中文，比照 public/photos/councilors/；distinct 只取前 8 個字避免檔名過長。
 export function photoFileName(name: string, distinct?: string): string {
-  return distinct ? `${name}-${[...distinct].slice(0, 9).join('')}.jpg` : `${name}.jpg`;
+  return distinct ? `${name}-${[...distinct].slice(0, 8).join('')}.jpg` : `${name}.jpg`;
 }
 
 export function photoCredit(p: EntityPhoto): string {
