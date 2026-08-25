@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { loadEnv } from './lib/loadEnv';
 import { loadEntitiesWiki, indexEntitiesWiki, entityWikiKey } from './lib/entitiesWiki';
+import { resolveSubject, resolveCounterpart, officialIdIn, type Roster } from './lib/relEndpoints';
 
 loadEnv();
 const here = dirname(fileURLToPath(import.meta.url));
@@ -18,6 +19,10 @@ type Curated = {
   // 謝龍介之妻與韓國瑜之妻）。由人查證後手寫，不是從 counterpartRole 字串推論。
   // 一旦標記，此列即：(1) 拆開 entity 去重快取鍵；(2) 絕不走名冊姓名比對（見下方
   // counterpart 端點）；(3) 不再列入「疑為同一人重複記錄」的覆核警示。
+  // 2 度關係：subject 為既有 entity（如柯文哲）。省略＝official。subjectDistinct 對應建立該 entity
+  // 那列的 counterpartDistinct，一字不差。
+  subjectKind?: 'official' | 'entity';
+  subjectDistinct?: string;
   counterpartDistinct?: string;
   counterpartKind: 'official' | 'entity';
   counterpartEntityType?: string;
@@ -43,13 +48,8 @@ async function main() {
     officials.push(...(data ?? []) as typeof officials);
     if ((data?.length ?? 0) < 1000) break;
   }
-  const byName = new Map<string, string[]>();
-  for (const o of officials) (byName.get(o.name) ?? byName.set(o.name, []).get(o.name)!).push(o.id);
-  const NATIONAL = new Set(['legislator', 'mayor_magistrate']);
-  const officialId = (name: string, restrict?: boolean): string | null => {
-    const pool = officials.filter((o) => o.name === name && (!restrict || NATIONAL.has(o.office_type)));
-    return pool.length === 1 ? pool[0].id : null; // 僅唯一匹配才連，避免同名錯掛
-  };
+  const roster: Roster = officials;
+  const officialId = (name: string, restrict?: boolean) => officialIdIn(roster, name, restrict);
 
   // 冪等清除：刪掉先前由本匯入產生的關係（保留判決 court 來源的種子關係）。
   // 注意：sources 表有上萬筆（官員生涯/判決/公報來源），不可用 .select('id').in('type',[...])
@@ -105,38 +105,28 @@ async function main() {
   const skips: string[] = [];
   const officialFellThrough: string[] = [];
   for (const r of rows) {
-    const subjId = officialId(r.subject, true);
-    if (!subjId) { skipped++; skips.push(`subject 未匹配: ${r.subject}`); continue; }
+    const subj = resolveSubject(r, roster, entityCache);
+    if ('skip' in subj) { skipped++; skips.push(subj.skip); continue; }
 
-    // counterpart 端點。
-    // 帶 counterpartDistinct 的列一律不走名冊姓名比對，強制建 entity：這個欄位的意思是
-    // 「已由人查證，此人與名冊中的同名者是不同人」。若仍讓 officialId() 依姓名連過去，
-    // 這個人工判斷就形同不存在——今天不出事只因名冊剛好沒有同名的公職（例如陳永康的
-    // 老長官李傑），哪天 roster:record 收進一位同名議員，這筆關係就會靜默改連到別人身上。
-    // 姓名單獨判定正是「常見名寧缺勿錯」原則要防止的錯誤。
+    // 端點解析規則見 ./lib/relEndpoints.ts
     let toType: 'official' | 'entity', toId: string;
-    const asOfficial = r.counterpartKind === 'official' && !r.counterpartDistinct
-      ? officialId(r.counterpartName) : null;
-    if (asOfficial) { toType = 'official'; toId = asOfficial; }
+    const cp = resolveCounterpart(r, roster);
+    if (cp.type === 'official') { toType = 'official'; toId = cp.id; }
     else {
-      // counterpartKind 標為 official 卻沒對到名冊（多為非本站收錄的中央層級人物，
-      // 如柯文哲、賴清德），會靜默退成 entity。這條路徑以往完全看不見，故記下來報告。
-      if (r.counterpartKind === 'official' && !r.counterpartDistinct) {
-        officialFellThrough.push(`${r.counterpartName}（${r.subject} 的 ${r.relationType}）`);
-      }
+      if (cp.fellThrough) officialFellThrough.push(`${r.counterpartName}（${r.subject} 的 ${r.relationType}）`);
       toType = 'entity';
       toId = await ensureEntity(r.counterpartName, r.counterpartEntityType ?? 'other', r.counterpartRole || r.note, r.counterpartDistinct);
     }
 
     // 方向：parent_child 為有向（from=父母）。其餘無向。
-    let fromType: 'official' | 'entity' = 'official', fromId = subjId;
+    let fromType = subj.type, fromId = subj.id;
     let directed = false;
     if (r.relationType === 'parent_child') {
       directed = true;
       const subjectIsParent = r.parentName && r.parentName === r.subject;
       if (!subjectIsParent) {
         // counterpart 是父母 → 反向（from=counterpart, to=subject）
-        [fromType, fromId, toType, toId] = [toType, toId, 'official', subjId] as [typeof fromType, string, typeof toType, string];
+        [fromType, fromId, toType, toId] = [toType, toId, subj.type, subj.id] as [typeof fromType, string, typeof toType, string];
       }
     }
 
