@@ -7,6 +7,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { loadEnv } from './lib/loadEnv';
+import { loadEntitiesWiki, indexEntitiesWiki, entityWikiKey } from './lib/entitiesWiki';
 
 loadEnv();
 const here = dirname(fileURLToPath(import.meta.url));
@@ -78,12 +79,23 @@ async function main() {
   // 反而摧毀關係圖存在的意義。同名不同人是罕見例外（如李佳芬同時是謝龍介之妻與
   // 韓國瑜之妻），必須由人查證後在 curated 資料上手寫 counterpartDistinct 標記
   // 才能生效——身份判斷只能交給人，不能靠字串比對推論。
+  // 外部人物 ↔ 維基條目／照片 對照（版控檔案）。entity 每次重匯都重建，照片與條目 URL
+  // 只能在這裡套上；沒有對照的 entity 兩欄維持 null。
+  const wikiIndex = indexEntitiesWiki(loadEntitiesWiki());
+  const wikiUsed = new Set<string>();
+
   const entityCache = new Map<string, string>();
   async function ensureEntity(name: string, etype: string, desc: string, distinct?: string): Promise<string> {
-    const cacheKey = distinct ? `${name}::${distinct}` : name;
+    const cacheKey = entityWikiKey(name, distinct);
     if (entityCache.has(cacheKey)) return entityCache.get(cacheKey)!;
     const subtype = ENTITY_TYPES.has(etype) ? etype : 'other';
-    const { data, error } = await supabase.from('entities').insert({ name, entity_type: subtype, description: desc }).select('id').single();
+    const wiki = wikiIndex.get(cacheKey);
+    if (wiki) wikiUsed.add(cacheKey);
+    const { data, error } = await supabase.from('entities').insert({
+      name, entity_type: subtype, description: desc,
+      wikipedia_url: wiki?.wikipediaUrl ?? null,
+      photo_url: wiki?.photo?.file ?? null,
+    }).select('id').single();
     if (error) throw new Error(`entity insert failed (${name}): ${error.message}`);
     entityCache.set(cacheKey, data.id);
     return data.id;
@@ -166,6 +178,14 @@ async function main() {
   }
 
   console.log(`匯入完成：${inserted} 筆關係、entity ${entityCache.size} 筆；清孤立 entity ${orphans.length} 筆；略過 ${skipped}`);
+
+  // 對照表有、但本次匯入沒建出對應 entity：代表該人已從 curated 消失（或改走 official 路徑），
+  // 對照表該清掉，否則照片檔會變孤兒。
+  const wikiStale = [...wikiIndex.keys()].filter((k) => !wikiUsed.has(k));
+  if (wikiStale.length) {
+    console.log(`\nℹ️ entities-wiki.json 有、但本次未建出 entity（${wikiStale.length} 筆，請檢查是否該移除）：`);
+    for (const k of wikiStale) console.log(`  - ${k}`);
+  }
   if (skips.length) console.log('略過明細:\n  ' + skips.join('\n  '));
 
   // counterpartKind: 'official' 但名冊查不到 → 已退成 entity。多數是本站不收錄的中央層級
