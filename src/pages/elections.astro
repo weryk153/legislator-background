@@ -1,0 +1,41 @@
+---
+import Base from "../layouts/Base.astro";
+import ElectionPanel from "../components/ElectionPanel.svelte";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
+const meta = JSON.parse(readFileSync(join(process.cwd(), "public", "data", "map", "meta.json"), "utf8"));
+const ELECTION_DAY = new Date("2026-11-28T00:00:00+08:00");
+const days = Math.ceil((ELECTION_DAY.getTime() - Date.now()) / 86400000);
+---
+
+<Base title="選舉地圖｜政治人物背景資料庫"
+      description="2026 年九合一選舉。以行政區地圖呈現各級公職現任者的政黨版圖，可逐層下鑽至村里。">
+  <h1>2026 九合一選舉</h1>
+  <p class="countdown">投票日 2026 年 11 月 28 日{days > 0 ? `，尚餘 ${days} 天` : ""}</p>
+
+  <p class="notice">
+    以下為<strong>西元 {meta.electionYear} 年（{meta.electionName}）</strong>的結果與其後補選之現況，
+    <strong>非 2026 年選情</strong>。候選人名單須待中選會於登記期後公告，屆時另行補上。
+  </p>
+
+  <ElectionPanel client:load />
+
+  <p class="credit">
+    行政區界線：內政部國土測繪中心（政府資料開放授權條款）｜選舉結果：中央選舉委員會
+  </p>
+</Base>
+
+<style>
+  .countdown { color: var(--muted); font-size: var(--t-sm); margin: -.4rem 0 1rem; }
+  .notice {
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    padding: .8rem 1rem;
+    color: var(--fg);
+    font-size: .9375rem;
+    margin-bottom: 1.5rem;
+  }
+  .credit { color: var(--faint); font-size: var(--t-xs); margin-top: 1.5rem; }
+</style>

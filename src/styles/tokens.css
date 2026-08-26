@@ -27,6 +27,15 @@
   --maxw: 940px;
   --radius: 8px;
   --ease: 180ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* 政黨識別色（選舉地圖用）。元件內不得寫死色碼，一律讀這組變數。 */
+  --party-kmt: #1b9ad6;      /* 中國國民黨 */
+  --party-dpp: #1b9431;      /* 民主進步黨 */
+  --party-tpp: #28c8c8;      /* 台灣民眾黨 */
+  --party-npp: #fbbe01;      /* 時代力量 */
+  --party-pfp: #ff6310;      /* 親民黨 */
+  --party-none: #9aa0a6;     /* 無黨籍及未經政黨推薦 */
+  --party-other: #c4a0d8;    /* 其他政黨（含未知政黨代號） */
 }
 :root[data-theme="dark"] {
   --bg: #131312;
@@ -39,6 +48,15 @@
   --accent: #e8635a;
   --accent-wash: rgba(232, 99, 90, 0.10);
   --row-hover: rgba(210, 205, 195, 0.07);
+
+  /* 深色底降低彩度、略提亮度以維持對比 */
+  --party-kmt: #5cb8e0;
+  --party-dpp: #4cbf63;
+  --party-tpp: #5fd9d9;
+  --party-npp: #f0cc4d;
+  --party-pfp: #ff8f57;
+  --party-none: #8b9096;
+  --party-other: #cdaee0;
 }
 
 * { box-sizing: border-box; }
