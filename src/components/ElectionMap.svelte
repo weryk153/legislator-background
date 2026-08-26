@@ -266,14 +266,30 @@
 {/snippet}
 
 <div class="map-wrap">
-  <nav class="crumbs" aria-label="地圖層級">
-    {#each crumbs as c, i}
-      <button type="button" disabled={i === crumbs.length - 1} onclick={() => jumpTo(i)}>
-        {i === 0 ? (counties?.parentName ?? c.name) : c.name}
-      </button>
-      {#if i < crumbs.length - 1}<span aria-hidden="true">›</span>{/if}
-    {/each}
-  </nav>
+  <!-- 麵包屑移到地圖區塊左下角（原本在左上角，改版後那個位置被浮動標題欄佔走）。
+       跟下鑽中的載入／錯誤徽章共用同一個 bottom-left 角落，用 flex column-reverse
+       疊放——麵包屑永遠貼齊底部，徽章出現時往上長，兩者都用 flex 排版自然避開，
+       不必用魔術數字互相硬算間距。這裡只是把兩者包進同一個容器並改 CSS 定位，
+       {#if}/{#each} 的條件與互動邏輯（jumpTo/pendingRetry）完全沒動。 -->
+  <div class="corner-stack">
+    <nav class="crumbs" aria-label="地圖層級">
+      {#each crumbs as c, i}
+        <button type="button" disabled={i === crumbs.length - 1} onclick={() => jumpTo(i)}>
+          {i === 0 ? (counties?.parentName ?? c.name) : c.name}
+        </button>
+        {#if i < crumbs.length - 1}<span aria-hidden="true">›</span>{/if}
+      {/each}
+    </nav>
+    <!-- 下鑽中的載入／錯誤狀態疊在地圖角落，不整張換掉——鄰近縣市與麵包屑
+         全程留在畫面上，這正是「連續縮放」而非「逐層換圖」的重點。初次載入
+         （counties 尚未到位）時用下面的 .state-msg 置中顯示，不是這裡。 -->
+    {#if counties && loading}<p class="badge" role="status">載入中…</p>{/if}
+    {#if counties && error}
+      <p class="badge badge-error" role="alert">{error}
+        <button type="button" onclick={() => pendingRetry?.()}>重試</button>
+      </p>
+    {/if}
+  </div>
 
   {#if !counties}
     {#if error}
@@ -307,14 +323,6 @@
         {/if}
       </g>
     </svg>
-    <!-- 下鑽中的載入／錯誤狀態疊在地圖角落，不整張換掉——鄰近縣市與麵包屑
-         全程留在畫面上，這正是「連續縮放」而非「逐層換圖」的重點。 -->
-    {#if loading}<p class="badge" role="status">載入中…</p>{/if}
-    {#if error}
-      <p class="badge badge-error" role="alert">{error}
-        <button type="button" onclick={() => pendingRetry?.()}>重試</button>
-      </p>
-    {/if}
   {/if}
 </div>
 
@@ -334,8 +342,14 @@
   path.bg-shape.dim { opacity: .35; }
   .focus-outline { stroke: var(--accent); stroke-width: 2; pointer-events: none; }
 
+  /* 左下角堆疊：麵包屑貼底，徽章（載入中／錯誤）出現時往上長。用
+     column-reverse 是因為 DOM 順序是「麵包屑先、徽章後」，column-reverse 會把
+     後面的項目往視覺上方排，第一個項目（麵包屑）自然留在容器底部。 */
+  .corner-stack {
+    position: absolute; left: 1.5rem; bottom: 1.5rem; z-index: 5;
+    display: flex; flex-direction: column-reverse; align-items: flex-start; gap: .5rem;
+  }
   .crumbs {
-    position: absolute; left: 1.5rem; top: 1.5rem; z-index: 5;
     display: flex; gap: .4rem; align-items: center; flex-wrap: wrap;
     background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius);
     padding: .4rem .65rem; box-shadow: 0 4px 14px rgba(0, 0, 0, .16);
@@ -343,11 +357,12 @@
   .crumbs button { background: none; border: none; color: var(--accent); cursor: pointer; padding: 0; font: inherit; }
   .crumbs button:disabled { color: var(--muted); cursor: default; }
 
-  .state-msg { padding: 4.5rem 1.5rem 1.5rem; color: var(--muted); text-align: center; }
+  /* 初次載入（counties 尚未到位）置中顯示，此時左下角只有麵包屑（顯示「全國」），
+     不再需要用大量 padding-top 讓路給原本在左上角的麵包屑。 */
+  .state-msg { padding: 1.5rem; color: var(--muted); text-align: center; }
   .state-error { color: var(--fg); }
 
   .badge {
-    position: absolute; left: 1.5rem; bottom: 1.5rem; z-index: 5;
     background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius);
     padding: .5rem .75rem; color: var(--muted); font-size: .875rem;
     box-shadow: 0 4px 14px rgba(0, 0, 0, .16);

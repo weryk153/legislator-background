@@ -11,19 +11,12 @@ const days = Math.ceil((ELECTION_DAY.getTime() - Date.now()) / 86400000);
 
 <Base title="選舉地圖｜政治人物背景資料庫"
       description="2026 年九合一選舉。以行政區地圖呈現各級公職現任者的政黨版圖，可逐層下鑽至村里。">
-  <h1>2026 九合一選舉</h1>
-  <p class="countdown">投票日 2026 年 11 月 28 日{days > 0 ? `，尚餘 ${days} 天` : ""}</p>
-
-  <p class="notice">
-    以下為<strong>西元 {meta.electionYear} 年（{meta.electionName}）</strong>的結果與其後補選之現況，
-    <strong>非 2026 年選情</strong>。候選人名單須待中選會於登記期後公告，屆時另行補上。
-  </p>
-
-  <!-- 地圖滿版出血：跳出 .wrap 的 940px 上限、佔滿整個視窗寬度，讓天下雜誌那種
-       「地圖是主角、控制項浮在上面」的感覺成立；標題／倒數／版權在這個區塊上下的
-       一般容器裡，不受影響。 -->
+  <!-- 地圖滿版出血：跳出 .wrap 的 940px 上限、佔滿整個視窗寬度、緊接頁首，讓天下雜誌
+       那種「地圖是主角、控制項浮在上面」的感覺成立——一進頁面不捲動就看到完整地圖。
+       標題／倒數／年度標示改成浮在地圖左側的欄（見 ElectionPanel），不再佔用地圖
+       上方的獨立版面高度；下方的授權與領土說明留在這個區塊之下，捲動後看得到即可。 -->
   <div class="map-stage">
-    <ElectionPanel client:load />
+    <ElectionPanel client:load days={days} electionYear={meta.electionYear} electionName={meta.electionName} />
   </div>
 
   <p class="credit">
@@ -36,19 +29,26 @@ const days = Math.ceil((ELECTION_DAY.getTime() - Date.now()) / 86400000);
 </Base>
 
 <style>
-  .countdown { color: var(--muted); font-size: var(--t-sm); margin: -.4rem 0 1rem; }
   /* 標準的「跳出置中容器」技巧：50% 相對於父層（.wrap，已置中），50vw 相對於視窗，
      兩者相減剛好抵消置中造成的偏移，讓這個區塊左右都貼齊視窗邊緣。 */
-  .map-stage { width: 100vw; margin-left: calc(50% - 50vw); margin-bottom: 1.75rem; }
-  .notice {
-    background: var(--surface);
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius);
-    padding: .8rem 1rem;
-    color: var(--fg);
-    font-size: .9375rem;
-    margin-bottom: 1.5rem;
+  .map-stage {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-bottom: 1.75rem;
+    /* 緊接頁首、填滿首屏：130px = 頁首 .site-head 實測高度 98px（padding-top 22px
+       ＋padding-bottom 16px＋2px 邊框＋內容本身，實測 97.45px 取整）＋ Base.astro
+       .main 的 padding-top 32px。這兩個數字都是量測值，不是變數，Base.astro 或
+       站台頁首若改版就要重新量測。用 100dvh 而非 100vh，行動裝置網址列收合/展開時
+       高度才不會跳動。 */
+    height: calc(100dvh - 130px);
   }
   .credit { color: var(--faint); font-size: var(--t-xs); margin-top: 1.5rem; }
   .scope-note { color: var(--faint); font-size: var(--t-xs); margin-top: .4rem; line-height: 1.6; }
+
+  /* 窄螢幕：ElectionPanel 內的標題欄／資訊面板改回靜態排版、各自佔滿寬度，
+     這裡的滿版地圖區塊也要跟著放棄固定滿版高度，否則會被硬撐出捲動軸內的
+     捲動軸（雙重捲動）。斷點跟 ElectionPanel.svelte 的 900px 一致，必須同步改。 */
+  @media (max-width: 900px) {
+    .map-stage { height: auto; margin-top: 0; }
+  }
 </style>
