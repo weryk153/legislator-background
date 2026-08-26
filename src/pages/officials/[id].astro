@@ -26,9 +26,17 @@ const CAREER_GROUPS: { key: CareerCategory; label: string; note?: string }[] = [
   { key: "social", label: "社會團體／財團法人", note: "以下為公職以外的社會團體、財團法人職務。" },
   { key: "other", label: "其他" },
 ];
+// 解職那筆 career 的存在目的是替頁首的 departedReason 帶出處——officials.departed_reason
+// 本身沒有 source_id 欄位（見 scraper/roster-record.ts 的設計說明）。它的 organization 就是
+// 頁首那句話的副本，若照常列進「經歷」等於同一句話在頁面上出現兩次；更糟的是兩份副本
+// 會走樣（吳亮慶的定讞日、林哲凌的刑期都曾對不上）。故此處只取它的出處掛到頁首，
+// 本文不再重複顯示。
+const dismissalRecord = o.careers.find((c) => c.title === "解職");
 const careersByCategory = CAREER_GROUPS.map((g) => ({
   ...g,
-  items: o.careers.filter((c) => categorizeCareer(careerText(c.organization, c.title)) === g.key),
+  items: o.careers.filter(
+    (c) => c.title !== "解職" && categorizeCareer(careerText(c.organization, c.title)) === g.key,
+  ),
 })).filter((g) => g.items.length > 0);
 
 const centerKey = `official:${o.id}`;
@@ -105,7 +113,12 @@ const jsonLd = [
     {o.departedReason && <span class="pill departed">已解職</span>}
     <h1>{o.name}</h1>
     <p class="lede">{o.party}・{o.district}・第{o.term}屆{o.bio ? `　${o.bio}` : ""}</p>
-    {o.departedReason && <p class="departed-note">本人已非現任：{o.departedReason}。以下為其任內（第{o.term}屆當選時）之公開資料。</p>}
+    {o.departedReason && (
+      <p class="departed-note">
+        本人已非現任：{o.departedReason}。以下為其任內（第{o.term}屆當選時）之公開資料。
+        {dismissalRecord && <Sources sources={[dismissalRecord.source]} />}
+      </p>
+    )}
   </header>
 
   <section class="sec">
