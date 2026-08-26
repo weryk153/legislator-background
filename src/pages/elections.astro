@@ -21,13 +21,17 @@ const years = buildYears(meta);
     <ElectionPanel client:load {years} />
   </div>
 
-  <p class="credit">
-    行政區界線：內政部國土測繪中心（政府資料開放授權條款）｜選舉結果：中央選舉委員會
-  </p>
-  <p class="scope-note">
-    為使台灣本島在地圖上維持可辨識的比例，本頁地圖未繪出高雄市旗津區轄下的東沙島、南沙太平島，
-    以及宜蘭縣頭城鎮大溪里轄下的釣魚台列嶼——這幾處均無村里長選舉；大溪里其餘轄區的村里長資料仍照常呈現於地圖上。
-  </p>
+  <!-- 圖說：授權標示與領土說明，改成報紙圖說的樣式——貼著地圖底部、上緣一條髮絲線、
+       小字級 --faint 色，讀起來像照片說明而非頁尾雜項。文字內容完全不動。 -->
+  <div class="caption">
+    <p class="credit">
+      行政區界線：內政部國土測繪中心（政府資料開放授權條款）｜選舉結果：中央選舉委員會
+    </p>
+    <p class="scope-note">
+      為使台灣本島在地圖上維持可辨識的比例，本頁地圖未繪出高雄市旗津區轄下的東沙島、南沙太平島，
+      以及宜蘭縣頭城鎮大溪里轄下的釣魚台列嶼——這幾處均無村里長選舉；大溪里其餘轄區的村里長資料仍照常呈現於地圖上。
+    </p>
+  </div>
 </Base>
 
 <style>
@@ -36,7 +40,7 @@ const years = buildYears(meta);
   .map-stage {
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    margin-bottom: 1.75rem;
+    margin-bottom: .9rem;
     /* 緊接頁首、填滿首屏：130px = 頁首 .site-head 實測高度 98px（padding-top 22px
        ＋padding-bottom 16px＋2px 邊框＋內容本身，實測 97.45px 取整）＋ Base.astro
        .main 的 padding-top 32px。這兩個數字都是量測值，不是變數，Base.astro 或
@@ -44,8 +48,11 @@ const years = buildYears(meta);
        高度才不會跳動。 */
     height: calc(100dvh - 130px);
   }
-  .credit { color: var(--faint); font-size: var(--t-xs); margin-top: 1.5rem; }
-  .scope-note { color: var(--faint); font-size: var(--t-xs); margin-top: .4rem; line-height: 1.6; }
+  /* 圖說：緊貼地圖底部（.map-stage 的 margin-bottom 已縮小），上緣一條髮絲線，
+     像照片說明而非頁尾雜項。 */
+  .caption { border-top: 1px solid var(--line); padding-top: .6rem; }
+  .credit { color: var(--faint); font-size: var(--t-xs); margin: 0; }
+  .scope-note { color: var(--faint); font-size: var(--t-xs); margin: .4rem 0 0; line-height: 1.6; }
 
   /* 窄螢幕：ElectionPanel 內的標題欄／資訊面板改回靜態排版、各自佔滿寬度，
      這裡的滿版地圖區塊也要跟著放棄固定滿版高度，否則會被硬撐出捲動軸內的

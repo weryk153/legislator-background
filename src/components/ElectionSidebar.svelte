@@ -155,23 +155,30 @@
 
 <style>
   .side { font-family: var(--sans); }
+  /* 區域名：報紙的語言，襯線體。 */
   h2 { font-family: var(--serif); margin: 0 0 .6rem; }
   h3 { font-size: .85rem; color: var(--muted); margin: 1rem 0 .35rem; font-weight: 600; }
   .person { font-size: 1.2rem; font-weight: 600; color: var(--accent); text-decoration: none; }
   .person.none { color: var(--muted); }
   .party { margin: .2rem 0 0; color: var(--fg); }
   .note { color: var(--muted); font-size: .85rem; margin: .2rem 0 0; }
-  .limit { color: var(--fg); background: var(--surface); padding: .35rem .5rem; border-radius: 4px; font-size: .85rem; }
+  .limit { color: var(--fg); background: var(--surface); padding: .35rem .5rem; border-radius: 2px; font-size: .85rem; }
   .limit.pending { color: var(--muted); }
   /* 制度事實（官派、無此機關、待抽籤）與「本站查無資料」在視覺上也要分得開 */
   .institutional {
     color: var(--fg); background: var(--surface); border-left: 3px solid var(--line-strong);
-    padding: .4rem .55rem; border-radius: 4px; font-size: .85rem; margin: .2rem 0 0; line-height: 1.6;
+    padding: .4rem .55rem; border-radius: 2px; font-size: .85rem; margin: .2rem 0 0; line-height: 1.6;
   }
-  .tag { color: var(--muted); font-size: .75rem; border: 1px solid var(--line); border-radius: 3px; padding: 0 .3rem; margin-left: .35rem; }
-  .bars { list-style: none; padding: 0; margin: 0; display: grid; gap: .3rem; }
-  .bars li { display: grid; grid-template-columns: 7rem 1fr 2.5rem; align-items: center; gap: .4rem; font-size: .85rem; }
-  .bar { height: .6rem; background: var(--line-strong); width: var(--w); border-radius: 2px; }
-  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .tag { color: var(--muted); font-size: .75rem; border: 1px solid var(--line); border-radius: 2px; padding: 0 .3rem; margin-left: .35rem; }
+  /* 席次：報紙的數字用襯線體＋等寬數字，長條也改成細線＋底線分隔的表格感，
+     不再是 app 感的圓角進度條。 */
+  .bars { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+  .bars li {
+    display: grid; grid-template-columns: 7rem 1fr 2.5rem; align-items: center; gap: .4rem;
+    font-size: .85rem; padding: .3rem 0; border-bottom: 1px solid var(--line);
+  }
+  .bars li:last-child { border-bottom: none; }
+  .bar { height: 3px; background: var(--line-strong); width: var(--w); border-radius: 0; }
+  .num { text-align: right; font-family: var(--serif); font-variant-numeric: tabular-nums; }
   .hint { color: var(--muted); font-size: .85rem; }
 </style>

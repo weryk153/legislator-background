@@ -63,10 +63,19 @@
   //   未編定村里     → --map-unedited（模板裡另外處理，這裡是防禦性寫法）
   // neutral 模式（year switcher 切到尚未舉行的年份）整層短路成同一個中性色，
   // 不透露底下沿用的那年資料屬於哪個政黨。
-  function fillFor(area: MapArea): string {
+  //
+  // flatten：非互動的背景／脈絡形狀（bg-shape，見下方 shapePath）不用斜線紋理，
+  // 改用紋理的底色畫成純色。斜線是高頻圖案，人眼對它的敏感度遠高於同樣不透明度
+  // 的實色色塊，即使套上 .dim 的低透明度依然「看起來」比周圍安靜的實色背景搶眼
+  // ——尤其深色模式下紋理的線色偏亮（見 tokens.css 的 --map-appointed-line）。
+  // 而且下鑽後「目前對焦層級的上一層」本身不會被 dim（見 shapePath 呼叫處），若
+  // 那一層剛好是官派區，紋理會用滿不透明度畫在最底層，直接蓋過疊在上面、真正
+  // 對焦的下一層形狀。紋理只在「可點選、真正是互動焦點」的形狀上出現就夠了——
+  // 背景脈絡形狀只需要讓讀者看出「這裡有塊地」，不需要重現完整圖例語意。
+  function fillFor(area: MapArea, flatten = false): string {
     if (neutral) return 'var(--map-appointed-bg)';
     if (isUnedited(area)) return 'var(--map-unedited)';
-    if (area.chiefOffice === 'appointed') return 'url(#hatch-appointed)';
+    if (area.chiefOffice === 'appointed') return flatten ? 'var(--map-appointed-bg)' : 'url(#hatch-appointed)';
     if (!area.chief) return area.chiefPendingDraw ? 'var(--map-pending)' : 'var(--map-nodata)';
     const code = area.chief.partyCode;
     return `var(${PARTY_VAR[code] ? PARTY_VAR[code] : '--party-other'})`;
@@ -278,8 +287,9 @@
       onmouseenter={() => { hovered = s.area.code; onSelect?.(s.area, layer); }}
       onmouseleave={() => { hovered = null; }} />
   {:else}
-    <!-- 非對焦，或已被下一層蓋過的背景區塊：只呈現地理脈絡，不進 tab 順序、不接收互動 -->
-    <path d={s.d} fill={fillFor(s.area)} class="bg-shape" class:dim={dim}
+    <!-- 非對焦，或已被下一層蓋過的背景區塊：只呈現地理脈絡，不進 tab 順序、不接收互動。
+         flatten=true——官派區不畫斜線紋理，見上方 fillFor 的說明。 -->
+    <path d={s.d} fill={fillFor(s.area, true)} class="bg-shape" class:dim={dim}
       vector-effect="non-scaling-stroke" aria-hidden="true" />
   {/if}
 {/snippet}
@@ -381,10 +391,11 @@
     position: absolute; left: 1.5rem; bottom: 1.5rem; z-index: 5;
     display: flex; flex-direction: column-reverse; align-items: flex-start; gap: .5rem;
   }
+  /* 麵包屑：報紙語言用線，不用浮起來的卡片——去掉圓角與陰影，改用髮絲線邊框。 */
   .crumbs {
     display: flex; gap: .4rem; align-items: center; flex-wrap: wrap;
-    background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius);
-    padding: .4rem .65rem; box-shadow: 0 4px 14px rgba(0, 0, 0, .16);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 0;
+    padding: .4rem .65rem;
   }
   .crumbs button { background: none; border: none; color: var(--accent); cursor: pointer; padding: 0; font: inherit; }
   .crumbs button:disabled { color: var(--muted); cursor: default; }
@@ -395,9 +406,8 @@
   .state-error { color: var(--fg); }
 
   .badge {
-    background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 0;
     padding: .5rem .75rem; color: var(--muted); font-size: .875rem;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, .16);
   }
   .badge-error { color: var(--fg); }
   .state-error button, .badge-error button {

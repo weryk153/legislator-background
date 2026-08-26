@@ -1,11 +1,15 @@
 <!-- 地圖與側欄的容器。兩者共享選取狀態（點選/移入的行政區與所在層），另外還擁有
      「目前檢視哪個年份」這個新狀態（見 src/lib/electionYears.ts）。
-     標題欄＋側欄＋年份切換器都是浮在地圖上的面板（而非上下堆疊／左右並排的一般
-     文件流），模擬天下雜誌選情地圖的滿版出血＋浮動控制項效果：.stage 用
-     position:relative 填滿外層 .map-stage（elections.astro 已經算好
-     calc(100dvh - 頁首高度)），標題欄疊在左上角、側欄疊在右上角、年份切換器疊在
-     底部置中；窄螢幕則三者都退回一般文件流，各自佔滿寬度，避免在小螢幕上把地圖
-     擠壓成一條縫，也避免多層浮層互相打架。 -->
+     標題欄＋側欄都是浮在地圖上的面板（而非上下堆疊／左右並排的一般文件流），模擬
+     報紙特輯的滿版出血＋浮動控制項效果：.stage 用 position:relative 填滿外層
+     .map-stage（elections.astro 已經算好 calc(100dvh - 頁首高度)），左欄報頭疊在
+     左上角、側欄疊在右上角；窄螢幕則兩者都退回一般文件流，各自佔滿寬度，避免在
+     小螢幕上把地圖擠壓成一條縫，也避免多層浮層互相打架。
+
+     左欄報頭（.masthead）是報紙的報頭結構，由上而下：眉題→粗線→大標→髮絲線→
+     版次（原本浮在地圖底部的年份切換器，現在當成「本期版次」移到這裡，見下方
+     .edition-* 樣式）→髮絲線→導言（年度標示／尚未舉行說明）→髮絲線→圖例。年份
+     只在這裡出現一次，不再與地圖下緣的浮動切換器互相打架。 -->
 <script lang="ts">
   import ElectionMap from './ElectionMap.svelte';
   import ElectionSidebar from './ElectionSidebar.svelte';
@@ -25,10 +29,10 @@
   const upcoming = $derived(current.status === 'upcoming');
 
   // 「投票日與倒數」永遠指向最近一筆尚未舉行的選舉（目前只有 2026 這筆），跟目前
-  // 分頁選了哪一年無關——2022 分頁下方那行小字倒數，本來就是在提醒「下一屆選舉
-  // 快到了」，不是在講 2022 本身。upcoming 分頁的大字倒數也是同一個數字，只是
-  // 換了排版。日後若同時存在多筆 upcoming（例如排了兩屆以後的選舉），這裡要改成
-  // 依 current 或依時間排序取用；今天只有一筆，先用「找到的第一筆 upcoming」。
+  // 選了哪個版次無關——不論看 2022 版還是 2026 版，這行 dateline 講的都是「下一屆
+  // 選舉快到了」，不是在講目前選取的那個版次本身。日後若同時存在多筆 upcoming
+  // （例如排了兩屆以後的選舉），這裡要改成依 current 或依時間排序取用；今天只有
+  // 一筆，先用「找到的第一筆 upcoming」。
   const nextElection = $derived(years.find((y) => y.status === 'upcoming') ?? null);
   const daysToNext = $derived.by(() => {
     const v = nextElection?.voteDate;
@@ -42,7 +46,7 @@
     selectedYear = y;
   }
 
-  // 年份切換器的鍵盤操作：左右鍵在年份之間移動並直接切換（ARIA tablist 的
+  // 版次選擇器的鍵盤操作：左右鍵在版次之間移動並直接切換（ARIA tablist 的
   // automatic activation 模式，跟原生分頁一致），Home/End 跳頭尾。切換的同時要把
   // DOM focus 也移過去（roving tabindex），否則鍵盤使用者的焦點會停在舊按鈕上、
   // 但那顆按鈕已經變成 tabindex="-1"，下一次 Tab 會跳出這個元件。
@@ -60,7 +64,7 @@
 
   // 圖例：畫面上實際出現的政黨色＋非政黨狀態，隨目前對焦的圖層（layer）即時更新
   // ——下鑽到村里層時，出現的政黨可能跟縣市層不同，不固定列七個政黨。upcoming
-  // 年份整張地圖是單一中性色，沒有版圖可列，不顯示圖例。
+  // 版次整張地圖是單一中性色，沒有版圖可列，不顯示圖例。
   interface LegendEntry { key: string; label: string; kind: 'party' | 'appointed' | 'pending' | 'nodata'; cssVar?: string }
   const legend = $derived.by((): LegendEntry[] => {
     if (upcoming || !layer) return [];
@@ -84,36 +88,55 @@
 </script>
 
 <div class="stage">
-  <header class="title-float">
+  <header class="title-float masthead">
+    <p class="kicker">選舉特輯</p>
+    <hr class="rule-thick" />
     <h1>2026 九合一選舉</h1>
+    <hr class="rule-hair" />
 
-    <!-- 當前檢視的年份：襯線體大字。地圖畫的是哪一年的結果，必須跟上面「2026
-         九合一選舉」這個頁面主題標題一樣顯眼，不能只靠下面那行小字澄清
-         ——這正是這一輪要修的誤讀風險。 -->
-    <p class="year-current">
-      <span class="num">{selectedYear}</span>
-      <span class="sub">{current.status === 'done' ? current.electionName : '選舉尚未舉行'}</span>
+    <!-- 版次：原本浮在地圖底部、壓住台灣南端的年份切換器，現在當成報頭裡的
+         「本期版次」。年份只在這裡出現一次，不再跟地圖上方的頁面主題標題互相
+         打架。用 ARIA tablist——選一個版次等於切換整個「地圖＋側欄」的內容，不是
+         在填一份表單，tab 的語意比 radiogroup 更貼切。資料來源是 years（見
+         src/lib/electionYears.ts），日後加版次只改那邊。 -->
+    <div class="edition">
+      <span class="edition-label" id="edition-label">本期版次</span>
+      <div class="edition-tabs" role="tablist" aria-label="選舉年份">
+        {#each years as y, i (y.year)}
+          {#if i > 0}<span class="tab-sep" aria-hidden="true"></span>{/if}
+          <button type="button" role="tab" aria-selected={selectedYear === y.year}
+            tabindex={selectedYear === y.year ? 0 : -1}
+            bind:this={yearBtns[i]}
+            onclick={() => selectYear(y.year)}
+            onkeydown={(e) => onSwitchKey(e, i)}>
+            {y.year}
+          </button>
+        {/each}
+      </div>
+    </div>
+    <p class="edition-sub">{current.status === 'done' ? current.electionName : '選舉尚未舉行'}</p>
+    <p class="dateline">
+      投票日 2026 年 11 月 28 日{#if daysToNext !== null && daysToNext > 0}，尚餘 {daysToNext} 天{/if}
     </p>
+    <hr class="rule-hair" />
 
     {#if upcoming}
-      <!-- 尚未舉行：投票日與倒數放大成視覺重點，取代原本的小字倒數與年度標示
-           ——那段年度標示講的是「地圖畫的是 2022 年」，切到這個分頁後不適用。 -->
-      <div class="upcoming-block">
-        <p class="upcoming-date">投票日 2026 年 11 月 28 日</p>
-        {#if daysToNext !== null && daysToNext > 0}
-          <p class="upcoming-days"><span class="num">{daysToNext}</span> 天後開票</p>
-        {/if}
-        <p class="upcoming-note">
-          開票日起本頁將更新為 2026 年結果。地圖上的行政區界線仍是既有資料，可照常
-          點選、下鑽、縮放，但目前沒有選舉結果可顯示。
-        </p>
-      </div>
+      <!-- 尚未舉行：說明地圖界線仍是既有資料、可照常操作，只是沒有結果可顯示
+           ——取代原本「投票日與倒數」放大處理的做法，因為那個資訊現在已經在上面
+           的 dateline 出現過一次，不必在這裡重複放大。 -->
+      <p class="lede">
+        開票日起本頁將更新為 2026 年結果。地圖上的行政區界線仍是既有資料，可照常
+        點選、下鑽、縮放，但目前沒有選舉結果可顯示。
+      </p>
     {:else}
-      <p class="countdown">
-        投票日 2026 年 11 月 28 日{#if daysToNext !== null && daysToNext > 0}，尚餘 {daysToNext} 天{/if}
+      <!-- 導言／年度標示：文字內容一字不改，只調整了位置與外距。 -->
+      <p class="notice">
+        以下為<strong>西元 {current.year} 年（{current.electionName}）</strong>的結果與其後補選之現況，
+        <strong>非 2026 年選情</strong>。候選人名單須待中選會於登記期後公告，屆時另行補上。
       </p>
 
       {#if legend.length}
+        <hr class="rule-hair" />
         <ul class="legend">
           {#each legend as l (l.key)}
             <li>
@@ -123,35 +146,12 @@
           {/each}
         </ul>
       {/if}
-
-      <!-- 年度標示：文字內容一字不改，只調整了位置（原本在標題正下方，現在挪到
-           圖例之後）與外距。 -->
-      <p class="notice">
-        以下為<strong>西元 {current.year} 年（{current.electionName}）</strong>的結果與其後補選之現況，
-        <strong>非 2026 年選情</strong>。候選人名單須待中選會於登記期後公告，屆時另行補上。
-      </p>
     {/if}
   </header>
 
   <div class="map-region">
     <ElectionMap neutral={upcoming} onSelect={(a, l) => { area = a; layer = l; }} />
   </div>
-
-  <!-- 年份切換器：置於地圖區塊底部置中。用 ARIA tablist——選一個年份等於切換整個
-       「地圖＋側欄」的內容，不是在填一份表單，tab 的語意比 radiogroup 更貼切。
-       資料來源是 years（見 src/lib/electionYears.ts），日後加年份只改那邊。 -->
-  <nav class="year-switch" role="tablist" aria-label="選舉年份">
-    {#each years as y, i (y.year)}
-      {#if i > 0}<span class="sep" aria-hidden="true"></span>{/if}
-      <button type="button" role="tab" aria-selected={selectedYear === y.year}
-        tabindex={selectedYear === y.year ? 0 : -1}
-        bind:this={yearBtns[i]}
-        onclick={() => selectYear(y.year)}
-        onkeydown={(e) => onSwitchKey(e, i)}>
-        {y.year}
-      </button>
-    {/each}
-  </nav>
 
   <aside class="sidebar-float">
     <ElectionSidebar {area} {layer} {upcoming} />
@@ -162,6 +162,8 @@
   .stage { position: relative; height: 100%; }
   .map-region { width: 100%; height: 100%; }
 
+  /* 面板：報紙的語言是線，不是浮起來的卡片——去掉圓角與陰影，改用一圈髮絲線邊框
+     壓在地圖上，底色維持 --surface 讓文字讀得清楚，但不再有「浮起來」的視覺暗示。 */
   .title-float,
   .sidebar-float {
     position: absolute;
@@ -170,31 +172,63 @@
     max-height: calc(100% - 4rem);
     overflow-y: auto;
     background: var(--surface);
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, .2);
-    padding: 1rem 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 1rem 1.25rem 1.1rem;
     z-index: 10;
   }
 
-  .title-float { left: 2rem; width: min(320px, 26vw); }
+  .title-float { left: 2rem; width: min(320px, 26vw); padding-top: .85rem; }
   .sidebar-float { right: 2rem; }
 
-  /* 標題維持原本字級，不縮小；只調整外距，讓它在有邊框的浮動欄裡不會太擠。 */
-  .title-float h1 { margin: 0 0 .3rem; }
+  /* 髮絲線／粗線分隔——報頭各段之間的分節線，取代原本卡片式的留白分段。 */
+  .masthead hr { border: none; margin: .7rem 0; }
+  .masthead .rule-hair { border-top: 1px solid var(--line); }
+  .masthead .rule-thick { border-top: 2px solid var(--line-strong); margin: .4rem 0 .55rem; }
 
-  /* 當前檢視年份：襯線體大字，是這個欄位裡除了 h1 之外最顯眼的東西。 */
-  .year-current { display: flex; align-items: baseline; gap: .5rem; margin: .5rem 0 0; }
-  .year-current .num { font-family: var(--serif); font-size: var(--t-xl); line-height: 1; color: var(--fg); }
-  .year-current .sub { font-size: var(--t-xs); color: var(--muted); }
+  /* 眉題：本頁主題（報紙特輯的欄目名），比大標小很多、寬字距，讀起來是「欄目」
+     不是「標題」——沿用全站既有的 .kicker 語彙（見 tokens.css），不再另外造字級。 */
+  .masthead .kicker { margin: 0; }
 
-  .title-float .countdown { color: var(--muted); font-size: var(--t-sm); margin: .5rem 0 0; }
+  /* 大標：頁面主題，襯線體、全欄最大最重的字。 */
+  .masthead h1 { font-size: var(--t-xl); font-weight: 700; margin: 0; line-height: 1.15; }
 
-  /* 圖例：小色塊＋--t-xs 字級＋--muted 色，不搶主體。跟倒數之間一條分隔線隔開。 */
+  /* 版次：這是「兩個版次擇一」的選擇器，不是兩個並列的標題——用字級與粗細的
+     落差＋accent 底線做出「選中／未選中」的區分，兩個版次之間再用一條垂直髮絲線
+     隔開，讀者一眼就能看出這是同一組控制項而非兩則資訊。 */
+  .edition { display: flex; align-items: baseline; flex-wrap: wrap; gap: .6rem; margin-top: .1rem; }
+  .edition-label {
+    font-family: var(--sans); font-size: var(--t-xs); letter-spacing: .08em;
+    color: var(--faint); white-space: nowrap;
+  }
+  .edition-tabs { display: flex; align-items: baseline; }
+  .edition-tabs button {
+    font-family: var(--serif); background: none; border: none; cursor: pointer;
+    color: var(--muted); font-size: var(--t-sm); font-weight: 600;
+    padding: 0 .5rem .2rem; border-bottom: 2px solid transparent;
+    font-variant-numeric: tabular-nums; line-height: 1.3; transition: color var(--ease);
+  }
+  .edition-tabs button[aria-selected="true"] {
+    color: var(--fg); font-size: var(--t-lg); font-weight: 700; border-bottom-color: var(--accent);
+  }
+  .edition-tabs .tab-sep { width: 1px; align-self: stretch; background: var(--line); margin: 0 .05rem; }
+
+  /* 版次的副標（該屆選舉正式名稱）與 dateline：都是小字級、輔助資訊，不與上面的
+     版次數字搶焦點。 */
+  .edition-sub { font-family: var(--sans); font-size: var(--t-xs); color: var(--muted); margin: .3rem 0 0; }
+  .dateline { font-family: var(--sans); font-size: var(--t-xs); color: var(--muted); margin: .3rem 0 0; }
+
+  /* upcoming（尚未舉行）的導言／年度標示：都用同一套小字級、克制色的排版，內容
+     一字不改，只是視覺上不再搶大標與版次的焦點。 */
+  .lede,
+  .notice { color: var(--faint); font-size: var(--t-xs); line-height: 1.6; margin: 0; }
+  .notice strong { color: var(--muted); font-weight: 600; }
+
+  /* 圖例：小色塊＋--t-xs 字級＋--muted 色，不搶主體。 */
   .legend {
     list-style: none; display: flex; flex-wrap: wrap; gap: .3rem .9rem;
-    margin: .65rem 0 0; padding: .55rem 0 0; border-top: 1px solid var(--line);
-    font-size: var(--t-xs); color: var(--muted);
+    margin: 0; padding: 0; font-size: var(--t-xs); color: var(--muted);
   }
   .legend li { display: flex; align-items: center; gap: .35rem; }
   .legend .swatch {
@@ -209,44 +243,9 @@
   .legend .swatch.pending { background: var(--map-pending); }
   .legend .swatch.nodata { background: var(--map-nodata); }
 
-  /* 年度標示：內容一字不改，但視覺降級——用小字級、低調色、跟上面之間一條分隔線
-     隔開，讀得到、不搶標題的焦點。 */
-  .title-float .notice {
-    color: var(--faint);
-    font-size: var(--t-xs);
-    line-height: 1.6;
-    margin: .75rem 0 0;
-    padding-top: .6rem;
-    border-top: 1px solid var(--line);
-  }
-  .title-float .notice strong { color: var(--muted); font-weight: 600; }
-
-  /* upcoming（尚未舉行）：投票日與倒數是這個分頁裡最重要的資訊，放大處理。 */
-  .upcoming-block { margin-top: .75rem; padding-top: .65rem; border-top: 1px solid var(--line); }
-  .upcoming-date { font-family: var(--serif); font-size: var(--t-md); color: var(--fg); margin: 0; }
-  .upcoming-days { margin: .3rem 0 0; color: var(--accent); }
-  .upcoming-days .num { font-family: var(--serif); font-size: var(--t-lg); font-variant-numeric: tabular-nums; }
-  .upcoming-note { color: var(--muted); font-size: var(--t-xs); line-height: 1.6; margin: .6rem 0 0; }
-
-  /* 年份切換器：襯線體數字、細線分隔、選中朱紅底線、未選中 --muted。克制、
-     編輯感——不是參考站那種膠囊按鈕。置於地圖底部置中，浮在地圖上方。 */
-  .year-switch {
-    position: absolute; left: 50%; bottom: 1.25rem; transform: translateX(-50%);
-    z-index: 6; display: flex; align-items: stretch;
-    background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius);
-    padding: .3rem .5rem; box-shadow: 0 4px 14px rgba(0, 0, 0, .16);
-  }
-  .year-switch button {
-    font-family: var(--serif); font-size: var(--t-md); background: none; border: none; cursor: pointer;
-    color: var(--muted); padding: .2rem .7rem; border-bottom: 2px solid transparent;
-    font-variant-numeric: tabular-nums; line-height: 1.4;
-  }
-  .year-switch button[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); }
-  .year-switch .sep { width: 1px; align-self: stretch; background: var(--line); margin: .2rem .1rem; }
-
   /* 900px 是這一輪的新斷點（原本 720px）：兩側浮層加起來比單側寬得多，720px
-     會擠爆，故放寬。低於此寬度時標題欄／側欄／年份切換器都退回一般文件流，
-     各佔滿寬。斷點跟 elections.astro 的 .map-stage 一致，必須同步改。 */
+     會擠爆，故放寬。低於此寬度時標題欄／側欄都退回一般文件流，各佔滿寬。斷點跟
+     elections.astro 的 .map-stage 一致，必須同步改。 */
   @media (max-width: 900px) {
     .map-region { height: 60vh; }
     .title-float,
@@ -259,8 +258,5 @@
       box-shadow: none;
     }
     .title-float { margin-top: 0; margin-bottom: 1rem; }
-    .year-switch {
-      position: static; transform: none; margin: .75rem auto 0; width: fit-content;
-    }
   }
 </style>
