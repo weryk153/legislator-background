@@ -1,8 +1,9 @@
 <!-- 九合一政治地圖。單一投影＋圖層疊加＋transform 縮放，模擬「同一張圖連續縮放」
      （參考天下雜誌 2024 選情地圖的互動）：全國 22 縣市永遠畫在底層，下鑽時把對焦
-     縣市／鄉鎮市區的細分層疊上去，鄰近區域仍留在畫面上（半透明降低不透明度），
-     不像逐層換圖那樣整個消失。資料由 scraper/build-election-map.ts 產出到
-     public/data/map/，此處只負責繪製與互動，不動資料管線。 -->
+     縣市／鄉鎮市區的細分層疊上去，鄰近區域仍留在畫面上（填色往紙色調淡但保留
+     色相，見下方 fillFor 的 dim 參數，不再用透明度），不像逐層換圖那樣整個消失。
+     資料由 scraper/build-election-map.ts 產出到 public/data/map/，此處只負責
+     繪製與互動，不動資料管線。 -->
 <script lang="ts">
   import { onMount, tick } from 'svelte';
   import { geoMercator, geoPath } from 'd3-geo';
@@ -18,9 +19,16 @@
   // ElectionYearConfig.status === 'upcoming'）。整張地圖改成單一中性色，不透露
   // 任何政黨版圖——因為底下沿用的仍是既有那年（如 2022）的行政區資料，只是拿來
   // 畫界線，不代表尚未舉行的那屆選情。投影／下鑽／縮放邏輯完全不受影響。
-  let { onSelect, neutral = false }: {
+  // onCrumbs：麵包屑的顯示資料改由外層報頭渲染（見 ElectionPanel.svelte 的
+  // .crumbs-row），這裡仍是唯一的事實來源（crumbs 這個 $state 本身、以及推進/
+  // 返回的邏輯都留在這個檔案），只是每次 crumbs 或 counties（決定第一項標籤）
+  // 變動時，把「畫面要顯示的樣子」算好推給外層，外層純渲染、不重算語意。
+  // jumpTo 則透過 bind:this 讓外層的按鈕點擊能呼叫到——下鑽/返回涉及的
+  // towns／villages 快取與 focusLayer() 都是這個元件內部狀態，不適合搬去外層。
+  let { onSelect, neutral = false, onCrumbs }: {
     onSelect?: (area: MapArea | null, layer: MapLayer) => void;
     neutral?: boolean;
+    onCrumbs?: (items: { label: string; disabled: boolean }[]) => void;
   } = $props();
 
   // 內部座標系固定 1000×1100。投影只在全國層資料到位時算一次（fitExtent 到這個
@@ -41,6 +49,17 @@
   // 鄉鎮市區層一併畫出來。
   interface Crumb { level: 'national' | 'county' | 'town'; code: string | null; name: string }
   let crumbs = $state<Crumb[]>([{ level: 'national', code: null, name: '全國' }]);
+
+  // 把 crumbs 換算成外層報頭要畫的樣子（label／是否為目前層級）推出去。第一項的
+  // 標籤不是死綁「全國」——真正的頂層名稱要看 counties.parentName（如「臺灣」），
+  // 所以要等 counties 到位後才推一次正確版本，counties 因此也是這個 $effect 的
+  // 依賴之一（在它讀到的 counties?.parentName 裡）。
+  $effect(() => {
+    onCrumbs?.(crumbs.map((c, i) => ({
+      label: i === 0 ? (counties?.parentName ?? c.name) : c.name,
+      disabled: i === crumbs.length - 1,
+    })));
+  });
 
   let loading = $state(true);
   let error = $state<string | null>(null);
@@ -65,20 +84,42 @@
   // 不透露底下沿用的那年資料屬於哪個政黨。
   //
   // flatten：非互動的背景／脈絡形狀（bg-shape，見下方 shapePath）不用斜線紋理，
-  // 改用紋理的底色畫成純色。斜線是高頻圖案，人眼對它的敏感度遠高於同樣不透明度
-  // 的實色色塊，即使套上 .dim 的低透明度依然「看起來」比周圍安靜的實色背景搶眼
-  // ——尤其深色模式下紋理的線色偏亮（見 tokens.css 的 --map-appointed-line）。
-  // 而且下鑽後「目前對焦層級的上一層」本身不會被 dim（見 shapePath 呼叫處），若
-  // 那一層剛好是官派區，紋理會用滿不透明度畫在最底層，直接蓋過疊在上面、真正
-  // 對焦的下一層形狀。紋理只在「可點選、真正是互動焦點」的形狀上出現就夠了——
-  // 背景脈絡形狀只需要讓讀者看出「這裡有塊地」，不需要重現完整圖例語意。
-  function fillFor(area: MapArea, flatten = false): string {
-    if (neutral) return 'var(--map-appointed-bg)';
-    if (isUnedited(area)) return 'var(--map-unedited)';
-    if (area.chiefOffice === 'appointed') return flatten ? 'var(--map-appointed-bg)' : 'url(#hatch-appointed)';
-    if (!area.chief) return area.chiefPendingDraw ? 'var(--map-pending)' : 'var(--map-nodata)';
+  // 改用紋理的底色畫成純色。斜線是高頻圖案，人眼對它的敏感度遠高於同樣色彩的
+  // 實色色塊，即使調淡依然「看起來」比周圍安靜的實色背景搶眼——尤其深色模式下
+  // 紋理的線色偏亮（見 tokens.css 的 --map-appointed-line）。而且下鑽後「目前
+  // 對焦層級的上一層」本身不會被 dim（見 shapePath 呼叫處），若那一層剛好是
+  // 官派區，紋理會用滿飽和度畫在最底層，直接蓋過疊在上面、真正對焦的下一層
+  // 形狀。紋理只在「可點選、真正是互動焦點」的形狀上出現就夠了——背景脈絡形狀
+  // 只需要讓讀者看出「這裡有塊地」，不需要重現完整圖例語意。
+  //
+  // dim：鄰區「調淡」不是「轉灰」。過去用 CSS opacity 把整個 <path>（含填色與
+  // 邊界線）一起變透明，疊在暖色紙底上會讓藍變成一片土色、色相就丟了；而且
+  // 邊界線本來就是 --bg（紙色）描邊，透明度疊加之後在暖底上會混濁成一條灰線，
+  // 跟沒被調淡的形狀那圈乾淨的紙色細線看起來不是同一種東西——這正是「有些邊是
+  // 白色細線、有些是深灰線」的成因，不只是視覺偏好問題。改成用 color-mix() 把
+  // 填色本身往紙色（--bg）調淡、但保留色相，邊界線則維持全不透明——藍還是藍、
+  // 綠還是綠，且全圖的邊界線粗細與顏色統一成一種。
+  function dimmed(color: string): string {
+    return `color-mix(in oklab, ${color} 32%, var(--bg))`;
+  }
+
+  function fillFor(area: MapArea, flatten = false, dim = false): string {
+    if (neutral) {
+      const base = 'var(--map-appointed-bg)';
+      return dim ? dimmed(base) : base;
+    }
+    if (isUnedited(area)) return 'var(--map-unedited)'; // 未編定村里樣式恆定，不隨 dim 改變（見上方 shapePath 的獨立分支，實際上不會走到這裡）
+    if (area.chiefOffice === 'appointed') {
+      const base = flatten ? 'var(--map-appointed-bg)' : 'url(#hatch-appointed)';
+      return dim && flatten ? dimmed(base) : base;
+    }
+    if (!area.chief) {
+      const base = area.chiefPendingDraw ? 'var(--map-pending)' : 'var(--map-nodata)';
+      return dim ? dimmed(base) : base;
+    }
     const code = area.chief.partyCode;
-    return `var(${PARTY_VAR[code] ? PARTY_VAR[code] : '--party-other'})`;
+    const base = `var(${PARTY_VAR[code] ? PARTY_VAR[code] : '--party-other'})`;
+    return dim ? dimmed(base) : base;
   }
 
   // 語音報讀同樣要分得出「官派」「待抽籤」與「本站沒有資料」——三者是不同的事。
@@ -258,7 +299,10 @@
     focusMap();
   }
 
-  function jumpTo(i: number) {
+  // export：外層報頭（ElectionPanel.svelte）用 bind:this 拿到這個函式，點擊
+  // 麵包屑上層項目時呼叫。邏輯本身沒有變——只是呼叫的入口從元件內部的
+  // <nav class="crumbs"> 移到外層的 DOM。
+  export function jumpTo(i: number) {
     if (i >= crumbs.length - 1) return;
     crumbs = crumbs.slice(0, i + 1);
     error = null;
@@ -318,8 +362,9 @@
       onmouseleave={() => { hovered = null; }} />
   {:else}
     <!-- 非對焦，或已被下一層蓋過的背景區塊：只呈現地理脈絡，不進 tab 順序、不接收互動。
-         flatten=true——官派區不畫斜線紋理，見上方 fillFor 的說明。 -->
-    <path d={s.d} fill={fillFor(s.area, true)} class="bg-shape" class:dim={dim}
+         flatten=true——官派區不畫斜線紋理，見上方 fillFor 的說明。dim=true 時 fillFor
+         回傳 color-mix() 調淡版填色（保留色相），不再靠 CSS opacity。 -->
+    <path d={s.d} fill={fillFor(s.area, true, dim)} class="bg-shape"
       vector-effect="non-scaling-stroke" aria-hidden="true" />
   {/if}
 {/snippet}
@@ -329,23 +374,14 @@
        按鈕、互動中的 <path> 或下鑽後被 focusMap() 收回的 <svg> 本身，keydown
        都會冒泡到這裡，容器不會因為子節點重繪而消失，Escape 因此不會失效。
   -->
-  <!-- 麵包屑移到地圖區塊左下角（原本在左上角，改版後那個位置被浮動標題欄佔走）。
-       跟下鑽中的載入／錯誤徽章共用同一個 bottom-left 角落，用 flex column-reverse
-       疊放——麵包屑永遠貼齊底部，徽章出現時往上長，兩者都用 flex 排版自然避開，
-       不必用魔術數字互相硬算間距。這裡只是把兩者包進同一個容器並改 CSS 定位，
-       {#if}/{#each} 的條件與互動邏輯（jumpTo/pendingRetry）完全沒動。 -->
+  <!-- 麵包屑已經搬進左欄報頭（ElectionPanel.svelte 的 .crumbs-row），地圖上不再
+       有浮動的麵包屑——這裡只剩下鑽中的載入／錯誤徽章，疊在地圖左下角。crumbs
+       這個 $state、jumpTo() 與 onCrumbs 的推送邏輯都還在上面的 <script>，只是
+       畫面搬去外層渲染，見該處註解。 -->
   <div class="corner-stack">
-    <nav class="crumbs" aria-label="地圖層級">
-      {#each crumbs as c, i}
-        <button type="button" disabled={i === crumbs.length - 1} onclick={() => jumpTo(i)}>
-          {i === 0 ? (counties?.parentName ?? c.name) : c.name}
-        </button>
-        {#if i < crumbs.length - 1}<span aria-hidden="true">›</span>{/if}
-      {/each}
-    </nav>
-    <!-- 下鑽中的載入／錯誤狀態疊在地圖角落，不整張換掉——鄰近縣市與麵包屑
-         全程留在畫面上，這正是「連續縮放」而非「逐層換圖」的重點。初次載入
-         （counties 尚未到位）時用下面的 .state-msg 置中顯示，不是這裡。 -->
+    <!-- 下鑽中的載入／錯誤狀態疊在地圖角落，不整張換掉——鄰近縣市全程留在畫面上，
+         這正是「連續縮放」而非「逐層換圖」的重點。初次載入（counties 尚未到位）
+         時用下面的 .state-msg 置中顯示，不是這裡。 -->
     {#if counties && loading}<p class="badge" role="status">載入中…</p>{/if}
     {#if counties && error}
       <p class="badge badge-error" role="alert">{error}
@@ -392,7 +428,9 @@
           {/each}
         {/if}
         {#if focused}
-          <!-- 對焦區域的高亮外框，畫在最上層 -->
+          <!-- 對焦區域的高亮外框，畫在最上層——雙層描邊，見上方 CSS 註解。光暈在下、
+               高亮線在上，兩者用同一條 d 疊圖，不會有縫隙或錯位。 -->
+          <path d={focused.d} class="focus-outline-halo" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
           <path d={focused.d} class="focus-outline" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
         {/if}
       </g>
@@ -416,27 +454,30 @@
      訊號做得溫和而非看起來像壞掉。 */
   path.unedited { fill: var(--map-unedited); stroke: var(--line); stroke-dasharray: 2 2; }
   path.bg-shape { pointer-events: none; }
-  path.bg-shape.dim { opacity: .35; }
-  .focus-outline { stroke: var(--accent); stroke-width: 2; pointer-events: none; }
+  /* 鄰區的調淡改在 fillFor() 用 color-mix() 算好填色（見該函式註解），這裡不再
+     疊 opacity——整個形狀（含邊界線）維持全不透明，邊界線因此全圖統一成一種。 */
 
-  /* 左下角堆疊：麵包屑貼底，徽章（載入中／錯誤）出現時往上長。用
-     column-reverse 是因為 DOM 順序是「麵包屑先、徽章後」，column-reverse 會把
-     後面的項目往視覺上方排，第一個項目（麵包屑）自然留在容器底部。 */
+  /* 對焦外框：雙層描邊。底下 .focus-outline-halo 先畫一條較寬的紙色（--bg）光暈，
+     上面 .focus-outline 疊一條較窄的 --accent（朱紅，本站識別色，非任何政黨色）
+     高亮線——紙色光暈讓高亮線在任何填色（不論深淺）上都讀得出來，圓角收邊
+     （round linejoin/linecap）把行政區界線的鋸齒吃掉，讓對焦外框看起來平滑。
+     兩層寬度：光暈 7px、高亮線 3.5px，各邊露出 1.75px 的紙色光暈。 */
+  .focus-outline-halo,
+  .focus-outline {
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    pointer-events: none;
+  }
+  .focus-outline-halo { stroke: var(--bg); stroke-width: 7; }
+  .focus-outline { stroke: var(--accent); stroke-width: 3.5; }
+
+  /* 左下角堆疊：麵包屑搬進報頭後，這裡只剩下鑽中的載入／錯誤徽章。 */
   .corner-stack {
     position: absolute; left: 1.5rem; bottom: 1.5rem; z-index: 5;
-    display: flex; flex-direction: column-reverse; align-items: flex-start; gap: .5rem;
+    display: flex; flex-direction: column; align-items: flex-start; gap: .5rem;
   }
-  /* 麵包屑：報紙語言用線，不用浮起來的卡片——去掉圓角與陰影，改用髮絲線邊框。 */
-  .crumbs {
-    display: flex; gap: .4rem; align-items: center; flex-wrap: wrap;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 0;
-    padding: .4rem .65rem;
-  }
-  .crumbs button { background: none; border: none; color: var(--accent); cursor: pointer; padding: 0; font: inherit; }
-  .crumbs button:disabled { color: var(--muted); cursor: default; }
 
-  /* 初次載入（counties 尚未到位）置中顯示，此時左下角只有麵包屑（顯示「全國」），
-     不再需要用大量 padding-top 讓路給原本在左上角的麵包屑。 */
+  /* 初次載入（counties 尚未到位）置中顯示。 */
   .state-msg { padding: 1.5rem; color: var(--muted); text-align: center; }
   .state-error { color: var(--fg); }
 

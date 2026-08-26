@@ -8,8 +8,10 @@
 
      左欄報頭（.masthead）是報紙的報頭結構，由上而下：眉題→粗線→大標→髮絲線→
      版次（原本浮在地圖底部的年份切換器，現在當成「本期版次」移到這裡，見下方
-     .edition-* 樣式）→髮絲線→導言（年度標示／尚未舉行說明）→髮絲線→圖例。年份
-     只在這裡出現一次，不再與地圖下緣的浮動切換器互相打架。 -->
+     .edition-* 樣式）→髮絲線→本期位置（麵包屑，原本浮在地圖左下角的白色方盒，
+     現在當成報頭的一列，見下方 .crumbs-* 樣式）→髮絲線→導言（年度標示／尚未
+     舉行說明）→髮絲線→圖例。年份只在這裡出現一次，不再與地圖下緣的浮動切換器
+     互相打架；麵包屑也一樣，不再浮在地圖上。 -->
 <script lang="ts">
   import ElectionMap from './ElectionMap.svelte';
   import ElectionSidebar from './ElectionSidebar.svelte';
@@ -45,6 +47,15 @@
   function selectYear(y: number) {
     selectedYear = y;
   }
+
+  // 麵包屑：地圖元件（ElectionMap.svelte）才知道目前下鑽到哪裡、也才有 towns／
+  // villages 的幾何快取，所以 crumbs 這個狀態與 jumpTo() 的邏輯留在那邊——這裡
+  // 只接住它透過 onCrumbs 推來的顯示資料（label／是否為目前層級），純渲染；
+  // 點擊上層項目則透過 bind:this 拿到的 mapRef 呼叫回它的 jumpTo()。
+  let crumbItems = $state<{ label: string; disabled: boolean }[]>([
+    { label: '全國', disabled: true },
+  ]);
+  let mapRef: { jumpTo: (i: number) => void } | undefined;
 
   // 版次選擇器的鍵盤操作：左右鍵在版次之間移動並直接切換（ARIA tablist 的
   // automatic activation 模式，跟原生分頁一致），Home/End 跳頭尾。切換的同時要把
@@ -124,6 +135,26 @@
     </p>
     <hr class="rule-hair" />
 
+    <!-- 本期位置：麵包屑，原本浮在地圖左下角的白色方盒，改成報頭裡平鋪的一列——
+         跟「本期版次」用同一套眉標語彙（.crumbs-label 沿用 .edition-label 的樣式）。
+         當前層級是純文字（--fg，不是連結，語意上「已經在這裡了」不必再點）；
+         上層是可點的 --muted 文字，hover 才轉 --accent，不是一律紅字。全國層
+         （crumbItems 只有一項）一樣正常顯示這一列，不會變成空的。 -->
+    <div class="crumbs-row">
+      <span class="crumbs-label">本期位置</span>
+      <nav class="crumbs" aria-label="地圖層級">
+        {#each crumbItems as c, i}
+          {#if i > 0}<span class="crumb-sep" aria-hidden="true">›</span>{/if}
+          {#if c.disabled}
+            <span class="crumb current">{c.label}</span>
+          {:else}
+            <button type="button" onclick={() => mapRef?.jumpTo(i)}>{c.label}</button>
+          {/if}
+        {/each}
+      </nav>
+    </div>
+    <hr class="rule-hair" />
+
     {#if upcoming}
       <!-- 尚未舉行：說明地圖界線仍是既有資料、可照常操作，只是沒有結果可顯示
            ——取代原本「投票日與倒數」放大處理的做法，因為那個資訊現在已經在上面
@@ -154,7 +185,8 @@
   </header>
 
   <div class="map-region">
-    <ElectionMap neutral={upcoming} onSelect={(a, l) => { area = a; layer = l; }} />
+    <ElectionMap neutral={upcoming} onSelect={(a, l) => { area = a; layer = l; }}
+      onCrumbs={(items) => { crumbItems = items; }} bind:this={mapRef} />
   </div>
 
   <aside class="sidebar-float">
@@ -231,6 +263,34 @@
      版次數字搶焦點。 */
   .edition-sub { font-family: var(--sans); font-size: var(--t-xs); color: var(--muted); margin: .3rem 0 0; }
   .dateline { font-family: var(--sans); font-size: var(--t-xs); color: var(--muted); margin: .3rem 0 0; }
+
+  /* 本期位置（麵包屑）：報頭裡平鋪的一列，不是浮在地圖上的白色方盒——去掉方框
+     與底色，眉標「本期位置」沿用 .edition-label 同一套字級／字距／色，讓這一列
+     讀起來跟上面的「本期版次」是同一種語言。 */
+  .crumbs-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: .5rem; margin-top: .1rem; }
+  .crumbs-label {
+    font-family: var(--sans); font-size: var(--t-xs); letter-spacing: .08em;
+    color: var(--faint); white-space: nowrap;
+  }
+  .crumbs { display: flex; align-items: center; flex-wrap: wrap; gap: 0; }
+  .crumb-sep { color: var(--faint); margin: 0 .05rem; }
+  /* 當前層級：純文字，--fg，不是連結——語意上「已經在這裡了」，不必再給一個
+     點了沒反應（或點了退回自己）的按鈕。 */
+  .crumb.current {
+    font-family: var(--sans); font-size: var(--t-xs); font-weight: 600; color: var(--fg);
+    padding: .35rem .5rem; display: inline-flex; align-items: center;
+  }
+  /* 上層：可點文字，預設 --muted、hover／focus 才轉 --accent，不是一律紅字
+     （紅字原本讀起來像錯誤訊息）。padding 撐出至少 44×24px 的點擊區，不靠文字
+     本身的寬度——「全國」兩個字單獨的文字寬度遠不到 44px。 */
+  .crumbs button {
+    font-family: var(--sans); font-size: var(--t-xs); background: none; border: none;
+    cursor: pointer; color: var(--muted); padding: .35rem .5rem;
+    min-width: 44px; min-height: 24px; box-sizing: border-box;
+    display: inline-flex; align-items: center; justify-content: flex-start;
+    transition: color var(--ease);
+  }
+  .crumbs button:hover { color: var(--accent); }
 
   /* upcoming（尚未舉行）的導言／年度標示：都用同一套小字級、克制色的排版，內容
      一字不改，只是視覺上不再搶大標與版次的焦點。 */
