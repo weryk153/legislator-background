@@ -40,7 +40,9 @@
     "district": "桃園市第01選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E4%BD%99%E4%BF%A1%E6%86%B2",
     "positions": [
-      "桃園市新聞職業工會理事"
+      "桃園市新聞職業工會理事",
+      "桃園市職業總工會顧問桃",
+      "園區市府社區發展協會顧問"
     ]
   },
   {
@@ -78,6 +80,18 @@
     ]
   },
   {
+    "name": "凃淑媚",
+    "district": "彰化縣第02選舉區",
+    "wikiTitle": "凃淑媚",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,129",
+    "positions": [
+      "彰化縣婦女會理事長",
+      "彰化縣世界土風舞協會理事長",
+      "鹿港埤頭玉安宮主任委員"
+    ],
+    "sourceTitle": "彰化縣議會：凃淑媚議員"
+  },
+  {
     "name": "凌濤",
     "district": "桃園市第01選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%87%8C%E6%BF%A4",
@@ -100,8 +114,20 @@
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%8A%89%E5%8B%9D%E5%85%A8",
     "positions": [
       "蘆竹區農會理事",
-      "桃園體育總會健行委員會主委"
+      "桃園體育總會健行委員會主委",
+      "桃園市教師會、教育產業工會、南亞、永純顧問",
+      "蘆竹區農會理事、監事、職員"
     ]
+  },
+  {
+    "name": "劉孟君",
+    "district": "屏東縣第04選舉區",
+    "wikiTitle": "劉孟君",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=5d9217cb-0c81-ab15-cebc-c0e1e7afd00c",
+    "positions": [
+      "文甘兒童教育慈善會理事長"
+    ],
+    "sourceTitle": "屏東縣議會：劉孟君議員"
   },
   {
     "name": "劉惠娟",
@@ -113,6 +139,47 @@
       "彰化縣志願服務協會志工獎助學金審查委員",
       "彰化縣愛吾礙慢飛天使關懷協會執行長"
     ]
+  },
+  {
+    "name": "劉曾玉春",
+    "district": "桃園市第07選舉區",
+    "wikiTitle": "劉曾玉春",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=1006",
+    "positions": [
+      "桃園市劉姓宗親會/青年會顧問",
+      "曾氏宗親會中壢分會名譽會長",
+      "桃園市太極拳武術協會理事長",
+      "桃園市龍岡森林氣功協會名譽理事長",
+      "桃園市脊髓損傷者協會顧問",
+      "海雁國際同濟會社福主委",
+      "財團法人中壢三教紫雲宮顧問"
+    ],
+    "sourceTitle": "桃園市議會：劉曾玉春議員"
+  },
+  {
+    "name": "劉淑芳",
+    "district": "彰化縣第07選舉區",
+    "wikiTitle": "劉淑芳",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,151",
+    "positions": [
+      "國立北斗家商校友會理事長",
+      "彰化縣婦女會常務理事、田尾鄉婦女會常務監事、秘書",
+      "國際獅子會300-C3區芊鈺獅子會創會長",
+      "救國團專任烹飪及土風舞指導老師",
+      "彰化縣體育會木球委員會主任委員"
+    ],
+    "sourceTitle": "彰化縣議會：劉淑芳議員"
+  },
+  {
+    "name": "劉熒隆",
+    "district": "桃園市第10選舉區",
+    "wikiTitle": "劉熒隆",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=1021",
+    "positions": [
+      "龍潭龍元宮常務監事",
+      "龍潭劉姓宗親會會長"
+    ],
+    "sourceTitle": "桃園市議會：劉熒隆議員"
   },
   {
     "name": "劉美芳",
@@ -151,6 +218,19 @@
     ]
   },
   {
+    "name": "吳嘉和",
+    "district": "桃園市第07選舉區",
+    "wikiTitle": "吳嘉和",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=1005",
+    "positions": [
+      "臺灣石門農田水利會會務委員",
+      "中壢興元宮主任委員",
+      "信義國小家長會長",
+      "桃園市滑輪溜冰協會理事長"
+    ],
+    "sourceTitle": "桃園市議會：吳嘉和議員"
+  },
+  {
     "name": "吳建德",
     "district": "臺中市第15選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%90%B3%E5%BB%BA%E5%BE%B7",
@@ -159,12 +239,34 @@
     ]
   },
   {
+    "name": "吳慈慧",
+    "district": "屏東縣第03選舉區",
+    "wikiTitle": "吳慈慧",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=067e3d11-ba3e-6334-fea9-572a40128262",
+    "positions": [
+      "屏東縣潮州鎮青溪婦女服務協會理事長",
+      "屏東縣潮州鎮婦女會理事長"
+    ],
+    "sourceTitle": "屏東縣議會：吳慈慧議員"
+  },
+  {
     "name": "吳旭智",
     "district": "新竹縣第01選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%90%B3%E6%97%AD%E6%99%BA",
     "positions": [
       "中華民國自閉症權益促進會理事"
     ]
+  },
+  {
+    "name": "吳淑娟",
+    "district": "彰化縣第08選舉區",
+    "wikiTitle": "吳淑娟",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,161",
+    "positions": [
+      "二林工商校友會理事",
+      "吳氏宗親會理事"
+    ],
+    "sourceTitle": "彰化縣議會：吳淑娟議員"
   },
   {
     "name": "吳瓊華",
@@ -252,12 +354,62 @@
     ]
   },
   {
+    "name": "周嘉韋",
+    "district": "臺南市第08選舉區",
+    "wikiTitle": "周嘉韋",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=3883BDD9-B3D8-4E32-92CE-45E27B7D56EB",
+    "positions": [
+      "臺南市機車商業同業公會法律顧問",
+      "臺南市民宿文化發展協會法律顧問",
+      "臺南市慢速壘球協會法律顧問",
+      "臺南市赤嵌朋派商圈發展協會法律顧問",
+      "臺南市傳愛慈善會法律顧問"
+    ],
+    "sourceTitle": "臺南市議會：周嘉韋議員"
+  },
+  {
+    "name": "周奕齊",
+    "district": "臺南市第04選舉區",
+    "wikiTitle": "周奕齊",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=E8CDE770-3C97-43B8-BB60-578D7B0EF51B",
+    "positions": [
+      "救國團臺南市玉井區團委會顧問",
+      "永康國際青商會奧瑞岡主委",
+      "玉井國小家長會副會長"
+    ],
+    "sourceTitle": "臺南市議會：周奕齊議員"
+  },
+  {
     "name": "周永鴻",
     "district": "臺中市第05選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%91%A8%E6%B0%B8%E9%B4%BB",
     "positions": [
       "台中市排球委員會主任委員"
     ]
+  },
+  {
+    "name": "周玉琴",
+    "district": "桃園市第09選舉區",
+    "wikiTitle": "周玉琴",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=1017",
+    "positions": [
+      "楊梅區婦女會理事長",
+      "玉韻女聲合唱協會理事長",
+      "楊梅四季游泳協會第3、4屆理事長",
+      "楊梅區農會家政班長及義指",
+      "桃園市眷村文化協會理事長"
+    ],
+    "sourceTitle": "桃園市議會：周玉琴議員"
+  },
+  {
+    "name": "周麗津",
+    "district": "臺南市第09選舉區",
+    "wikiTitle": "周麗津",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=5DB11A8A-5F76-44F9-AFBC-6C8DC7B18E15",
+    "positions": [
+      "下林太子爺愛心慈善會理事長"
+    ],
+    "sourceTitle": "臺南市議會：周麗津議員"
   },
   {
     "name": "姜梅紅",
@@ -274,6 +426,17 @@
       "嘉義縣立東石國小校友會榮譽顧問",
       "嘉義縣善緣關愛協會顧問團團長"
     ]
+  },
+  {
+    "name": "孫韻璇",
+    "district": "桃園市第02選舉區",
+    "wikiTitle": "孫韻璇",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=985",
+    "positions": [
+      "桃園市龜山區全民運動體育會理事長",
+      "精忠社區發展協會理事長"
+    ],
+    "sourceTitle": "桃園市議會：孫韻璇議員"
   },
   {
     "name": "宋懷琳",
@@ -309,12 +472,35 @@
     ]
   },
   {
+    "name": "張世賢",
+    "district": "臺南市第01選舉區",
+    "wikiTitle": "張世賢",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=8EE343F5-3009-4A2E-88DE-E8E51CB7C8D1",
+    "positions": [
+      "白河高級商工校友會 榮譽理事長",
+      "白河國中校友會 理事",
+      "嘉南農田水利會第三、四屆直選會務委員"
+    ],
+    "sourceTitle": "臺南市議會：張世賢議員"
+  },
+  {
     "name": "張之豪",
     "district": "基隆市第05選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%BC%B5%E4%B9%8B%E8%B1%AA",
     "positions": [
       "基隆張廖簡宗親會監事"
     ]
+  },
+  {
+    "name": "張利惠",
+    "district": "屏東縣第09選舉區",
+    "wikiTitle": "張利惠",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=2a95fd9a-e28a-a777-fdbf-86741512e7fd",
+    "positions": [
+      "二屆三地門鄉婦女會長",
+      "二屆青葉村社區發展協會理事長"
+    ],
+    "sourceTitle": "屏東縣議會：張利惠議員"
   },
   {
     "name": "張勝富",
@@ -336,6 +522,19 @@
     ]
   },
   {
+    "name": "張國棟",
+    "district": "彰化縣第08選舉區",
+    "wikiTitle": "張國棟",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,166",
+    "positions": [
+      "二林鎮農會第13屆理事長",
+      "二林國際獅子會會長",
+      "二林地區工業促進會顧問",
+      "二林高級中學校友會理事長"
+    ],
+    "sourceTitle": "彰化縣議會：張國棟議員"
+  },
+  {
     "name": "張家銨",
     "district": "臺中市第03選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%BC%B5%E5%AE%B6%E9%8A%A8",
@@ -343,6 +542,18 @@
       "臺中市龍龍社區關懷協會理事長",
       "社團法人台中市關懷婦女保護協會理事長"
     ]
+  },
+  {
+    "name": "張平原",
+    "district": "屏東縣第01選舉區",
+    "wikiTitle": "張平原",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=51c0c361-5cf1-b3c3-1fd1-f002f45e3543",
+    "positions": [
+      "屏東縣體育會藤球委員會主任委員",
+      "屏東縣羽翼羽球協會第一屆理事長",
+      "屏東縣體育會羽球委員會第19屆副主委"
+    ],
+    "sourceTitle": "屏東縣議會：張平原議員"
   },
   {
     "name": "張廖乃綸",
@@ -395,6 +606,24 @@
     ]
   },
   {
+    "name": "張春洋",
+    "district": "彰化縣第05選舉區",
+    "wikiTitle": "張春洋",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,144",
+    "positions": [
+      "台灣彰化農田水利會會務委員",
+      "102年彰化農田水利會績優會務委員",
+      "彰化縣社團法人天靈慈善會第十七屆會長",
+      "彰化縣舊舘國小第十三屆家長會長",
+      "彰化縣金湖國際獅子會第二十一屆副會長",
+      "彰化縣金湖國際獅子會第二十二屆會長",
+      "彰化縣脊髓損傷重建協會志工大隊長",
+      "彰化縣慈善聯合會第一屆常務理事",
+      "彰化縣盲人協會志工隊隊長"
+    ],
+    "sourceTitle": "彰化縣議會：張春洋議員"
+  },
+  {
     "name": "張桂綿",
     "district": "桃園市第04選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%BC%B5%E6%A1%82%E7%B6%BF",
@@ -403,7 +632,8 @@
       "蘆竹區體育會理事",
       "蘆竹區第1、2屆張廖簡宗親會理事長",
       "蘆竹鄉青年志工服務協會會長",
-      "桃園市第20屆青年志工服務協會總會長"
+      "桃園市第20屆青年志工服務協會總會長",
+      "蘆竹鄉第11屆張廖簡宗親會會長"
     ]
   },
   {
@@ -414,6 +644,27 @@
       "永靖國民小學校友會理事",
       "彰化縣張氏宗親會監事"
     ]
+  },
+  {
+    "name": "張碩芳",
+    "district": "桃園市第01選舉區",
+    "wikiTitle": "張碩芳",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=981",
+    "positions": [
+      "耀登炳南文教協會創會理事長",
+      "張廖簡宗親會理事"
+    ],
+    "sourceTitle": "桃園市議會：張碩芳議員"
+  },
+  {
+    "name": "張秀菊",
+    "district": "桃園市第13選舉區",
+    "wikiTitle": "張秀菊",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=1029",
+    "positions": [
+      "原住民仙島部落發展協會理事"
+    ],
+    "sourceTitle": "桃園市議會：張秀菊議員"
   },
   {
     "name": "張秀華",
@@ -456,7 +707,9 @@
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%BC%B5%E8%82%87%E8%89%AF",
     "positions": [
       "國立中壢高中校友會理監事",
-      "中原大學桃園縣校友會理監事"
+      "中原大學桃園縣校友會理監事",
+      "中原大學、中壢高中校友會",
+      "台灣大學政治系校友會"
     ]
   },
   {
@@ -471,7 +724,11 @@
       "中州科技大學校友會理事",
       "大同國中家長會副會長",
       "太平國際同濟會創會長",
-      "員林桌球委員會主任委員"
+      "員林桌球委員會主任委員",
+      "太平同濟會創會長",
+      "彰化縣體育會(桌球、手球、健美)委員會主委",
+      "中州科大校友會理事",
+      "員林錦龍獅子會理事"
     ]
   },
   {
@@ -499,7 +756,9 @@
     "district": "彰化縣第04選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%BC%B5%E9%9B%AA%E5%A6%82",
     "positions": [
-      "彰化縣私立快樂天堂社會福利慈善事業基金會董事長"
+      "彰化縣私立快樂天堂社會福利慈善事業基金會董事長",
+      "救難協會第六中隊隊員",
+      "財團法人彰化縣私立快樂天堂社會福利慈善事業基金會董事長"
     ]
   },
   {
@@ -532,6 +791,18 @@
     ]
   },
   {
+    "name": "徐其萬",
+    "district": "桃園市第05選舉區",
+    "wikiTitle": "徐其萬",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=996",
+    "positions": [
+      "大園鄉槌球促進會理事長",
+      "大園鄉徐氏宗親會理事長",
+      "內海國小家長會會長"
+    ],
+    "sourceTitle": "桃園市議會：徐其萬議員"
+  },
+  {
     "name": "徐弘庭",
     "district": "臺北市第06選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%BE%90%E5%BC%98%E5%BA%AD",
@@ -541,6 +812,29 @@
       "跨境創新創業交流協會常務理事",
       "台灣紫牛創業協會創會理事"
     ]
+  },
+  {
+    "name": "徐景文",
+    "district": "桃園市第07選舉區",
+    "wikiTitle": "徐景文",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=1009",
+    "positions": [
+      "中壢青商會會長",
+      "大內壢國同濟會會長",
+      "桃園縣棒球委員會主任委員"
+    ],
+    "sourceTitle": "桃園市議會：徐景文議員"
+  },
+  {
+    "name": "徐玉樹",
+    "district": "桃園市第10選舉區",
+    "wikiTitle": "徐玉樹",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=1022",
+    "positions": [
+      "桃園市體育總會龍舟委員會主任委員",
+      "桃園市菱潭陂人文促進會會長"
+    ],
+    "sourceTitle": "桃園市議會：徐玉樹議員"
   },
   {
     "name": "徐瑄灃",
@@ -600,6 +894,17 @@
     ]
   },
   {
+    "name": "方一峰",
+    "district": "臺南市第02選舉區",
+    "wikiTitle": "方一峰",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=5ABA0B90-9FD2-4B3E-BA48-FA776C993C02",
+    "positions": [
+      "社團法人台南市關懷協會理事長",
+      "台南市西港慶安宮總幹事"
+    ],
+    "sourceTitle": "臺南市議會：方一峰議員"
+  },
+  {
     "name": "方信淵",
     "district": "高雄市第03選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%96%B9%E4%BF%A1%E6%B7%B5",
@@ -608,6 +913,16 @@
       "橋頭青商會2000年會長",
       "救國團橋頭鄉團委會會長"
     ]
+  },
+  {
+    "name": "方文正",
+    "district": "屏東縣第04選舉區",
+    "wikiTitle": "方文正",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=8de36599-83ac-8c40-ef11-be917d8e72cd",
+    "positions": [
+      "東港獅子會會長"
+    ],
+    "sourceTitle": "屏東縣議會：方文正議員"
   },
   {
     "name": "施乃如",
@@ -652,8 +967,34 @@
       "彰化縣防災協會理事長",
       "彰化縣體育會網球委員會主任委員",
       "彰化縣曹姓宗親會理事",
-      "彰化縣青年公益協會榮譽理事長"
+      "彰化縣青年公益協會榮譽理事長",
+      "彰化員林螢光慈善會理監事",
+      "員林錦龍獅子會理監事",
+      "防災社區推廣協會理事長",
+      "彰化縣網球委員會主委",
+      "螢光慈善會常務監事"
     ]
+  },
+  {
+    "name": "曾之婕",
+    "district": "臺南市第10選舉區",
+    "wikiTitle": "曾之婕",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=15677049-A73F-4E15-BB58-E47358888738",
+    "positions": [
+      "曾順良之友會社會公益執行企劃"
+    ],
+    "sourceTitle": "臺南市議會：曾之婕議員"
+  },
+  {
+    "name": "曾培雅",
+    "district": "臺南市第10選舉區",
+    "wikiTitle": "曾培雅",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=9127249A-351D-4654-8667-BBEBDEDE227F",
+    "positions": [
+      "台南市曾培雅愛心義工協會理事長",
+      "台南市職業總工會顧問"
+    ],
+    "sourceTitle": "臺南市議會：曾培雅議員"
   },
   {
     "name": "曾煥嘉",
@@ -751,6 +1092,37 @@
     ]
   },
   {
+    "name": "朱珍瑤",
+    "district": "桃園市第03選舉區",
+    "wikiTitle": "朱珍瑤",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=988",
+    "positions": [
+      "桃園市八德女獅子會會長",
+      "中國青年救國團八德區團委會會長",
+      "桃園市珍珠粉社區照護暨婦幼關懷協會創會理事長",
+      "桃園市八德槌球協會理事表",
+      "中華民國青少年電競運動育樂協會理事",
+      "桃園市八德藝文協會第11屆顧問",
+      "桃園社團法人台灣公安學會顧間",
+      "桃園市救國團之友聯誼會第12屆顧問",
+      "桃園市病媒防治公會顧間",
+      "桃園市室內設計裝修商業同業公會第16屆諮詢顧問"
+    ],
+    "sourceTitle": "桃園市議會：朱珍瑤議員"
+  },
+  {
+    "name": "李中岑",
+    "district": "臺南市第06選舉區",
+    "wikiTitle": "李中岑",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=CEC4B2FB-CB76-4E15-ADFE-96E13827F485",
+    "positions": [
+      "中華民國划船協會理事長",
+      "臺南市體育總會理事",
+      "臺南市海西社區發展協會總幹事"
+    ],
+    "sourceTitle": "臺南市議會：李中岑議員"
+  },
+  {
     "name": "李余典",
     "district": "新北市第04選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9D%8E%E4%BD%99%E5%85%B8",
@@ -771,6 +1143,45 @@
     "positions": [
       "慈笙文教基金會執行長"
     ]
+  },
+  {
+    "name": "李偉智",
+    "district": "臺南市第05選舉區",
+    "wikiTitle": "李偉智",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=648CDA1E-3081-4B40-830F-9B91CC427F0D",
+    "positions": [
+      "臺南縣電腦商業公會理事長",
+      "臺南市電腦商業公會常務理事",
+      "臺灣資訊暨綠色產業協會執行長",
+      "臺南市新化農會第十七屆常監",
+      "臺南市新化農會第十八屆理事長"
+    ],
+    "sourceTitle": "臺南市議會：李偉智議員"
+  },
+  {
+    "name": "李光達",
+    "district": "桃園市第01選舉區",
+    "wikiTitle": "李光達",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=979",
+    "positions": [
+      "桃園市嘉義同鄉會、李氏宗親會常務理事",
+      "桃園市水上救生協會、滾球委員會理事長",
+      "文山國小、青溪國中、桃園高中家長會副會長",
+      "桃園市台南同鄉會、客家協會顧問",
+      "虎頭山、一德、桃園女青商顧問",
+      "桃園福興扶輪社理事"
+    ],
+    "sourceTitle": "桃園市議會：李光達議員"
+  },
+  {
+    "name": "李啟維",
+    "district": "臺南市第09選舉區",
+    "wikiTitle": "李啟維",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=B219417D-B967-4AB9-978A-5ED2514A59C6",
+    "positions": [
+      "台南行動教會執行長"
+    ],
+    "sourceTitle": "臺南市議會：李啟維議員"
   },
   {
     "name": "李喬如",
@@ -797,8 +1208,25 @@
       "桃園世同獅子會會長",
       "山德社區發展協會理事長",
       "李氏宗親會龜山分會理事",
-      "桃園市高中小學家長會長協會龜山分會顧問"
+      "桃園市高中小學家長會長協會龜山分會顧問",
+      "龜山體育會泰拳、散打委員會主委",
+      "龜山農會正會員",
+      "桃園國際青商會",
+      "外貿協會國際企業人才結訓"
     ]
+  },
+  {
+    "name": "李家興",
+    "district": "桃園市第09選舉區",
+    "wikiTitle": "李家興",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=1019",
+    "positions": [
+      "楊梅李姓宗親會會長",
+      "治平高級中學校友會會長",
+      "楊梅區太極氣功協會理事長",
+      "楊梅區高山社區發展協會理事長"
+    ],
+    "sourceTitle": "桃園市議會：李家興議員"
   },
   {
     "name": "李成濟",
@@ -807,8 +1235,21 @@
     "positions": [
       "彰化縣八卦山民主福利協會 (第7－8屆) 總會長",
       "花壇青商會2011年會長",
-      "精誠獅子會2012年會長"
+      "精誠獅子會2012年會長",
+      "精誠中學校友會秘書長",
+      "彰化縣活力旺企業協會秘書長",
+      "彰化縣八卦山民主福利協會第七屆、第八屆總會長"
     ]
+  },
+  {
+    "name": "李文俊",
+    "district": "臺南市第05選舉區",
+    "wikiTitle": "李文俊",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=515CF62D-E56F-4E3D-A58C-B810B625F603",
+    "positions": [
+      "台灣省農會第12、13、15屆理事、第14屆監事"
+    ],
+    "sourceTitle": "臺南市議會：李文俊議員"
   },
   {
     "name": "李文斌",
@@ -817,6 +1258,48 @@
     "positions": [
       "阿斌哥大愛協會創辦人"
     ]
+  },
+  {
+    "name": "李曉鐘",
+    "district": "桃園市第01選舉區",
+    "wikiTitle": "李曉鐘",
+    "wikipediaUrl": "https://www.tycc.gov.tw/TC/councilor-detail.aspx?mid=38",
+    "positions": [
+      "桃園市水上救生協會理事長",
+      "桃園市全民保齡球運動推廣協會理事長",
+      "桃園市李氏宗親會常務理事",
+      "桃園市新興獅子會長",
+      "同安國小家長會創會長"
+    ],
+    "sourceTitle": "桃園市議會：李曉鐘議員"
+  },
+  {
+    "name": "李柏坊",
+    "district": "桃園市第06選舉區",
+    "wikiTitle": "李柏坊",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=998",
+    "positions": [
+      "大嵙崁獅子會創會長",
+      "大溪區李姓宗親會榮譽理事長",
+      "讀經學會理事長",
+      "大溪仁和宮董事、監事"
+    ],
+    "sourceTitle": "桃園市議會：李柏坊議員"
+  },
+  {
+    "name": "李浩誠",
+    "district": "彰化縣第07選舉區",
+    "wikiTitle": "李浩誠",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,147",
+    "positions": [
+      "北斗扶輪社青年社區服務團團長",
+      "彰化七星獅子會 32 屆會長",
+      "彰化縣信德慈善會永久會員",
+      "彰化縣慈化慈善會永久會員",
+      "北斗玉天慈善會會員",
+      "北斗小家長委員會常務委員"
+    ],
+    "sourceTitle": "彰化縣議會：李浩誠議員"
   },
   {
     "name": "李翁月娥",
@@ -829,6 +1312,18 @@
       "新北市救難協會顧問",
       "蘆洲義警義消救難協會顧問"
     ]
+  },
+  {
+    "name": "李鎮國",
+    "district": "臺南市第07選舉區",
+    "wikiTitle": "李鎮國",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=2D11ECEC-6836-44E4-8CF8-C3D9B2C8EED4",
+    "positions": [
+      "永康區復興社區發展協會理事長",
+      "臺南市李氏宗親會副主委",
+      "臺南市榮民榮眷關懷協會副主委"
+    ],
+    "sourceTitle": "臺南市議會：李鎮國議員"
   },
   {
     "name": "李雅芬",
@@ -855,6 +1350,16 @@
     ]
   },
   {
+    "name": "杜素吟",
+    "district": "臺南市第11選舉區",
+    "wikiTitle": "杜素吟",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=7F8FAD9A-E28A-4C30-9BD7-6BD134E7969D",
+    "positions": [
+      "青溪婦聯仁德支分會主委"
+    ],
+    "sourceTitle": "臺南市議會：杜素吟議員"
+  },
+  {
     "name": "林世宗",
     "district": "臺北市第01選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9E%97%E4%B8%96%E5%AE%97",
@@ -869,6 +1374,20 @@
     "positions": [
       "台北市足球協會理事長"
     ]
+  },
+  {
+    "name": "林冠維",
+    "district": "臺南市第07選舉區",
+    "wikiTitle": "林冠維",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=65656674-B399-41A6-9858-05ADE70BC884",
+    "positions": [
+      "永康國際青年商會２０２０年會長",
+      "永康區西勢社區發展協會理事長",
+      "台南市體育總會角力委員會主委",
+      "永康區體育會常務理事",
+      "永康獅子會理事"
+    ],
+    "sourceTitle": "臺南市議會：林冠維議員"
   },
   {
     "name": "林國春",
@@ -892,6 +1411,30 @@
     ]
   },
   {
+    "name": "林宗翰",
+    "district": "彰化縣第03選舉區",
+    "wikiTitle": "林宗翰",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,133",
+    "positions": [
+      "和群國中校友會第三第四屆理事長",
+      "伸港鄉伸暉愛心慈善會顧問",
+      "彰化區漁會第9屆顧問、第12屆理事",
+      "彰化縣體育會溜冰委員會主任委員",
+      "鎮平子龍宮輔導宮主"
+    ],
+    "sourceTitle": "彰化縣議會：林宗翰議員"
+  },
+  {
+    "name": "林志展",
+    "district": "臺南市第05選舉區",
+    "wikiTitle": "林志展",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=DF5652F8-552C-4139-8437-084E442F5F7E",
+    "positions": [
+      "善化扶輪社"
+    ],
+    "sourceTitle": "臺南市議會：林志展議員"
+  },
+  {
     "name": "林憶如",
     "district": "南投縣第01選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9E%97%E6%86%B6%E5%A6%82",
@@ -900,6 +1443,35 @@
       "南投高商文教基金會董事",
       "南投縣林姓宗親會副理事長"
     ]
+  },
+  {
+    "name": "林政賢",
+    "district": "桃園市第01選舉區",
+    "wikiTitle": "林政賢",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=977",
+    "positions": [
+      "東吳大學校友會創會理事長",
+      "福宏扶輪創社長",
+      "遠東獅子會長",
+      "雲林同鄉會理事長",
+      "武陵、振聲、桃小家長會長",
+      "桃園資深青商會長",
+      "桃園義勇交通促進會長",
+      "桃園圍棋委員會主委"
+    ],
+    "sourceTitle": "桃園市議會：林政賢議員"
+  },
+  {
+    "name": "林明順",
+    "district": "屏東縣第01選舉區",
+    "wikiTitle": "林明順",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=e6c8c910-c5d8-4bc3-4858-9c3da936ddb4",
+    "positions": [
+      "大仁科技大學屏東校友會會長",
+      "中華羽球協會理事",
+      "屏東縣體育會羽球主任委員"
+    ],
+    "sourceTitle": "屏東縣議會：林明順議員"
   },
   {
     "name": "林智鴻",
@@ -967,12 +1539,47 @@
     ]
   },
   {
+    "name": "林美燕",
+    "district": "臺南市第09選舉區",
+    "wikiTitle": "林美燕",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=11107E88-7E88-4ED0-890D-890FA9422C46",
+    "positions": [
+      "臺南市體育總會太極氣功十八式主委",
+      "臺南市總工會顧問",
+      "臺南市職業工會總工會顧問",
+      "國際獅子會永美獅子會會長",
+      "臺南市婦女聯合會創會理事長"
+    ],
+    "sourceTitle": "臺南市議會：林美燕議員"
+  },
+  {
     "name": "林裔綺",
     "district": "新北市第10選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9E%97%E8%A3%94%E7%B6%BA",
     "positions": [
       "新北市瑞芳區慈愛協會理事"
     ]
+  },
+  {
+    "name": "林郁虹",
+    "district": "屏東縣第03選舉區",
+    "wikiTitle": "林郁虹",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=49b3f530-e3c2-bec7-1a8f-d5d1eff6cb8b",
+    "positions": [
+      "屏東縣體育會國術委員會主委",
+      "屏東縣林姓宗親會第13屆理事長"
+    ],
+    "sourceTitle": "屏東縣議會：林郁虹議員"
+  },
+  {
+    "name": "林采穎",
+    "district": "屏東縣第15選舉區",
+    "wikiTitle": "林采穎",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=e8a81f9d-8889-853d-148c-c4504eaa54c6",
+    "positions": [
+      "屏東縣牡丹鄉石門社區發展協會理事長"
+    ],
+    "sourceTitle": "屏東縣議會：林采穎議員"
   },
   {
     "name": "林金結",
@@ -1008,6 +1615,19 @@
     ]
   },
   {
+    "name": "柯振杯",
+    "district": "彰化縣第03選舉區",
+    "wikiTitle": "柯振杯",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,134",
+    "positions": [
+      "和美國際同濟會第20屆會長",
+      "伸港國際獅子會理事",
+      "彰化縣和新愛心公益協會會員",
+      "彰化縣道濟愛心慈善會會員"
+    ],
+    "sourceTitle": "彰化縣議會：柯振杯議員"
+  },
+  {
     "name": "梁為超",
     "district": "桃園市第07選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%A2%81%E7%82%BA%E8%B6%85",
@@ -1018,6 +1638,18 @@
     ]
   },
   {
+    "name": "楊中成",
+    "district": "臺南市第07選舉區",
+    "wikiTitle": "楊中成",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=B2274F7E-24A5-4019-84DD-BE0C79E0CA1C",
+    "positions": [
+      "大灣國民小學家長會八十一年會長（三屆）",
+      "永康國際青年商會１９９２年會長",
+      "台南市網球協會副主任委員"
+    ],
+    "sourceTitle": "臺南市議會：楊中成議員"
+  },
+  {
     "name": "楊典忠",
     "district": "臺中市第02選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%A5%8A%E5%85%B8%E5%BF%A0",
@@ -1025,6 +1657,19 @@
       "台中港亞太扶輪社理事",
       "清水鎮西寧國小家長會長"
     ]
+  },
+  {
+    "name": "楊妙月",
+    "district": "彰化縣第02選舉區",
+    "wikiTitle": "楊妙月",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,128",
+    "positions": [
+      "鹿鳴國際同濟會第九屆會長",
+      "九華育樂協會理事長",
+      "2012蔡英文鹿港後援會婦女部主任",
+      "2016蔡英文鹿港後援會婦女部主任"
+    ],
+    "sourceTitle": "彰化縣議會：楊妙月議員"
   },
   {
     "name": "楊子賢",
@@ -1044,7 +1689,8 @@
       "桃園市體育會棒球委員會主委",
       "台灣客家聯盟桃園縣會總幹事",
       "壢青獅子會會長",
-      "中壢國際青年商會理事"
+      "中壢國際青年商會理事",
+      "兩岸政經研究學會秘書長"
     ]
   },
   {
@@ -1067,6 +1713,19 @@
     ]
   },
   {
+    "name": "楊竣程",
+    "district": "彰化縣第02選舉區",
+    "wikiTitle": "楊竣程",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,127",
+    "positions": [
+      "彰化縣福鹿鐵騎休閒協會顧問",
+      "鹿東國小家長會副會長",
+      "鹿港、秀水青工會委員",
+      "永安慈善會永久會員"
+    ],
+    "sourceTitle": "彰化縣議會：楊竣程議員"
+  },
+  {
     "name": "歐陽儀雄",
     "district": "金門縣第01選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%AD%90%E9%99%BD%E5%84%80%E9%9B%84",
@@ -1080,6 +1739,18 @@
       "金門縣歐陽氏基金會董事長",
       "台北市農產運銷發展協會顧問"
     ]
+  },
+  {
+    "name": "段樹文",
+    "district": "桃園市第03選舉區",
+    "wikiTitle": "段樹文",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=990",
+    "positions": [
+      "霄裡玉元宮主任委員",
+      "霄裡國小文教基金會董事",
+      "龍友愛心關懷協會理事長"
+    ],
+    "sourceTitle": "桃園市議會：段樹文議員"
   },
   {
     "name": "江和樹",
@@ -1123,6 +1794,28 @@
     ]
   },
   {
+    "name": "沈家鳳",
+    "district": "臺南市第01選舉區",
+    "wikiTitle": "沈家鳳",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=EF4DD312-3189-4C86-A724-59982456F7A8",
+    "positions": [
+      "臺南市社教樂活美學協會理事",
+      "南新國中校友會發起人",
+      "築巢引鳳藝術發展協會發起人"
+    ],
+    "sourceTitle": "臺南市議會：沈家鳳議員"
+  },
+  {
+    "name": "沈震東",
+    "district": "臺南市第08選舉區",
+    "wikiTitle": "沈震東",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=CE899233-9B53-4514-AF42-A61CFEEBCAEA",
+    "positions": [
+      "三聖慈善會顧問"
+    ],
+    "sourceTitle": "臺南市議會：沈震東議員"
+  },
+  {
     "name": "洪佳君",
     "district": "新北市第08選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%B4%AA%E4%BD%B3%E5%90%9B",
@@ -1147,6 +1840,17 @@
     ]
   },
   {
+    "name": "洪明江",
+    "district": "屏東縣第03選舉區",
+    "wikiTitle": "洪明江",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=3636bd0f-3747-e306-99b5-f6bdee8afb64",
+    "positions": [
+      "屏東人權協會評議委員",
+      "台灣石油工會常務理事"
+    ],
+    "sourceTitle": "屏東縣議會：洪明江議員"
+  },
+  {
     "name": "温俊勇",
     "district": "苗栗縣第05選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%B8%A9%E4%BF%8A%E5%8B%87",
@@ -1167,8 +1871,21 @@
       "彰化縣手工藝工會理事",
       "救國團彰化市團委會副會長",
       "春夏文教慈善會會長",
-      "小水滴慈善會會長"
+      "小水滴慈善會會長",
+      "全國總工會理事"
     ]
+  },
+  {
+    "name": "游吾和",
+    "district": "桃園市第05選舉區",
+    "wikiTitle": "游吾和",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=997",
+    "positions": [
+      "大園國小第十屆家長會長",
+      "大園園心文化關懷協會第一、二屆理事長",
+      "大園感天行善協會第三、四屆理事長"
+    ],
+    "sourceTitle": "桃園市議會：游吾和議員"
   },
   {
     "name": "游淑慧",
@@ -1198,6 +1915,17 @@
       "高雄市縫紉業職業工會法律顧問",
       "高雄郵政工會法律顧問"
     ]
+  },
+  {
+    "name": "潘芳泉",
+    "district": "屏東縣第06選舉區",
+    "wikiTitle": "潘芳泉",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=f3728c99-9bb4-0975-89cb-7dd3c22149d4",
+    "positions": [
+      "1999～2000恆春扶輪社 社長",
+      "屏東縣瓊麻園城鄉文教發展協會發起人"
+    ],
+    "sourceTitle": "屏東縣議會：潘芳泉議員"
   },
   {
     "name": "王又民",
@@ -1230,6 +1958,21 @@
     ]
   },
   {
+    "name": "王珮毓",
+    "district": "桃園市第08選舉區",
+    "wikiTitle": "王珮毓",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=1012",
+    "positions": [
+      "文化局秘書、文化基金會副執行長",
+      "職業總工會理事",
+      "美容業職業工會理事長",
+      "植槐長春王姓宗親會顧問",
+      "中壢高中校友會副理事長",
+      "復旦中學校友會監事"
+    ],
+    "sourceTitle": "桃園市議會：王珮毓議員"
+  },
+  {
     "name": "王立任",
     "district": "臺中市第02選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E7%8E%8B%E7%AB%8B%E4%BB%BB",
@@ -1257,6 +2000,29 @@
       "明新科技大學新竹校友會理事長",
       "新竹市青草湖救難協會顧問"
     ]
+  },
+  {
+    "name": "盧崑福",
+    "district": "臺南市第09選舉區",
+    "wikiTitle": "盧崑福",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=FA8177B5-299D-40EB-8103-E7BA2FADD1E8",
+    "positions": [
+      "臺南市體育總會滾球委員會主任委員",
+      "臺南市體育總會滑輪溜冰委員會副主委",
+      "臺南市中醫師公會顧"
+    ],
+    "sourceTitle": "臺南市議會：盧崑福議員"
+  },
+  {
+    "name": "盧玟欣",
+    "district": "屏東縣第06選舉區",
+    "wikiTitle": "盧玟欣",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=8aa70677-42bc-77c6-4e07-8bd142133d34",
+    "positions": [
+      "恆春鎮婦女會秘書",
+      "中華創意文化與永續經營研究學會秘書長"
+    ],
+    "sourceTitle": "屏東縣議會：盧玟欣議員"
   },
   {
     "name": "石一佑",
@@ -1298,6 +2064,16 @@
     "positions": [
       "南投縣幼教協會第12屆理事長"
     ]
+  },
+  {
+    "name": "簡志偉",
+    "district": "桃園市第14選舉區",
+    "wikiTitle": "簡志偉",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=1030",
+    "positions": [
+      "中華人權協會副主委"
+    ],
+    "sourceTitle": "桃園市議會：簡志偉議員"
   },
   {
     "name": "簡煥宗",
@@ -1382,12 +2158,45 @@
     ]
   },
   {
+    "name": "舒翠玲",
+    "district": "桃園市第08選舉區",
+    "wikiTitle": "舒翠玲",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=1011",
+    "positions": [
+      "國際蘭馨交流協會桃園分會創會理事長"
+    ],
+    "sourceTitle": "桃園市議會：舒翠玲議員"
+  },
+  {
     "name": "苗博雅",
     "district": "臺北市第06選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%8B%97%E5%8D%9A%E9%9B%85",
     "positions": [
       "青平台基金會董事"
     ]
+  },
+  {
+    "name": "莊陞漢",
+    "district": "彰化縣第01選舉區",
+    "wikiTitle": "莊陞漢",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,124",
+    "positions": [
+      "關懷文教基金會執行長",
+      "麓社文教協會理事長"
+    ],
+    "sourceTitle": "彰化縣議會：莊陞漢議員"
+  },
+  {
+    "name": "葉明月",
+    "district": "桃園市第07選舉區",
+    "wikiTitle": "葉明月",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=1003",
+    "positions": [
+      "桃園市中壢青溪婦女協會理事長",
+      "桃園市中壢區婦女會理事長",
+      "台灣葉姓宗親會宗親會理事長"
+    ],
+    "sourceTitle": "桃園市議會：葉明月議員"
   },
   {
     "name": "葉林傳",
@@ -1428,6 +2237,18 @@
     ]
   },
   {
+    "name": "蔡宗豪",
+    "district": "臺南市第08選舉區",
+    "wikiTitle": "蔡宗豪",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=A6932093-A9F1-4612-8385-70EEC3F735E8",
+    "positions": [
+      "台南市中小學家長協會理事",
+      "赤崁文化關懷協會理事、國小晨間公益教學烏克麗麗老師",
+      "中華民國青年音樂研習協會執行長"
+    ],
+    "sourceTitle": "臺南市議會：蔡宗豪議員"
+  },
+  {
     "name": "蔡明水",
     "district": "雲林縣第03選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%94%A1%E6%98%8E%E6%B0%B4",
@@ -1453,6 +2274,32 @@
     ]
   },
   {
+    "name": "蔡淑惠",
+    "district": "臺南市第09選舉區",
+    "wikiTitle": "蔡淑惠",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=EBB90AC7-C4DB-4CDE-8786-1E686D32B092",
+    "positions": [
+      "南區婦女會理事長",
+      "台南市新興國小校友會創會理事長",
+      "台南市慢速壘球協會名譽理事長",
+      "真善美獅子會會長",
+      "台南市警察退休協會顧問",
+      "台南市南投、雲林、屏東同鄉會顧問",
+      "台南市南區婦女會365愛心會會長"
+    ],
+    "sourceTitle": "臺南市議會：蔡淑惠議員"
+  },
+  {
+    "name": "蔡秋蘭",
+    "district": "臺南市第02選舉區",
+    "wikiTitle": "蔡秋蘭",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=8E537876-DF09-4EA3-9325-60896B1E86F1",
+    "positions": [
+      "事元極舞功法推廣協會第六屆理事長"
+    ],
+    "sourceTitle": "臺南市議會：蔡秋蘭議員"
+  },
+  {
     "name": "蔡筱薇",
     "district": "臺南市第10選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%94%A1%E7%AD%B1%E8%96%87",
@@ -1460,7 +2307,8 @@
       "進學國小校友會副理事長",
       "新世代社福協會理事",
       "成功國際青年商會社區公益主任委員",
-      "台南市慢速壘球協會副理事長"
+      "台南市慢速壘球協會副理事長",
+      "成功國際青年商會社區公益主委"
     ]
   },
   {
@@ -1468,8 +2316,20 @@
     "district": "臺南市第01選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%94%A1%E8%82%B2%E8%BC%9D",
     "positions": [
-      "大台南市陸上運輸職業公會理事長"
+      "大台南市陸上運輸職業公會理事長",
+      "救國團南市指導委員",
+      "臺南縣總工會常務監事"
     ]
+  },
+  {
+    "name": "蔡蘇秋金",
+    "district": "臺南市第02選舉區",
+    "wikiTitle": "蔡蘇秋金",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=7B6B9344-76BA-4C91-9501-BAB7F0B20013",
+    "positions": [
+      "臺南市佳里蕭壠網球協會常務理事"
+    ],
+    "sourceTitle": "臺南市議會：蔡蘇秋金議員"
   },
   {
     "name": "蔡金晏",
@@ -1494,11 +2354,23 @@
     ]
   },
   {
+    "name": "蔣家煌",
+    "district": "屏東縣第01選舉區",
+    "wikiTitle": "蔣家煌",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=cd285995-5beb-d87f-dac9-371ddbb3bb35",
+    "positions": [
+      "歸來社區發展協會創會理事長",
+      "屏東縣體育會壘球委員會主任委員"
+    ],
+    "sourceTitle": "屏東縣議會：蔣家煌議員"
+  },
+  {
     "name": "蔣月惠",
     "district": "屏東縣第01選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%94%A3%E6%9C%88%E6%83%A0",
     "positions": [
-      "屏東縣基督教羅騰園肢體殘障協會理事長"
+      "屏東縣基督教羅騰園肢體殘障協會理事長",
+      "羅騰園肢體殘障服務協會"
     ]
   },
   {
@@ -1517,7 +2389,9 @@
       "彰化縣體育會武術委員會主任委員",
       "和美鎮體育會武術委員會主任委員",
       "和美蕭家班慈善會會長",
-      "和東社區發展協會理事長"
+      "和東社區發展協會理事長",
+      "彰化縣體育會武術委員會主委",
+      "和美鎮體育會武術委員會主委"
     ]
   },
   {
@@ -1582,7 +2456,12 @@
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%A8%B1%E5%AE%B6%E7%9D%BF",
     "positions": [
       "桃園市台南同鄉會第十九、二十屆理事長",
-      "八德國際青年商會會長"
+      "八德國際青年商會會長",
+      "桃園市台南同鄉會理事",
+      "桃園市籃球委員會副主委",
+      "桃園市電競委員會副主委",
+      "桃園市觀護協會理事",
+      "桃園市讓愛飛揚公益慈善協會理事"
     ]
   },
   {
@@ -1592,6 +2471,62 @@
     "positions": [
       "油桐花小英之友會會長"
     ]
+  },
+  {
+    "name": "許清順",
+    "district": "桃園市第04選舉區",
+    "wikiTitle": "許清順",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=994",
+    "positions": [
+      "蘆竹愛鄉協會創會理事長",
+      "蘆竹區體育會第23、24屆理事長"
+    ],
+    "sourceTitle": "桃園市議會：許清順議員"
+  },
+  {
+    "name": "許至椿",
+    "district": "臺南市第08選舉區",
+    "wikiTitle": "許至椿",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=666A962B-C6F6-4474-9BDB-6D7BAFDDA795",
+    "positions": [
+      "臺南市後備憲兵荷松協會創會理事長",
+      "崑山科技大學台南市校友會理事長"
+    ],
+    "sourceTitle": "臺南市議會：許至椿議員"
+  },
+  {
+    "name": "許馨勻",
+    "district": "屏東縣第03選舉區",
+    "wikiTitle": "許馨勻",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=6773c0f8-5cfe-b273-4473-b45806c83ecb",
+    "positions": [
+      "2014潮州青商會會長",
+      "2014屏東縣救國團真善美聯誼會會長"
+    ],
+    "sourceTitle": "屏東縣議會：許馨勻議員"
+  },
+  {
+    "name": "詹木根",
+    "district": "彰化縣第04選舉區",
+    "wikiTitle": "詹木根",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,159",
+    "positions": [
+      "永靖國中家長會副會長",
+      "慈心慈善會、永靖獅子會會員",
+      "彰化縣詹氏宗親會副理事長"
+    ],
+    "sourceTitle": "彰化縣議會：詹木根議員"
+  },
+  {
+    "name": "詹江村",
+    "district": "桃園市第01選舉區",
+    "wikiTitle": "詹江村",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=973",
+    "positions": [
+      "救國團桃園縣工商青年服務團隊召集人",
+      "馬英九後援會召集人"
+    ],
+    "sourceTitle": "桃園市議會：詹江村議員"
   },
   {
     "name": "詹琬蓁",
@@ -1610,7 +2545,11 @@
       "北斗青商會會長",
       "彰化縣體育總會自由車委員會主任委員",
       "中華民國縣市體育會聯合總會常務監事",
-      "中華民國籃球協會理事長（2018年12月25日－）"
+      "世界自由民主聯盟中華民國總會理事",
+      "中華民國籃球協會理事長",
+      "台灣體育總會顧問",
+      "台灣體育總會籃球協會會長",
+      "彰化縣體育會理事長"
     ]
   },
   {
@@ -1646,6 +2585,16 @@
     ]
   },
   {
+    "name": "謝舒凡",
+    "district": "臺南市第02選舉區",
+    "wikiTitle": "謝舒凡",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=0986A206-7F6A-4880-A070-3992A80B0B74",
+    "positions": [
+      "南縣區漁會第12屆理事"
+    ],
+    "sourceTitle": "臺南市議會：謝舒凡議員"
+  },
+  {
     "name": "賴朝國",
     "district": "臺中市第05選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%B3%B4%E6%9C%9D%E5%9C%8B",
@@ -1663,6 +2612,19 @@
     ]
   },
   {
+    "name": "趙昆原",
+    "district": "臺南市第01選舉區",
+    "wikiTitle": "趙昆原",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=12DCAEB1-3B15-4767-86BF-CAC0FF4CD1C7",
+    "positions": [
+      "台南市圍棋教育推廣協會理事長",
+      "台南縣體育會圍棋委員會主任委員",
+      "新營王公廟同濟宮顧問團團長",
+      "柳營碧興宮總幹事"
+    ],
+    "sourceTitle": "臺南市議會：趙昆原議員"
+  },
+  {
     "name": "邱俊憲",
     "district": "高雄市第05選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%82%B1%E4%BF%8A%E6%86%B2",
@@ -1678,7 +2640,10 @@
     "positions": [
       "桃園縣中壢市邱（丘）姓宗親會理事長（第4－6屆）",
       "桃園縣軟式網球協會主任委員",
-      "桃園縣元極舞蹈推展協會顧問"
+      "桃園縣元極舞蹈推展協會顧問",
+      "桃園縣中壢市丘（邱）姓宗親會理事長",
+      "桃園市機車商業同會公會顧問",
+      "桃園市救國團主任委員"
     ]
   },
   {
@@ -1693,6 +2658,16 @@
     ]
   },
   {
+    "name": "邱昭勝",
+    "district": "臺南市第06選舉區",
+    "wikiTitle": "邱昭勝",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=5B3D000B-40D4-4C08-ABEB-31DB0F1D0710",
+    "positions": [
+      "中洲寮保安宮主任委員"
+    ],
+    "sourceTitle": "臺南市議會：邱昭勝議員"
+  },
+  {
     "name": "邱烽堯",
     "district": "新北市第06選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%82%B1%E7%83%BD%E5%A0%AF",
@@ -1705,7 +2680,8 @@
     "district": "臺南市第08選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%82%B1%E8%8E%89%E8%8E%89",
     "positions": [
-      "2009年民間推動大臺南升格聯盟執行長"
+      "2009年民間推動大臺南升格聯盟執行長",
+      "富樂夢教育基金會董事"
     ]
   },
   {
@@ -1719,7 +2695,10 @@
       "台南市皮鞋職業工會顧問",
       "台南營造職業工會顧問",
       "台南洗衣商業同業公會顧問",
-      "台南市農會理事"
+      "台南市農會理事",
+      "台南市後備憲兵荷松協會總顧問",
+      "台南市泥水業職業工會顧問",
+      "台南市縫紉商業同業公會顧問"
     ]
   },
   {
@@ -1743,6 +2722,48 @@
       "世界及台北市郭氏宗親會常務理事",
       "中華民國新青溪協會理事"
     ]
+  },
+  {
+    "name": "郭清華",
+    "district": "臺南市第06選舉區",
+    "wikiTitle": "郭清華",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=95486BD9-E601-4E18-8229-B400B0A384FE",
+    "positions": [
+      "土城高中家長會名譽會長",
+      "海佃國中家長會名譽會長",
+      "土城國小、青草國小家長會顧問",
+      "台南市皮革製品公會、皮鞋業工會、成衣工會顧問",
+      "正統鹿耳門聖母廟、四草大眾廟、本淵寮朝興宮、海尾朝皇宮顧問"
+    ],
+    "sourceTitle": "臺南市議會：郭清華議員"
+  },
+  {
+    "name": "郭燕陵",
+    "district": "彰化縣第02選舉區",
+    "wikiTitle": "郭燕陵",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,130",
+    "positions": [
+      "彰化縣浩大法治研究學會顧問",
+      "彰化縣轉生慈善會榮譽理事長",
+      "浩大法治研究協會顧問團團長",
+      "退休警察人員協會顧問",
+      "鹿港國際青年商會",
+      "文開國小家長會顧問",
+      "鹿東國小家長會顧問"
+    ],
+    "sourceTitle": "彰化縣議會：郭燕陵議員"
+  },
+  {
+    "name": "郭鴻儀",
+    "district": "臺南市第11選舉區",
+    "wikiTitle": "郭鴻儀",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=D02F8D8F-F1DF-4F8A-BA84-EE5B5FA5F147",
+    "positions": [
+      "臺南市愛馨慈善會理事長",
+      "臺南市慢速壘球協會理事",
+      "臺南市仁德棒球協會理事長"
+    ],
+    "sourceTitle": "臺南市議會：郭鴻儀議員"
   },
   {
     "name": "鄭俊雄",
@@ -1817,6 +2838,18 @@
     ]
   },
   {
+    "name": "錢龍",
+    "district": "桃園市第04選舉區",
+    "wikiTitle": "錢龍",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=993",
+    "positions": [
+      "桃園市蘆竹區新城市促進會總幹事",
+      "桃園市蘆竹區退伍軍人協會 顧問",
+      "桃園市全民運動協會 顧問"
+    ],
+    "sourceTitle": "桃園市議會：錢龍議員"
+  },
+  {
     "name": "鍾佩玲",
     "district": "臺北市第01選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%8D%BE%E4%BD%A9%E7%8E%B2",
@@ -1860,6 +2893,24 @@
     "positions": [
       "臺北市婦女會常任理事"
     ]
+  },
+  {
+    "name": "陳一惇",
+    "district": "彰化縣第08選舉區",
+    "wikiTitle": "陳一惇",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,168",
+    "positions": [
+      "全國漁會代表",
+      "彰化縣體育會理事",
+      "二林區拳擊協會理事長",
+      "彰化區漁會第10、11屆理事",
+      "彰化縣養殖協會總幹事",
+      "彰化縣匹克球委員會委員",
+      "台灣蔗農事件文化協會常務監事",
+      "二林青工會會長",
+      "救國團二林團委會會長"
+    ],
+    "sourceTitle": "彰化縣議會：陳一惇議員"
   },
   {
     "name": "陳世軒",
@@ -1911,12 +2962,45 @@
     ]
   },
   {
+    "name": "陳宗廷",
+    "district": "屏東縣第03選舉區",
+    "wikiTitle": "陳宗廷",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=fe080e49-5771-9091-b936-f570744aafa3",
+    "positions": [
+      "屏東縣竹田鄉愛鄉協會顧問"
+    ],
+    "sourceTitle": "屏東縣議會：陳宗廷議員"
+  },
+  {
     "name": "陳宥丞",
     "district": "臺北市第02選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%99%B3%E5%AE%A5%E4%B8%9E",
     "positions": [
       "麗山國民小學校友會會長"
     ]
+  },
+  {
+    "name": "陳志成",
+    "district": "屏東縣第03選舉區",
+    "wikiTitle": "陳志成",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=20aa8db9-c27f-2dae-fae8-ed493666d396",
+    "positions": [
+      "第17屆枋寮區漁會理事長",
+      "第13屆財團法人屏東縣北勢寮保安宮董事長"
+    ],
+    "sourceTitle": "屏東縣議會：陳志成議員"
+  },
+  {
+    "name": "陳怡珍",
+    "district": "臺南市第08選舉區",
+    "wikiTitle": "陳怡珍",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=4657ACF2-93DD-43F2-8E89-BB8690AA9C51",
+    "positions": [
+      "台南市桌球委員會常務委員",
+      "台南市傳統音樂協會理事長",
+      "台南女中校友會理事"
+    ],
+    "sourceTitle": "臺南市議會：陳怡珍議員"
   },
   {
     "name": "陳慈慧",
@@ -1965,7 +3049,9 @@
     "positions": [
       "中華民國表揚好人好事運動協會理事長",
       "七股潟湖生產合作社理事主席",
-      "臺南市不動產開發公會理事長"
+      "臺南市不動產開發公會理事長",
+      "南市不動產開發公會理事長",
+      "中華民國仲裁協會仲裁人、專利代理人"
     ]
   },
   {
@@ -1981,6 +3067,16 @@
     ]
   },
   {
+    "name": "陳明達",
+    "district": "屏東縣第02選舉區",
+    "wikiTitle": "陳明達",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=f22a5fab-3145-0470-8c54-b49e7b971549",
+    "positions": [
+      "屏東縣後備憲兵荷松協會榮譽理事長"
+    ],
+    "sourceTitle": "屏東縣議會：陳明達議員"
+  },
+  {
     "name": "陳春暖",
     "district": "苗栗縣第06選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%99%B3%E6%98%A5%E6%9A%96",
@@ -1988,6 +3084,29 @@
       "臺灣客家聯盟常務理事",
       "第一屆苗栗縣臺三線產業促進協會理事長"
     ]
+  },
+  {
+    "name": "陳榮妹",
+    "district": "彰化縣第09選舉區",
+    "wikiTitle": "陳榮妹",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,170",
+    "positions": [
+      "彰化縣原住民人文關懷發展協會創會會長",
+      "彰化縣婦女會常務理事"
+    ],
+    "sourceTitle": "彰化縣議會：陳榮妹議員"
+  },
+  {
+    "name": "陳治文",
+    "district": "桃園市第06選舉區",
+    "wikiTitle": "陳治文",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=999",
+    "positions": [
+      "大溪普修慈善協進會員",
+      "大溪婦女成長協會榮譽理事長",
+      "大溪慢速壘球發展協會理事長"
+    ],
+    "sourceTitle": "桃園市議會：陳治文議員"
   },
   {
     "name": "陳淑華",
@@ -2018,6 +3137,65 @@
       "國際同濟會台灣總會47屆總會長秘書",
       "竹山國際同濟會39屆會長"
     ]
+  },
+  {
+    "name": "陳皇宇",
+    "district": "臺南市第11選舉區",
+    "wikiTitle": "陳皇宇",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=CBAF0322-27BB-4242-BDFE-2BE6814FD6BD",
+    "positions": [
+      "社團法人台南市藥師公會發言人",
+      "台南市嘉南藥理大學校友會理事長",
+      "吉安醫院社團法人執行長",
+      "財團法人臺灣省臺南市首廟天壇附設臺南市私立天壇老人養護中心執行長"
+    ],
+    "sourceTitle": "臺南市議會：陳皇宇議員"
+  },
+  {
+    "name": "陳睿生",
+    "district": "桃園市第11選舉區",
+    "wikiTitle": "陳睿生",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=1023",
+    "positions": [
+      "新屋區體育會理事長",
+      "新屋區農會理事"
+    ],
+    "sourceTitle": "桃園市議會：陳睿生議員"
+  },
+  {
+    "name": "陳碧玉",
+    "district": "臺南市第05選舉區",
+    "wikiTitle": "陳碧玉",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=EED1C3A7-E6DA-40AF-B184-38ADCC794C74",
+    "positions": [
+      "臺南市新市兒童關懷協會理事長",
+      "善化蘭心扶輪社社長"
+    ],
+    "sourceTitle": "臺南市議會：陳碧玉議員"
+  },
+  {
+    "name": "陳秋宏",
+    "district": "臺南市第03選舉區",
+    "wikiTitle": "陳秋宏",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=9CBCB90A-A821-4FAD-A45D-79491B3EE5B2",
+    "positions": [
+      "下營商圈文化觀光促進會理事長",
+      "台灣生活環境安全衛生學會秘書長"
+    ],
+    "sourceTitle": "臺南市議會：陳秋宏議員"
+  },
+  {
+    "name": "陳美梅",
+    "district": "桃園市第01選舉區",
+    "wikiTitle": "陳美梅",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=976",
+    "positions": [
+      "桃園市保母協會理事長",
+      "桃園市陳姓宗親會副總長",
+      "桃園市體育會足球委員主任委員",
+      "龍鳳獅子會創會長"
+    ],
+    "sourceTitle": "桃園市議會：陳美梅議員"
   },
   {
     "name": "陳美雅",
@@ -2063,6 +3241,18 @@
     ]
   },
   {
+    "name": "陳銌銌",
+    "district": "彰化縣第01選舉區",
+    "wikiTitle": "陳銌銌",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,123",
+    "positions": [
+      "彰化建國科技大學校友會前副會長",
+      "彰化縣關懷志願服務協會顧問",
+      "彰化縣福德慈善長青會會長"
+    ],
+    "sourceTitle": "彰化縣議會：陳銌銌議員"
+  },
+  {
     "name": "陳錦祥",
     "district": "臺北市第06選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%99%B3%E9%8C%A6%E7%A5%A5",
@@ -2084,6 +3274,18 @@
     ]
   },
   {
+    "name": "陳雅倫",
+    "district": "桃園市第02選舉區",
+    "wikiTitle": "陳雅倫",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=983",
+    "positions": [
+      "桃園市籃球委員會副主委",
+      "龜山區陳姓宗親會理事長",
+      "財團法人龜山國小文教基金會董事"
+    ],
+    "sourceTitle": "桃園市議會：陳雅倫議員"
+  },
+  {
     "name": "陳雅惠",
     "district": "臺中市第11選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%99%B3%E9%9B%85%E6%83%A0",
@@ -2092,6 +3294,18 @@
       "臺中市水噹噹關懷協會常務理事",
       "社團法人台中市婦女發展協會理事"
     ]
+  },
+  {
+    "name": "陳韋曄",
+    "district": "桃園市第08選舉區",
+    "wikiTitle": "陳韋曄",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=1013",
+    "positions": [
+      "桃園市平鎮區文化志工協會理事長",
+      "救國團平鎮區團委會副會長",
+      "平鎮區青年志工服務協會理事長"
+    ],
+    "sourceTitle": "桃園市議會：陳韋曄議員"
   },
   {
     "name": "陳鴻源",
@@ -2134,6 +3348,16 @@
     ]
   },
   {
+    "name": "顧黃水花",
+    "district": "彰化縣第01選舉區",
+    "wikiTitle": "顧黃水花",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,118",
+    "positions": [
+      "花壇鄉婦女會第19、20屆常務理事"
+    ],
+    "sourceTitle": "彰化縣議會：顧黃水花議員"
+  },
+  {
     "name": "魏嘉賢",
     "district": "花蓮縣第01選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%AD%8F%E5%98%89%E8%B3%A2",
@@ -2165,12 +3389,53 @@
     ]
   },
   {
+    "name": "黃俊源",
+    "district": "彰化縣第02選舉區",
+    "wikiTitle": "黃俊源",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,131",
+    "positions": [
+      "黃氏宗親會永久會員、顧問",
+      "洛津國小家長會會長",
+      "彰化縣同安寮文化協會顧問",
+      "鹿港獅子會2020-2021會長",
+      "閭山道院慈善會理事長"
+    ],
+    "sourceTitle": "彰化縣議會：黃俊源議員"
+  },
+  {
+    "name": "黃千宴",
+    "district": "彰化縣第01選舉區",
+    "wikiTitle": "黃千宴",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,126",
+    "positions": [
+      "彰化縣體育會匹克球委員會副主任委員",
+      "彰化縣體育會街舞運動委員會主任委員"
+    ],
+    "sourceTitle": "彰化縣議會：黃千宴議員"
+  },
+  {
     "name": "黃啟豪",
     "district": "嘉義縣第02選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%BB%83%E5%95%9F%E8%B1%AA",
     "positions": [
       "新港大專青年聯誼會會長"
     ]
+  },
+  {
+    "name": "黃婉如",
+    "district": "桃園市第01選舉區",
+    "wikiTitle": "黃婉如",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=978",
+    "positions": [
+      "財團法人家庭扶助中心扶幼委員會副主委",
+      "桃園市生命線協會發起人暨理事",
+      "桃園市銘傳大學校友會榮譽理事長",
+      "桃園國小學校友會榮譽理事長",
+      "救國團桃園市團委會會長暨諮詢委員",
+      "桃園市身心障礙聯盟會務顧問",
+      "桃園市動物保育協會常務理事"
+    ],
+    "sourceTitle": "桃園市議會：黃婉如議員"
   },
   {
     "name": "黃嫈珺",
@@ -2203,6 +3468,45 @@
     ]
   },
   {
+    "name": "黃家齊",
+    "district": "桃園市第01選舉區",
+    "wikiTitle": "黃家齊",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=982",
+    "positions": [
+      "中央大學地球科學系系友會理事長",
+      "桃園市體育會壘球委員會主委",
+      "桃園市體育會籃球委員會副主委",
+      "桃園市陽明籃球推廣協會理事長",
+      "桃園市向陽社會服務協會理事長",
+      "桃園區中正社區發展協會常務理事",
+      "桃園區黃姓宗親會總幹事"
+    ],
+    "sourceTitle": "桃園市議會：黃家齊議員"
+  },
+  {
+    "name": "黃崇真",
+    "district": "桃園市第07選舉區",
+    "wikiTitle": "黃崇真",
+    "wikipediaUrl": "https://www.tycc.gov.tw/tc/councilor-detail.aspx?mid=39&num=1008",
+    "positions": [
+      "桃園市電競委員會主委",
+      "桃園市殯葬商業公會理事長",
+      "全公葬儀商業同業公會聯合會監事",
+      "青埔國小第69、70屆家長會長"
+    ],
+    "sourceTitle": "桃園市議會：黃崇真議員"
+  },
+  {
+    "name": "黃建溢",
+    "district": "屏東縣第03選舉區",
+    "wikiTitle": "黃建溢",
+    "wikipediaUrl": "https://www.ptcc.gov.tw/?Page=PersionalDetail&Guid=0ebeb91d-3321-7199-60f1-25f39143e864",
+    "positions": [
+      "屏東縣體育會棒球委員會主委"
+    ],
+    "sourceTitle": "屏東縣議會：黃建溢議員"
+  },
+  {
     "name": "黃惠汝",
     "district": "嘉義縣第01選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%BB%83%E6%83%A0%E6%B1%9D",
@@ -2216,7 +3520,8 @@
     "district": "桃園市第08選舉區",
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%BB%83%E6%95%AC%E5%B9%B3",
     "positions": [
-      "桃園縣龍馬棒壘球協會理事長"
+      "桃園縣龍馬棒壘球協會理事長",
+      "兩岸交流發展基金會副執行長"
     ]
   },
   {
@@ -2252,6 +3557,19 @@
       "太保市農會理事長",
       "太保市農會總幹事"
     ]
+  },
+  {
+    "name": "黃正盛",
+    "district": "彰化縣第04選舉區",
+    "wikiTitle": "黃正盛",
+    "wikipediaUrl": "https://www.chcc.gov.tw/member/details.aspx?Parser=99,6,40,,,,138",
+    "positions": [
+      "員林國際青年商會",
+      "大村鄉農會第16、17屆理事長",
+      "彰化縣體育會監事",
+      "大村鄉農會18屆常務監事"
+    ],
+    "sourceTitle": "彰化縣議會：黃正盛議員"
   },
   {
     "name": "黃永昌",
@@ -2296,7 +3614,9 @@
     "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%BB%83%E7%93%8A%E6%85%A7",
     "positions": [
       "桃園市文化藝星協會理事長",
-      "桃園市博愛促進協會副理事長"
+      "桃園市博愛促進協會副理事長",
+      "桃園市資深義消協會理事長",
+      "拉結親子文化教育推廣協會理事長"
     ]
   },
   {
@@ -2308,5 +3628,16 @@
       "臺中市體育總會圍棋委員會主任委員",
       "臺中市西屯區婦女會理事長"
     ]
+  },
+  {
+    "name": "黃麗招",
+    "district": "臺南市第06選舉區",
+    "wikiTitle": "黃麗招",
+    "wikipediaUrl": "https://www.tncc.gov.tw/councilorpage.asp?mainid=8E4E4081-E941-4DBE-AAED-B24ACA78DE76",
+    "positions": [
+      "長安社區發展協會理事長",
+      "安南婦女會15、16屆常務理監事"
+    ],
+    "sourceTitle": "臺南市議會：黃麗招議員"
   }
 ]

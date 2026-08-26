@@ -21,6 +21,18 @@ describe('extractSocialPositions：從 wikitext 抽社團職位', () => {
     expect(extractSocialPositions(wt)).toEqual(['台中市何氏宗親會理事長', '新民高級中學校友會理事長']);
   });
 
+  it('屆次列舉裡的頓號不是職務分隔——切開會產生沒有機構名的碎片', () => {
+    // 「觀音國小第6、7屆家長會長」若在頓號處切開，會得到「觀音國小第6」（無職稱，丟棄）
+    // 與「7屆家長會長」（沒有學校名的碎片）——後者會被當成一筆職務寫進資料庫
+    expect(extractSocialPositions('* 觀音國小第6、7屆家長會長\n')).toEqual(['觀音國小第6、7屆家長會長']);
+    expect(extractSocialPositions('* 蘆竹區第1、2屆張廖簡宗親會理事長\n')).toEqual(['蘆竹區第1、2屆張廖簡宗親會理事長']);
+  });
+
+  it('屆次列舉之外的頓號仍要切開', () => {
+    expect(extractSocialPositions('* 八德區林姓宗親會理事長、運動協會理事長\n'))
+      .toEqual(['八德區林姓宗親會理事長', '運動協會理事長']);
+  });
+
   it('剝除 wiki 標記與參考資料', () => {
     const wt = "* [[北港朝天宮]]董事長<ref>{{cite news|url=https://x}}</ref>\n";
     expect(extractSocialPositions(wt)).toEqual(['北港朝天宮董事長']);

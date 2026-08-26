@@ -26,8 +26,9 @@ const DRY_RUN = !!process.env.DRY_RUN;
 interface SocialCareers {
   name: string;
   wikiTitle?: string;
-  district?: string;   // 議員必備：同名消歧義用
-  wikipediaUrl: string;
+  district?: string;    // 議員必備：同名消歧義用
+  wikipediaUrl: string; // 出處網址：維基條目，或議會官網個人頁
+  sourceTitle?: string; // 出處標題；省略時預設為「維基百科：<wikiTitle>」
   positions: string[];
 }
 const FILES: { file: string; officeType: string; label: string }[] = [
@@ -104,7 +105,10 @@ async function main() {
       }
 
       const { data: src, error: se } = await sb.from('sources').insert({
-        url: r.wikipediaUrl, type: 'wiki', title: `維基百科：${r.wikiTitle ?? r.name}`,
+        url: r.wikipediaUrl,
+        // 議會官網的個人頁不是維基百科，型別與標題都要照實標示，否則檔案頁的出處會說謊。
+        type: r.sourceTitle ? 'gov' : 'wiki',
+        title: r.sourceTitle ?? `維基百科：${r.wikiTitle ?? r.name}`,
         retrieved_at: new Date().toISOString().slice(0, 10),
       }).select('id').single();
       if (se) throw new Error(`source insert failed (${r.name}): ${se.message}`);
