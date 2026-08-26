@@ -187,6 +187,7 @@ describe('toCytoscapeElements：entity 照片與 tooltip 資料', () => {
       { key: 'official:a', name: '王又民', kind: 'official', subtype: 'councilor', slug: 'wang', party: '無', officeType: 'councilor' },
       { key: 'entity:k', name: '柯文哲', kind: 'entity', subtype: 'other', description: '台灣民眾黨創黨主席',
         photoUrl: '/photos/entities/柯文哲.jpg', photoCredit: '王小明／CC BY-SA 4.0',
+        photoSourceUrl: 'https://commons.wikimedia.org/wiki/File:X.jpg',
         wikipediaUrl: 'https://zh.wikipedia.org/wiki/%E6%9F%AF%E6%96%87%E5%93%B2' },
     ],
     edges: [{ id: 'r1', source: 'official:a', target: 'entity:k', type: 'mentor', directed: false, note: null, sourceUrl: 'https://x' }],
@@ -195,13 +196,16 @@ describe('toCytoscapeElements：entity 照片與 tooltip 資料', () => {
     const { nodes } = toCytoscapeElements(withPhoto, 'official:a');
     expect(nodes.find((n) => n.data.id === 'entity:k')!.data.avatar).toBe('/photos/entities/柯文哲.jpg');
   });
-  it('entity 帶 description / wikipediaUrl / photoCredit；official 為空字串', () => {
+  it('entity 帶 description / wikipediaUrl / photoCredit / photoSourceUrl；official 為空字串', () => {
     const { nodes } = toCytoscapeElements(withPhoto, 'official:a');
     expect(nodes.find((n) => n.data.id === 'entity:k')!.data).toMatchObject({
       description: '台灣民眾黨創黨主席',
       wikipediaUrl: 'https://zh.wikipedia.org/wiki/%E6%9F%AF%E6%96%87%E5%93%B2',
       photoCredit: '王小明／CC BY-SA 4.0',
+      photoSourceUrl: 'https://commons.wikimedia.org/wiki/File:X.jpg',
     });
-    expect(nodes.find((n) => n.data.id === 'official:a')!.data).toMatchObject({ description: '', wikipediaUrl: '', photoCredit: '' });
+    expect(nodes.find((n) => n.data.id === 'official:a')!.data).toMatchObject({
+      description: '', wikipediaUrl: '', photoCredit: '', photoSourceUrl: '',
+    });
   });
 });

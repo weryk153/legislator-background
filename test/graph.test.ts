@@ -108,6 +108,31 @@ describe('buildGraphData', () => {
     expect('wikipediaUrl' in n).toBe(false);
     expect('photoCredit' in n).toBe(false);
   });
+
+  it('entity 帶 photo_url 且 photoSources 有配對時輸出 photoSourceUrl', () => {
+    const ents: RawEntity[] = [{
+      id: 'e2', name: '柯文哲', entity_type: 'other', description: '台灣民眾黨創黨主席',
+      photo_url: '/photos/entities/柯文哲.jpg', wikipedia_url: 'https://zh.wikipedia.org/wiki/%E6%9F%AF%E6%96%87%E5%93%B2',
+    }];
+    const credits = new Map([['https://zh.wikipedia.org/wiki/%E6%9F%AF%E6%96%87%E5%93%B2', '王小明／CC BY-SA 4.0']]);
+    const photoSources = new Map([['https://zh.wikipedia.org/wiki/%E6%9F%AF%E6%96%87%E5%93%B2', 'https://commons.wikimedia.org/wiki/File:X.jpg']]);
+    const { data } = buildGraphData(officials, ents,
+      [rel({ to_type: 'entity', to_id: 'e2', relation_type: 'mentor' })], credits, photoSources);
+    expect(data.nodes.find((n) => n.key === 'entity:e2')).toMatchObject({
+      photoSourceUrl: 'https://commons.wikimedia.org/wiki/File:X.jpg',
+    });
+  });
+
+  it('photoSources 無配對時不帶 photoSourceUrl 欄位', () => {
+    const ents: RawEntity[] = [{
+      id: 'e2', name: '柯文哲', entity_type: 'other', description: '台灣民眾黨創黨主席',
+      photo_url: '/photos/entities/柯文哲.jpg', wikipedia_url: 'https://zh.wikipedia.org/wiki/%E6%9F%AF%E6%96%87%E5%93%B2',
+    }];
+    const { data } = buildGraphData(officials, ents,
+      [rel({ to_type: 'entity', to_id: 'e2', relation_type: 'mentor' })]);
+    const n = data.nodes.find((x) => x.key === 'entity:e2')!;
+    expect('photoSourceUrl' in n).toBe(false);
+  });
 });
 
 describe('egoSubgraph', () => {

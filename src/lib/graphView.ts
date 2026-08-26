@@ -8,7 +8,7 @@ export interface CyNode {
     id: string; label: string; name: string; slug: string; kind: string;
     depth: number; center: 0 | 1; size: number; avatar: string;
     // 節點 tooltip 用（entity 才有內容；official 為空字串，Cytoscape data 不放 undefined）
-    description: string; wikipediaUrl: string; photoCredit: string;
+    description: string; wikipediaUrl: string; photoCredit: string; photoSourceUrl: string;
   };
 }
 export interface CyEdge {
@@ -129,6 +129,7 @@ export function toCytoscapeElements(
         description: n.description ?? '',
         wikipediaUrl: n.wikipediaUrl ?? '',
         photoCredit: n.photoCredit ?? '',
+        photoSourceUrl: n.photoSourceUrl ?? '',
       },
     };
   });

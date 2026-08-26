@@ -196,7 +196,11 @@
           const desc = d.description ? `<div class="rg-note">${esc(d.description)}</div>` : '';
           const wiki = d.wikipediaUrl
             ? `<a class="rg-src" href="${esc(d.wikipediaUrl)}" target="_blank" rel="noopener">維基百科條目 ↗</a>` : '';
-          const credit = d.photoCredit ? `<div class="rg-credit">照片：${esc(d.photoCredit)}</div>` : '';
+          // 有 photoSourceUrl（CC BY／CC BY-SA 照片）時署名連到 Commons 檔案頁，並標示本站已縮圖改作；
+          // 其餘授權（如 Attribution）沒有 commonsUrl 連結要求，維持純文字。
+          const credit = !d.photoCredit ? '' : d.photoSourceUrl
+            ? `<div class="rg-credit">照片：<a class="rg-src" href="${esc(d.photoSourceUrl)}" target="_blank" rel="noopener">${esc(d.photoCredit)}</a>（本站縮圖）</div>`
+            : `<div class="rg-credit">照片：${esc(d.photoCredit)}</div>`;
           if (!desc && !wiki && !credit) { hideSoon(); return; }
           const p = evt.target.renderedPosition();
           const r = evt.target.renderedOuterWidth() / 2;
