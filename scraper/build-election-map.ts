@@ -16,7 +16,7 @@ import {
 import { parseByElection, parseByElectionDir } from './lib/cecByElection';
 import { buildCodeIndex, expandVillageUnitKey, KNOWN_MISSING_BOUNDARY_KEYS } from './lib/areaMatch';
 import { seatBreakdown, toTermRecords, termLimited } from './lib/electionRules';
-import type { MapArea, MapLayer, Officeholder } from '../src/lib/mapTypes';
+import { UNASSIGNED_VILLAGE_PREFIX, type MapArea, type MapLayer, type Officeholder } from '../src/lib/mapTypes';
 
 const CEC = 'scraper/out-roster/cec';
 const R22 = `${CEC}/voteData/2022-111年地方公職人員選舉`;
@@ -384,15 +384,15 @@ for (const t of areas.filter((a) => a.level === 'town')) {
   // 點擊的區塊（chief 為 null、seats 為空、childFile 為 null）——本站規格要求
   // 「資料深度必須看得出來」，有標示的空白區優於無說明的破洞。
   const townKey = codeIndex.get(t.code) ?? t.name;
-  const unassignedPrefix = `${townKey}/未編定:`;
+  const unassignedPrefix = `${townKey}/${UNASSIGNED_VILLAGE_PREFIX}`;
   const unassignedKeys = allVillageKeys.filter((k) => k.startsWith(unassignedPrefix));
   const unassignedAreas: MapArea[] = unassignedKeys.map((key) => ({
-    // code 帶「未編定:」前綴：這些區塊天生沒有中選會的五段代碼（不在行政區樹
-    // 裡），若 code 只留界線檔自帶的內部編號（如 "09007010S30"），會被誤認成
-    // 中選會代碼，違反「區域代碼一律用中選會五段代碼」的全域約束。加前綴讓
-    // 呼叫端一眼就看得出這是界線檔的例外編號，同時仍保有跨全國的唯一值可用
-    // 來當多邊形的渲染 key。
-    code: `未編定:${key.slice(unassignedPrefix.length)}`,
+    // code 帶「未編定:」前綴（UNASSIGNED_VILLAGE_PREFIX，與前端 isUnassignedVillage
+    // 共用同一個常數）：這些區塊天生沒有中選會的五段代碼（不在行政區樹裡），若 code
+    // 只留界線檔自帶的內部編號（如 "09007010S30"），會被誤認成中選會代碼，違反
+    // 「區域代碼一律用中選會五段代碼」的全域約束。加前綴讓呼叫端一眼就看得出這是
+    // 界線檔的例外編號，同時仍保有跨全國的唯一值可用來當多邊形的渲染 key。
+    code: `${UNASSIGNED_VILLAGE_PREFIX}${key.slice(unassignedPrefix.length)}`,
     key,
     name: '未編定村里',
     chief: null,

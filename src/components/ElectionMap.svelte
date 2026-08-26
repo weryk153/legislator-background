@@ -4,12 +4,14 @@
   import { onMount } from 'svelte';
   import { geoMercator, geoPath } from 'd3-geo';
   import { feature } from 'topojson-client';
-  import type { MapLayer, MapArea } from '../lib/mapTypes';
+  import { isUnassignedVillage, type MapLayer, type MapArea } from '../lib/mapTypes';
   // 連江縣有 8 個選舉單位是「數村合選一位村里長」，MapArea.key 含頓號
   // （如「連江縣/南竿鄉/復興村、福沃村」），但界線檔多邊形是單村鍵。
   // expandVillageUnitKey 把前者展開成一到多個單村鍵，用來建立多邊形查找表，
   // 否則這些多邊形會因鍵對不上被濾掉，連江縣的村里層地圖會開天窗。
   import { expandVillageUnitKey } from '../../scraper/lib/areaMatch';
+  // 南海／釣魚台等極端外島的濾除邏輯，與 test/mapExclaves.test.ts 共用同一份定義。
+  import { clipFarExclaves } from '../lib/mapExclaves';
 
   let { onSelect }: { onSelect?: (area: MapArea | null, layer: MapLayer) => void } = $props();
 
@@ -17,6 +19,11 @@
   let stack = $state<{ file: string; layer: MapLayer }[]>([]);
   let loading = $state(true);
   let error = $state<string | null>(null);
+  // 目前正在嘗試載入的檔名——失敗時 stack 完全不變（push 只在成功時發生），
+  // 若重試改成從 stack.at(-1) 推算檔名，下鑽中途失敗時會拿到「已經顯示成功的
+  // 父層」而不是「失敗的子層」，重試等於白做工。獨立記錄這個狀態才能讓重試
+  // 精準重新載入真正失敗的那個請求。
+  let pendingFile = $state<string | null>(null);
   let hovered = $state<string | null>(null);
   let width = $state(720);
   let height = $state(880);
@@ -30,9 +37,9 @@
   };
 
   // 村里層裡「未編定村里」區塊：真實土地但未編定村里，沒有村里長，不可點擊。
-  // MapArea.code 帶「未編定:」前綴（見 src/lib/mapTypes.ts 的說明），以此判斷。
+  // 判斷邏輯共用 src/lib/mapTypes.ts 的 isUnassignedVillage，不在此處重複硬寫前綴。
   function isUnedited(area: MapArea): boolean {
-    return area.code.startsWith('未編定:');
+    return isUnassignedVillage(area);
   }
 
   function fillFor(area: MapArea): string {
@@ -52,6 +59,7 @@
   }
 
   async function load(file: string) {
+    pendingFile = file;
     loading = true;
     error = null;
     try {
@@ -71,39 +79,8 @@
 
   // TopoJSON 的 objects 鍵名依界線檔而定（縣市層 COUNTY_MOI_1140318、鄉鎮市區層
   // TOWN_MOI_1140318、村里層 V），不可用固定鍵名存取，一律遍歷 Object.values 取得
-  // 每個物件的 geometries 並合併成單一 feature 陣列。
-  // 台灣本島＋鄰近可呈現島嶼（含金門、馬祖）的地理範圍。目視驗證時發現兩個界線檔本身
-  // 就有的、需求書沒提到的極端外島，兩者都會把 fitExtent 的座標範圍撐大、把本島壓扁：
-  //   1. 高雄市旗津區依法轄有南海的東沙島、太平島，經緯度與本島差了數千公里，在全國層
-  //      （高雄市多邊形本身）、下鑽高雄市後的鄉鎮市區層（旗津區多邊形本身）都會出現；
-  //      旗津區的村里層則是兩座島各自獨立成一筆「未編定村里」，本身無村里長、無選舉
-  //      意義，整筆濾掉不畫。
-  //   2. 宜蘭縣頭城鎮大溪里依法轄有東北方的釣魚台列嶼，與本島距離較近但仍有一百多公里，
-  //      同樣在全國層（宜蘭縣）、頭城鎮層（大溪里）出現；大溪里本身是有里長的真實村里，
-  //      不可整筆濾掉，僅濾除該 MultiPolygon 裡屬於釣魚台列嶼的部件，保留大溪里本體。
-  // 兩案例分別驗證了 clipFarExclaves 對 Polygon（整筆濾除）與 MultiPolygon（僅濾除
-  // 越界部件）兩種型別的處理都要正確。
-  const TW_ENVELOPE = { minLon: 117, maxLon: 122.3, minLat: 21.7, maxLat: 26.5 };
-  const inEnvelope = ([lon, lat]: [number, number]) =>
-    lon >= TW_ENVELOPE.minLon && lon <= TW_ENVELOPE.maxLon &&
-    lat >= TW_ENVELOPE.minLat && lat <= TW_ENVELOPE.maxLat;
-
-  // Polygon 整筆落在範圍外者回傳 null（不畫）；MultiPolygon 只濾掉範圍外的部件，保留本體。
-  function clipFarExclaves(f: any): any | null {
-    const geom = f.geometry;
-    if (!geom) return f;
-    if (geom.type === 'Polygon') {
-      return inEnvelope(geom.coordinates[0][0]) ? f : null;
-    }
-    if (geom.type === 'MultiPolygon') {
-      const kept = geom.coordinates.filter((poly: any) => inEnvelope(poly[0][0]));
-      if (!kept.length) return null;
-      if (kept.length === geom.coordinates.length) return f;
-      return { ...f, geometry: { ...geom, coordinates: kept } };
-    }
-    return f;
-  }
-
+  // 每個物件的 geometries 並合併成單一 feature 陣列。極端外島（南海東沙／太平島、
+  // 釣魚台列嶼）的濾除邏輯見 src/lib/mapExclaves.ts 的說明。
   function featuresOf(topo: any): any[] {
     const feats: any[] = [];
     for (const obj of Object.values(topo.objects)) {
@@ -217,7 +194,10 @@
 
   {#if error}
     <p class="err" role="alert">{error}
-      <button type="button" onclick={() => { const f = stack.at(-1)?.file ?? 'national.json'; stack.pop(); load(f); }}>重試</button>
+      <!-- 重試要重新載入「真正失敗的那個檔案」（pendingFile），不能從 stack 頂端推算——
+           失敗時 stack 完全沒變，stack.at(-1) 拿到的永遠是已經顯示成功的父層，不是
+           失敗的子層；下鑽中途失敗時那樣重試只會白白重新載入使用者本來就看得到的東西。 -->
+      <button type="button" onclick={() => load(pendingFile ?? 'national.json')}>重試</button>
     </p>
   {:else if loading && !current}
     <p class="loading">載入中…</p>

@@ -1,7 +1,7 @@
 <!-- 地圖側欄。顯示當前選取的行政區，未選取時顯示該層的彙總。
      資料深度必須看得出來：縣市長與縣市議員連得到檔案頁，鄉鎮市長以下只有中選會欄位。 -->
 <script lang="ts">
-  import type { MapArea, MapLayer, PartySeat } from '../lib/mapTypes';
+  import { isUnassignedVillage, type MapArea, type MapLayer, type PartySeat } from '../lib/mapTypes';
 
   let { area, layer }: { area: MapArea | null; layer: MapLayer | null } = $props();
 
@@ -26,8 +26,9 @@
         : '村里長');
   const seatLabel = $derived(layer?.level === 'national' ? '議會席次' : '代表會席次');
 
-  // 村里層「未編定村里」區塊：真實土地但無村里長，不當成一般查無資料處理
-  const isUnedited = $derived(!!area && area.code.startsWith('未編定:'));
+  // 村里層「未編定村里」區塊：真實土地但無村里長，不當成一般查無資料處理。
+  // 判斷邏輯共用 src/lib/mapTypes.ts 的 isUnassignedVillage，不重複硬寫前綴。
+  const isUnedited = $derived(!!area && isUnassignedVillage(area));
 </script>
 
 <aside class="side">
@@ -40,7 +41,7 @@
       <section>
         <h3>{chiefLabel}</h3>
         {#if area.chief.slug}
-          <a class="person" href={`/officials/${area.chief.slug}/`}>
+          <a class="person" href={`/officials/${area.chief.slug}`}>
             {area.chief.name}<span aria-hidden="true"> →</span>
           </a>
         {:else}

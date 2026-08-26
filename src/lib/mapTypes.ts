@@ -20,6 +20,16 @@ export interface MapArea {
   childFile: string | null;     // 下一層的檔名；村里層（含未編定村里區塊）為 null
 }
 
+// 「未編定村里」區塊的 code 前綴（見上方 MapArea.code 註解）。scraper 產出端
+// （scraper/build-election-map.ts）與前端（ElectionMap.svelte、ElectionSidebar.svelte）
+// 三處都要判斷同一件事，共用這一個常數與 helper，不各自硬寫字面值，避免日後
+// 改前綴時漏改一處而讓判斷悄悄失效。
+export const UNASSIGNED_VILLAGE_PREFIX = '未編定:';
+
+export function isUnassignedVillage(area: Pick<MapArea, 'code'>): boolean {
+  return area.code.startsWith(UNASSIGNED_VILLAGE_PREFIX);
+}
+
 export interface MapLayer {
   level: 'national' | 'county' | 'town';
   parentName: string;
