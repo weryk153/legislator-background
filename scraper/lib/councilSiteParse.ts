@@ -16,8 +16,10 @@
 //   「簡介」「簡歷」——彰化把經歷放在「簡介」分頁
 // 必須整行完全相符：彰化個人頁的左側選單有「議會簡介」，寬鬆比對會把整份導覽選單當成經歷。
 const START = /^(學\s*經\s*歷|經\s*歷|簡\s*介|簡\s*歷)[：:]?\s*$/;
-/** 「學歷」段落：出現在經歷之前時要跳過，出現在經歷之後則視為段落結束。 */
+/** 「學歷」子標題／段落。在「學經歷」大標之下時只是子標題，不是段落結束。 */
 const EDUCATION = /^(學\s*歷)[：:]?\s*$/;
+/** 「經歷」子標題：出現時恢復收錄（見 collectFromHeading）。 */
+const CAREER_SUBHEAD = /^(經\s*歷)[：:]?\s*$/;
 /** 段落結束標記：其他欄位標題或頁尾導覽。 */
 const STOP = /^(政\s*見|本屆問政|聯絡方式|電\s*話|傳\s*真|服務處|信箱|E-?mail|問政|質詢|提案|網站錯誤回報|回上頁|回上一頁|到上面|網站導覽|相關連結|隱私權|資訊安全|展開|Copy)/i;
 /** 條列編號：阿拉伯數字、中文數字、圓點、破折號。 */
@@ -36,14 +38,29 @@ export function parseCareerBlock(pageText: string): string[] {
   return collectFromBulletRun(lines);
 }
 
-/** 以標題（經歷／學經歷／簡介…）為起點擷取。 */
+/**
+ * 以標題（經歷／學經歷／簡介…）為起點擷取。
+ *
+ * 「學經歷」大標之下常再分「學 歷：」「經 歷：」兩個子標題（新竹縣、高雄）。若把子標題
+ * 「學 歷：」當成段落結束，整段經歷會被跳過，後面的「政見」反而成為起點——抽到的就會是
+ * 政見不是經歷。故遇到學歷子標題時改為「暫停收錄」，遇到經歷子標題再恢復。
+ */
 function collectFromHeading(lines: string[]): string[] {
   const out: string[] = [];
   let inBlock = false;
+  let paused = false;   // 位於「學 歷：」子段落內
   for (const line of lines) {
-    if (START.test(line)) { inBlock = true; out.length = 0; continue; }
+    if (START.test(line)) { inBlock = true; paused = false; out.length = 0; continue; }
     if (!inBlock) continue;
-    if (EDUCATION.test(line) || STOP.test(line)) break;
+    if (CAREER_SUBHEAD.test(line)) { paused = false; continue; }
+    if (EDUCATION.test(line)) {
+      // 已收到內容才代表這是「經歷之後」的學歷段落 → 結束；否則只是子標題 → 暫停
+      if (out.length) break;
+      paused = true;
+      continue;
+    }
+    if (STOP.test(line)) break;
+    if (paused) continue;
     const t = normalise(line);
     if (t) out.push(t);
   }
@@ -68,11 +85,41 @@ function collectFromBulletRun(lines: string[]): string[] {
   return best.length >= 2 ? best : [];
 }
 
-/** 去編號與尾標點，濾掉過短、過長、純數字與無中文的行。 */
+/** 新聞標題：以民國日期開頭（如「114/9/16 …」）。議長頁常在經歷後接新聞列表，
+ *  而同一則新聞會出現在多位議員頁上——收進來等於把別人的活動記到本人頭上。 */
+const NEWS_HEADLINE = /^\d{2,3}\s*\/\s*\d{1,2}\s*\/\s*\d{1,2}/;
+
+/** 去編號與尾標點，濾掉過短、過長、純數字、無中文與新聞標題的行。 */
 function normalise(line: string): string | null {
   const t = line.replace(BULLET, '').replace(/[。，、；;]+$/, '').trim();
   if (t.length < 3 || t.length > 60) return null;
   if (/^[\d\s年月日．.]+$/.test(t)) return null;
   if (!/[一-鿿]/.test(t)) return null;
+  if (NEWS_HEADLINE.test(t)) return null;
   return t;
+}
+
+/** 一頁多人時的切段結果。單人頁的 name 為空字串。 */
+export interface PersonBlock { name: string; text: string; }
+
+/**
+ * 把「一頁塞多位議員」的議會頁按人拆開。
+ *
+ * 南投縣議會的個人頁其實是「選區頁」——同一選區的議員連續排列在同一份 HTML 裡，
+ * 網址只用 `#姓名` 錨點區分。若不拆開，後面那位的經歷會被算到前一位頭上。
+ * 以「姓名：」欄位（下一行即為姓名）為分界；找不到該欄位就當單人頁整份回傳。
+ */
+export function splitByPerson(pageText: string): PersonBlock[] {
+  const lines = (pageText ?? '').split('\n');
+  const marks: { at: number; name: string }[] = [];
+  for (let i = 0; i < lines.length; i++) {
+    if (!/^\s*姓\s*名\s*[：:]\s*$/.test(lines[i])) continue;
+    const name = (lines[i + 1] ?? '').trim();
+    if (name && name.length <= 20) marks.push({ at: i, name });
+  }
+  if (!marks.length) return [{ name: '', text: pageText ?? '' }];
+  return marks.map((m, k) => ({
+    name: m.name,
+    text: lines.slice(m.at, marks[k + 1]?.at ?? lines.length).join('\n'),
+  }));
 }

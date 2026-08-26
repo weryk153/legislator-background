@@ -1,6 +1,31 @@
 import { describe, it, expect } from 'vitest';
 import { parseCareerBlock } from '../scraper/lib/councilSiteParse';
 
+import { splitByPerson } from '../scraper/lib/councilSiteParse';
+
+describe('splitByPerson：一頁多人的議會頁按人拆開', () => {
+  it('南投式：同一選區頁連續排列多位議員，以「姓名：」欄位為界', () => {
+    const t = [
+      '南投縣議會第20屆--議員', '姓名：', '林芳伃', '政黨：', '中國國民黨',
+      '學歷：', '國立暨南國際大學碩士', '經歷：', '宏仁國中第一屆校友會理事長',
+      '南投縣議會第20屆--議員', '姓名：', '蘇昱誠', '政黨：', '民主進步黨',
+      '學歷：', '某某大學', '經歷：', '某某協會理事長',
+    ].join('\n');
+    const parts = splitByPerson(t);
+    expect(parts.map(x => x.name)).toEqual(['林芳伃', '蘇昱誠']);
+    expect(parts[0].text).toContain('宏仁國中第一屆校友會理事長');
+    expect(parts[0].text).not.toContain('某某協會理事長');
+  });
+
+  it('沒有「姓名：」欄位時視為單人頁，整頁回傳', () => {
+    const t = '陳偉杰\n政黨：中國國民黨\n經歷\n某某協會理事長';
+    const parts = splitByPerson(t);
+    expect(parts).toHaveLength(1);
+    expect(parts[0].name).toBe('');
+    expect(parts[0].text).toBe(t);
+  });
+});
+
 describe('parseCareerBlock：從議會個人頁純文字抽經歷條列', () => {
   it('屏東式：「經歷：」後每行一筆', () => {
     const t = `梁育慈\n經歷：\n台灣大學政治學系\n高雄女中\n台北市議員梁文傑辦公室主任\n民進黨台北市黨部第18屆市代\n聯絡方式\n電話 08-1234567`;
@@ -54,9 +79,34 @@ describe('parseCareerBlock：從議會個人頁純文字抽經歷條列', () => 
     expect(parseCareerBlock(t)).toEqual(['某某體育會理事長']);
   });
 
+  it('新竹縣式：「學經歷」大標下再分「學 歷：」「經 歷：」子標題', () => {
+    // 「學經歷」開段後緊接「學 歷：」，若該子標題被當成段落結束，整段經歷會被跳過，
+    // 接著後面的「政見」段落反而被當成起點——抽到的會是政見不是經歷。
+    const t = [
+      '通訊地址：', '新竹縣竹北市光明六路8號',
+      '學經歷', '學  歷：', '國立清華大學語言所碩士', '北一女中',
+      '經  歷：', '新竹縣幸福城市推動協會榮譽理事長', '新竹縣姜呂邱謝宗親會顧問',
+      '政見', '政  見：', '1、理性問政、仗義直言。',
+    ].join('\n');
+    expect(parseCareerBlock(t)).toEqual([
+      '新竹縣幸福城市推動協會榮譽理事長', '新竹縣姜呂邱謝宗親會顧問',
+    ]);
+  });
+
   it('遇到頁尾導覽字樣就停止', () => {
     const t = `經歷\n某某協會理事長\n回上頁\n到上面\n網站導覽`;
     expect(parseCareerBlock(t)).toEqual(['某某協會理事長']);
+  });
+
+  it('新聞標題不是經歷——民國日期開頭者剔除', () => {
+    // 高雄議長頁面在經歷之後接了新聞列表，且同一則新聞會出現在多位議員頁上，
+    // 被當成經歷會把別人的活動記到本人頭上
+    const t = [
+      '經歷', '旗山天后宮副主任委員',
+      '114/9/16高雄市塑膠製品商業同業公會拜會康議長 盼翻轉產業污名',
+      '113/10/24大阪府日華友好交流協會到訪 康議長期待官方民間攜手深化台日情誼',
+    ].join('\n');
+    expect(parseCareerBlock(t)).toEqual(['旗山天后宮副主任委員']);
   });
 
   it('沒有可辨識的經歷段落時回空陣列', () => {
