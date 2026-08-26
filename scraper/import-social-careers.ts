@@ -26,8 +26,9 @@ const DRY_RUN = !!process.env.DRY_RUN;
 interface SocialCareers {
   name: string;
   wikiTitle?: string;
-  district?: string;   // 議員必備：同名消歧義用
-  wikipediaUrl: string;
+  district?: string;    // 議員必備：同名消歧義用
+  wikipediaUrl: string; // 出處網址：維基條目，或議會官網個人頁
+  sourceTitle?: string; // 出處標題；省略時預設為「維基百科：<wikiTitle>」
   positions: string[];
 }
 const FILES: { file: string; officeType: string; label: string }[] = [
@@ -42,9 +43,18 @@ async function main() {
   const sb = createClient(url, key);
   const only = process.env.ONLY;
 
-  const { data: offs, error: oe } = await sb.from('officials').select('id, name, office_type, district');
-  if (oe) throw new Error(`officials query failed: ${oe.message}`);
-  const officials = (offs ?? []) as { id: string; name: string; office_type: string; district: string }[];
+  // PostgREST 單次回應上限 1000 筆，而 officials 有 1053 筆——不分頁會靜默漏掉尾端的人，
+  // 表現為「名冊匹配 0 筆」而其實那人就在名冊裡（本站已被這個上限騙過一次，見
+  // import-relationships.ts 的同類註解）。
+  const officials: { id: string; name: string; office_type: string; district: string }[] = [];
+  for (let f = 0; ; f += 1000) {
+    const { data, error } = await sb.from('officials')
+      .select('id, name, office_type, district').range(f, f + 999);
+    if (error) throw new Error(`officials query failed: ${error.message}`);
+    const page = (data ?? []) as typeof officials;
+    officials.push(...page);
+    if (page.length < 1000) break;
+  }
 
   // 既有 careers：用來判斷這一筆是否已寫過（冪等）。
   const existing = new Set<string>();
@@ -95,7 +105,10 @@ async function main() {
       }
 
       const { data: src, error: se } = await sb.from('sources').insert({
-        url: r.wikipediaUrl, type: 'wiki', title: `維基百科：${r.wikiTitle ?? r.name}`,
+        url: r.wikipediaUrl,
+        // 議會官網的個人頁不是維基百科，型別與標題都要照實標示，否則檔案頁的出處會說謊。
+        type: r.sourceTitle ? 'gov' : 'wiki',
+        title: r.sourceTitle ?? `維基百科：${r.wikiTitle ?? r.name}`,
         retrieved_at: new Date().toISOString().slice(0, 10),
       }).select('id').single();
       if (se) throw new Error(`source insert failed (${r.name}): ${se.message}`);

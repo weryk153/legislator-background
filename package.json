@@ -30,6 +30,7 @@
     "roster:record": "tsx scraper/roster-record.ts",
     "photos:record": "tsx scraper/photos-record.ts",
     "import:social-careers": "tsx scraper/import-social-careers.ts",
+    "reconcile:social-sources": "tsx scraper/reconcile-social-sources.ts",
     "wiki:resolve-entities": "tsx scraper/wiki-resolve-entities.ts",
     "enrich:entity-photos": "tsx scraper/enrich-entity-photos.ts",
     "wiki:discover-relations": "tsx scraper/wiki-discover-relations.ts"
