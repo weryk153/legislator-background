@@ -171,3 +171,24 @@ describe('sharedSource：整組共用同一出處時只印一次', () => {
     expect(sharedSource([])).toBeNull();
   });
 });
+
+describe('會籍、志工與獎項不是社會團體職位', () => {
+  // 「擔任職位」才要揭露。純會籍與志工身分不是職位，獎項更不是——把它們掛在
+  // 「社會團體／財團法人」標題下，會讓讀者以為當事人在該組織有職務。
+  it('終身義工不算職位', () => {
+    expect(categorizeCareer('財團法人肝炎防治基金會終身義工')).toBe('other');
+  });
+  it('永久會員不算職位', () => {
+    expect(categorizeCareer('彰化縣信德慈善會永久會員')).toBe('other');
+  });
+  it('獎項不算職位', () => {
+    expect(categorizeCareer('21世紀基金會國會評鑑第九屆優質立委')).toBe('other');
+  });
+  it('職稱在會籍字樣之後時仍算職位', () => {
+    // 「顧問、伴讀組、交通組志工」以志工結尾，但首要身分是顧問
+    expect(categorizeCareer('南陽國小家長會顧問、伴讀組、交通組志工')).toBe('social');
+  });
+  it('會長不因結尾含「會」而誤判', () => {
+    expect(categorizeCareer('基隆市婦女會理事長')).toBe('social');
+  });
+});
