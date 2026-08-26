@@ -15,7 +15,20 @@
 //   「學經歷」——屏東把學歷與經歷併成一段（其中的學歷條目由下游 categorizeCareer 濾掉）
 //   「簡介」「簡歷」——彰化把經歷放在「簡介」分頁
 // 必須整行完全相符：彰化個人頁的左側選單有「議會簡介」，寬鬆比對會把整份導覽選單當成經歷。
-const START = /^(學\s*經\s*歷|經\s*歷|簡\s*介|簡\s*歷)[：:]?\s*$/;
+//
+// 「議員」前綴只加在「經歷」上（基隆的標題是「議員經歷」），不可放寬成 (?:議員)? 通吃：
+// 金門的頁面標題是「議員簡歷」，那是整頁的名稱而非段落起點，一旦當成起點，其後的
+// 「本屆縣議員／第一選區…」會被收成第一筆，接著的「學 歷」子標題就被判成「經歷之後的
+// 學歷段落」而提早結束——真正的經歷一筆都收不到。
+const START = /^(?:議員\s*經\s*歷|學\s*經\s*歷|經\s*歷|簡\s*介|簡\s*歷)[：:]?\s*$/;
+// 基本資料欄位的標題（基隆「議員資訊」）：它排在經歷段落之前，若被誤當起點，
+// 抽到的會是選區、政黨、連絡電話與電子郵件——比抓不到更糟。明確排除。
+const INFO_HEADING = /^議員\s*(資\s*訊)[：:]?\s*$|^(基本資料|個人資料|聯絡資訊)[：:]?\s*$/;
+// 基本資料的欄位行（「選區：…」「連絡電話：…」）一律不是職務。
+// 冒號或空白分隔皆有（「政黨：中國國民黨」與「政黨 中國國民黨」）。
+const INFO_FIELD = /^(選\s*區|政\s*黨|黨\s*籍|服務處|服務地址|連\s*絡\s*電話|聯\s*絡\s*電話|電\s*話|傳\s*真號碼|傳\s*真|電子郵件|信\s*箱|網站連結|通訊處|通訊地址|出\s*生|生\s*日|性\s*別|出生地)\s*([：:]|\s)/;
+// 頁面工具列與分享按鈕，不是職務。
+const PAGE_TOOL = /^(友善列印|回上一頁|回上頁|列印|分享|字級|Facebook|Google|Twitter|Plurk|LINE)/i;
 /** 「學歷」子標題／段落。在「學經歷」大標之下時只是子標題，不是段落結束。 */
 const EDUCATION = /^(學\s*歷)[：:]?\s*$/;
 /** 「經歷」子標題：出現時恢復收錄（見 collectFromHeading）。 */
@@ -26,7 +39,7 @@ const CAREER_INLINE = /^(?:簡\s*經\s*歷|學\s*經\s*歷|經\s*歷)\s*[：:]?\
 /** 同行的學歷標籤：「學歷:某某」「學歷 某某」——整行都是學歷，跳過。 */
 const EDUCATION_INLINE = /^(?:學\s*歷)\s*[：:]?\s*\S/;
 /** 段落結束標記：其他欄位標題或頁尾導覽。 */
-const STOP = /^(政\s*見|本屆問政|市政論壇|問政影音|服務績效|聯絡方式|電\s*話|傳\s*真|服務處|信箱|E-?mail|問政|質詢|提案|網站錯誤回報|回上頁|回上一頁|到上面|網站導覽|相關連結|隱私權|資訊安全|展開|Copy)/i;
+const STOP = /^(:::|[^，、]{0,4}議會$|政\s*見|本屆問政|市政論壇|問政影音|服務績效|聯絡方式|電\s*話|傳\s*真|服務處|信箱|E-?mail|問政|質詢|提案|網站錯誤回報|回上頁|回上一頁|到上面|網站導覽|相關連結|隱私權|資訊安全|展開|Copy)/i;
 /** 條列編號：阿拉伯數字、中文數字、圓點、破折號。 */
 const BULLET = /^\s*(?:[0-9]{1,2}\s*[.、．)）]|[一二三四五六七八九十]{1,3}\s*[、.．)）]|[•·‧●▪－\-*]\s*)/;
 
@@ -55,6 +68,7 @@ function collectFromHeading(lines: string[]): string[] {
   let inBlock = false;
   let paused = false;   // 位於「學 歷：」子段落內
   for (const line of lines) {
+    if (INFO_HEADING.test(line)) { inBlock = false; continue; }
     if (START.test(line)) { inBlock = true; paused = false; out.length = 0; continue; }
     if (!inBlock && CAREER_INLINE.test(line)) {
       inBlock = true; paused = false; out.length = 0;
@@ -109,6 +123,9 @@ const NEWS_HEADLINE = /^\d{2,3}\s*\/\s*\d{1,2}\s*\/\s*\d{1,2}/;
 /** 去編號與尾標點，濾掉過短、過長、純數字、無中文與新聞標題的行。 */
 function normalise(line: string): string | null {
   const t = line.replace(BULLET, '').replace(/[。，、；;]+$/, '').trim();
+  if (INFO_FIELD.test(t) || PAGE_TOOL.test(t)) return null;
+  // 「洪允典議長」這種「姓名＋職稱」的標題行不是職務
+  if (/^[一-鿿]{2,4}(議長|副議長|議員)$/.test(t)) return null;
   if (t.length < 3 || t.length > 60) return null;
   if (/^[\d\s年月日．.]+$/.test(t)) return null;
   if (!/[一-鿿]/.test(t)) return null;
