@@ -34,4 +34,16 @@ describe('pickLicense', () => {
     expect(pickLicense({})).toEqual({ ok: false, reason: '無授權資訊' });
     expect(pickLicense(undefined)).toEqual({ ok: false, reason: '無授權資訊' });
   });
+  it('Attribution 3.0 / Attribution-ShareAlike → ok（曾被舊 Attribution$ 錨點誤拒）', () => {
+    expect(pickLicense({ LicenseShortName: { value: 'Attribution 3.0' }, Artist: { value: 'A' } })).toMatchObject({ ok: true });
+    expect(pickLicense({ LicenseShortName: { value: 'Attribution-ShareAlike' }, Artist: { value: 'A' } })).toMatchObject({ ok: true });
+  });
+  it('NC／ND 變體一律不收（非自由授權，本站會縮圖並公開發布）', () => {
+    expect(pickLicense({ LicenseShortName: { value: 'CC BY-NC-ND 4.0' } })).toEqual({ ok: false, reason: '授權不符：CC BY-NC-ND 4.0' });
+    expect(pickLicense({ LicenseShortName: { value: 'CC BY-NC-SA 3.0' } })).toEqual({ ok: false, reason: '授權不符：CC BY-NC-SA 3.0' });
+    expect(pickLicense({ LicenseShortName: { value: 'CC BY-ND 2.0' } })).toEqual({ ok: false, reason: '授權不符：CC BY-ND 2.0' });
+  });
+  it('格式不符的授權字串 → 不收', () => {
+    expect(pickLicense({ LicenseShortName: { value: 'PDQ nonsense' } })).toEqual({ ok: false, reason: '授權不符：PDQ nonsense' });
+  });
 });
