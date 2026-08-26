@@ -1,0 +1,900 @@
+[
+  {
+    "name": "一邊一國連線",
+    "wikiTitle": "一邊一國連線",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E4%B8%80%E9%82%8A%E4%B8%80%E5%9C%8B%E9%80%A3%E7%B7%9A"
+  },
+  {
+    "name": "王順昌",
+    "wikiTitle": "王順昌",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E7%8E%8B%E9%A0%86%E6%98%8C"
+  },
+  {
+    "name": "王福入",
+    "wikiTitle": "王福入",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E7%8E%8B%E7%A6%8F%E5%85%A5"
+  },
+  {
+    "name": "正常國家促進會（正國會）",
+    "wikiTitle": "正常國家促進會",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%B8%B8%E5%9C%8B%E5%AE%B6%E4%BF%83%E9%80%B2%E6%9C%83"
+  },
+  {
+    "name": "正義連線",
+    "wikiTitle": "正義連線",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%AD%A3%E7%BE%A9%E9%80%A3%E7%B7%9A"
+  },
+  {
+    "name": "朱立倫",
+    "wikiTitle": "朱立倫",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9C%B1%E7%AB%8B%E5%80%AB",
+    "photo": {
+      "file": "/photos/entities/朱立倫.jpg",
+      "author": "新北市政府",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:Eric_Chu_Chopped_2017.png"
+    }
+  },
+  {
+    "name": "江宜樺",
+    "wikiTitle": "江宜樺",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%B1%9F%E5%AE%9C%E6%A8%BA",
+    "photo": {
+      "file": "/photos/entities/江宜樺.jpg",
+      "author": "行政院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E6%B1%9F%E5%AE%9C%E6%A8%BA%E9%99%A2%E9%95%B7.jpg"
+    }
+  },
+  {
+    "name": "江春男",
+    "wikiTitle": "江春男",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%B1%9F%E6%98%A5%E7%94%B7",
+    "photo": {
+      "file": "/photos/entities/江春男.jpg",
+      "author": "總統府",
+      "license": "CC BY 2.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E6%B1%9F%E6%98%A5%E7%94%B7_20170515.jpg"
+    }
+  },
+  {
+    "name": "佀廣洋",
+    "wikiTitle": "佀廣洋",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E4%BD%80%E5%BB%A3%E6%B4%8B"
+  },
+  {
+    "name": "吳志揚",
+    "wikiTitle": "吳志揚 (政治人物)",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%90%B3%E5%BF%97%E6%8F%9A%20(%E6%94%BF%E6%B2%BB%E4%BA%BA%E7%89%A9)",
+    "photo": {
+      "file": "/photos/entities/吳志揚.jpg",
+      "author": "內政部",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E5%90%B3%E5%BF%97%E6%8F%9A%E7%B8%A3%E9%95%B7.jpg"
+    }
+  },
+  {
+    "name": "吳育仁",
+    "wikiTitle": "吳育仁",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%90%B3%E8%82%B2%E4%BB%81",
+    "photo": {
+      "file": "/photos/entities/吳育仁.jpg",
+      "author": "張永泰",
+      "license": "Public domain",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E5%9C%8B%E6%B0%91%E9%BB%A8%E7%AB%8B%E5%A7%94%E5%90%B3%E8%82%B2%E4%BB%81.jpg"
+    }
+  },
+  {
+    "name": "吳淑瑾",
+    "wikiTitle": "吳淑瑾",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%90%B3%E6%B7%91%E7%91%BE"
+  },
+  {
+    "name": "吳敦義",
+    "wikiTitle": "吳敦義",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%90%B3%E6%95%A6%E7%BE%A9",
+    "photo": {
+      "file": "/photos/entities/吳敦義.jpg",
+      "author": "中華民國總統府(國史館提供)",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:Wu_Den-yih.jpg"
+    }
+  },
+  {
+    "name": "吳進風",
+    "wikiTitle": "吳進風",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%90%B3%E9%80%B2%E9%A2%A8"
+  },
+  {
+    "name": "宋楚瑜",
+    "wikiTitle": "宋楚瑜",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%AE%8B%E6%A5%9A%E7%91%9C",
+    "photo": {
+      "file": "/photos/entities/宋楚瑜.jpg",
+      "author": "賴岳忠",
+      "license": "CC BY-SA 4.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:James_Soong_election_infobox.jpg"
+    }
+  },
+  {
+    "name": "李文忠",
+    "wikiTitle": "李文忠 (臺灣)",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9D%8E%E6%96%87%E5%BF%A0%20(%E8%87%BA%E7%81%A3)",
+    "photo": {
+      "file": "/photos/entities/李文忠.jpg",
+      "author": "SSR2000",
+      "license": "CC BY-SA 3.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:Li_Wen-Chung_in_Nantou.jpg"
+    }
+  },
+  {
+    "name": "李永得",
+    "wikiTitle": "李永得",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9D%8E%E6%B0%B8%E5%BE%97",
+    "photo": {
+      "file": "/photos/entities/李永得.jpg",
+      "author": "行政院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E8%A1%8C%E6%94%BF%E9%99%A2%E6%9D%8E%E6%B0%B8%E5%BE%97%E6%94%BF%E5%8B%99%E5%A7%94%E5%93%A1%E8%82%96%E5%83%8F.jpg"
+    }
+  },
+  {
+    "name": "李佳芬",
+    "distinct": "韓國瑜之妻",
+    "wikiTitle": "李佳芬",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9D%8E%E4%BD%B3%E8%8A%AC",
+    "photo": {
+      "file": "/photos/entities/李佳芬-韓國瑜之妻.jpg",
+      "author": "高雄市政府",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:20181231%E6%9D%8E%E4%BD%B3%E8%8A%AC.jpg"
+    }
+  },
+  {
+    "name": "李傑",
+    "distinct": "海軍上將、前國防部長",
+    "wikiTitle": "李傑 (1940年)",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9D%8E%E5%82%91%20(1940%E5%B9%B4)",
+    "photo": {
+      "file": "/photos/entities/李傑-海軍上將、前國防.jpg",
+      "author": "Navy Command, National of National Defense (navy.mnd.gov.tw)",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:201611221831_452561_Admiral_(ROCN)_Lee_Jye_%E6%B5%B7%E8%BB%8D%E7%B8%BD%E5%8F%B8%E4%BB%A4%E6%9D%8E%E5%82%91%E4%B8%8A%E5%B0%87.png"
+    }
+  },
+  {
+    "name": "卓榮泰",
+    "wikiTitle": "卓榮泰",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%8D%93%E6%A6%AE%E6%B3%B0",
+    "photo": {
+      "file": "/photos/entities/卓榮泰.jpg",
+      "author": "外交部",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E5%8D%93%E6%A6%AE%E6%B3%B0%E9%99%A2%E9%95%B7.jpg"
+    }
+  },
+  {
+    "name": "周清玉",
+    "wikiTitle": "周清玉 (1944年)",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%91%A8%E6%B8%85%E7%8E%89%20(1944%E5%B9%B4)",
+    "photo": {
+      "file": "/photos/entities/周清玉.jpg",
+      "author": "總統府",
+      "license": "CC BY 2.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:05.05_%E7%B8%BD%E7%B5%B1%E5%87%BA%E5%B8%AD%E3%80%8C%E5%8F%B0%E8%AA%9E%E6%96%87%E5%89%B5%E6%84%8F%E5%9C%92%E5%8D%80%E6%8F%AD%E7%89%8C%E6%9A%A8%E5%95%9F%E7%94%A8%E7%B3%BB%E5%88%97%E6%B4%BB%E5%8B%95%E3%80%8D_(27075224267)_(cropped).jpg"
+    }
+  },
+  {
+    "name": "林水木",
+    "wikiTitle": "林水木",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9E%97%E6%B0%B4%E6%9C%A8"
+  },
+  {
+    "name": "林佳龍",
+    "wikiTitle": "林佳龍",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9E%97%E4%BD%B3%E9%BE%8D",
+    "photo": {
+      "file": "/photos/entities/林佳龍.jpg",
+      "author": "外交部",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E6%9E%97%E4%BD%B3%E9%BE%8D%E9%83%A8%E9%95%B7.jpg"
+    }
+  },
+  {
+    "name": "林昶佐",
+    "wikiTitle": "林昶佐",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9E%97%E6%98%B6%E4%BD%90",
+    "photo": {
+      "file": "/photos/entities/林昶佐.jpg",
+      "author": "駐芬蘭台北代表處",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:Amb_Freddy_Lim_portrait.jpg"
+    }
+  },
+  {
+    "name": "林飛帆",
+    "wikiTitle": "林飛帆",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9E%97%E9%A3%9B%E5%B8%86",
+    "photo": {
+      "file": "/photos/entities/林飛帆.jpg",
+      "author": "國安會（總統府）",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E6%9E%97%E9%A3%9B%E5%B8%86%E5%89%AF%E7%A7%98%E6%9B%B8%E9%95%B7.jpg"
+    }
+  },
+  {
+    "name": "邱名璋",
+    "wikiTitle": "邱名璋",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%82%B1%E5%90%8D%E7%92%8B",
+    "photo": {
+      "file": "/photos/entities/邱名璋.jpg",
+      "author": "Zero2232",
+      "license": "CC BY-SA 4.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E9%82%B1%E5%90%8D%E7%92%8B%E5%B1%8F%E6%9D%B1%E5%B8%82%E9%95%B7%E5%80%99%E9%81%B8%E4%BA%BA.jpg"
+    }
+  },
+  {
+    "name": "邱鏡淳",
+    "wikiTitle": "邱鏡淳",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%82%B1%E9%8F%A1%E6%B7%B3",
+    "photo": {
+      "file": "/photos/entities/邱鏡淳.jpg",
+      "author": "立法院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E9%82%B1%E5%A7%94%E5%93%A1%E9%8F%A1%E6%B7%B3_(%E7%AC%AC%E4%B8%83%E5%B1%86).jpg"
+    }
+  },
+  {
+    "name": "侯冠群",
+    "wikiTitle": "侯冠群",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E4%BE%AF%E5%86%A0%E7%BE%A4"
+  },
+  {
+    "name": "宣明智",
+    "wikiTitle": "宣明智",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%AE%A3%E6%98%8E%E6%99%BA"
+  },
+  {
+    "name": "施明德",
+    "wikiTitle": "施明德",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%96%BD%E6%98%8E%E5%BE%B7",
+    "photo": {
+      "file": "/photos/entities/施明德.jpg",
+      "author": "Voice of America",
+      "license": "Public domain",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:Shih-Ming-De-Croppedv3.png"
+    }
+  },
+  {
+    "name": "柯文哲",
+    "wikiTitle": "柯文哲",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9F%AF%E6%96%87%E5%93%B2",
+    "photo": {
+      "file": "/photos/entities/柯文哲.jpg",
+      "author": "苗栗縣政府行政處新聞科",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E6%B0%91%E7%9C%BE%E9%BB%A8%E5%89%B5%E9%BB%A8%E4%B8%BB%E5%B8%AD%E6%9F%AF%E6%96%87%E5%93%B22026%E5%B9%B4%E7%85%A7%E7%89%87.jpg"
+    }
+  },
+  {
+    "name": "柯文福",
+    "wikiTitle": "柯文福",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9F%AF%E6%96%87%E7%A6%8F"
+  },
+  {
+    "name": "洪秀柱",
+    "wikiTitle": "洪秀柱",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%B4%AA%E7%A7%80%E6%9F%B1",
+    "photo": {
+      "file": "/photos/entities/洪秀柱.jpg",
+      "author": "立法院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E6%B4%AA%E7%A7%80%E6%9F%B1%E5%89%AF%E9%99%A2%E9%95%B7.jpg"
+    }
+  },
+  {
+    "name": "胡志強",
+    "wikiTitle": "胡志強 (1948年)",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%83%A1%E5%BF%97%E5%BC%B7%20(1948%E5%B9%B4)",
+    "photo": {
+      "file": "/photos/entities/胡志強.jpg",
+      "author": "內政部",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E8%83%A1%E5%BF%97%E5%BC%B7%E5%B8%82%E9%95%B7.jpg"
+    }
+  },
+  {
+    "name": "范振宗",
+    "wikiTitle": "范振宗",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%8C%83%E6%8C%AF%E5%AE%97",
+    "photo": {
+      "file": "/photos/entities/范振宗.jpg",
+      "author": "新竹縣政府",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E8%8C%83%E6%8C%AF%E5%AE%97%E5%89%8D%E7%B8%A3%E9%95%B7.jpg"
+    }
+  },
+  {
+    "name": "徐少萍",
+    "wikiTitle": "徐少萍",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%BE%90%E5%B0%91%E8%90%8D",
+    "photo": {
+      "file": "/photos/entities/徐少萍.jpg",
+      "author": "立法院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E5%BE%90%E5%A7%94%E5%93%A1%E5%B0%91%E8%90%8D(%E7%AC%AC%E5%85%AB%E5%B1%86).jpg"
+    }
+  },
+  {
+    "name": "徐耀昌",
+    "wikiTitle": "徐耀昌",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%BE%90%E8%80%80%E6%98%8C",
+    "photo": {
+      "file": "/photos/entities/徐耀昌.jpg",
+      "author": "立法院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E5%BE%90%E5%A7%94%E5%93%A1%E8%80%80%E6%98%8C_(%E7%AC%AC%E4%B8%83%E5%B1%86).jpg"
+    }
+  },
+  {
+    "name": "翁金珠",
+    "wikiTitle": "翁金珠",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E7%BF%81%E9%87%91%E7%8F%A0",
+    "photo": {
+      "file": "/photos/entities/翁金珠.jpg",
+      "author": "立法院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E7%BF%81%E9%87%91%E7%8F%A0%E5%A7%94%E5%93%A1.jpg"
+    }
+  },
+  {
+    "name": "馬英九",
+    "wikiTitle": "馬英九",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%A6%AC%E8%8B%B1%E4%B9%9D",
+    "photo": {
+      "file": "/photos/entities/馬英九.jpg",
+      "author": "Office of the President, Republic of China",
+      "license": "CC BY-SA 3.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E4%B8%AD%E8%8F%AF%E6%B0%91%E5%9C%8B%E7%AC%AC12%E3%80%8113%E4%BB%BB%E7%B8%BD%E7%B5%B1%E9%A6%AC%E8%8B%B1%E4%B9%9D%E5%85%88%E7%94%9F%E5%AE%98%E6%96%B9%E8%82%96%E5%83%8F%E7%85%A7.jpg"
+    }
+  },
+  {
+    "name": "馬榮吉",
+    "wikiTitle": "馬榮吉",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%A6%AC%E6%A6%AE%E5%90%89"
+  },
+  {
+    "name": "張永成",
+    "wikiTitle": "張永成 (台灣)",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%BC%B5%E6%B0%B8%E6%88%90%20(%E5%8F%B0%E7%81%A3)"
+  },
+  {
+    "name": "張榮味",
+    "wikiTitle": "張榮味",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%BC%B5%E6%A6%AE%E5%91%B3",
+    "photo": {
+      "file": "/photos/entities/張榮味.jpg",
+      "author": "中央選舉委員會",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%B1%86%E9%9B%B2%E6%9E%97%E7%B8%A3%E9%95%B7%E9%81%B8%E8%88%89%E5%80%99%E9%81%B8%E4%BA%BA%E5%BC%B5%E6%A6%AE%E5%91%B3.jpg"
+    }
+  },
+  {
+    "name": "張慶忠",
+    "wikiTitle": "張慶忠",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%BC%B5%E6%85%B6%E5%BF%A0",
+    "photo": {
+      "file": "/photos/entities/張慶忠.jpg",
+      "author": "立法院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E4%B8%AD%E8%8F%AF%E6%B0%91%E5%9C%8B%E7%AB%8B%E6%B3%95%E5%A7%94%E5%93%A1%E5%BC%B5%E6%85%B6%E5%BF%A0.jpg"
+    }
+  },
+  {
+    "name": "張鎔麒",
+    "wikiTitle": "張鎔麒",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%BC%B5%E9%8E%94%E9%BA%92"
+  },
+  {
+    "name": "曹啟鴻",
+    "wikiTitle": "曹啟鴻",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9B%B9%E5%95%9F%E9%B4%BB",
+    "photo": {
+      "file": "/photos/entities/曹啟鴻.jpg",
+      "author": "國會無雙",
+      "license": "CC BY-SA 4.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E6%96%B0%E4%BB%BB%E8%BE%B2%E5%A7%94%E6%9C%83%E4%B8%BB%E5%A7%94%E6%9B%B9%E5%95%9F%E9%B4%BB_(cropped).jpg"
+    }
+  },
+  {
+    "name": "曹興誠",
+    "wikiTitle": "曹興誠",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%9B%B9%E8%88%88%E8%AA%A0",
+    "photo": {
+      "file": "/photos/entities/曹興誠.jpg",
+      "author": "總統府",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E6%9B%B9%E8%88%88%E8%AA%A0%E9%A1%A7%E5%95%8F.jpg"
+    }
+  },
+  {
+    "name": "梁文傑",
+    "wikiTitle": "梁文傑",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%A2%81%E6%96%87%E5%82%91",
+    "photo": {
+      "file": "/photos/entities/梁文傑.jpg",
+      "author": "大陸委員會",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E6%A2%81%E6%96%87%E5%82%91%E5%89%AF%E4%B8%BB%E4%BB%BB%E5%A7%94%E5%93%A1.jpg"
+    }
+  },
+  {
+    "name": "連勝文",
+    "wikiTitle": "連勝文",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%80%A3%E5%8B%9D%E6%96%87",
+    "photo": {
+      "file": "/photos/entities/連勝文.jpg",
+      "author": "淳綵攝影",
+      "license": "CC BY-SA 2.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:Sean_Lien_at_CTS_TV_Production_Building_main_entrance_(14856206412)_(cropped).jpg"
+    }
+  },
+  {
+    "name": "郭台銘",
+    "wikiTitle": "郭台銘",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%83%AD%E5%8F%B0%E9%8A%98",
+    "photo": {
+      "file": "/photos/entities/郭台銘.jpg",
+      "author": "江博云",
+      "license": "CC BY-SA 4.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:TerryGou_(cropped).jpg"
+    }
+  },
+  {
+    "name": "郭素春",
+    "wikiTitle": "郭素春",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%83%AD%E7%B4%A0%E6%98%A5",
+    "photo": {
+      "file": "/photos/entities/郭素春.jpg",
+      "author": "立法院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E9%83%AD%E7%B4%A0%E6%98%A5%E5%A7%94%E5%93%A1.jpg"
+    }
+  },
+  {
+    "name": "陳水扁",
+    "wikiTitle": "陳水扁",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%99%B3%E6%B0%B4%E6%89%81",
+    "photo": {
+      "file": "/photos/entities/陳水扁.jpg",
+      "author": "總統府",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E9%99%B3%E6%B0%B4%E6%89%81%E7%B8%BD%E7%B5%B1_1.jpg"
+    }
+  },
+  {
+    "name": "陳明文",
+    "wikiTitle": "陳明文",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%99%B3%E6%98%8E%E6%96%87",
+    "photo": {
+      "file": "/photos/entities/陳明文.jpg",
+      "author": "中華民國立法院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E9%99%B3%E6%98%8E%E6%96%87_(%E7%AB%8B%E6%B3%95%E5%A7%94%E5%93%A1).jpg"
+    }
+  },
+  {
+    "name": "陳長文",
+    "wikiTitle": "陳長文",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%99%B3%E9%95%B7%E6%96%87"
+  },
+  {
+    "name": "陳建年",
+    "wikiTitle": "陳建年 (政治人物)",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%99%B3%E5%BB%BA%E5%B9%B4%20(%E6%94%BF%E6%B2%BB%E4%BA%BA%E7%89%A9)",
+    "photo": {
+      "file": "/photos/entities/陳建年.jpg",
+      "author": "中央選舉委員會",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E7%AC%AC%E5%8D%81%E4%B8%89%E5%B1%86%E5%8F%B0%E6%9D%B1%E7%B8%A3%E7%B8%A3%E9%95%B7%E5%80%99%E9%81%B8%E4%BA%BA%E9%99%B3%E5%BB%BA%E5%B9%B4.jpg"
+    }
+  },
+  {
+    "name": "陳哲男",
+    "wikiTitle": "陳哲男",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%99%B3%E5%93%B2%E7%94%B7"
+  },
+  {
+    "name": "陳雪懷",
+    "wikiTitle": "陳雪懷",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%99%B3%E9%9B%AA%E6%87%B7"
+  },
+  {
+    "name": "陳菊",
+    "wikiTitle": "陳菊",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%99%B3%E8%8F%8A",
+    "photo": {
+      "file": "/photos/entities/陳菊.jpg",
+      "author": "監察院國家人權委員會",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E4%B8%BB%E4%BB%BB%E5%A7%94%E5%93%A1%E9%99%B3%E8%8F%8A_(cropped).jpg"
+    }
+  },
+  {
+    "name": "陳進丁",
+    "wikiTitle": "陳進丁",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%99%B3%E9%80%B2%E4%B8%81",
+    "photo": {
+      "file": "/photos/entities/陳進丁.jpg",
+      "author": "Foxy1219",
+      "license": "CC BY-SA 3.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:Chen_Chin_Tin.JPG"
+    }
+  },
+  {
+    "name": "陳萬得",
+    "wikiTitle": "陳萬得",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%99%B3%E8%90%AC%E5%BE%97"
+  },
+  {
+    "name": "陳歐珀",
+    "wikiTitle": "陳歐珀",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%99%B3%E6%AD%90%E7%8F%80",
+    "photo": {
+      "file": "/photos/entities/陳歐珀.jpg",
+      "author": "立法院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E9%99%B3%E6%AD%90%E7%8F%80%E5%A7%94%E5%93%A1.jpg"
+    }
+  },
+  {
+    "name": "湧言會",
+    "wikiTitle": "湧言文化基金會",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%B9%A7%E8%A8%80%E6%96%87%E5%8C%96%E5%9F%BA%E9%87%91%E6%9C%83"
+  },
+  {
+    "name": "黃永欽",
+    "wikiTitle": "黃永欽",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%BB%83%E6%B0%B8%E6%AC%BD"
+  },
+  {
+    "name": "黃昭順",
+    "wikiTitle": "黃昭順",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%BB%83%E6%98%AD%E9%A0%86",
+    "photo": {
+      "file": "/photos/entities/黃昭順.jpg",
+      "author": "立法院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:Huang_Chao-shun_Profile.jpg"
+    }
+  },
+  {
+    "name": "黃重諺",
+    "wikiTitle": "黃重諺",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%BB%83%E9%87%8D%E8%AB%BA",
+    "photo": {
+      "file": "/photos/entities/黃重諺.jpg",
+      "author": "總統府",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E7%B8%BD%E7%B5%B1%E5%BA%9C%E5%89%AF%E7%A7%98%E6%9B%B8%E9%95%B7%E9%BB%83%E9%87%8D%E8%AB%BA%E8%82%96%E5%83%8F.jpg"
+    }
+  },
+  {
+    "name": "黃尊秋",
+    "wikiTitle": "黃尊秋",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%BB%83%E5%B0%8A%E7%A7%8B",
+    "photo": {
+      "file": "/photos/entities/黃尊秋.jpg",
+      "author": "臺灣澎湖地方檢察署",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E9%BB%83%E5%B0%8A%E7%A7%8B.png"
+    }
+  },
+  {
+    "name": "黃智賢",
+    "wikiTitle": "黃智賢 (1964年)",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%BB%83%E6%99%BA%E8%B3%A2%20(1964%E5%B9%B4)",
+    "photo": {
+      "file": "/photos/entities/黃智賢.jpg",
+      "author": "中国新闻网",
+      "license": "CC BY 3.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:Huang_Chih-hsien.jpg"
+    }
+  },
+  {
+    "name": "黃曙光",
+    "wikiTitle": "黃曙光",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%BB%83%E6%9B%99%E5%85%89",
+    "photo": {
+      "file": "/photos/entities/黃曙光.jpg",
+      "author": "Navy Command, Ministry of National Defense (navy.mnd.gov.tw)",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E5%8F%B8%E4%BB%A4%E6%B5%B7%E8%BB%8D%E4%B8%8A%E5%B0%87%E9%BB%83%E6%9B%99%E5%85%89.png"
+    }
+  },
+  {
+    "name": "黃顯洲",
+    "wikiTitle": "黃顯洲",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%BB%83%E9%A1%AF%E6%B4%B2"
+  },
+  {
+    "name": "新潮流系",
+    "wikiTitle": "新潮流系",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%96%B0%E6%BD%AE%E6%B5%81%E7%B3%BB"
+  },
+  {
+    "name": "詹冰",
+    "wikiTitle": "詹冰",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%A9%B9%E5%86%B0"
+  },
+  {
+    "name": "廖正井",
+    "wikiTitle": "廖正井",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%BB%96%E6%AD%A3%E4%BA%95",
+    "photo": {
+      "file": "/photos/entities/廖正井.jpg",
+      "author": "Dyson605",
+      "license": "CC BY-SA 4.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E7%AB%8B%E6%B3%95%E5%A7%94%E5%93%A1%E5%BB%96%E6%AD%A3%E4%BA%95.jpg"
+    }
+  },
+  {
+    "name": "廖正良",
+    "wikiTitle": "廖正良 (台湾)",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%BB%96%E6%AD%A3%E8%89%AF%20(%E5%8F%B0%E6%B9%BE)"
+  },
+  {
+    "name": "廖述嘉",
+    "wikiTitle": "廖述嘉",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%BB%96%E8%BF%B0%E5%98%89"
+  },
+  {
+    "name": "福利國連線",
+    "wikiTitle": "福利國連線",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E7%A6%8F%E5%88%A9%E5%9C%8B%E9%80%A3%E7%B7%9A"
+  },
+  {
+    "name": "劉彥澧",
+    "wikiTitle": "劉彥澧",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%8A%89%E5%BD%A5%E6%BE%A7",
+    "photo": {
+      "file": "/photos/entities/劉彥澧.jpg",
+      "author": "臺中市政府",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E8%87%BA%E4%B8%AD%E5%B8%82%E6%94%BF%E5%BA%9C%E7%A0%94%E8%80%83%E6%9C%83%E5%8A%89%E5%BD%A5%E6%BE%A7%E4%B8%BB%E4%BB%BB%E5%A7%94%E5%93%A1.jpg"
+    }
+  },
+  {
+    "name": "劉盛良",
+    "wikiTitle": "劉盛良",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%8A%89%E7%9B%9B%E8%89%AF"
+  },
+  {
+    "name": "劉增應",
+    "wikiTitle": "劉增應",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E5%8A%89%E5%A2%9E%E6%87%89",
+    "photo": {
+      "file": "/photos/entities/劉增應.jpg",
+      "author": "嘉義市政府",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E5%8A%89%E5%A2%9E%E6%87%89_Liu_Cheng-ying_(cropped).jpg"
+    }
+  },
+  {
+    "name": "潘孟安",
+    "wikiTitle": "潘孟安",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E6%BD%98%E5%AD%9F%E5%AE%89",
+    "photo": {
+      "file": "/photos/entities/潘孟安.jpg",
+      "author": "總統府",
+      "license": "CC BY 4.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E6%BD%98%E5%AD%9F%E5%AE%89%E7%A7%98%E6%9B%B8%E9%95%B7_2.jpg"
+    }
+  },
+  {
+    "name": "蔡英文",
+    "wikiTitle": "蔡英文",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%94%A1%E8%8B%B1%E6%96%87",
+    "photo": {
+      "file": "/photos/entities/蔡英文.jpg",
+      "author": "中華民國總統府",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E8%94%A1%E8%8B%B1%E6%96%87%E5%AE%98%E6%96%B9%E5%85%83%E9%A6%96%E8%82%96%E5%83%8F%E7%85%A7.png"
+    }
+  },
+  {
+    "name": "蔡啟芳",
+    "wikiTitle": "蔡啟芳",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%94%A1%E5%95%9F%E8%8A%B3"
+  },
+  {
+    "name": "蔡錦隆",
+    "wikiTitle": "蔡錦隆",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%94%A1%E9%8C%A6%E9%9A%86",
+    "photo": {
+      "file": "/photos/entities/蔡錦隆.jpg",
+      "author": "勤岸",
+      "license": "CC BY-SA 3.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E8%94%A1%E9%8C%A6%E9%9A%86.JPG"
+    }
+  },
+  {
+    "name": "蔣孝嚴",
+    "wikiTitle": "蔣孝嚴",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%94%A3%E5%AD%9D%E5%9A%B4",
+    "photo": {
+      "file": "/photos/entities/蔣孝嚴.jpg",
+      "author": "立法院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E7%AB%8B%E6%B3%95%E5%A7%94%E5%93%A1%E8%94%A3%E5%AD%9D%E5%9A%B4.jpg"
+    }
+  },
+  {
+    "name": "蔣經國",
+    "wikiTitle": "蔣經國",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%94%A3%E7%B6%93%E5%9C%8B",
+    "photo": {
+      "file": "/photos/entities/蔣經國.jpg",
+      "author": "總統府",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E8%94%A3%E7%B6%93%E5%9C%8B%E7%B8%BD%E7%B5%B1_1.jpg"
+    }
+  },
+  {
+    "name": "鄭汝芬",
+    "wikiTitle": "鄭汝芬",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%84%AD%E6%B1%9D%E8%8A%AC",
+    "photo": {
+      "file": "/photos/entities/鄭汝芬.jpg",
+      "author": "立法院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E9%84%AD%E6%B1%9D%E8%8A%AC_Cheng%2C_Ru-Fen.jpg"
+    }
+  },
+  {
+    "name": "魯鳳三",
+    "wikiTitle": "魯鳳三",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%AD%AF%E9%B3%B3%E4%B8%89"
+  },
+  {
+    "name": "盧秀芳",
+    "wikiTitle": "盧秀芳",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E7%9B%A7%E7%A7%80%E8%8A%B3"
+  },
+  {
+    "name": "賴清德",
+    "wikiTitle": "賴清德",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%B3%B4%E6%B8%85%E5%BE%B7",
+    "photo": {
+      "file": "/photos/entities/賴清德.jpg",
+      "author": "總統府",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E8%B3%B4%E6%B8%85%E5%BE%B7%E7%B8%BD%E7%B5%B1_1.jpg"
+    }
+  },
+  {
+    "name": "謝言信",
+    "wikiTitle": "謝言信",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%AC%9D%E8%A8%80%E4%BF%A1",
+    "photo": {
+      "file": "/photos/entities/謝言信.jpg",
+      "author": "立法院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E8%AC%9D%E8%A8%80%E4%BF%A1%E5%A7%94%E5%93%A1.jpg"
+    }
+  },
+  {
+    "name": "謝長廷",
+    "wikiTitle": "謝長廷",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%AC%9D%E9%95%B7%E5%BB%B7",
+    "photo": {
+      "file": "/photos/entities/謝長廷.jpg",
+      "author": "台北駐日経済文化代表処",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E8%AC%9D%E9%95%B7%E5%BB%B7%E4%BB%A3%E8%A1%A8.jpg"
+    }
+  },
+  {
+    "name": "謝修平",
+    "wikiTitle": "謝修平",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%AC%9D%E4%BF%AE%E5%B9%B3"
+  },
+  {
+    "name": "謝清雲",
+    "wikiTitle": "謝清雲",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%AC%9D%E6%B8%85%E9%9B%B2"
+  },
+  {
+    "name": "顏清標",
+    "wikiTitle": "顏清標",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%A1%8F%E6%B8%85%E6%A8%99",
+    "photo": {
+      "file": "/photos/entities/顏清標.jpg",
+      "author": "臺中市政府",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:Yen_Ching-piao_20230422.jpg"
+    }
+  },
+  {
+    "name": "羅文嘉",
+    "wikiTitle": "羅文嘉",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E7%BE%85%E6%96%87%E5%98%89",
+    "photo": {
+      "file": "/photos/entities/羅文嘉.jpg",
+      "author": "Frankchen96",
+      "license": "CC BY-SA 3.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:Wenjiaro2012.jpg"
+    }
+  },
+  {
+    "name": "羅福助",
+    "wikiTitle": "羅福助",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E7%BE%85%E7%A6%8F%E5%8A%A9",
+    "photo": {
+      "file": "/photos/entities/羅福助.jpg",
+      "author": "立法院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E7%BE%85%E7%A6%8F%E5%8A%A9%E5%A7%94%E5%93%A1.jpg"
+    }
+  },
+  {
+    "name": "蘇主榮",
+    "wikiTitle": "蘇主榮",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%98%87%E4%B8%BB%E6%A6%AE"
+  },
+  {
+    "name": "蘇治芬",
+    "wikiTitle": "蘇治芬",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%98%87%E6%B2%BB%E8%8A%AC",
+    "photo": {
+      "file": "/photos/entities/蘇治芬.jpg",
+      "author": "中華民國立法院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E7%AB%8B%E6%B3%95%E5%A7%94%E5%93%A1%E8%98%87%E6%B2%BB%E8%8A%AC.jpg"
+    }
+  },
+  {
+    "name": "蘇貞昌",
+    "wikiTitle": "蘇貞昌",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%98%87%E8%B2%9E%E6%98%8C",
+    "photo": {
+      "file": "/photos/entities/蘇貞昌.jpg",
+      "author": "中華民國行政院",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E8%A1%8C%E6%94%BF%E9%99%A2%E9%99%A2%E9%95%B7%E8%98%87%E8%B2%9E%E6%98%8C%E8%82%96%E5%83%8F.jpg"
+    }
+  },
+  {
+    "name": "蘇紫雲",
+    "wikiTitle": "蘇紫雲",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%98%87%E7%B4%AB%E9%9B%B2",
+    "photo": {
+      "file": "/photos/entities/蘇紫雲.jpg",
+      "author": "內政部",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E8%98%87%E7%B4%AB%E9%9B%B2%E6%89%80%E9%95%B7.jpg"
+    }
+  },
+  {
+    "name": "蘇嘉全",
+    "wikiTitle": "蘇嘉全",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E8%98%87%E5%98%89%E5%85%A8",
+    "photo": {
+      "file": "/photos/entities/蘇嘉全.jpg",
+      "author": "臺灣日本關係協會",
+      "license": "Attribution",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:%E8%87%BA%E7%81%A3%E6%97%A5%E6%9C%AC%E9%97%9C%E4%BF%82%E5%8D%94%E6%9C%83%E6%9C%83%E9%95%B7%E8%98%87%E5%98%89%E5%85%A8.jpg"
+    }
+  },
+  {
+    "name": "饒穎奇",
+    "wikiTitle": "饒穎奇",
+    "wikipediaUrl": "https://zh.wikipedia.org/wiki/%E9%A5%92%E7%A9%8E%E5%A5%87",
+    "photo": {
+      "file": "/photos/entities/饒穎奇.jpg",
+      "author": "圍棋一級",
+      "license": "CC BY-SA 3.0",
+      "commonsUrl": "https://commons.wikimedia.org/wiki/File:Yao_Eng-chi_in_CUHK.jpg"
+    }
+  }
+]

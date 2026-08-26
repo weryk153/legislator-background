@@ -7,6 +7,8 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { loadEnv } from './lib/loadEnv';
+import { loadEntitiesWiki, indexEntitiesWiki, entityWikiKey } from './lib/entitiesWiki';
+import { resolveSubject, resolveCounterpart, officialIdIn, type Roster } from './lib/relEndpoints';
 
 loadEnv();
 const here = dirname(fileURLToPath(import.meta.url));
@@ -17,6 +19,10 @@ type Curated = {
   // 謝龍介之妻與韓國瑜之妻）。由人查證後手寫，不是從 counterpartRole 字串推論。
   // 一旦標記，此列即：(1) 拆開 entity 去重快取鍵；(2) 絕不走名冊姓名比對（見下方
   // counterpart 端點）；(3) 不再列入「疑為同一人重複記錄」的覆核警示。
+  // 2 度關係：subject 為既有 entity（如柯文哲）。省略＝official。subjectDistinct 對應建立該 entity
+  // 那列的 counterpartDistinct，一字不差。
+  subjectKind?: 'official' | 'entity';
+  subjectDistinct?: string;
   counterpartDistinct?: string;
   counterpartKind: 'official' | 'entity';
   counterpartEntityType?: string;
@@ -34,6 +40,12 @@ async function main() {
 
   const rows = JSON.parse(readFileSync(join(here, 'relationships-curated.json'), 'utf8')) as Curated[];
 
+  // 對照表驗證必須搶在下面的「冪等清除」之前執行：loadEntitiesWiki() 對格式錯誤會
+  // throw（見 lib/entitiesWiki.ts），若驗證晚於刪除才跑，一筆手改的 typo 就會先把
+  // 資料庫的既有關係整批刪光，腳本才中止——資料庫等於已被清空又匯入失敗。
+  const wikiIndex = indexEntitiesWiki(loadEntitiesWiki());
+  const wikiUsed = new Set<string>();
+
   // 名冊：name → official id。同名（多筆）者記錄為「不可唯一匹配」，counterpart 端遇到就降級為 entity。
   const officials: { id: string; name: string; office_type: string }[] = [];
   for (let from = 0; ; from += 1000) {
@@ -42,13 +54,8 @@ async function main() {
     officials.push(...(data ?? []) as typeof officials);
     if ((data?.length ?? 0) < 1000) break;
   }
-  const byName = new Map<string, string[]>();
-  for (const o of officials) (byName.get(o.name) ?? byName.set(o.name, []).get(o.name)!).push(o.id);
-  const NATIONAL = new Set(['legislator', 'mayor_magistrate']);
-  const officialId = (name: string, restrict?: boolean): string | null => {
-    const pool = officials.filter((o) => o.name === name && (!restrict || NATIONAL.has(o.office_type)));
-    return pool.length === 1 ? pool[0].id : null; // 僅唯一匹配才連，避免同名錯掛
-  };
+  const roster: Roster = officials;
+  const officialId = (name: string, restrict?: boolean) => officialIdIn(roster, name, restrict);
 
   // 冪等清除：刪掉先前由本匯入產生的關係（保留判決 court 來源的種子關係）。
   // 注意：sources 表有上萬筆（官員生涯/判決/公報來源），不可用 .select('id').in('type',[...])
@@ -78,12 +85,22 @@ async function main() {
   // 反而摧毀關係圖存在的意義。同名不同人是罕見例外（如李佳芬同時是謝龍介之妻與
   // 韓國瑜之妻），必須由人查證後在 curated 資料上手寫 counterpartDistinct 標記
   // 才能生效——身份判斷只能交給人，不能靠字串比對推論。
+  // 外部人物 ↔ 維基條目／照片 對照（版控檔案，wikiIndex／wikiUsed 已在檔案讀取後、
+  // 清除關係前宣告，見上方）。entity 每次重匯都重建，照片與條目 URL 只能在這裡套上；
+  // 沒有對照的 entity 兩欄維持 null。
+
   const entityCache = new Map<string, string>();
   async function ensureEntity(name: string, etype: string, desc: string, distinct?: string): Promise<string> {
-    const cacheKey = distinct ? `${name}::${distinct}` : name;
+    const cacheKey = entityWikiKey(name, distinct);
     if (entityCache.has(cacheKey)) return entityCache.get(cacheKey)!;
     const subtype = ENTITY_TYPES.has(etype) ? etype : 'other';
-    const { data, error } = await supabase.from('entities').insert({ name, entity_type: subtype, description: desc }).select('id').single();
+    const wiki = wikiIndex.get(cacheKey);
+    if (wiki) wikiUsed.add(cacheKey);
+    const { data, error } = await supabase.from('entities').insert({
+      name, entity_type: subtype, description: desc,
+      wikipedia_url: wiki?.wikipediaUrl ?? null,
+      photo_url: wiki?.photo?.file ?? null,
+    }).select('id').single();
     if (error) throw new Error(`entity insert failed (${name}): ${error.message}`);
     entityCache.set(cacheKey, data.id);
     return data.id;
@@ -92,40 +109,34 @@ async function main() {
   let inserted = 0, skipped = 0;
   const skips: string[] = [];
   const officialFellThrough: string[] = [];
-  for (const r of rows) {
-    const subjId = officialId(r.subject, true);
-    if (!subjId) { skipped++; skips.push(`subject 未匹配: ${r.subject}`); continue; }
+  async function importRow(r: Curated): Promise<void> {
+    const subj = resolveSubject(r, roster, entityCache);
+    if ('skip' in subj) { skipped++; skips.push(subj.skip); return; }
 
-    // counterpart 端點。
-    // 帶 counterpartDistinct 的列一律不走名冊姓名比對，強制建 entity：這個欄位的意思是
-    // 「已由人查證，此人與名冊中的同名者是不同人」。若仍讓 officialId() 依姓名連過去，
-    // 這個人工判斷就形同不存在——今天不出事只因名冊剛好沒有同名的公職（例如陳永康的
-    // 老長官李傑），哪天 roster:record 收進一位同名議員，這筆關係就會靜默改連到別人身上。
-    // 姓名單獨判定正是「常見名寧缺勿錯」原則要防止的錯誤。
+    // 端點解析規則見 ./lib/relEndpoints.ts
     let toType: 'official' | 'entity', toId: string;
-    const asOfficial = r.counterpartKind === 'official' && !r.counterpartDistinct
-      ? officialId(r.counterpartName) : null;
-    if (asOfficial) { toType = 'official'; toId = asOfficial; }
+    const cp = resolveCounterpart(r, roster);
+    if (cp.type === 'official') { toType = 'official'; toId = cp.id; }
     else {
-      // counterpartKind 標為 official 卻沒對到名冊（多為非本站收錄的中央層級人物，
-      // 如柯文哲、賴清德），會靜默退成 entity。這條路徑以往完全看不見，故記下來報告。
-      if (r.counterpartKind === 'official' && !r.counterpartDistinct) {
-        officialFellThrough.push(`${r.counterpartName}（${r.subject} 的 ${r.relationType}）`);
-      }
+      if (cp.fellThrough) officialFellThrough.push(`${r.counterpartName}（${r.subject} 的 ${r.relationType}）`);
       toType = 'entity';
       toId = await ensureEntity(r.counterpartName, r.counterpartEntityType ?? 'other', r.counterpartRole || r.note, r.counterpartDistinct);
     }
 
     // 方向：parent_child 為有向（from=父母）。其餘無向。
-    let fromType: 'official' | 'entity' = 'official', fromId = subjId;
+    let fromType = subj.type, fromId = subj.id;
     let directed = false;
     if (r.relationType === 'parent_child') {
       directed = true;
       const subjectIsParent = r.parentName && r.parentName === r.subject;
       if (!subjectIsParent) {
         // counterpart 是父母 → 反向（from=counterpart, to=subject）
-        [fromType, fromId, toType, toId] = [toType, toId, 'official', subjId] as [typeof fromType, string, typeof toType, string];
+        [fromType, fromId, toType, toId] = [toType, toId, subj.type, subj.id] as [typeof fromType, string, typeof toType, string];
       }
+    }
+
+    if (fromType === toType && fromId === toId) {
+      skipped++; skips.push(`自連略過: ${r.subject}-${r.counterpartName}（${r.relationType}）`); return;
     }
 
     const { data: src, error: se } = await supabase.from('sources')
@@ -137,9 +148,16 @@ async function main() {
       from_type: fromType, from_id: fromId, to_type: toType, to_id: toId,
       relation_type: r.relationType, directed, note: r.note, source_id: src.id,
     });
-    if (re) { skipped++; skips.push(`relationship 失敗 ${r.subject}-${r.counterpartName}: ${re.message}`); continue; }
+    if (re) { skipped++; skips.push(`relationship 失敗 ${r.subject}-${r.counterpartName}: ${re.message}`); return; }
     inserted++;
   }
+
+  // 兩輪：先匯 official-subject 列建出所有 entity，再匯 entity-subject 列（2 度關係，subject
+  // 必須已在第一輪建出；否則 resolveSubject 會 skip 並列報，不會靜默建新節點）。
+  const firstPass = rows.filter((r) => r.subjectKind !== 'entity');
+  const secondPass = rows.filter((r) => r.subjectKind === 'entity');
+  for (const r of firstPass) await importRow(r);
+  for (const r of secondPass) await importRow(r);
 
   // 清除孤立 entity（未被任何現存關係引用者）—— 每次匯入都會新建 entity，需回收前次殘留。
   const referenced = new Set<string>();
@@ -166,6 +184,22 @@ async function main() {
   }
 
   console.log(`匯入完成：${inserted} 筆關係、entity ${entityCache.size} 筆；清孤立 entity ${orphans.length} 筆；略過 ${skipped}`);
+
+  // 2 度關係列的 subject 找不到：curated 拼字或 subjectDistinct 與建立該 entity 的 counterpartDistinct 不一致，
+  // 必須人工處理，故獨立列出而不混在一般 skip 裡。
+  const subjectMissing = skips.filter((s) => s.startsWith('subject entity 尚未建立'));
+  if (subjectMissing.length) {
+    console.log(`\n⚠️ 2 度關係 subject 找不到對應 entity（${subjectMissing.length} 筆）：`);
+    for (const s of subjectMissing) console.log(`  - ${s}`);
+  }
+
+  // 對照表有、但本次匯入沒建出對應 entity：代表該人已從 curated 消失（或改走 official 路徑），
+  // 對照表該清掉，否則照片檔會變孤兒。
+  const wikiStale = [...wikiIndex.keys()].filter((k) => !wikiUsed.has(k));
+  if (wikiStale.length) {
+    console.log(`\nℹ️ entities-wiki.json 有、但本次未建出 entity（${wikiStale.length} 筆，請檢查是否該移除）：`);
+    for (const k of wikiStale) console.log(`  - ${k}`);
+  }
   if (skips.length) console.log('略過明細:\n  ' + skips.join('\n  '));
 
   // counterpartKind: 'official' 但名冊查不到 → 已退成 entity。多數是本站不收錄的中央層級

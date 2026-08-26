@@ -19,8 +19,29 @@
 
 - graph.json：352 節點（150 公職 ＋ 202 外部人物）／262 邊。
 - 外部人物：family_member 139、other 48、organization 8、businessperson 4、media 3；**照片 0 張**；`entities.wikipedia_url` 全為 null。
-- `relationships-curated.json` 315 列，subject 全為立委／首長（`import-relationships.ts` 用 `officialId(subject, restrict=true)` 限制）；DB 內 entity→entity 的邊為 0。
+- `relationships-curated.json` 260 列，subject 全為立委／首長（`import-relationships.ts` 用 `officialId(subject, restrict=true)` 限制）；DB 內 entity→entity 的邊為 0。
 - 關係來源：219 條 zh.wikipedia，其餘新聞。
+
+### 1.2 完成後（2026-08-25）
+
+- **對照表**：202 位外部人物中 114 位維基搜尋有候選，逐筆比對描述與導言後收 **100 位**；
+  拒絕 16 筆同名不同人（楊明哲＝羽球選手、李婷婷／王慧玲／王春梅等中國人物、林三郎＝日本
+  畜牧學家、蔡宗佑＝棒球選手…），蘇系為消歧義頁不收。同名不同人以 `distinct` 區分 2 筆
+  （李佳芬＝韓國瑜之妻、李傑＝海軍上將）。
+- **照片**：**66 張**（Attribution 48、CC 系列 16、公有領域 2），33 人條目無主圖、1 個派系
+  主圖為 SVG 徽章跳過；縮圖總表逐張目視確認皆為單人肖像。實作時發現台灣政府機關依
+  《政府資料開放授權條款》上傳的官方肖像在 Commons 只標 `Attribution`，佔近半數，故
+  §5 的允許清單納入該值。
+- **2 度關係**：infobox 家族欄位 170 項、關鍵句 676 句逐筆審定，新增 **99 筆**（另 35 筆與
+  既有 1 度關係重複，由既有資料涵蓋）。收錄準則：家族關係只收 counterpart 本身有維基條目
+  或在本站名冊者；政治關係只收條目明確陳述的現任成員／任職事實，已退流、已除名、已退出
+  與轉述指控一律不收。
+- **標籤更正（2026-08-26）**：`aide` 的白話標籤由「助理」改為「幕僚」——這類關係實際涵蓋
+  議會／國會助理、機要秘書、發言人、辦公室主任與競選總幹事，「助理」只是其中一種職稱。
+  同時刪除唯一一筆不屬於幕僚的列（王育敏—盧秀燕，副市長為政務官而非幕僚，現有 enum 無
+  對應類型，依「寧缺勿錯」刪除）。curated 359 → 358 列，邊 361 → 360。
+- **graph.json**：352 → **416 節點**（157 公職 ＋ 259 外部人物）、262 → **361 邊**，其中
+  entity→entity 的第二層邊 **77 條**。測試 310 筆。
 
 ## 2. 關鍵限制：entity 沒有穩定身分
 
@@ -65,7 +86,7 @@
 
 - 輸入 `entities-wiki.json`；已有 `photo` 且檔案存在者跳過（`FORCE=1` 重抓；`DRY_RUN=1` 只報告不寫）。
 - 取圖：`action=query&prop=pageimages&piprop=original|name&titles=<wikiTitle>`。無主圖 → 列報「無主圖」，不寫 `photo`。
-- 授權：`action=query&prop=imageinfo&iiprop=extmetadata&titles=File:<name>`，讀 `LicenseShortName`、`Artist`、`Credit`。**只收** `LicenseShortName` 符合 `/^(CC|Public domain|CC0)/i` 者；其他（含 fair use、無授權資訊）列報「授權不符」並跳過。
+- 授權：`action=query&prop=imageinfo&iiprop=extmetadata&titles=File:<name>`，讀 `LicenseShortName`、`Artist`、`Credit`。**只收自由授權**：CC0／CC BY／CC BY-SA（任何版本）、公有領域（Public domain、PD-\*）、政府資料開放授權的 Attribution（含 Attribution-ShareAlike，任何版本）；只要授權字串含 NC（非商業）或 ND（禁止改作）片段，或不屬上述任一類（含 fair use、無授權資訊、格式不明的字串），一律列報「授權不符」並跳過——本站會將圖片縮圖成 320px 並公開發布，與 NonCommercial／NoDerivs 皆不容。（2026-08-25 實作時發現：台灣政府機關依《政府資料開放授權條款》上傳的官方肖像，Commons 只標 `Attribution`，屬署名即可使用的自由授權，49／100 人的主圖都是這類，故納入。）
 - 下載 → sharp 縮 320px 寬 jpg → `public/photos/entities/<name>.jpg`（有 `distinct` 時為 `<name>-<distinct 前 8 字>.jpg`；檔名用中文比照 `public/photos/councilors/` 慣例）。
 - 寫回 `entities-wiki.json` 的 `photo` 欄位。腳本以 `fetchPolite` 存取，每次請求間隔 ≥ 500ms。
 - 授權呈現（CC BY 系列要求可見署名）：

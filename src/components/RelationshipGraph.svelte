@@ -188,6 +188,30 @@
         });
         cy!.on('mouseout', 'edge', (evt: any) => { evt.target.removeClass('hl'); hideSoon(); });
 
+        // hover 外部人物節點 → tooltip（描述＋條目連結＋照片署名）。本站收錄的公職點擊即進檔案頁，不需要。
+        // 照片來自 Wikimedia Commons，CC BY 系列要求可見署名，故署名放在圖上、不只放 about 頁。
+        cy!.on('mouseover', 'node[kind = "entity"]', (evt: any) => {
+          clearTimeout(hideTimer);
+          const d = evt.target.data();
+          const desc = d.description ? `<div class="rg-note">${esc(d.description)}</div>` : '';
+          const wiki = d.wikipediaUrl
+            ? `<a class="rg-src" href="${esc(d.wikipediaUrl)}" target="_blank" rel="noopener">維基百科條目 ↗</a>` : '';
+          // 有 photoSourceUrl（CC BY／CC BY-SA 照片）時署名連到 Commons 檔案頁，並標示本站已縮圖改作；
+          // 其餘授權（如 Attribution）沒有 commonsUrl 連結要求，維持純文字。
+          const credit = !d.photoCredit ? '' : d.photoSourceUrl
+            ? `<div class="rg-credit">照片：<a class="rg-src" href="${esc(d.photoSourceUrl)}" target="_blank" rel="noopener">${esc(d.photoCredit)}</a>（本站縮圖）</div>`
+            : `<div class="rg-credit">照片：${esc(d.photoCredit)}</div>`;
+          if (!desc && !wiki && !credit) { hideSoon(); return; }
+          const p = evt.target.renderedPosition();
+          const r = evt.target.renderedOuterWidth() / 2;
+          tip!.innerHTML = `<div class="rg-rel">${esc(d.name)}</div>${desc}${wiki}${credit}`;
+          tip!.style.left = `${p.x}px`;
+          tip!.style.top = `${p.y - r}px`;
+          tip!.style.opacity = '1';
+          tip!.style.pointerEvents = 'auto';
+        });
+        cy!.on('mouseout', 'node[kind = "entity"]', hideSoon);
+
         // 跟著亮/暗模式切換重新上色
         mo = new MutationObserver(() => cy!.style(buildStyle(readColors())).update());
         mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
@@ -242,4 +266,5 @@
   :global(.rg-tip .rg-rel) { font-weight: 700; color: var(--fg); margin-bottom: 2px; }
   :global(.rg-tip .rg-note) { margin-bottom: 4px; }
   :global(.rg-tip .rg-src) { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+  :global(.rg-tip .rg-credit) { margin-top: 4px; font-size: var(--t-xs); color: var(--faint); }
 </style>

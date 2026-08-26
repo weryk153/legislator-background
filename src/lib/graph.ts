@@ -12,7 +12,10 @@ export const RELATION_LABEL: Record<RelationType, string> = {
   // party_bloc 已於 2026-07 停用：原 17 筆資料經檢視為各種不相干關係的大雜燴，15 筆改標為
   // 正確類型、2 筆刪除（理由見 2026-07-29-relationship-graph-visual-design.md §3.4）；
   // 保留 enum 值僅因移除需改 migration，新資料請勿再使用此類型。
-  faction: '同派系', mentor: '師徒', party_bloc: '同陣營', aide: '助理', backer: '政治支持', co_case: '共同被告',
+  // aide 的白話標籤原為「助理」，但這類關係實際涵蓋議會／國會助理、機要秘書、發言人、
+  // 辦公室主任與競選總幹事——「助理」是其中一種職稱，拿來當整類的名字會把層級講低。
+  // 2026-08 改標為「幕僚」；同時刪除唯一一筆不屬於幕僚的列（副市長，見下方 curated 註記）。
+  faction: '同派系', mentor: '師徒', party_bloc: '同陣營', aide: '幕僚', backer: '政治支持', co_case: '共同被告',
 };
 // 家族類關係（其餘為政治類）。
 export const FAMILY_RELATIONS: ReadonlySet<RelationType> = new Set<RelationType>([
@@ -33,6 +36,11 @@ export function buildGraphData(
   officials: RawOfficialNode[],
   entities: RawEntity[],
   relationships: RawRelationship[],
+  // wikipedia_url → 「作者／授權」。DB 不存授權欄位；export-graph.ts 從 scraper/entities-wiki.json 組好傳入。
+  // 用 wikipedia_url 而非姓名配對：DB entity 沒有 distinct 欄位，同名不同人只有條目 URL 能區分。
+  credits: Map<string, string> = new Map(),
+  // wikipedia_url → Commons 檔案頁 URL，配對規則同 credits。
+  photoSources: Map<string, string> = new Map(),
 ): { data: GraphData; errors: string[] } {
   const errors: string[] = [];
 
@@ -47,9 +55,15 @@ export function buildGraphData(
     });
   }
   for (const e of entities) {
+    const credit = e.wikipedia_url ? credits.get(e.wikipedia_url) : undefined;
+    const photoSource = e.wikipedia_url ? photoSources.get(e.wikipedia_url) : undefined;
     allNodes.set(keyOf('entity', e.id), {
       key: keyOf('entity', e.id), name: e.name, kind: 'entity',
       subtype: e.entity_type, description: e.description,
+      ...(e.photo_url ? { photoUrl: e.photo_url } : {}),
+      ...(e.photo_url && credit ? { photoCredit: credit } : {}),
+      ...(e.photo_url && photoSource ? { photoSourceUrl: photoSource } : {}),
+      ...(e.wikipedia_url ? { wikipediaUrl: e.wikipedia_url } : {}),
     });
   }
 

@@ -1,6 +1,6 @@
 # 人物關係圖 視覺化 Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** 把檔案頁的「人物關係」文字清單升級為頭像關係圖（圓形節點＋曲線連線＋線上關係詞），並補上 `/graph` 全局關係圖頁。
 
@@ -64,7 +64,7 @@
 
 `planMerges` 的語意：`pairs` 中每組把 `from` 端點改寫為 `to` 端點。回傳 `updates`（端點確實有變、且不會被刪除的列）與 `deletes`（改寫後變成自連、或與別列重複的 relationship id）。Task 2 的腳本負責實際寫 DB。
 
-- [ ] **Step 1: 寫失敗測試**
+- [x] **Step 1: 寫失敗測試**
 
 建立 `test/mergeNodes.test.ts`：
 
@@ -162,12 +162,12 @@ describe('planMerges', () => {
 });
 ```
 
-- [ ] **Step 2: 跑測試確認失敗**
+- [x] **Step 2: 跑測試確認失敗**
 
 Run: `pnpm exec vitest run test/mergeNodes.test.ts`
 Expected: FAIL — `Failed to resolve import "../scraper/lib/mergeNodes"`
 
-- [ ] **Step 3: 寫實作**
+- [x] **Step 3: 寫實作**
 
 建立 `scraper/lib/mergeNodes.ts`：
 
@@ -243,12 +243,12 @@ export function planMerges(rows: RelRow[], pairs: MergePair[]): MergeResult {
 }
 ```
 
-- [ ] **Step 4: 跑測試確認通過**
+- [x] **Step 4: 跑測試確認通過**
 
 Run: `pnpm exec vitest run test/mergeNodes.test.ts`
 Expected: PASS（10 個測試全過）
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scraper/lib/mergeNodes.ts test/mergeNodes.test.ts
@@ -269,7 +269,7 @@ git commit -m "feat(graph): 節點合併純函式(改寫端點/去自連/去重)
 
 **前置**：本機 Supabase 需在跑（OrbStack）。`.env` 需有 `PUBLIC_SUPABASE_URL` 與 `SUPABASE_SERVICE_ROLE_KEY`。
 
-- [ ] **Step 1: 寫腳本**
+- [x] **Step 1: 寫腳本**
 
 建立 `scraper/merge-duplicate-entities.ts`：
 
@@ -370,7 +370,7 @@ async function main() {
 main().catch((e) => { console.error(e); process.exit(1); });
 ```
 
-- [ ] **Step 2: 加 package.json script**
+- [x] **Step 2: 加 package.json script**
 
 在 `scripts` 區塊 `"import:relationships"` 那一行之後加入：
 
@@ -378,7 +378,7 @@ main().catch((e) => { console.error(e); process.exit(1); });
     "merge:entities": "tsx scraper/merge-duplicate-entities.ts",
 ```
 
-- [ ] **Step 3: 跑 dry-run 確認要動的資料**
+- [x] **Step 3: 跑 dry-run 確認要動的資料**
 
 Run: `pnpm run merge:entities -- --dry-run`
 
@@ -387,17 +387,17 @@ Expected: 印出關係總數 **280**；6 組各自的改寫筆數；「--dry-run
 不會被本腳本刪除，因為 `planMerges` 只刪端點被改寫過的列。）
 **檢查點：若改寫總數為 0，表示 UUID 對不上（DB 與 2026-07-29 快照不同步），停下來查清楚，不要硬跑。**
 
-- [ ] **Step 4: 實際執行合併**
+- [x] **Step 4: 實際執行合併**
 
 Run: `pnpm run merge:entities`
 Expected: 印出「完成：改寫 N、刪除關係 M、刪除 entity 6」
 
-- [ ] **Step 5: 重跑確認冪等**
+- [x] **Step 5: 重跑確認冪等**
 
 Run: `pnpm run merge:entities -- --dry-run`
 Expected: 改寫 0 筆、刪除 0 筆（對照表中的 entity 已不存在，無可改寫者）
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add scraper/merge-duplicate-entities.ts package.json
@@ -421,7 +421,7 @@ git commit -m "feat(graph): 合併重複節點腳本(韓國瑜/侯友宜等5人+
   - `const OFFICE_LABEL: Record<OfficeType, string>` from `src/lib/graph.ts`（值：`legislator: '立委'`、`mayor_magistrate: '縣市首長'`、`councilor: '議員'`）
   - `RawOfficialNode` 型別新增 `photo_url` 欄位（Task 4 的 graphView 與 Task 6 的 [id].astro 會用到 `OFFICE_LABEL`）
 
-- [ ] **Step 1: 寫失敗測試**
+- [x] **Step 1: 寫失敗測試**
 
 在 `test/graph.test.ts` 中，先把既有 fixture 補上 `photo_url`（`RawOfficialNode` 即將要求此欄位）：
 
@@ -448,12 +448,12 @@ const officials = [
   });
 ```
 
-- [ ] **Step 2: 跑測試確認失敗**
+- [x] **Step 2: 跑測試確認失敗**
 
 Run: `pnpm exec vitest run test/graph.test.ts`
 Expected: FAIL — 新增的兩個測試中，第一個因 `photoUrl` 為 undefined 而失敗
 
-- [ ] **Step 3: 改 types.ts**
+- [x] **Step 3: 改 types.ts**
 
 `src/lib/types.ts` 的 `GraphNode`，在 `officeType` 那行之後加入：
 
@@ -461,7 +461,7 @@ Expected: FAIL — 新增的兩個測試中，第一個因 `photoUrl` 為 undefi
   photoUrl?: string;      // official 才有；photo_url 為 null 時不帶此欄位
 ```
 
-- [ ] **Step 4: 改 graph.ts**
+- [x] **Step 4: 改 graph.ts**
 
 `src/lib/graph.ts` 頂端的 `RawOfficialNode` 改為：
 
@@ -491,7 +491,7 @@ export const OFFICE_LABEL: Record<OfficeType, string> = {
 };
 ```
 
-- [ ] **Step 5: 改 export-graph.ts**
+- [x] **Step 5: 改 export-graph.ts**
 
 `scraper/export-graph.ts` 內 officials 的型別宣告與查詢各改一處：
 
@@ -503,12 +503,12 @@ export const OFFICE_LABEL: Record<OfficeType, string> = {
       .from('officials').select('id, slug, name, party, office_type, photo_url').range(from, from + pageSize - 1);
 ```
 
-- [ ] **Step 6: 跑測試確認通過**
+- [x] **Step 6: 跑測試確認通過**
 
 Run: `pnpm test`
 Expected: PASS（全部測試檔案，含既有的 graph.test.ts 案例）
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/lib/types.ts src/lib/graph.ts scraper/export-graph.ts test/graph.test.ts
@@ -526,12 +526,12 @@ git commit -m "feat(graph): graph.json 帶出官員大頭照 URL 與 OFFICE_LABE
 - Consumes: Task 2 的 DB 狀態、Task 3 的匯出管線
 - Produces: 合併且帶 photoUrl 的 `src/data/graph.json`，供 Task 5 之後使用
 
-- [ ] **Step 1: 重新匯出**
+- [x] **Step 1: 重新匯出**
 
 Run: `pnpm run export:graph`
 Expected: 印出 `exported graph: 361 nodes, ... edges → src/data/graph.json`
 
-- [ ] **Step 2: 驗收數字**
+- [x] **Step 2: 驗收數字**
 
 Run:
 
@@ -563,7 +563,7 @@ Expected:
   `新潮流系` 出現 **1 次**；`民主進步黨新潮流系` 出現 **0 次**（已併入前者）。
   **任一項不符即表示 Task 2 沒生效，停下來回頭查。**
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/data/graph.json
@@ -589,7 +589,7 @@ git commit -m "data(graph): 重新匯出(361節點/157張照片,已合併重複�
 
 Task 6 的 Svelte 元件只呼叫 `toCytoscapeElements`，不自行組裝 elements。
 
-- [ ] **Step 1: 寫失敗測試**
+- [x] **Step 1: 寫失敗測試**
 
 建立 `test/graphView.test.ts`：
 
@@ -690,12 +690,12 @@ describe('toCytoscapeElements', () => {
 });
 ```
 
-- [ ] **Step 2: 跑測試確認失敗**
+- [x] **Step 2: 跑測試確認失敗**
 
 Run: `pnpm exec vitest run test/graphView.test.ts`
 Expected: FAIL — `Failed to resolve import "../src/lib/graphView"`
 
-- [ ] **Step 3: 寫實作**
+- [x] **Step 3: 寫實作**
 
 建立 `src/lib/graphView.ts`：
 
@@ -810,12 +810,12 @@ export function toCytoscapeElements(
 }
 ```
 
-- [ ] **Step 4: 跑測試確認通過**
+- [x] **Step 4: 跑測試確認通過**
 
 Run: `pnpm test`
 Expected: PASS（全部測試）
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/lib/graphView.ts test/graphView.test.ts
@@ -850,7 +850,7 @@ git commit -m "feat(graph): Cytoscape 資料轉換純函式(深度/尺寸/頭像
 >
 > 樣式、佈局參數、色彩 token、tooltip 內容與失敗降級路徑均與下方一致，未更動。
 
-- [ ] **Step 1: 重寫元件**
+- [x] **Step 1: 重寫元件**
 
 `src/components/RelationshipGraph.svelte` 全檔替換為：
 
@@ -1030,12 +1030,12 @@ git commit -m "feat(graph): Cytoscape 資料轉換純函式(深度/尺寸/頭像
 </style>
 ```
 
-- [ ] **Step 2: 型別檢查通過**
+- [x] **Step 2: 型別檢查通過**
 
 Run: `pnpm exec astro check`
 Expected: 0 errors（warnings 可接受）
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/components/RelationshipGraph.svelte
@@ -1053,7 +1053,7 @@ git commit -m "feat(graph): 關係圖改為圓形頭像節點(同心圓佈局/�
 - Consumes: `RelationshipGraph.svelte`（Task 6）、`OFFICE_LABEL`（Task 3）
 - Produces: 無程式介面
 
-- [ ] **Step 1: 改 import 與 ego 跳數**
+- [x] **Step 1: 改 import 與 ego 跳數**
 
 `src/pages/officials/[id].astro` 第 5 行的 import 加入 `OFFICE_LABEL`，並新增元件 import：
 
@@ -1069,7 +1069,7 @@ import RelationshipGraph from "../../components/RelationshipGraph.svelte";
     props: { official: o, ego: egoSubgraph(graph, `official:${o.id}`, 2) },
 ```
 
-- [ ] **Step 2: 移除重複的 officeName 常數**
+- [x] **Step 2: 移除重複的 officeName 常數**
 
 檔案中段（約第 51 行）有本地宣告：
 
@@ -1079,7 +1079,7 @@ const officeName: Record<string, string> = { legislator: "立委", mayor_magistr
 
 刪掉這一行（`OFFICE_LABEL` 已從 graph.ts 匯入，值相同），並把後續兩處 `officeName[o.officeType]` 改為 `OFFICE_LABEL[o.officeType]`（在 `title` 與 `desc` 兩個樣板字串內）。
 
-- [ ] **Step 3: 在關係清單上方插入圖**
+- [x] **Step 3: 在關係清單上方插入圖**
 
 第 203 行起的「人物關係」區塊，於 `<p class="note">` 之後、`{relations.map(...)}` 之前插入圖。改為：
 
@@ -1095,7 +1095,7 @@ const officeName: Record<string, string> = { legislator: "立委", mayor_magistr
 
 其餘（`.item.rel` 迴圈與 `</section>`）保持不變。
 
-- [ ] **Step 4: 加 graph-note 樣式**
+- [x] **Step 4: 加 graph-note 樣式**
 
 在同檔 `<style>` 內 `.note` 那行之後加入：
 
@@ -1103,12 +1103,12 @@ const officeName: Record<string, string> = { legislator: "立委", mayor_magistr
     .graph-note { margin: 10px 0 18px; }
 ```
 
-- [ ] **Step 5: 型別檢查與建置**
+- [x] **Step 5: 型別檢查與建置**
 
 Run: `pnpm exec astro check && pnpm build`
 Expected: 0 errors；build 成功
 
-- [ ] **Step 6: 目視驗收**
+- [x] **Step 6: 目視驗收**
 
 Run: `pnpm dev`，用瀏覽器開以下三頁：
 
@@ -1121,7 +1121,7 @@ Run: `pnpm dev`，用瀏覽器開以下三頁：
 
 同時檢查：切換亮/暗模式後圖的顏色跟著變；滑過連線出現 tooltip 且「查看出處」可點；點有照片的節點會進其檔案頁。
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/pages/officials/\[id\].astro
@@ -1143,7 +1143,7 @@ git commit -m "feat(graph): 檔案頁掛上人物關係圖(2跳,清單留在圖�
 
 篩選與搜尋以 Cytoscape 內建的 `filter` / `show` / `hide` 實作，寫在頁面的 inline script，不動元件。
 
-- [ ] **Step 1: 建立頁面**
+- [x] **Step 1: 建立頁面**
 
 建立 `src/pages/graph.astro`：
 
@@ -1187,7 +1187,7 @@ const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物�
 </Base>
 ```
 
-- [ ] **Step 2: 加篩選與搜尋的行為**
+- [x] **Step 2: 加篩選與搜尋的行為**
 
 在上面 `</Base>` 之前、`<style>` 之後插入：
 
@@ -1226,7 +1226,7 @@ const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物�
   </script>
 ```
 
-- [ ] **Step 3: 讓元件在初始化完成後派發 rg:ready**
+- [x] **Step 3: 讓元件在初始化完成後派發 rg:ready**
 
 `src/components/RelationshipGraph.svelte` 的 `onMount` 內，在 `cy!.layout(layout).run();` 之後加入：
 
@@ -1238,12 +1238,12 @@ const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物�
 
 此事件只在 Cytoscape 初始化成功時派發；失敗走 catch 分支不派發，`/graph` 的篩選器因此保持停用而非對著壞掉的實例操作。
 
-- [ ] **Step 4: 建置**
+- [x] **Step 4: 建置**
 
 Run: `pnpm build`
 Expected: build 成功，`dist/graph/index.html` 存在
 
-- [ ] **Step 5: 目視驗收**
+- [x] **Step 5: 目視驗收**
 
 Run: `pnpm dev`，開 `/graph`：
 
@@ -1252,7 +1252,7 @@ Run: `pnpm dev`，開 `/graph`：
 - 搜尋輸入「陳」→ 只剩姓名含「陳」且仍有可見連線的節點
 - 兩個都取消勾選 → 圖空白（可接受，非錯誤）
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add src/pages/graph.astro src/components/RelationshipGraph.svelte
@@ -1270,7 +1270,7 @@ git commit -m "feat(graph): 新增 /graph 全局關係圖頁(關係類型篩選/
 - Consumes: Task 8 的 `/graph` 路由
 - Produces: 無
 
-- [ ] **Step 1: 加導覽連結**
+- [x] **Step 1: 加導覽連結**
 
 `src/layouts/Base.astro` 第 66–69 行的導覽列目前為：
 
@@ -1287,12 +1287,12 @@ git commit -m "feat(graph): 新增 /graph 全局關係圖頁(關係類型篩選/
           <a href="/graph">關係圖</a>
 ```
 
-- [ ] **Step 2: 全套測試與建置**
+- [x] **Step 2: 全套測試與建置**
 
 Run: `pnpm test && pnpm build`
 Expected: 全部測試 PASS；build 成功無錯誤
 
-- [ ] **Step 3: 最終驗收清單**
+- [x] **Step 3: 最終驗收清單**
 
 Run: `pnpm preview`，逐項確認：
 
@@ -1304,7 +1304,7 @@ Run: `pnpm preview`，逐項確認：
 | 亮/暗模式切換 | 圖的節點、連線、文字色皆跟著變 |
 | 無任何關係的官員頁（如某位只有判決無關係者） | 不出現「人物關係」區塊 |
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/layouts/Base.astro
