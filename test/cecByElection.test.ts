@@ -58,8 +58,10 @@ describe('parseByElectionDir：由目錄名解析選區', () => {
       .toEqual({ countyName: '彰化縣', townName: '田中鎮', districtNo: null, office: 'townChief' });
   });
   it('縣市長仍要認得出來——縣市名本身直接接「長」', () => {
-    expect(parseByElectionDir('2025苗栗縣縣長補選')?.office).toBe('countyChief');
-    expect(parseByElectionDir('2025基隆市市長補選')?.office).toBe('countyChief');
+    expect(parseByElectionDir('2025苗栗縣縣長補選'))
+      .toEqual({ countyName: '苗栗縣', townName: null, districtNo: null, office: 'countyChief' });
+    expect(parseByElectionDir('2025基隆市市長補選'))
+      .toEqual({ countyName: '基隆市', townName: null, districtNo: null, office: 'countyChief' });
   });
 });
 

@@ -186,18 +186,23 @@ function resolvePartyCode(
  * C1 當選數為 21 而非 22 的原因），沒有任何 2022 原始列可對。
  *
  * 唯一存在的來源是**上一屆（2018）同縣市同職務**的候選人名單。單靠姓名比對是本站
- * 明文禁止的（規格 §3.2「只有姓名相同者列報待查」），故這裡要求**三項佐證同時成立
- * 且結果唯一**才回填，比照本站判決認人的既有原則（不能只靠轄區，須職務／屆別佐證）：
+ * 明文禁止的（規格 §3.2「只有姓名相同者列報待查」），故這裡比對三項，比照本站判決
+ * 認人的既有原則（不能只靠轄區，須職務／屆別佐證）：
  *   1. 同一縣市（縣市長是單一席次，不是複數席的議員）
  *   2. 同一職務（縣市長對縣市長）
  *   3. 政黨相同（補選檔有政黨名稱欄，可換算成代碼）
- * 且在該縣市上一屆的候選人中，符合「姓名＋政黨」者**恰好一位**。
+ *
+ * **這不構成「排除同名者」的驗證。** 縣市長每縣市每屆恰有一位當選人，`load2018Chiefs()`
+ * 篩出的候選名單本就每縣市只有一筆，所以上述三項比對命中的結果結構上只可能是 0 筆或
+ * 1 筆——它能區分「對得到」與「對不到」，但不可能偵測到「同縣市同職務同姓名同政黨還
+ * 有第二個人」，因為那種情況在資料裡不存在。這個回填在實務上是安全的，但理由字串與
+ * 這段註解都不能暗示系統驗證過沒有第二個同名同黨的人。
  *
  * 任何一項不成立就不回填，讓 termLimited 回 unknown 並列報——寧可顯示「待查」，
  * 也不要用單純同名去斷定是同一個人。回填成功時一律列報，並在頁面的理由字串裡
  * 標明出生日期是回填來的，不讓這個推論隱形。
  */
-const BACKFILL_NOTE = '（2022 為重行選舉，當選人出生日期由 2018 年原始檔以「姓名＋政黨＋同縣市同職務唯一相符」回填認定）';
+const BACKFILL_NOTE = '（2022 為重行選舉，當選人出生日期由 2018 年原始檔以「同縣市同職務同姓名同政黨相符」回填認定）';
 
 function backfillBirthDate(
   win: { name: string; partyCode: string },
@@ -659,6 +664,7 @@ const townNodes = areas.filter((a) => a.level === 'town');
 check('鄉鎮市區總數', townNodes.length, 368);
 check('有民選首長的鄉鎮市區', townNodes.filter((a) => chiefTowns.has(a.code)).length, 204);
 check('有代表會的鄉鎮市區', townNodes.filter((a) => councilTowns.has(a.code)).length, 204);
+check('councilTowns.size', councilTowns.size, 204);
 const missingChief = townNodes.filter((a) => chiefTowns.has(a.code) && !chiefByTown.has(a.code));
 const missingSeats = townNodes.filter((a) => councilTowns.has(a.code) && !(repByTown.get(a.code) ?? []).length);
 if (missingChief.length) failures.push(`有民選首長制度卻查無當選者的鄉鎮市區 ${missingChief.length} 個：${missingChief.slice(0, 5).map((a) => a.name).join('、')}…`);

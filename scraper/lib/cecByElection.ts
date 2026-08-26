@@ -113,11 +113,14 @@ export interface ByElectionTarget {
  * 就回 null 讓呼叫端列報，不猜。
  */
 export function parseByElectionDir(dirName: string): ByElectionTarget | null {
-  const county = dirName.match(/([一-鿿]{2,3}[縣市])/)?.[1];
+  const county = dirName.match(/([一-鿿]{2}[縣市])/)?.[1];
   if (!county) return null;
 
-  // 縣市長：縣市名本身直接接「長」，如「嘉義市長」「苗栗縣長」
-  if (dirName.includes(`${county}長`)) {
+  // 縣市長：縣市名本身直接接「長」，如「嘉義市長」「苗栗縣長」。目錄命名不一致，
+  // 縣/市字有時會重複一次（「基隆市市長」「苗栗縣縣長」），有時不重複（「嘉義市長」），
+  // 兩種都要認得出來。
+  const suffix = county.at(-1);
+  if (dirName.includes(`${county}長`) || dirName.includes(`${county}${suffix}長`)) {
     return { countyName: county, townName: null, districtNo: null, office: 'countyChief' };
   }
 
