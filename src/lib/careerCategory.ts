@@ -109,3 +109,14 @@ export function careerPeriod(startDate: string, endDate: string | null): string 
   if (e) return `至 ${e}`;
   return '';
 }
+
+// 一組經歷若全部來自同一個出處，出處只需在組層級宣告一次。
+// 全站 2 筆以上的組有 85% 是單一出處（如某議員的 30 筆社團職務全來自同一個維基條目），
+// 逐筆重印同一行連結會讓讀者滑過一整片相同文字才看得完職務清單——噪音蓋過資訊。
+// 出處不同的組維持逐筆顯示：那些組裡「哪一筆來自哪裡」本身就是資訊，不能藏。
+// 單筆不合併——只有一筆時印在組層級反而多佔一列。
+export function sharedSource<T extends { source: { url: string } }>(items: T[]): T['source'] | null {
+  if (items.length < 2) return null;
+  const first = items[0].source;
+  return items.every((i) => i.source?.url === first.url) ? first : null;
+}

@@ -4,7 +4,7 @@ import Sources from "../../components/Sources.astro";
 import { loadOfficials } from "../../lib/data";
 import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL, OFFICE_LABEL } from "../../lib/graph";
 import { loadGraph } from "../../lib/loadGraph";
-import { categorizeCareer, careerText, careerPeriod, type CareerCategory } from "../../lib/careerCategory";
+import { categorizeCareer, careerText, careerPeriod, sharedSource, type CareerCategory } from "../../lib/careerCategory";
 import RelationshipGraph from "../../components/RelationshipGraph.svelte";
 
 export async function getStaticPaths() {
@@ -26,10 +26,19 @@ const CAREER_GROUPS: { key: CareerCategory; label: string; note?: string }[] = [
   { key: "social", label: "社會團體／財團法人", note: "以下為公職以外的社會團體、財團法人職務。" },
   { key: "other", label: "其他" },
 ];
-const careersByCategory = CAREER_GROUPS.map((g) => ({
-  ...g,
-  items: o.careers.filter((c) => categorizeCareer(careerText(c.organization, c.title)) === g.key),
-})).filter((g) => g.items.length > 0);
+// 解職那筆 career 的存在目的是替頁首的 departedReason 帶出處——officials.departed_reason
+// 本身沒有 source_id 欄位（見 scraper/roster-record.ts 的設計說明）。它的 organization 就是
+// 頁首那句話的副本，若照常列進「經歷」等於同一句話在頁面上出現兩次；更糟的是兩份副本
+// 會走樣（吳亮慶的定讞日、林哲凌的刑期都曾對不上）。故此處只取它的出處掛到頁首，
+// 本文不再重複顯示。
+const dismissalRecord = o.careers.find((c) => c.title === "解職");
+const careersByCategory = CAREER_GROUPS.map((g) => {
+  const items = o.careers.filter(
+    (c) => c.title !== "解職" && categorizeCareer(careerText(c.organization, c.title)) === g.key,
+  );
+  // 整組同一出處時掛在組層級，逐筆就不再重印同一行連結（見 sharedSource 的說明）。
+  return { ...g, items, shared: sharedSource(items) };
+}).filter((g) => g.items.length > 0);
 
 const centerKey = `official:${o.id}`;
 const egoByKey = new Map(ego.nodes.map((n) => [n.key, n]));
@@ -105,7 +114,12 @@ const jsonLd = [
     {o.departedReason && <span class="pill departed">已解職</span>}
     <h1>{o.name}</h1>
     <p class="lede">{o.party}・{o.district}・第{o.term}屆{o.bio ? `　${o.bio}` : ""}</p>
-    {o.departedReason && <p class="departed-note">本人已非現任：{o.departedReason}。以下為其任內（第{o.term}屆當選時）之公開資料。</p>}
+    {o.departedReason && (
+      <p class="departed-note">
+        本人已非現任：{o.departedReason}。以下為其任內（第{o.term}屆當選時）之公開資料。
+        {dismissalRecord && <Sources sources={[dismissalRecord.source]} />}
+      </p>
+    )}
   </header>
 
   <section class="sec">
@@ -115,10 +129,16 @@ const jsonLd = [
       <div class="career-group">
         <h3 class="career-group-head">{g.label}</h3>
         {g.note && <p class="note">{g.note}</p>}
+        {g.shared && (
+          <div class="group-source">
+            <Sources sources={[g.shared]} />
+            <span class="group-source-note">（本組各筆共同出處）</span>
+          </div>
+        )}
         {g.items.map((c) => (
           <div class="item">
             <div>{careerPeriod(c.startDate, c.endDate) && <strong class="num">{careerPeriod(c.startDate, c.endDate)}　</strong>}{careerText(c.organization, c.title)}</div>
-            <Sources sources={[c.source]} />
+            {!g.shared && <Sources sources={[c.source]} />}
           </div>
         ))}
       </div>
@@ -253,6 +273,9 @@ const jsonLd = [
       padding-bottom: 8px; border-bottom: 1px solid var(--line-strong);
     }
     .note { font-size: var(--t-sm); color: var(--muted); margin: -4px 0 16px; }
+    .group-source { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; margin: -6px 0 12px; }
+    .group-source :global(.sources) { margin-top: 0; }
+    .group-source-note { font-size: var(--t-xs); color: var(--faint); }
     .career-group + .career-group { margin-top: 22px; }
     .career-group-head {
       font-family: var(--sans); font-size: var(--t-sm); font-weight: 700;
