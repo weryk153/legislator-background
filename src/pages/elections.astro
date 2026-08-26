@@ -24,6 +24,10 @@ const days = Math.ceil((ELECTION_DAY.getTime() - Date.now()) / 86400000);
   <p class="credit">
     行政區界線：內政部國土測繪中心（政府資料開放授權條款）｜選舉結果：中央選舉委員會
   </p>
+  <p class="scope-note">
+    為使台灣本島在地圖上維持可辨識的比例，本頁地圖未繪出高雄市旗津區轄下的東沙島、南沙太平島，
+    以及宜蘭縣頭城鎮大溪里轄下的釣魚台列嶼——這幾處均無村里長選舉；大溪里其餘轄區的村里長資料仍照常呈現於地圖上。
+  </p>
 </Base>
 
 <style>
@@ -38,4 +42,5 @@ const days = Math.ceil((ELECTION_DAY.getTime() - Date.now()) / 86400000);
     margin-bottom: 1.5rem;
   }
   .credit { color: var(--faint); font-size: var(--t-xs); margin-top: 1.5rem; }
+  .scope-note { color: var(--faint); font-size: var(--t-xs); margin-top: .4rem; line-height: 1.6; }
 </style>

@@ -57,7 +57,11 @@
     try {
       const res = await fetch(`/data/map/${file}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      stack.push({ file, layer: await res.json() });
+      const layer: MapLayer = await res.json();
+      stack.push({ file, layer });
+      // 每次換層（含初次載入全國層）都先顯示新層的彙總，不留著上一層的選取內容、
+      // 也不讓側欄空白等使用者移動滑鼠——否則第一次打開頁面看起來像壞掉。
+      onSelect?.(null, layer);
     } catch (e) {
       error = `地圖資料載入失敗（${(e as Error).message}）`;
     } finally {
