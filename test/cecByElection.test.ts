@@ -32,16 +32,34 @@ describe('parseByElection：由分號次得票推出當選者', () => {
 describe('parseByElectionDir：由目錄名解析選區', () => {
   it('嘉義市長重行選舉', () => {
     expect(parseByElectionDir('2022年_嘉義市長重行選舉'))
-      .toEqual({ countyName: '嘉義市', districtNo: null, office: 'countyChief' });
+      .toEqual({ countyName: '嘉義市', townName: null, districtNo: null, office: 'countyChief' });
   });
   it('議員缺額補選帶選舉區號', () => {
     expect(parseByElectionDir('2024宜蘭縣議會第20屆議員第4選舉區缺額補選'))
-      .toEqual({ countyName: '宜蘭縣', districtNo: 4, office: 'councilSeat' });
+      .toEqual({ countyName: '宜蘭縣', townName: null, districtNo: 4, office: 'councilSeat' });
     expect(parseByElectionDir('2024臺中市議會第4屆議員第15選舉區缺額補選'))
-      .toEqual({ countyName: '臺中市', districtNo: 15, office: 'councilSeat' });
+      .toEqual({ countyName: '臺中市', townName: null, districtNo: 15, office: 'councilSeat' });
   });
   it('認不出的目錄名回 null，由呼叫端列報而非默默略過', () => {
     expect(parseByElectionDir('某某其他選舉')).toBeNull();
+  });
+
+  // 「市長」三個字不足以判定為縣市長——縣轄市的首長職稱正是「市長」。曾經用
+  // /市長|縣長/ 比對，「苗栗縣頭份市市長補選」會被判成苗栗縣長、把真正的縣長
+  // 整筆覆蓋掉，而且無聲。這是下次資料更新第一個會踩到的雷。
+  it('縣轄市市長補選不可誤判為縣市長', () => {
+    expect(parseByElectionDir('2025苗栗縣頭份市市長補選'))
+      .toEqual({ countyName: '苗栗縣', townName: '頭份市', districtNo: null, office: 'townChief' });
+  });
+  it('鄉長、鎮長補選解析出鄉鎮名，名稱不重複吃掉後綴', () => {
+    expect(parseByElectionDir('2025南投縣魚池鄉鄉長補選'))
+      .toEqual({ countyName: '南投縣', townName: '魚池鄉', districtNo: null, office: 'townChief' });
+    expect(parseByElectionDir('2025彰化縣田中鎮鎮長補選'))
+      .toEqual({ countyName: '彰化縣', townName: '田中鎮', districtNo: null, office: 'townChief' });
+  });
+  it('縣市長仍要認得出來——縣市名本身直接接「長」', () => {
+    expect(parseByElectionDir('2025苗栗縣縣長補選')?.office).toBe('countyChief');
+    expect(parseByElectionDir('2025基隆市市長補選')?.office).toBe('countyChief');
   });
 });
 

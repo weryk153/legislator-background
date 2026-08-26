@@ -85,51 +85,48 @@ function namePath(a: AreaNode, byCode: Map<string, AreaNode>): string[] {
 /**
  * 名稱鍵 → 中選會代碼。
  *
- * 回傳的 Map 大小應與輸入節點數相同；若小於，代表有鍵碰撞，必須查明後修正，
- * 不可放著不管——碰撞會讓兩個行政區的資料互相覆蓋。
+ * 鍵碰撞一律**拋錯並列出撞在一起的代碼**，不讓後寫入者靜默勝出——碰撞會讓兩個
+ * 行政區的資料互相覆蓋（某村的村里長掛到另一村頭上），正是本站最忌諱的失敗模式。
+ *
+ * 曾經這裡只是「回傳 Map，大小若小於輸入即代表碰撞」，而碰撞只在測試裡以
+ * `size === areas.length` 斷言。那個防線擋不住實際發生過的事故：產出端另外把鍵
+ * 展開過一次才建表，測試驗的是展開前的鍵，於是展開後才發生的碰撞一路通關，
+ * 連江縣 21 個村的村里長全部被覆蓋掉而沒有任何錯誤或警告。防護必須在建表的
+ * 函式本身，不能只在測試裡。
  */
 export function buildKeyIndex(areas: AreaNode[]): Map<string, string> {
   const byCode = new Map(areas.map((a) => [a.code, a]));
   const index = new Map<string, string>();
+  const collisions: string[] = [];
   for (const a of areas) {
     const p = namePath(a, byCode);
-    index.set(areaKey(p[0], p[1], p[2]), a.code);
+    const key = areaKey(p[0], p[1], p[2]);
+    const prev = index.get(key);
+    if (prev !== undefined) collisions.push(`${key} → ${prev}、${a.code}`);
+    index.set(key, a.code);
+  }
+  if (collisions.length) {
+    throw new Error(`行政區名稱鍵碰撞 ${collisions.length} 筆，會讓兩區的資料互相覆蓋：${collisions.join('；')}`);
   }
   return index;
 }
 
-/** 中選會代碼 → 名稱鍵。與 buildKeyIndex 互為反向。 */
+/** 中選會代碼 → 名稱鍵。與 buildKeyIndex 互為反向；代碼重複同樣拋錯。 */
 export function buildCodeIndex(areas: AreaNode[]): Map<string, string> {
   const byCode = new Map(areas.map((a) => [a.code, a]));
   const index = new Map<string, string>();
+  const collisions: string[] = [];
   for (const a of areas) {
     const p = namePath(a, byCode);
-    index.set(a.code, areaKey(p[0], p[1], p[2]));
+    const key = areaKey(p[0], p[1], p[2]);
+    const prev = index.get(a.code);
+    if (prev !== undefined && prev !== key) collisions.push(`${a.code} → ${prev}、${key}`);
+    index.set(a.code, key);
+  }
+  if (collisions.length) {
+    throw new Error(`同一個中選會代碼對到不同名稱鍵 ${collisions.length} 筆：${collisions.join('；')}`);
   }
   return index;
-}
-
-/**
- * 展開含頓號的複合鍵，拆成一個或多個「縣市/鄉鎮市區/村里」鍵。
- *
- * 連江縣（馬祖）人口稀少，中選會把數個行政村合併成一個選舉單位，名稱以頓號
- * 相連（如「復興村、福沃村」「仁愛村、津沙村、馬祖村、四維村」），但界線檔
- * 仍按行政村逐村畫界，天生是一個選舉單位對應多個多邊形——那幾塊本來就共用
- * 同一份行政區資料，不是例外。若直接用原始複合鍵比對界線檔，會找不到任何
- * 對應的單一多邊形，導致這些選舉單位的地圖區塊被濾掉或誤判為缺界線。
- *
- * 只拆最後一段（村里名），縣市／鄉鎮市區不會有這種合併記法。沒有頓號的鍵
- * 原樣傳回一個元素的陣列，正常村里（名稱不含頓號）不受影響。
- *
- * 這是 test/areaMatch.test.ts 的全量對應測試與 scraper/build-election-map.ts
- * 的地圖產出共用的唯一實作——兩處各自維護一份的話，會演化到互相分歧（測試
- * 通過但產出錯誤，或反之），故收斂到這裡。
- */
-export function expandVillageUnitKey(key: string): string[] {
-  const segs = key.split('/');
-  const villageNames = segs[segs.length - 1].split('、');
-  const prefix = segs.slice(0, -1);
-  return villageNames.map((name) => [...prefix, name].join('/'));
 }
 
 /**

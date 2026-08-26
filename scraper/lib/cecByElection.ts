@@ -92,21 +92,49 @@ export function parseByElection(candCsv: string, profCsv: string): ByElectionWin
 
 export interface ByElectionTarget {
   countyName: string;
+  /** 鄉鎮市長補選才有值；縣市長與議員為 null。 */
+  townName: string | null;
+  /** 議員補選才有值。 */
   districtNo: number | null;
-  office: 'countyChief' | 'councilSeat';
+  office: 'countyChief' | 'townChief' | 'councilSeat';
 }
 
 /**
  * 由目錄名解析選區。這批資料沒有行政區代碼，目錄名是唯一線索。
  * 認不出的回 null——由呼叫端列報，不可默默略過，否則新增的補選會被無聲吃掉。
+ *
+ * 「市長」三個字不足以判定為縣市長：**縣轄市的首長職稱正是「市長」**。曾經這裡
+ * 寫成 `/市長|縣長/.test(dirName)`，於是「苗栗縣頭份市市長補選」會被判成苗栗
+ * 縣長、把真正的縣長整筆覆蓋掉——而且是無聲的。目前四個目錄剛好都是議員補選
+ * 所以還沒爆，但這是下次資料更新第一個會踩到的雷。
+ *
+ * 故改成結構化比對：**「長」字前面必須緊接著縣市名本身**（如「嘉義市」＋「長」）
+ * 才算縣市長；縣市名之後另有鄉鎮市名再接「長」的，走鄉鎮市長分支。兩者皆不符
+ * 就回 null 讓呼叫端列報，不猜。
  */
 export function parseByElectionDir(dirName: string): ByElectionTarget | null {
   const county = dirName.match(/([一-鿿]{2,3}[縣市])/)?.[1];
   if (!county) return null;
-  if (/市長|縣長/.test(dirName)) return { countyName: county, districtNo: null, office: 'countyChief' };
+
+  // 縣市長：縣市名本身直接接「長」，如「嘉義市長」「苗栗縣長」
+  if (dirName.includes(`${county}長`)) {
+    return { countyName: county, townName: null, districtNo: null, office: 'countyChief' };
+  }
+
+  // 議員：條件最具體（同時要有「議員」與「第N選舉區」），先判，避免地名裡的字誤觸下面的分支
   const no = dirName.match(/第\s*(\d+)\s*選舉區/)?.[1];
   if (/議員/.test(dirName) && no) {
-    return { countyName: county, districtNo: Number(no), office: 'councilSeat' };
+    return { countyName: county, townName: null, districtNo: Number(no), office: 'councilSeat' };
   }
+
+  // 鄉鎮市長：縣市名之後另有一個鄉／鎮／縣轄市名，再接「長」。
+  // 名稱部分用**惰性**量詞：「魚池鄉鄉長」若用貪婪量詞會抓成「魚池鄉鄉」，
+  // 「頭份市市長」會抓成「頭份市市」——惰性才會停在正確的「魚池鄉」「頭份市」。
+  const rest = dirName.slice(dirName.indexOf(county) + county.length);
+  const town = rest.match(/([一-鿿]{1,3}?[鄉鎮市])[鄉鎮市]?長/)?.[1];
+  if (town) {
+    return { countyName: county, townName: town, districtNo: null, office: 'townChief' };
+  }
+
   return null;
 }

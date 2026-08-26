@@ -1,10 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import {
-  normalizeAreaName, areaKey, buildKeyIndex, buildCodeIndex,
-  expandVillageUnitKey, KNOWN_MISSING_BOUNDARY_KEYS,
+  normalizeAreaName, areaKey, buildKeyIndex, buildCodeIndex, KNOWN_MISSING_BOUNDARY_KEYS,
 } from '../scraper/lib/areaMatch';
-import { parseElbase } from '../scraper/lib/cecVoteData';
+import { parseElbase, type AreaNode } from '../scraper/lib/cecVoteData';
 
 const V1_ELBASE = 'scraper/out-roster/cec/voteData/2022-111年地方公職人員選舉/V1/elbase.csv';
 
@@ -65,29 +64,23 @@ describe('buildKeyIndex：對真實資料', () => {
   });
 });
 
-describe('expandVillageUnitKey：展開含頓號的複合鍵', () => {
-  it('連江縣的合選單位拆成多個村里鍵', () => {
-    expect(expandVillageUnitKey('連江縣/南竿鄉/復興村、福沃村')).toEqual([
-      '連江縣/南竿鄉/復興村',
-      '連江縣/南竿鄉/福沃村',
-    ]);
+describe('buildKeyIndex / buildCodeIndex：碰撞一律拋錯', () => {
+  // 碰撞若只在測試裡以「Map 大小等於節點數」斷言，擋不住實際發生過的事故：產出端
+  // 另外把鍵展開過一次才建表，測試驗的是展開前的鍵，展開後才發生的碰撞一路通關，
+  // 連江縣 21 個村的村里長全部被覆蓋掉。防護必須在建表的函式本身。
+  const dup: AreaNode[] = [
+    { code: '09-007-00-000-0000', level: 'county', name: '連江縣', parent: null },
+    { code: '09-007-00-010-0000', level: 'town', name: '南竿鄉', parent: '09-007-00-000-0000' },
+    { code: '09-007-00-010-0002', level: 'village', name: '復興村', parent: '09-007-00-010-0000' },
+    { code: '09-007-00-010-0099', level: 'village', name: '復興村', parent: '09-007-00-010-0000' },
+  ];
+
+  it('同一個名稱鍵對到兩個代碼時拋錯並列出兩者', () => {
+    expect(() => buildKeyIndex(dup)).toThrow(/連江縣\/南竿鄉\/復興村.*0002.*0099/s);
   });
-  it('三段以上的合選單位全部拆開', () => {
-    expect(expandVillageUnitKey('連江縣/南竿鄉/仁愛村、津沙村、馬祖村、四維村')).toEqual([
-      '連江縣/南竿鄉/仁愛村',
-      '連江縣/南竿鄉/津沙村',
-      '連江縣/南竿鄉/馬祖村',
-      '連江縣/南竿鄉/四維村',
-    ]);
-  });
-  it('正常村里（名稱不含頓號）原樣傳回，不受誤傷', () => {
-    expect(expandVillageUnitKey('臺北市/松山區/莊敬里')).toEqual(['臺北市/松山區/莊敬里']);
-  });
-  it('只拆最後一段：縣市或鄉鎮市區名稱本身不會被誤拆（合成情境，實際資料沒有這種名稱）', () => {
-    expect(expandVillageUnitKey('測試縣、測試市/測試鄉/正常村')).toEqual(['測試縣、測試市/測試鄉/正常村']);
-  });
-  it('省略下層即為該層的鍵，同樣不受影響', () => {
-    expect(expandVillageUnitKey('臺北市/松山區')).toEqual(['臺北市/松山區']);
+
+  it('正常資料不拋錯', () => {
+    expect(() => buildKeyIndex(dup.slice(0, 3))).not.toThrow();
   });
 });
 
@@ -102,20 +95,31 @@ describe('界線檔與中選會行政區的全量對應', () => {
         .flatMap((o) => o.geometries.map((g: any) => g.properties.key)));
       const missing: string[] = [];
       for (const a of areas.filter((area) => area.level === level)) {
-        const fullKey = codeIndex.get(a.code) ?? a.code;
-        // 連江縣（馬祖）人口稀少，中選會把數個行政村合併成一個選舉單位，名稱以
-        // 頓號相連（如「復興村、福沃村」），但界線檔仍按行政村逐村畫界，天生是
-        // 一個選舉單位對應多個多邊形——故拆開頓號後逐一比對每個行政村是否都有
-        // 界線，而非要求整串合併名稱剛好對到單一多邊形（這是加嚴，不是放寬：
-        // 8 個選舉單位拆開後變成 21 筆逐一檢查，任何一村缺界線都會被抓到）。
-        // 展開邏輯與 scraper/build-election-map.ts 共用同一份實作
-        // （scraper/lib/areaMatch.ts 的 expandVillageUnitKey），避免兩處各自
-        // 演化到互相分歧。
-        for (const key of expandVillageUnitKey(fullKey)) {
-          if (!keys.has(key) && !KNOWN_MISSING_BOUNDARY_KEYS.has(key)) missing.push(key);
-        }
+        const key = codeIndex.get(a.code) ?? a.code;
+        if (!keys.has(key) && !KNOWN_MISSING_BOUNDARY_KEYS.has(key)) missing.push(key);
       }
       expect(missing).toEqual([]);
     });
   }
+
+  // 反向的守門員：每個界線多邊形的鍵最多只能對到一個行政區。前端就是用這個鍵
+  // 建查找表把資料貼到多邊形上，一鍵多區代表某區的資料會被畫到另一區身上。
+  it('每個界線多邊形鍵恰好對到一個行政區——一鍵多區會讓資料互相覆蓋', () => {
+    const byKey = new Map<string, string[]>();
+    for (const a of areas) {
+      if (a.level === 'electoralUnit') continue;   // 選舉單位不畫在地圖上
+      const key = codeIndex.get(a.code) ?? a.code;
+      byKey.set(key, [...(byKey.get(key) ?? []), a.code]);
+    }
+    expect([...byKey.entries()].filter(([, codes]) => codes.length > 1)).toEqual([]);
+  });
+
+  it('連江縣 22 個村都對得到自己的界線多邊形', () => {
+    const topo = JSON.parse(readFileSync('scraper/boundaries/village.topo.json', 'utf8'));
+    const keys = new Set<string>((Object.values(topo.objects) as any[])
+      .flatMap((o) => o.geometries.map((g: any) => g.properties.key)));
+    const villages = areas.filter((a) => a.level === 'village' && a.code.startsWith('09-007-'));
+    expect(villages).toHaveLength(22);
+    expect(villages.filter((a) => !keys.has(codeIndex.get(a.code)!))).toEqual([]);
+  });
 });

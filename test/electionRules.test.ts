@@ -19,29 +19,50 @@ describe('termLimited：縣市長連任一次為限', () => {
     ({ year, countyCode, name, birthDate });
 
   it('連續兩屆當選者不得再選', () => {
-    expect(termLimited(王, [rec(2018, 苗栗), rec(2022, 苗栗)], 苗栗, 2026).limited).toBe(true);
+    expect(termLimited(王, [rec(2018, 苗栗), rec(2022, 苗栗)], 苗栗, 2026).status).toBe('limited');
   });
 
   it('只當選一屆者可以再選', () => {
-    expect(termLimited(王, [rec(2022, 苗栗)], 苗栗, 2026).limited).toBe(false);
+    expect(termLimited(王, [rec(2022, 苗栗)], 苗栗, 2026).status).toBe('notLimited');
   });
 
   it('隔屆當選不算連任，不受限', () => {
-    expect(termLimited(王, [rec(2014, 苗栗), rec(2022, 苗栗)], 苗栗, 2026).limited).toBe(false);
+    expect(termLimited(王, [rec(2014, 苗栗), rec(2022, 苗栗)], 苗栗, 2026).status).toBe('notLimited');
   });
 
   it('在不同縣市各當選一屆不受限——限制綁在同一縣市的職位上', () => {
-    expect(termLimited(王, [rec(2018, '10-001-00-000-0000'), rec(2022, 苗栗)], 苗栗, 2026).limited).toBe(false);
+    expect(termLimited(王, [rec(2018, '10-001-00-000-0000'), rec(2022, 苗栗)], 苗栗, 2026).status).toBe('notLimited');
   });
 
   it('同名但出生日期不同者視為不同人，不可合併計算', () => {
     const history = [rec(2018, 苗栗, '王某', '0300101'), rec(2022, 苗栗, '王某', '0500101')];
-    expect(termLimited(王, history, 苗栗, 2026).limited).toBe(false);
+    expect(termLimited(王, history, 苗栗, 2026).status).toBe('notLimited');
   });
 
   it('受限時說明理由，供頁面直接顯示', () => {
     expect(termLimited(王, [rec(2018, 苗栗), rec(2022, 苗栗)], 苗栗, 2026).reason)
       .toBe('已連任一次（2018、2022 當選），依地方制度法不得再選');
+  });
+
+  // 「無法判定」與「確定不受限」折疊成同一個布林值，介面上會顯示成「不受限」——
+  // 那是拿不確定的東西謊稱確定。規格 §3.2 明寫只有姓名相同者列報待查。
+  it('本人缺出生日期而同縣市有同姓名的當選紀錄 → unknown，不可回不受限', () => {
+    const 無生日 = { name: '王某', birthDate: '' };
+    const history = [rec(2018, 苗栗, '王某', '0500101'), rec(2022, 苗栗, '王某', '')];
+    const r = termLimited(無生日, history, 苗栗, 2026);
+    expect(r.status).toBe('unknown');
+    expect(r.reason).toMatch(/無法確認是否同一人/);
+  });
+
+  it('缺出生日期但同縣市根本沒有同姓名的前屆紀錄 → 確定不受限，不是待查', () => {
+    const 無生日 = { name: '張某', birthDate: '' };
+    const history = [rec(2018, 苗栗, '王某', '0500101'), rec(2022, 苗栗, '張某', '')];
+    expect(termLimited(無生日, history, 苗栗, 2026).status).toBe('notLimited');
+  });
+
+  it('兩邊出生日期都在且不同 → 確定的不同人，回 notLimited 而非 unknown', () => {
+    const history = [rec(2018, 苗栗, '王某', '0300101'), rec(2022, 苗栗, '王某', '0500101')];
+    expect(termLimited(王, history, 苗栗, 2026).status).toBe('notLimited');
   });
 });
 
@@ -86,12 +107,19 @@ describe('termLimited：對 2018 與 2022 真實資料', () => {
   it('2022 當選的 21 位縣市長都判得出結果', () => {
     const results = w22.map((w) => termLimited(w, history, countyCodeOf(w.areaCode), 2026));
     expect(results.length).toBe(21);
-    expect(results.every((r) => typeof r.limited === 'boolean')).toBe(true);
+    expect(results.every((r) => ['limited', 'notLimited', 'unknown'].includes(r.status))).toBe(true);
   });
 
   it('受連任限制者為少數而非全部或零——兩種極端都代表判斷條件寫錯', () => {
-    const limited = w22.filter((w) => termLimited(w, history, countyCodeOf(w.areaCode), 2026).limited);
+    const limited = w22.filter((w) => termLimited(w, history, countyCodeOf(w.areaCode), 2026).status === 'limited');
     expect(limited.length).toBeGreaterThan(0);
     expect(limited.length).toBeLessThan(21);
+  });
+
+  // C1 這 21 位的出生日期都在原始檔裡，不該有任何待查——待查只會出現在補選／
+  // 重行選舉那一路（cand.csv 沒有出生日期欄）。
+  it('C1 的 21 位都判得出確定結果，沒有待查', () => {
+    const statuses = w22.map((w) => termLimited(w, history, countyCodeOf(w.areaCode), 2026).status);
+    expect(statuses.filter((s) => s === 'unknown')).toEqual([]);
   });
 });

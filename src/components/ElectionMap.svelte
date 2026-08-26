@@ -5,11 +5,6 @@
   import { geoMercator, geoPath } from 'd3-geo';
   import { feature } from 'topojson-client';
   import { isUnassignedVillage, type MapLayer, type MapArea } from '../lib/mapTypes';
-  // 連江縣有 8 個選舉單位是「數村合選一位村里長」，MapArea.key 含頓號
-  // （如「連江縣/南竿鄉/復興村、福沃村」），但界線檔多邊形是單村鍵。
-  // expandVillageUnitKey 把前者展開成一到多個單村鍵，用來建立多邊形查找表，
-  // 否則這些多邊形會因鍵對不上被濾掉，連江縣的村里層地圖會開天窗。
-  import { expandVillageUnitKey } from '../../scraper/lib/areaMatch';
   // 南海／釣魚台等極端外島的濾除邏輯，與 test/mapExclaves.test.ts 共用同一份定義。
   import { clipFarExclaves } from '../lib/mapExclaves';
 
@@ -48,8 +43,15 @@
     return `var(${code && PARTY_VAR[code] ? PARTY_VAR[code] : '--party-other'})`;
   }
 
+  // 語音報讀同樣要分得出「官派」「待抽籤」與「本站沒有資料」——三者是不同的事。
   function areaLabel(area: MapArea): string {
-    return `${area.name}，${area.chief ? `${area.chief.name}，${area.chief.partyName}` : '無資料'}`;
+    if (area.chief) {
+      const quota = area.chief.electedBy === 'quota' ? '，婦女保障名額當選' : '';
+      return `${area.name}，${area.chief.name}，${area.chief.partyName}${quota}`;
+    }
+    if (area.chiefOffice === 'appointed') return `${area.name}，區長為官派，非民選職務`;
+    if (area.chiefPendingDraw) return `${area.name}，得票相同待抽籤，本資料未載結果`;
+    return `${area.name}，本站無資料`;
   }
 
   // 未編定村里的 aria-label：講清楚是「無此資料」而非「載入失敗」
@@ -108,10 +110,17 @@
     const topo = current.topology as any;
     const feats = featuresOf(topo);
 
-    // 用展開後的單村鍵建立查找表，涵蓋連江縣數村合一的選舉單位。
+    // 界線多邊形鍵 → 行政區。每個鍵必須恰好對到一個區域：碰撞時後寫入者會覆蓋
+    // 前者，把某區的資料畫到另一區的多邊形上（曾經因為建表前先把含頓號的鍵展開，
+    // 連江縣 21 個村的村里長全部被覆蓋掉而沒有任何提示）。故這裡明確檢查並在
+    // console 報錯——前端不能拋錯讓整張地圖消失，但絕不可以無聲。
     const byKey = new Map<string, MapArea>();
     for (const a of current.areas) {
-      for (const k of expandVillageUnitKey(a.key)) byKey.set(k, a);
+      const prev = byKey.get(a.key);
+      if (prev && prev.code !== a.code) {
+        console.error(`[地圖] 界線鍵碰撞：「${a.key}」同時對到 ${prev.code}（${prev.name}）與 ${a.code}（${a.name}），後者會覆蓋前者`);
+      }
+      byKey.set(a.key, a);
     }
 
     const paired = feats
