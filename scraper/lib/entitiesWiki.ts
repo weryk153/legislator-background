@@ -44,10 +44,20 @@ export function photoCredit(p: EntityPhoto): string {
 export function validateEntitiesWiki(rows: EntityWiki[]): string[] {
   const errors: string[] = [];
   const seen = new Set<string>();
+  // photoFileName 把 distinct 截到前 8 個字：兩列姓名相同、distinct 前 8 字剛好相同但
+  // 整串不同時，會產生同一個 <name>-<8>.jpg 檔名——enrich-entity-photos.ts 會讓後寫入者
+  // 覆蓋前者的照片（節點顯示另一人的臉），wiki-discover-relations.ts 也會因輸出檔名撞在
+  // 一起而悄悄漏抓其中一人。必須在此攔下，不能只靠 entityWikiKey 的重複鍵檢查
+  // （那個鍵沒截斷，兩列 distinct 不同時鍵本來就不同，不會被抓到）。
+  const seenFiles = new Map<string, string>(); // photoFileName → 第一次見到它的 key
   for (const r of rows) {
     const key = entityWikiKey(r.name, r.distinct);
     if (seen.has(key)) errors.push(`重複鍵：${key}`);
     seen.add(key);
+    const file = photoFileName(r.name, r.distinct);
+    const prevKey = seenFiles.get(file);
+    if (prevKey === undefined) seenFiles.set(file, key);
+    else if (prevKey !== key) errors.push(`重複照片檔名：${file}（${prevKey} / ${key}）`);
     if (!r.wikiTitle) errors.push(`${key}：wikiTitle 不可為空`);
     if (!/^https:\/\/zh\.wikipedia\.org\/wiki\/./.test(r.wikipediaUrl)) {
       errors.push(`${key}：wikipediaUrl 須為 https://zh.wikipedia.org/wiki/…`);

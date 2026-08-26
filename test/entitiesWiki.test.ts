@@ -51,6 +51,14 @@ describe('validateEntitiesWiki', () => {
     const bad = row({ noPhoto: true, photo: { file: '/photos/entities/x.jpg', author: 'a', license: 'CC0', commonsUrl: 'https://commons.wikimedia.org/wiki/File:x.jpg' } });
     expect(validateEntitiesWiki([bad])).toEqual(['柯文哲：photo 與 noPhoto 不可並存']);
   });
+  it('同姓名、distinct 前 8 字相同但整串不同 → 撞同一張照片檔名', () => {
+    const a = row({ name: '李傑', distinct: '前國防部長、前海軍總司令、海軍上將' });
+    const b = row({ name: '李傑', distinct: '前國防部長、前海軍總司令、學者' });
+    expect(photoFileName(a.name, a.distinct)).toBe(photoFileName(b.name, b.distinct));
+    expect(validateEntitiesWiki([a, b])).toEqual([
+      `重複照片檔名：${photoFileName(a.name, a.distinct)}（${entityWikiKey(a.name, a.distinct)} / ${entityWikiKey(b.name, b.distinct)}）`,
+    ]);
+  });
 });
 
 describe('indexEntitiesWiki', () => {
