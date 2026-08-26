@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { categorizeCareer, careerText } from '../src/lib/careerCategory';
+import { categorizeCareer, careerText, careerPeriod } from '../src/lib/careerCategory';
 
 describe('categorizeCareer：公職', () => {
   it('立法院委員會職務', () => {
@@ -90,6 +90,15 @@ describe('categorizeCareer：社會團體／財團法人', () => {
     expect(categorizeCareer('楊梅國際青年商會會長')).toBe('social');
     expect(categorizeCareer('台南市教師會、教育產業工會、環保局工會顧問')).toBe('social');
   });
+  it('社會團體也有屆別，不因「第N屆」三字誤判為公職', () => {
+    expect(categorizeCareer('宜蘭縣婦女會(第20屆)理事長')).toBe('social');
+    expect(categorizeCareer('救國團宜蘭縣真善美聯誼會第五屆會長')).toBe('social');
+    expect(categorizeCareer('南庄鄉農會(第16－17屆)理事長')).toBe('social');
+  });
+  it('聯盟與策進會', () => {
+    expect(categorizeCareer('臺灣醫界聯盟執行委員')).toBe('social');
+    expect(categorizeCareer('國家生技醫療產業策進會會長')).toBe('social');
+  });
   it('非立法院／議會的委員會是社會團體，不因「委員會」三字誤判為公職', () => {
     expect(categorizeCareer('新北市慢速壘球委員會理事長')).toBe('social');
     expect(categorizeCareer('臺中市體育總會滑冰委員會 主任委員')).toBe('social');
@@ -122,5 +131,23 @@ describe('careerText：organization 與 title 合併', () => {
   it('任一欄為空時不留下多餘空白', () => {
     expect(careerText('', '委員')).toBe('委員');
     expect(careerText('財政委員會', '')).toBe('財政委員會');
+  });
+});
+
+describe('careerPeriod：起訖期間', () => {
+  it('有起有訖', () => {
+    expect(careerPeriod('2024/02/01', '2028/01/31')).toBe('2024/02/01–2028/01/31');
+  });
+  it('有起無訖才是現任', () => {
+    expect(careerPeriod('2024/02/01', null)).toBe('2024/02/01–現任');
+  });
+  it('起訖皆無時不顯示期間——不可據此宣稱現任', () => {
+    // 立法院「經歷」欄位的自由文字列沒有日期（如「臺中市沙鹿中正獅子會16-17會長」），
+    // 舊版一律印成「–現任」，等於對一筆早已卸任的職務做出不實陳述。
+    expect(careerPeriod('', null)).toBe('');
+    expect(careerPeriod('', '')).toBe('');
+  });
+  it('無起有訖時只顯示結束', () => {
+    expect(careerPeriod('', '2020/12/31')).toBe('至 2020/12/31');
   });
 });

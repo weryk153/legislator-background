@@ -29,6 +29,7 @@
     "roster:audit": "tsx scraper/roster-audit.ts",
     "roster:record": "tsx scraper/roster-record.ts",
     "photos:record": "tsx scraper/photos-record.ts",
+    "import:mayor-careers": "tsx scraper/import-mayor-social-careers.ts",
     "wiki:resolve-entities": "tsx scraper/wiki-resolve-entities.ts",
     "enrich:entity-photos": "tsx scraper/enrich-entity-photos.ts",
     "wiki:discover-relations": "tsx scraper/wiki-discover-relations.ts"

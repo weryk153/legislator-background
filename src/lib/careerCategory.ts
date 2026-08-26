@@ -56,7 +56,7 @@ const AGENCY_COMMITTEE = /(內政部|外交部|國防部|財政部|教育部|法
 const SCHOOL_COMMITTEE = /(大學|學院|高中|高工|高商|國中|國小|學校|研究所)[^，、]{0,10}委員會/;
 
 // 社會團體／財團法人：法人型態、宗教場所、職業與地緣團體、服務性社團。
-const SOCIAL = /財團法人|社團法人|基金會|協會|公會|工會|學會|促進會|聯誼會|之友會|同鄉會|宗親會|後援會|校友會|校友總會|系友會|農會|漁會|水利會|合作社|獅子會|扶輪|青商|青年商會|同濟會|救國團|體育會|體育總會|慈善|文教|廟|教會|婦女會|婦工會|婦聯|婦女聯合會|女青年會|青溪|家長會/;
+const SOCIAL = /財團法人|社團法人|基金會|協會|公會|工會|學會|促進會|聯誼會|之友會|同鄉會|宗親會|後援會|校友會|校友總會|系友會|農會|漁會|水利會|合作社|獅子會|扶輪|青商|青年商會|同濟會|救國團|體育會|體育總會|慈善|文教|廟|教會|婦女會|婦工會|婦聯|婦女聯合會|女青年會|青溪|家長會|聯盟|策進會/;
 // 宮／寺／殿／壇 單獨一字太浮濫（故宮、白宮…），限定其後接職稱字或字串結尾——
 // 實際資料長成「大甲鎮瀾宮董事長」「苗栗縣竹南后厝龍鳳宮主任委員」。
 const TEMPLE = /[宮寺殿壇](?=$|[主董總理監常委副名譽榮執秘])/;
@@ -75,9 +75,14 @@ export function categorizeCareer(title: string): CareerCategory {
 
   if (SCHOOL_COMMITTEE.test(t)) return 'other';
   if (PUBLIC_COMMITTEE.test(t) || AGENCY_COMMITTEE.test(t) || PARLIAMENT_BODY.test(t)) return 'public';
-  if (PUBLIC_ORG.test(t) || PUBLIC_TITLE.test(t) || TERM.test(t)) return 'public';
+  if (PUBLIC_ORG.test(t) || PUBLIC_TITLE.test(t)) return 'public';
 
+  // 社團判斷必須早於單獨的屆別判斷：「宜蘭縣婦女會（第20屆）理事長」「南庄鄉農會
+  // （第16－17屆）理事長」都帶屆別，社團本來就有屆次，「第N屆」不足以判定為公職。
   if (SOCIAL.test(t) || TEMPLE.test(t) || SOCIAL_COMMITTEE.test(t)) return 'social';
+
+  // 兜底：認不出機關也認不出社團，但寫了屆別／會期／選舉區的，多為公職紀錄。
+  if (TERM.test(t)) return 'public';
   return 'other';
 }
 
@@ -91,4 +96,16 @@ export function careerText(organization: string, title: string): string {
   if (!o) return t;
   if (!t || o === t) return o;
   return `${o} ${t}`;
+}
+
+// 經歷的起訖期間文字。刻意不把「沒有結束日期」等同於「現任」——立法院「經歷」欄位的
+// 自由文字列（如「臺中市沙鹿中正獅子會16-17會長」）連開始日期都沒有，一律印成「–現任」
+// 等於對早已卸任的職務做出不實陳述。只有「有起始日、無結束日」才是現任。
+export function careerPeriod(startDate: string, endDate: string | null): string {
+  const s = (startDate ?? '').trim();
+  const e = (endDate ?? '').trim();
+  if (s && e) return `${s}–${e}`;
+  if (s) return `${s}–現任`;
+  if (e) return `至 ${e}`;
+  return '';
 }

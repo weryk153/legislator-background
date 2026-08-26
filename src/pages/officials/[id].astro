@@ -4,7 +4,7 @@ import Sources from "../../components/Sources.astro";
 import { loadOfficials } from "../../lib/data";
 import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL, OFFICE_LABEL } from "../../lib/graph";
 import { loadGraph } from "../../lib/loadGraph";
-import { categorizeCareer, careerText, type CareerCategory } from "../../lib/careerCategory";
+import { categorizeCareer, careerText, careerPeriod, type CareerCategory } from "../../lib/careerCategory";
 import RelationshipGraph from "../../components/RelationshipGraph.svelte";
 
 export async function getStaticPaths() {
@@ -117,7 +117,7 @@ const jsonLd = [
         {g.note && <p class="note">{g.note}</p>}
         {g.items.map((c) => (
           <div class="item">
-            <div><strong class="num">{c.startDate}–{c.endDate ?? "現任"}</strong>　{careerText(c.organization, c.title)}</div>
+            <div>{careerPeriod(c.startDate, c.endDate) && <strong class="num">{careerPeriod(c.startDate, c.endDate)}　</strong>}{careerText(c.organization, c.title)}</div>
             <Sources sources={[c.source]} />
           </div>
         ))}
