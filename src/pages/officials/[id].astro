@@ -4,6 +4,7 @@ import Sources from "../../components/Sources.astro";
 import { loadOfficials } from "../../lib/data";
 import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL, OFFICE_LABEL } from "../../lib/graph";
 import { loadGraph } from "../../lib/loadGraph";
+import { categorizeCareer, careerText, type CareerCategory } from "../../lib/careerCategory";
 import RelationshipGraph from "../../components/RelationshipGraph.svelte";
 
 export async function getStaticPaths() {
@@ -17,6 +18,19 @@ export async function getStaticPaths() {
 
 const { official: o, ego } = Astro.props;
 // 本人的直接人物關係（取與本人相連的邊，找出對方節點），以文字清單呈現。
+// 經歷依性質分組。分類是字面判斷（見 src/lib/careerCategory.ts），四類以外一律落在
+// 「其他」——每一筆都仍然顯示，分組只是讓「公職以外的社會團體職務」看得出來。
+const CAREER_GROUPS: { key: CareerCategory; label: string; note?: string }[] = [
+  { key: "public", label: "公職" },
+  { key: "party", label: "黨職" },
+  { key: "social", label: "社會團體／財團法人", note: "以下為公職以外的社會團體、財團法人職務。" },
+  { key: "other", label: "其他" },
+];
+const careersByCategory = CAREER_GROUPS.map((g) => ({
+  ...g,
+  items: o.careers.filter((c) => categorizeCareer(careerText(c.organization, c.title)) === g.key),
+})).filter((g) => g.items.length > 0);
+
 const centerKey = `official:${o.id}`;
 const egoByKey = new Map(ego.nodes.map((n) => [n.key, n]));
 const relations = ego.edges
@@ -97,10 +111,16 @@ const jsonLd = [
   <section class="sec">
     <h2>經歷</h2>
     {o.careers.length === 0 && <p class="dim none">尚無資料</p>}
-    {o.careers.map((c) => (
-      <div class="item">
-        <div><strong class="num">{c.startDate}–{c.endDate ?? "現任"}</strong>　{c.organization}　{c.title}</div>
-        <Sources sources={[c.source]} />
+    {careersByCategory.map((g) => (
+      <div class="career-group">
+        <h3 class="career-group-head">{g.label}</h3>
+        {g.note && <p class="note">{g.note}</p>}
+        {g.items.map((c) => (
+          <div class="item">
+            <div><strong class="num">{c.startDate}–{c.endDate ?? "現任"}</strong>　{careerText(c.organization, c.title)}</div>
+            <Sources sources={[c.source]} />
+          </div>
+        ))}
       </div>
     ))}
   </section>
@@ -233,6 +253,12 @@ const jsonLd = [
       padding-bottom: 8px; border-bottom: 1px solid var(--line-strong);
     }
     .note { font-size: var(--t-sm); color: var(--muted); margin: -4px 0 16px; }
+    .career-group + .career-group { margin-top: 22px; }
+    .career-group-head {
+      font-family: var(--sans); font-size: var(--t-sm); font-weight: 700;
+      color: var(--muted); letter-spacing: 0.06em;
+      margin: 0 0 8px; padding-bottom: 5px; border-bottom: 1px solid var(--line);
+    }
     .graph-note { margin: 10px 0 18px; }
     .none { padding: 4px 0; }
     .item { margin: 12px 0; }
