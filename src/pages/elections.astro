@@ -19,7 +19,12 @@ const days = Math.ceil((ELECTION_DAY.getTime() - Date.now()) / 86400000);
     <strong>非 2026 年選情</strong>。候選人名單須待中選會於登記期後公告，屆時另行補上。
   </p>
 
-  <ElectionPanel client:load />
+  <!-- 地圖滿版出血：跳出 .wrap 的 940px 上限、佔滿整個視窗寬度，讓天下雜誌那種
+       「地圖是主角、控制項浮在上面」的感覺成立；標題／倒數／版權在這個區塊上下的
+       一般容器裡，不受影響。 -->
+  <div class="map-stage">
+    <ElectionPanel client:load />
+  </div>
 
   <p class="credit">
     行政區界線：內政部國土測繪中心（政府資料開放授權條款）｜選舉結果：中央選舉委員會
@@ -32,6 +37,9 @@ const days = Math.ceil((ELECTION_DAY.getTime() - Date.now()) / 86400000);
 
 <style>
   .countdown { color: var(--muted); font-size: var(--t-sm); margin: -.4rem 0 1rem; }
+  /* 標準的「跳出置中容器」技巧：50% 相對於父層（.wrap，已置中），50vw 相對於視窗，
+     兩者相減剛好抵消置中造成的偏移，讓這個區塊左右都貼齊視窗邊緣。 */
+  .map-stage { width: 100vw; margin-left: calc(50% - 50vw); margin-bottom: 1.75rem; }
   .notice {
     background: var(--surface);
     border: 1px solid var(--line-strong);
