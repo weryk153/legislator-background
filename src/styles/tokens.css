@@ -28,14 +28,27 @@
   --radius: 8px;
   --ease: 180ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* 政黨識別色（選舉地圖用）。元件內不得寫死色碼，一律讀這組變數。 */
-  --party-kmt: #1b9ad6;      /* 中國國民黨 */
-  --party-dpp: #1b9431;      /* 民主進步黨 */
-  --party-tpp: #28c8c8;      /* 台灣民眾黨 */
-  --party-npp: #fbbe01;      /* 時代力量 */
-  --party-pfp: #ff6310;      /* 親民黨 */
-  --party-none: #9aa0a6;     /* 無黨籍及未經政黨推薦 */
-  --party-other: #c4a0d8;    /* 其他政黨（含未知政黨代號） */
+  /* 政黨識別色（選舉地圖用）。元件內不得寫死色碼，一律讀這組變數。
+     刻意不用政黨官方品牌色（那是為螢幕發光設計的飽和色，貼在暖白紙底上像貼別人
+     的圖）——壓低彩度、往暖偏，讓色塊像印在紙上；同時保留可辨識的色相（藍/綠/青/
+     黃/橘/紫），讀者仍一眼認得出藍＝國民黨、綠＝民進黨。 */
+  --party-kmt: #4a6fa5;      /* 中國國民黨——靛藍 */
+  --party-dpp: #5a8055;      /* 民主進步黨——苔綠 */
+  --party-tpp: #5f9a9a;      /* 台灣民眾黨——灰青 */
+  --party-npp: #b8933f;      /* 時代力量——芥黃 */
+  --party-pfp: #b0664a;      /* 親民黨——磚橘 */
+  --party-none: #a49c90;     /* 無黨籍及未經政黨推薦——暖灰 */
+  --party-other: #8f7d99;    /* 其他政黨（含未知政黨代號）——藕紫 */
+
+  /* 選舉地圖的非政黨狀態。這些不是「政黨色」，刻意留在低彩度的暖中性色階，
+     跟上面那組政黨色的飽和度拉開，讀者一眼就能分出「這裡有政黨」跟「這裡沒有」。
+     三種狀態互相之間也要分得開，不可讓「官派」「待抽籤」「本站無資料」看起來像
+     同一件事——它們是三件不同的事（見 ElectionSidebar.svelte 的說明文字）。 */
+  --map-appointed-bg: #efe9dc;   /* 官派區（無選舉）：斜線紋理的底色，見 ElectionMap.svelte 的 #hatch-appointed */
+  --map-appointed-line: #3c3527; /* 官派區斜線本身的顏色 */
+  --map-unedited: #e3ddd0;       /* 未編定村里（真實土地但無村里長，非選舉缺口） */
+  --map-pending: #9c8760;        /* 得票相同待抽籤：中性但較深，跟「本站無資料」的淺灰分得開 */
+  --map-nodata: #c7bfab;         /* 本站無資料（制度上有選舉，但本站資料缺漏） */
 }
 :root[data-theme="dark"] {
   --bg: #131312;
@@ -49,14 +62,20 @@
   --accent-wash: rgba(232, 99, 90, 0.10);
   --row-hover: rgba(210, 205, 195, 0.07);
 
-  /* 深色底降低彩度、略提亮度以維持對比 */
-  --party-kmt: #5cb8e0;
-  --party-dpp: #4cbf63;
-  --party-tpp: #5fd9d9;
-  --party-npp: #f0cc4d;
-  --party-pfp: #ff8f57;
-  --party-none: #8b9096;
-  --party-other: #cdaee0;
+  /* 深色底：同一組色相，提亮度、維持對比（見上方淺色模式的說明） */
+  --party-kmt: #7d9dc9;
+  --party-dpp: #8fb389;
+  --party-tpp: #86bdbd;
+  --party-npp: #d4b76a;
+  --party-pfp: #cf8e72;
+  --party-none: #8a847b;
+  --party-other: #b2a0bb;
+
+  --map-appointed-bg: #3a3629;
+  --map-appointed-line: #d8cdb8;
+  --map-unedited: #2c2921;
+  --map-pending: #9c8967;
+  --map-nodata: #5a543f;
 }
 
 * { box-sizing: border-box; }

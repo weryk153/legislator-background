@@ -55,6 +55,15 @@ export function isUnassignedVillage(area: Pick<MapArea, 'code'>): boolean {
   return area.code.startsWith(UNASSIGNED_VILLAGE_PREFIX);
 }
 
+// 政黨代號 → CSS 變數。ElectionMap（畫地圖）與 ElectionPanel（圖例）都要用同一份
+// 對應表，故拉到這裡共用——原本兩處各自宣告過一次，一旦日後新增政黨代號，很容易
+// 改了地圖那份卻漏改圖例那份，讓兩者悄悄不一致。查無者一律回退到 --party-other，
+// 不可靜默變成無黨籍的灰（999 才是無黨籍）。
+export const PARTY_VAR: Record<string, string> = {
+  '1': '--party-kmt', '16': '--party-dpp', '350': '--party-tpp',
+  '267': '--party-npp', '90': '--party-pfp', '999': '--party-none',
+};
+
 export interface MapLayer {
   level: 'national' | 'county' | 'town';
   parentName: string;

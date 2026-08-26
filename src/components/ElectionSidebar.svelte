@@ -3,7 +3,13 @@
 <script lang="ts">
   import { isUnassignedVillage, type MapArea, type MapLayer, type PartySeat } from '../lib/mapTypes';
 
-  let { area, layer }: { area: MapArea | null; layer: MapLayer | null } = $props();
+  // upcoming：目前檢視的年份尚未舉行選舉（見 src/lib/electionYears.ts）。這時
+  // area／layer 仍然是既有那年（如 2022）的資料——地圖只是拿它畫界線與驅動
+  // 下鑽，不代表尚未舉行那屆的結果，所以側欄要整段改講「尚無結果」，不能把
+  // area.chief 等 2022 年的當選人資訊當成現在的答案顯示出來。
+  let { area, layer, upcoming = false }: {
+    area: MapArea | null; layer: MapLayer | null; upcoming?: boolean;
+  } = $props();
 
   // 未選取單一區時，把整層的首長政黨彙總成分佈
   const overview = $derived.by((): PartySeat[] => {
@@ -42,7 +48,15 @@
 </script>
 
 <aside class="side">
-  {#if area}
+  {#if upcoming}
+    <!-- 尚未舉行的年份：不論有沒有點選行政區，一律不揭露沿用資料裡的當選人／
+         政黨，只說明「尚無結果」，並重申開票後會更新——跟左欄的說法一致。 -->
+    <h2>{area?.name ?? layer?.parentName ?? '2026 九合一選舉'}</h2>
+    <p class="institutional">
+      2026 年地方公職人員選舉尚未舉行，本站尚無{area ? '此區' : ''}結果可顯示。
+      投票日 2026 年 11 月 28 日，開票後本頁將更新為當屆結果。
+    </p>
+  {:else if area}
     <h2>{area.name}</h2>
 
     {#if isUnedited}

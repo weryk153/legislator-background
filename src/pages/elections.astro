@@ -3,10 +3,12 @@ import Base from "../layouts/Base.astro";
 import ElectionPanel from "../components/ElectionPanel.svelte";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { buildYears } from "../lib/electionYears";
 
 const meta = JSON.parse(readFileSync(join(process.cwd(), "public", "data", "map", "meta.json"), "utf8"));
-const ELECTION_DAY = new Date("2026-11-28T00:00:00+08:00");
-const days = Math.ceil((ELECTION_DAY.getTime() - Date.now()) / 86400000);
+// 年份切換器的資料來源，見 src/lib/electionYears.ts 開頭的說明——日後加 2018
+// 等更早年份時，只改 buildYears()，這裡與 ElectionPanel.svelte 都不必動。
+const years = buildYears(meta);
 ---
 
 <Base title="選舉地圖｜政治人物背景資料庫"
@@ -16,7 +18,7 @@ const days = Math.ceil((ELECTION_DAY.getTime() - Date.now()) / 86400000);
        標題／倒數／年度標示改成浮在地圖左側的欄（見 ElectionPanel），不再佔用地圖
        上方的獨立版面高度；下方的授權與領土說明留在這個區塊之下，捲動後看得到即可。 -->
   <div class="map-stage">
-    <ElectionPanel client:load days={days} electionYear={meta.electionYear} electionName={meta.electionName} />
+    <ElectionPanel client:load {years} />
   </div>
 
   <p class="credit">

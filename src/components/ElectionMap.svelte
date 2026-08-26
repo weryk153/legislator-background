@@ -8,13 +8,20 @@
   import { geoMercator, geoPath } from 'd3-geo';
   import { feature } from 'topojson-client';
   import { SvelteMap } from 'svelte/reactivity';
-  import { isUnassignedVillage, type MapLayer, type MapArea } from '../lib/mapTypes';
+  import { isUnassignedVillage, PARTY_VAR, type MapLayer, type MapArea } from '../lib/mapTypes';
   // 南海／釣魚台等極端外島的濾除邏輯，與 test/mapExclaves.test.ts 共用同一份定義。
   // 與已移除的插圖邏輯無關——這裡仍然需要，否則這幾座極端外島的經緯度會把全國
   // 唯一的那個投影撐爆，本島（連同金門、馬祖）反而被壓成看不清的小點。
   import { clipFarExclaves } from '../lib/mapExclaves';
 
-  let { onSelect }: { onSelect?: (area: MapArea | null, layer: MapLayer) => void } = $props();
+  // neutral：目前檢視的年份尚未舉行選舉（見 src/lib/electionYears.ts 的
+  // ElectionYearConfig.status === 'upcoming'）。整張地圖改成單一中性色，不透露
+  // 任何政黨版圖——因為底下沿用的仍是既有那年（如 2022）的行政區資料，只是拿來
+  // 畫界線，不代表尚未舉行的那屆選情。投影／下鑽／縮放邏輯完全不受影響。
+  let { onSelect, neutral = false }: {
+    onSelect?: (area: MapArea | null, layer: MapLayer) => void;
+    neutral?: boolean;
+  } = $props();
 
   // 內部座標系固定 1000×1100。投影只在全國層資料到位時算一次（fitExtent 到這個
   // 座標系），下鑽時絕不重算——否則每層各自的座標系不同，就沒辦法用同一個
@@ -43,26 +50,37 @@
   let pendingRetry = $state<(() => void) | null>(null);
   let hovered = $state<string | null>(null);
 
-  // 政黨代號 → CSS 變數。查無者用 --party-other，不靜默變成無黨籍的灰。
-  const PARTY_VAR: Record<string, string> = {
-    '1': '--party-kmt', '16': '--party-dpp', '350': '--party-tpp',
-    '267': '--party-npp', '90': '--party-pfp', '999': '--party-none',
-  };
-
   // 村里層裡「未編定村里」區塊：真實土地但未編定村里，沒有村里長，不可點擊。
   // 判斷邏輯共用 src/lib/mapTypes.ts 的 isUnassignedVillage，不在此處重複硬寫前綴。
   function isUnedited(area: MapArea): boolean {
     return isUnassignedVillage(area);
   }
 
+  // 四種非政黨狀態的填色，一律走 CSS 變數／SVG pattern，不寫死色碼：
+  //   官派（無選舉）→ 斜線紋理 #hatch-appointed（見下方 <defs>）
+  //   得票相同待抽籤 → --map-pending（刻意比「本站無資料」深，兩者不可同色）
+  //   本站無資料     → --map-nodata
+  //   未編定村里     → --map-unedited（模板裡另外處理，這裡是防禦性寫法）
+  // neutral 模式（year switcher 切到尚未舉行的年份）整層短路成同一個中性色，
+  // 不透露底下沿用的那年資料屬於哪個政黨。
   function fillFor(area: MapArea): string {
-    if (isUnedited(area)) return 'var(--line-strong)';
-    const code = area.chief?.partyCode;
-    return `var(${code && PARTY_VAR[code] ? PARTY_VAR[code] : '--party-other'})`;
+    if (neutral) return 'var(--map-appointed-bg)';
+    if (isUnedited(area)) return 'var(--map-unedited)';
+    if (area.chiefOffice === 'appointed') return 'url(#hatch-appointed)';
+    if (!area.chief) return area.chiefPendingDraw ? 'var(--map-pending)' : 'var(--map-nodata)';
+    const code = area.chief.partyCode;
+    return `var(${PARTY_VAR[code] ? PARTY_VAR[code] : '--party-other'})`;
   }
 
   // 語音報讀同樣要分得出「官派」「待抽籤」與「本站沒有資料」——三者是不同的事。
+  // neutral 模式下不論底下資料實際是誰當選，一律報讀「尚未舉行」，避免把沿用的
+  // 舊年份資料誤報成目前這屆的結果。
   function areaLabel(area: MapArea): string {
+    if (neutral) {
+      return area.chiefOffice === 'appointed'
+        ? `${area.name}，2026 年選舉尚未舉行；此區職務為官派，非民選`
+        : `${area.name}，2026 年選舉尚未舉行，尚無結果`;
+    }
     if (area.chief) {
       const quota = area.chief.electedBy === 'quota' ? '，婦女保障名額當選' : '';
       return `${area.name}，${area.chief.name}，${area.chief.partyName}${quota}`;
@@ -243,8 +261,9 @@
 </script>
 
 {#snippet shapePath(s: Shape, layer: MapLayer, dim: boolean, interactive: boolean)}
-  {#if isUnedited(s.area)}
-    <!-- 未編定村里：真實土地但無村里長，不可點擊的中性色區塊 -->
+  {#if !neutral && isUnedited(s.area)}
+    <!-- 未編定村里：真實土地但無村里長，不可點擊的中性色區塊。neutral 模式下不
+         特別處理——尚未舉行的年份整張圖本來就已經是同一個中性色，沒必要再區分。 -->
     <path d={s.d} class="unedited" role="img" aria-label={uneditedLabel(s.area)}
       vector-effect="non-scaling-stroke" />
   {:else if interactive}
@@ -303,6 +322,16 @@
   {:else}
     <svg viewBox="0 0 {VB_W} {VB_H}" preserveAspectRatio="xMidYMid meet" role="group"
          aria-label="{focusLayer()?.parentName ?? counties.parentName}政治地圖">
+      <defs>
+        <!-- 官派區（無選舉）的斜線紋理。底色／線色都讀 CSS 變數，深色模式切換時
+             會自動跟著換，不必另外宣告一份深色版 pattern。tile 用 userSpaceOnUse
+             固定在地圖內部 1000×1100 座標系裡，跟 path 一樣被 .zoom-group 的
+             transform 整層縮放，下鑽時紋理密度跟著畫面一起放大，不會跳格。 -->
+        <pattern id="hatch-appointed" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+          <rect width="6" height="6" fill="var(--map-appointed-bg)" />
+          <line x1="0" y1="0" x2="0" y2="6" stroke="var(--map-appointed-line)" stroke-width="1.4" />
+        </pattern>
+      </defs>
       <g class="zoom-group" style="transform: translate({target.tx}px, {target.ty}px) scale({target.k})">
         {#each countyShapes as s (s.key)}
           {@render shapePath(s, counties, crumbs.length > 1 && s.area.code !== focusCountyCode, crumbs.length === 1)}
@@ -337,7 +366,10 @@
   path { stroke: var(--bg); stroke-width: 0.5; transition: opacity .12s; }
   path.clickable { cursor: pointer; }
   path.hovered, path:focus-visible { opacity: .78; stroke: var(--fg); stroke-width: 1.5; outline: none; }
-  path.unedited { stroke: var(--line); stroke-dasharray: 2 2; }
+  /* fill 原本沒宣告，SVG 預設值是黑——在暖白紙底上會變成一塊突兀的黑斑。
+     明確填 --map-unedited（見 tokens.css），跟虛線邊框一起把「無此資料」的
+     訊號做得溫和而非看起來像壞掉。 */
+  path.unedited { fill: var(--map-unedited); stroke: var(--line); stroke-dasharray: 2 2; }
   path.bg-shape { pointer-events: none; }
   path.bg-shape.dim { opacity: .35; }
   .focus-outline { stroke: var(--accent); stroke-width: 2; pointer-events: none; }
