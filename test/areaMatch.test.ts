@@ -1,6 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { normalizeAreaName, areaKey, buildKeyIndex, buildCodeIndex } from '../scraper/lib/areaMatch';
+import {
+  normalizeAreaName, areaKey, buildKeyIndex, buildCodeIndex,
+  expandVillageUnitKey, KNOWN_MISSING_BOUNDARY_KEYS,
+} from '../scraper/lib/areaMatch';
 import { parseElbase } from '../scraper/lib/cecVoteData';
 
 const V1_ELBASE = 'scraper/out-roster/cec/voteData/2022-111年地方公職人員選舉/V1/elbase.csv';
@@ -62,27 +65,35 @@ describe('buildKeyIndex：對真實資料', () => {
   });
 });
 
+describe('expandVillageUnitKey：展開含頓號的複合鍵', () => {
+  it('連江縣的合選單位拆成多個村里鍵', () => {
+    expect(expandVillageUnitKey('連江縣/南竿鄉/復興村、福沃村')).toEqual([
+      '連江縣/南竿鄉/復興村',
+      '連江縣/南竿鄉/福沃村',
+    ]);
+  });
+  it('三段以上的合選單位全部拆開', () => {
+    expect(expandVillageUnitKey('連江縣/南竿鄉/仁愛村、津沙村、馬祖村、四維村')).toEqual([
+      '連江縣/南竿鄉/仁愛村',
+      '連江縣/南竿鄉/津沙村',
+      '連江縣/南竿鄉/馬祖村',
+      '連江縣/南竿鄉/四維村',
+    ]);
+  });
+  it('正常村里（名稱不含頓號）原樣傳回，不受誤傷', () => {
+    expect(expandVillageUnitKey('臺北市/松山區/莊敬里')).toEqual(['臺北市/松山區/莊敬里']);
+  });
+  it('只拆最後一段：縣市或鄉鎮市區名稱本身不會被誤拆（合成情境，實際資料沒有這種名稱）', () => {
+    expect(expandVillageUnitKey('測試縣、測試市/測試鄉/正常村')).toEqual(['測試縣、測試市/測試鄉/正常村']);
+  });
+  it('省略下層即為該層的鍵，同樣不受影響', () => {
+    expect(expandVillageUnitKey('臺北市/松山區')).toEqual(['臺北市/松山區']);
+  });
+});
+
 describe('界線檔與中選會行政區的全量對應', () => {
   const areas = parseElbase(readFileSync(V1_ELBASE, 'utf8'));
   const codeIndex = buildCodeIndex(areas);
-
-  // 已知例外：界線檔確實沒有的行政區，逐筆列名並附理由。
-  // 不可改成「比例低於 X% 就通過」——那會讓新出現的對應失敗被沉默吃掉。
-  //
-  // 以下 3 筆是中選會與界線檔用了不同的正常字元（都不是私用區碼位、也不是界線檔
-  // 的方括號記法），經 VILLCODE 逐碼比對確認兩邊在同一行政區代碼下的名稱僅差在
-  // 這一個字，但兩個字各自都是合法漢字，無法用確定性規則判斷何者為官方正字，
-  // 故列為已知例外而非猜測合併：
-  //   新北市/瑞芳區/濓新里、新北市/瑞芳區/濓洞里
-  //     界線檔為「濂新里」「濂洞里」（濂 U+6FC2 vs 濓 U+6FD3，皆為正常漢字）
-  //   雲林縣/水林鄉/瓊埔村
-  //     界線檔為「[欍]埔村」（拿掉方括號後為「欍埔村」，欍 U+6B0D 與中選會的
-  //     瓊 U+74CA 是完全不同的字，不是方括號記法差異）
-  const KNOWN_MISSING: string[] = [
-    '新北市/瑞芳區/濓新里',
-    '新北市/瑞芳區/濓洞里',
-    '雲林縣/水林鄉/瓊埔村',
-  ];
 
   for (const level of ['county', 'town', 'village'] as const) {
     it(`${level} 層的每個中選會行政區都對得到界線`, () => {
@@ -97,12 +108,11 @@ describe('界線檔與中選會行政區的全量對應', () => {
         // 一個選舉單位對應多個多邊形——故拆開頓號後逐一比對每個行政村是否都有
         // 界線，而非要求整串合併名稱剛好對到單一多邊形（這是加嚴，不是放寬：
         // 8 個選舉單位拆開後變成 21 筆逐一檢查，任何一村缺界線都會被抓到）。
-        const segments = fullKey.split('/');
-        const villageNames = segments[segments.length - 1].split('、');
-        const prefix = segments.slice(0, -1).join('/');
-        for (const name of villageNames) {
-          const key = prefix ? `${prefix}/${name}` : name;
-          if (!keys.has(key) && !KNOWN_MISSING.includes(key)) missing.push(key);
+        // 展開邏輯與 scraper/build-election-map.ts 共用同一份實作
+        // （scraper/lib/areaMatch.ts 的 expandVillageUnitKey），避免兩處各自
+        // 演化到互相分歧。
+        for (const key of expandVillageUnitKey(fullKey)) {
+          if (!keys.has(key) && !KNOWN_MISSING_BOUNDARY_KEYS.has(key)) missing.push(key);
         }
       }
       expect(missing).toEqual([]);

@@ -14,7 +14,7 @@ import {
   INDEPENDENT_PARTY_CODE, type Candidate, type AreaNode,
 } from './lib/cecVoteData';
 import { parseByElection, parseByElectionDir } from './lib/cecByElection';
-import { buildCodeIndex } from './lib/areaMatch';
+import { buildCodeIndex, expandVillageUnitKey, KNOWN_MISSING_BOUNDARY_KEYS } from './lib/areaMatch';
 import { seatBreakdown, toTermRecords, termLimited } from './lib/electionRules';
 import type { MapArea, MapLayer, Officeholder } from '../src/lib/mapTypes';
 
@@ -59,15 +59,32 @@ function load2018Chiefs(): Candidate[] {
     .filter((c) => c.elected);
 }
 
-// 站上既有人物的 slug：用「姓名＋縣市」比對，對不到就是 null（本站尚無此人背景資料）
+/**
+ * 站上既有人物的 slug：用「姓名＋縣市」比對，對不到就是 null（本站尚無此人背景資料）。
+ *
+ * 「姓名＋縣市」不保證唯一——同縣市同名者若真的出現，後寫入的會靜默覆蓋前者，
+ * 把某人的檔案頁連結掛到另一個同名的人頭上，這比「沒有連結」嚴重得多（本站
+ * 原則：常見名寧缺勿錯）。故比照 areaMatch.ts 的 buildKeyIndex 做法，逐一分組
+ * 後檢查每個鍵是否只對到一筆，一旦碰撞就拋錯列名，而不是安靜地讓後者贏。
+ * 目前資料是 0 碰撞，但這個防護必須留著——資料一多，碰撞遲早會出現。
+ */
 function loadSlugs(officials: any[]): Map<string, string> {
-  const m = new Map<string, string>();
+  const groups = new Map<string, string[]>();
   for (const o of officials) {
     if (o.officeType !== 'mayor_magistrate' && o.officeType !== 'councilor') continue;
     const county = String(o.district ?? '').match(/^(.+?[縣市])/)?.[1] ?? '';
-    if (county) m.set(`${o.name}/${county}`, o.slug);
+    if (!county) continue;
+    const key = `${o.name}/${county}`;
+    groups.set(key, [...(groups.get(key) ?? []), o.slug]);
   }
-  return m;
+  const collisions = [...groups.entries()].filter(([, slugs]) => slugs.length > 1);
+  if (collisions.length) {
+    throw new Error(
+      `officials.json 姓名＋縣市鍵碰撞，無法安全對應 slug（常見名寧缺勿錯，寧可拋錯也不要連錯人）：`
+      + collisions.map(([k, s]) => `${k} → ${s.join('、')}`).join('；'),
+    );
+  }
+  return new Map([...groups.entries()].map(([k, v]) => [k, v[0]]));
 }
 
 // 補選與重行選舉的覆蓋。「現況」不等於「2022 當選名單」：嘉義市長延後重行選舉，
@@ -121,30 +138,59 @@ function applyByElections(
     }
 
     // 議員缺額補選：先移除已離職者、再附加補選當選者。原始補選資料本身無從得知
-    // 是哪一位離職，故以「該選區 2022 當選者中，姓名不在 officials.json 該選區
-    // 現任議員名單者」推導離職者。若這樣篩出的人數不是恰好 1 位，代表無法唯一
-    // 判定，寧可不刪（席次多算 1 席），也不要誤刪一位仍在任的議員——退回單純
-    // 附加，並印出警告供人工確認。
+    // 是哪一位離職，須從 officials.json 反推。
     if (list.some((w) => w.areaCode === areaCode && w.name === win.name)) {
       notes.push(`補選當選者已在名單中，略過附加：${target.countyName}第${target.districtNo}選舉區 → ${win.name}`);
       continue;
     }
     const districtStr = `${target.countyName}第${String(target.districtNo).padStart(2, '0')}選舉區`;
-    const currentNames = new Set(
-      officials
-        .filter((o) => o.officeType === 'councilor' && o.isIncumbent && o.district === districtStr)
-        .map((o) => o.name),
-    );
     const here = list.filter((w) => w.areaCode === areaCode);
-    const departed = here.filter((w) => !currentNames.has(w.name));
+    const hereNames = new Set(here.map((w) => w.name));
+
+    // 訊號一（優先，最可靠）：officials.json 裡明確標記 isIncumbent:false 且
+    // 附有 departedReason、姓名又確實出現在該選區 2022 當選名單裡的紀錄——這是
+    // 有憑有據的「已離職」，不受名冊追蹤覆蓋率影響。
+    //
+    // 訊號二（退回用，較弱）：「2022 當選者中，姓名不在 officials.json 該選區
+    // 現任名單者」的集合差集。這個訊號本身不可靠——全國 906 位 2022 議員當選者
+    // 裡有 26 位在 officials.json 完全查無 councilor 紀錄（多數是轉任立委後
+    // 未再標記），「查無紀錄」不等於「這次補選的離職者」。故只在訊號一找不到
+    // 時才退回，且額外要求「officials.json 現任名單人數＝該選區 2022 當選人數」
+    // 才動手——這個等式成立時，代表 officials.json 對這個選區的現任名冊是完整
+    // 的（沒有查無紀錄的漏網之魚），集合差集才站得住腳；不成立就代表名冊在這個
+    // 選區本身不完整，貿然刪除有刪錯還在任者的風險，寧可不刪、印警告列報。
+    const explicitDeparted = officials.filter((o) => (
+      o.officeType === 'councilor' && o.district === districtStr
+      && o.isIncumbent === false && hereNames.has(o.name)
+    ));
+
+    let departed: Candidate[] = [];
+    let method = '';
+    if (explicitDeparted.length === 1) {
+      departed = here.filter((w) => w.name === explicitDeparted[0].name);
+      method = 'officials.json 明確標記離職';
+    } else if (explicitDeparted.length === 0) {
+      const currentNames = new Set(
+        officials
+          .filter((o) => o.officeType === 'councilor' && o.isIncumbent && o.district === districtStr)
+          .map((o) => o.name),
+      );
+      const setDiff = here.filter((w) => !currentNames.has(w.name));
+      if (currentNames.size === here.length && setDiff.length === 1) {
+        departed = setDiff;
+        method = '集合差集（已核對現任人數與2022當選人數相符）';
+      }
+    }
+    // explicitDeparted.length >= 2：多筆明確離職紀錄同時命中同一選區，無法判斷
+    // 這次補選對應哪一筆，departed 維持空陣列，落入下方的警告分支。
 
     if (departed.length === 1) {
       winners.set(target.office, [...list.filter((w) => w !== departed[0]), c]);
-      notes.push(`套用缺額補選：${target.countyName}第${target.districtNo}選舉區 → 移除已離職的 ${departed[0].name}，新增 ${win.name}`);
+      notes.push(`套用缺額補選：${target.countyName}第${target.districtNo}選舉區 → 移除已離職的 ${departed[0].name}（判定依據：${method}），新增 ${win.name}`);
     } else {
       winners.set(target.office, [...list, c]);
-      notes.push(`⚠ 缺額補選 ${target.countyName}第${target.districtNo}選舉區：無法唯一判定離職者`
-        + `（候選 ${departed.length} 位：${departed.map((d) => d.name).join('、') || '無'}），退回單純附加 → ${win.name}`
+      notes.push(`⚠ 缺額補選 ${target.countyName}第${target.districtNo}選舉區：無法可靠判定離職者`
+        + `（明確離職紀錄 ${explicitDeparted.length} 筆），退回單純附加 → ${win.name}`
         + '（該選區席次可能多計 1 席，請人工確認）');
     }
   }
@@ -212,21 +258,10 @@ const boundaryTopo: Record<'county' | 'town' | 'village', any> = {
 const allVillageKeys: string[] = (Object.values(boundaryTopo.village.objects) as any[])
   .flatMap((o) => o.geometries.map((g: any) => g.properties.key as string));
 
-/**
- * 展開含頓號的複合鍵。連江縣（馬祖）人口稀少，中選會把數個行政村合併成一個
- * 選舉單位，名稱以頓號相連（如「復興村、福沃村」），但界線檔仍按行政村逐村
- * 畫界——一個選舉單位天生對應多塊共用同一位村里長的多邊形，這是事實而非例外。
- * 若直接用原始複合鍵比對，這些多邊形會被 subsetTopology 全數濾掉，連江縣的
- * 村里層地圖會出現大片空洞。做法與 test/areaMatch.test.ts 的全量對應測試一致：
- * 拆開頓號、逐段展開成多個鍵再比對。
- */
+/** 展開一批鍵中含頓號的複合鍵（見 scraper/lib/areaMatch.ts 的 expandVillageUnitKey）。 */
 function expandKeys(keys: Iterable<string>): Set<string> {
   const out = new Set<string>();
-  for (const key of keys) {
-    const segs = key.split('/');
-    const names = segs[segs.length - 1].split('、');
-    for (const name of names) out.add([...segs.slice(0, -1), name].join('/'));
-  }
+  for (const key of keys) for (const k of expandVillageUnitKey(key)) out.add(k);
   return out;
 }
 
@@ -254,8 +289,17 @@ function mapArcIndices(node: unknown, remap: (i: number) => number): unknown {
  * 實際引用到的 arc 索引，只保留這些 arc、並依新順序重新編號、把 geometries
  * 的索引改寫成對應到新陣列的位置。arc 本身是各自獨立、自帶絕對起點的 delta
  * 編碼（TopoJSON 規格），重新排序、抽取子集不影響座標還原，不需調整 transform。
+ *
+ * 濾完後另外核對：expanded 裡每個鍵是否都真的在 keptGeometries 裡找到了對應
+ * 多邊形。目前這件事全靠 test/areaMatch.test.ts 的全量對應測試把關，但那是
+ * 測試層級的保護，這支腳本本身在產出當下沒有二次核對——界線檔一旦更新內容
+ * （不是本次任務會發生，但沒人能保證下次資料更新時測試一定會先被想起來重
+ * 跑），就可能悄悄漏畫一塊地圖而不會有任何錯誤或警告。故產出時同樣核對一次、
+ * 對不到的印出來，不靜默吞掉（已知例外沿用 test 那份 KNOWN_MISSING_BOUNDARY_
+ * KEYS，兩邊必須是同一份清單，否則各自的容忍範圍會分歧）。
  */
-function subsetTopology(level: 'county' | 'town' | 'village', keys: Set<string>): unknown {
+let missingBoundaryKeyCount = 0;
+function subsetTopology(level: 'county' | 'town' | 'village', keys: Set<string>, context: string): unknown {
   const topo = boundaryTopo[level];
   const expanded = expandKeys(keys);
   const objects: Record<string, any> = {};
@@ -269,6 +313,13 @@ function subsetTopology(level: 'county' | 'town' | 'village', keys: Set<string>)
       .map((g: any) => ({ ...g }));
     objects[name] = { ...obj, geometries };
     keptGeometries.push(...geometries);
+  }
+
+  const foundKeys = new Set(keptGeometries.map((g) => g.properties.key as string));
+  const missing = [...expanded].filter((k) => !foundKeys.has(k) && !KNOWN_MISSING_BOUNDARY_KEYS.has(k));
+  if (missing.length) {
+    missingBoundaryKeyCount += missing.length;
+    console.warn(`⚠ ${context}：界線檔找不到對應多邊形，共 ${missing.length} 筆：${missing.join('、')}`);
   }
 
   const referenced = new Set<number>();
@@ -305,7 +356,7 @@ const counties = areas.filter((a) => a.level === 'county');
 const national: MapLayer = {
   level: 'national',
   parentName: '全國',
-  topology: subsetTopology('county', new Set(counties.map((a) => codeIndex.get(a.code) ?? a.code))),
+  topology: subsetTopology('county', new Set(counties.map((a) => codeIndex.get(a.code) ?? a.code)), '全國層'),
   areas: counties.map((a) => buildArea(a, chiefByCounty.get(a.code), councilByCounty.get(a.code) ?? [], `county/${a.code}.json`)),
 };
 writeFileSync(`${OUT}/national.json`, JSON.stringify(national));
@@ -316,7 +367,7 @@ for (const c of counties) {
   const layer: MapLayer = {
     level: 'county',
     parentName: c.name,
-    topology: subsetTopology('town', new Set(towns.map((a) => codeIndex.get(a.code) ?? a.code))),
+    topology: subsetTopology('town', new Set(towns.map((a) => codeIndex.get(a.code) ?? a.code)), `縣市層：${c.name}`),
     areas: towns.map((a) => buildArea(a, chiefByTown.get(a.code), repByTown.get(a.code) ?? [], `town/${a.code}.json`)),
   };
   writeFileSync(`${OUT}/county/${c.code}.json`, JSON.stringify(layer));
@@ -336,7 +387,12 @@ for (const t of areas.filter((a) => a.level === 'town')) {
   const unassignedPrefix = `${townKey}/未編定:`;
   const unassignedKeys = allVillageKeys.filter((k) => k.startsWith(unassignedPrefix));
   const unassignedAreas: MapArea[] = unassignedKeys.map((key) => ({
-    code: key.slice(unassignedPrefix.length),
+    // code 帶「未編定:」前綴：這些區塊天生沒有中選會的五段代碼（不在行政區樹
+    // 裡），若 code 只留界線檔自帶的內部編號（如 "09007010S30"），會被誤認成
+    // 中選會代碼，違反「區域代碼一律用中選會五段代碼」的全域約束。加前綴讓
+    // 呼叫端一眼就看得出這是界線檔的例外編號，同時仍保有跨全國的唯一值可用
+    // 來當多邊形的渲染 key。
+    code: `未編定:${key.slice(unassignedPrefix.length)}`,
     key,
     name: '未編定村里',
     chief: null,
@@ -349,7 +405,7 @@ for (const t of areas.filter((a) => a.level === 'town')) {
   const layer: MapLayer = {
     level: 'town',
     parentName: t.name,
-    topology: subsetTopology('village', keys),
+    topology: subsetTopology('village', keys, `鄉鎮市區層：${t.name}`),
     areas: [...villageAreas, ...unassignedAreas],
   };
   writeFileSync(`${OUT}/town/${t.code}.json`, JSON.stringify(layer));
@@ -365,3 +421,8 @@ writeFileSync(`${OUT}/meta.json`, JSON.stringify({
 
 console.log(`輸出：全國 1 檔、縣市 ${counties.length} 檔、鄉鎮市區 ${areas.filter((a) => a.level === 'town').length} 檔`);
 console.log(`鄉鎮市區層另含 ${unassignedTotal} 筆未編定村里區塊（無行政區代碼，不可點擊）`);
+if (missingBoundaryKeyCount > 0) {
+  console.warn(`⚠ 共 ${missingBoundaryKeyCount} 個中選會行政區在界線檔找不到對應多邊形（明細見上方逐層警告），這些地圖區塊會缺畫`);
+} else {
+  console.log('界線檔核對：所有中選會行政區都找到對應多邊形（已知例外除外）');
+}
