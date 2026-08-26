@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { toTermRecords, termLimited, seatBreakdown, stripLegacyCsvQuoting, type TermRecord } from '../scraper/lib/electionRules';
+import { toTermRecords, termLimited, seatBreakdown, type TermRecord } from '../scraper/lib/electionRules';
 import { parseElcand, parseElpaty, winnersByArea, countyCodeOf } from '../scraper/lib/cecVoteData';
 
 describe('toTermRecords：把當選者轉成任期紀錄', () => {
@@ -70,18 +70,6 @@ describe('seatBreakdown：政黨席次統計', () => {
   });
 });
 
-describe('stripLegacyCsvQuoting：2018 匯出檔的引號還原', () => {
-  it('剝除雙引號與代碼欄的前導單引號，還原成與 2022 相同的裸值格式', () => {
-    const line = '"\'10","\'004","\'00","\'000","\'0000","1","楊文科","\'1","\'1","\'0400322","67","臺灣省","碩士","N","*"," "';
-    expect(stripLegacyCsvQuoting(line)).toBe('10,004,00,000,0000,1,楊文科,1,1,0400322,67,臺灣省,碩士,N,*, ');
-  });
-
-  it('已是無引號格式（2022）時原樣傳回，可安全對兩年資料一視同仁地套用', () => {
-    const line = '10,005,00,000,0000,1,鍾東錦,999,1,0520102,59,臺灣省,大學,N,*, ';
-    expect(stripLegacyCsvQuoting(line)).toBe(line);
-  });
-});
-
 describe('termLimited：對 2018 與 2022 真實資料', () => {
   const read = (p: string) => readFileSync(p, 'utf8');
   const R22 = 'scraper/out-roster/cec/voteData/2022-111年地方公職人員選舉';
@@ -89,10 +77,10 @@ describe('termLimited：對 2018 與 2022 真實資料', () => {
 
   const w22 = [...winnersByArea(['city', 'prv'].flatMap(
     (s) => parseElcand(read(`${R22}/C1/${s}/elcand.csv`)))).values()].flat();
-  // 2018 匯出檔是 Excel 風格的引號 CSV，須先剝除引號才能交給 parseElcand（見
-  // stripLegacyCsvQuoting 註解）；2022 檔本身無引號，函式對其為 no-op，可統一套用。
+  // 2018 匯出檔是 Excel 風格的引號 CSV，parseElcand 內部已自動剝除引號（見
+  // cecVoteData.ts 的 splitCsvFields），這裡不需要任何額外轉換。
   const w18 = [...winnersByArea(['直轄市市長', '縣市市長'].flatMap(
-    (d) => parseElcand(stripLegacyCsvQuoting(read(`${R18}/${d}/elcand.csv`))))).values()].flat();
+    (d) => parseElcand(read(`${R18}/${d}/elcand.csv`)))).values()].flat();
   const history = [...toTermRecords(2018, w18), ...toTermRecords(2022, w22)];
 
   it('2022 當選的 21 位縣市長都判得出結果', () => {

@@ -139,11 +139,77 @@ describe('parseElcand：候選人', () => {
   });
 });
 
+// 中選會 2018 年（含）以前的匯出檔是 Excel 引號格式：每欄以雙引號包住，代碼類欄位
+// 再加前導單引號強制以文字讀入。以下三個 describe 用逐字抄自真實 2018 年檔案的列，
+// 驗證 parseElcand / parseElbase / parseElpaty 都能自動吃這種格式——不需要呼叫端
+// 先做任何轉換。
+describe('parseElcand：相容 2018 年 Excel 引號格式與 2022 年純格式', () => {
+  it('2022 年無引號格式：欄位值正確解析', () => {
+    // 逐字抄自 2022 C1/city/elcand.csv 第 3 列
+    const line = '09,007,00,000,0000,3,王忠銘,1,1,0470227,64,金馬地區,碩士,N,*, ';
+    expect(parseElcand(line)).toEqual([{
+      areaCode: '09-007-00-000-0000',
+      number: 3,
+      name: '王忠銘',
+      partyCode: '1',
+      sex: '1',
+      birthDate: '0470227',
+      age: 64,
+      education: '碩士',
+      incumbent: false,
+      elected: true,
+    }]);
+  });
+
+  it('2018 年 Excel 引號格式：剝除引號與前導單引號後，欄位值與無引號格式相同', () => {
+    // 逐字抄自 2018 縣市市長/elcand.csv 第 1 列（含雙引號與前導單引號）
+    const line = '"\'10","\'004","\'00","\'000","\'0000","1","楊文科","\'1","\'1","\'0400322","67","臺灣省","碩士","N","*"," "';
+    expect(parseElcand(line)).toEqual([{
+      areaCode: '10-004-00-000-0000',
+      number: 1,
+      name: '楊文科',
+      partyCode: '1',
+      sex: '1',
+      birthDate: '0400322',
+      age: 67,
+      education: '碩士',
+      incumbent: false,
+      elected: true,
+    }]);
+  });
+});
+
+describe('parseElcand：對 2018 年真實資料（Excel 引號格式）的當選席次', () => {
+  const R18 = 'scraper/out-roster/cec/voteData/2018-107年地方公職人員選舉';
+
+  it('直轄市市長＋縣市市長合計 22 位當選縣市長——這正是引號未剝除時會靜默歸零之處，須有測試盯著它', () => {
+    const cands = ['直轄市市長', '縣市市長'].flatMap((d) =>
+      parseElcand(readFileSync(`${R18}/${d}/elcand.csv`, 'utf8')));
+    expect(cands.filter((c) => c.elected).length).toBe(22);
+  });
+});
+
+describe('parseElbase：相容 2018 年 Excel 引號格式', () => {
+  it('引號與前導單引號會被剝除，解析結果與無引號格式相同', () => {
+    // 逐字抄自 2018 直轄市市長/elbase.csv 第 2 列
+    const line = '"\'63","\'000","\'00","\'000","\'0000","臺北市"';
+    expect(parseElbase(line)).toEqual([
+      { code: '63-000-00-000-0000', level: 'county', name: '臺北市', parent: null },
+    ]);
+  });
+});
+
 describe('parseElpaty：政黨代碼表', () => {
   it('代號對名稱', () => {
     const m = parseElpaty('1,中國國民黨\n16,民主進步黨\n999,無黨籍及未經政黨推薦');
     expect(m.get('1')).toBe('中國國民黨');
     expect(m.get('999')).toBe('無黨籍及未經政黨推薦');
+  });
+
+  it('相容 2018 年 Excel 引號格式：引號會被剝除，解析結果與無引號格式相同', () => {
+    // 逐字抄自 2018 縣市市長/elpaty.csv
+    const line = '"999","無黨籍及未經政黨推薦"';
+    expect(parseElpaty(line).get('999')).toBe('無黨籍及未經政黨推薦');
   });
 });
 
