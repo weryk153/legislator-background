@@ -19,6 +19,16 @@ describe('normalizeAreaName', () => {
   it('空值不拋錯', () => {
     expect(normalizeAreaName('')).toBe('');
   });
+  it('中選會的私用區罕用字（PUA）碼位轉回正常字元——經VILLCODE驗證過的碼位才轉換', () => {
+    expect(normalizeAreaName('瓦\u{e008}里')).toBe('瓦磘里');
+    expect(normalizeAreaName('\u{e02d}北里')).toBe('廍北里');
+  });
+  it('未收錄的私用區碼位維持原樣，不猜測——讓對不上的情形明確列出，而非悄悄轉錯', () => {
+    expect(normalizeAreaName('\u{e099}里')).toBe('\u{e099}里');
+  });
+  it('界線檔的方括號記法拿掉方括號、保留內部字元', () => {
+    expect(normalizeAreaName('瓦[磘]里')).toBe('瓦磘里');
+  });
 });
 
 describe('areaKey：複合鍵', () => {
@@ -50,4 +60,52 @@ describe('buildKeyIndex：對真實資料', () => {
     expect(buildKeyIndex(areas).get('臺北市/松山區/莊敬里')).toBe('63-000-00-010-0002');
     expect(buildCodeIndex(areas).get('63-000-00-010-0002')).toBe('臺北市/松山區/莊敬里');
   });
+});
+
+describe('界線檔與中選會行政區的全量對應', () => {
+  const areas = parseElbase(readFileSync(V1_ELBASE, 'utf8'));
+  const codeIndex = buildCodeIndex(areas);
+
+  // 已知例外：界線檔確實沒有的行政區，逐筆列名並附理由。
+  // 不可改成「比例低於 X% 就通過」——那會讓新出現的對應失敗被沉默吃掉。
+  //
+  // 以下 3 筆是中選會與界線檔用了不同的正常字元（都不是私用區碼位、也不是界線檔
+  // 的方括號記法），經 VILLCODE 逐碼比對確認兩邊在同一行政區代碼下的名稱僅差在
+  // 這一個字，但兩個字各自都是合法漢字，無法用確定性規則判斷何者為官方正字，
+  // 故列為已知例外而非猜測合併：
+  //   新北市/瑞芳區/濓新里、新北市/瑞芳區/濓洞里
+  //     界線檔為「濂新里」「濂洞里」（濂 U+6FC2 vs 濓 U+6FD3，皆為正常漢字）
+  //   雲林縣/水林鄉/瓊埔村
+  //     界線檔為「[欍]埔村」（拿掉方括號後為「欍埔村」，欍 U+6B0D 與中選會的
+  //     瓊 U+74CA 是完全不同的字，不是方括號記法差異）
+  const KNOWN_MISSING: string[] = [
+    '新北市/瑞芳區/濓新里',
+    '新北市/瑞芳區/濓洞里',
+    '雲林縣/水林鄉/瓊埔村',
+  ];
+
+  for (const level of ['county', 'town', 'village'] as const) {
+    it(`${level} 層的每個中選會行政區都對得到界線`, () => {
+      const topo = JSON.parse(readFileSync(`scraper/boundaries/${level}.topo.json`, 'utf8'));
+      const keys = new Set<string>((Object.values(topo.objects) as any[])
+        .flatMap((o) => o.geometries.map((g: any) => g.properties.key)));
+      const missing: string[] = [];
+      for (const a of areas.filter((area) => area.level === level)) {
+        const fullKey = codeIndex.get(a.code) ?? a.code;
+        // 連江縣（馬祖）人口稀少，中選會把數個行政村合併成一個選舉單位，名稱以
+        // 頓號相連（如「復興村、福沃村」），但界線檔仍按行政村逐村畫界，天生是
+        // 一個選舉單位對應多個多邊形——故拆開頓號後逐一比對每個行政村是否都有
+        // 界線，而非要求整串合併名稱剛好對到單一多邊形（這是加嚴，不是放寬：
+        // 8 個選舉單位拆開後變成 21 筆逐一檢查，任何一村缺界線都會被抓到）。
+        const segments = fullKey.split('/');
+        const villageNames = segments[segments.length - 1].split('、');
+        const prefix = segments.slice(0, -1).join('/');
+        for (const name of villageNames) {
+          const key = prefix ? `${prefix}/${name}` : name;
+          if (!keys.has(key) && !KNOWN_MISSING.includes(key)) missing.push(key);
+        }
+      }
+      expect(missing).toEqual([]);
+    });
+  }
 });
