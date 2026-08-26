@@ -33,7 +33,8 @@
     "reconcile:social-sources": "tsx scraper/reconcile-social-sources.ts",
     "wiki:resolve-entities": "tsx scraper/wiki-resolve-entities.ts",
     "enrich:entity-photos": "tsx scraper/enrich-entity-photos.ts",
-    "wiki:discover-relations": "tsx scraper/wiki-discover-relations.ts"
+    "wiki:discover-relations": "tsx scraper/wiki-discover-relations.ts",
+    "extract:vote-history": "tsx scraper/extract-vote-history.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
@@ -46,13 +47,15 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "@types/adm-zip": "^0.5.8",
     "@types/cytoscape": "^3.31.0",
     "@types/node": "^25.9.3",
+    "adm-zip": "^0.6.0",
     "playwright": "^1.61.0",
+    "sharp": "^0.33.0",
     "tsx": "^4.22.4",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.0",
-    "sharp": "^0.33.0"
+    "vitest": "^3.2.0"
   },
   "packageManager": "pnpm@10.16.1",
   "engines": {
