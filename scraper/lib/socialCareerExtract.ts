@@ -16,6 +16,8 @@ import { categorizeCareer } from '../../src/lib/careerCategory';
 const ROLE = /董事長|理事長|理事|監事|董事|主任委員|主委|會長|總幹事|執行長|顧問|創辦|榮譽|長老|委員(?!會)/;
 // infobox 欄位前綴：past / office1 / order2 … 之類，抽取時會連同欄位名一起被讀進來。
 const FIELD_PREFIX = /^(?:past|office\d*|order\d*|title\d*|position\d*)\s*=\s*\*?\s*/i;
+// 職務分隔符。頓號後若緊接屆次（「第6、7屆」的「7屆」）則不算分隔，見 extractSocialPositions。
+const SEPARATOR = /[、，,](?![\d〇零一二三四五六七八九十]+\s*[屆任期])\s*(?=\S{2,})|｜/;
 
 /** 一行 wikitext 是否為條列或 infobox 欄位（相對於散文）。 */
 function isDeclarative(line: string): boolean {
@@ -27,7 +29,10 @@ export function extractSocialPositions(wikitext: string): string[] {
   for (const line of (wikitext ?? '').split('\n')) {
     if (!isDeclarative(line) || !ROLE.test(line)) continue;
     // 頓號／逗號分隔的多筆職務拆開；全形直線是 infobox 內的另一種分隔。
-    for (const piece of cleanWikitextInline(line).split(/[、，,]\s*(?=\S{2,})|｜/)) {
+    // 例外：屆次列舉（「第6、7屆家長會長」）裡的頓號不是職務分隔——在那裡切開會得到
+    // 「觀音國小第6」（無職稱、丟棄）與「7屆家長會長」（沒有機構名的碎片），後者會被
+    // 當成一筆職務寫進資料庫。故頓號後緊接「數字＋屆／任／期」時不切。
+    for (const piece of cleanWikitextInline(line).split(SEPARATOR)) {
       const t = piece
         .trim()
         .replace(/^[*|]\s*/, '')

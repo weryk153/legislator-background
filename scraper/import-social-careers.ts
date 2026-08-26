@@ -42,9 +42,18 @@ async function main() {
   const sb = createClient(url, key);
   const only = process.env.ONLY;
 
-  const { data: offs, error: oe } = await sb.from('officials').select('id, name, office_type, district');
-  if (oe) throw new Error(`officials query failed: ${oe.message}`);
-  const officials = (offs ?? []) as { id: string; name: string; office_type: string; district: string }[];
+  // PostgREST 單次回應上限 1000 筆，而 officials 有 1053 筆——不分頁會靜默漏掉尾端的人，
+  // 表現為「名冊匹配 0 筆」而其實那人就在名冊裡（本站已被這個上限騙過一次，見
+  // import-relationships.ts 的同類註解）。
+  const officials: { id: string; name: string; office_type: string; district: string }[] = [];
+  for (let f = 0; ; f += 1000) {
+    const { data, error } = await sb.from('officials')
+      .select('id, name, office_type, district').range(f, f + 999);
+    if (error) throw new Error(`officials query failed: ${error.message}`);
+    const page = (data ?? []) as typeof officials;
+    officials.push(...page);
+    if (page.length < 1000) break;
+  }
 
   // 既有 careers：用來判斷這一筆是否已寫過（冪等）。
   const existing = new Set<string>();
