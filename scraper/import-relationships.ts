@@ -40,6 +40,12 @@ async function main() {
 
   const rows = JSON.parse(readFileSync(join(here, 'relationships-curated.json'), 'utf8')) as Curated[];
 
+  // 對照表驗證必須搶在下面的「冪等清除」之前執行：loadEntitiesWiki() 對格式錯誤會
+  // throw（見 lib/entitiesWiki.ts），若驗證晚於刪除才跑，一筆手改的 typo 就會先把
+  // 資料庫的既有關係整批刪光，腳本才中止——資料庫等於已被清空又匯入失敗。
+  const wikiIndex = indexEntitiesWiki(loadEntitiesWiki());
+  const wikiUsed = new Set<string>();
+
   // 名冊：name → official id。同名（多筆）者記錄為「不可唯一匹配」，counterpart 端遇到就降級為 entity。
   const officials: { id: string; name: string; office_type: string }[] = [];
   for (let from = 0; ; from += 1000) {
@@ -79,10 +85,9 @@ async function main() {
   // 反而摧毀關係圖存在的意義。同名不同人是罕見例外（如李佳芬同時是謝龍介之妻與
   // 韓國瑜之妻），必須由人查證後在 curated 資料上手寫 counterpartDistinct 標記
   // 才能生效——身份判斷只能交給人，不能靠字串比對推論。
-  // 外部人物 ↔ 維基條目／照片 對照（版控檔案）。entity 每次重匯都重建，照片與條目 URL
-  // 只能在這裡套上；沒有對照的 entity 兩欄維持 null。
-  const wikiIndex = indexEntitiesWiki(loadEntitiesWiki());
-  const wikiUsed = new Set<string>();
+  // 外部人物 ↔ 維基條目／照片 對照（版控檔案，wikiIndex／wikiUsed 已在檔案讀取後、
+  // 清除關係前宣告，見上方）。entity 每次重匯都重建，照片與條目 URL 只能在這裡套上；
+  // 沒有對照的 entity 兩欄維持 null。
 
   const entityCache = new Map<string, string>();
   async function ensureEntity(name: string, etype: string, desc: string, distinct?: string): Promise<string> {
