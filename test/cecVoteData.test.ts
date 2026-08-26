@@ -40,6 +40,36 @@ describe('parseElbase：行政區樹', () => {
   });
 });
 
+describe('parseElbase：格式不良列的處理', () => {
+  it('有內容但欄位不足的列要拋錯——靜默跳過會讓行政區樹悄悄少一塊', () => {
+    const csv = [
+      '63,000,00,000,0000,臺北市',
+      '63,000,00,010,0000', // 缺名稱欄
+    ].join('\n');
+    expect(() => parseElbase(csv)).toThrow(/第 2 列/);
+  });
+
+  it('名稱欄為空的列也要拋錯，不能當成合法資料', () => {
+    const csv = [
+      '63,000,00,000,0000,臺北市',
+      '63,000,00,010,0000,',
+    ].join('\n');
+    expect(() => parseElbase(csv)).toThrow(/第 2 列/);
+  });
+
+  it('純空白行不拋錯——只是版面留白，不是資料缺漏', () => {
+    const csv = ['63,000,00,000,0000,臺北市', '   ', '63,000,00,010,0000,松山區'].join('\n');
+    expect(() => parseElbase(csv)).not.toThrow();
+    expect(parseElbase(csv)).toHaveLength(2);
+  });
+
+  it('檔尾換行留下的空列不拋錯', () => {
+    const csv = '63,000,00,000,0000,臺北市\n';
+    expect(() => parseElbase(csv)).not.toThrow();
+    expect(parseElbase(csv)).toHaveLength(1);
+  });
+});
+
 describe('countyCodeOf / townCodeOf：代碼上溯', () => {
   it('議員的選區代碼可上溯到縣市——席次要按縣市彙整，而選區別不是行政區', () => {
     expect(countyCodeOf('10-005-01-000-0000')).toBe('10-005-00-000-0000');

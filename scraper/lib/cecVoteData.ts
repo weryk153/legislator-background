@@ -33,12 +33,24 @@ export function townCodeOf(areaCode: string): string {
  * （63 臺北、64 高雄、65 新北、66 臺中、67 臺南、68 桃園），其縣市別固定為 000，
  * 與「全國」列的 000 撞在一起。故以「鄉鎮市區別／村里別是否為空碼」判斷層級，
  * 並單獨排除省市別為 00 的全國列。
+ *
+ * 有內容卻欄位不足或名稱為空的列一律拋錯，不做靜默跳過：行政區樹少一列，
+ * 地圖上就少一塊行政區。若不拋錯，2026 年的資料格式一旦有異動（例如多了
+ * 標頭列、欄位數不同），會安靜地漏掉行政區而沒有人發現，直到地圖上發現
+ * 憑空缺一塊才回頭追查——那時已經太晚。純空白行（含檔尾換行留下的空列）
+ * 則是正常現象，予以略過。
  */
 export function parseElbase(csv: string): AreaNode[] {
   const out: AreaNode[] = [];
-  for (const line of (csv ?? '').split('\n')) {
+  const lines = (csv ?? '').split('\n');
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (line.trim() === '') continue; // 純空白行，非資料錯誤
     const f = line.split(',').map((s) => s.trim());
-    if (f.length < 6 || !f[5]) continue;
+    if (f.length < 6 || !f[5]) {
+      const preview = line.length > 80 ? `${line.slice(0, 80)}…` : line;
+      throw new Error(`elbase.csv 第 ${i + 1} 列格式不良（欄位不足或名稱為空）：${preview}`);
+    }
     const [prv, city, dist, town, village] = f;
     if (prv === '00') continue; // 全國
     const code = f.slice(0, 5).join('-');
