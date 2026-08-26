@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { parseCareerBlock } from '../scraper/lib/councilSiteParse';
 
-import { splitByPerson } from '../scraper/lib/councilSiteParse';
+import { splitByPerson, findOwnerName } from '../scraper/lib/councilSiteParse';
 
 describe('splitByPerson：一頁多人的議會頁按人拆開', () => {
   it('南投式：同一選區頁連續排列多位議員，以「姓名：」欄位為界', () => {
@@ -98,6 +98,28 @@ describe('parseCareerBlock：從議會個人頁純文字抽經歷條列', () => 
     expect(parseCareerBlock(t)).toEqual(['某某協會理事長']);
   });
 
+  it('嘉義市式：標籤與內容同一行、以頓號分隔多筆', () => {
+    const t = [
+      '學 經 歷', '學歷:政工幹部學校政治學系法學士',
+      '經歷:考試院乙等人事特考及格、嘉義市野鳥學會理事長、萬台宮主任委員',
+      '市政論壇',
+    ].join('\n');
+    expect(parseCareerBlock(t)).toEqual([
+      '考試院乙等人事特考及格', '嘉義市野鳥學會理事長', '萬台宮主任委員',
+    ]);
+  });
+
+  it('連江式：「簡經歷」標籤後同行接第一筆，後續各自成行', () => {
+    const t = [
+      '學歷 治平中學',
+      '簡經歷 1. 南竿鄉第七屆鄉民代表', '2. 南竿鄉第八屆鄉代主席', '4. 福沃社區發展協會理事長',
+      '政見 1.深耕基層，反映民意。',
+    ].join('\n');
+    expect(parseCareerBlock(t)).toEqual([
+      '南竿鄉第七屆鄉民代表', '南竿鄉第八屆鄉代主席', '福沃社區發展協會理事長',
+    ]);
+  });
+
   it('新聞標題不是經歷——民國日期開頭者剔除', () => {
     // 高雄議長頁面在經歷之後接了新聞列表，且同一則新聞會出現在多位議員頁上，
     // 被當成經歷會把別人的活動記到本人頭上
@@ -116,5 +138,42 @@ describe('parseCareerBlock：從議會個人頁純文字抽經歷條列', () => 
   it('過短、過長與純數字的行不取', () => {
     const t = `經歷\n甲\n${'很長的職務名稱'.repeat(12)}\n2022\n正常的某某協會理事長`;
     expect(parseCareerBlock(t)).toEqual(['正常的某某協會理事長']);
+  });
+});
+
+describe('findOwnerName：判斷這一頁是誰的', () => {
+  const pool = ['王大明', '李小華', '陳美玲'];
+
+  it('標題區在經歷段落之前，取該區內的姓名', () => {
+    const t = '導覽 議員介紹\n第1選區議員介紹\n王大明\n政黨：無\n經歷\n某某協會理事長';
+    expect(findOwnerName(t, pool)).toBe('王大明');
+  });
+
+  it('側欄列出全體議員時不可誤判——只看經歷段落之前，且取最靠近者', () => {
+    // 高雄／臺南／桃園的側欄會列出全體議員，整頁掃描會多重命中
+    const t = '側欄 李小華 陳美玲 王大明\n第3選區\n陳美玲議員\n經歷\n某某宮主任委員\n更多議員 王大明 李小華';
+    expect(findOwnerName(t, pool)).toBe('陳美玲');
+  });
+
+  it('經歷標題帶全形空格也要正確切點', () => {
+    const t = '王大明議員\n學 經 歷\n學  歷\n某某大學\n經  歷\n某某協會理事長';
+    expect(findOwnerName(t, pool)).toBe('王大明');
+  });
+
+  it('職稱插在姓與名之間時仍要認得——花蓮「魏議員 嘉賢」、嘉義市「張副議長榮藏」', () => {
+    // 見 scraper/fixtures/council-photo-notes.md：這兩個議會的姓名欄位把職稱塞在中間，
+    // 不是前綴也不是後綴，直接比對名冊姓名會完全落空
+    expect(findOwnerName('魏議員 嘉賢\n黨籍 無\n學歷\n東華大學', ['魏嘉賢', '張榮藏'])).toBe('魏嘉賢');
+    expect(findOwnerName('張副議長榮藏\n經歷\n某某協會', ['張榮藏', '魏嘉賢'])).toBe('張榮藏');
+    expect(findOwnerName('陳議長姿妏\n經歷\n某某會', ['陳姿妏'])).toBe('陳姿妏');
+  });
+
+  it('姓名在經歷段落之後時也要找得到——金門把姓名放在分享按鈕之後', () => {
+    const t = '導覽\n議員簡歷\nFacebook分享\n友善列印\n洪允典議長\n第一選區\n經歷\n某某協會理事長';
+    expect(findOwnerName(t, ['洪允典', '王大明'])).toBe('洪允典');
+  });
+
+  it('沒有任何名冊姓名出現時回 null', () => {
+    expect(findOwnerName('某某頁面\n經歷\n某某協會', pool)).toBeNull();
   });
 });

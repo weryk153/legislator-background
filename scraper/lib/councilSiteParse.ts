@@ -20,8 +20,13 @@ const START = /^(學\s*經\s*歷|經\s*歷|簡\s*介|簡\s*歷)[：:]?\s*$/;
 const EDUCATION = /^(學\s*歷)[：:]?\s*$/;
 /** 「經歷」子標題：出現時恢復收錄（見 collectFromHeading）。 */
 const CAREER_SUBHEAD = /^(經\s*歷)[：:]?\s*$/;
+// 標籤與內容同一行的寫法：「經歷:某某、某某」（嘉義市）、「簡經歷 1. 某某」（連江）。
+// 這類行必須把標籤剝掉、取後半當內容，否則整行會被當成一筆職務（含「經歷:」前綴）。
+const CAREER_INLINE = /^(?:簡\s*經\s*歷|學\s*經\s*歷|經\s*歷)\s*[：:]?\s*(?=\S)/;
+/** 同行的學歷標籤：「學歷:某某」「學歷 某某」——整行都是學歷，跳過。 */
+const EDUCATION_INLINE = /^(?:學\s*歷)\s*[：:]?\s*\S/;
 /** 段落結束標記：其他欄位標題或頁尾導覽。 */
-const STOP = /^(政\s*見|本屆問政|聯絡方式|電\s*話|傳\s*真|服務處|信箱|E-?mail|問政|質詢|提案|網站錯誤回報|回上頁|回上一頁|到上面|網站導覽|相關連結|隱私權|資訊安全|展開|Copy)/i;
+const STOP = /^(政\s*見|本屆問政|市政論壇|問政影音|服務績效|聯絡方式|電\s*話|傳\s*真|服務處|信箱|E-?mail|問政|質詢|提案|網站錯誤回報|回上頁|回上一頁|到上面|網站導覽|相關連結|隱私權|資訊安全|展開|Copy)/i;
 /** 條列編號：阿拉伯數字、中文數字、圓點、破折號。 */
 const BULLET = /^\s*(?:[0-9]{1,2}\s*[.、．)）]|[一二三四五六七八九十]{1,3}\s*[、.．)）]|[•·‧●▪－\-*]\s*)/;
 
@@ -51,8 +56,20 @@ function collectFromHeading(lines: string[]): string[] {
   let paused = false;   // 位於「學 歷：」子段落內
   for (const line of lines) {
     if (START.test(line)) { inBlock = true; paused = false; out.length = 0; continue; }
+    if (!inBlock && CAREER_INLINE.test(line)) {
+      inBlock = true; paused = false; out.length = 0;
+      for (const t of splitInline(line.replace(CAREER_INLINE, ''))) out.push(t);
+      continue;
+    }
     if (!inBlock) continue;
     if (CAREER_SUBHEAD.test(line)) { paused = false; continue; }
+    // 標籤與內容同一行：剝掉標籤，其餘照常處理（可能還帶頓號分隔的多筆）
+    if (CAREER_INLINE.test(line)) {
+      paused = false;
+      for (const t of splitInline(line.replace(CAREER_INLINE, ''))) out.push(t);
+      continue;
+    }
+    if (EDUCATION_INLINE.test(line)) { paused = true; continue; }
     if (EDUCATION.test(line)) {
       // 已收到內容才代表這是「經歷之後」的學歷段落 → 結束；否則只是子標題 → 暫停
       if (out.length) break;
@@ -122,4 +139,45 @@ export function splitByPerson(pageText: string): PersonBlock[] {
     name: m.name,
     text: lines.slice(m.at, marks[k + 1]?.at ?? lines.length).join('\n'),
   }));
+}
+
+/** 同行內容可能以頓號分隔多筆（嘉義市），逐一正規化。 */
+function splitInline(rest: string): string[] {
+  const out: string[] = [];
+  for (const piece of rest.split(/[、，,]/)) {
+    const t = normalise(piece);
+    if (t) out.push(t);
+  }
+  return out;
+}
+
+/** 經歷段落的起始位置（含全形空格的寫法，如「學 經 歷」）。找不到回 -1。 */
+function careerSectionIndex(text: string): number {
+  const m = /(學\s*經\s*歷|簡\s*經\s*歷|經\s*歷|簡\s*歷)/.exec(text);
+  return m ? m.index : -1;
+}
+
+/**
+ * 判斷議會個人頁是「誰的頁」。回傳名冊姓名，判不出來回 null。
+ *
+ * 不能整頁掃描：高雄、臺南、桃園的側欄會列出全體議員，整頁比對會多重命中而全部作廢。
+ * 也不能固定取前 N 字：花蓮的導覽列很長，姓名落在其後。
+ * 正解是「經歷段落之前的文字」——那是這一頁的標題區；該區內若仍多重命中，
+ * 取最靠近經歷段落者（標題通常緊接其前）。
+ */
+export function findOwnerName(pageText: string, rosterNames: string[]): string | null {
+  const cut = careerSectionIndex(pageText);
+  const raw = cut > 0 ? pageText.slice(0, cut) : pageText.slice(0, 700);
+  // 花蓮「魏議員 嘉賢」、嘉義市「張副議長榮藏」把職稱塞在姓與名之間（見議會結構筆記），
+  // 直接比對名冊姓名會完全落空。先移除職稱字樣與空白，讓「魏嘉賢」能配上。
+  const head = raw.replace(/(副議長|議長|議員|代表)/g, '').replace(/[ \t　]+/g, '');
+  const hits = rosterNames.filter((n) => head.includes(n));
+  if (hits.length === 1) return hits[0];
+  if (hits.length > 1) return hits.reduce((a, b) => (head.lastIndexOf(b) > head.lastIndexOf(a) ? b : a));
+  // 標題區找不到：金門把姓名放在分享按鈕之後、經歷段落之前的另一區塊，
+  // 且該區塊可能落在 careerSectionIndex 命中的「議員簡歷」導覽字樣之後。改掃全頁，
+  // 但只在「唯一命中」時採用——多重命中代表撞到側欄名單，寧可判不出也不要掛錯人。
+  const whole = pageText.replace(/(副議長|議長|議員|代表)/g, '').replace(/[ \t　]+/g, '');
+  const all = rosterNames.filter((n) => whole.includes(n));
+  return all.length === 1 ? all[0] : null;
 }
