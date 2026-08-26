@@ -153,6 +153,7 @@
   function back() {
     if (stack.length <= 1) return;
     stack.pop();
+    error = null;
     onSelect?.(null, current!);
   }
 
@@ -185,7 +186,7 @@
   <nav class="crumbs" aria-label="地圖層級">
     {#each stack as s, i}
       <button type="button" disabled={i === stack.length - 1}
-        onclick={() => { stack = stack.slice(0, i + 1); onSelect?.(null, stack[i].layer); }}>
+        onclick={() => { stack = stack.slice(0, i + 1); error = null; onSelect?.(null, stack[i].layer); }}>
         {s.layer.parentName}
       </button>
       {#if i < stack.length - 1}<span aria-hidden="true">›</span>{/if}
