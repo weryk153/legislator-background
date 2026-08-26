@@ -35,7 +35,8 @@
     "enrich:entity-photos": "tsx scraper/enrich-entity-photos.ts",
     "wiki:discover-relations": "tsx scraper/wiki-discover-relations.ts",
     "extract:vote-history": "tsx scraper/extract-vote-history.ts",
-    "build:boundaries": "tsx scraper/fetch-boundaries.ts"
+    "build:boundaries": "tsx scraper/fetch-boundaries.ts",
+    "build:election-map": "tsx scraper/build-election-map.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
