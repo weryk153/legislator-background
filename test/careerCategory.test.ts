@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { categorizeCareer, careerText, careerPeriod } from '../src/lib/careerCategory';
+import { categorizeCareer, careerText, careerPeriod, sharedSource } from '../src/lib/careerCategory';
 
 describe('categorizeCareer：公職', () => {
   it('立法院委員會職務', () => {
@@ -149,5 +149,25 @@ describe('careerPeriod：起訖期間', () => {
   });
   it('無起有訖時只顯示結束', () => {
     expect(careerPeriod('', '2020/12/31')).toBe('至 2020/12/31');
+  });
+});
+
+describe('sharedSource：整組共用同一出處時只印一次', () => {
+  const src = (url: string) => ({ id: url, url, type: 'wiki', title: '維基百科', retrievedAt: '2026-08-26' });
+  const item = (title: string, url: string) => ({ title, organization: '', startDate: '', endDate: null, source: src(url) });
+
+  it('全組同一出處 → 回傳該出處', () => {
+    const items = [item('甲會理事長', 'https://a'), item('乙會顧問', 'https://a'), item('丙宮主委', 'https://a')];
+    expect(sharedSource(items)?.url).toBe('https://a');
+  });
+  it('只要有一筆出處不同 → 回傳 null，維持逐筆顯示', () => {
+    const items = [item('甲會理事長', 'https://a'), item('乙會顧問', 'https://b')];
+    expect(sharedSource(items)).toBeNull();
+  });
+  it('單筆不合併——組層級只印一次反而讓版面多一列', () => {
+    expect(sharedSource([item('甲會理事長', 'https://a')])).toBeNull();
+  });
+  it('空陣列回傳 null', () => {
+    expect(sharedSource([])).toBeNull();
   });
 });

@@ -4,7 +4,7 @@ import Sources from "../../components/Sources.astro";
 import { loadOfficials } from "../../lib/data";
 import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL, OFFICE_LABEL } from "../../lib/graph";
 import { loadGraph } from "../../lib/loadGraph";
-import { categorizeCareer, careerText, careerPeriod, type CareerCategory } from "../../lib/careerCategory";
+import { categorizeCareer, careerText, careerPeriod, sharedSource, type CareerCategory } from "../../lib/careerCategory";
 import RelationshipGraph from "../../components/RelationshipGraph.svelte";
 
 export async function getStaticPaths() {
@@ -32,12 +32,13 @@ const CAREER_GROUPS: { key: CareerCategory; label: string; note?: string }[] = [
 // 會走樣（吳亮慶的定讞日、林哲凌的刑期都曾對不上）。故此處只取它的出處掛到頁首，
 // 本文不再重複顯示。
 const dismissalRecord = o.careers.find((c) => c.title === "解職");
-const careersByCategory = CAREER_GROUPS.map((g) => ({
-  ...g,
-  items: o.careers.filter(
+const careersByCategory = CAREER_GROUPS.map((g) => {
+  const items = o.careers.filter(
     (c) => c.title !== "解職" && categorizeCareer(careerText(c.organization, c.title)) === g.key,
-  ),
-})).filter((g) => g.items.length > 0);
+  );
+  // 整組同一出處時掛在組層級，逐筆就不再重印同一行連結（見 sharedSource 的說明）。
+  return { ...g, items, shared: sharedSource(items) };
+}).filter((g) => g.items.length > 0);
 
 const centerKey = `official:${o.id}`;
 const egoByKey = new Map(ego.nodes.map((n) => [n.key, n]));
@@ -128,10 +129,16 @@ const jsonLd = [
       <div class="career-group">
         <h3 class="career-group-head">{g.label}</h3>
         {g.note && <p class="note">{g.note}</p>}
+        {g.shared && (
+          <div class="group-source">
+            <Sources sources={[g.shared]} />
+            <span class="group-source-note">（本組各筆共同出處）</span>
+          </div>
+        )}
         {g.items.map((c) => (
           <div class="item">
             <div>{careerPeriod(c.startDate, c.endDate) && <strong class="num">{careerPeriod(c.startDate, c.endDate)}　</strong>}{careerText(c.organization, c.title)}</div>
-            <Sources sources={[c.source]} />
+            {!g.shared && <Sources sources={[c.source]} />}
           </div>
         ))}
       </div>
@@ -266,6 +273,9 @@ const jsonLd = [
       padding-bottom: 8px; border-bottom: 1px solid var(--line-strong);
     }
     .note { font-size: var(--t-sm); color: var(--muted); margin: -4px 0 16px; }
+    .group-source { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; margin: -6px 0 12px; }
+    .group-source :global(.sources) { margin-top: 0; }
+    .group-source-note { font-size: var(--t-xs); color: var(--faint); }
     .career-group + .career-group { margin-top: 22px; }
     .career-group-head {
       font-family: var(--sans); font-size: var(--t-sm); font-weight: 700;
