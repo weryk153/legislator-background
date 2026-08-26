@@ -91,7 +91,11 @@
   <header class="title-float masthead">
     <p class="kicker">選舉特輯</p>
     <hr class="rule-thick" />
-    <h1>2026 九合一選舉</h1>
+    <!-- 報頭大標固定斷成「2026」＋「九合一選舉」兩行，語意接縫上的手動分行——不靠
+         瀏覽器自動換行（欄寬夠窄時會斷出孤字「舉」單獨一行）。第二行加 nowrap，
+         五個漢字在目前欄寬（含 900px 斷點以下的全寬版）都放得下，不會再被逼著
+         二次換行。 -->
+    <h1><span class="masthead-year">2026</span><span class="masthead-theme">九合一選舉</span></h1>
     <hr class="rule-hair" />
 
     <!-- 版次：原本浮在地圖底部、壓住台灣南端的年份切換器，現在當成報頭裡的
@@ -191,8 +195,17 @@
      不是「標題」——沿用全站既有的 .kicker 語彙（見 tokens.css），不再另外造字級。 */
   .masthead .kicker { margin: 0; }
 
-  /* 大標：頁面主題，襯線體、全欄最大最重的字。 */
-  .masthead h1 { font-size: var(--t-xl); font-weight: 700; margin: 0; line-height: 1.15; }
+  /* 大標：頁面主題，襯線體、全欄最大最重的字。固定拆成「2026」／「九合一選舉」
+     兩行（見上方標記），而不是讓瀏覽器對一整串文字自動換行——欄寬夠窄時自動換行
+     會斷出孤字（單獨一個「舉」留在第二行），這是報紙排版不能出的錯。兩行各自
+     display:block 成一行，第二行加 white-space: nowrap 防止五個漢字本身又被
+     再次擠斷；兩行字級相同，用行距與些微字距做出「刻意的兩行報頭」而非「被擠斷」
+     的觀感。 */
+  .masthead h1 {
+    font-size: var(--t-xl); font-weight: 700; margin: 0; line-height: 1.2;
+  }
+  .masthead h1 span { display: block; }
+  .masthead h1 .masthead-theme { white-space: nowrap; letter-spacing: .02em; margin-top: .05em; }
 
   /* 版次：這是「兩個版次擇一」的選擇器，不是兩個並列的標題——用字級與粗細的
      落差＋accent 底線做出「選中／未選中」的區分，兩個版次之間再用一條垂直髮絲線

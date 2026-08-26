@@ -4,7 +4,7 @@
      不像逐層換圖那樣整個消失。資料由 scraper/build-election-map.ts 產出到
      public/data/map/，此處只負責繪製與互動，不動資料管線。 -->
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { geoMercator, geoPath } from 'd3-geo';
   import { feature } from 'topojson-client';
   import { SvelteMap } from 'svelte/reactivity';
@@ -225,6 +225,7 @@
       // 幾何已經載入過：只推進對焦、換 transform，不重新 fetch，瞬間且平滑。
       crumbs = [...crumbs, { level: nextLevel, code: area.code, name: area.name }];
       onSelect?.(null, focusLayer());
+      focusMap();
       return;
     }
 
@@ -238,6 +239,7 @@
       map.set(area.code, child);
       crumbs = [...crumbs, { level: nextLevel, code: area.code, name: area.name }];
       onSelect?.(null, focusLayer());
+      focusMap();
     } catch (e) {
       error = `地圖資料載入失敗（${(e as Error).message}）`;
     } finally {
@@ -246,12 +248,14 @@
   }
 
   // 返回上一層：幾何早就載入過，只改 transform（CSS transition 處理平滑動畫），
-  // 不重新 fetch，所以是瞬間的。
+  // 不重新 fetch，所以是瞬間的。下鑽／返回都把焦點收回 <svg>（見 focusMap），
+  // 這樣連續 Enter 下鑽、Escape 返回、再 Enter、再 Escape 都能一路有效。
   function back() {
     if (crumbs.length <= 1) return;
     crumbs = crumbs.slice(0, -1);
     error = null;
     onSelect?.(null, focusLayer());
+    focusMap();
   }
 
   function jumpTo(i: number) {
@@ -263,7 +267,33 @@
 
   function onKey(e: KeyboardEvent, area: MapArea, layer: MapLayer) {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); drillInto(area, layer); }
-    if (e.key === 'Escape') { e.preventDefault(); back(); }
+    // Escape 不在這裡處理——見下方 .map-wrap 的容器層級 onkeydown 與其註解。
+  }
+
+  // Enter 下鑽之後，原本聚焦的那個 <path> 會從「互動、可聚焦」的 interactive
+  // 分支切到「背景脈絡、aria-hidden、無 tabindex」的 bg-shape 分支（見下方
+  // shapePath snippet）——同一個 DOM 節點被 Svelte 依 each key 重用，但屬性
+  // 整組換掉，瀏覽器對「目前聚焦元素失去 tabindex」的行為並不一致，有些會直接把
+  // focus 丟到 <body>。若 Escape 監聽器掛在個別 <path> 上，焦點一旦跑掉，
+  // Escape 就再也捕捉不到，使用者只能重新 Tab 或改滑鼠——這正是要修的既有問題。
+  //
+  // 解法：Escape 改掛在 .map-wrap 容器層級（見下方 onMapKey 與其 markup 上的
+  // onkeydown 綁定），靠事件冒泡在容器內任何位置都能接住；同時每次下鑽／返回完成後
+  // 把焦點明確移到 <svg> 本身（tabindex="-1" + focus()），該元素的 aria-label
+  // 已經是「目前對焦層級的中文名稱＋政治地圖」，螢幕閱讀器聚焦時會直接讀出
+  // 目前所在位置，不是丟到一個沒有語意的元素上。
+  let svgEl = $state<SVGSVGElement | undefined>(undefined);
+
+  async function focusMap() {
+    await tick();
+    svgEl?.focus();
+  }
+
+  function onMapKey(e: KeyboardEvent) {
+    if (e.key !== 'Escape') return;
+    if (crumbs.length <= 1) return; // 已在全國層，沒有上一層可退
+    e.preventDefault();
+    back();
   }
 
   onMount(() => { loadNational(); });
@@ -294,7 +324,11 @@
   {/if}
 {/snippet}
 
-<div class="map-wrap">
+<div class="map-wrap" onkeydown={onMapKey}>
+  <!-- Escape 掛在這個容器上（見上方 onMapKey 與其註解）：不論目前焦點在麵包屑
+       按鈕、互動中的 <path> 或下鑽後被 focusMap() 收回的 <svg> 本身，keydown
+       都會冒泡到這裡，容器不會因為子節點重繪而消失，Escape 因此不會失效。
+  -->
   <!-- 麵包屑移到地圖區塊左下角（原本在左上角，改版後那個位置被浮動標題欄佔走）。
        跟下鑽中的載入／錯誤徽章共用同一個 bottom-left 角落，用 flex column-reverse
        疊放——麵包屑永遠貼齊底部，徽章出現時往上長，兩者都用 flex 排版自然避開，
@@ -331,7 +365,8 @@
     {/if}
   {:else}
     <svg viewBox="0 0 {VB_W} {VB_H}" preserveAspectRatio="xMidYMid meet" role="group"
-         aria-label="{focusLayer()?.parentName ?? counties.parentName}政治地圖">
+         aria-label="{focusLayer()?.parentName ?? counties.parentName}政治地圖"
+         tabindex="-1" bind:this={svgEl}>
       <defs>
         <!-- 官派區（無選舉）的斜線紋理。底色／線色都讀 CSS 變數，深色模式切換時
              會自動跟著換，不必另外宣告一份深色版 pattern。tile 用 userSpaceOnUse
