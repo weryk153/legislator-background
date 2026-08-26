@@ -39,12 +39,25 @@ function isFreeLicense(license: string): boolean {
   return isCc0(license) || isCcByFamily(license) || isPublicDomain(license) || isGovAttribution(license);
 }
 
+// 常見 HTML 實體（Commons 的 Artist/Credit 欄位是 HTML 片段，直接顯示會露出 &amp; 之類）。
+// 迴圈解到不再變化為止：雙重轉譯的值（如 &amp;lt;script&amp;gt;）要攤平兩層才會露出真正的
+// 標籤字元，交給下面的去標籤處理；設上限避免病態輸入迴圈不停。
+function decodeHtmlEntities(s: string): string {
+  let out = s;
+  for (let i = 0; i < 5; i++) {
+    const next = out.replace(/&(amp|lt|gt|quot|#0*39|apos|nbsp);/gi, (_m, e: string) =>
+      ({ amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' } as Record<string, string>)[e.toLowerCase().replace(/^#0*39$/, 'apos')] ?? ' ');
+    if (next === out) break;
+    out = next;
+  }
+  return out;
+}
+
 export function stripHtml(s: string): string {
-  return s
+  return decodeHtmlEntities(s)
+    // 標籤要在實體解碼之後才去除：先去標籤、後解碼會讓雙重轉譯的標籤（如
+    // &amp;lt;script&amp;gt;）以看似無害的純文字留在這個會寫進版控檔案的欄位裡。
     .replace(/<[^>]+>/g, '')
-    // 常見 HTML 實體（Commons 的 Artist/Credit 欄位是 HTML 片段，直接顯示會露出 &amp; 之類）
-    .replace(/&(amp|lt|gt|quot|#0*39|apos|nbsp);/gi, (_m, e: string) =>
-      ({ amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' } as Record<string, string>)[e.toLowerCase().replace(/^#0*39$/, 'apos')] ?? ' ')
     // 零寬字元：維基模板常在機關名前留下 U+200B，顯示為看不見的空白
     .replace(/[\u200B-\u200F\u2060\uFEFF]/g, '')
     .replace(/\s+/g, ' ')

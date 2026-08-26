@@ -11,6 +11,9 @@ describe('stripHtml', () => {
   it('去零寬字元（維基模板常在機關名前留下 U+200B）', () => {
     expect(stripHtml('\u200B苗栗縣政府行政處新聞科')).toBe('苗栗縣政府行政處新聞科');
   });
+  it('先解 HTML 實體再去標籤：雙重轉譯的標籤不會以純文字留下', () => {
+    expect(stripHtml('&amp;lt;b&amp;gt;A&amp;lt;/b&amp;gt;')).toBe('A');
+  });
 });
 
 describe('pickLicense', () => {

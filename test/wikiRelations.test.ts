@@ -73,6 +73,10 @@ describe('parseInfoboxRelations', () => {
     const withAttr = parseInfoboxRelations('{{Infobox officeholder\n| parents = 父親甲<br clear="all">母親乙\n}}');
     expect(withAttr.filter((r) => r.field === 'parents').map((r) => r.name)).toEqual(['父親甲', '母親乙']);
   });
+  it('{{ubl|class=x|…}} 的具名參數（class=／style=）不當人名', () => {
+    const withClass = parseInfoboxRelations('{{Infobox officeholder\n| relatives = {{ubl|class=x|[[甲]]|style=color:red|[[乙]]}}\n}}');
+    expect(withClass.filter((r) => r.field === 'relatives').map((r) => r.name)).toEqual(['甲', '乙']);
+  });
 });
 
 describe('extractRelationSentences', () => {

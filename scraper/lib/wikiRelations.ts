@@ -127,7 +127,11 @@ function splitValueItems(value: string): string[] {
     rest = rest.replace(value.slice(m.index, end + 1), '');
   }
   for (const piece of rest.split(/<br[^>]*>|\n|^\*+/gim)) items.push(piece);
-  return items.map((s) => s.replace(/^\s*[*#]+\s*/, '').trim()).filter(Boolean);
+  return items
+    .map((s) => s.replace(/^\s*[*#]+\s*/, '').trim())
+    // {{ubl|class=x|[[甲]]|[[乙]]}} 這類 hlist/plainlist 常見的具名參數（class=、style=…）
+    // 不是人名，混進來會被 toName() 誤判成人名候選。
+    .filter((s) => Boolean(s) && !/^[a-z_-]+\s*=/i.test(s));
 }
 
 const firstWikilink = (s: string): string | undefined => {
