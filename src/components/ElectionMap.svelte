@@ -38,6 +38,61 @@
   let projection = $state<ReturnType<typeof geoMercator> | null>(null);
   const pathGen = $derived(projection && geoPath(projection));
 
+  // 金門、連江（馬祖）改走插圖，不進主投影的 fitExtent——兩者都在台灣本島（東經
+  // 120–122）以西（金門約 118.1–119.5，連江約 119.9–120.5），若跟本島一起算
+  // fitExtent，外框中心會被拉到本島以西，本島因此整塊被推到畫面右側、左邊空出
+  // 一大片留白（窄螢幕下報頭退回文件流、不再蓋住這塊留白，問題才會被看見）。
+  // 澎湖（10-016）與綠島／蘭嶼（屬臺東縣，本來就在本島幾何裡）距離尚可，不排除。
+  // 用 area.code 判斷，而不是直接比對 feature 的經緯度：code 是資料層的穩定
+  // 識別，界線檔換版也不會變動；經緯度範圍則是幾何本身的細節，不該拿來做業務
+  // 判斷（同樣的原則見 mapExclaves.ts 用經緯度框只為濾除極端外島，那是純幾何
+  // 問題，跟這裡「哪個縣市該不該進主投影」的業務判斷不同）。
+  const KINMEN_CODE = '09-020-00-000-0000';
+  const LIENCHIANG_CODE = '09-007-00-000-0000';
+  const INSET_CODES = new Set([KINMEN_CODE, LIENCHIANG_CODE]);
+
+  // 兩個插圖各自的固定小方框（本檔內部 1000×1100 座標系，不是 CSS px）。位置落在
+  // 主投影排除金門／連江後自然空出的左側留白裡（實測：22 縣市扣掉這兩者，
+  // fitExtent 後本島落在 x≈171~829，見開發時的量測，左側 0~171 這段本來就是
+  // 空的，插圖擺這裡不會跟本島搶位置）。馬祖在上、金門在下，對應兩者的實際
+  // 南北位置（馬祖緯度較高、在北）。兩個框的寬高比是照各自的實際地理外形量出來
+  // 的（金門東西狹長、馬祖較方），讓 fitExtent 之後框內幾乎不留白，插圖看起來
+  // 才會「大而清楚」而不是小方塊裡飄一個小點。
+  const LIENCHIANG_BOX = { x: 24, y: 124, w: 140, h: 117 };
+  const KINMEN_BOX = { x: 24, y: 297, w: 140, h: 97 };
+
+  interface Inset { shape: Shape }
+
+  // 金門、連江插圖：兩者「必須」各自獨立呼叫 fitExtent，這是這次插圖能成立的
+  // 關鍵。插圖曾經做過一版、後來被整個移除——原因是那一版把金門與馬祖塞進
+  // 「同一個」fitExtent，兩地直線距離約 200 公里，共用一個投影會讓外框的比例尺
+  // 被拉到能同時容納兩地的程度，結果兩塊島都被壓縮成幾乎看不見的小點，那個框
+  // 看起來像是空的。當時因此判定「插圖這個做法行不通」，把插圖整段拿掉、全部
+  // 改回真實地理位置——但那個判斷錯了：壞掉的是實作（一個框硬塞兩個相距很遠的
+  // 群島），不是插圖這個概念本身。插圖正是製圖學處理遠距離離島的標準作法（美國
+  // 地圖把阿拉斯加、夏威夷各自框起來就是同一個道理）。這次金門、馬祖分開建立
+  // 投影，各自的 fitExtent 只看自己的幾何，比例尺不會被對方拖累。
+  const insets = $derived.by((): { kinmen: Inset; lienchiang: Inset } | null => {
+    if (!counties) return null;
+    const feats = featuresOf(counties.topology);
+    const byCode = new Map(counties.areas.map((a) => [a.code, a]));
+    const build = (code: string, box: { x: number; y: number; w: number; h: number }): Inset | null => {
+      const area = byCode.get(code);
+      if (!area) return null;
+      const f = feats.find((ft) => ft.properties.key === area.key);
+      if (!f) return null;
+      const proj = geoMercator().fitExtent([[box.x, box.y], [box.x + box.w, box.y + box.h]], f as any);
+      const path = geoPath(proj);
+      const d = path(f) ?? '';
+      if (!d) return null;
+      return { shape: { d, key: f.properties.key as string, area, feature: f } };
+    };
+    const kinmen = build(KINMEN_CODE, KINMEN_BOX);
+    const lienchiang = build(LIENCHIANG_CODE, LIENCHIANG_BOX);
+    if (!kinmen || !lienchiang) return null;
+    return { kinmen, lienchiang };
+  });
+
   // 已載入的圖層集合，取代原本的「目前顯示哪一層」單一堆疊——全國層永遠在，
   // 下鑽只是把子層疊上去，鄰近區域不會因此消失，返回時也不必重新 fetch。
   let counties = $state<MapLayer | null>(null);       // 全國層，永遠載入、永遠畫
@@ -217,7 +272,17 @@
     return out;
   }
 
-  const countyShapes = $derived(shapesFor(counties));
+  // 全國層（crumbs.length === 1）時，金門／連江不進主圖的形狀清單——它們不在主
+  // 投影的 fitExtent 範圍內（見上方 loadNational），留在清單裡只會用錯誤的比例尺
+  // 畫到看不清楚甚至畫面外，改由各自的插圖（見 insets）負責顯示與互動。一旦下鑽
+  // （crumbs.length > 1，不論鑽進哪一縣市），插圖隨之收起（見下方 markup 的
+  // {#if crumbs.length === 1}），這時金門／連江要恢復出現在這份清單裡——不論
+  // 使用者鑽進的是不是金門／連江本身，都得靠這份清單當作「目前對焦層的上一層」
+  // 背景脈絡（見 shapePath 呼叫處的 dim 參數），也是 focused／target 這兩個
+  // $derived 找得到「使用者剛從金門插圖點下去」那個形狀的唯一來源。
+  const countyShapes = $derived(
+    shapesFor(counties).filter((s) => crumbs.length > 1 || !INSET_CODES.has(s.area.code)),
+  );
   const focusCountyCode = $derived(crumbs.length >= 2 ? crumbs[1].code : null);
   const focusTownCode = $derived(crumbs.length >= 3 ? crumbs[2].code : null);
   const townsLayer = $derived(focusCountyCode ? (towns.get(focusCountyCode) ?? null) : null);
@@ -329,10 +394,14 @@
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const layer: MapLayer = await res.json();
       counties = layer;
-      // 投影只算這一次：全國 22 縣市（濾除極端外島後）的幾何 fitExtent 到固定座標系。
+      // 投影只算這一次：20 個縣市（濾除極端外島、以及改走插圖的金門／連江後）的
+      // 幾何 fitExtent 到固定座標系——金門、連江不進來，本島才會自然置中、放大
+      // （見上方 KINMEN_CODE／LIENCHIANG_CODE 宣告處的說明）。
       if (!projection) {
         const feats = featuresOf(layer.topology);
-        const fc = { type: 'FeatureCollection', features: feats };
+        const insetKeys = new Set(layer.areas.filter((a) => INSET_CODES.has(a.code)).map((a) => a.key));
+        const mainFeats = feats.filter((f) => !insetKeys.has(f.properties.key));
+        const fc = { type: 'FeatureCollection', features: mainFeats };
         projection = geoMercator().fitExtent([[20, 20], [VB_W - 20, VB_H - 20]], fc as any);
       }
       // 初次載入也要立刻顯示這層的彙總，不留白等使用者移動滑鼠。
@@ -570,6 +639,44 @@
           <path d={focused.d} class="focus-outline" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
         {/if}
       </g>
+      {#if crumbs.length === 1 && insets}
+        <!-- 金門、連江（馬祖）插圖：刻意畫在 .zoom-group 之外——全國層的縮放目標
+             永遠是 k=1/tx=0/ty=0（見上方 target 的定義，只有 focused 存在時才會
+             變動，而 focused 在全國層必為 null），插圖畫在 zoom-group 內外視覺
+             上沒有差別，但畫在外面能明確表達「這是疊在主圖上的一塊獨立小地圖，
+             不隨主圖下鑽縮放」，且下鑽後這個區塊直接靠 {#if} 收起，不必再擔心
+             跟著 zoom-group 的 transform 一起被縮放、平移到奇怪的地方。
+             兩個插圖共用同一份 shapePath snippet（見上方定義），tabindex／
+             role="button"／aria-label／Enter 下鑽／hover 填色都跟主圖裡的縣市
+             完全一致，唯一不同的是外框：hover 外框改用插圖自己的 d（來自插圖
+             自己的投影），不能沿用上面全域的 hoverTarget（那是用主投影算的
+             interactiveShapes 找出來的，金門／連江已經被排除在外，見 countyShapes
+             的過濾）。 -->
+        <g class="inset-group">
+          <!-- 連江縣（馬祖）插圖：框、標籤都不上底色、不上陰影，只有一條髮絲線
+               （--line）＋一行小標籤，跟報紙特輯的線條語彙一致。標籤放框的上方，
+               當作圖說。 -->
+          <rect x={LIENCHIANG_BOX.x} y={LIENCHIANG_BOX.y} width={LIENCHIANG_BOX.w} height={LIENCHIANG_BOX.h}
+            class="inset-frame" vector-effect="non-scaling-stroke" />
+          <text x={LIENCHIANG_BOX.x} y={LIENCHIANG_BOX.y - 12} class="inset-label">馬祖</text>
+          {@render shapePath(insets.lienchiang.shape, counties, false, true)}
+          {#if (hovered ?? kbFocused) === insets.lienchiang.shape.area.code}
+            <path d={insets.lienchiang.shape.d} class="hover-outline-halo" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+            <path d={insets.lienchiang.shape.d} class="hover-outline" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+          {/if}
+
+          <!-- 金門縣插圖：同上，在馬祖插圖下方，維持「馬祖在上、金門在下」的
+               南北相對關係（見上方 KINMEN_BOX／LIENCHIANG_BOX 宣告處的說明）。 -->
+          <rect x={KINMEN_BOX.x} y={KINMEN_BOX.y} width={KINMEN_BOX.w} height={KINMEN_BOX.h}
+            class="inset-frame" vector-effect="non-scaling-stroke" />
+          <text x={KINMEN_BOX.x} y={KINMEN_BOX.y - 12} class="inset-label">金門</text>
+          {@render shapePath(insets.kinmen.shape, counties, false, true)}
+          {#if (hovered ?? kbFocused) === insets.kinmen.shape.area.code}
+            <path d={insets.kinmen.shape.d} class="hover-outline-halo" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+            <path d={insets.kinmen.shape.d} class="hover-outline" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+          {/if}
+        </g>
+      {/if}
     </svg>
   {/if}
 </div>
@@ -669,6 +776,22 @@
   }
   .focus-outline-halo { stroke: var(--bg); stroke-width: 7; }
   .focus-outline { stroke: var(--accent); stroke-width: 3.5; }
+
+  /* 金門、連江（馬祖）插圖的框與標籤——只在全國層出現（markup 見上方
+     {#if crumbs.length === 1 && insets}）。刻意不做方框底色、不做陰影：報紙
+     特輯的語彙是線條，不是浮起來的卡片，跟 .back-control 的克制風格是同一套
+     道理。框用全站共用的 --line 髮絲線，標籤的顏色（--muted）與字族（--sans）
+     也沿用既有 token，不另外造一組插圖專用的顏色或字族；字級則見下方
+     .inset-label 的說明，不能直接套 --t-xs。 */
+  .inset-frame { fill: none; stroke: var(--line); stroke-width: 1; }
+  /* 字級刻意不用 var(--t-xs)：那是給一般文件流的 rem 字級，套在 <svg> 內部的
+     <text> 上會先被整張圖的 viewBox→實際尺寸縮放比例再打一次折扣——這張圖窄
+     螢幕（.map-region 只有 60vh）時縮放比例明顯小於寬螢幕，若直接套 --t-xs
+     （11px），量測窄螢幕下實際只畫出約 5px 高，中文字幾乎讀不出來。這裡改用
+     一個較大的 SVG 內部座標數值（24），讓縮放後在窄螢幕也還有約 11px 的視覺
+     高度、寬螢幕則自然更大一些——地圖標籤隨整張圖縮放本來就是常見的地圖慣例。
+     顏色（--muted）與字族（--sans）兩者不受 viewBox 縮放影響，維持用 token。 */
+  .inset-label { font-family: var(--sans); font-size: 24px; fill: var(--muted); }
 
   /* 返回上一層：只在下鑽後出現（markup 見上方 {#if crumbs.length > 1}）。位置
      要在地圖的左上角，但不能疊在左欄報頭（ElectionPanel.svelte 的 .title-float，
