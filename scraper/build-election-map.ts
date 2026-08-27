@@ -14,7 +14,7 @@ import {
   INDEPENDENT_PARTY_CODE, UNKNOWN_PARTY_CODE, type Candidate, type AreaNode,
 } from './lib/cecVoteData';
 import { parseElctks, parseElprof, type ElctksRow, type ElprofRow } from './lib/cecVotes';
-import { parseByElection, parseByElectionDir } from './lib/cecByElection';
+import { parseByElection, parseByElectionDir, parseByElectionResults } from './lib/cecByElection';
 import { buildCodeIndex, normalizeAreaName, KNOWN_MISSING_BOUNDARY_KEYS } from './lib/areaMatch';
 import { seatBreakdown, toTermRecords, termLimited } from './lib/electionRules';
 import {
@@ -122,9 +122,12 @@ function loadElprofForOffice(office: Office): ElprofRow[] {
  *
  * 候選人姓名與政黨來自 elcand（含未當選者），得票數與得票率來自 elctks，兩者
  * 以 areaCode ＋ 號次 對應；有效票數／選舉人數／投票率來自 elprof，以 areaCode
- * 對應。查無 elcand 或 elprof 資料的區（例如嘉義市長重行選舉——2022 年 C1
- * 原始資料整個沒有嘉義市這個縣市代碼——或其他補選改寫過的區）不硬湊，race 留空
- * 並列報，不靜默跳過。
+ * 對應。查無 elcand 或 elprof 資料的區（例如補選改寫過、原始資料沒有帶回來的區）
+ * 不硬湊，race 留空並列報，不靜默跳過。嘉義市長是這種缺口的實例之一——2022 年
+ * C1 原始資料整個沒有嘉義市這個縣市代碼——但呼叫端在傳入 cands／elctksRows／
+ * elprofRows 之前已用 chiayiByElectionRaceInputs() 從重行選舉的另一份格式
+ * （cand.csv／prof.csv）補上等效的三個陣列，故實際跑到這裡時嘉義市不會落入
+ * 這個查無資料的分支。
  *
  * 一致性檢查：候選人得票加總應等於 elprof 的有效票數，不符就列報（本站「對不到
  * 就列報」原則的延伸），不靜默接受。
@@ -315,6 +318,85 @@ function resolvePartyCode(
   notes.push(`⚠ ${context}：政黨「${partyName}」對不到 2022 年的政黨代碼表，`
     + `標為未知政黨（代號 ${UNKNOWN_PARTY_CODE}）而非無黨籍——不猜測黨籍`);
   return UNKNOWN_PARTY_CODE;
+}
+
+/**
+ * 嘉義市長重行選舉的完整得票，轉換成與 elcand／elctks／elprof 同構的三個陣列，
+ * 供附加進 loadAllCandidatesForOffice('countyChief') 等既有清單，走與其他 21
+ * 縣市完全相同的 buildRaceResults 路徑（含「候選人得票加總＝有效票數」的一致性
+ * 檢查），不另開一條特例路徑。
+ *
+ * 2022 年 C1（縣市長）原始資料裡沒有嘉義市（候選人於投票前過世、延後重行選舉，
+ * 資料另在 `2022年_嘉義市長重行選舉/` 目錄，格式也完全不同——見 cecByElection.ts
+ * 檔頭註解），故 buildRaceResults 原本會把嘉義市列成「查無候選人或選舉人數資料，
+ * race 留空」。這裡補上之後，「無票數資料的縣市」應為 0 個。
+ *
+ * 得票率原始資料沒有，以「該候選人得票 ÷ 有效票總和」計算，非中選會直接提供
+ * （與 buildRaceResults 對其他縣市的既有作法一致：elctks.csv 本身就帶得票率，
+ * 但這批補選格式沒有，故改用計算值）。
+ */
+function chiayiByElectionRaceInputs(
+  areas: AreaNode[],
+  parties: Map<string, string>,
+  notes: string[],
+): { cands: Candidate[]; elctks: ElctksRow[]; elprof: ElprofRow[] } {
+  const chiayi = areas.find((a) => a.level === 'county' && a.name === '嘉義市');
+  if (!chiayi) {
+    notes.push('⚠ 嘉義市長重行選舉：行政區樹查無「嘉義市」，race 無法附加');
+    return { cands: [], elctks: [], elprof: [] };
+  }
+  const dir = `${CEC}/2022年_嘉義市長重行選舉`;
+  const result = parseByElectionResults(read(`${dir}/cand.csv`), read(`${dir}/prof.csv`));
+  if (!result) {
+    notes.push('⚠ 嘉義市長重行選舉：cand.csv／prof.csv 解析失敗，race 無法附加');
+    return { cands: [], elctks: [], elprof: [] };
+  }
+
+  const partyCodeByNormalizedName = new Map([...parties.entries()]
+    .map(([code, name]) => [normalizeAreaName(name), code]));
+  const winnerNumber = [...result.candidates].sort((a, b) => b.votes - a.votes)[0].number;
+
+  const cands: Candidate[] = result.candidates.map((c) => ({
+    areaCode: chiayi.code,
+    number: c.number,
+    name: c.name,
+    partyCode: resolvePartyCode(
+      c.partyName, partyCodeByNormalizedName, notes,
+      `嘉義市長重行選舉 號次${c.number}（${c.name}）`,
+    ),
+    sex: '1',
+    birthDate: '',
+    age: 0,
+    education: '',
+    incumbent: false,
+    electedMark: c.number === winnerNumber ? '*' : '',
+    elected: c.number === winnerNumber,
+    electedBy: c.number === winnerNumber ? 'vote' : null,
+    pendingDraw: false,
+  }));
+
+  const elctks: ElctksRow[] = result.candidates.map((c) => ({
+    areaCode: chiayi.code,
+    number: c.number,
+    votes: c.votes,
+    share: result.validVotes > 0 ? (c.votes / result.validVotes) * 100 : 0,
+    elected: c.number === winnerNumber,
+  }));
+
+  const elprof: ElprofRow[] = [{
+    areaCode: chiayi.code,
+    validVotes: result.validVotes,
+    invalidVotes: result.invalidVotes,
+    castVotes: result.castVotes,
+    electorate: result.electorate,
+    turnout: result.turnout,
+  }];
+
+  notes.push(`ℹ 嘉義市長重行選舉：得票率為計算值（各候選人得票 ÷ 有效票 ${result.validVotes}），`
+    + '非中選會直接提供；有效票／投票率由 prof.csv 各投開票所加總得出'
+    + '（cand.csv／prof.csv 這個格式沒有現成的縣市彙總列）');
+
+  return { cands, elctks, elprof };
 }
 
 // 補選與重行選舉的覆蓋。「現況」不等於「2022 當選名單」：嘉義市長延後重行選舉，
@@ -701,11 +783,14 @@ mkdirSync(`${OUT}/town`, { recursive: true });
 // 也列報，三者共用同一份 notes，建置結束時彙總印出，不散落各處淹沒在其他輸出裡。
 const counties = areas.filter((a) => a.level === 'county');
 const raceNotes: string[] = [];
+// 嘉義市長重行選舉：附加進縣市長的候選人／得票／選舉人數清單，讓嘉義市走與
+// 其他 21 縣市完全相同的 buildRaceResults 路徑（見 chiayiByElectionRaceInputs）。
+const chiayiRaceInputs = chiayiByElectionRaceInputs(areas, parties, raceNotes);
 const countyRaces = buildRaceResults(
   counties.map((a) => a.code),
-  loadAllCandidatesForOffice('countyChief'),
-  loadElctksForOffice('countyChief'),
-  loadElprofForOffice('countyChief'),
+  [...loadAllCandidatesForOffice('countyChief'), ...chiayiRaceInputs.cands],
+  [...loadElctksForOffice('countyChief'), ...chiayiRaceInputs.elctks],
+  [...loadElprofForOffice('countyChief'), ...chiayiRaceInputs.elprof],
   parties, '縣市長', raceNotes,
 );
 const townRaces = buildRaceResults(
@@ -851,6 +936,13 @@ const countiesNoSeats = counties.filter((a) => !(councilByCounty.get(a.code) ?? 
 if (countiesNoChief.length) failures.push(`查無首長的縣市：${countiesNoChief.map((a) => a.name).join('、')}`);
 if (countiesNoSeats.length) failures.push(`查無議會席次的縣市：${countiesNoSeats.map((a) => a.name).join('、')}`);
 
+// 22 縣市全部要有完整的 race（含嘉義市長重行選舉，見 chiayiByElectionRaceInputs）。
+// 這是本輪任務的驗收要求：「無票數資料的縣市」應為 0 個。
+const countiesNoRace = counties.filter((a) => !countyRaces.has(a.code));
+console.log(`縣市長選舉結果核對：${counties.length - countiesNoRace.length}/${counties.length} 個縣市有完整 race，`
+  + `無票數資料的縣市 ${countiesNoRace.length} 個`);
+if (countiesNoRace.length) failures.push(`無票數資料的縣市 ${countiesNoRace.length} 個：${countiesNoRace.map((a) => a.name).join('、')}`);
+
 if (missingBoundaryKeyCount > 0) {
   failures.push(`${missingBoundaryKeyCount} 個中選會行政區在界線檔找不到對應多邊形（明細見上方逐層警告），這些地圖區塊會缺畫`);
 } else {
@@ -858,10 +950,11 @@ if (missingBoundaryKeyCount > 0) {
 }
 
 // 選舉結果的一致性檢查（見 buildRaceResults）：候選人得票加總應等於 elprof 的
-// 有效票數，不符就列報、不靜默接受。查無資料（例如嘉義市長重行選舉，2022 年
-// C1 原始資料整個沒有這個縣市代碼）是已知、可接受的狀況，只列報不算失敗；
-// 但得票加總對不上有效票數代表資料本身有誤或本站解析有誤，視同其他總量防線
-// 一律讓建置失敗，不能悄悄過關。
+// 有效票數，不符就列報、不靜默接受。查無資料（例如某補選改寫過的區，原始資料
+// 沒有帶回等效的候選人／得票列）是已知、可接受的狀況，只列報不算失敗；嘉義市
+// 長重行選舉已由 chiayiByElectionRaceInputs() 補上等效資料，不會落入這個分支
+// ——目前 22 縣市應全數有 race，這個計數應為 0。但得票加總對不上有效票數
+// 代表資料本身有誤或本站解析有誤，視同其他總量防線一律讓建置失敗，不能悄悄過關。
 const raceMissingCount = raceNotes.filter((n) => n.includes('race 留空')).length;
 const raceMismatchCount = raceNotes.filter((n) => n.includes('候選人得票加總')).length;
 console.log(`選舉得票一致性檢查：${raceMissingCount} 個區查無候選人或選舉人數資料（race 留空，明細見上方）、`

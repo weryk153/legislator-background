@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { parseByElection, parseByElectionDir } from '../scraper/lib/cecByElection';
+import { parseByElection, parseByElectionDir, parseByElectionResults } from '../scraper/lib/cecByElection';
 
 const CEC = 'scraper/out-roster/cec';
 
@@ -26,6 +26,77 @@ describe('parseByElection：由分號次得票推出當選者', () => {
 
   it('資料不全時回 null，不硬猜當選者', () => {
     expect(parseByElection('', '')).toBeNull();
+  });
+});
+
+describe('parseByElectionResults：全部候選人得票＋有效票／投票率彙總', () => {
+  const cand = [
+    '﻿號次,名字,政黨名稱',
+    '1,甲,中國國民黨',
+    '2,乙,無',
+  ].join('\n');
+  const prof = [
+    '﻿行政區別,村里別,投開票所別,號次1,號次2,有效票數A（A＝1＋2＋…＋N）,無效票數B,投票數C（C＝A＋B）,'
+      + '已領未投票數D（D＝E－C）,發出票數E（E＝C＋D）,用餘票數F,選舉人數(原領票數)G（G＝E＋F）,投票率H（H＝C÷G）',
+    '東區,短竹里,1,100,50,150,0,150,0,150,50,200,75.00%',
+    '東區,蘭潭里,2,30,90,120,5,125,0,125,25,150,83.33%',
+  ].join('\n');
+
+  it('回傳全部候選人（含落選者），依號次排序', () => {
+    expect(parseByElectionResults(cand, prof)?.candidates).toEqual([
+      { number: 1, name: '甲', partyName: '中國國民黨', votes: 130 },
+      { number: 2, name: '乙', partyName: '無', votes: 140 },
+    ]);
+  });
+
+  it('有效票／無效票／投票數／選舉人數由各投開票所加總得出', () => {
+    const r = parseByElectionResults(cand, prof);
+    expect(r?.validVotes).toBe(270);
+    expect(r?.invalidVotes).toBe(5);
+    expect(r?.castVotes).toBe(275);
+    expect(r?.electorate).toBe(350);
+  });
+
+  it('投票率是計算值（castVotes÷electorate 的百分比），不是逐列 H 欄的平均', () => {
+    const r = parseByElectionResults(cand, prof);
+    expect(r?.turnout).toBeCloseTo((275 / 350) * 100, 6);
+  });
+
+  it('標頭缺有效票／無效票／投票數／選舉人數任一欄就回 null，不拿 0 湊數', () => {
+    const profMissingCols = [
+      '﻿行政區別,村里別,投開票所別,號次1,號次2',
+      '東區,短竹里,1,100,50',
+    ].join('\n');
+    expect(parseByElectionResults(cand, profMissingCols)).toBeNull();
+  });
+
+  it('資料不全時回 null', () => {
+    expect(parseByElectionResults('', '')).toBeNull();
+  });
+});
+
+describe('parseByElectionResults：對嘉義市長重行選舉的真實資料', () => {
+  const dir = `${CEC}/2022年_嘉義市長重行選舉`;
+  const r = parseByElectionResults(
+    readFileSync(`${dir}/cand.csv`, 'utf8'),
+    readFileSync(`${dir}/prof.csv`, 'utf8'),
+  );
+
+  it('黃敏惠以 59,874 票當選，總計 93,813 有效票', () => {
+    const 黃敏惠 = r?.candidates.find((c) => c.name === '黃敏惠');
+    expect(黃敏惠?.votes).toBe(59874);
+    expect(r?.validVotes).toBe(93813);
+  });
+
+  it('候選人得票加總等於有效票數', () => {
+    const sum = r?.candidates.reduce((n, c) => n + c.votes, 0);
+    expect(sum).toBe(r?.validVotes);
+  });
+
+  it('五位候選人全部列出', () => {
+    expect(r?.candidates.map((c) => c.name)).toEqual([
+      '黃敏惠', '李俊俋', '陳泰山', '黃宏成台灣阿成世界偉人財神總統', '鄭凱升',
+    ]);
   });
 });
 

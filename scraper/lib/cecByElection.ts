@@ -90,6 +90,100 @@ export function parseByElection(candCsv: string, profCsv: string): ByElectionWin
   return { name: c.name, partyName: c.partyName, votes, totalVotes: sum };
 }
 
+/** 單一候選人在補選／重行選舉裡的得票（已跨投開票所加總）。 */
+export interface ByElectionCandidateVotes {
+  number: number;
+  name: string;
+  partyName: string;
+  votes: number;
+}
+
+/**
+ * 補選／重行選舉的完整結果：全部候選人得票（依號次），以及由 prof.csv 各投開票所
+ * 加總出的有效票、無效票、投票數、選舉人數。
+ *
+ * `turnout` 是百分比數字（如 64.20，不是 0.642），與 cecVotes.ts 的 ElprofRow.turnout
+ * 同單位，方便直接組進 RaceResult。這批資料沒有現成的彙總列可讀（不像主選舉的
+ * elprof.csv 有「投開票所別＝0000」那一列），故以 castVotes ÷ electorate 自行計算，
+ * 而非中選會直接提供——與 RaceCandidate.share 的計算值同一個道理。
+ *
+ * 標頭裡找不到有效票／無效票／投票數／選舉人數任一欄就回 null，不拿 0 湊數：
+ * 呼叫端要能分辨「這批資料真的沒有這個欄位」與「加總出來剛好是 0」，不可混為一談。
+ * 實測嘉義市長重行選舉與四場議員缺額補選的 prof.csv 都完整具備這四欄。
+ */
+export interface ByElectionResult {
+  candidates: ByElectionCandidateVotes[];   // 依號次由小到大排序
+  validVotes: number;
+  invalidVotes: number;
+  castVotes: number;
+  electorate: number;
+  turnout: number;   // 百分比數字，如 64.20
+}
+
+export function parseByElectionResults(candCsv: string, profCsv: string): ByElectionResult | null {
+  const cr = rows(candCsv);
+  const pr = rows(profCsv);
+  if (cr.length < 2 || pr.length < 2) return null;
+
+  const cands = new Map<string, { name: string; partyName: string }>();
+  for (const r of cr.slice(1)) {
+    if (r.length < 3 || !r[0].trim()) continue;
+    cands.set(r[0].trim(), { name: r[1].trim(), partyName: r[2].trim() });
+  }
+  if (!cands.size) return null;
+
+  const head = pr[0].map((h) => h.trim());
+  const cols = new Map<string, number>();
+  for (const [no] of cands) {
+    const i = head.indexOf(`號次${no}`);
+    if (i >= 0) cols.set(no, i);
+  }
+  if (!cols.size) return null;
+
+  // 用前綴比對而非精確比對整段欄名：欄名帶著公式說明（如「有效票數A（A＝1＋2＋…＋N）」），
+  // 括號裡的內容在不同批資料裡可能略有出入，但欄名本身的前綴（「有效票數A」等）穩定。
+  const findCol = (prefix: string) => head.findIndex((h) => h.startsWith(prefix));
+  const colA = findCol('有效票數A');
+  const colB = findCol('無效票數B');
+  const colC = findCol('投票數C');
+  const colG = findCol('選舉人數');
+  if (colA < 0 || colB < 0 || colC < 0 || colG < 0) return null;
+
+  const num = (v: string | undefined): number => {
+    const n = Number((v ?? '0').replace(/,/g, '').trim() || '0');
+    return Number.isFinite(n) ? n : 0;
+  };
+
+  const total = new Map<string, number>();
+  let validVotes = 0;
+  let invalidVotes = 0;
+  let castVotes = 0;
+  let electorate = 0;
+  for (const r of pr.slice(1)) {
+    for (const [no, i] of cols) total.set(no, (total.get(no) ?? 0) + num(r[i]));
+    validVotes += num(r[colA]);
+    invalidVotes += num(r[colB]);
+    castVotes += num(r[colC]);
+    electorate += num(r[colG]);
+  }
+
+  const sum = [...total.values()].reduce((a, b) => a + b, 0);
+  if (sum === 0) return null;
+
+  const candidates: ByElectionCandidateVotes[] = [...cols.keys()]
+    .sort((a, b) => Number(a) - Number(b))
+    .map((no) => ({ number: Number(no), ...cands.get(no)!, votes: total.get(no) ?? 0 }));
+
+  return {
+    candidates,
+    validVotes,
+    invalidVotes,
+    castVotes,
+    electorate,
+    turnout: electorate > 0 ? (castVotes / electorate) * 100 : 0,
+  };
+}
+
 export interface ByElectionTarget {
   countyName: string;
   /** 鄉鎮市長補選才有值；縣市長與議員為 null。 */
