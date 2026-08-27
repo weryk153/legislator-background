@@ -182,6 +182,31 @@
         </ul>
       {/if}
     {/if}
+
+    <!-- 圖說：授權標示與領土說明。原本是浮在地圖左下角、獨立定位的區塊（見
+         elections.astro 舊版），曾經用 JS 讀這個報頭的實際高度來動態避開它，
+         但報頭內容量會變（年度導言／圖例／下鑽後變長的麵包屑），JS 量測的時機
+         抓不準——實測 1568×766 這種較矮的視窗下，圖說仍被推到視窗底部之外、
+         文字被切掉。改成純 CSS：把這兩段文字直接併入報頭本身的欄位流，接在
+         圖例之後。.title-float 本來就有 max-height + overflow-y: auto（見下方
+         樣式），內容超出時整欄一起內部捲動，圖說跟著報頭共用同一道邊界，不會
+         再各自獨立定位、互相打架。文字內容一字不改。
+
+         這段包一層 .masthead-caption，行距／間距比報頭其他列略緊（見下方樣式）
+         ——純粹是版面密度的調整，不是文字或語意的改動：這兩段本來就是次要的
+         輔助資訊（授權／範圍說明），比報頭其他列（年度、麵包屑、圖例）字級
+         已經一樣小，稍微收緊行距與間距，才能在 1568×766 這種較矮的視窗下
+         不必捲動就完整放進報頭的可視高度。 -->
+    <div class="masthead-caption">
+      <hr class="rule-hair" />
+      <p class="credit">
+        行政區界線：內政部國土測繪中心（政府資料開放授權條款）｜選舉結果：中央選舉委員會
+      </p>
+      <p class="scope-note">
+        為使台灣本島在地圖上維持可辨識的比例，本頁地圖未繪出高雄市旗津區轄下的東沙島、南沙太平島，
+        以及宜蘭縣頭城鎮大溪里轄下的釣魚台列嶼——這幾處均無村里長選舉；大溪里其餘轄區的村里長資料仍照常呈現於地圖上。
+      </p>
+    </div>
   </header>
 
   <div class="map-region">
@@ -297,6 +322,15 @@
   .lede,
   .notice { color: var(--faint); font-size: var(--t-xs); line-height: 1.6; margin: 0; }
   .notice strong { color: var(--muted); font-weight: 600; }
+
+  /* 圖說（授權標示／領土說明）：跟報頭其他輔助列同一套 --faint 小字級語彙，
+     現在是報頭欄位流最後一段，不再需要自己的定位、背景或響應式規則——900px
+     斷點以下會隨 .title-float 一起自動退回一般文件流（見下方媒體查詢）。
+     .masthead-caption 內的髮絲線／段落間距比報頭其他列略緊，只為了在較矮的
+     視窗下整段報頭仍能不捲動地放進可視高度，文字內容與字級都沒有變。 */
+  .masthead-caption hr { margin: .35rem 0; }
+  .credit { color: var(--faint); font-size: var(--t-xs); line-height: 1.5; margin: 0; }
+  .scope-note { color: var(--faint); font-size: var(--t-xs); margin: .3rem 0 0; line-height: 1.5; }
 
   /* 圖例：小色塊＋--t-xs 字級＋--muted 色，不搶主體。 */
   .legend {

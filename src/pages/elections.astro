@@ -15,87 +15,27 @@ const years = buildYears(meta);
       description="2026 年九合一選舉。以行政區地圖呈現各級公職現任者的政黨版圖，可逐層下鑽至村里。">
   <!-- 地圖滿版出血：跳出 .wrap 的 940px 上限、佔滿整個視窗寬度、緊接頁首，讓天下雜誌
        那種「地圖是主角、控制項浮在上面」的感覺成立——一進頁面不捲動就看到完整地圖。
-       標題／倒數／年度標示改成浮在地圖左側的欄（見 ElectionPanel）。圖說（授權標示、
-       領土說明）改成疊在地圖左下角的窄欄，跟報紙的照片圖說一樣貼著圖片本身，不再
-       放到滿版地圖之後、要捲動才看得到的位置——見下方 .caption 樣式。用 <figure>／
-       <figcaption> 包起來，語意上明講「這段文字在說明這張地圖」。 -->
-  <figure class="map-stage">
+       標題／倒數／年度標示改成浮在地圖左側的欄（見 ElectionPanel）。
+
+       圖說（授權標示、領土說明）曾經是這裡一個獨立定位、疊在地圖左下角的區塊，
+       另外用 JS 讀左欄報頭（.title-float）的實際高度來動態避開它，避免報頭內容
+       變長時兩者疊在一起。但那個量測策略不夠穩：報頭原本就有 max-height +
+       overflow-y: auto 這道自己的邊界，JS 卻是另外獨立算圖說的 top，兩套邊界
+       各自為政——實測 1568×766 這種較矮的視窗下，算出來的位置仍會把圖說推到
+       視窗底部之外，文字被切掉。現在改成純 CSS：圖說已經搬進
+       ElectionPanel.svelte 的報頭欄位流最後一段（緊接圖例之後），跟報頭共用
+       同一個 max-height + overflow-y: auto 的容器，不會再各自算位置、互相打架。
+       這裡不再需要另外的殼或腳本。 -->
+  <div class="map-stage">
     <ElectionPanel client:load {years} />
-
-    <!-- 圖說：授權標示與領土說明，做成報紙照片圖說的樣式——貼在地圖左下角、跟左欄
-         報頭的左緣切齊、上緣一條髮絲線、小字級 --faint 色、窄欄控制行長。文字內容
-         完全不動。下鑽後地圖會放大，這個位置可能被地圖本身的顏色蓋過，所以加了
-         極輕的 --bg 半透明底（非卡片，只是壓過地圖底色，讓字讀得清楚）。 -->
-    <figcaption class="caption">
-      <p class="credit">
-        行政區界線：內政部國土測繪中心（政府資料開放授權條款）｜選舉結果：中央選舉委員會
-      </p>
-      <p class="scope-note">
-        為使台灣本島在地圖上維持可辨識的比例，本頁地圖未繪出高雄市旗津區轄下的東沙島、南沙太平島，
-        以及宜蘭縣頭城鎮大溪里轄下的釣魚台列嶼——這幾處均無村里長選舉；大溪里其餘轄區的村里長資料仍照常呈現於地圖上。
-      </p>
-    </figcaption>
-  </figure>
+  </div>
 </Base>
-
-<script>
-  // 圖說預設用 CSS 的 bottom: 2rem 定位（見下方樣式），但左欄報頭（.title-float）
-  // 是浮在地圖上的面板，內容量（年度導言／圖例／下鑽後變長的麵包屑）會讓它的高度
-  // 跟著變動；在較矮的視窗或內容較長時，報頭的下緣可能比圖說預設位置更低，兩者
-  // 就會疊在一起、把圖說的授權標示壓到看不見。這段只讀報頭的版面尺寸來重新計算
-  // 圖說的 top，不去改報頭本身的任何內容或樣式（沒有動 ElectionPanel.svelte）。
-  function initCaptionPosition() {
-    const stage = document.querySelector<HTMLElement>(".map-stage");
-    const panel = document.querySelector<HTMLElement>(".title-float");
-    const caption = document.querySelector<HTMLElement>(".caption");
-    if (!stage || !panel || !caption) return;
-
-    const GAP_REM = 0.75; // 報頭下緣與圖說之間至少留的間距
-    const EDGE_REM = 2; // 跟 CSS 的 left/bottom: 2rem 對齊，用同一個數值換算
-
-    function reposition() {
-      // 900px 以下圖說已回到一般文件流（見下方 @media），由 CSS 控制版面，
-      // 這裡不需要、也不應該再用 JS 蓋掉它的位置。
-      if (window.matchMedia("(max-width: 900px)").matches) {
-        caption!.style.top = "";
-        caption!.style.bottom = "";
-        return;
-      }
-      // 關鍵：CSS 預設同時給了 top（auto）與 bottom（2rem）。一旦下面改設 top，
-      // 若不順手把 bottom 也清掉，瀏覽器會用「top、bottom、height 三者只要有兩個
-      // 不是 auto，height 就用两者的差反推」這條 CSS 規則，把圖說的高度硬壓成
-      // 「地圖高度 - top - bottom」，跟內容實際需要的高度無關——圖說會被壓扁、
-      // 文字溢出框外卻讀不到底色。先清掉 bottom，圖說的高度才會照內容自動撐開，
-      // 量到的 offsetHeight 才準。
-      caption!.style.bottom = "auto";
-      const rootPx = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-      const stageTop = stage!.getBoundingClientRect().top;
-      const panelBottom = panel!.getBoundingClientRect().bottom;
-      const stageHeight = stage!.clientHeight;
-      const captionHeight = caption!.offsetHeight;
-      // 兩個候選位置取較低（數值較大）的那個：預設貼齊地圖底部 2rem，
-      // 或報頭下緣往下留出間距——哪個位置更低，就用哪個，確保一定在報頭之下。
-      const bottomAnchored = stageHeight - EDGE_REM * rootPx - captionHeight;
-      const belowPanel = panelBottom - stageTop + GAP_REM * rootPx;
-      caption!.style.top = `${Math.max(bottomAnchored, belowPanel)}px`;
-    }
-
-    const ro = new ResizeObserver(reposition);
-    ro.observe(panel);
-    ro.observe(stage);
-    window.addEventListener("resize", reposition);
-    reposition();
-  }
-
-  initCaptionPosition();
-</script>
 
 <style>
   /* 標準的「跳出置中容器」技巧：50% 相對於父層（.wrap，已置中），50vw 相對於視窗，
-     兩者相減剛好抵消置中造成的偏移，讓這個區塊左右都貼齊視窗邊緣。.map-stage 改成
-     <figure>（瀏覽器預設有 margin），這裡整個覆寫掉，不能只設 margin-left。 */
+     兩者相減剛好抵消置中造成的偏移，讓這個區塊左右都貼齊視窗邊緣。 */
   .map-stage {
-    position: relative; /* 讓 .caption 可以用 left/bottom 定位在這個滿版地圖區塊內 */
+    position: relative;
     width: 100vw;
     margin: 0 0 0 calc(50% - 50vw);
     /* 緊接頁首、填滿首屏：130px = 頁首 .site-head 實測高度 98px（padding-top 22px
@@ -106,43 +46,12 @@ const years = buildYears(meta);
     height: calc(100dvh - 130px);
   }
 
-  /* 圖說：疊在地圖左下角的窄欄，跟左欄報頭（ElectionPanel.svelte 的 .title-float，
-     left: 2rem）的左緣切齊——兩者都是「貼在滿版地圖上的一列文字」，用同一套
-     左邊界才會像同一份報紙的版面而非兩個各自為政的區塊。窄欄（max-width）壓住
-     行長，不再像原本橫跨整頁的一千多像素。上緣一條髮絲線＋小字級 --faint 色，
-     跟報頭其他列同一種語彙；不加框、不加陰影——極輕的 --bg 半透明底只是為了在
-     下鑽後地圖被放大、色塊可能蓋到這個角落時仍讀得清楚，不是要做成卡片（沒有
-     border、沒有 shadow、沒有圓角）。z-index 蓋過地圖本身（.stage 是 auto），
-     但低於左右兩個浮動面板（z-index: 10），彼此不會互相打架。 */
-  .caption {
-    position: absolute;
-    left: 2rem;
-    bottom: 2rem;
-    z-index: 5;
-    max-width: min(360px, 30vw);
-    border-top: 1px solid var(--line);
-    padding: .6rem .7rem .7rem;
-    background: color-mix(in oklab, var(--bg) 55%, transparent);
-  }
-  .credit { color: var(--faint); font-size: var(--t-xs); line-height: 1.6; margin: 0; }
-  .scope-note { color: var(--faint); font-size: var(--t-xs); margin: .5rem 0 0; line-height: 1.65; }
-
   /* 窄螢幕：ElectionPanel 內的標題欄／資訊面板改回靜態排版、各自佔滿寬度，
      這裡的滿版地圖區塊也要跟著放棄固定滿版高度，否則會被硬撐出捲動軸內的
      捲動軸（雙重捲動）。斷點跟 ElectionPanel.svelte 的 900px 一致，必須同步改。
-     圖說在這個寬度也跟著退回一般文件流（緊接在下鑽面板之後）、佔滿容器寬度、
-     拿掉地圖疊層才需要的定位／背景——此時版面本身已經夠窄，不必再另外收窄
-     max-width 就能維持舒適行長。 */
+     圖說（現在是 ElectionPanel.svelte 報頭欄位流的一部分）會隨報頭本身的
+     900px 規則一起退回一般文件流，這裡不需要再另外處理。 */
   @media (max-width: 900px) {
     .map-stage { height: auto; margin-top: 0; }
-    .caption {
-      position: static;
-      z-index: auto;
-      max-width: none;
-      width: 100%;
-      box-sizing: border-box;
-      margin-top: 1rem;
-      background: none;
-    }
   }
 </style>
