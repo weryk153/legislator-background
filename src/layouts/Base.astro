@@ -67,6 +67,7 @@ try {
           <a href="/">總覽</a>
           <a href="/donors">政治獻金</a>
           <a href="/graph">關係圖</a>
+          <a href="/elections">九合一選舉</a>
           <a href="/about">關於</a>
           <button id="theme-toggle" type="button" class="toggle" aria-label="切換深色或淺色模式">
             <svg class="ic-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
@@ -117,6 +118,16 @@ try {
       .nav { display: flex; gap: 20px; align-items: center; font-size: 0.875rem; }
       .nav a { color: var(--muted); padding-bottom: 2px; }
       .nav a:hover { color: var(--fg); }
+
+      /* 窄螢幕：「九合一選舉」比原本的「選舉」寬，五個選單項＋切換鈕在小螢幕上
+         容易被擠壓或被迫換行換得很醜。改成報頭本身允許換行（brand 與 nav 各自
+         成行），並縮小 nav 的欄距、放行 nav 自己也能換行——寧可讓選單本身分成
+         兩行，也不要被硬撐成一行擠壓變形或超出視窗寬度。文字內容不動，只調整
+         版面。 */
+      @media (max-width: 560px) {
+        .head-inner { flex-wrap: wrap; row-gap: 10px; align-items: flex-start; }
+        .nav { flex-wrap: wrap; row-gap: 8px; gap: 8px 14px; }
+      }
       .toggle {
         display: inline-flex; align-items: center; justify-content: center;
         width: 36px; height: 36px; padding: 0;

@@ -33,7 +33,10 @@
     "reconcile:social-sources": "tsx scraper/reconcile-social-sources.ts",
     "wiki:resolve-entities": "tsx scraper/wiki-resolve-entities.ts",
     "enrich:entity-photos": "tsx scraper/enrich-entity-photos.ts",
-    "wiki:discover-relations": "tsx scraper/wiki-discover-relations.ts"
+    "wiki:discover-relations": "tsx scraper/wiki-discover-relations.ts",
+    "extract:vote-history": "tsx scraper/extract-vote-history.ts",
+    "build:boundaries": "tsx scraper/fetch-boundaries.ts",
+    "build:election-map": "tsx scraper/build-election-map.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
@@ -41,18 +44,25 @@
     "@supabase/supabase-js": "^2.58.0",
     "astro": "^5.14.0",
     "cytoscape": "^3.34.0",
+    "d3-geo": "^3.1.1",
     "node-html-parser": "^7.1.0",
-    "svelte": "^5.39.0"
+    "svelte": "^5.39.0",
+    "topojson-client": "^3.1.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "@types/adm-zip": "^0.5.8",
     "@types/cytoscape": "^3.31.0",
+    "@types/d3-geo": "^3.1.1",
     "@types/node": "^25.9.3",
+    "@types/topojson-client": "^3.1.5",
+    "adm-zip": "^0.6.0",
+    "mapshaper": "^0.7.55",
     "playwright": "^1.61.0",
+    "sharp": "^0.33.0",
     "tsx": "^4.22.4",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.0",
-    "sharp": "^0.33.0"
+    "vitest": "^3.2.0"
   },
   "packageManager": "pnpm@10.16.1",
   "engines": {

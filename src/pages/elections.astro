@@ -1,0 +1,236 @@
+---
+import Base from "../layouts/Base.astro";
+import ElectionPanel from "../components/ElectionPanel.svelte";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { buildYears } from "../lib/electionYears";
+import type { MapLayer } from "../lib/mapTypes";
+
+const meta = JSON.parse(readFileSync(join(process.cwd(), "public", "data", "map", "meta.json"), "utf8"));
+// 年份切換器的資料來源，見 src/lib/electionYears.ts 開頭的說明——日後加 2018
+// 等更早年份時，只改 buildYears()，這裡與 ElectionPanel.svelte 都不必動。
+const years = buildYears(meta);
+
+// 全國一覽表：地圖與側欄是 client:load（Svelte 元件，建置產物裡只有「載入中…」的
+// 殼），爬蟲、無 JS 的使用者、螢幕閱讀器完全讀不到 22 個縣市的名字、首長、席次、
+// 得票——這頁的實質內容在搜尋引擎上等於不存在。這裡直接在 frontmatter 讀
+// national.json（建置期就有，見 scraper/build-election-map.ts），組成一份純
+// HTML 的表格，不經任何 client 元件，滿版地圖之下渲染成真正的靜態內容。
+const national: MapLayer = JSON.parse(
+  readFileSync(join(process.cwd(), "public", "data", "map", "national.json"), "utf8"),
+);
+
+const fmtInt = (n: number): string => n.toLocaleString("en-US");
+const fmtPercent = (n: number | null | undefined): string => (typeof n === "number" ? `${n.toFixed(2)}%` : "—");
+
+interface OverviewRow {
+  code: string;
+  name: string;
+  chiefName: string | null;
+  chiefSlug: string | null;
+  chiefParty: string | null;
+  seatsTotal: number;
+  largestParty: { name: string; seats: number } | null;
+  electedShare: number | null;
+  turnout: number | null;
+}
+
+// 22 縣市依 national.json 原本的順序（中選會五段代碼的行政區樹順序，與地圖、
+// 側欄一致），不另外重新排序。
+const overviewRows: OverviewRow[] = national.areas.map((a): OverviewRow => {
+  const seatsTotal = a.seats.reduce((n, s) => n + s.seats, 0);
+  const largest = [...a.seats].sort((x, y) => y.seats - x.seats)[0] ?? null;
+  const elected = a.race?.candidates.find((c) => c.elected) ?? null;
+  return {
+    code: a.code,
+    name: a.name,
+    chiefName: a.chief?.name ?? null,
+    chiefSlug: a.chief?.slug ?? null,
+    chiefParty: a.chief?.partyName ?? null,
+    seatsTotal,
+    largestParty: largest ? { name: largest.partyName, seats: largest.seats } : null,
+    // 得票率／投票率若查無 race 資料（本輪任務前，只有嘉義市會落入這個分支）
+    // 就留 null、表格顯示「—」，不拿 0 湊數——見 fmtPercent。
+    electedShare: elected?.share ?? null,
+    turnout: a.race?.turnout ?? null,
+  };
+});
+
+const siteUrl = Astro.site ? Astro.site.href.replace(/\/$/, "") : "";
+const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const homeUrl = Astro.site ? Astro.site.href : undefined;
+const electionsDesc = "2022 年地方公職人員選舉（九合一選舉）22 縣市首長、議會席次組成與得票結果，"
+  + "以行政區地圖與全國一覽表呈現，可逐層下鑽至村里。";
+// 結構化資料：如實描述這是「2022 年」選舉結果的呈現，不宣稱是 2026 年（2026 年
+// 選舉尚未舉行，本站尚無該屆結果）。型別選 Dataset：本頁的核心是一份可查詢的
+// 選舉結果資料集，而非單篇敘事文章，比照首頁既有的 Dataset 寫法（src/pages/index.astro）。
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    name: "2022 年九合一選舉結果",
+    description: electionsDesc,
+    url: pageUrl,
+    inLanguage: "zh-Hant",
+    temporalCoverage: "2022",
+    spatialCoverage: { "@type": "Place", name: "臺灣" },
+    creator: { "@type": "Organization", name: "政治人物背景資料庫（本站）" },
+    license: "資料彙整自中央選舉委員會（選舉結果）與內政部國土測繪中心（行政區界線，"
+      + "政府資料開放授權條款），非官方資料，請以原始出處為準。",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "總覽", item: homeUrl },
+      { "@type": "ListItem", position: 2, name: "九合一選舉", item: pageUrl },
+    ],
+  },
+];
+---
+
+<Base title="選舉地圖｜政治人物背景資料庫"
+      description="2026 年九合一選舉。以行政區地圖呈現各級公職現任者的政黨版圖，可逐層下鑽至村里。">
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <!-- 地圖滿版出血：跳出 .wrap 的 940px 上限、佔滿整個視窗寬度、緊接頁首，讓天下雜誌
+       那種「地圖是主角、控制項浮在上面」的感覺成立——一進頁面不捲動就看到完整地圖。
+       標題／倒數／年度標示改成浮在地圖左側的欄（見 ElectionPanel）。
+
+       圖說（授權標示、領土說明）曾經是這裡一個獨立定位、疊在地圖左下角的區塊
+       （用 JS 動態量報頭高度來避開它，量測時機抓不準）；後來又併入左欄報頭的
+       欄位流，但左欄報頭內容本來就多（眉題／大標／版次／dateline／本期位置／
+       導言／圖例），1568×766 這種較矮的視窗下最後一段仍會被切掉。現在圖說改放
+       右欄——ElectionPanel.svelte 的 .sidebar-float 裡，接在資訊面板
+       （.sidebar-panel）之下、釘在整欄底部；右欄在全國層通常只佔上半部，
+       底下本來就空著。這裡不需要再另外的殼或腳本，細節見 ElectionPanel.svelte
+       的樣式與注釋。 -->
+  <div class="map-stage">
+    <ElectionPanel client:load {years} />
+  </div>
+
+  <!-- 全國一覽：伺服器端渲染的靜態表格，滿版地圖之下。地圖／側欄是 client:load
+       的 Svelte 元件，爬蟲與無 JS 的使用者看不到裡面的縣市名、首長、席次、得票
+       ——這裡是同一份資料（national.json）以純 HTML 表格重新呈現一次，服務的
+       不只是搜尋引擎，也包含沒有 JavaScript 與使用螢幕閱讀器的讀者。 -->
+  <section class="overview" aria-labelledby="overview-title">
+    <h2 id="overview-title">全國一覽：2022 年九合一選舉結果</h2>
+    <p class="overview-note">
+      以下為<strong>西元 2022 年（111年地方公職人員選舉）</strong>22 縣市的首長、議會席次組成與得票結果，
+      含其後補選／重行選舉之現況（如嘉義市長 2022 年因候選人於投票前過世延後重行選舉）。
+      <strong>非 2026 年選情</strong><span class="dash">——</span>2026 年選舉尚未舉行，本站尚無該屆結果可顯示。
+    </p>
+    <div class="table-scroll">
+      <table>
+        <caption class="sr-only">2022 年 22 縣市首長、議會席次與得票一覽表</caption>
+        <thead>
+          <tr>
+            <th scope="col">縣市</th>
+            <th scope="col">縣市長</th>
+            <th scope="col">政黨</th>
+            <th scope="col" class="num">議會席次</th>
+            <th scope="col">最大黨</th>
+            <th scope="col" class="num">當選得票率</th>
+            <th scope="col" class="num">投票率</th>
+          </tr>
+        </thead>
+        <tbody>
+          {overviewRows.map((r) => (
+            <tr>
+              <td>{r.name}</td>
+              <td>
+                {r.chiefName
+                  ? (r.chiefSlug ? <a href={`/officials/${r.chiefSlug}`}>{r.chiefName}</a> : r.chiefName)
+                  : "—"}
+              </td>
+              <td>{r.chiefParty ?? "—"}</td>
+              <td class="num">{fmtInt(r.seatsTotal)}</td>
+              <td>{r.largestParty ? `${r.largestParty.name}（${fmtInt(r.largestParty.seats)}）` : "—"}</td>
+              <td class="num">{fmtPercent(r.electedShare)}</td>
+              <td class="num">{fmtPercent(r.turnout)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* 標準的「跳出置中容器」技巧：50% 相對於父層（.wrap，已置中），50vw 相對於視窗，
+     兩者相減剛好抵消置中造成的偏移，讓這個區塊左右都貼齊視窗邊緣。 */
+  .map-stage {
+    position: relative;
+    width: 100vw;
+    margin: 0 0 0 calc(50% - 50vw);
+    /* 緊接頁首、填滿首屏：130px = 頁首 .site-head 實測高度 98px（padding-top 22px
+       ＋padding-bottom 16px＋2px 邊框＋內容本身，實測 97.45px 取整）＋ Base.astro
+       .main 的 padding-top 32px。這兩個數字都是量測值，不是變數，Base.astro 或
+       站台頁首若改版就要重新量測。用 100dvh 而非 100vh，行動裝置網址列收合/展開時
+       高度才不會跳動。 */
+    height: calc(100dvh - 130px);
+  }
+
+  /* 窄螢幕：ElectionPanel 內的標題欄／資訊面板改回靜態排版、各自佔滿寬度，
+     這裡的滿版地圖區塊也要跟著放棄固定滿版高度，否則會被硬撐出捲動軸內的
+     捲動軸（雙重捲動）。斷點跟 ElectionPanel.svelte 的 900px 一致，必須同步改。
+     圖說（現在是 ElectionPanel.svelte 報頭欄位流的一部分）會隨報頭本身的
+     900px 規則一起退回一般文件流，這裡不需要再另外處理。 */
+  @media (max-width: 900px) {
+    .map-stage { height: auto; margin-top: 0; }
+  }
+
+  /* 視覺上隱藏但螢幕閱讀器讀得到：表格自己的 caption 已有 <h2> 當視覺標題，
+     caption 只用來讓讀屏在直接跳到表格物件時仍報得出這是什麼表。 */
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* 全國一覽：報紙特輯的調性——髮絲線分隔、襯線體數字、不用卡片陰影或圓角。
+     與地圖區塊隔開足夠留白，讓讀者一眼看出這是滿版地圖之後的另一段內容，
+     不是地圖的附屬控制項。 */
+  .overview { margin-top: 48px; }
+  .overview h2 { font-size: var(--t-lg); margin: 0 0 8px; }
+  .overview-note { color: var(--muted); font-size: 0.9375rem; line-height: 1.7; max-width: 72ch; margin: 0 0 20px; }
+
+  /* 表格本身可能比 940px 的 .wrap 還寬（尤其中文縣市長全名＋政黨全名），窄螢幕
+     讓這個殼自己橫向捲動，不讓表格擠壓整頁版面或把其他內容推出視窗。 */
+  .table-scroll { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+  caption { text-align: left; }
+  th, td {
+    text-align: left;
+    padding: 9px 12px 9px 0;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  thead th {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--muted);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  tbody tr:hover { background: var(--row-hover); }
+  td a { text-decoration: underline; text-underline-offset: 2px; }
+  td a:hover { color: var(--accent); }
+
+  /* 數字欄：靠右、襯線體＋等寬數字，跟站上其他金額／席次欄一致的排版習慣
+     （見 src/pages/officials/[id].astro 的 .don-donors .amt、ElectionSidebar
+     的 fmt()）。 */
+  .num {
+    text-align: right;
+    font-family: var(--serif);
+    font-variant-numeric: tabular-nums;
+  }
+</style>

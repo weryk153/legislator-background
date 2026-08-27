@@ -1,0 +1,48 @@
+{
+  "electionYear": 2022,
+  "electionName": "111年地方公職人員選舉",
+  "upcomingElection": "2026-11-28",
+  "boundaries": {
+    "datasets": [
+      {
+        "name": "直轄市、縣市界線(TWD97經緯度)",
+        "version": "1140318（民國114年3月18日）",
+        "note": "縣市界自2014年直轄市改制後未再調整，2022年（111年）與現行版一致，故取現行版。",
+        "url": "https://data.gov.tw/dataset/7442",
+        "downloadUrl": "https://www.tgos.tw/tgos/VirtualDir/Product/1cd4f4c9-6b01-4cf9-bf6c-23a73aa17d24/直轄市、縣(市)界線1140318.zip",
+        "provider": "內政部國土測繪中心",
+        "license": "政府資料開放授權條款-第1版"
+      },
+      {
+        "name": "鄉鎮市區界線(TWD97經緯度)",
+        "version": "1140318（民國114年3月18日）",
+        "note": "鄉鎮市區界2022年至今無行政區劃調整，368個鄉鎮市區與2022年選舉行政區樹一致，故取現行版。",
+        "url": "https://data.gov.tw/dataset/7441",
+        "downloadUrl": "https://www.tgos.tw/tgos/VirtualDir/Product/3fe61d4a-ca23-4f45-8aca-4a536f40f290/鄉(鎮、市、區)界線1140318.zip",
+        "provider": "內政部國土測繪中心",
+        "license": "政府資料開放授權條款-第1版"
+      },
+      {
+        "name": "村里界歷史圖資(TWD97經緯度)",
+        "version": "1111118（民國111年11月18日）",
+        "note": "村里界逐年調整，取「村里界歷史圖資」資料集中最接近且不晚於2022年底的版本，與2022年地方公職人員選舉的行政區樹對應。",
+        "url": "https://data.gov.tw/dataset/130549",
+        "downloadUrl": "https://opdadm.moi.gov.tw/api/v1/no-auth/resource/api/dataset/16ACD8E3-6A33-4245-95B7-16819EE74DD0/resource/923454AB-F2CA-4AA2-BC59-1920215F1ADC/download",
+        "provider": "內政部地政司",
+        "license": "政府資料開放授權條款-第1版"
+      },
+      {
+        "name": "村里界圖(TWD97經緯度)——三和村補正圖層（Village_Sanhe）",
+        "version": "隨1150817現行版一併發布（民國115年8月17日下載）",
+        "note": "村里界歷史圖資1111118版主檔完全沒有屏東縣瑪家鄉三和村（VILLCODE 10013280006），該村與鄰近排灣族保留地界址長期未定，內政部另外補測後做成獨立單筆圖層，隨現行版村里界一併發布、供各版本村里界檔案套用；主檔沒有1111118當時對應的補正圖層版本，故直接沿用現行版所附的這一筆。轉檔時與VILLAGE_MOI_1111118.shp合併為單一村里圖層再簡化。",
+        "url": "https://data.gov.tw/dataset/7438",
+        "downloadUrl": "https://www.tgos.tw/tgos/VirtualDir/Product/a04697c8-64db-450a-a105-3eb471c45abd/村(里)界(TWD97經緯度).zip",
+        "provider": "內政部國土測繪中心",
+        "license": "政府資料開放授權條款-第1版"
+      }
+    ],
+    "retrievedAt": "2026-08-26T12:56:23Z",
+    "versionDecisionPolicy": "版本選擇依專案負責人派工時給定的決策框架決斷（框架原文：優先取民國111年（2022）版；取不到就取最接近且不晚於2022年底的版本；再取不到才用現行版；不論用哪一版，最終以全量對應測試的實際落差筆數為準）。縣市界、鄉鎮市區界在data.gov.tw只提供現行版（1140318，民國114年3月18日），無111年歷史版可下載，故依框架第3點改用現行版；已用全量對應測試逐筆驗證：縣市界22/22全對、鄉鎮市區界368/368全對，證實這兩層自2022年至今未曾調整、現行版與2022年版一致，符合框架「以實際落差為準」的要求。村里界則依框架第1點取到了111年11月版（1111118），故用歷史版而非現行版。此決斷已經專案負責人事後確認授權（2026-08-26 review 回覆）。"
+  },
+  "generatedAt": "2026-08-27"
+}
