@@ -47,7 +47,9 @@ const seg = (code: string): string[] => code.split('-');
  * 這保證了只吃得下前述兩種已知格式；一旦資料格式再變一次（例如出現跳脫引號），
  * 會直接拋錯讓人第一時間發現，而不是安靜地解析出錯誤的欄位值。
  */
-function splitCsvFields(line: string): string[] {
+// 匯出供 cecVotes.ts（elctks.csv／elprof.csv 的解析）共用——兩份檔案是同一套
+// 中選會匯出格式，不重複實作同一段剝引號邏輯。
+export function splitCsvFields(line: string): string[] {
   if (!line.includes('"')) return line.split(',');
   const raw = [...line.matchAll(/"([^"]*)"/g)].map((m) => m[1]);
   if (raw.map((v) => `"${v}"`).join(',') !== line) {

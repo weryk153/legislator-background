@@ -29,6 +29,24 @@ export type OfficeStatus = 'elected' | 'appointed' | 'none';
 /** 得票相同、待抽籤決定的席位（中選會註記 `?`，該檔未記抽籤結果）。 */
 export interface PendingDraw { names: string[] }
 
+/** 單一候選人的得票（首長類單一席次選舉：縣市長／鄉鎮市長／村里長）。 */
+export interface RaceCandidate {
+  number: number; name: string; partyCode: string; partyName: string;
+  votes: number; share: number; elected: boolean;
+}
+
+/**
+ * 該區「那個職務的那場選舉」的完整結果。只用於單一席次的首長類選舉：
+ *   全國層的縣市 → 該縣市的縣市長選舉（C1）
+ *   縣市層的鄉鎮市區 → 該區的鄉鎮市長選舉（D1／D2，僅民選區才有）
+ *   鄉鎮市區層的村里 → 該村里的村里長選舉（V1）
+ * 議員／代表等複數席次選舉不在此列，仍以 seats（PartySeat[]）呈現。
+ */
+export interface RaceResult {
+  candidates: RaceCandidate[];   // 依得票數由高至低排序
+  validVotes: number; electorate: number; turnout: number;
+}
+
 export interface MapArea {
   // 中選會五段代碼（以 - 相連，保留前導零）。例外：村里層的「未編定村里」
   // 區塊（真實土地但未編定村里，不在中選會行政區樹裡，故沒有五段代碼）以
@@ -43,6 +61,7 @@ export interface MapArea {
   chiefPendingDraw?: PendingDraw;  // 首長席位待抽籤（chief 為 null 時才有意義）
   seatsPendingDraw?: PendingDraw;  // 議會／代表會有席次待抽籤
   quotaSeats?: number;             // 其中屬婦女保障名額當選的席次數（中選會註記 `!`）
+  race?: RaceResult;                // 該區首長選舉的完整得票結果；查無資料（見規格）時省略此欄
 }
 
 // 「未編定村里」區塊的 code 前綴（見上方 MapArea.code 註解）。scraper 產出端

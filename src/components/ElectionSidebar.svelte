@@ -1,10 +1,16 @@
 <!-- 地圖側欄。顯示當前選取的行政區，未選取時顯示該層的彙總。
      資料深度必須看得出來：縣市長與縣市議員連得到檔案頁，鄉鎮市長以下只有中選會欄位。 -->
 <script lang="ts">
-  import { isUnassignedVillage, PARTY_VAR, type MapArea, type MapLayer, type PartySeat } from '../lib/mapTypes';
+  import {
+    isUnassignedVillage, PARTY_VAR,
+    type MapArea, type MapLayer, type PartySeat, type RaceCandidate,
+  } from '../lib/mapTypes';
 
   /** 政黨色，與地圖共用 mapTypes.ts 的同一份對照，不在此另立一套。 */
   const partyColor = (code: string) => `var(${PARTY_VAR[code] ?? '--party-other'})`;
+
+  /** 得票數等票數類數字的千分位格式。 */
+  const fmt = (n: number): string => n.toLocaleString('en-US');
 
   /** 席次組成長條的語音描述：長條本身是圖形，讀屏要有等價的文字。 */
   function compositionLabel(rows: PartySeat[], total: number): string {
@@ -78,6 +84,21 @@
   </ul>
 {/snippet}
 
+<!-- 選舉結果：候選人依得票數由高至低，色塊＋姓名＋得票數＋得票率，當選者標示出來。
+     只在有 area.chief 又有 area.race 時渲染（見下方呼叫處），官派區／未編定村里／
+     待抽籤的區維持原本的制度性說明，不在此另外湊一段。 -->
+{#snippet candidateRow(c: RaceCandidate)}
+  <li>
+    <span class="swatch" aria-hidden="true" style={`--c:${partyColor(c.partyCode)}`}></span>
+    <span class="nm" class:won={c.elected}>
+      {c.name}
+      {#if c.elected}<span class="tag">當選</span>{/if}
+    </span>
+    <span class="votes">{fmt(c.votes)}</span>
+    <span class="share">{c.share.toFixed(2)}%</span>
+  </li>
+{/snippet}
+
 <aside class="side">
   {#if upcoming}
     <!-- 尚未舉行的年份：不論有沒有點選行政區，一律不揭露沿用資料裡的當選人／
@@ -128,6 +149,34 @@
       </section>
     {:else}
       <p class="note">查無{chiefLabel}資料</p>
+    {/if}
+
+    {#if area.chief && area.race}
+      <!-- 只在確定有當選人（area.chief）又有票數資料（area.race）時顯示；官派區／
+           未編定村里／待抽籤的區都不滿足這個條件，維持原本的制度性說明，不會多出
+           一段空的選舉結果。查無票數資料的區（如嘉義市長重行選舉）area.race 從
+           產出端就沒有這個欄位，這裡也自然不顯示，不硬湊。 -->
+      <section class="race">
+        <h3>選舉結果</h3>
+        <p class="raceStats">
+          投票率 {area.race.turnout.toFixed(2)}%　有效票 {fmt(area.race.validVotes)}
+        </p>
+        <ul class="cand-list">
+          {#each area.race.candidates.slice(0, 3) as c (c.number)}
+            {@render candidateRow(c)}
+          {/each}
+        </ul>
+        {#if area.race.candidates.length > 3}
+          <details class="more">
+            <summary>其餘 {area.race.candidates.length - 3} 位候選人</summary>
+            <ul class="cand-list">
+              {#each area.race.candidates.slice(3) as c (c.number)}
+                {@render candidateRow(c)}
+              {/each}
+            </ul>
+          </details>
+        {/if}
+      </section>
     {/if}
 
     {#if area.seats.length}
@@ -206,4 +255,32 @@
   .swatch { width: .55rem; height: .55rem; background: var(--c); transform: translateY(.05rem); }
   .num { text-align: right; font-family: var(--serif); font-variant-numeric: tabular-nums; }
   .hint { color: var(--muted); font-size: .85rem; }
+
+  /* 選舉結果：投票率／有效票一行，候選人清單依得票數由高至低，色塊沿用席次表
+     的視覺語彙。得票數用襯線等寬（報紙的數字語彙），千分位逗號在 script 端加。 */
+  .raceStats { margin: .2rem 0 .4rem; color: var(--fg); font-size: .85rem; }
+  .cand-list { list-style: none; padding: 0; margin: 0; }
+  .cand-list li {
+    display: grid; grid-template-columns: .55rem 1fr auto auto; align-items: baseline; gap: .5rem;
+    font-size: .85rem; padding: .3rem 0; border-bottom: 1px solid var(--line);
+  }
+  .cand-list li:last-child { border-bottom: none; }
+  .nm.won { font-family: var(--serif); font-weight: 700; color: var(--accent); }
+  .votes {
+    text-align: right; font-family: var(--serif); font-variant-numeric: tabular-nums;
+    min-width: 3.4rem;
+  }
+  .share { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 3rem; }
+
+  /* 候選人多時收合：預設只顯示前三名，其餘收在 <details> 底下，原生鍵盤可操作
+     （Tab 到 summary、Enter/Space 展開），不需另外寫鍵盤事件。 */
+  .more { margin-top: .3rem; }
+  .more summary {
+    cursor: pointer; color: var(--muted); font-size: .8rem; list-style: none;
+    padding: .2rem 0;
+  }
+  .more summary::-webkit-details-marker { display: none; }
+  .more summary::before { content: '▸ '; }
+  .more[open] summary::before { content: '▾ '; }
+  .more .cand-list { margin-top: .2rem; }
 </style>

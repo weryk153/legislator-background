@@ -13,12 +13,13 @@ import {
   parseElbase, parseElcand, parseElpaty, winnersByArea, pendingDrawByArea, countyCodeOf, townCodeOf,
   INDEPENDENT_PARTY_CODE, UNKNOWN_PARTY_CODE, type Candidate, type AreaNode,
 } from './lib/cecVoteData';
+import { parseElctks, parseElprof, type ElctksRow, type ElprofRow } from './lib/cecVotes';
 import { parseByElection, parseByElectionDir } from './lib/cecByElection';
 import { buildCodeIndex, normalizeAreaName, KNOWN_MISSING_BOUNDARY_KEYS } from './lib/areaMatch';
 import { seatBreakdown, toTermRecords, termLimited } from './lib/electionRules';
 import {
   UNASSIGNED_VILLAGE_PREFIX,
-  type MapArea, type MapLayer, type Officeholder, type OfficeStatus,
+  type MapArea, type MapLayer, type Officeholder, type OfficeStatus, type RaceResult, type RaceCandidate,
 } from '../src/lib/mapTypes';
 
 const CEC = 'scraper/out-roster/cec';
@@ -75,6 +76,113 @@ function loadPendingDraws(): Map<Office, Map<string, Candidate[]>> {
     m.set(c.office, cur);
   }
   return m;
+}
+
+/**
+ * 讀入某職務類別的**全部候選人**（含未當選者），供 buildRaceResults 組出候選人
+ * 得票清單。與 loadWinners／loadPendingDraws 分開：那兩個只留當選者／待抽籤者，
+ * 這裡要的是完整候選人名單（含落選者的得票），三者各自的用途不同、故各自一次
+ * 讀取，不勉強共用同一份中間結果。
+ *
+ * 只用於首長類單一席次選舉（縣市長／鄉鎮市長／村里長）——議員／代表等複數席次
+ * 選舉的得票不在本次任務範圍內（側欄仍以既有的 seatBreakdown 呈現席次組成）。
+ */
+function loadAllCandidatesForOffice(office: Office): Candidate[] {
+  return CAT_2022
+    .filter((c) => c.office === office)
+    .flatMap((c) => c.subs.flatMap((s) => parseElcand(read(catFile(c.code, s, 'elcand.csv')))));
+}
+
+/** 讀入某職務類別（依 CAT_2022 的代碼與子目錄）全部彙總列的得票數。 */
+function loadElctksForOffice(office: Office): ElctksRow[] {
+  return CAT_2022
+    .filter((c) => c.office === office)
+    .flatMap((c) => c.subs.flatMap((s) => parseElctks(read(catFile(c.code, s, 'elctks.csv')))));
+}
+
+/** 讀入某職務類別（依 CAT_2022 的代碼與子目錄）全部彙總列的選舉人數／投票率。 */
+function loadElprofForOffice(office: Office): ElprofRow[] {
+  return CAT_2022
+    .filter((c) => c.office === office)
+    .flatMap((c) => c.subs.flatMap((s) => parseElprof(read(catFile(c.code, s, 'elprof.csv')))));
+}
+
+/**
+ * 組出指定區代碼清單的完整選舉結果（得票數、得票率、投票率），供地圖側欄顯示。
+ *
+ * 只處理單一席次的首長類選舉：這三類選舉的候選人 areaCode 恰為該層行政區自身
+ * 的代碼（縣市長＝縣市代碼、鄉鎮市長＝鄉鎮市區代碼、村里長＝村里代碼），可直接
+ * 以 areaCode 對照 AreaNode.code，不像議員／代表那樣需要先上溯（groupBy）。
+ *
+ * elctks.csv／elprof.csv 除了該層級本身的彙總列，還挾帶更細層級的彙總（例如
+ * C1 縣市長的 elctks 裡也有各候選人在轄下鄉鎮市區、村里的得票彙總，用於稽核
+ * 由下往上加總，但不是本站要顯示的顆粒度）。用 Map 依 areaCode 直接索引即可
+ * 精準取到目標層級的那一列，不會被其他層級的列混進來——因為 areaCode 是全國
+ * 唯一值，只要查的是目標行政區自己的代碼，取到的必然是那一層的彙總。
+ *
+ * 候選人姓名與政黨來自 elcand（含未當選者），得票數與得票率來自 elctks，兩者
+ * 以 areaCode ＋ 號次 對應；有效票數／選舉人數／投票率來自 elprof，以 areaCode
+ * 對應。查無 elcand 或 elprof 資料的區（例如嘉義市長重行選舉——2022 年 C1
+ * 原始資料整個沒有嘉義市這個縣市代碼——或其他補選改寫過的區）不硬湊，race 留空
+ * 並列報，不靜默跳過。
+ *
+ * 一致性檢查：候選人得票加總應等於 elprof 的有效票數，不符就列報（本站「對不到
+ * 就列報」原則的延伸），不靜默接受。
+ */
+function buildRaceResults(
+  targetAreaCodes: readonly string[],
+  cands: Candidate[],
+  elctksRows: ElctksRow[],
+  elprofRows: ElprofRow[],
+  parties: Map<string, string>,
+  contextLabel: string,
+  notes: string[],
+): Map<string, RaceResult> {
+  const candsByArea = new Map<string, Candidate[]>();
+  for (const c of cands) candsByArea.set(c.areaCode, [...(candsByArea.get(c.areaCode) ?? []), c]);
+
+  const elctksByArea = new Map<string, ElctksRow[]>();
+  for (const r of elctksRows) elctksByArea.set(r.areaCode, [...(elctksByArea.get(r.areaCode) ?? []), r]);
+
+  const elprofByArea = new Map(elprofRows.map((r) => [r.areaCode, r]));
+
+  const out = new Map<string, RaceResult>();
+  for (const areaCode of targetAreaCodes) {
+    const areaCands = candsByArea.get(areaCode);
+    const prof = elprofByArea.get(areaCode);
+    if (!areaCands || !prof) {
+      notes.push(`⚠ ${contextLabel} ${areaCode}：查無候選人或選舉人數資料，race 留空（可能是補選／重行選舉改寫過的區）`);
+      continue;
+    }
+    const votesByNumber = new Map((elctksByArea.get(areaCode) ?? []).map((r) => [r.number, r]));
+    const raceCands: RaceCandidate[] = areaCands.map((c): RaceCandidate => {
+      const v = votesByNumber.get(c.number);
+      if (!v) notes.push(`⚠ ${contextLabel} ${areaCode} 號次 ${c.number}（${c.name}）：elctks 查無得票資料，以 0 票列報`);
+      return {
+        number: c.number,
+        name: c.name,
+        partyCode: c.partyCode,
+        partyName: parties.get(c.partyCode) ?? `未知政黨（代號 ${c.partyCode}）`,
+        votes: v?.votes ?? 0,
+        share: v?.share ?? 0,
+        elected: c.elected,
+      };
+    }).sort((a, b) => b.votes - a.votes);
+
+    const sumVotes = raceCands.reduce((n, c) => n + c.votes, 0);
+    if (sumVotes !== prof.validVotes) {
+      notes.push(`⚠ ${contextLabel} ${areaCode}：候選人得票加總 ${sumVotes} 與 elprof 有效票數 `
+        + `${prof.validVotes} 不符（差 ${sumVotes - prof.validVotes}）`);
+    }
+
+    out.set(areaCode, {
+      candidates: raceCands,
+      validVotes: prof.validVotes,
+      electorate: prof.electorate,
+      turnout: prof.turnout,
+    });
+  }
+  return out;
 }
 
 /**
@@ -566,6 +674,7 @@ function buildArea(
   seatWinners: Candidate[],
   childFile: string | null,
   pending: { chief?: Candidate[]; seats?: Candidate[] } = {},
+  race?: RaceResult,
 ): MapArea {
   const area: MapArea = {
     code: a.code,
@@ -580,19 +689,48 @@ function buildArea(
   if (pending.seats?.length) area.seatsPendingDraw = { names: pending.seats.map((c) => c.name) };
   const quota = seatWinners.filter((c) => c.electedBy === 'quota').length;
   if (quota) area.quotaSeats = quota;
+  if (race) area.race = race;
   return area;
 }
 
 mkdirSync(`${OUT}/county`, { recursive: true });
 mkdirSync(`${OUT}/town`, { recursive: true });
 
-// 全國層
+// 三類首長選舉的完整得票結果（見 buildRaceResults）：縣市長、鄉鎮市長（僅民選區）、
+// 村里長。查無資料的區留空並列報，不硬湊；候選人得票加總與 elprof 有效票數不符
+// 也列報，三者共用同一份 notes，建置結束時彙總印出，不散落各處淹沒在其他輸出裡。
 const counties = areas.filter((a) => a.level === 'county');
+const raceNotes: string[] = [];
+const countyRaces = buildRaceResults(
+  counties.map((a) => a.code),
+  loadAllCandidatesForOffice('countyChief'),
+  loadElctksForOffice('countyChief'),
+  loadElprofForOffice('countyChief'),
+  parties, '縣市長', raceNotes,
+);
+const townRaces = buildRaceResults(
+  areas.filter((a) => a.level === 'town' && chiefTowns.has(a.code)).map((a) => a.code),
+  loadAllCandidatesForOffice('townChief'),
+  loadElctksForOffice('townChief'),
+  loadElprofForOffice('townChief'),
+  parties, '鄉鎮市長', raceNotes,
+);
+const villageRaces = buildRaceResults(
+  areas.filter((a) => a.level === 'village').map((a) => a.code),
+  loadAllCandidatesForOffice('villageChief'),
+  loadElctksForOffice('villageChief'),
+  loadElprofForOffice('villageChief'),
+  parties, '村里長', raceNotes,
+);
+for (const n of raceNotes) console.log(' ', n);
+
+// 全國層
 const national: MapLayer = {
   level: 'national',
   parentName: '全國',
   topology: subsetTopology('county', new Set(counties.map((a) => codeIndex.get(a.code) ?? a.code)), '全國層'),
-  areas: counties.map((a) => buildArea(a, chiefByCounty.get(a.code), councilByCounty.get(a.code) ?? [], `county/${a.code}.json`)),
+  areas: counties.map((a) => buildArea(a, chiefByCounty.get(a.code), councilByCounty.get(a.code) ?? [], `county/${a.code}.json`,
+    {}, countyRaces.get(a.code))),
 };
 writeFileSync(`${OUT}/national.json`, JSON.stringify(national));
 
@@ -604,7 +742,7 @@ for (const c of counties) {
     parentName: c.name,
     topology: subsetTopology('town', new Set(towns.map((a) => codeIndex.get(a.code) ?? a.code)), `縣市層：${c.name}`),
     areas: towns.map((a) => buildArea(a, chiefByTown.get(a.code), repByTown.get(a.code) ?? [], `town/${a.code}.json`,
-      { seats: repPendingByTown.get(a.code) })),
+      { seats: repPendingByTown.get(a.code) }, townRaces.get(a.code))),
   };
   writeFileSync(`${OUT}/county/${c.code}.json`, JSON.stringify(layer));
 }
@@ -614,7 +752,7 @@ let unassignedTotal = 0;
 for (const t of areas.filter((a) => a.level === 'town')) {
   const villages = areas.filter((a) => a.level === 'village' && townCodeOf(a.code) === t.code);
   const villageAreas = villages.map((a) => buildArea(a, chiefByVillage.get(a.code), [], null,
-    { chief: villagePendingDraw.get(a.code) }));
+    { chief: villagePendingDraw.get(a.code) }, villageRaces.get(a.code)));
 
   // 未編定村里：不在中選會的行政區樹裡，故不能用 buildArea（沒有 AreaNode 可用）。
   // 若略過，這些鄉鎮的村里層地圖會出現沒有任何說明的破洞；改輸出成中性、不可
@@ -717,6 +855,19 @@ if (missingBoundaryKeyCount > 0) {
   failures.push(`${missingBoundaryKeyCount} 個中選會行政區在界線檔找不到對應多邊形（明細見上方逐層警告），這些地圖區塊會缺畫`);
 } else {
   console.log('界線檔核對：所有中選會行政區都找到對應多邊形（已知例外除外）');
+}
+
+// 選舉結果的一致性檢查（見 buildRaceResults）：候選人得票加總應等於 elprof 的
+// 有效票數，不符就列報、不靜默接受。查無資料（例如嘉義市長重行選舉，2022 年
+// C1 原始資料整個沒有這個縣市代碼）是已知、可接受的狀況，只列報不算失敗；
+// 但得票加總對不上有效票數代表資料本身有誤或本站解析有誤，視同其他總量防線
+// 一律讓建置失敗，不能悄悄過關。
+const raceMissingCount = raceNotes.filter((n) => n.includes('race 留空')).length;
+const raceMismatchCount = raceNotes.filter((n) => n.includes('候選人得票加總')).length;
+console.log(`選舉得票一致性檢查：${raceMissingCount} 個區查無候選人或選舉人數資料（race 留空，明細見上方）、`
+  + `${raceMismatchCount} 個區候選人得票加總與有效票數不符（明細見上方）`);
+if (raceMismatchCount > 0) {
+  failures.push(`${raceMismatchCount} 個區的候選人得票加總與 elprof 有效票數不符（明細見上方逐項警告），得票資料可能有誤`);
 }
 
 if (failures.length) {
