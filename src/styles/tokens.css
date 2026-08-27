@@ -132,6 +132,15 @@ button, select, input { font-family: inherit; }
 .kicker { font-size: var(--t-xs); letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); }
 .lede { color: var(--muted); font-size: 0.9375rem; line-height: 1.7; }
 .num { font-variant-numeric: tabular-nums; }
+/* 破折號：正體中文的破折號是兩個 U+2014，必須接成一條不斷的線。但 --sans 裡實際
+   供應這個碼位的是 system-ui（Mac 的 SF Pro、Windows 的 Segoe UI），拉丁字型的
+   U+2014 只有 0.88em 寬、左右各留一點側邊空隙，兩個並排就裂成「— —」。中文字型
+   的 U+2014 是足 1em 的全形、左右不留白，兩個並排才接得成一條。
+   實測 11px：--sans 兩個共 19.3px，中文字型剛好 22px（＝2em）。
+   沒辦法只針對單一碼位調整字型順序——unicode-range 只能綁在 @font-face 上，管不到
+   system-ui 這種泛型字族，而本站不自架字型——所以改用工具類別，把破折號本身交給
+   中文字型。用法：<span class="dash">——</span>，只包破折號，不要包住前後文字。 */
+.dash { font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Heiti TC", sans-serif; }
 .accent { color: var(--accent); }
 .dim { color: var(--faint); }
 .card {

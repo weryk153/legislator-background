@@ -116,7 +116,7 @@
     {:else if chiefAppointed}
       <section>
         <h3>{chiefLabel}</h3>
-        <p class="institutional">區長為官派，非民選職務——依地方制度法第 58 條由市長依法任用，沒有選舉，故本站無當選人資料。</p>
+        <p class="institutional">區長為官派，非民選職務<span class="dash">——</span>依地方制度法第 58 條由市長依法任用，沒有選舉，故本站無當選人資料。</p>
       </section>
     {:else if area.chief}
       <section>
@@ -144,7 +144,7 @@
         <h3>{chiefLabel}</h3>
         <p class="institutional">
           得票相同，依法當場抽籤決定：{area.chiefPendingDraw.names.join('、')}。
-          中選會這份投開票資料未記載抽籤結果，故本站不列當選人——這不是本站漏收，也不是無人當選。
+          中選會這份投開票資料未記載抽籤結果，故本站不列當選人<span class="dash">——</span>這不是本站漏收，也不是無人當選。
         </p>
       </section>
     {:else}
@@ -195,7 +195,7 @@
     {:else if noCouncil && layer?.level === 'county'}
       <section>
         <h3>{seatLabel}</h3>
-        <p class="institutional">一般區無區民代表會——非民選機關，制度上不存在，故無席次可列。</p>
+        <p class="institutional">一般區無區民代表會<span class="dash">——</span>非民選機關，制度上不存在，故無席次可列。</p>
       </section>
     {/if}
   {:else if layer}
@@ -207,7 +207,7 @@
       {#if electedAreaCount === 0}
         <p class="institutional">
           本市轄下各區的區長皆為官派、非民選職務（依地方制度法第 58 條由市長依法任用），
-          故沒有政黨版圖可列——這是制度事實，不是本站缺資料。點進各區仍可看轄下村里的村里長。
+          故沒有政黨版圖可列<span class="dash">——</span>這是制度事實，不是本站缺資料。點進各區仍可看轄下村里的村里長。
         </p>
       {/if}
       {#if electedAreaCount > 0}
