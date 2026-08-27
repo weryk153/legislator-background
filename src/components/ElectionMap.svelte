@@ -5,7 +5,7 @@
      資料由 scraper/build-election-map.ts 產出到 public/data/map/，此處只負責
      繪製與互動，不動資料管線。 -->
 <script lang="ts">
-  import { onMount, tick } from 'svelte';
+  import { onDestroy, onMount, tick } from 'svelte';
   import { geoMercator, geoPath } from 'd3-geo';
   import { feature } from 'topojson-client';
   import { SvelteMap } from 'svelte/reactivity';
@@ -266,6 +266,40 @@
     return villages.get(c.code!) ?? null;
   }
 
+  // 滑鼠移開某個可互動形狀後，側欄要還原成「目前對焦層」的彙總（原本只清了
+  // hovered，外框跟著消失，但側欄沒人通知，停在最後掃過那一區——這是本次要修的
+  // 問題）。還原不能在 mouseleave 當下立刻做：從 A 區直接移到緊鄰的 B 區時，
+  // 瀏覽器保證會先送出 A 的 mouseleave、再送出 B 的 mouseenter，兩個事件之間有
+  // 一個 tick 的落差。若 mouseleave 立刻呼叫 onSelect(null, ...) 還原，側欄會在
+  // 這個落差裡先跳回彙總畫面，緊接著又被 B 的 mouseenter 蓋成 B 的細節——使用者
+  // 在相鄰縣市/鄉鎮市區之間滑動時會看到彙總畫面一閃而過，體感就是閃爍。
+  // 解法：mouseleave 只排一個很短的延遲（RESTORE_DELAY）才真的還原；延遲期間
+  // 若有任何新的 mouseenter 進來（不論是相鄰區域、或原本那一區的邊緣再次觸發），
+  // 一律取消這次還原——那代表滑鼠其實還在地圖的可互動範圍內、只是換了目標，不是
+  // 真的離開。若延遲結束都沒有新的 mouseenter 取消它，才代表滑鼠確實離開了所有
+  // 可互動形狀（移到空白處、面板外，或圖例等非地圖區域），這時才還原成目前對焦
+  // 層的彙總。80ms 短到使用者感覺不到「先跳回彙總再變細節」的中間態，卻足夠讓
+  // 同一個事件迴圈內先到的 mouseenter 趕在它之前把這次還原取消掉。
+  const RESTORE_DELAY = 80;
+  let restoreTimer: ReturnType<typeof setTimeout> | null = null;
+
+  function cancelRestore() {
+    if (restoreTimer !== null) {
+      clearTimeout(restoreTimer);
+      restoreTimer = null;
+    }
+  }
+
+  function scheduleRestore() {
+    cancelRestore();
+    restoreTimer = setTimeout(() => {
+      restoreTimer = null;
+      onSelect?.(null, focusLayer());
+    }, RESTORE_DELAY);
+  }
+
+  onDestroy(cancelRestore);
+
   async function loadNational() {
     pendingRetry = loadNational;
     loading = true;
@@ -303,6 +337,13 @@
       // 幾何已經載入過：只推進對焦、換 transform，不重新 fetch，瞬間且平滑。
       crumbs = [...crumbs, { level: nextLevel, code: area.code, name: area.name }];
       hovered = null; kbFocused = null; // 見上方宣告處說明：不依賴 blur，下鑽時明確清空
+      // 下鑽這一刻若剛好有一個 mouseleave 排的延遲還原（見 scheduleRestore）尚未
+      // 觸發，必須連同取消——不然它稍後醒來時會用 focusLayer() 重算，這裡雖然算
+      // 出的剛好也是新層彙總（跟下一行手動呼叫的結果相同）看似無害，但若使用者
+      // 下鑽後立刻又 hover 了新層裡的某一區，這個遲來的計時器會在那之後才觸發，
+      // 把側欄從「使用者正在看的那一區」錯誤地蓋回彙總——故明確取消，下一行的
+      // onSelect 已經是這次下鑽該有的、立即生效的還原。
+      cancelRestore();
       onSelect?.(null, focusLayer());
       focusMap();
       return;
@@ -318,6 +359,7 @@
       map.set(area.code, child);
       crumbs = [...crumbs, { level: nextLevel, code: area.code, name: area.name }];
       hovered = null; kbFocused = null;
+      cancelRestore(); // 理由同上（cache-hit 分支）
       onSelect?.(null, focusLayer());
       focusMap();
     } catch (e) {
@@ -336,6 +378,7 @@
     if (crumbs.length <= 1) return;
     crumbs = crumbs.slice(0, -1);
     hovered = null; kbFocused = null;
+    cancelRestore(); // 理由見 drillInto 內同一行的註解
     error = null;
     onSelect?.(null, focusLayer());
     focusMap();
@@ -348,6 +391,7 @@
     if (i >= crumbs.length - 1) return;
     crumbs = crumbs.slice(0, i + 1);
     hovered = null; kbFocused = null;
+    cancelRestore(); // 理由見 drillInto 內同一行的註解
     error = null;
     onSelect?.(null, focusLayer());
   }
@@ -405,8 +449,8 @@
       aria-label={areaLabel(s.area)}
       onclick={() => drillInto(s.area, layer)}
       onkeydown={(e) => onKey(e, s.area, layer)}
-      onmouseenter={() => { hovered = s.area.code; onSelect?.(s.area, layer); }}
-      onmouseleave={() => { hovered = null; }}
+      onmouseenter={() => { cancelRestore(); hovered = s.area.code; onSelect?.(s.area, layer); }}
+      onmouseleave={() => { hovered = null; scheduleRestore(); }}
       onfocus={() => { kbFocused = s.area.code; }}
       onblur={() => { kbFocused = null; }} />
   {:else}
