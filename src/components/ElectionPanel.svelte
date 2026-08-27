@@ -430,10 +430,17 @@
      高度可推，這行在這裡等於沒作用，故不必特別歸零）。 */
   @media (max-width: 900px) {
     .map-region { height: 60vh; }
+    /* 面板要把頁面槽寬補回來。.map-stage 是 width: 100vw 的滿版區塊（見
+       elections.astro），為了做出血跳出了 .wrap 的左右 padding；地圖本身滿版是
+       對的，但退回文件流的報頭／側欄／圖說如果跟著滿版，就會貼死螢幕邊緣，跟
+       同一頁的「全國一覽」差 24px，三個區塊三條左邊界。用 margin-inline 而非
+       padding：要移動的是方框的邊框本身，不只是框內的文字。width 必須從 100%
+       改回 auto，否則加上左右 margin 會溢出容器。 */
     .title-float,
     .sidebar-float {
       position: static;
-      width: 100%;
+      width: auto;
+      margin-inline: var(--gutter);
       margin-top: 1rem;
       box-shadow: none;
     }

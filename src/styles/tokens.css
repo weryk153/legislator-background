@@ -25,6 +25,11 @@
 
   /* layout */
   --maxw: 940px;
+  /* 頁面左右槽寬。.wrap 的 padding 原本硬寫成 24px，滿版區塊（如 /elections 的
+     地圖）為了做出血會用 margin: 0 0 0 calc(50% - 50vw) 跳出這個容器；窄螢幕時
+     裡面的面板退回文件流，就必須自己把這段槽寬補回來，否則會貼死螢幕邊緣、與
+     頁面其餘內容對不齊。抽成變數是為了讓「跳出去」與「補回來」引用同一個數字。 */
+  --gutter: 24px;
   --radius: 8px;
   --ease: 180ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -94,7 +99,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
 
 h1, h2, h3 { font-family: var(--serif); line-height: 1.2; letter-spacing: 0.01em; }
 
