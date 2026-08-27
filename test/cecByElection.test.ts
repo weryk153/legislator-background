@@ -59,7 +59,10 @@ describe('parseByElectionResults：全部候選人得票＋有效票／投票率
 
   it('投票率是計算值（castVotes÷electorate 的百分比），不是逐列 H 欄的平均', () => {
     const r = parseByElectionResults(cand, prof);
-    expect(r?.turnout).toBeCloseTo((275 / 350) * 100, 6);
+    // 取到小數第二位，與中選會在 elprof 直接提供的精度一致（見 cecVotes.ts 的
+    // toCecPercent）——不然同一份輸出裡會混著兩位小數與完整浮點數兩種精度。
+    // 78.571428…% → 78.57
+    expect(r?.turnout).toBe(78.57);
   });
 
   it('標頭缺有效票／無效票／投票數／選舉人數任一欄就回 null，不拿 0 湊數', () => {

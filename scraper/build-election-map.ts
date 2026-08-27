@@ -13,7 +13,7 @@ import {
   parseElbase, parseElcand, parseElpaty, winnersByArea, pendingDrawByArea, countyCodeOf, townCodeOf,
   INDEPENDENT_PARTY_CODE, UNKNOWN_PARTY_CODE, type Candidate, type AreaNode,
 } from './lib/cecVoteData';
-import { parseElctks, parseElprof, type ElctksRow, type ElprofRow } from './lib/cecVotes';
+import { parseElctks, parseElprof, type ElctksRow, type ElprofRow, toCecPercent } from './lib/cecVotes';
 import { parseByElection, parseByElectionDir, parseByElectionResults } from './lib/cecByElection';
 import { buildCodeIndex, normalizeAreaName, KNOWN_MISSING_BOUNDARY_KEYS } from './lib/areaMatch';
 import { seatBreakdown, toTermRecords, termLimited } from './lib/electionRules';
@@ -379,7 +379,7 @@ function chiayiByElectionRaceInputs(
     areaCode: chiayi.code,
     number: c.number,
     votes: c.votes,
-    share: result.validVotes > 0 ? (c.votes / result.validVotes) * 100 : 0,
+    share: result.validVotes > 0 ? toCecPercent((c.votes / result.validVotes) * 100) : 0,
     elected: c.number === winnerNumber,
   }));
 

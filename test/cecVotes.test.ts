@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { parseElctks, parseElprof } from '../scraper/lib/cecVotes';
+import { parseElctks, parseElprof, toCecPercent } from '../scraper/lib/cecVotes';
 
 const C1_ELCTKS = 'scraper/out-roster/cec/voteData/2022-111年地方公職人員選舉/C1/city/elctks.csv';
 const C1_ELPROF = 'scraper/out-roster/cec/voteData/2022-111年地方公職人員選舉/C1/city/elprof.csv';
@@ -111,5 +111,29 @@ describe('parseElprof：選舉人數與投票率（只留彙總列）', () => {
     const csv = ['10,005,00,000,0000,0000,292100,6219,298319,443908,535149,5,0,5,1,0,1,82.95,67.20,20.00', '  '].join('\n');
     expect(() => parseElprof(csv)).not.toThrow();
     expect(parseElprof(csv)).toHaveLength(1);
+  });
+});
+
+describe('toCecPercent：百分比取到小數第二位', () => {
+  it('與中選會原始欄位的精度一致', () => {
+    // 中選會給的是 42.66、67.20 這種兩位小數；本站自行計算的百分比要對齊，
+    // 否則同一份輸出裡會混著 63.82271113811518 與 42.66 兩種精度。
+    expect(toCecPercent((59874 / 93813) * 100)).toBe(63.82);
+    expect(toCecPercent((41272 / 93813) * 100)).toBe(43.99);
+  });
+  it('四捨五入而非無條件捨去', () => {
+    expect(toCecPercent(1.006)).toBe(1.01);
+    expect(toCecPercent(1.004)).toBe(1);
+  });
+  it('恰在 .005 的臨界值依浮點數的實際表示決定，不假裝是十進位', () => {
+    // 1.005 在 IEEE 754 裡實際是 1.00499999999999989…，所以會落到 1 而不是 1.01。
+    // 這是二進位浮點數的固有行為，不是這個函式的缺陷。本站的用途是把得票數相除
+    // 得到的百分比對齊中選會的兩位小數，這種臨界差異不影響任何實際數字；把它寫成
+    // 測試是為了讓後人知道這個行為是已知且刻意接受的，不要誤以為是 bug 而去「修」它。
+    expect(toCecPercent(1.005)).toBe(1);
+  });
+  it('零與整數不受影響', () => {
+    expect(toCecPercent(0)).toBe(0);
+    expect(toCecPercent(50)).toBe(50);
   });
 });

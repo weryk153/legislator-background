@@ -4,6 +4,8 @@
 // 代號，而且**沒有當選註記**。當選者只能由 prof.csv 的各投開票所分號次得票加總後取
 // 最高票——單一票所的領先不代表當選，必須跨所加總。
 
+import { toCecPercent } from './cecVotes';
+
 export interface ByElectionWinner {
   name: string;
   partyName: string;
@@ -180,7 +182,7 @@ export function parseByElectionResults(candCsv: string, profCsv: string): ByElec
     invalidVotes,
     castVotes,
     electorate,
-    turnout: electorate > 0 ? (castVotes / electorate) * 100 : 0,
+    turnout: electorate > 0 ? toCecPercent((castVotes / electorate) * 100) : 0,
   };
 }
 
