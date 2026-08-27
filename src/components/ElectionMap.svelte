@@ -492,8 +492,12 @@
           <!-- hover／鍵盤焦點外框：畫在所有形狀之上、但在對焦外框之下（見下面
                {#if focused} 區塊），避免蓋掉已下鑽、正在檢視的對焦指示。用整條
                路徑在最上層疊一圈，而不是在各區自己的 <path> 上描邊——後者會被
-               相鄰區域的路徑蓋掉一部分，看起來斷斷續續（見下方 CSS .hover-outline
-               的說明）。 -->
+               相鄰區域的路徑蓋掉一部分，看起來斷斷續續。
+               兩層同一條 d：底下 .hover-outline-shadow 是一條極淡的深色細線，
+               只在填色本身就很淺（如無黨籍的暖灰、或被 color-mix 調淡的鄰區）
+               時墊出一點對比，避免紙色線「隱形」；上面 .hover-outline 才是主
+               視覺——紙色（--bg）線。細節與理由見下方 CSS 的說明。 -->
+          <path d={hoverTarget.d} class="hover-outline-shadow" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
           <path d={hoverTarget.d} class="hover-outline" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
         {/if}
         {#if focused}
@@ -547,13 +551,35 @@
 
   /* hover／鍵盤焦點外框：畫在最上層一整條路徑（見 markup 的 {#if hoverTarget}），
      不在個別區域自己的 <path> 邊上描邊——那會被相鄰區域蓋掉一部分，看起來斷斷
-     續續，且深色細線壓在暖色填色上很髒（這正是本次要修的問題）。顏色用 --fg
-     的低不透明度版本（不是純色 --muted，也不是實心近黑），單層、無光暈、線寬
-     只有對焦外框（3.5px＋7px 光暈）的一半左右——跟對焦外框刻意做出強弱層級：
-     hover／focus 是「經過、尚未選定」，對焦才是「已下鑽、正在檢視」。 */
+     續續。
+
+     顏色改用 --fg 的深色描邊之前試過（55% 不透明度的近黑），但問題不是強弱、
+     是性質：深灰壓在中藍、深綠這類填色上，明度跟填色太接近，跳不出來，只把
+     邊界弄糊，看起來像一道髒汙的抹痕；而且跟下面 .focus-outline 的對焦外框
+     一樣都是「深色描邊」，兩者只剩粗細/濃度的差別，使用者分不出「這是滑過還是
+     已選定」。
+
+     改成「深底配淺線」：hover 時 fillFor() 已經把填色往 --fg 加深（見上方
+     hoverTint()），這裡的外框改用紙色（--bg，深色模式下自動換成深底的紙色）
+     去疊在加深後的填色上——淺線從裡面浮出來，邊界乾淨俐落，且跟 .focus-outline
+     的朱紅在色相上完全不會混淆：hover 是「淺線」，對焦是「紅線」，一眼就能
+     分辨兩種不同性質的訊號，而不是同一種訊號的強弱版。 */
   .hover-outline {
-    stroke: color-mix(in oklab, var(--fg) 55%, transparent);
-    stroke-width: 2;
+    stroke: var(--bg);
+    stroke-width: 2.25;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    pointer-events: none;
+  }
+  /* 墊在紙色線底下的極低不透明度深色細線：只在某些填色本身就很淺時（例如
+     無黨籍的暖灰 --map-nodata、或已被 color-mix 調淡的鄰區）才派得上用場，
+     替紙色線在淺色填色上補一點對比，避免線「隱形」。故意畫得比主線寬一點、
+     只留邊緣露出來一圈，且不透明度壓得很低——不能反過來變成主視覺，不然又
+     退回深色描邊的老問題。線寬用對焦外框光暈同一套「兩層同一條 d」手法，但
+     幅度小很多（對焦光暈 7px vs 高亮線 3.5px，這裡 2.9px vs 2.25px）。 */
+  .hover-outline-shadow {
+    stroke: color-mix(in oklab, var(--fg) 30%, transparent);
+    stroke-width: 2.9;
     stroke-linejoin: round;
     stroke-linecap: round;
     pointer-events: none;
