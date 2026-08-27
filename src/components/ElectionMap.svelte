@@ -557,11 +557,10 @@
                {#if focused} 區塊），避免蓋掉已下鑽、正在檢視的對焦指示。用整條
                路徑在最上層疊一圈，而不是在各區自己的 <path> 上描邊——後者會被
                相鄰區域的路徑蓋掉一部分，看起來斷斷續續。
-               兩層同一條 d：底下 .hover-outline-shadow 是一條極淡的深色細線，
-               只在填色本身就很淺（如無黨籍的暖灰、或被 color-mix 調淡的鄰區）
-               時墊出一點對比，避免紙色線「隱形」；上面 .hover-outline 才是主
-               視覺——紙色（--bg）線。細節與理由見下方 CSS 的說明。 -->
-          <path d={hoverTarget.d} class="hover-outline-shadow" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+               兩層同一條 d：底下 .hover-outline-halo 是紙色光暈，上面
+               .hover-outline 是墨色（--fg）主線。與對焦外框同一套技法，只是
+               更細、顏色是墨不是朱紅。細節與理由見下方 CSS 的說明。 -->
+          <path d={hoverTarget.d} class="hover-outline-halo" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
           <path d={hoverTarget.d} class="hover-outline" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
         {/if}
         {#if focused}
@@ -628,26 +627,30 @@
      去疊在加深後的填色上——淺線從裡面浮出來，邊界乾淨俐落，且跟 .focus-outline
      的朱紅在色相上完全不會混淆：hover 是「淺線」，對焦是「紅線」，一眼就能
      分辨兩種不同性質的訊號，而不是同一種訊號的強弱版。 */
-  .hover-outline {
-    stroke: var(--bg);
-    stroke-width: 2.25;
+  .hover-outline,
+  .hover-outline-halo {
     stroke-linejoin: round;
     stroke-linecap: round;
     pointer-events: none;
   }
-  /* 墊在紙色線底下的極低不透明度深色細線：只在某些填色本身就很淺時（例如
-     無黨籍的暖灰 --map-nodata、或已被 color-mix 調淡的鄰區）才派得上用場，
-     替紙色線在淺色填色上補一點對比，避免線「隱形」。故意畫得比主線寬一點、
-     只留邊緣露出來一圈，且不透明度壓得很低——不能反過來變成主視覺，不然又
-     退回深色描邊的老問題。線寬用對焦外框光暈同一套「兩層同一條 d」手法，但
-     幅度小很多（對焦光暈 7px vs 高亮線 3.5px，這裡 2.9px vs 2.25px）。 */
-  .hover-outline-shadow {
-    stroke: color-mix(in oklab, var(--fg) 30%, transparent);
-    stroke-width: 2.9;
-    stroke-linejoin: round;
-    stroke-linecap: round;
-    pointer-events: none;
-  }
+  /* 主線是墨色（--fg）。曾經改用紙色（--bg）試圖走「深底配淺線」，但地圖上
+     **一般的行政區界線本來就是紙色**（見上方 `path { stroke: var(--bg) }`），
+     所以紙色的 hover 外框跟普通邊界同色，只變成「稍微粗一點的邊」，讀不出這是
+     另一種狀態。
+
+     更早之前用過 55% 不透明度的深色細線，看起來像一道髒汙的抹痕——但那是三個
+     原因疊起來的：半透明（顏色混進填色裡變濁）、沒有光暈（在深填色上糊掉）、
+     而且是描在形狀自己的邊上（相鄰區域的路徑會蓋掉一段，線是斷的）。三者現在
+     都已分別解決，所以實心墨色線配光暈是乾淨的，不會回到當初的問題。
+
+     三種狀態各有各的顏色與粗細，不是同一種訊號的強弱：
+       一般界線  紙色 0.5px
+       hover     墨色 2px ＋ 紙色光暈 4px
+       對焦      朱紅 3.5px ＋ 紙色光暈 7px  */
+  .hover-outline { stroke: var(--fg); stroke-width: 2; }
+  /* 紙色光暈墊在墨線底下，讓它在深藍、深綠這類深填色上也讀得出來——與對焦外框
+     的光暈同一個道理，只是窄一些（各邊露出 1px）。 */
+  .hover-outline-halo { stroke: var(--bg); stroke-width: 4; }
 
   /* 對焦外框：雙層描邊。底下 .focus-outline-halo 先畫一條較寬的紙色（--bg）光暈，
      上面 .focus-outline 疊一條較窄的 --accent（朱紅，本站識別色，非任何政黨色）
