@@ -67,7 +67,15 @@
   // （只有成功才會 push），從 crumbs.at(-1) 反推檔名只會拿到已經顯示成功的那層，
   // 重試等於白做工。直接記住失敗當下的那個 closure，重試就是再呼叫一次它。
   let pendingRetry = $state<(() => void) | null>(null);
+  // hovered／kbFocused 分別對應滑鼠 hover 與鍵盤 :focus-visible，兩者共用同一套
+  // 外框／填色處理（見下方 hoverTarget 與 fillFor 的 hover 參數）——鍵盤使用者
+  // 「焦點停在哪個區」跟滑鼠使用者「游標停在哪個區」是同一件事的兩種輸入方式。
+  // 下鑽／返回／跳層時都要清空這兩個狀態：下鑽後原本的 <path> 會從互動分支切到
+  // 背景分支，瀏覽器的 blur 事件在這個切換時機並不可靠（同一個既有問題見下方
+  // onMapKey 附近的說明），與其依賴 blur 事件，不如在每個會改變 crumbs 的入口
+  // 明確清空，較不會有殘留高亮跟錯層的風險。
   let hovered = $state<string | null>(null);
+  let kbFocused = $state<string | null>(null);
 
   // 村里層裡「未編定村里」區塊：真實土地但未編定村里，沒有村里長，不可點擊。
   // 判斷邏輯共用 src/lib/mapTypes.ts 的 isUnassignedVillage，不在此處重複硬寫前綴。
@@ -103,22 +111,36 @@
     return `color-mix(in oklab, ${color} 32%, var(--bg))`;
   }
 
-  function fillFor(area: MapArea, flatten = false, dim = false): string {
+  // hover：滑鼠移入／鍵盤聚焦（尚未下鑽，只是「經過」）時，填色略往 --fg 加深、
+  // 加飽和，幅度刻意壓低（88% 原色＋12% --fg）——這不是外框，是填色本身的微調，
+  // 讓「游標在這裡」有點反應但不搶過對焦區的滿色與外框。不用 opacity：opacity
+  // 會把色相一起洗淡，跟上面 dimmed() 註解講的是同一個道理。官派區用斜線紋理
+  // （url(#hatch-appointed)）時無法 color-mix，hover 效果只在該區被攤平成純色
+  // （flatten）時才生效，紋理本身維持原樣——外框仍會顯示，不影響可辨識度。
+  function hoverTint(color: string): string {
+    return `color-mix(in oklab, ${color} 88%, var(--fg))`;
+  }
+
+  function fillFor(area: MapArea, flatten = false, dim = false, hover = false): string {
     if (neutral) {
       const base = 'var(--map-appointed-bg)';
+      if (hover) return hoverTint(base);
       return dim ? dimmed(base) : base;
     }
-    if (isUnedited(area)) return 'var(--map-unedited)'; // 未編定村里樣式恆定，不隨 dim 改變（見上方 shapePath 的獨立分支，實際上不會走到這裡）
+    if (isUnedited(area)) return 'var(--map-unedited)'; // 未編定村里樣式恆定，不隨 dim／hover 改變（見上方 shapePath 的獨立分支，實際上不會走到這裡）
     if (area.chiefOffice === 'appointed') {
       const base = flatten ? 'var(--map-appointed-bg)' : 'url(#hatch-appointed)';
+      if (hover && flatten) return hoverTint(base);
       return dim && flatten ? dimmed(base) : base;
     }
     if (!area.chief) {
       const base = area.chiefPendingDraw ? 'var(--map-pending)' : 'var(--map-nodata)';
+      if (hover) return hoverTint(base);
       return dim ? dimmed(base) : base;
     }
     const code = area.chief.partyCode;
     const base = `var(${PARTY_VAR[code] ? PARTY_VAR[code] : '--party-other'})`;
+    if (hover) return hoverTint(base);
     return dim ? dimmed(base) : base;
   }
 
@@ -212,6 +234,21 @@
     return null;
   });
 
+  // 目前「可互動」的那一層形狀——跟 shapePath 呼叫處判斷 interactive 的條件必須
+  // 是同一組規則：全國視角時是縣市層，下鑽一層是鄉鎮市區層，下鑽兩層（村里層
+  // 存在）時是村里層。hover／鍵盤焦點只會發生在可互動的形狀上（見 shapePath 的
+  // interactive 分支才有 onmouseenter／onfocus），所以直接在這層裡找就夠了。
+  const interactiveShapes = $derived(villagesLayer ? villageShapes : townsLayer ? townShapes : countyShapes);
+
+  // hover 外框／填色的目標形狀：滑鼠 hover 與鍵盤 focus 共用（見上方 hovered／
+  // kbFocused 宣告處的說明），滑鼠優先——兩者理論上不會同時指向不同區域（同一
+  // 時間只有一個可互動元素能被滑鼠移入或鍵盤聚焦），這裡的優先順序只是防禦寫法。
+  const hoverTarget = $derived.by((): Shape | null => {
+    const code = hovered ?? kbFocused;
+    if (!code) return null;
+    return interactiveShapes.find((s) => s.area.code === code) ?? null;
+  });
+
   // 縮放目標：全國視角固定 k=1/tx=0/ty=0；對焦某區時，用該區在固定投影下的
   // bounds 反推要放大幾倍、平移多少，才能讓它填滿視窗的 82%。
   const target = $derived.by(() => {
@@ -265,6 +302,7 @@
     if (map.has(area.code)) {
       // 幾何已經載入過：只推進對焦、換 transform，不重新 fetch，瞬間且平滑。
       crumbs = [...crumbs, { level: nextLevel, code: area.code, name: area.name }];
+      hovered = null; kbFocused = null; // 見上方宣告處說明：不依賴 blur，下鑽時明確清空
       onSelect?.(null, focusLayer());
       focusMap();
       return;
@@ -279,6 +317,7 @@
       const child: MapLayer = await res.json();
       map.set(area.code, child);
       crumbs = [...crumbs, { level: nextLevel, code: area.code, name: area.name }];
+      hovered = null; kbFocused = null;
       onSelect?.(null, focusLayer());
       focusMap();
     } catch (e) {
@@ -291,9 +330,12 @@
   // 返回上一層：幾何早就載入過，只改 transform（CSS transition 處理平滑動畫），
   // 不重新 fetch，所以是瞬間的。下鑽／返回都把焦點收回 <svg>（見 focusMap），
   // 這樣連續 Enter 下鑽、Escape 返回、再 Enter、再 Escape 都能一路有效。
+  // 這個函式也是地圖左上角「← 返回上一層」控制項的點擊入口（見下方 markup 的
+  // .back-control），跟報頭麵包屑、Escape 三種觸發方式共用同一份邏輯。
   function back() {
     if (crumbs.length <= 1) return;
     crumbs = crumbs.slice(0, -1);
+    hovered = null; kbFocused = null;
     error = null;
     onSelect?.(null, focusLayer());
     focusMap();
@@ -305,6 +347,7 @@
   export function jumpTo(i: number) {
     if (i >= crumbs.length - 1) return;
     crumbs = crumbs.slice(0, i + 1);
+    hovered = null; kbFocused = null;
     error = null;
     onSelect?.(null, focusLayer());
   }
@@ -350,8 +393,12 @@
     <path d={s.d} class="unedited" role="img" aria-label={uneditedLabel(s.area)}
       vector-effect="non-scaling-stroke" />
   {:else if interactive}
-    <path d={s.d} fill={fillFor(s.area)}
-      class:hovered={hovered === s.area.code}
+    <!-- hover／鍵盤焦點的視覺回饋不在這個 <path> 身上加深色描邊或降低透明度
+         （見下方 CSS 註解與 style 區塊最上方 hover-outline 的說明）：填色的微調
+         由 fillFor() 的 hover 參數處理，外框則由 .zoom-group 最上層另外疊的
+         .hover-outline 畫出完整、不斷線的一圈。這裡只要把「目前是否 hover／
+         focus」透過 fillFor 的第四個參數帶進填色即可。 -->
+    <path d={s.d} fill={fillFor(s.area, false, false, hovered === s.area.code || kbFocused === s.area.code)}
       class:clickable={!!s.area.childFile}
       vector-effect="non-scaling-stroke"
       tabindex="0" role="button"
@@ -359,7 +406,9 @@
       onclick={() => drillInto(s.area, layer)}
       onkeydown={(e) => onKey(e, s.area, layer)}
       onmouseenter={() => { hovered = s.area.code; onSelect?.(s.area, layer); }}
-      onmouseleave={() => { hovered = null; }} />
+      onmouseleave={() => { hovered = null; }}
+      onfocus={() => { kbFocused = s.area.code; }}
+      onblur={() => { kbFocused = null; }} />
   {:else}
     <!-- 非對焦，或已被下一層蓋過的背景區塊：只呈現地理脈絡，不進 tab 順序、不接收互動。
          flatten=true——官派區不畫斜線紋理，見上方 fillFor 的說明。dim=true 時 fillFor
@@ -374,6 +423,18 @@
        按鈕、互動中的 <path> 或下鑽後被 focusMap() 收回的 <svg> 本身，keydown
        都會冒泡到這裡，容器不會因為子節點重繪而消失，Escape 因此不會失效。
   -->
+  {#if crumbs.length > 1}
+    <!-- 返回上一層：報頭麵包屑（可跳到任一層）與 Escape 都已經能回到全圖，但
+         使用者下鑽後視線在地圖上，地圖上原本沒有任何返回入口，容易誤以為回不去
+         （見本次修正的緣由）。這顆按鈕跟麵包屑、Escape 三種方式共用同一個 back()
+         （見上方 <script>），只是多一個「視線在地圖上就找得到」的入口。全國層
+         時整段 {#if} 不渲染（不是用 CSS 隱藏），不留多餘的 tab 停留點。 -->
+    <button type="button" class="back-control" onclick={back}
+      aria-label={`返回上一層，回到${crumbs[crumbs.length - 2].name}`}>
+      ← 返回上一層
+    </button>
+  {/if}
+
   <!-- 麵包屑已經搬進左欄報頭（ElectionPanel.svelte 的 .crumbs-row），地圖上不再
        有浮動的麵包屑——這裡只剩下鑽中的載入／錯誤徽章，疊在地圖左下角。crumbs
        這個 $state、jumpTo() 與 onCrumbs 的推送邏輯都還在上面的 <script>，只是
@@ -427,6 +488,14 @@
             {@render shapePath(s, villagesLayer, false, true)}
           {/each}
         {/if}
+        {#if hoverTarget}
+          <!-- hover／鍵盤焦點外框：畫在所有形狀之上、但在對焦外框之下（見下面
+               {#if focused} 區塊），避免蓋掉已下鑽、正在檢視的對焦指示。用整條
+               路徑在最上層疊一圈，而不是在各區自己的 <path> 上描邊——後者會被
+               相鄰區域的路徑蓋掉一部分，看起來斷斷續續（見下方 CSS .hover-outline
+               的說明）。 -->
+          <path d={hoverTarget.d} class="hover-outline" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+        {/if}
         {#if focused}
           <!-- 對焦區域的高亮外框，畫在最上層——雙層描邊，見上方 CSS 註解。光暈在下、
                高亮線在上，兩者用同一條 d 疊圖，不會有縫隙或錯位。 -->
@@ -442,13 +511,32 @@
   .map-wrap { position: relative; width: 100%; height: 100%; }
   svg { width: 100%; height: 100%; display: block; }
 
-  /* 投影固定，靠這層 transform 做連續縮放；transition 讓下鑽／返回都平滑過渡。 */
-  .zoom-group { transform-origin: 0 0; transition: transform .6s cubic-bezier(.4, 0, .2, 1); }
-  @media (prefers-reduced-motion: reduce) { .zoom-group { transition: none; } }
+  /* 投影固定，靠這層 transform 做連續縮放；transition 讓下鑽／返回都平滑過渡。
+     全站 tokens.css 有一條 `@media (prefers-reduced-motion: reduce) { * {
+     transition: none !important } }`，選擇器是 `*`（特異度 0,0,0），這裡用
+     class 選擇器（特異度 0,1,0）+ !important 才蓋得過去——!important 之間先比
+     特異度，特異度較高者勝出，跟原始碼順序無關。
 
-  path { stroke: var(--bg); stroke-width: 0.5; transition: opacity .12s; }
+     「減少動態效果」這個系統設定要避免的是視差、旋轉、大幅位移這類會引發前庭
+     不適的動效；但地圖下鑽的縮放提供的是空間連續性——使用者需要看到「這個
+     縣市怎麼從全圖放大成這樣」，才不會在下鑽後失去方位感。整段拿掉動畫（0s）
+     反而讓畫面瞬間跳到另一個尺度，比縮短動畫更容易讓人迷失，違背這個設定
+     「避免不適」的本意。故這裡選擇縮短（180ms、線性，沿用全站 --ease 的
+     時長但不用它的曲線——--ease 是 cubic-bezier(.4,0,.2,1)，起伏感在這麼短的
+     時間內反而不易察覺是否完成，改用 linear 讓 180ms 內的位移速率恆定，觀感上
+     更乾脆），而不是完全關閉。 */
+  .zoom-group { transform-origin: 0 0; transition: transform .6s cubic-bezier(.4, 0, .2, 1); }
+  @media (prefers-reduced-motion: reduce) {
+    .zoom-group { transition: transform 180ms linear !important; }
+  }
+
+  path { stroke: var(--bg); stroke-width: 0.5; transition: fill 120ms; }
   path.clickable { cursor: pointer; }
-  path.hovered, path:focus-visible { opacity: .78; stroke: var(--fg); stroke-width: 1.5; outline: none; }
+  /* 鍵盤 focus 的視覺回饋改用跟滑鼠 hover 相同的一套機制（填色微調＋最上層的
+     .hover-outline，見上方 script 的 kbFocused／hoverTarget 與 markup 的
+     {#if hoverTarget} 區塊），這裡只要蓋掉瀏覽器預設的方形 outline，避免跟
+     自訂外框疊在一起變兩圈。 */
+  path:focus-visible { outline: none; }
   /* fill 原本沒宣告，SVG 預設值是黑——在暖白紙底上會變成一塊突兀的黑斑。
      明確填 --map-unedited（見 tokens.css），跟虛線邊框一起把「無此資料」的
      訊號做得溫和而非看起來像壞掉。 */
@@ -456,6 +544,20 @@
   path.bg-shape { pointer-events: none; }
   /* 鄰區的調淡改在 fillFor() 用 color-mix() 算好填色（見該函式註解），這裡不再
      疊 opacity——整個形狀（含邊界線）維持全不透明，邊界線因此全圖統一成一種。 */
+
+  /* hover／鍵盤焦點外框：畫在最上層一整條路徑（見 markup 的 {#if hoverTarget}），
+     不在個別區域自己的 <path> 邊上描邊——那會被相鄰區域蓋掉一部分，看起來斷斷
+     續續，且深色細線壓在暖色填色上很髒（這正是本次要修的問題）。顏色用 --fg
+     的低不透明度版本（不是純色 --muted，也不是實心近黑），單層、無光暈、線寬
+     只有對焦外框（3.5px＋7px 光暈）的一半左右——跟對焦外框刻意做出強弱層級：
+     hover／focus 是「經過、尚未選定」，對焦才是「已下鑽、正在檢視」。 */
+  .hover-outline {
+    stroke: color-mix(in oklab, var(--fg) 55%, transparent);
+    stroke-width: 2;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    pointer-events: none;
+  }
 
   /* 對焦外框：雙層描邊。底下 .focus-outline-halo 先畫一條較寬的紙色（--bg）光暈，
      上面 .focus-outline 疊一條較窄的 --accent（朱紅，本站識別色，非任何政黨色）
@@ -470,6 +572,44 @@
   }
   .focus-outline-halo { stroke: var(--bg); stroke-width: 7; }
   .focus-outline { stroke: var(--accent); stroke-width: 3.5; }
+
+  /* 返回上一層：只在下鑽後出現（markup 見上方 {#if crumbs.length > 1}）。位置
+     要在地圖的左上角，但不能疊在左欄報頭（ElectionPanel.svelte 的 .title-float，
+     left:2rem、width:min(320px,26vw)、z-index:10）上面——那個面板本身就浮在
+     地圖左側的大半個高度，兩者字面上都想佔「左上角」。這裡改成貼著報頭的右緣，
+     公式必須跟 ElectionPanel.svelte 的 .title-float 保持同步：2rem（left）＋
+     min(320px, 26vw)（width）＋1rem 間距。900px 斷點以下報頭改回一般文件流、
+     不再蓋住地圖（.map-region 變成獨立的 60vh 區塊），這裡跟著切回單純的
+     左上角定位——這個斷點數字也要跟 ElectionPanel.svelte 同步。
+     樣式刻意不做成按鈕的樣子（不要膠囊、陰影、粗方框）：純文字＋極淡的底色
+     （讓文字在任何顏色的地圖填色上都讀得出來）＋底部一條髮絲線，符合報紙特輯
+     的語彙，跟 .crumbs button 是同一套克制風格。 */
+  .back-control {
+    position: absolute;
+    top: 2rem;
+    left: calc(2rem + min(320px, 26vw) + 1rem);
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+    min-width: 44px;
+    min-height: 32px;
+    padding: .5rem .75rem .55rem;
+    font-family: var(--sans);
+    font-size: var(--t-sm);
+    color: var(--muted);
+    background: color-mix(in oklab, var(--surface) 82%, transparent);
+    border: none;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+    transition: color var(--ease);
+  }
+  .back-control:hover,
+  .back-control:focus-visible { color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .back-control { top: 1rem; left: 1rem; }
+  }
 
   /* 左下角堆疊：麵包屑搬進報頭後，這裡只剩下鑽中的載入／錯誤徽章。 */
   .corner-stack {
