@@ -647,7 +647,11 @@
        一般界線  紙色 0.5px
        hover     墨色 2px ＋ 紙色光暈 4px
        對焦      朱紅 3.5px ＋ 紙色光暈 7px  */
-  .hover-outline { stroke: var(--fg); stroke-width: 2; }
+  /* 用 --muted（暖灰）而不是 --fg（近純黑 #1b1a17）：這套調色盤是低彩度的暖色系，
+     生黑放進去太硬、像從別處貼來的。--muted 是站台自己的詞彙，明度仍比所有政黨色
+     深（深藍 #4a6fa5、暖灰 #a49c90 都比它淺），配上紙色光暈就讀得出來。深色模式
+     下 --muted 自動變成淺暖灰、--bg 變深，線與光暈一起反轉，不必另寫一套。 */
+  .hover-outline { stroke: var(--muted); stroke-width: 2; }
   /* 紙色光暈墊在墨線底下，讓它在深藍、深綠這類深填色上也讀得出來——與對焦外框
      的光暈同一個道理，只是窄一些（各邊露出 1px）。 */
   .hover-outline-halo { stroke: var(--bg); stroke-width: 4; }
