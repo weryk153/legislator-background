@@ -182,31 +182,6 @@
         </ul>
       {/if}
     {/if}
-
-    <!-- 圖說：授權標示與領土說明。原本是浮在地圖左下角、獨立定位的區塊（見
-         elections.astro 舊版），曾經用 JS 讀這個報頭的實際高度來動態避開它，
-         但報頭內容量會變（年度導言／圖例／下鑽後變長的麵包屑），JS 量測的時機
-         抓不準——實測 1568×766 這種較矮的視窗下，圖說仍被推到視窗底部之外、
-         文字被切掉。改成純 CSS：把這兩段文字直接併入報頭本身的欄位流，接在
-         圖例之後。.title-float 本來就有 max-height + overflow-y: auto（見下方
-         樣式），內容超出時整欄一起內部捲動，圖說跟著報頭共用同一道邊界，不會
-         再各自獨立定位、互相打架。文字內容一字不改。
-
-         這段包一層 .masthead-caption，行距／間距比報頭其他列略緊（見下方樣式）
-         ——純粹是版面密度的調整，不是文字或語意的改動：這兩段本來就是次要的
-         輔助資訊（授權／範圍說明），比報頭其他列（年度、麵包屑、圖例）字級
-         已經一樣小，稍微收緊行距與間距，才能在 1568×766 這種較矮的視窗下
-         不必捲動就完整放進報頭的可視高度。 -->
-    <div class="masthead-caption">
-      <hr class="rule-hair" />
-      <p class="credit">
-        行政區界線：內政部國土測繪中心（政府資料開放授權條款）｜選舉結果：中央選舉委員會
-      </p>
-      <p class="scope-note">
-        為使台灣本島在地圖上維持可辨識的比例，本頁地圖未繪出高雄市旗津區轄下的東沙島、南沙太平島，
-        以及宜蘭縣頭城鎮大溪里轄下的釣魚台列嶼——這幾處均無村里長選舉；大溪里其餘轄區的村里長資料仍照常呈現於地圖上。
-      </p>
-    </div>
   </header>
 
   <div class="map-region">
@@ -214,8 +189,42 @@
       onCrumbs={(items) => { crumbItems = items; }} bind:this={mapRef} />
   </div>
 
+  <!-- 右欄：資訊面板＋圖說，同屬一欄、左右邊緣切齊。.sidebar-float 是這欄的外殼，
+       用 flex column 撐滿地圖區塊的整個高度（top/bottom 都釘在 2rem，跟左欄
+       .title-float 的 max-height: calc(100% - 4rem) 是同一個邊界，只是這裡改用
+       實際高度而非上限，好讓圖說有「多出來的空間」可以被推下去，見下方
+       .map-caption 的說明）。.sidebar-panel 是原本那個有邊框/底色的方盒，只包
+       ElectionSidebar 本身；下鑽到縣市／村里層面板變高時，這個方盒自己
+       overflow-y: auto 內部捲動，不會撐爆整欄、也不會把圖說擠出視窗。 -->
   <aside class="sidebar-float">
-    <ElectionSidebar {area} {layer} {upcoming} />
+    <div class="sidebar-panel">
+      <ElectionSidebar {area} {layer} {upcoming} />
+    </div>
+
+    <!-- 圖說：授權標示與領土說明。原本浮在地圖左下角獨立定位、又曾經併入左欄
+         報頭的欄位流，但左欄報頭本身內容已經很滿（眉題／大標／版次／dateline／
+         本期位置／導言／圖例），1568×766 這種較矮的視窗會被切掉或要內部捲動。
+         右欄（資訊面板）在全國層通常只佔上半部，底下空著一大片，適合放圖說。
+
+         用 margin-top: auto 把這兩段釘在 .sidebar-float 這個 flex column 的
+         底部——而不是讓 .sidebar-panel 自己 flex-grow 撐滿剩餘空間：後者會讓
+         資訊面板的邊框方盒跟著拉長、底下留一大塊空白方框，不是想要的效果。
+         margin-top: auto 只把圖說本身推到欄底，資訊面板維持原本貼合內容的
+         高度。.sidebar-float 有實際高度（top+bottom 兩端都釘住，不是只有
+         max-height 上限），margin-top: auto 才有「多的空間」可以推。
+
+         語意上仍是描述地圖的圖說，用 aria-label 的 <section> 包起來（不用
+         <figcaption>，因為地圖本身不在同一個 <figure> 底下），螢幕閱讀器讀得出
+         這是一個獨立的區塊。文字內容一字不改。 -->
+    <section class="map-caption" aria-label="地圖圖說">
+      <p class="credit">
+        行政區界線：內政部國土測繪中心（政府資料開放授權條款）｜選舉結果：中央選舉委員會
+      </p>
+      <p class="scope-note">
+        為使台灣本島在地圖上維持可辨識的比例，本頁地圖未繪出高雄市旗津區轄下的東沙島、南沙太平島，
+        以及宜蘭縣頭城鎮大溪里轄下的釣魚台列嶼——這幾處均無村里長選舉；大溪里其餘轄區的村里長資料仍照常呈現於地圖上。
+      </p>
+    </section>
   </aside>
 </div>
 
@@ -224,12 +233,15 @@
   .map-region { width: 100%; height: 100%; }
 
   /* 面板：報紙的語言是線，不是浮起來的卡片——去掉圓角與陰影，改用一圈髮絲線邊框
-     壓在地圖上，底色維持 --surface 讓文字讀得清楚，但不再有「浮起來」的視覺暗示。 */
-  .title-float,
-  .sidebar-float {
+     壓在地圖上，底色維持 --surface 讓文字讀得清楚，但不再有「浮起來」的視覺暗示。
+     左欄（報頭）本身就是這個方盒，維持原樣；右欄則拆成兩層——.sidebar-float
+     是不帶邊框的外殼，負責定位與撐出整欄高度，.sidebar-panel 才是真正的方盒
+     （見下方），底下留給圖說。 */
+  .title-float {
     position: absolute;
     top: 2rem;
-    width: min(340px, 32vw);
+    left: 2rem;
+    width: min(320px, 26vw);
     max-height: calc(100% - 4rem);
     overflow-y: auto;
     background: var(--surface);
@@ -237,11 +249,57 @@
     border-radius: 0;
     box-shadow: none;
     padding: 1rem 1.25rem 1.1rem;
+    padding-top: .85rem;
     z-index: 10;
   }
 
-  .title-float { left: 2rem; width: min(320px, 26vw); padding-top: .85rem; }
-  .sidebar-float { right: 2rem; }
+  /* 右欄外殼：top／bottom 兩端都釘在 2rem（跟左欄 max-height: calc(100% - 4rem)
+     是同一個邊界，只是這裡要的是「實際高度」而非「上限」），撐出一個跟地圖區塊
+     等高的 flex column。資訊面板（.sidebar-panel）貼齊內容高度排在上方，圖說
+     （.map-caption）用 margin-top: auto 推到這個欄的最底部——面板變高時會先擠壓
+     這段「多出來的空間」，面板真的高到超出整欄高度才輪到面板自己內部捲動
+     （見 .sidebar-panel 的 overflow-y）。 */
+  .sidebar-float {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    bottom: 2rem;
+    width: min(340px, 32vw);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+  }
+
+  /* 資訊面板方盒：原本 .sidebar-float 自己的樣式，現在搬到這個內層 div——
+     flex: 0 1 auto 讓它貼齊內容高度，不會被拉長去填滿整欄；min-height: 0 是
+     flex item 能夠正確縮小／捲動的必要設定（沒有這行，flex item 預設
+     min-height: auto，內容較高時會撐破容器而不是自己捲動）。下鑽到縣市／村里層
+     多出席次列、面板變高時，若整欄裝不下，靠這裡的 overflow-y: auto 自己內部
+     捲動，圖說仍留在欄底完整可見，不會被推出視窗或切掉。 */
+  .sidebar-panel {
+    flex: 0 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 1rem 1.25rem 1.1rem;
+  }
+
+  /* 圖說：跟報頭／面板同一套「線而非方框」語彙——只有上緣一條髮絲線分隔，
+     不要方框、不要底色、不要陰影，維持平鋪文字的報紙圖說感。flex: none 讓它
+     不隨面板一起被壓縮；margin-top: auto 才是真正把它推到欄底的機制（見上方
+     .sidebar-float 的說明）。字級沿用報頭其他輔助列的 --t-xs／--faint，行高
+     放鬆到 1.6，兩段之間留 .6rem 的間距。 */
+  .map-caption {
+    flex: none;
+    margin-top: auto;
+    padding-top: .75rem;
+    border-top: 1px solid var(--line);
+  }
+  .credit { color: var(--faint); font-size: var(--t-xs); line-height: 1.6; margin: 0; }
+  .scope-note { color: var(--faint); font-size: var(--t-xs); line-height: 1.6; margin: .6rem 0 0; }
 
   /* 髮絲線／粗線分隔——報頭各段之間的分節線，取代原本卡片式的留白分段。 */
   .masthead hr { border: none; margin: .7rem 0; }
@@ -323,15 +381,6 @@
   .notice { color: var(--faint); font-size: var(--t-xs); line-height: 1.6; margin: 0; }
   .notice strong { color: var(--muted); font-weight: 600; }
 
-  /* 圖說（授權標示／領土說明）：跟報頭其他輔助列同一套 --faint 小字級語彙，
-     現在是報頭欄位流最後一段，不再需要自己的定位、背景或響應式規則——900px
-     斷點以下會隨 .title-float 一起自動退回一般文件流（見下方媒體查詢）。
-     .masthead-caption 內的髮絲線／段落間距比報頭其他列略緊，只為了在較矮的
-     視窗下整段報頭仍能不捲動地放進可視高度，文字內容與字級都沒有變。 */
-  .masthead-caption hr { margin: .35rem 0; }
-  .credit { color: var(--faint); font-size: var(--t-xs); line-height: 1.5; margin: 0; }
-  .scope-note { color: var(--faint); font-size: var(--t-xs); margin: .3rem 0 0; line-height: 1.5; }
-
   /* 圖例：小色塊＋--t-xs 字級＋--muted 色，不搶主體。 */
   .legend {
     list-style: none; display: flex; flex-wrap: wrap; gap: .3rem .9rem;
@@ -352,18 +401,24 @@
 
   /* 900px 是這一輪的新斷點（原本 720px）：兩側浮層加起來比單側寬得多，720px
      會擠爆，故放寬。低於此寬度時標題欄／側欄都退回一般文件流，各佔滿寬。斷點跟
-     elections.astro 的 .map-stage 一致，必須同步改。 */
+     elections.astro 的 .map-stage 一致，必須同步改。
+
+     右欄退回靜態排版後，.sidebar-float 的 top/bottom 兩端釘住、.sidebar-panel
+     的 overflow-y: auto 都要一併解除——position: static 底下 top/bottom 本來就
+     不生效，但 overflow-y: auto 與 min-height: 0 若不解除，面板在小螢幕仍可能
+     顯示成一個內部可捲動的矮盒子，而不是隨頁面捲動的一般段落。圖說跟著資訊
+     面板走，一起退回文件流即可，不需要另外處理 margin-top: auto（沒有多餘
+     高度可推，這行在這裡等於沒作用，故不必特別歸零）。 */
   @media (max-width: 900px) {
     .map-region { height: 60vh; }
     .title-float,
     .sidebar-float {
       position: static;
       width: 100%;
-      max-height: none;
-      overflow-y: visible;
       margin-top: 1rem;
       box-shadow: none;
     }
-    .title-float { margin-top: 0; margin-bottom: 1rem; }
+    .title-float { margin-top: 0; margin-bottom: 1rem; max-height: none; overflow-y: visible; }
+    .sidebar-panel { max-height: none; overflow-y: visible; }
   }
 </style>
