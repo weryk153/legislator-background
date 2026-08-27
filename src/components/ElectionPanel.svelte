@@ -276,15 +276,23 @@
      min-height: auto，內容較高時會撐破容器而不是自己捲動）。下鑽到縣市／村里層
      多出席次列、面板變高時，若整欄裝不下，靠這裡的 overflow-y: auto 自己內部
      捲動，圖說仍留在欄底完整可見，不會被推出視窗或切掉。 */
+  /* 內容超出時會內部捲動。沒有任何提示的話，被切一半的那一列看起來像壞掉而不像
+     「還有得捲」——所以底緣加一道漸層當提示。用 Komarov 的 local/scroll 雙層技法：
+     cover 層是 local（隨內容捲動），捲到底時剛好蓋住 scroll 層那道漸層，提示自動
+     消失，不需要 JS 監聽捲動位置。 */
   .sidebar-panel {
     flex: 0 1 auto;
     min-height: 0;
     overflow-y: auto;
-    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 0;
     box-shadow: none;
     padding: 1rem 1.25rem 1.1rem;
+    background:
+      linear-gradient(to top, var(--surface), transparent) bottom / 100% 22px no-repeat local,
+      linear-gradient(to top, color-mix(in oklab, var(--fg) 12%, transparent), transparent)
+        bottom / 100% 22px no-repeat scroll,
+      var(--surface);
   }
 
   /* 圖說：跟報頭／面板同一套「線而非方框」語彙——只有上緣一條髮絲線分隔，

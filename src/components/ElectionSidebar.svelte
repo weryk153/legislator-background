@@ -1,7 +1,15 @@
 <!-- 地圖側欄。顯示當前選取的行政區，未選取時顯示該層的彙總。
      資料深度必須看得出來：縣市長與縣市議員連得到檔案頁，鄉鎮市長以下只有中選會欄位。 -->
 <script lang="ts">
-  import { isUnassignedVillage, type MapArea, type MapLayer, type PartySeat } from '../lib/mapTypes';
+  import { isUnassignedVillage, PARTY_VAR, type MapArea, type MapLayer, type PartySeat } from '../lib/mapTypes';
+
+  /** 政黨色，與地圖共用 mapTypes.ts 的同一份對照，不在此另立一套。 */
+  const partyColor = (code: string) => `var(${PARTY_VAR[code] ?? '--party-other'})`;
+
+  /** 席次組成長條的語音描述：長條本身是圖形，讀屏要有等價的文字。 */
+  function compositionLabel(rows: PartySeat[], total: number): string {
+    return `席次組成，共 ${total} 席：` + rows.map((s) => `${s.partyName} ${s.seats} 席`).join('、');
+  }
 
   // upcoming：目前檢視的年份尚未舉行選舉（見 src/lib/electionYears.ts）。這時
   // area／layer 仍然是既有那年（如 2022）的資料——地圖只是拿它畫界線與驅動
@@ -46,6 +54,29 @@
   // 判斷邏輯共用 src/lib/mapTypes.ts 的 isUnassignedVillage，不重複硬寫前綴。
   const isUnedited = $derived(!!area && isUnassignedVillage(area));
 </script>
+
+<!-- 席次：一條依政黨色分段的組成長條，配一張「色塊＋政黨＋席次」的表。
+     不用每列各自一根長條——那種畫法的長條以「該區最大黨」為滿格，跨層級長度
+     不可比（全國的 14 席與某縣的 32 席都畫成滿格），而且全部同一個灰、只是把
+     旁邊的數字再說一次。組成長條講的是數字沒講的事：這個議會由誰構成、比例
+     多少，而且顏色與地圖對得上。 -->
+{#snippet seats(rows: PartySeat[], total: number)}
+  <div class="composition" role="img" aria-label={compositionLabel(rows, total)}>
+    {#each rows as s (s.partyCode)}
+      <span class="seg" aria-hidden="true"
+        style={`--w:${(s.seats / total) * 100}%; --c:${partyColor(s.partyCode)}`}></span>
+    {/each}
+  </div>
+  <ul class="seat-list">
+    {#each rows as s (s.partyCode)}
+      <li>
+        <span class="swatch" aria-hidden="true" style={`--c:${partyColor(s.partyCode)}`}></span>
+        <span class="nm">{s.partyName}</span>
+        <span class="num">{s.seats}</span>
+      </li>
+    {/each}
+  </ul>
+{/snippet}
 
 <aside class="side">
   {#if upcoming}
@@ -102,15 +133,7 @@
     {#if area.seats.length}
       <section>
         <h3>{seatLabel}（共 {area.seats.reduce((n, s) => n + s.seats, 0)} 席）</h3>
-        <ul class="bars">
-          {#each area.seats as s}
-            <li>
-              <span class="nm">{s.partyName}</span>
-              <span class="bar" style={`--w:${(s.seats / area.seats[0].seats) * 100}%`}></span>
-              <span class="num">{s.seats}</span>
-            </li>
-          {/each}
-        </ul>
+        {@render seats(area.seats, area.seats.reduce((n, s) => n + s.seats, 0))}
         {#if area.quotaSeats}
           <p class="note">其中 {area.quotaSeats} 席為婦女保障名額當選（中選會註記 <code>!</code>）。</p>
         {/if}
@@ -136,15 +159,9 @@
           故沒有政黨版圖可列——這是制度事實，不是本站缺資料。點進各區仍可看轄下村里的村里長。
         </p>
       {/if}
-      <ul class="bars">
-        {#each overview as s}
-          <li>
-            <span class="nm">{s.partyName}</span>
-            <span class="bar" style={`--w:${(s.seats / overview[0].seats) * 100}%`}></span>
-            <span class="num">{s.seats}</span>
-          </li>
-        {/each}
-      </ul>
+      {#if electedAreaCount > 0}
+        {@render seats(overview, electedAreaCount)}
+      {/if}
     </section>
     {#if appointedAreaCount > 0}
       <p class="note">另有 {appointedAreaCount} 個區的區長為官派、非民選職務（不計入上表）。</p>
@@ -170,15 +187,23 @@
     padding: .4rem .55rem; border-radius: 2px; font-size: .85rem; margin: .2rem 0 0; line-height: 1.6;
   }
   .tag { color: var(--muted); font-size: .75rem; border: 1px solid var(--line); border-radius: 2px; padding: 0 .3rem; margin-left: .35rem; }
-  /* 席次：報紙的數字用襯線體＋等寬數字，長條也改成細線＋底線分隔的表格感，
-     不再是 app 感的圓角進度條。 */
-  .bars { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
-  .bars li {
-    display: grid; grid-template-columns: 7rem 1fr 2.5rem; align-items: center; gap: .4rem;
-    font-size: .85rem; padding: .3rem 0; border-bottom: 1px solid var(--line);
+  /* 席次組成長條：整條＝全部席次，依政黨色分段。段與段之間用背景色細縫分隔，
+     不用邊框——邊框會在窄段上吃掉整個色塊。 */
+  .composition {
+    display: flex; width: 100%; height: 10px; margin: .1rem 0 .5rem;
+    border: 1px solid var(--line); background: var(--bg);
   }
-  .bars li:last-child { border-bottom: none; }
-  .bar { height: 3px; background: var(--line-strong); width: var(--w); border-radius: 0; }
+  .seg { width: var(--w); background: var(--c); }
+  .seg + .seg { border-left: 1px solid var(--bg); }
+
+  /* 席次表：色塊讓每一列與長條、與地圖對得上；數字用襯線等寬，報紙的數字語彙。 */
+  .seat-list { list-style: none; padding: 0; margin: 0; }
+  .seat-list li {
+    display: grid; grid-template-columns: .55rem 1fr 2.5rem; align-items: baseline; gap: .5rem;
+    font-size: .85rem; padding: .22rem 0; border-bottom: 1px solid var(--line);
+  }
+  .seat-list li:last-child { border-bottom: none; }
+  .swatch { width: .55rem; height: .55rem; background: var(--c); transform: translateY(.05rem); }
   .num { text-align: right; font-family: var(--serif); font-variant-numeric: tabular-nums; }
   .hint { color: var(--muted); font-size: .85rem; }
 </style>
