@@ -55,7 +55,11 @@
   let crumbItems = $state<{ label: string; disabled: boolean }[]>([
     { label: '全國', disabled: true },
   ]);
-  let mapRef: { jumpTo: (i: number) => void } | undefined;
+  let mapRef: {
+    jumpTo: (i: number) => void;
+    holdSelection: () => void;
+    releaseSelection: () => void;
+  } | undefined;
 
   // 版次選擇器的鍵盤操作：左右鍵在版次之間移動並直接切換（ARIA tablist 的
   // automatic activation 模式，跟原生分頁一致），Home/End 跳頭尾。切換的同時要把
@@ -197,7 +201,14 @@
        ElectionSidebar 本身；下鑽到縣市／村里層面板變高時，這個方盒自己
        overflow-y: auto 內部捲動，不會撐爆整欄、也不會把圖說擠出視窗。 -->
   <aside class="sidebar-float">
-    <div class="sidebar-panel">
+    <!-- 滑鼠移進側欄時要按住「還原成當層彙總」——側欄的內容是 hover 地圖帶出來的，
+         但內容溢出時使用者得把滑鼠移過來才能捲動，那一移原本就會觸發還原，等於
+         溢出的部分永遠讀不到。判準應該是「離開地圖與側欄這整塊」，不是「離開某個
+         行政區」。離開側欄時再放行，行為與離開地圖一致。 -->
+    <div class="sidebar-panel"
+      onmouseenter={() => mapRef?.holdSelection()}
+      onmouseleave={() => mapRef?.releaseSelection()}
+      role="presentation">
       <ElectionSidebar {area} {layer} {upcoming} />
     </div>
 

@@ -283,6 +283,13 @@
   const RESTORE_DELAY = 80;
   let restoreTimer: ReturnType<typeof setTimeout> | null = null;
 
+  // 側欄內容溢出時（尤其加了得票數之後，候選人與席次讓面板常常超過視窗高度），
+  // 使用者必須把滑鼠移到側欄上才能捲動——而那一移就是 mouseleave，還原一觸發，
+  // 側欄立刻跳回彙總，等於溢出的內容永遠讀不到。問題出在「還原」的判準寫成「離開
+  // 某個行政區」，但正確的判準是「離開地圖與側欄這整塊可互動範圍」。地圖元件本身
+  // 看不到側欄，所以由容器（ElectionPanel）在滑鼠進入側欄時按住、離開時放行。
+  let restoreHeld = false;
+
   function cancelRestore() {
     if (restoreTimer !== null) {
       clearTimeout(restoreTimer);
@@ -292,10 +299,23 @@
 
   function scheduleRestore() {
     cancelRestore();
+    if (restoreHeld) return;
     restoreTimer = setTimeout(() => {
       restoreTimer = null;
       onSelect?.(null, focusLayer());
     }, RESTORE_DELAY);
+  }
+
+  /** 滑鼠進入側欄：按住還原，讓使用者能捲動、閱讀目前這一區的細節。 */
+  export function holdSelection() {
+    restoreHeld = true;
+    cancelRestore();
+  }
+
+  /** 滑鼠離開側欄：放行，並比照離開地圖的行為還原成當層彙總。 */
+  export function releaseSelection() {
+    restoreHeld = false;
+    scheduleRestore();
   }
 
   onDestroy(cancelRestore);
