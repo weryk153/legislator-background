@@ -8,6 +8,7 @@ import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL, OFFICE_LAB
 import { loadGraph } from "../../lib/loadGraph";
 import { categorizeCareer, careerText, careerPeriod, sharedSource, type CareerCategory } from "../../lib/careerCategory";
 import RelationshipGraph from "../../components/RelationshipGraph.svelte";
+import { officeRole, officialPageTitle } from "../../lib/seoTitle";
 
 export async function getStaticPaths() {
   const officials = await loadOfficials();
@@ -74,7 +75,7 @@ const assetCategoryName: Record<string, string> = {
   land: "土地", building: "建物", cash: "現金", deposit: "存款",
   securities: "有價證券", investment: "事業投資", claim: "債權", debt: "債務", other: "其他",
 };
-const title = `${o.name}（${o.party}・${OFFICE_LABEL[o.officeType]}・${o.district}）經歷、判決、財產申報與政治獻金｜政治人物背景`;
+const title = officialPageTitle(o);
 const desc = `${o.name}（${o.party}・${OFFICE_LABEL[o.officeType]}・${o.district}）的經歷、財產申報、政治獻金與相關爭議報導整理，每筆皆附公開資料出處。`;
 const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const homeUrl = Astro.site ? Astro.site.href : undefined;
@@ -97,7 +98,7 @@ const jsonLd = [
     mainEntity: {
       "@type": "Person",
       name: o.name,
-      jobTitle: OFFICE_LABEL[o.officeType],
+      jobTitle: officeRole(o.officeType, o.district),
       affiliation: { "@type": "Organization", name: o.party },
       url: pageUrl,
       ...(photoUrl && { image: photoUrl }),

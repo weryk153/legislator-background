@@ -2,6 +2,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import "../styles/tokens.css";
+const FONT_CSS = "https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Public+Sans:wght@400;500;600;700&display=swap";
 const DEFAULT_DESC = "以可查證、附出處的方式，公開現任政治人物的經歷、司法判決、爭議事件與財產申報。";
 const {
   title = "政治人物背景資料庫",
@@ -48,10 +49,17 @@ try {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- 字型樣式表不阻塞首次繪製：以 preload 先抓，載入完成才切成 stylesheet。
+         字型本身已是 display=swap，等待期間先用 tokens.css 裡的系統字型備援
+         （PingFang TC／Noto Sans TC／Songti TC…），不會出現空白文字。
+         無 JS 的環境由 noscript 退回一般的樣式表連結。 -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Public+Sans:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href={FONT_CSS}
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript><link rel="stylesheet" href={FONT_CSS} /></noscript>
     <script is:inline>
       const t = localStorage.getItem("theme");
       if (t) document.documentElement.dataset.theme = t;
