@@ -24,7 +24,7 @@ try {
 const fmt = (n: number) => new Intl.NumberFormat("zh-Hant").format(n);
 const officeName: Record<string, string> = { legislator: "立委", mayor_magistrate: "縣市首長", councilor: "議員" };
 ---
-<Base title="政治獻金查詢｜政治人物背景" description={desc}>
+<Base title="政治獻金查詢｜政治人物背景資料庫" description={desc}>
   <header class="head">
     <h1>政治獻金查詢</h1>
     <p class="lede">輸入政治人物姓名，或營利事業名稱／統一編號，反查政治獻金流向。</p>
@@ -42,7 +42,7 @@ const officeName: Record<string, string> = { legislator: "立委", mayor_magistr
             {view.recipients.map((r) => (
               <li>
                 {r.slug
-                  ? <a href={`/officials/${r.slug}`}>{r.name}</a>
+                  ? <a href={`/officials/${r.slug}/`}>{r.name}</a>
                   : <span class="plain">{r.name}</span>}
                 <span class="tag">{r.party}{r.officeType ? `・${officeName[r.officeType] ?? ""}` : ""}</span>
                 <span class="amt">NT$ {fmt(r.amount)}</span>

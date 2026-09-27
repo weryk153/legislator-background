@@ -62,7 +62,7 @@
 {/if}
 
 {#each view as r}
-  <a class="row" href={`/officials/${r.slug}`}>
+  <a class="row" href={`/officials/${r.slug}/`}>
     <div class="who">
       {#if r.photoUrl}
         <img class="avatar" src={r.photoUrl} alt="" loading="lazy" width="40" height="40" />

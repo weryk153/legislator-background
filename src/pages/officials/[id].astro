@@ -1,4 +1,6 @@
 ---
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import Base from "../../layouts/Base.astro";
 import Sources from "../../components/Sources.astro";
 import { loadOfficials } from "../../lib/data";
@@ -78,15 +80,28 @@ const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : unde
 const homeUrl = Astro.site ? Astro.site.href : undefined;
 // 大頭照為站內收錄之直式照片（非標準 1200x630），供 og:image 與 JSON-LD image 使用。
 const photoUrl = o.photoUrl && Astro.site ? new URL(o.photoUrl, Astro.site).href : undefined;
+// 所有檔案頁共用同一份資料快照，以其匯出日作為頁面的 dateModified（與 sitemap lastmod 同源）。
+let dataDate: string | undefined;
+try {
+  dataDate = JSON.parse(readFileSync(join(process.cwd(), "src", "data", "meta.json"), "utf8")).generatedAt;
+} catch { /* meta.json optional */ }
 const jsonLd = [
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: o.name,
-    jobTitle: OFFICE_LABEL[o.officeType],
-    affiliation: { "@type": "Organization", name: o.party },
+    "@type": "ProfilePage",
+    name: title,
     url: pageUrl,
-    ...(photoUrl && { image: photoUrl }),
+    inLanguage: "zh-Hant",
+    ...(dataDate && { dateModified: dataDate }),
+    isPartOf: { "@type": "WebSite", name: "政治人物背景資料庫", url: homeUrl },
+    mainEntity: {
+      "@type": "Person",
+      name: o.name,
+      jobTitle: OFFICE_LABEL[o.officeType],
+      affiliation: { "@type": "Organization", name: o.party },
+      url: pageUrl,
+      ...(photoUrl && { image: photoUrl }),
+    },
   },
   {
     "@context": "https://schema.org",
@@ -250,7 +265,7 @@ const jsonLd = [
         <div class="item rel">
           <span class={`pill rel-kind ${FAMILY_RELATIONS.has(r.type) ? "fam" : "pol"}`}>{RELATION_LABEL[r.type]}</span>
           {r.other.slug
-            ? <a class="rel-name" href={`/officials/${r.other.slug}`}>{r.other.name}</a>
+            ? <a class="rel-name" href={`/officials/${r.other.slug}/`}>{r.other.name}</a>
             : <span class="rel-name plain">{r.other.name}<span class="rel-ext">（{ENTITY_LABEL[r.other.subtype as keyof typeof ENTITY_LABEL] ?? "其他公眾人物"}）</span></span>}
           {r.note && <span class="rel-note">{r.note}</span>}
           {r.sourceUrl && <a class="rel-src" href={r.sourceUrl} target="_blank" rel="noopener">出處 ↗</a>}

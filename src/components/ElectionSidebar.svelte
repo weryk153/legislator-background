@@ -122,7 +122,7 @@
       <section>
         <h3>{chiefLabel}</h3>
         {#if area.chief.slug}
-          <a class="person" href={`/officials/${area.chief.slug}`}>
+          <a class="person" href={`/officials/${area.chief.slug}/`}>
             {area.chief.name}<span aria-hidden="true"> →</span>
           </a>
         {:else}

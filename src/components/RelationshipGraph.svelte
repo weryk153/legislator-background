@@ -159,7 +159,7 @@
         // 點本站收錄的節點 → 進其檔案頁（entity 的 slug 為空字串，不觸發）
         cy!.on('tap', 'node', (evt: { target: { data: (k: string) => string } }) => {
           const slug = evt.target.data('slug');
-          if (slug) window.location.href = `/officials/${slug}`;
+          if (slug) window.location.href = `/officials/${slug}/`;
         });
 
         // hover 連線 → tooltip（關係＋說明＋出處）。tooltip 自身可 hover，方便點出處連結。
