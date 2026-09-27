@@ -89,7 +89,7 @@ const jsonLd = [
 ];
 ---
 
-<Base title="選舉地圖｜政治人物背景資料庫"
+<Base title="九合一選舉地圖｜政治人物背景資料庫"
       description="2026 年九合一選舉。以行政區地圖呈現各級公職現任者的政黨版圖，可逐層下鑽至村里。">
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <!-- 地圖滿版出血：跳出 .wrap 的 940px 上限、佔滿整個視窗寬度、緊接頁首，讓天下雜誌
@@ -139,7 +139,7 @@ const jsonLd = [
               <td>{r.name}</td>
               <td>
                 {r.chiefName
-                  ? (r.chiefSlug ? <a href={`/officials/${r.chiefSlug}`}>{r.chiefName}</a> : r.chiefName)
+                  ? (r.chiefSlug ? <a href={`/officials/${r.chiefSlug}/`}>{r.chiefName}</a> : r.chiefName)
                   : "—"}
               </td>
               <td>{r.chiefParty ?? "—"}</td>

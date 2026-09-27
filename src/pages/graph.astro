@@ -47,7 +47,7 @@ const peopleList = [...graph.nodes]
       {peopleList.map((p) => (
         <li>
           {p.slug
-            ? <a class="rel-name" href={`/officials/${p.slug}`}>{p.name}</a>
+            ? <a class="rel-name" href={`/officials/${p.slug}/`}>{p.name}</a>
             : <span class="rel-name plain">{p.name}</span>}
           <span class="rel-ext">（{p.role}）</span>
         </li>

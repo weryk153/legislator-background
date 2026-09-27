@@ -81,7 +81,7 @@
           <ul class="recips">
             {#each view.recipients as r}
               <li>
-                {#if r.slug}<a href={`/officials/${r.slug}`}>{r.name}</a><span class="tag">{r.party}・{officeName[r.officeType ?? ''] ?? ''}</span>
+                {#if r.slug}<a href={`/officials/${r.slug}/`}>{r.name}</a><span class="tag">{r.party}・{officeName[r.officeType ?? ''] ?? ''}</span>
                 {:else}<span class="plain">{r.name}</span><span class="tag dim2">非本站收錄之現任者</span>{/if}
                 <span class="amt num">NT$ {fmt(r.amount)}</span>
                 <span class="elec">{r.election}</span>
@@ -95,7 +95,7 @@
     {#if officialHits.length > 0}
       <h2>政治人物</h2>
       {#each officialHits as o (o.slug)}
-        <a class="offrow" href={`/officials/${o.slug}`}>
+        <a class="offrow" href={`/officials/${o.slug}/`}>
           <strong>{o.name}</strong>
           <span class="tag">{o.party}・{officeName[o.officeType] ?? ''}・{o.district}</span>
           <span class="amt num">獻金總收入 NT$ {fmt(o.totalIncome)}</span>
@@ -115,7 +115,7 @@
             <ul class="recips">
               {#each view.recipients as r}
                 <li>
-                  {#if r.slug}<a href={`/officials/${r.slug}`}>{r.name}</a><span class="tag">{r.party}・{officeName[r.officeType ?? ''] ?? ''}</span>
+                  {#if r.slug}<a href={`/officials/${r.slug}/`}>{r.name}</a><span class="tag">{r.party}・{officeName[r.officeType ?? ''] ?? ''}</span>
                   {:else}<span class="plain">{r.name}</span><span class="tag dim2">非本站收錄之現任者</span>{/if}
                   <span class="amt num">NT$ {fmt(r.amount)}</span>
                   <span class="elec">{r.election}</span>
