@@ -9,7 +9,7 @@
 // 產物 PNG 要 commit：SVG 轉 PNG 靠本機中文字型（Noto Serif TC／PingFang TC／Heiti TC），
 // Cloudflare 的建置環境沒有中文字型，不能在建置時產生——字會變方框。
 // 名單換版（public/data/candidates/2026/ 更新）後重跑一次再 commit。
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import sharp from 'sharp';
 import { STAGE_LABEL, chiefTitle, type CountyCandidates, type NationalCandidates } from '../../src/lib/candidateTypes';

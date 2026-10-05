@@ -271,5 +271,7 @@ const jsonLd = [
   @media (max-width: 640px) {
     .head h1 { font-size: var(--t-lg); }
     .d-count { margin-left: 0; }
+    /* 窄螢幕仍排兩欄（姓名＋政黨約 8em），長黨名在格內換行，不讓名單拉成一長條。 */
+    .clist { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); gap: 4px 14px; }
   }
 </style>
