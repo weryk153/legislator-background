@@ -10,9 +10,10 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
 import { basename } from 'node:path';
 import {
-  parseElbase, parseElcand, parseElpaty, winnersByArea, pendingDrawByArea, countyCodeOf, townCodeOf,
+  parseElbase, parseElcand, winnersByArea, pendingDrawByArea, countyCodeOf, townCodeOf,
   INDEPENDENT_PARTY_CODE, UNKNOWN_PARTY_CODE, type Candidate, type AreaNode,
 } from './lib/cecVoteData';
+import { mergeParties } from './lib/cecParties';
 import { parseElctks, parseElprof, type ElctksRow, type ElprofRow, toCecPercent } from './lib/cecVotes';
 import { parseByElection, parseByElectionDir, parseByElectionResults } from './lib/cecByElection';
 import { buildCodeIndex, normalizeAreaName, KNOWN_MISSING_BOUNDARY_KEYS } from './lib/areaMatch';
@@ -189,40 +190,13 @@ function buildRaceResults(
 }
 
 /**
- * 合併全部選舉類別的政黨代碼表。
- *
- * 中選會的 `elpaty.csv` 是「每個選舉類別各自一份」，不是全國共用一份：實測
- * 縣市長（C1）只列 11 個政黨、村里長（V1）列 28 個、議員（T1）列 27 個，彼此
- * 不是子集關係——T1 用到但 V1 沒有的代碼多達 19 個（例如 106 無黨團結聯盟）。
- * 原本只讀 V1 這一份，議員層那 19 個代碼一律查不到，被迫顯示成「未知政黨」，
- * 但其實不是真的查無此黨，只是根本沒讀到列出它的那份表。
- *
- * 故改為合併 CAT_2022 涵蓋的全部類別（各自的 city/prv 子目錄一併讀入）。合併
- * 時若同一代碼在不同檔案對應到不同名稱，代表我們對這份資料的理解有誤——直接
- * 拋錯並列出衝突的代碼與各自的名稱，不可任選一個蓋過去。這是本站「對不到就
- * 列報、不做模糊猜測」原則的延伸：合併多份來源時，寧可拋錯也不要靜默 fallback。
+ * 見 scraper/lib/cecParties.ts
  */
 function loadAllParties(): Map<string, string> {
-  const m = new Map<string, string>();
-  const conflicts: string[] = [];
-  for (const c of CAT_2022) {
-    for (const sub of c.subs) {
-      const path = catFile(c.code, sub, 'elpaty.csv');
-      for (const [code, name] of parseElpaty(read(path))) {
-        const existing = m.get(code);
-        if (existing && existing !== name) {
-          conflicts.push(`代碼 ${code}：「${existing}」（先前讀到） vs 「${name}」（${path}）`);
-          continue;
-        }
-        m.set(code, name);
-      }
-    }
-  }
-  if (conflicts.length) {
-    throw new Error(`政黨代碼表合併時發現衝突：同一代碼在不同選舉類別對應到不同政黨名稱，`
-      + `無法安全合併（寧可拋錯，也不要任選一個靜默蓋過去）：${conflicts.join('；')}`);
-  }
-  return m;
+  return mergeParties(CAT_2022.flatMap((c) => c.subs.map((sub) => {
+    const path = catFile(c.code, sub, 'elpaty.csv');
+    return { path, csv: read(path) };
+  })));
 }
 
 /**
