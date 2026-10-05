@@ -6,7 +6,7 @@
      繪製與互動，不動資料管線。 -->
 <script lang="ts">
   import { onDestroy, onMount, tick } from 'svelte';
-  import { geoMercator, geoPath } from 'd3-geo';
+  import { geoArea, geoCentroid, geoMercator, geoPath } from 'd3-geo';
   import { feature } from 'topojson-client';
   import { SvelteMap } from 'svelte/reactivity';
   import { isUnassignedVillage, PARTY_VAR, type MapLayer, type MapArea } from '../lib/mapTypes';
@@ -58,8 +58,29 @@
   // 南北位置（馬祖緯度較高、在北）。兩個框的寬高比是照各自的實際地理外形量出來
   // 的（金門東西狹長、馬祖較方），讓 fitExtent 之後框內幾乎不留白，插圖看起來
   // 才會「大而清楚」而不是小方塊裡飄一個小點。
-  const LIENCHIANG_BOX = { x: 24, y: 124, w: 140, h: 117 };
-  const KINMEN_BOX = { x: 24, y: 297, w: 140, h: 97 };
+  //
+  // 2026-10-05 放大：原本兩框只有 140 寬，島群看起來像幾個小點。實測主投影下本島
+  // 西岸在 y≈100~450 這段的 x 都在 368 以上（北段更達 560~700），澎湖則從 y≈500
+  // 起、x≈164 以東——所以左上角可以把框加寬到 x≈300 而不碰到本島，金門框底部
+  // 則要停在 y<500 以免壓到澎湖。
+  const LIENCHIANG_BOX = { x: 24, y: 96, w: 280, h: 234 };
+  const KINMEN_BOX = { x: 24, y: 372, w: 240, h: 127 };
+
+  // 金門縣轄下的烏坵（東經 119.45，距大金門約 100 公里）與北碇（大金門正南方的
+  // 礁岩燈塔島）若一起算 fitExtent，大、小金門會被壓成框角落的小點。插圖只拿
+  // 「主要島群」算比例尺：面積至少 0.3 平方公里、且中心距最大島不超過 0.3 度的
+  // 多邊形；其餘仍畫出，但會被框的 clipPath 切掉（點進金門縣即可看完整範圍，
+  // 圖說另有說明）。馬祖整個群島含東引一起算比例尺仍放得下，不套用這個篩選。
+  function mainCluster(f: any): any {
+    const polys: number[][][][] = f.geometry.type === 'MultiPolygon' ? f.geometry.coordinates : [f.geometry.coordinates];
+    const stats = polys.map((p) => {
+      const g = { type: 'Polygon', coordinates: p } as any;
+      return { p, area: geoArea(g) * 6371 ** 2, c: geoCentroid(g) };
+    });
+    const big = stats.reduce((a, b) => (b.area > a.area ? b : a));
+    const keep = stats.filter((s) => s.area >= 0.3 && Math.hypot(s.c[0] - big.c[0], s.c[1] - big.c[1]) <= 0.3);
+    return { ...f, geometry: { type: 'MultiPolygon', coordinates: keep.map((s) => s.p) } };
+  }
 
   interface Inset { shape: Shape }
 
@@ -76,18 +97,18 @@
     if (!counties) return null;
     const feats = featuresOf(counties.topology);
     const byCode = new Map(counties.areas.map((a) => [a.code, a]));
-    const build = (code: string, box: { x: number; y: number; w: number; h: number }): Inset | null => {
+    const build = (code: string, box: { x: number; y: number; w: number; h: number }, fitMain = false): Inset | null => {
       const area = byCode.get(code);
       if (!area) return null;
       const f = feats.find((ft) => ft.properties.key === area.key);
       if (!f) return null;
-      const proj = geoMercator().fitExtent([[box.x, box.y], [box.x + box.w, box.y + box.h]], f as any);
+      const proj = geoMercator().fitExtent([[box.x, box.y], [box.x + box.w, box.y + box.h]], (fitMain ? mainCluster(f) : f) as any);
       const path = geoPath(proj);
       const d = path(f) ?? '';
       if (!d) return null;
       return { shape: { d, key: f.properties.key as string, area, feature: f } };
     };
-    const kinmen = build(KINMEN_CODE, KINMEN_BOX);
+    const kinmen = build(KINMEN_CODE, KINMEN_BOX, true);
     const lienchiang = build(LIENCHIANG_CODE, LIENCHIANG_BOX);
     if (!kinmen || !lienchiang) return null;
     return { kinmen, lienchiang };
@@ -672,11 +693,18 @@
           <rect x={KINMEN_BOX.x} y={KINMEN_BOX.y} width={KINMEN_BOX.w} height={KINMEN_BOX.h}
             class="inset-frame" vector-effect="non-scaling-stroke" />
           <text x={KINMEN_BOX.x} y={KINMEN_BOX.y - 12} class="inset-label">金門</text>
-          {@render shapePath(insets.kinmen.shape, counties, false, true)}
-          {#if (hovered ?? kbFocused) === insets.kinmen.shape.area.code}
-            <path d={insets.kinmen.shape.d} class="hover-outline-halo" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
-            <path d={insets.kinmen.shape.d} class="hover-outline" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
-          {/if}
+          <!-- 比例尺只依大、小金門算（見 mainCluster），烏坵等遠處小島落在框外，
+               以 clipPath 切齊框線，不讓它們飄到主圖上。 -->
+          <clipPath id="inset-clip-kinmen">
+            <rect x={KINMEN_BOX.x} y={KINMEN_BOX.y} width={KINMEN_BOX.w} height={KINMEN_BOX.h} />
+          </clipPath>
+          <g clip-path="url(#inset-clip-kinmen)">
+            {@render shapePath(insets.kinmen.shape, counties, false, true)}
+            {#if (hovered ?? kbFocused) === insets.kinmen.shape.area.code}
+              <path d={insets.kinmen.shape.d} class="hover-outline-halo" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+              <path d={insets.kinmen.shape.d} class="hover-outline" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+            {/if}
+          </g>
         </g>
       {/if}
     </svg>
