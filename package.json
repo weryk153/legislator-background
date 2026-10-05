@@ -38,7 +38,8 @@
     "extract:vote-history": "tsx scraper/extract-vote-history.ts",
     "build:boundaries": "tsx scraper/fetch-boundaries.ts",
     "build:election-map": "tsx scraper/build-election-map.ts",
-    "build:candidates": "tsx scraper/build-candidates-2026.ts"
+    "build:candidates": "tsx scraper/build-candidates-2026.ts",
+    "build:og-elections": "tsx scraper/scripts/build-og-elections.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

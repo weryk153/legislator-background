@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import ElectionPanel from "../components/ElectionPanel.svelte";
+import ChiefRaceCard from "../components/ChiefRaceCard.astro";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { buildYears } from "../lib/electionYears";
@@ -8,9 +9,10 @@ import {
   ELECTION_MILESTONES, STAGE_LABEL, chiefTitle, taipeiToday, timelineProgress,
   type CandidateEntry, type CountyCandidates, type NationalCandidates,
 } from "../lib/candidateTypes";
-import { candidateOverview, isChiefReelect, isCouncilReelect, orderCandidates, partyTally, recordCounts, type PartyBar } from "../lib/candidateStats";
-import { PARTY_VAR } from "../lib/mapTypes";
+import { candidateOverview, isCouncilReelect, partyTally, recordCounts, type PartyBar } from "../lib/candidateStats";
 import { loadOfficials } from "../lib/data";
+import { COUNTY_KEYS, countyByCode, countyPagePath } from "../lib/countyKeys";
+import { countyRaceName } from "../lib/countyPage";
 
 const meta = JSON.parse(readFileSync(join(process.cwd(), "public", "data", "map", "meta.json"), "utf8"));
 // 年份切換器的資料來源，見 src/lib/electionYears.ts 開頭的說明——日後加 2018
@@ -72,16 +74,18 @@ const barPct = (b: PartyBar, bars: PartyBar[]) => `${(b.count / Math.max(...bars
 // 筆數取自站上檔案（以 slug 對應）；只列數字與連結，判決／爭議內容一律不上這頁。
 const officialsBySlug = new Map((await loadOfficials()).map((o) => [o.slug, o]));
 const countsOf = (c: CandidateEntry) => (c.slug ? recordCounts(officialsBySlug.get(c.slug)) : null);
-const photoOf = (c: CandidateEntry) => (c.slug ? officialsBySlug.get(c.slug)?.photoUrl ?? null : null);
 const muniRaces = candidates2026 ? candidates2026.races.filter((r) => r.isMunicipality) : [];
-const partyLabel = (c: CandidateEntry) => (c.partyName === "無" ? "無黨籍" : c.partyName);
-// 與 partyTally 同規則：無黨籍用 --party-none；新政黨（代碼 null）與未列代碼用 --party-other。
-const partyVar = (c: CandidateEntry) =>
-  c.partyName === "無" || c.partyCode === "999" ? "--party-none" : (c.partyCode && PARTY_VAR[c.partyCode]) || "--party-other";
+// 各縣市的 2026 選舉頁（/elections/2026/<key>/）。對照表查無的縣市（理論上不會有）就不加連結。
+const countyHref = (countyCode: string): string | undefined => {
+  const k = countyByCode(countyCode);
+  return k ? countyPagePath(k.key) : undefined;
+};
 
-const siteUrl = Astro.site ? Astro.site.href.replace(/\/$/, "") : "";
 const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const homeUrl = Astro.site ? Astro.site.href : undefined;
+const absUrl = (path: string) => (Astro.site ? new URL(path, Astro.site).href : path);
+// 分享縮圖：由 scraper/scripts/build-og-elections.ts 預先產生並 commit（建置環境沒有中文字型）。
+const ogImage = Astro.site ? new URL("/og/elections-2026.png", Astro.site).href : undefined;
 // 結構化資料：本頁主軸是 2026 候選人；2022 結果另見 /elections/2022（該頁有自己的 Dataset）。
 const jsonLd = [
   // 2026 候選人：只在有資料時加入，排在 2022 結果之前（主軸是 2026）
@@ -105,11 +109,23 @@ const jsonLd = [
       { "@type": "ListItem", position: 2, name: "九合一選舉", item: pageUrl },
     ],
   },
+  // 22 個縣市選舉頁：讓搜尋引擎把本頁當成各縣市頁的目錄。
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "2026 九合一選舉各縣市候選人",
+    numberOfItems: COUNTY_KEYS.length,
+    itemListElement: COUNTY_KEYS.map((k, i) => ({
+      "@type": "ListItem", position: i + 1, name: countyRaceName(k.name), url: absUrl(countyPagePath(k.key)),
+    })),
+  },
 ];
 ---
 
 <Base title="九合一選舉地圖｜政治人物背景資料庫"
-      description="2026 年九合一選舉：縣市長與縣市議員候選人名單，連結候選人經歷、判決與政治獻金；並以 2022 年結果作對照。">
+      description="2026 年九合一選舉：縣市長與縣市議員候選人名單，連結候選人經歷、判決與政治獻金；並以 2022 年結果作對照。"
+      ogImage={ogImage}
+      ogImageAlt="2026 九合一選舉候選人">
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <!-- 地圖滿版出血：跳出 .wrap 的 940px 上限、佔滿整個視窗寬度、緊接頁首，讓天下雜誌
        那種「地圖是主角、控制項浮在上面」的感覺成立——一進頁面不捲動就看到完整地圖。
@@ -205,48 +221,13 @@ const jsonLd = [
   )}
 
   <!-- 六都對決卡片：所有候選人同字級、同版型、同大小；排序依名冊（有號次時依號次），
-       不依政黨或筆數。筆數只列數字，內容請見個人頁。 -->
+       不依政黨或筆數。筆數只列數字，內容請見個人頁。卡片本身見 ChiefRaceCard.astro
+       （與縣市選舉頁共用），標題連到該縣市的選舉頁。 -->
   {muniRaces.length > 0 && (
     <section class="overview" aria-labelledby="muni-title">
       <h2 id="muni-title">六都市長候選人</h2>
       <div class="muni-grid">
-        {muniRaces.map((r) => (
-          <article class="muni-card" aria-labelledby={`muni-${r.countyCode}`}>
-            <header class="muni-head">
-              <h3 id={`muni-${r.countyCode}`}>{chiefTitle(r.countyName)}</h3>
-              {r.incumbent2022 && (
-                <p class="muni-inc">
-                  2022 當選：{r.incumbent2022.name}（{r.incumbent2022.partyName}）{r.incumbent2022.termLimitStatus === "limited" ? "・不得連任" : r.incumbent2022.termLimitStatus === "unknown" ? "・連任狀態待查" : ""}
-                </p>
-              )}
-            </header>
-            <ul class="muni-cands">
-              {orderCandidates(r.candidates).map((c) => {
-                const photo = photoOf(c);
-                const n = countsOf(c);
-                return (
-                  <li class="mc">
-                    {photo
-                      ? <img class="mc-avatar" src={photo} alt="" width="48" height="48" loading="lazy" />
-                      : <span class="mc-avatar ph" aria-hidden="true">{c.name[0]}</span>}
-                    <div class="mc-body">
-                      <p class="mc-name">
-                        {c.number !== null && <span class="mc-no">{c.number} 號</span>}
-                        {c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}
-                        {isChiefReelect(c, r) && <span class="mc-tag">爭取連任</span>}
-                      </p>
-                      <p class="mc-party"><span class="dot" style={`background: var(${partyVar(c)});`} aria-hidden="true"></span>{partyLabel(c)}</p>
-                      {c.identity && <p class="mc-id">{c.identity}</p>}
-                      <p class="mc-recs">
-                        {n ? `經歷 ${n.careers}・判決 ${n.judgments}・爭議 ${n.controversies}・獻金 ${n.donations}` : "本站尚無檔案"}
-                      </p>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </article>
-        ))}
+        {muniRaces.map((r) => <ChiefRaceCard race={r} officialsBySlug={officialsBySlug} href={countyHref(r.countyCode)} />)}
       </div>
       <p class="overview-note muni-foot">筆數為本站收錄之公開紀錄，非完整紀錄；內容與出處請見個人頁。</p>
     </section>
@@ -268,7 +249,7 @@ const jsonLd = [
           <tbody>
             {candidates2026.races.map((r) => (
               <tr>
-                <th scope="row">{chiefTitle(r.countyName)}</th>
+                <th scope="row">{countyHref(r.countyCode) ? <a href={countyHref(r.countyCode)}>{chiefTitle(r.countyName)}</a> : chiefTitle(r.countyName)}</th>
                 <td>
                   {r.candidates.map((c, i) => (
                     <>
@@ -304,7 +285,10 @@ const jsonLd = [
         <details class="council">
           <summary>
             <span class="council-name">{co.countyName}</span>
-            <span class="council-count">{co.districts.length} 個選區・{co.districts.reduce((m, d) => m + d.candidates.length, 0)} 人</span>
+            <span class="council-count">
+              {co.districts.length} 個選區・{co.districts.reduce((m, d) => m + d.candidates.length, 0)} 人
+              {countyHref(co.countyCode) && <a class="council-more" href={countyHref(co.countyCode)}>完整名單 →</a>}
+            </span>
           </summary>
           <dl class="council-list">
             {co.districts.map((d) => (
@@ -509,37 +493,9 @@ const jsonLd = [
   .bar-parties { grid-column: 1 / -1; color: var(--muted); font-size: var(--t-sm); line-height: 1.6; }
 
   /* ── 六都對決卡片 ───────────────────────────────────────
-     中立原則：每位候選人同字級、同版型、同大小；「爭取連任」是中性小標籤，
-     筆數一律同色同字級，不因判決或爭議筆數改變視覺強度。 */
+     卡片本身的樣式在 ChiefRaceCard.astro；這裡只排兩欄格線。 */
   .muni-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 32px; margin-top: 8px; }
   @media (max-width: 900px) { .muni-grid { grid-template-columns: 1fr; } }
-  .muni-card { border-top: 1px solid var(--line-strong); padding-top: 12px; min-width: 0; }
-  .muni-head h3 { font-size: var(--t-md); margin: 0; }
-  .muni-inc { color: var(--muted); font-size: var(--t-sm); margin: 4px 0 0; line-height: 1.6; }
-  .muni-cands { list-style: none; margin: 8px 0 0; padding: 0; }
-  .mc { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
-  .mc:last-child { border-bottom: 0; }
-  .mc-avatar {
-    width: 48px; height: 48px; flex: none; border-radius: 50%;
-    object-fit: cover; object-position: center top;
-    border: 1px solid var(--line); background: var(--bg);
-  }
-  .mc-avatar.ph { display: grid; place-items: center; color: var(--muted); font-family: var(--serif); font-size: 1.25rem; }
-  .mc-body { min-width: 0; }
-  .mc-body p { margin: 0; line-height: 1.6; }
-  .mc-name { font-family: var(--serif); font-weight: 700; font-size: 1.0625rem; }
-  .mc-name a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
-  .mc-name a:hover { color: var(--accent); }
-  .mc-no { font-family: var(--sans); font-weight: 400; font-size: var(--t-sm); color: var(--muted); margin-right: 6px; }
-  .mc-tag {
-    display: inline-block; margin-left: 8px; padding: 0 6px;
-    font-family: var(--sans); font-weight: 400; font-size: var(--t-xs); line-height: 1.6;
-    color: var(--muted); border: 1px solid var(--line-strong); border-radius: 3px; vertical-align: 2px;
-  }
-  .mc-party, .mc-id { font-size: 0.875rem; }
-  .mc-id { color: var(--muted); }
-  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
-  .mc-recs { font-size: var(--t-sm); color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 2px !important; }
   .muni-foot { margin-top: 12px; }
 
   /* 縣市長表「站上資料」欄：每位有檔案的候選人一行小字，只列筆數與連結。 */
@@ -569,4 +525,10 @@ const jsonLd = [
     .cand-table .cand .nm { white-space: nowrap; }
   }
   .cand-table .rec a { color: var(--fg); }
+  /* 縣市長表的縣市欄連到縣市選舉頁。 */
+  .cand-table tbody th a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+  .cand-table tbody th a:hover { color: var(--accent); }
+  /* 議員名單：summary 右側「完整名單 →」連到縣市頁（點連結會換頁，不會展開／收合）。 */
+  .council-more { margin-left: 12px; color: var(--fg); text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
+  .council-more:hover { color: var(--accent); }
 </style>

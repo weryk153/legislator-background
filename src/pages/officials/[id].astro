@@ -9,6 +9,7 @@ import { loadGraph } from "../../lib/loadGraph";
 import { categorizeCareer, careerText, careerPeriod, sharedSource, type CareerCategory } from "../../lib/careerCategory";
 import { chiefTitle } from "../../lib/candidateTypes";
 import { loadCandidacies } from "../../lib/candidacy";
+import { countyPagePath } from "../../lib/countyKeys";
 import RelationshipGraph from "../../components/RelationshipGraph.svelte";
 import { officeRole, officialPageTitle } from "../../lib/seoTitle";
 
@@ -82,7 +83,11 @@ const isCandidate = o.officeType === "candidate";
 const candidacy = loadCandidacies().get(o.slug) ?? null;
 const roleText = isCandidate ? `2026 ${chiefTitle(o.district)}參選人` : `${OFFICE_LABEL[o.officeType]}・${o.district}`;
 const title = officialPageTitle(o);
-const desc = `${o.name}（${o.party}・${roleText}）的經歷、財產申報、政治獻金與相關爭議報導整理，每筆皆附公開資料出處。`;
+// 2026 候選人：描述開頭先講參選職位（搜尋「某某市長候選人」時摘要第一句就對得上），再接原本描述。
+const candidacyDesc = candidacy ? `2026 ${candidacy.role}候選人。` : "";
+const desc = `${candidacyDesc}${o.name}（${o.party}・${roleText}）的經歷、財產申報、政治獻金與相關爭議報導整理，每筆皆附公開資料出處。`;
+// 參選標記連到該縣市的 2026 選舉頁；對照表查無縣市時只顯示文字。
+const candidacyHref = candidacy?.countyKey ? countyPagePath(candidacy.countyKey) : null;
 const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const homeUrl = Astro.site ? Astro.site.href : undefined;
 // 大頭照為站內收錄之直式照片（非標準 1200x630），供 og:image 與 JSON-LD image 使用。
@@ -106,6 +111,7 @@ const jsonLd = [
       name: o.name,
       jobTitle: officeRole(o.officeType, o.district),
       affiliation: { "@type": "Organization", name: o.party },
+      ...(candidacy && { description: `2026 年${candidacy.role}選舉候選人` }),
       url: pageUrl,
       ...(photoUrl && { image: photoUrl }),
     },
@@ -134,7 +140,9 @@ const jsonLd = [
   <header class="head">
     <span class="pill">{OFFICE_LABEL[o.officeType]}</span>
     {o.departedReason && <span class="pill departed">已解職</span>}
-    {candidacy && !isCandidate && <span class="pill candidacy">{candidacy}</span>}
+    {candidacy && !isCandidate && (candidacyHref
+      ? <a class="pill candidacy" href={candidacyHref}>{candidacy.label}</a>
+      : <span class="pill candidacy">{candidacy.label}</span>)}
     <h1>{o.name}</h1>
     <p class="lede">
       {isCandidate ? `${o.party}・${roleText}` : `${o.party}・${o.district}・第${o.term}屆`}{o.bio ? `　${o.bio}` : ""}
@@ -294,6 +302,7 @@ const jsonLd = [
     .head { margin: 14px 0 36px; }
     .head h1 { font-size: var(--t-xl); margin: 10px 0 6px; }
     .head .lede { margin: 0; }
+    a.pill.candidacy:hover { color: var(--accent); border-color: var(--accent); }
     .pill.departed { margin-left: 6px; color: #b3261e; border-color: #b3261e; }
     .departed-note { margin: 12px 0 0; font-size: 0.8125rem; color: #b3261e; max-width: 64ch; line-height: 1.6; }
     .sec { margin-bottom: 40px; }

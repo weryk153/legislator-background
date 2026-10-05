@@ -298,8 +298,8 @@
     "partyName": "民主進步黨",
     "partyCode": "16",
     "slug": "mayor-kaohsiung",
-    "termLimitStatus": "notLimited",
-    "termLimitReason": ""
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2020 年高雄市長補選當選、2022 年連任），依地方制度法不得再選"
    }
   },
   {

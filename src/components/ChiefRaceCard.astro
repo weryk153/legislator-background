@@ -1,0 +1,93 @@
+---
+// 縣市長候選人卡片：/elections 的六都對決與 /elections/2026/<key>/ 縣市頁共用。
+//
+// 中立原則：每位候選人同字級、同版型、同大小；排序依名冊（有號次時依號次），不依政黨或筆數。
+// 「爭取連任」是中性小標籤，筆數一律同色同字級，只列數字，判決／爭議內容請見個人頁。
+import type { ChiefRace } from "../lib/candidateTypes";
+import { chiefTitle } from "../lib/candidateTypes";
+import { isChiefReelect, orderCandidates, partyColorVar, partyLabel, recordCounts } from "../lib/candidateStats";
+import type { Official } from "../lib/types";
+
+interface Props {
+  race: ChiefRace;
+  /** 站上檔案（以 slug 對應），取頭像與各類筆數。 */
+  officialsBySlug: Map<string, Official>;
+  /** 卡片標題連到的頁面（縣市選舉頁）；不給就不加連結。 */
+  href?: string;
+  /** false：不畫卡片標題與 2022 當選列（縣市頁由頁面自己出標題與更詳細的 2022 對照）。 */
+  showHead?: boolean;
+}
+const { race: r, officialsBySlug, href, showHead = true } = Astro.props;
+const headId = `chief-${r.countyCode}`;
+const inc = r.incumbent2022;
+---
+<article class="chief-card" aria-labelledby={showHead ? headId : undefined} aria-label={showHead ? undefined : `${chiefTitle(r.countyName)}候選人`}>
+  {showHead && (
+    <header class="cc-head">
+      <h3 id={headId}>{href ? <a href={href}>{chiefTitle(r.countyName)}</a> : chiefTitle(r.countyName)}</h3>
+      {inc && (
+        <p class="cc-inc">
+          2022 當選：{inc.name}（{inc.partyName}）{inc.termLimitStatus === "limited" ? "・不得連任" : inc.termLimitStatus === "unknown" ? "・連任狀態待查" : ""}
+        </p>
+      )}
+    </header>
+  )}
+  <ul class="cc-cands">
+    {orderCandidates(r.candidates).map((c) => {
+      const o = c.slug ? officialsBySlug.get(c.slug) : undefined;
+      const photo = o?.photoUrl ?? null;
+      const n = recordCounts(o);
+      return (
+        <li class="mc">
+          {photo
+            ? <img class="mc-avatar" src={photo} alt="" width="48" height="48" loading="lazy" />
+            : <span class="mc-avatar ph" aria-hidden="true">{c.name[0]}</span>}
+          <div class="mc-body">
+            <p class="mc-name">
+              {c.number !== null && <span class="mc-no">{c.number} 號</span>}
+              {c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}
+              {isChiefReelect(c, r) && <span class="mc-tag">爭取連任</span>}
+            </p>
+            <p class="mc-party"><span class="dot" style={`background: var(${partyColorVar(c)});`} aria-hidden="true"></span>{partyLabel(c)}</p>
+            {c.identity && <p class="mc-id">{c.identity}</p>}
+            <p class="mc-recs">
+              {n ? `經歷 ${n.careers}・判決 ${n.judgments}・爭議 ${n.controversies}・獻金 ${n.donations}` : "本站尚無檔案"}
+            </p>
+          </div>
+        </li>
+      );
+    })}
+  </ul>
+</article>
+
+<style>
+  .chief-card { border-top: 1px solid var(--line-strong); padding-top: 12px; min-width: 0; }
+  .cc-head h3 { font-size: var(--t-md); margin: 0; }
+  .cc-head h3 a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .cc-head h3 a:hover { color: var(--accent); }
+  .cc-inc { color: var(--muted); font-size: var(--t-sm); margin: 4px 0 0; line-height: 1.6; }
+  .cc-cands { list-style: none; margin: 8px 0 0; padding: 0; }
+  .mc { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .mc:last-child { border-bottom: 0; }
+  .mc-avatar {
+    width: 48px; height: 48px; flex: none; border-radius: 50%;
+    object-fit: cover; object-position: center top;
+    border: 1px solid var(--line); background: var(--bg);
+  }
+  .mc-avatar.ph { display: grid; place-items: center; color: var(--muted); font-family: var(--serif); font-size: 1.25rem; }
+  .mc-body { min-width: 0; }
+  .mc-body p { margin: 0; line-height: 1.6; }
+  .mc-name { font-family: var(--serif); font-weight: 700; font-size: 1.0625rem; }
+  .mc-name a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+  .mc-name a:hover { color: var(--accent); }
+  .mc-no { font-family: var(--sans); font-weight: 400; font-size: var(--t-sm); color: var(--muted); margin-right: 6px; }
+  .mc-tag {
+    display: inline-block; margin-left: 8px; padding: 0 6px;
+    font-family: var(--sans); font-weight: 400; font-size: var(--t-xs); line-height: 1.6;
+    color: var(--muted); border: 1px solid var(--line-strong); border-radius: 3px; vertical-align: 2px;
+  }
+  .mc-party, .mc-id { font-size: 0.875rem; }
+  .mc-id { color: var(--muted); }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+  .mc-recs { font-size: var(--t-sm); color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 2px !important; }
+</style>
