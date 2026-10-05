@@ -100,6 +100,46 @@
     if (nodata) entries.push({ key: 'nodata', label: '本站無資料', kind: 'nodata' });
     return entries;
   });
+
+  import { selectCandidates, focusCountyCode } from '../lib/candidateView';
+  import { STAGE_LABEL, type CountyCandidates, type NationalCandidates } from '../lib/candidateTypes';
+
+  // 2026 候選人：只在 upcoming 時載入。全國檔一次；縣市檔依目前聚焦的縣市按需載入並快取。
+  // 載入失敗（檔案不存在、網路錯誤）時維持 null，側欄退回「尚無結果」的說法，不擋地圖操作。
+  let candNational = $state<NationalCandidates | null>(null);
+  const candCounties = new Map<string, CountyCandidates>();
+  let candCounty = $state<CountyCandidates | null>(null);
+
+  $effect(() => {
+    if (!upcoming || candNational) return;
+    fetch('/data/candidates/2026/national.json')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => { candNational = j; })
+      .catch(() => { candNational = null; });
+  });
+
+  $effect(() => {
+    if (!upcoming || !layer) { candCounty = null; return; }
+    const code = focusCountyCode(layer.level, area, layer);
+    if (!code) { candCounty = null; return; }
+    const cached = candCounties.get(code);
+    if (cached) { candCounty = cached; return; }
+    candCounty = null;
+    fetch(`/data/candidates/2026/county/${code}.json`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j: CountyCandidates | null) => {
+        if (!j) return;
+        candCounties.set(code, j);
+        // 回來時使用者可能已經換到別的縣市，只在仍聚焦同一縣市時才套用
+        if (layer && focusCountyCode(layer.level, area, layer) === code) candCounty = j;
+      })
+      .catch(() => {});
+  });
+
+  const sidebarCandidates = $derived(
+    upcoming && candNational && layer
+      ? selectCandidates(layer.level, area, layer, candNational, candCounty)
+      : null);
 </script>
 
 <div class="stage">
@@ -164,14 +204,19 @@
            ——取代原本「投票日與倒數」放大處理的做法，因為那個資訊現在已經在上面
            的 dateline 出現過一次，不必在這裡重複放大。 -->
       <p class="lede">
-        開票日起本頁將更新為 2026 年結果。地圖上的行政區界線仍是既有資料，可照常
-        點選、下鑽、縮放，但目前沒有選舉結果可顯示。
+        {#if candNational}
+          候選人名單已出爐（{STAGE_LABEL[candNational.source.stage]}），開票後本頁將更新為 2026 年結果。
+          點選地圖上的縣市可查看首長與議員候選人。
+        {:else}
+          開票日起本頁將更新為 2026 年結果。地圖上的行政區界線仍是既有資料，可照常
+          點選、下鑽、縮放，但目前沒有選舉結果可顯示。
+        {/if}
       </p>
     {:else}
       <!-- 導言／年度標示：文字內容一字不改，只調整了位置與外距。 -->
       <p class="notice">
         以下為<strong>西元 {current.year} 年（{current.electionName}）</strong>的結果與其後補選之現況，
-        <strong>非 2026 年選情</strong>。候選人名單須待中選會於登記期後公告，屆時另行補上。
+        <strong>非 2026 年選情</strong>。2026 年候選人名單請切換至 2026 年份查看。
       </p>
 
       {#if legend.length}
@@ -209,7 +254,8 @@
       onmouseenter={() => mapRef?.holdSelection()}
       onmouseleave={() => mapRef?.releaseSelection()}
       role="presentation">
-      <ElectionSidebar {area} {layer} {upcoming} />
+      <ElectionSidebar {area} {layer} {upcoming}
+        candidates={sidebarCandidates} candidateSource={candNational?.source ?? null} />
     </div>
 
     <!-- 圖說：授權標示與領土說明。原本浮在地圖左下角獨立定位、又曾經併入左欄
