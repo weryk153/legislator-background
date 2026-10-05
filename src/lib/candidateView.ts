@@ -30,6 +30,12 @@ export function focusCountyCode(level: Level, _area: AreaLite | null, layer: Lay
   return code ? countyCodeOf(code) : null;
 }
 
+/** 議員選區分組：區域選區（含類型未知者）一組，平地／山地原住民選區另成一組，各自保持原序。 */
+export function groupDistricts(districts: CouncilDistrict[]): { regional: CouncilDistrict[]; indigenous: CouncilDistrict[] } {
+  const isInd = (d: CouncilDistrict) => d.type === 'plainIndigenous' || d.type === 'mountainIndigenous';
+  return { regional: districts.filter((d) => !isInd(d)), indigenous: districts.filter(isInd) };
+}
+
 function districtOfTown(county: CountyCandidates, townCode: string): { district: CouncilDistrict | null; note: string | null } {
   if (county.townToDistrict === null) return { district: null, note: county.mappingNote };
   if (county.splitTowns.includes(townCode)) return { district: null, note: '此區分屬多個選區，請見下方選區列表。' };

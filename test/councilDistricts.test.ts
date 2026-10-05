@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { buildDistrictRefs, reconcileCounty } from '../scraper/lib/councilDistricts';
 
 const T1 = [
@@ -55,8 +55,9 @@ describe('reconcileCounty', () => {
   });
 });
 
-describe('真實 2022 資料', () => {
-  const R = 'scraper/out-roster/cec/voteData/2022-111年地方公職人員選舉';
+const R = 'scraper/out-roster/cec/voteData/2022-111年地方公職人員選舉';
+// 讀本機 gitignored 的 2022 開票資料；檔案不在時略過（比照 candidatePdf.test.ts）
+describe.skipIf(!existsSync(R))('真實 2022 資料', () => {
   const read = (cat: string) => ['city', 'prv'].map((s) => readFileSync(`${R}/${cat}/${s}/elbase.csv`, 'utf8')).join('\n');
   const refs = buildDistrictRefs([
     { type: 'regional', elbaseCsv: read('T1') },

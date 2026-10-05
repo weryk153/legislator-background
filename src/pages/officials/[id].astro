@@ -113,7 +113,7 @@ const jsonLd = [
   ogImageAlt={photoUrl ? o.name : undefined}
 >
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <a href="/" class="back">← 返回總覽</a>
+  <a href={isCandidate ? "/elections" : "/"} class="back">{isCandidate ? "← 返回 2026 選舉" : "← 返回總覽"}</a>
 
   <header class="head">
     <span class="pill">{OFFICE_LABEL[o.officeType]}</span>

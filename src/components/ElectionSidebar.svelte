@@ -7,7 +7,7 @@
   } from '../lib/mapTypes';
 
   import { STAGE_LABEL, chiefTitle, type CandidateEntry, type CandidateSource, type ChiefRace } from '../lib/candidateTypes';
-  import type { SidebarCandidates } from '../lib/candidateView';
+  import { groupDistricts, type SidebarCandidates } from '../lib/candidateView';
 
   /** 政黨色，與地圖共用 mapTypes.ts 的同一份對照，不在此另立一套。 */
   const partyColor = (code: string) => `var(${PARTY_VAR[code] ?? '--party-other'})`;
@@ -181,18 +181,31 @@
           <h3>{area.name}的議員選區</h3>
           {#if candidates.highlight}
             <h4>{candidates.highlight.label}</h4>{@render candList(candidates.highlight.candidates)}
+            {#if candidates.county && groupDistricts(candidates.county.districts).indigenous.length}
+              <p class="note">本縣另有原住民選區，見選區列表。</p>
+            {/if}
           {:else if candidates.townNote}<p class="note">{candidates.townNote}</p>{/if}
         </section>
       {:else if candidates.county}
+        {@const grp = groupDistricts(candidates.county.districts)}
         <section>
           <h3>議員候選人</h3>
           {#if candidates.county.mappingNote}<p class="note">{candidates.county.mappingNote}</p>{/if}
-          {#each candidates.county.districts as d (d.no)}
+          {#each grp.regional as d (d.no)}
             <details class="district">
               <summary>{d.label}<span class="count">{d.candidates.length} 人</span></summary>
               {@render candList(d.candidates)}
             </details>
           {/each}
+          {#if grp.indigenous.length}
+            <h4 class="group-ind">原住民選區</h4>
+            {#each grp.indigenous as d (d.no)}
+              <details class="district">
+                <summary>{d.label}<span class="count">{d.candidates.length} 人</span></summary>
+                {@render candList(d.candidates)}
+              </details>
+            {/each}
+          {/if}
         </section>
       {:else}
         <p class="note">{countyLoadFailed ? '議員候選人資料載入失敗。' : '議員候選人載入中…'}</p>
@@ -397,6 +410,7 @@
   .cand-id { flex-basis: 100%; color: var(--muted); font-size: .8rem; }
   .group { margin: 1rem 0 .25rem; font-size: .8rem; letter-spacing: .08em; color: var(--muted); }
   .race-2026 h4, .district summary { display: flex; justify-content: space-between; margin: .5rem 0 .2rem; }
+  .group-ind { margin: 1rem 0 .2rem; font-size: .8rem; letter-spacing: .08em; color: var(--muted); }
   .count { color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
   .others { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .1rem 1rem; }
   .others li { display: flex; justify-content: space-between; }

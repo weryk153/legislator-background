@@ -24,8 +24,8 @@
 //     　enrichment 腳本補）＋一筆 career{title:career_title, organization:career_org,
 //     　start_date, source_id}。id 交給 DB 預設 gen_random_uuid()；slug 依現有議員慣例
 //     　c-{姓名}-{政黨}-{選區} 產生（見 lib/roster-record-lib.ts）。
-//     　目前僅支援 office_type='councilor'——立委/首長 slug 另有慣例（羅馬拼音/自訂），
-//     　confirmed 名單若混入非議員的 add，本腳本會拒絕並要求人工個案處理。
+//     　目前支援 office_type='councilor' 與 'candidate'（候選人 slug 見 lib/roster-record-lib.ts）——
+//     　立委/首長 slug 另有慣例（羅馬拼音/自訂），confirmed 名單若混入這類 add，本腳本會拒絕並要求人工個案處理。
 //
 // 冪等（可重跑）：
 //   rename：查無 from 但已存在 to（同 office_type/district）→ 視為已改名，跳過。

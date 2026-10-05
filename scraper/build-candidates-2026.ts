@@ -66,8 +66,9 @@ const { national, counties, review, warnings } = assemble({
 // 差異報告：與現有輸出比對（首次產出時沒有前一版）
 const prevNational = existsSync(`${OUT}/national.json`) ? JSON.parse(read(`${OUT}/national.json`)) as NationalCandidates : null;
 const prevCounties = existsSync(`${OUT}/county`)
-  ? readdirSync(`${OUT}/county`).map((f) => JSON.parse(read(`${OUT}/county/${f}`)) as CountyCandidates) : [];
+  ? readdirSync(`${OUT}/county`).filter((f) => f.endsWith('.json')).map((f) => JSON.parse(read(`${OUT}/county/${f}`)) as CountyCandidates) : [];
 const diff = diffCandidates(prevNational ? flatten(prevNational, prevCounties) : null, flatten(national, counties));
+mkdirSync(REPORT_DIR, { recursive: true });
 writeFileSync(`${REPORT_DIR}/candidates-2026-diff.md`, renderDiff(diff));
 
 writeFileSync(`${REPORT_DIR}/candidates-2026-review.md`,

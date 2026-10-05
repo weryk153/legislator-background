@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { selectCandidates, focusCountyCode, countyCodeOf, townCodeOf } from '../src/lib/candidateView';
+import { selectCandidates, focusCountyCode, countyCodeOf, townCodeOf, groupDistricts } from '../src/lib/candidateView';
 import type { NationalCandidates, CountyCandidates, CandidateEntry } from '../src/lib/candidateTypes';
 
 const c = (name: string): CandidateEntry =>
@@ -77,5 +77,18 @@ describe('focusCountyCode', () => {
   it('縣市層由圖層內的行政區推得，略過未編定村里', () => {
     expect(focusCountyCode('town', null, { parentName: '北投區', areas: [{ code: '未編定:12' }, { code: '63-000-00-110-0001' }] }))
       .toBe('63-000-00-000-0000');
+  });
+});
+
+describe('groupDistricts：原住民選區自成一組（spec §6.2）', () => {
+  const d = (no: number, type: 'regional' | 'plainIndigenous' | 'mountainIndigenous' | 'unknown') =>
+    ({ no, label: `第${no}選舉區`, type, candidates: [] });
+  it('區域（含類型未知）在前、原住民選區另列，各自保持原序', () => {
+    const g = groupDistricts([d(1, 'regional'), d(2, 'unknown'), d(3, 'plainIndigenous'), d(4, 'mountainIndigenous'), d(5, 'regional')]);
+    expect(g.regional.map((x) => x.no)).toEqual([1, 2, 5]);
+    expect(g.indigenous.map((x) => x.no)).toEqual([3, 4]);
+  });
+  it('沒有原住民選區時 indigenous 為空', () => {
+    expect(groupDistricts([d(1, 'regional')]).indigenous).toEqual([]);
   });
 });
