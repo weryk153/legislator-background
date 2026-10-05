@@ -44,6 +44,53 @@ function rocToIso(s: string): string {
   return `${Number(m[1]) + 1911}-${m[2]}-${m[3]}`;
 }
 
+/**
+ * 同欄垂直群組的行距門檻。實測四份名冊（姓名／政黨欄，字高 12）：
+ * 同一儲存格折行的行距恆為 3.6；相鄰兩列的儲存格間距最小為 3-1 的 4.2
+ * （其餘 4-1 最小 5.2、2-1 最小 9.4）。門檻取兩者之間。
+ */
+const CLUSTER_GAP = 3.9;
+
+const wy1 = (ws: Word[]) => Math.max(...ws.map((w) => w.y1));
+
+function clustersOf(ws: Word[]): Word[][] {
+  const sorted = [...ws].sort((a, b) => a.y0 - b.y0 || a.x0 - b.x0);
+  const out: Word[][] = [];
+  for (const w of sorted) {
+    const cur = out[out.length - 1];
+    if (cur && w.y0 - wy1(cur) < CLUSTER_GAP) cur.push(w);
+    else out.push([w]);
+  }
+  return out;
+}
+
+/** 把一個群組歸給錨點：跨越的錨點中心落在群組範圍內者；沒有就取最近；有 2 個以上就在最大行距處拆開再分配。 */
+function assign(cluster: Word[], anchors: Word[], pageNo: number): [number, Word[]][] {
+  const lo = Math.min(...cluster.map((w) => w.y0));
+  const hi = wy1(cluster);
+  const inside = anchors.map((a, i) => i).filter((i) => cy(anchors[i]) >= lo && cy(anchors[i]) <= hi);
+  if (inside.length === 1) return [[inside[0], cluster]];
+  if (inside.length === 0) {
+    const mid = (lo + hi) / 2;
+    let best = 0;
+    for (let i = 1; i < anchors.length; i++) {
+      if (Math.abs(cy(anchors[i]) - mid) < Math.abs(cy(anchors[best]) - mid)) best = i;
+    }
+    return [[best, cluster]];
+  }
+  const sorted = [...cluster].sort((a, b) => a.y0 - b.y0 || a.x0 - b.x0);
+  let cut = -1;
+  let gap = -Infinity;
+  for (let k = 1; k < sorted.length; k++) {
+    const g = sorted[k].y0 - wy1(sorted.slice(0, k));
+    if (g > gap) { gap = g; cut = k; }
+  }
+  if (cut < 1 || gap <= 0) {
+    throw new Error(`第 ${pageNo} 頁有 ${inside.length} 個登記日期落在同一儲存格範圍內且無法拆開：${cluster.map((w) => w.text).join(' ')}`);
+  }
+  return [...assign(sorted.slice(0, cut), anchors, pageNo), ...assign(sorted.slice(cut), anchors, pageNo)];
+}
+
 function parsePage(words: Word[], pageNo: number): RegistrationRow[] {
   const nameHead = words.find((w) => w.text === '姓名');
   if (!nameHead) return [];
@@ -63,14 +110,20 @@ function parsePage(words: Word[], pageNo: number): RegistrationRow[] {
   const anchors = body.filter((w) => DATE_RE.test(w.text) && colOf(w) === 'date').sort((a, b) => cy(a) - cy(b));
 
   const cells = anchors.map(() => new Map<Col, Word[]>());
-  for (const w of body) {
-    if (anchors.length === 0) break;
-    let best = 0;
-    for (let i = 1; i < anchors.length; i++) {
-      if (Math.abs(cy(anchors[i]) - cy(w)) < Math.abs(cy(anchors[best]) - cy(w))) best = i;
+  const put = (i: number, c: Col, ws: Word[]) => {
+    (cells[i].get(c) ?? cells[i].set(c, []).get(c)!).push(...ws);
+  };
+  if (anchors.length > 0) {
+    // 逐字詞找最近錨點會出事：四行的長姓名以日期列為中心上下展開，頭尾兩行離鄰列錨點
+    // 反而比較近（屏東縣第11選舉區邱登星／Drusaljiya／n 被切給前後兩列）。
+    // 改成欄內垂直群組：同欄、行距小於 CLUSTER_GAP 的字詞視為同一儲存格，整組一起歸列。
+    const byCol = new Map<Col, Word[]>();
+    for (const w of body) (byCol.get(colOf(w)) ?? byCol.set(colOf(w), []).get(colOf(w))!).push(w);
+    for (const [c, ws] of byCol) {
+      for (const cluster of clustersOf(ws)) {
+        for (const [i, part] of assign(cluster, anchors, pageNo)) put(i, c, part);
+      }
     }
-    const c = colOf(w);
-    (cells[best].get(c) ?? cells[best].set(c, []).get(c)!).push(w);
   }
 
   const text = (m: Map<Col, Word[]>, c: Col) =>

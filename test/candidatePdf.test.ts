@@ -84,3 +84,30 @@ describe('parseRegistrationBbox：號次欄', () => {
     ]))).toThrow(/姓名/);
   });
 });
+
+// 完整性斷言只數列數，抓不到「折行字詞歸給鄰列」；對完整名冊檢查每格形狀。
+// 讀本機 gitignored 的 bbox 檔（不在測試裡呼叫 pdftotext）；檔案不在時略過。
+import { existsSync } from 'node:fs';
+
+describe('完整名冊健全性（讀本機 gitignored 名冊）', () => {
+  const dir = 'scraper/out-roster/cec/2026-registration';
+  for (const f of ['1-1', '2-1', '3-1', '4-1']) {
+    const path = `${dir}/${f}.bbox.html`;
+    it.skipIf(!existsSync(path))(`${f}：姓名、政黨、選舉區形狀正確`, () => {
+      const rows = parseRegistrationBbox(readFileSync(path, 'utf8'));
+      const nameRe = /^(\p{Script=Han}+([‧．・·]\p{Script=Han}+)*)?([A-Za-z][A-Za-zʼ'‧．・·\s]*)?$/u;
+      const districtRe = /^.{2}[縣市](第\d+選舉區)?$/;
+      expect(rows.filter((r) => !r.name || !nameRe.test(r.name))).toEqual([]);
+      expect(rows.filter((r) => !r.party || /[\d/]/.test(r.party))).toEqual([]);
+      expect(rows.filter((r) => !districtRe.test(r.district))).toEqual([]);
+    });
+  }
+  // 4-1 屏東縣第11選舉區：四行長姓名以日期列為中心展開，曾被逐字詞最近錨點切給前後兩列
+  it.skipIf(!existsSync(`${dir}/4-1.bbox.html`))('4-1 長原住民姓名不跨列', () => {
+    const rows = parseRegistrationBbox(readFileSync(`${dir}/4-1.bbox.html`, 'utf8'));
+    const names = (d: string) => rows.filter((r) => r.district === d).map((r) => r.name);
+    expect(names('屏東縣第11選舉區')).toContain('邱登星Adrucangalj·Drusaljiyan');
+    expect(names('屏東縣第11選舉區')).toContain('何長成');
+    expect(names('屏東縣第12選舉區')).toContain('越秋女');
+  });
+});
