@@ -1,11 +1,11 @@
 ---
 import Base from "../layouts/Base.astro";
 import ElectionPanel from "../components/ElectionPanel.svelte";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { buildYears } from "../lib/electionYears";
 import type { MapLayer } from "../lib/mapTypes";
-import { STAGE_LABEL, chiefTitle, type NationalCandidates } from "../lib/candidateTypes";
+import { STAGE_LABEL, chiefTitle, type CandidateEntry, type CountyCandidates, type NationalCandidates } from "../lib/candidateTypes";
 
 const meta = JSON.parse(readFileSync(join(process.cwd(), "public", "data", "map", "meta.json"), "utf8"));
 // 年份切換器的資料來源，見 src/lib/electionYears.ts 開頭的說明——日後加 2018
@@ -29,6 +29,19 @@ try {
 } catch (e) {
   console.warn(`candidates national.json 讀取失敗，/elections 候選人表略過：${(e as Error).message}`);
 }
+
+// 2026 縣市議員候選人：各縣市一個檔，依縣市長表的縣市順序（六都在前）排列。
+const councilDir = join(process.cwd(), "public", "data", "candidates", "2026", "county");
+const councils2026: CountyCandidates[] = (() => {
+  if (!candidates2026 || !existsSync(councilDir)) return [];
+  const byCode = new Map(readdirSync(councilDir).filter((f) => f.endsWith(".json"))
+    .map((f) => JSON.parse(readFileSync(join(councilDir, f), "utf8")) as CountyCandidates)
+    .map((c) => [c.countyCode, c]));
+  return candidates2026.races.map((r) => byCode.get(r.countyCode)).filter((c): c is CountyCandidates => !!c);
+})();
+const councilTotal = councils2026.reduce((n, c) => n + c.districts.reduce((m, d) => m + d.candidates.length, 0), 0);
+// 現任議員爭取連任：連到的檔案身分為現任議員（含新竹縣這類選區重劃後換編號者）。
+const councilReelect = (c: CandidateEntry) => !!c.slug && !!c.identity?.startsWith("現任議員");
 
 const fmtInt = (n: number): string => n.toLocaleString("en-US");
 const fmtPercent = (n: number | null | undefined): string => (typeof n === "number" ? `${n.toFixed(2)}%` : "—");
@@ -154,7 +167,7 @@ const jsonLd = [
                   {r.candidates.map((c, i) => (
                     <>
                       {i > 0 && "、"}
-                      <span class={c.slug && c.slug === r.incumbent2022?.slug ? "cand reelect" : "cand"}>{c.slug ? <a href={`/officials/${c.slug}`}>{c.name}</a> : c.name}（{c.partyName === "無" ? "無黨籍" : c.partyName}）</span>
+                      <span class={c.slug && c.slug === r.incumbent2022?.slug ? "cand reelect" : "cand"}><span class="nm">{c.slug ? <a href={`/officials/${c.slug}`}>{c.name}</a> : c.name}</span>（{c.partyName === "無" ? "無黨籍" : c.partyName}）</span>
                     </>
                   ))}
                 </td>
@@ -163,6 +176,39 @@ const jsonLd = [
           </tbody>
         </table>
       </div>
+    </section>
+  )}
+
+  {councils2026.length > 0 && (
+    <section class="overview" aria-labelledby="council-title">
+      <h2 id="council-title">2026 縣市議員候選人</h2>
+      <p class="overview-note">
+        22 縣市共 {fmtInt(councilTotal)} 人，依縣市展開查看各選區名單。<strong>粗體</strong>為爭取連任的現任議員；
+        有連結者為本站已收錄檔案之人物。選區編號以中選會 2026 名冊為準，部分縣市已重劃。
+      </p>
+      {councils2026.map((co) => (
+        <details class="council">
+          <summary>
+            <span class="council-name">{co.countyName}</span>
+            <span class="council-count">{co.districts.length} 個選區・{co.districts.reduce((m, d) => m + d.candidates.length, 0)} 人</span>
+          </summary>
+          <dl class="council-list">
+            {co.districts.map((d) => (
+              <>
+                <dt>{d.label}</dt>
+                <dd>
+                  {d.candidates.map((c, i) => (
+                    <>
+                      {i > 0 && "、"}
+                      <span class={councilReelect(c) ? "cand reelect" : "cand"}><span class="nm">{c.slug ? <a href={`/officials/${c.slug}`}>{c.name}</a> : c.name}</span>（{c.partyName === "無" ? "無黨籍" : c.partyName}）</span>
+                    </>
+                  ))}
+                </dd>
+              </>
+            ))}
+          </dl>
+        </details>
+      ))}
     </section>
   )}
 
@@ -291,9 +337,28 @@ const jsonLd = [
   .cand-table td { white-space: normal; line-height: 1.8; vertical-align: top; }
   .cand-table thead th:first-child, .cand-table tbody th { width: 6.5em; vertical-align: top; }
   .cand { white-space: nowrap; }
+
+  /* 議員候選人：縣市一列可展開，選區名稱與名單用定義清單排，窄螢幕改上下排。 */
+  .council { border-bottom: 1px solid var(--line); }
+  .council summary {
+    display: flex; justify-content: space-between; gap: 12px;
+    padding: 12px 0; cursor: pointer; font-family: var(--serif); font-weight: 700;
+  }
+  .council-count { font-family: var(--sans); font-weight: 400; color: var(--muted); font-size: 0.875rem; }
+  .council-list {
+    display: grid; grid-template-columns: 11em 1fr; gap: 6px 16px;
+    margin: 0 0 16px; font-size: 0.9375rem; line-height: 1.8;
+  }
+  .council-list dt { color: var(--muted); }
+  .council-list dd { margin: 0; }
+  .council-list dd a { text-decoration: underline; text-underline-offset: 2px; }
+  @media (max-width: 640px) {
+    .council-list { grid-template-columns: 1fr; gap: 0; }
+    .council-list dd { margin-bottom: 8px; }
+  }
   /* 現任縣市長爭取連任：候選人連到的檔案即 2022 當選、目前在任的首長
      （ChiefRace.incumbent2022.slug）。只加粗姓名，政黨與其他候選人同樣式。 */
-  .cand.reelect > a, .cand.reelect { font-weight: 700; }
+  .cand.reelect .nm, .cand.reelect .nm a { font-weight: 700; }
   td a { text-decoration: underline; text-underline-offset: 2px; }
   td a:hover { color: var(--accent); }
 
