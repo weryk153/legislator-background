@@ -57,28 +57,30 @@ const byCountThenName = <T extends { count: number }>(name: (x: T) => string) =>
  * 依人數由多到少排序，同數依名稱。
  */
 export function partyTally(cands: CandidateEntry[]): PartyBar[] {
+  // 有專屬政黨色（PARTY_VAR）的主要政黨各自一條；其餘（含 2022 代碼表沒有的新政黨）
+  // 一律併成「其他政黨」並列出黨名、固定排最後——小黨各自一條時顏色都是同一個
+  // 「其他」色，排在中間反而讓人分不出誰是誰。
   const bars = new Map<string, PartyBar>();
   const others = new Map<string, number>();
   for (const c of cands) {
     if (c.partyName === '無' || c.partyCode === '999') {
       const b = bars.get('none') ?? { key: 'none', label: '無黨籍', cssVar: '--party-none', count: 0 };
       b.count++; bars.set('none', b);
-    } else if (c.partyCode === null) {
-      others.set(c.partyName, (others.get(c.partyName) ?? 0) + 1);
-    } else {
+    } else if (c.partyCode !== null && PARTY_VAR[c.partyCode]) {
       const b = bars.get(c.partyCode)
-        ?? { key: c.partyCode, label: c.partyName, cssVar: PARTY_VAR[c.partyCode] ?? '--party-other', count: 0 };
+        ?? { key: c.partyCode, label: c.partyName, cssVar: PARTY_VAR[c.partyCode], count: 0 };
       b.count++; bars.set(c.partyCode, b);
+    } else {
+      others.set(c.partyName, (others.get(c.partyName) ?? 0) + 1);
     }
   }
-  if (others.size > 0) {
-    const parties = [...others].map(([name, count]) => ({ name, count })).sort(byCountThenName((p) => p.name));
-    bars.set('other', {
-      key: 'other', label: '其他政黨', cssVar: '--party-other',
-      count: parties.reduce((n, p) => n + p.count, 0), parties,
-    });
-  }
-  return [...bars.values()].sort(byCountThenName((b) => b.label));
+  const main = [...bars.values()].sort(byCountThenName((b) => b.label));
+  if (others.size === 0) return main;
+  const parties = [...others].map(([name, count]) => ({ name, count })).sort(byCountThenName((p) => p.name));
+  return [...main, {
+    key: 'other', label: '其他政黨', cssVar: '--party-other',
+    count: parties.reduce((n, p) => n + p.count, 0), parties,
+  }];
 }
 
 /** 名冊順序：全部抽完號次才依號次排，否則維持中選會名冊順序。不改動原陣列。 */

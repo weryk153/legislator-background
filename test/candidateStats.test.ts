@@ -49,24 +49,23 @@ describe('參選概況', () => {
 });
 
 describe('各黨提名人數', () => {
-  it('依人數排序；無黨籍單獨一條；新政黨併成其他政黨並列黨名', () => {
+  it('依人數排序；無黨籍單獨一條；主要政黨以外一律併成「其他政黨」並固定排最後', () => {
     const bars = partyTally([
       c('a', KMT), c('b', KMT), c('c', DPP), c('d'), c('e'), c('f'),
       c('g', { partyName: '新黨甲', partyCode: null }), c('h', { partyName: '新黨乙', partyCode: null }),
-      c('i', { partyName: '新黨乙', partyCode: null }),
+      c('i', { partyName: '新黨乙', partyCode: null }), c('j', { partyName: '勞動黨', partyCode: '15' }),
     ]);
     expect(bars.map((b) => [b.label, b.count, b.cssVar])).toEqual([
-      ['其他政黨', 3, '--party-other'],
       ['無黨籍', 3, '--party-none'],
       ['中國國民黨', 2, '--party-kmt'],
       ['民主進步黨', 1, '--party-dpp'],
+      ['其他政黨', 4, '--party-other'],
     ]);
-    expect(bars[0].parties).toEqual([{ name: '新黨乙', count: 2 }, { name: '新黨甲', count: 1 }]);
+    expect(bars[3].parties).toEqual([{ name: '新黨乙', count: 2 }, { name: '勞動黨', count: 1 }, { name: '新黨甲', count: 1 }]);
   });
 
-  it('有代碼但不在 PARTY_VAR 的政黨各自一條，色彩回退 --party-other，不併入其他政黨', () => {
-    const bars = partyTally([c('a', { partyName: '勞動黨', partyCode: '15' })]);
-    expect(bars).toEqual([{ key: '15', label: '勞動黨', cssVar: '--party-other', count: 1 }]);
+  it('只有主要政黨時沒有其他政黨這一條', () => {
+    expect(partyTally([c('a', KMT)]).map((b) => b.key)).toEqual(['1']);
   });
 });
 
