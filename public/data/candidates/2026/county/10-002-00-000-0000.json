@@ -1,0 +1,649 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "countyCode": "10-002-00-000-0000",
+ "countyName": "宜蘭縣",
+ "districts": [
+  {
+   "no": 1,
+   "label": "第1選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "林麗",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-林麗-民進黨-宜蘭縣第01選舉區",
+     "identity": "現任議員（宜蘭縣第1選舉區）"
+    },
+    {
+     "name": "劉仲書",
+     "partyName": "時代力量",
+     "partyCode": "267",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "游國連",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃光佑",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林岳賢",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-林岳賢-國民黨-宜蘭縣第01選舉區",
+     "identity": "現任議員（宜蘭縣第1選舉區）"
+    },
+    {
+     "name": "何加忻",
+     "partyName": "正神名黨",
+     "partyCode": "375",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "莊淑如",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃定和",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃定和-無黨籍及未經政黨推薦-宜蘭縣第01選舉區",
+     "identity": "現任議員（宜蘭縣第1選舉區）"
+    },
+    {
+     "name": "陳漢澤",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張勝德",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張勝德-國民黨-宜蘭縣第01選舉區",
+     "identity": "現任議員（宜蘭縣第1選舉區）"
+    },
+    {
+     "name": "林錫明",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-林錫明-無黨籍及未經政黨推薦-宜蘭縣第01選舉區",
+     "identity": "現任議員（宜蘭縣第1選舉區）"
+    },
+    {
+     "name": "楊易林",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林蒼佑",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃奎翰",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "項秀蘭",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "label": "第2選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "林詩穎",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林詩穎-民進黨-宜蘭縣第02選舉區",
+     "identity": "現任議員（宜蘭縣第2選舉區）"
+    },
+    {
+     "name": "賴良洲",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-賴良洲-國民黨-宜蘭縣第02選舉區",
+     "identity": "現任議員（宜蘭縣第2選舉區）"
+    },
+    {
+     "name": "林瑞文",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "label": "第3選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "李淑芬",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林聰池",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林聰池-無黨籍及未經政黨推薦-宜蘭縣第03選舉區",
+     "identity": "現任議員（宜蘭縣第3選舉區）"
+    },
+    {
+     "name": "游順評",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳秋玟",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張永德",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "label": "第4選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "李姿婷",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃浴沂",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-黃浴沂-國民黨-宜蘭縣第04選舉區",
+     "identity": "現任議員（宜蘭縣第4選舉區）"
+    },
+    {
+     "name": "陳玉麟",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "label": "第5選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "江子言",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "沈清山",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃建勇",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃建勇-國民黨-宜蘭縣第05選舉區",
+     "identity": "現任議員（宜蘭縣第5選舉區）"
+    },
+    {
+     "name": "陳福山",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳福山-無黨籍及未經政黨推薦-宜蘭縣第05選舉區",
+     "identity": "現任議員（宜蘭縣第5選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "label": "第6選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "陳漢鍾",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-陳漢鍾-無黨籍及未經政黨推薦-宜蘭縣第06選舉區",
+     "identity": "現任議員（宜蘭縣第6選舉區）"
+    },
+    {
+     "name": "謝家倫",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-謝家倫-民進黨-宜蘭縣第06選舉區",
+     "identity": "現任議員（宜蘭縣第6選舉區）"
+    },
+    {
+     "name": "薛呈懿",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "呂惠卿",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-呂惠卿-民進黨-宜蘭縣第06選舉區",
+     "identity": "現任議員（宜蘭縣第6選舉區）"
+    },
+    {
+     "name": "李中",
+     "partyName": "勞動黨",
+     "partyCode": "15",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林宜弘",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃琤婷",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-黃琤婷-國民黨-宜蘭縣第06選舉區",
+     "identity": "現任議員（宜蘭縣第6選舉區）"
+    },
+    {
+     "name": "王乾明",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "label": "第7選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "黃子堯",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林義剛",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-林義剛-國民黨-宜蘭縣第07選舉區",
+     "identity": "現任議員（宜蘭縣第7選舉區）"
+    },
+    {
+     "name": "沈信雄",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-沈信雄-無黨籍及未經政黨推薦-宜蘭縣第07選舉區",
+     "identity": "現任議員（宜蘭縣第7選舉區）"
+    },
+    {
+     "name": "張明華",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 8,
+   "label": "第8選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "楊弘旻",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-楊弘旻-國民黨-宜蘭縣第08選舉區",
+     "identity": "現任議員（宜蘭縣第8選舉區）"
+    },
+    {
+     "name": "邱素梅",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-邱素梅-無黨籍及未經政黨推薦-宜蘭縣第08選舉區",
+     "identity": "現任議員（宜蘭縣第8選舉區）"
+    },
+    {
+     "name": "林佩螢",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-林佩螢-民進黨-宜蘭縣第08選舉區",
+     "identity": "現任議員（宜蘭縣第8選舉區）"
+    },
+    {
+     "name": "林峻輔",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 9,
+   "label": "第9選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "黃賢能",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "游雅絢",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "曾茂照",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "江信賢",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "郭嘉呈",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 10,
+   "label": "第10選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "黃士駿",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李明哲",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳玉萍",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳玉萍-無黨籍及未經政黨推薦-宜蘭縣第10選舉區",
+     "identity": "現任議員（宜蘭縣第10選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 11,
+   "label": "第11選舉區（平地原住民）",
+   "type": "plainIndigenous",
+   "candidates": [
+    {
+     "name": "孫湯玉惠alysaku",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-孫湯玉惠alysaku-無黨籍及未經政黨推薦-宜蘭縣第11選舉區",
+     "identity": "現任議員（宜蘭縣第11選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 12,
+   "label": "第12選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "沈志弘",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-沈志弘-國民黨-宜蘭縣第12選舉區",
+     "identity": "現任議員（宜蘭縣第12選舉區）"
+    },
+    {
+     "name": "陳傑麟",
+     "partyName": "親民黨",
+     "partyCode": "90",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 13,
+   "label": "第13選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "曹天民",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李勝雄",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  }
+ ],
+ "townToDistrict": {
+  "10-002-00-010-0000": 1,
+  "10-002-00-020-0000": 6,
+  "10-002-00-030-0000": 10,
+  "10-002-00-120-0000": 10,
+  "10-002-00-040-0000": 2,
+  "10-002-00-050-0000": 3,
+  "10-002-00-060-0000": 5,
+  "10-002-00-070-0000": 4,
+  "10-002-00-080-0000": 8,
+  "10-002-00-090-0000": 7,
+  "10-002-00-100-0000": 9,
+  "10-002-00-110-0000": 9
+ },
+ "splitTowns": [],
+ "mappingNote": null
+}

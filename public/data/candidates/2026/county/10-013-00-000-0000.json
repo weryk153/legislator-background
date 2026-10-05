@@ -1,0 +1,943 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "countyCode": "10-013-00-000-0000",
+ "countyName": "屏東縣",
+ "districts": [
+  {
+   "no": 1,
+   "label": "第1選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "蔣月惠",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-蔣月惠-無黨籍及未經政黨推薦-屏東縣第01選舉區",
+     "identity": "現任議員（屏東縣第1選舉區）"
+    },
+    {
+     "name": "張平原",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-張平原-無黨籍及未經政黨推薦-屏東縣第01選舉區",
+     "identity": "現任議員（屏東縣第1選舉區）"
+    },
+    {
+     "name": "林建志",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林明順",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-林明順-無黨籍及未經政黨推薦-屏東縣第01選舉區",
+     "identity": "現任議員（屏東縣第1選舉區）"
+    },
+    {
+     "name": "蔣家煌",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-蔣家煌-無黨籍及未經政黨推薦-屏東縣第01選舉區",
+     "identity": "現任議員（屏東縣第1選舉區）"
+    },
+    {
+     "name": "方華雄",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳揚",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-陳揚-國民黨-屏東縣第01選舉區",
+     "identity": "現任議員（屏東縣第1選舉區）"
+    },
+    {
+     "name": "任峻賢",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃明賢",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃明賢-國民黨-屏東縣第01選舉區",
+     "identity": "現任議員（屏東縣第1選舉區）"
+    },
+    {
+     "name": "李清聖",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蘇資婷",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蘇資婷-國民黨-屏東縣第01選舉區",
+     "identity": "現任議員（屏東縣第1選舉區）"
+    },
+    {
+     "name": "龔書翩",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李世斌",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-李世斌-民進黨-屏東縣第01選舉區",
+     "identity": "現任議員（屏東縣第1選舉區）"
+    },
+    {
+     "name": "蔡侑庭",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳哲蕙",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "饒怡君",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林育先",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "方一祥",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-方一祥-民進黨-屏東縣第01選舉區",
+     "identity": "現任議員（屏東縣第1選舉區）"
+    },
+    {
+     "name": "劉振隆",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳韋強",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "label": "第2選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "宋麗華",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-宋麗華-國民黨-屏東縣第02選舉區",
+     "identity": "現任議員（屏東縣第2選舉區）"
+    },
+    {
+     "name": "盧文瑞",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-盧文瑞-無黨籍及未經政黨推薦-屏東縣第02選舉區",
+     "identity": "現任議員（屏東縣第2選舉區）"
+    },
+    {
+     "name": "莊瓊如",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "徐國銘",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "何春美",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-何春美-國民黨-屏東縣第02選舉區",
+     "identity": "現任議員（屏東縣第2選舉區）"
+    },
+    {
+     "name": "鍾詔元",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "葉明博",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-葉明博-無黨籍及未經政黨推薦-屏東縣第02選舉區",
+     "identity": "現任議員（屏東縣第2選舉區）"
+    },
+    {
+     "name": "陳秋豪",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王景山",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蘇孟淳",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "鍾慶平",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "label": "第3選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "魏楓淩",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳宗廷",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-陳宗廷-無黨籍及未經政黨推薦-屏東縣第03選舉區",
+     "identity": "現任議員（屏東縣第3選舉區）"
+    },
+    {
+     "name": "許馨勻",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-許馨勻-國民黨-屏東縣第03選舉區",
+     "identity": "現任議員（屏東縣第3選舉區）"
+    },
+    {
+     "name": "吳慈慧",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-吳慈慧-國民黨-屏東縣第03選舉區",
+     "identity": "現任議員（屏東縣第3選舉區）"
+    },
+    {
+     "name": "黃建溢",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃建溢-民進黨-屏東縣第03選舉區",
+     "identity": "現任議員（屏東縣第3選舉區）"
+    },
+    {
+     "name": "林郁虹",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林郁虹-無黨籍及未經政黨推薦-屏東縣第03選舉區",
+     "identity": "現任議員（屏東縣第3選舉區）"
+    },
+    {
+     "name": "利八魁",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-利八魁-民進黨-屏東縣第03選舉區",
+     "identity": "現任議員（屏東縣第3選舉區）"
+    },
+    {
+     "name": "林國順",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "潘連周",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "潘筱潔",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳志成",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳志成-無黨籍及未經政黨推薦-屏東縣第03選舉區",
+     "identity": "現任議員（屏東縣第3選舉區）"
+    },
+    {
+     "name": "徐榮耀",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-徐榮耀-國民黨-屏東縣第03選舉區",
+     "identity": "現任議員（屏東縣第3選舉區）"
+    },
+    {
+     "name": "潘炩禕",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李世淦",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-李世淦-國民黨-屏東縣第03選舉區",
+     "identity": "現任議員（屏東縣第3選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "label": "第4選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "劉孟君",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-劉孟君-民進黨-屏東縣第04選舉區",
+     "identity": "現任議員（屏東縣第4選舉區）"
+    },
+    {
+     "name": "胡嘉玲",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許展維",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-許展維-民進黨-屏東縣第04選舉區",
+     "identity": "現任議員（屏東縣第4選舉區）"
+    },
+    {
+     "name": "方文正",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-方文正-民進黨-屏東縣第04選舉區",
+     "identity": "現任議員（屏東縣第4選舉區）"
+    },
+    {
+     "name": "林蔡鳯梅",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林蔡鳯梅-無黨籍及未經政黨推薦-屏東縣第04選舉區",
+     "identity": "現任議員（屏東縣第4選舉區）"
+    },
+    {
+     "name": "方冠丁",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "鄭喬云",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "呂少麒",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "周芸均",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林宇澤",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "label": "第5選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "周碧雲",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-周碧雲-民進黨-屏東縣第05選舉區",
+     "identity": "現任議員（屏東縣第5選舉區）"
+    },
+    {
+     "name": "羅平道",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-羅平道-民進黨-屏東縣第05選舉區",
+     "identity": "現任議員（屏東縣第5選舉區）"
+    },
+    {
+     "name": "黃盈裕",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃盈裕-無黨籍及未經政黨推薦-屏東縣第05選舉區",
+     "identity": "現任議員（屏東縣第5選舉區）"
+    },
+    {
+     "name": "陳靜芳",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張榮傑",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "label": "第6選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "盧邑宸",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張榮志",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張榮志-國民黨-屏東縣第06選舉區",
+     "identity": "現任議員（屏東縣第6選舉區）"
+    },
+    {
+     "name": "潘芳泉",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-潘芳泉-民進黨-屏東縣第06選舉區",
+     "identity": "現任議員（屏東縣第6選舉區）"
+    },
+    {
+     "name": "李建華",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "label": "第7選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "陳建興",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳國在",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 8,
+   "label": "第8選舉區（平地原住民）",
+   "type": "plainIndigenous",
+   "candidates": [
+    {
+     "name": "潘翠雲",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-潘翠雲-國民黨-屏東縣第08選舉區",
+     "identity": "現任議員（屏東縣第8選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 9,
+   "label": "第9選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "江金妹",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張利惠",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-張利惠-國民黨-屏東縣第09選舉區",
+     "identity": "現任議員（屏東縣第9選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 10,
+   "label": "第10選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "高惠芬",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-高惠芬-國民黨-屏東縣第10選舉區",
+     "identity": "現任議員（屏東縣第10選舉區）"
+    },
+    {
+     "name": "蕭惠美Zuljezulje Qapulu",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 11,
+   "label": "第11選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "何長成",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-何長成-無黨籍及未經政黨推薦-屏東縣第11選舉區",
+     "identity": "現任議員（屏東縣第11選舉區）"
+    },
+    {
+     "name": "邱登星Adrucangalj·Drusaljiyan",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 12,
+   "label": "第12選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "越秋女",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-越秋女-無黨籍及未經政黨推薦-屏東縣第12選舉區",
+     "identity": "現任議員（屏東縣第12選舉區）"
+    },
+    {
+     "name": "鄭鴻耀",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "莊景星",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 13,
+   "label": "第13選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "周陳曉玟",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-周陳曉玟-無黨籍及未經政黨推薦-屏東縣第13選舉區",
+     "identity": "現任議員（屏東縣第13選舉區）"
+    },
+    {
+     "name": "鄭志偉",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 14,
+   "label": "第14選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "周英傑",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李振榮",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "侯廉聰Aljim Pacikel",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 15,
+   "label": "第15選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "許金吉",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "洪亞男",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林明德",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "劉忠義",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 16,
+   "label": "第16選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "杜玉慧",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "杜仁勇",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-杜仁勇-無黨籍及未經政黨推薦-屏東縣第16選舉區",
+     "identity": "現任議員（屏東縣第16選舉區）"
+    }
+   ]
+  }
+ ],
+ "townToDistrict": {
+  "10-013-00-010-0000": 1,
+  "10-013-00-020-0000": 3,
+  "10-013-00-120-0000": 3,
+  "10-013-00-130-0000": 3,
+  "10-013-00-140-0000": 3,
+  "10-013-00-150-0000": 3,
+  "10-013-00-160-0000": 3,
+  "10-013-00-290-0000": 3,
+  "10-013-00-300-0000": 3,
+  "10-013-00-310-0000": 3,
+  "10-013-00-030-0000": 4,
+  "10-013-00-050-0000": 4,
+  "10-013-00-170-0000": 4,
+  "10-013-00-040-0000": 6,
+  "10-013-00-230-0000": 6,
+  "10-013-00-240-0000": 6,
+  "10-013-00-250-0000": 6,
+  "10-013-00-320-0000": 6,
+  "10-013-00-330-0000": 6,
+  "10-013-00-060-0000": 2,
+  "10-013-00-070-0000": 2,
+  "10-013-00-080-0000": 2,
+  "10-013-00-090-0000": 2,
+  "10-013-00-100-0000": 2,
+  "10-013-00-110-0000": 2,
+  "10-013-00-260-0000": 2,
+  "10-013-00-270-0000": 2,
+  "10-013-00-280-0000": 2,
+  "10-013-00-180-0000": 5,
+  "10-013-00-190-0000": 5,
+  "10-013-00-200-0000": 5,
+  "10-013-00-210-0000": 5,
+  "10-013-00-220-0000": 7
+ },
+ "splitTowns": [],
+ "mappingNote": null
+}

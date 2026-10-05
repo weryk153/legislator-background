@@ -1,0 +1,727 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "countyCode": "10-009-00-000-0000",
+ "countyName": "雲林縣",
+ "districts": [
+  {
+   "no": 1,
+   "label": "第1選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "廖昶淳",
+     "partyName": "時代力量",
+     "partyCode": "267",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃釋瑩",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳永修",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳永修-國民黨-雲林縣第01選舉區",
+     "identity": "現任議員（雲林縣第1選舉區）"
+    },
+    {
+     "name": "林靖冠",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "廖郁賢",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "江文登",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-江文登-民進黨-雲林縣第01選舉區",
+     "identity": "現任議員（雲林縣第1選舉區）"
+    },
+    {
+     "name": "邱世文",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃勝志",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃勝志-國民黨-雲林縣第01選舉區",
+     "identity": "現任議員（雲林縣第1選舉區）"
+    },
+    {
+     "name": "張光儀",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王竣毅",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林群力",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林岳璋",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-林岳璋-無黨籍及未經政黨推薦-雲林縣第01選舉區",
+     "identity": "現任議員（雲林縣第1選舉區）"
+    },
+    {
+     "name": "許百芳",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "賴瑪玲",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "曾博鴻",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-曾博鴻-民進黨-雲林縣第01選舉區",
+     "identity": "現任議員（雲林縣第1選舉區）"
+    },
+    {
+     "name": "鍾明馨",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-鍾明馨-無黨籍及未經政黨推薦-雲林縣第01選舉區",
+     "identity": "現任議員（雲林縣第1選舉區）"
+    },
+    {
+     "name": "楊朝祈",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳芳盈",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-陳芳盈-無黨籍及未經政黨推薦-雲林縣第01選舉區",
+     "identity": "現任議員（雲林縣第1選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "label": "第2選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "陳麗蘭",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "賴明源",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-賴明源-無黨籍及未經政黨推薦-雲林縣第02選舉區",
+     "identity": "現任議員（雲林縣第2選舉區）"
+    },
+    {
+     "name": "王秋足",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-王秋足-國民黨-雲林縣第02選舉區",
+     "identity": "現任議員（雲林縣第2選舉區）"
+    },
+    {
+     "name": "洪惠玲",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "高明達",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃景鴻",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張庭綺",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-張庭綺-民進黨-雲林縣第02選舉區",
+     "identity": "現任議員（雲林縣第2選舉區）"
+    },
+    {
+     "name": "林森寳",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳延豐",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "label": "第3選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "陳乙辰",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-陳乙辰-民眾黨-雲林縣第03選舉區",
+     "identity": "現任議員（雲林縣第3選舉區）"
+    },
+    {
+     "name": "黃美瑤",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-黃美瑤-無黨籍及未經政黨推薦-雲林縣第03選舉區",
+     "identity": "現任議員（雲林縣第3選舉區）"
+    },
+    {
+     "name": "魏順興",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "沈昱霆",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳俊龍",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳俊龍-無黨籍及未經政黨推薦-雲林縣第03選舉區",
+     "identity": "現任議員（雲林縣第3選舉區）"
+    },
+    {
+     "name": "黃凱",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃凱-無黨籍及未經政黨推薦-雲林縣第03選舉區",
+     "identity": "現任議員（雲林縣第3選舉區）"
+    },
+    {
+     "name": "李明明",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張維心",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-張維心-無黨籍及未經政黨推薦-雲林縣第03選舉區",
+     "identity": "現任議員（雲林縣第3選舉區）"
+    },
+    {
+     "name": "蔡明水",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-蔡明水-無黨籍及未經政黨推薦-雲林縣第03選舉區",
+     "identity": "現任議員（雲林縣第3選舉區）"
+    },
+    {
+     "name": "林文彬",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-林文彬-民進黨-雲林縣第03選舉區",
+     "identity": "現任議員（雲林縣第3選舉區）"
+    },
+    {
+     "name": "王鈺齊",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-王鈺齊-台灣團結聯盟-雲林縣第03選舉區",
+     "identity": "現任議員（雲林縣第3選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "label": "第4選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "廖子漢",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "廖偉晴",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-廖偉晴-國民黨-雲林縣第04選舉區",
+     "identity": "現任議員（雲林縣第4選舉區）"
+    },
+    {
+     "name": "鍾任明",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "廖庭輝",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "洪如萍",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-洪如萍-民進黨-雲林縣第04選舉區",
+     "identity": "現任議員（雲林縣第4選舉區）"
+    },
+    {
+     "name": "游淑雲",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-游淑雲-無黨籍及未經政黨推薦-雲林縣第04選舉區",
+     "identity": "現任議員（雲林縣第4選舉區）"
+    },
+    {
+     "name": "張家閎",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李泓儀",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王裔迪",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李明哲",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-李明哲-國民黨-雲林縣第04選舉區",
+     "identity": "現任議員（雲林縣第4選舉區）"
+    },
+    {
+     "name": "楊智凱",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "label": "第5選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "郭佩瑄",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林宜豊",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡永順",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許留賓",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-許留賓-無黨籍及未經政黨推薦-雲林縣第05選舉區",
+     "identity": "現任議員（雲林縣第5選舉區）"
+    },
+    {
+     "name": "吳宗典",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蘇國誼",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "趙育祥",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳蕙蘭",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-吳蕙蘭-無黨籍及未經政黨推薦-雲林縣第05選舉區",
+     "identity": "現任議員（雲林縣第5選舉區）"
+    },
+    {
+     "name": "蔡梨美",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林建鴻",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "label": "第6選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "蔡孟真",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蔡孟真-民進黨-雲林縣第06選舉區",
+     "identity": "現任議員（雲林縣第6選舉區）"
+    },
+    {
+     "name": "蔡岳儒",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蔡岳儒-民進黨-雲林縣第06選舉區",
+     "identity": "現任議員（雲林縣第6選舉區）"
+    },
+    {
+     "name": "黃文祥",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃文祥-無黨籍及未經政黨推薦-雲林縣第06選舉區",
+     "identity": "現任議員（雲林縣第6選舉區）"
+    },
+    {
+     "name": "陳定鈞",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃美蘭",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王承宏",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王新堯",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "label": "第7選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "呂佶娜",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "周志祥Kacaw．Kaco",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "鄭玫惠",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 8,
+   "label": "第8選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "高瑛翠",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡嘉峻Pisaw Hakaw",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李丘威達",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張忠豪",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  }
+ ],
+ "townToDistrict": null,
+ "splitTowns": [],
+ "mappingNote": "議員選區與 2022 年劃分不同（2022 有 6 個選區、2026 名冊有 8 個，選區可能已重劃），無法標示各鄉鎮市區所屬選區。"
+}

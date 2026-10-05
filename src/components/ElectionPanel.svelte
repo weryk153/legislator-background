@@ -18,14 +18,21 @@
   import { PARTY_VAR, isUnassignedVillage, type MapArea, type MapLayer } from '../lib/mapTypes';
   import type { ElectionYearConfig } from '../lib/electionYears';
 
-  let { years }: { years: ElectionYearConfig[] } = $props();
+  // initialYear：這一頁固定呈現的年份。yearHref：各年份各自有獨立頁面時，切換器改成
+  // 連到另一頁（/elections 是 2026、/elections/2022 是 2022），整頁內容跟著年份走，
+  // 不會出現「地圖是 2022、下方表格還是 2026」的混搭（使用者 2026-10-05 要求）。
+  let { years, initialYear, yearHref }: {
+    years: ElectionYearConfig[]; initialYear?: number; yearHref?: Record<number, string>;
+  } = $props();
 
   let area = $state<MapArea | null>(null);
   let layer = $state<MapLayer | null>(null);
 
-  // 預設選中「已有結果」的那個年份（目前只有 2022）。找不到就退回清單第一筆
-  // ——理論上不會發生（buildYears 至少會給一筆 done），純屬防禦。
-  const DEFAULT_YEAR = years.find((y) => y.status === 'done')?.year ?? years[0].year;
+  // 預設選中第一筆「即將舉行」的年份（目前是 2026）：本站的主軸是即將到來的
+  // 選舉，2022 結果留在切換器裡作對照。沒有 upcoming 才退回第一筆 done，
+  // 再不行就取清單第一筆（理論上不會發生，buildYears 至少會給一筆）。
+  const DEFAULT_YEAR = initialYear
+    ?? (years.find((y) => y.status === 'upcoming') ?? years.find((y) => y.status === 'done') ?? years[0]).year;
   let selectedYear = $state(DEFAULT_YEAR);
   const current = $derived(years.find((y) => y.year === selectedYear) ?? years[0]);
   const upcoming = $derived(current.status === 'upcoming');
@@ -100,6 +107,59 @@
     if (nodata) entries.push({ key: 'nodata', label: '本站無資料', kind: 'nodata' });
     return entries;
   });
+
+  import { selectCandidates, focusCountyCode } from '../lib/candidateView';
+  import { STAGE_LABEL, type CountyCandidates, type NationalCandidates } from '../lib/candidateTypes';
+
+  // 2026 候選人：只在 upcoming 時載入。全國檔一次；縣市檔依目前聚焦的縣市按需載入並快取。
+  // 載入失敗（檔案不存在、網路錯誤）時維持 null，側欄退回「尚無結果」的說法，不擋地圖操作。
+  let candNational = $state<NationalCandidates | null>(null);
+  const candCounties = new Map<string, CountyCandidates>();
+  let candCounty = $state<CountyCandidates | null>(null);
+  // 同一縣市同時只發一個請求；失敗的縣市本次瀏覽不再重抓（否則每次 hover 都重打）
+  const candInFlight = new Set<string>();
+  let candFailed = $state<Set<string>>(new Set());
+
+  $effect(() => {
+    if (!upcoming || candNational) return;
+    fetch('/data/candidates/2026/national.json')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => { candNational = j; })
+      .catch(() => { candNational = null; });
+  });
+
+  $effect(() => {
+    if (!upcoming || !layer) { candCounty = null; return; }
+    const code = focusCountyCode(layer.level, area, layer);
+    if (!code) { candCounty = null; return; }
+    const cached = candCounties.get(code);
+    if (cached) { candCounty = cached; return; }
+    candCounty = null;
+    if (candInFlight.has(code) || candFailed.has(code)) return;
+    candInFlight.add(code);
+    const fail = () => { candFailed = new Set([...candFailed, code]); };
+    fetch(`/data/candidates/2026/county/${code}.json`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j: CountyCandidates | null) => {
+        if (!j) { fail(); return; }
+        candCounties.set(code, j);
+        // 回來時使用者可能已經換到別的縣市，只在仍聚焦同一縣市時才套用
+        if (layer && focusCountyCode(layer.level, area, layer) === code) candCounty = j;
+      })
+      .catch(fail)
+      .finally(() => candInFlight.delete(code));
+  });
+
+  // 只把「代碼等於目前聚焦縣市」的縣市檔交給 selectCandidates：layer 剛換時，
+  // candCounty 還是上一個縣市的（effect 晚一拍才清），不擋的話會閃出別縣的選區。
+  const sidebarCandidates = $derived.by(() => {
+    if (!upcoming || !candNational || !layer) return null;
+    const code = focusCountyCode(layer.level, area, layer);
+    const cc = candCounty && candCounty.countyCode === code ? candCounty : null;
+    return selectCandidates(layer.level, area, layer, candNational, cc);
+  });
+  const countyLoadFailed = $derived(
+    !!layer && candFailed.has(focusCountyCode(layer.level, area, layer) ?? ''));
 </script>
 
 <div class="stage">
@@ -110,7 +170,7 @@
          瀏覽器自動換行（欄寬夠窄時會斷出孤字「舉」單獨一行）。第二行加 nowrap，
          五個漢字在目前欄寬（含 900px 斷點以下的全寬版）都放得下，不會再被逼著
          二次換行。 -->
-    <h1><span class="masthead-year">2026</span><span class="masthead-theme">九合一選舉</span></h1>
+    <h1><span class="masthead-year">{DEFAULT_YEAR}</span><span class="masthead-theme">九合一選舉</span></h1>
     <hr class="rule-hair" />
 
     <!-- 版次：原本浮在地圖底部、壓住台灣南端的年份切換器，現在當成報頭裡的
@@ -120,6 +180,18 @@
          src/lib/electionYears.ts），日後加版次只改那邊。 -->
     <div class="edition">
       <span class="edition-label" id="edition-label">本期版次</span>
+      {#if yearHref}
+        <nav class="edition-tabs" aria-label="選舉年份">
+          {#each years as y, i (y.year)}
+            {#if i > 0}<span class="tab-sep" aria-hidden="true"></span>{/if}
+            {#if y.year === selectedYear}
+              <span class="edition-link current" aria-current="page">{y.year}</span>
+            {:else}
+              <a class="edition-link" href={yearHref[y.year]}>{y.year}</a>
+            {/if}
+          {/each}
+        </nav>
+      {:else}
       <div class="edition-tabs" role="tablist" aria-label="選舉年份">
         {#each years as y, i (y.year)}
           {#if i > 0}<span class="tab-sep" aria-hidden="true"></span>{/if}
@@ -132,6 +204,7 @@
           </button>
         {/each}
       </div>
+      {/if}
     </div>
     <p class="edition-sub">{current.status === 'done' ? current.electionName : '選舉尚未舉行'}</p>
     <p class="dateline">
@@ -164,14 +237,19 @@
            ——取代原本「投票日與倒數」放大處理的做法，因為那個資訊現在已經在上面
            的 dateline 出現過一次，不必在這裡重複放大。 -->
       <p class="lede">
-        開票日起本頁將更新為 2026 年結果。地圖上的行政區界線仍是既有資料，可照常
-        點選、下鑽、縮放，但目前沒有選舉結果可顯示。
+        {#if candNational}
+          候選人名單已出爐：{STAGE_LABEL[candNational.source.stage]}。開票後本頁將更新為 2026 年結果。
+          點選地圖上的縣市可查看首長與議員候選人。
+        {:else}
+          開票日起本頁將更新為 2026 年結果。地圖上的行政區界線仍是既有資料，可照常
+          點選、下鑽、縮放，但目前沒有選舉結果可顯示。
+        {/if}
       </p>
     {:else}
-      <!-- 導言／年度標示：文字內容一字不改，只調整了位置與外距。 -->
+      <!-- 導言／年度標示：文字已改為明示「非 2026 年選情」並導向 2026 名單。 -->
       <p class="notice">
         以下為<strong>西元 {current.year} 年（{current.electionName}）</strong>的結果與其後補選之現況，
-        <strong>非 2026 年選情</strong>。候選人名單須待中選會於登記期後公告，屆時另行補上。
+        <strong>非 2026 年選情</strong>。2026 年候選人名單請切換至 2026 年份查看。
       </p>
 
       {#if legend.length}
@@ -209,7 +287,8 @@
       onmouseenter={() => mapRef?.holdSelection()}
       onmouseleave={() => mapRef?.releaseSelection()}
       role="presentation">
-      <ElectionSidebar {area} {layer} {upcoming} />
+      <ElectionSidebar {area} {layer} {upcoming}
+        candidates={sidebarCandidates} candidateSource={candNational?.source ?? null} {countyLoadFailed} />
     </div>
 
     <!-- 圖說：授權標示與領土說明。原本浮在地圖左下角獨立定位、又曾經併入左欄
@@ -234,6 +313,7 @@
       <p class="scope-note">
         為使台灣本島在地圖上維持可辨識的比例，本頁地圖未繪出高雄市旗津區轄下的東沙島、南沙太平島，
         以及宜蘭縣頭城鎮大溪里轄下的釣魚台列嶼<span class="dash">——</span>這幾處均無村里長選舉；大溪里其餘轄區的村里長資料仍照常呈現於地圖上。
+        金門、馬祖插圖的烏坵與東引另以小框呈現，北碇與亮島未繪出；點選該縣即可看到完整範圍。
       </p>
     </section>
   </aside>
@@ -359,6 +439,13 @@
   .edition-tabs button[aria-selected="true"] {
     color: var(--fg); font-size: var(--t-lg); font-weight: 700; border-bottom-color: var(--accent);
   }
+  .edition-link {
+    font-family: var(--serif); color: var(--muted); font-size: var(--t-sm); font-weight: 600;
+    padding: 0 .5rem .2rem; border-bottom: 2px solid transparent; text-decoration: none;
+    font-variant-numeric: tabular-nums; line-height: 1.3; transition: color var(--ease);
+  }
+  a.edition-link:hover { color: var(--accent); }
+  .edition-link.current { color: var(--fg); font-size: var(--t-lg); font-weight: 700; border-bottom-color: var(--accent); }
   .edition-tabs .tab-sep { width: 1px; align-self: stretch; background: var(--line); margin: 0 .05rem; }
 
   /* 版次的副標（該屆選舉正式名稱）與 dateline：都是小字級、輔助資訊，不與上面的

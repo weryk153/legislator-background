@@ -1,0 +1,387 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "countyCode": "10-016-00-000-0000",
+ "countyName": "澎湖縣",
+ "districts": [
+  {
+   "no": 1,
+   "label": "第1選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "吳仁祥",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "顏家康",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蘇育德",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-蘇育德-民進黨-澎湖縣第01選舉區",
+     "identity": "現任議員（澎湖縣第1選舉區）"
+    },
+    {
+     "name": "歐松林",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林柏成",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "呂黃春金",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-呂黃春金-民進黨-澎湖縣第01選舉區",
+     "identity": "現任議員（澎湖縣第1選舉區）"
+    },
+    {
+     "name": "鄭清發",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "藍凱元",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-藍凱元-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
+     "identity": "現任議員（澎湖縣第1選舉區）"
+    },
+    {
+     "name": "陳毓仁",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳毓仁-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
+     "identity": "現任議員（澎湖縣第1選舉區）"
+    },
+    {
+     "name": "蘇陳綉色",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蘇陳綉色-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
+     "identity": "現任議員（澎湖縣第1選舉區）"
+    },
+    {
+     "name": "許國政",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-許國政-國民黨-澎湖縣第01選舉區",
+     "identity": "現任議員（澎湖縣第1選舉區）"
+    },
+    {
+     "name": "張惠雅",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "呂光宇",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳海山",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳海山-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
+     "identity": "現任議員（澎湖縣第1選舉區）"
+    },
+    {
+     "name": "陳慧娟",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳偉澄",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "莊光大",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-莊光大-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
+     "identity": "現任議員（澎湖縣第1選舉區）"
+    },
+    {
+     "name": "胡正仁",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "莊國輝",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "label": "第2選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "李麗美",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡清續",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-蔡清續-民進黨-澎湖縣第02選舉區",
+     "identity": "現任議員（澎湖縣第2選舉區）"
+    },
+    {
+     "name": "許育愷",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-許育愷-無黨籍及未經政黨推薦-澎湖縣第02選舉區",
+     "identity": "現任議員（澎湖縣第2選舉區）"
+    },
+    {
+     "name": "吳政杰",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-吳政杰-國民黨-澎湖縣第02選舉區",
+     "identity": "現任議員（澎湖縣第2選舉區）"
+    },
+    {
+     "name": "廖璟華",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "label": "第3選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "許皆詳",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "宋昀芝",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-宋昀芝-無黨籍及未經政黨推薦-澎湖縣第03選舉區",
+     "identity": "現任議員（澎湖縣第3選舉區）"
+    },
+    {
+     "name": "宋萬富",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "魏睿宏",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-魏睿宏-無黨籍及未經政黨推薦-澎湖縣第03選舉區",
+     "identity": "現任議員（澎湖縣第3選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "label": "第4選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "許月里",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-許月里-無黨籍及未經政黨推薦-澎湖縣第04選舉區",
+     "identity": "現任議員（澎湖縣第4選舉區）"
+    },
+    {
+     "name": "李家萱",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許嘉峻",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "label": "第5選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "陳佩真",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳佩真-無黨籍及未經政黨推薦-澎湖縣第05選舉區",
+     "identity": "現任議員（澎湖縣第5選舉區）"
+    },
+    {
+     "name": "黃榮焜",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "label": "第6選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "鄭淑卿",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張仁和",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張仁和-無黨籍及未經政黨推薦-澎湖縣第06選舉區",
+     "identity": "現任議員（澎湖縣第6選舉區）"
+    },
+    {
+     "name": "夏晨榮",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  }
+ ],
+ "townToDistrict": {
+  "10-016-00-010-0000": 1,
+  "10-016-00-020-0000": 2,
+  "10-016-00-030-0000": 3,
+  "10-016-00-040-0000": 4,
+  "10-016-00-050-0000": 5,
+  "10-016-00-060-0000": 6
+ },
+ "splitTowns": [],
+ "mappingNote": null
+}

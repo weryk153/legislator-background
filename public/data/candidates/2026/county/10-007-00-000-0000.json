@@ -1,0 +1,858 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "countyCode": "10-007-00-000-0000",
+ "countyName": "彰化縣",
+ "districts": [
+  {
+   "no": 1,
+   "label": "第1選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "莊陞漢",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-莊陞漢-民進黨-彰化縣第01選舉區",
+     "identity": "現任議員（彰化縣第1選舉區）"
+    },
+    {
+     "name": "許原龍",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-許原龍-國民黨-彰化縣第01選舉區",
+     "identity": "現任議員（彰化縣第1選舉區）"
+    },
+    {
+     "name": "謝宗樺",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "顧勝敏",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃千宴",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃千宴-國民黨-彰化縣第01選舉區",
+     "identity": "現任議員（彰化縣第1選舉區）"
+    },
+    {
+     "name": "許雅琳",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-許雅琳-民進黨-彰化縣第01選舉區",
+     "identity": "現任議員（彰化縣第1選舉區）"
+    },
+    {
+     "name": "林世明",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "白玉如",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-白玉如-國民黨-彰化縣第01選舉區",
+     "identity": "現任議員（彰化縣第1選舉區）"
+    },
+    {
+     "name": "林世賢",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "楊子賢",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-楊子賢-民進黨-彰化縣第01選舉區",
+     "identity": "現任議員（彰化縣第1選舉區）"
+    },
+    {
+     "name": "温芝樺",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-温芝樺-國民黨-彰化縣第01選舉區",
+     "identity": "現任議員（彰化縣第1選舉區）"
+    },
+    {
+     "name": "黃玉如",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳韋達",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-吳韋達-無黨籍及未經政黨推薦-彰化縣第01選舉區",
+     "identity": "現任議員（彰化縣第1選舉區）"
+    },
+    {
+     "name": "陳銌銌",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-陳銌銌-無黨籍及未經政黨推薦-彰化縣第01選舉區",
+     "identity": "現任議員（彰化縣第1選舉區）"
+    },
+    {
+     "name": "李成濟",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-李成濟-民進黨-彰化縣第01選舉區",
+     "identity": "現任議員（彰化縣第1選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "label": "第2選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "林英嘉",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡匡威",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許志宏",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔣煙燈",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "凃淑媚",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-凃淑媚-國民黨-彰化縣第02選舉區",
+     "identity": "現任議員（彰化縣第2選舉區）"
+    },
+    {
+     "name": "楊竣程",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-楊竣程-國民黨-彰化縣第02選舉區",
+     "identity": "現任議員（彰化縣第2選舉區）"
+    },
+    {
+     "name": "藍駿宇",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-藍駿宇-民進黨-彰化縣第02選舉區",
+     "identity": "現任議員（彰化縣第2選舉區）"
+    },
+    {
+     "name": "王信筌",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "郭燕陵",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-郭燕陵-無黨籍及未經政黨推薦-彰化縣第02選舉區",
+     "identity": "現任議員（彰化縣第2選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "label": "第3選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "蕭文雄",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蕭文雄-無黨籍及未經政黨推薦-彰化縣第03選舉區",
+     "identity": "現任議員（彰化縣第3選舉區）"
+    },
+    {
+     "name": "王國忠",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林宗翰",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-林宗翰-無黨籍及未經政黨推薦-彰化縣第03選舉區",
+     "identity": "現任議員（彰化縣第3選舉區）"
+    },
+    {
+     "name": "曾煥燁",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林小琪",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-林小琪-國民黨-彰化縣第03選舉區",
+     "identity": "現任議員（彰化縣第3選舉區）"
+    },
+    {
+     "name": "周君綾",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-周君綾-民進黨-彰化縣第03選舉區",
+     "identity": "現任議員（彰化縣第3選舉區）"
+    },
+    {
+     "name": "鍾雅茹",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林明鴻",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蘇智弦",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "柯振杯",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-柯振杯-國民黨-彰化縣第03選舉區",
+     "identity": "現任議員（彰化縣第3選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "label": "第4選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "賴澤民",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張欣倩",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張欣倩-民進黨-彰化縣第04選舉區",
+     "identity": "現任議員（彰化縣第4選舉區）"
+    },
+    {
+     "name": "詹雅婷",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張愉婕",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張詠勝",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃正盛",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃正盛-國民黨-彰化縣第04選舉區",
+     "identity": "現任議員（彰化縣第4選舉區）"
+    },
+    {
+     "name": "陳秋蓉",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張雪如",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張雪如-民眾黨-彰化縣第04選舉區",
+     "identity": "現任議員（彰化縣第4選舉區）"
+    },
+    {
+     "name": "游筑凱",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張詩怡",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "劉惠娟",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-劉惠娟-國民黨-彰化縣第04選舉區",
+     "identity": "現任議員（彰化縣第4選舉區）"
+    },
+    {
+     "name": "林俊毅",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "曹嘉豪",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-曹嘉豪-國民黨-彰化縣第04選舉區",
+     "identity": "現任議員（彰化縣第4選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "label": "第5選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "楊仁彬",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳玉姫",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳玉姫-國民黨-彰化縣第05選舉區",
+     "identity": "現任議員（彰化縣第5選舉區）"
+    },
+    {
+     "name": "張春洋",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張春洋-無黨籍及未經政黨推薦-彰化縣第05選舉區",
+     "identity": "現任議員（彰化縣第5選舉區）"
+    },
+    {
+     "name": "劉珊伶",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-劉珊伶-民進黨-彰化縣第05選舉區",
+     "identity": "現任議員（彰化縣第5選舉區）"
+    },
+    {
+     "name": "黃佳惠",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許文萍",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "label": "第6選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "許書維",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-許書維-民進黨-彰化縣第06選舉區",
+     "identity": "現任議員（彰化縣第6選舉區）"
+    },
+    {
+     "name": "蕭妤亘",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蕭妤亘-國民黨-彰化縣第06選舉區",
+     "identity": "現任議員（彰化縣第6選舉區）"
+    },
+    {
+     "name": "彭世和",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蕭岳倫",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "詹琬惠",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-詹琬惠-民進黨-彰化縣第06選舉區",
+     "identity": "現任議員（彰化縣第6選舉區）"
+    },
+    {
+     "name": "鄭俊雄",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-鄭俊雄-國民黨-彰化縣第06選舉區",
+     "identity": "現任議員（彰化縣第6選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "label": "第7選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "陳世凱",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "江熊一楓",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "鄭朝元",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "杜懿彩",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "劉淑芳",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-劉淑芳-國民黨-彰化縣第07選舉區",
+     "identity": "現任議員（彰化縣第7選舉區）"
+    },
+    {
+     "name": "李俊諭",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李俊諭-民進黨-彰化縣第07選舉區",
+     "identity": "現任議員（彰化縣第7選舉區）"
+    },
+    {
+     "name": "李浩誠",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李浩誠-國民黨-彰化縣第07選舉區",
+     "identity": "現任議員（彰化縣第7選舉區）"
+    },
+    {
+     "name": "謝典霖",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-謝典林-國民黨-彰化縣第07選舉區",
+     "identity": "現任議員（彰化縣第7選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 8,
+   "label": "第8選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "謝淑如",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳淑娟",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-吳淑娟-無黨籍及未經政黨推薦-彰化縣第08選舉區",
+     "identity": "現任議員（彰化縣第8選舉區）"
+    },
+    {
+     "name": "洪子超",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-洪子超-民進黨-彰化縣第08選舉區",
+     "identity": "現任議員（彰化縣第8選舉區）"
+    },
+    {
+     "name": "洪雅婷",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張國棟",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張國棟-國民黨-彰化縣第08選舉區",
+     "identity": "現任議員（彰化縣第8選舉區）"
+    },
+    {
+     "name": "曾温泉",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "洪騰明",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-洪騰明-民進黨-彰化縣第08選舉區",
+     "identity": "現任議員（彰化縣第8選舉區）"
+    },
+    {
+     "name": "洪健興",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黄淑儀",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 9,
+   "label": "第9選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "陳榮妹",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳榮妹-國民黨-彰化縣第09選舉區",
+     "identity": "現任議員（彰化縣第9選舉區）"
+    },
+    {
+     "name": "陳明義",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 10,
+   "label": "第10選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "金凱傑Ilia．Nangavulan",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "高世鴻",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳秋祿",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王昌智Mac Lunai",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張瑋婷",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "謝秀美",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "肯當．迪洛安",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "高采翎",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  }
+ ],
+ "townToDistrict": null,
+ "splitTowns": [],
+ "mappingNote": "議員選區與 2022 年劃分不同（2022 有 9 個選區、2026 名冊有 10 個，選區可能已重劃），無法標示各鄉鎮市區所屬選區。"
+}

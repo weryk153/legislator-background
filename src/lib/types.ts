@@ -1,4 +1,4 @@
-export type OfficeType = 'legislator' | 'mayor_magistrate' | 'councilor';
+export type OfficeType = 'legislator' | 'mayor_magistrate' | 'councilor' | 'candidate';
 export type ControversyStatus =
   | 'investigating' | 'indicted' | 'first_instance' | 'settled' | 'cleared' | 'other';
 export type SourceType = 'court' | 'news' | 'gov' | 'gazette' | 'factcheck' | 'wiki';

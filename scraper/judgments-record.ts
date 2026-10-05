@@ -33,7 +33,7 @@ async function main() {
   const PAGE = 1000;
   for (let from = 0; ; from += PAGE) {
     const { data, error } = await sb.from('officials')
-      .select('id, name, office_type').in('office_type', ['legislator', 'mayor_magistrate', 'councilor'])
+      .select('id, name, office_type').in('office_type', ['legislator', 'mayor_magistrate', 'councilor', 'candidate'])
       .order('id', { ascending: true }).range(from, from + PAGE - 1);
     if (error) throw new Error(`officials query failed: ${error.message}`);
     offs.push(...((data ?? []) as { id: string; name: string }[]));

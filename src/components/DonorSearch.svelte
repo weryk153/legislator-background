@@ -25,7 +25,7 @@
   });
 
   const fmt = (n: number) => new Intl.NumberFormat('zh-Hant').format(n);
-  const officeName: Record<string, string> = { legislator: '立委', mayor_magistrate: '縣市首長', councilor: '議員' };
+  const officeName: Record<string, string> = { legislator: '立委', mayor_magistrate: '縣市首長', councilor: '議員', candidate: '參選人' };
 
   $: q = search.trim();
   $: filterQuery = { party: party || undefined, officeType: officeType || undefined, election: election || undefined, sort };

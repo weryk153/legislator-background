@@ -66,3 +66,13 @@ describe('toListRow', () => {
     expect(row.latestAssetTotal).toBeNull();
   });
 });
+
+describe('toListRow：因參選建檔者', () => {
+  it('is_incumbent=false 但不是「已解職」', () => {
+    const o = toOfficial({ ...raw, office_type: 'candidate', is_incumbent: false, departed_reason: null, district: '新北市', term: '2026' });
+    expect(toListRow(o).departed).toBe(false);
+  });
+  it('一般公職 is_incumbent=false 仍是已解職', () => {
+    expect(toListRow(toOfficial({ ...raw, is_incumbent: false })).departed).toBe(true);
+  });
+});

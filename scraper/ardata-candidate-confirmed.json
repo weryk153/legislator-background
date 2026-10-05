@@ -1,0 +1,44 @@
+[
+  {
+    "name": "唐新民",
+    "election_name": "111年臺北市市長選舉",
+    "slug": "cand-唐新民-臺北市",
+    "basis": "2022 臺北市長選舉僅一位唐新民（共和黨提名）；維基百科「唐新民」載其 2022 年參選臺北市長、2026 年代表三勢團結促進聯盟再度參選臺北市長（https://zh.wikipedia.org/wiki/%E5%94%90%E6%96%B0%E6%B0%91）；2022 中選會選舉公報學歷（建國中學、臺大土木、柏克萊博士，https://bulletin.cec.gov.tw/01%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1/03%E7%9B%B4%E8%BD%84%E5%B8%82%E9%95%B7/111%E5%B9%B4/%E8%87%BA%E5%8C%97%E5%B8%82%E5%B8%82%E9%95%B7.pdf）與中央社 2026 登記名單所載學歷（柏克萊博士）相符（https://www.cna.com.tw/news/aipl/202609045002.aspx）"
+  },
+  {
+    "name": "黃世杰",
+    "election_name": "113年立法委員選舉",
+    "slug": "cand-黃世杰-桃園市",
+    "basis": "專戶地區為桃園市；維基百科「黃世杰 (政治人物)」載其為第10屆桃園市第二選區立委、2024 年競選連任以些微差距敗給涂權吉、現為民進黨桃園市長參選人（https://zh.wikipedia.org/wiki/%E9%BB%83%E4%B8%96%E6%9D%B0_(%E6%94%BF%E6%B2%BB%E4%BA%BA%E7%89%A9)）；2026 中選會登記名冊：桃園市長 黃世杰（民主進步黨）（https://web.cec.gov.tw/central/article/64709）"
+  },
+  {
+    "name": "曹爾元",
+    "election_name": "111年連江縣縣長選舉",
+    "slug": "cand-曹爾元-連江縣",
+    "basis": "專戶地區為連江縣；中選會選舉資料庫 elcand.csv（https://data.cec.gov.tw/選舉資料庫/votedata.zip） 載 2022 連江縣長候選人曹爾元，生日 47.06.26，與中央社 2026 縣市長登記名單（https://www.cna.com.tw/news/aipl/202609045002.aspx）所載 1958年6月26日、前連江縣地政局長相符；全國僅此一位曹爾元參選"
+  },
+  {
+    "name": "葉竹林",
+    "election_name": "111年澎湖縣縣長選舉",
+    "slug": "cand-葉竹林-澎湖縣",
+    "basis": "專戶地區為澎湖縣；中選會選舉資料庫 elcand.csv（https://data.cec.gov.tw/選舉資料庫/votedata.zip） 載 2022 澎湖縣長候選人葉竹林，生日 51.01.06，與中央社 2026 縣市長登記名單（https://www.cna.com.tw/news/aipl/202609045002.aspx）所載 1962年1月6日、前馬公市長相符；維基百科「葉竹林」載其 2022 年參選澎湖縣縣長（https://zh.wikipedia.org/wiki/%E8%91%89%E7%AB%B9%E6%9E%97）"
+  },
+  {
+    "name": "許智富",
+    "election_name": "111年澎湖縣議員選舉",
+    "slug": "cand-許智富-澎湖縣",
+    "basis": "專戶地區為澎湖縣；中選會選舉資料庫 elcand.csv（https://data.cec.gov.tw/選舉資料庫/votedata.zip） 載 2022 澎湖縣議員第1選區候選人許智富（台灣民眾黨），生日 68.10.02，與中央社 2026 縣市長登記名單（https://www.cna.com.tw/news/aipl/202609045002.aspx）所載 1979年10月2日、民眾黨澎湖縣黨部主委、前澎湖縣副縣長相符"
+  },
+  {
+    "name": "何志勇",
+    "election_name": "111年新竹市議員選舉",
+    "slug": "cand-何志勇-新竹市",
+    "basis": "專戶地區為新竹市；中選會選舉資料庫 elcand.csv（https://data.cec.gov.tw/選舉資料庫/votedata.zip） 載 2022 新竹市議員第1選區候選人何志勇（中國國民黨），生日 69.01.23，與中央社 2026 縣市長登記名單（https://www.cna.com.tw/news/aipl/202609045002.aspx）所載 1980年1月23日、國民黨前發言人相符；維基百科「何志勇 (1980年)」載其曾參選 2022 年新竹市議員（https://zh.wikipedia.org/wiki/%E4%BD%95%E5%BF%97%E5%8B%87_(1980%E5%B9%B4)）"
+  },
+  {
+    "name": "莊競程",
+    "election_name": "113年立法委員選舉",
+    "slug": "cand-莊競程-新竹市",
+    "basis": "專戶地區為臺中市；中選會選舉資料庫 elcand.csv（https://data.cec.gov.tw/選舉資料庫/votedata.zip）（2024總統立委）載臺中市第5選區候選人莊競程（民主進步黨），生日 69.12.22，與中央社 2026 縣市長登記名單（https://www.cna.com.tw/news/aipl/202609045002.aspx）所載 1980年12月22日、第10屆立法委員相符；維基百科「莊競程」載其 2026 年參選新竹市長（https://zh.wikipedia.org/wiki/%E8%8E%8A%E7%AB%B6%E7%A8%8B）"
+  }
+]

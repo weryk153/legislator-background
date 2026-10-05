@@ -3,7 +3,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import type { GraphData } from '../lib/types';
-  import { toCytoscapeElements } from '../lib/graphView';
+  import { toCytoscapeElements, bendAroundCenter } from '../lib/graphView';
+  const CENTER_CLEARANCE = 80;
 
   let { data, centerKey = null, mode = 'ego' }:
     { data: GraphData; centerKey?: string | null; mode?: 'ego' | 'global' } = $props();
@@ -39,8 +40,7 @@
         // 這裡不能比照邊標籤用不透明底色塊——節點間距近時（如僅一段關係的檔案頁）
         // 底色塊會整塊蓋掉剛好落在同位置的邊標籤文字，等於用「看不到線」換「看不到關係」。
         // 改用描邊（text-outline）只沿字形筆畫上色，背後的線與邊標籤仍看得見，是地圖學
-        // 對抗「文字疊圖層」的標準作法。中心節點另有 --accent 底色塊（見下方 center 規則），
-        // 兩者疊加不衝突：描邊在文字本身，底色塊在文字之後。
+        // 對抗「文字疊圖層」的標準作法。
         'text-outline-color': c.bg, 'text-outline-width': 2, 'text-outline-opacity': 1,
       } },
       // 外部公眾人物：虛框、灰字，視覺次於本站收錄的公職（沿用文字清單的 .rel-name.plain 語彙）
@@ -49,12 +49,10 @@
       } },
       // 第二層＝關係人的關係人，與本人無直接關係，故縮小並淡化以免誤讀
       { selector: 'node[depth = 2]', style: { opacity: 0.6, 'border-width': 1 } },
-      // 中心人物：姓名加淡紅底色塊。Cytoscape 忽略色彩的 rgba alpha，
-      // 故用實色 --accent 搭配獨立的 text-background-opacity 做出 --accent-wash 效果。
+      // 中心人物：只靠較大的頭像與較粗的外框區分。原本姓名底下另墊一層淡紅底色塊，
+      // 看起來像被標記或警示，使用者要求拿掉（2026-10-05）。
       { selector: 'node[center = 1]', style: {
         'border-width': 2.5, 'border-color': c.line,
-        'text-background-color': c.accent, 'text-background-opacity': 0.1,
-        'text-background-padding': '5px', 'text-background-shape': 'roundrectangle',
       } },
       { selector: 'edge', style: {
         label: 'data(label)', 'font-family': c.sans, 'font-size': 11, color: c.muted,
@@ -73,6 +71,10 @@
 
   const esc = (s: string) =>
     s.replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]!));
+
+  // ego（個人頁）的縮放按鈕。滾輪縮放刻意不開（會在捲動頁面時吃掉滾輪），改用按鈕；
+  // 放大後可拖曳平移。cytoscape 實例建好後才有值。
+  let zoomApi = $state<{ zoomBy: (f: number) => void; reset: () => void } | null>(null);
 
   onMount(() => {
     let cy: { destroy: () => void; style: (s: unknown) => { update: () => void };
@@ -124,6 +126,34 @@
               levelWidth: () => 1, minNodeSpacing: 44, padding: 28, animate: false, startAngle: Math.PI / 4 }
           : { name: 'cose', padding: 30, animate: false, nodeRepulsion: 9000, idealEdgeLength: 110 };
         cy!.layout(layout).run();
+
+        if (mode === 'ego') {
+          // 初始 fit 仍受 maxZoom 1.2 限制（讓各頁節點大小一致），fit 完才放寬上限給按鈕放大用。
+          const g = cy as any;
+          const z0 = g.zoom();
+          const p0 = { ...g.pan() };
+          g.maxZoom(3);
+          g.minZoom(z0 * 0.5);
+          zoomApi = {
+            zoomBy: (f: number) => g.zoom({ level: g.zoom() * f, renderedPosition: { x: g.width() / 2, y: g.height() / 2 } }),
+            reset: () => g.viewport({ zoom: z0, pan: p0 }),
+          };
+        }
+
+        // ego：不連到本人、但直線會穿過本人頭像（含下方姓名）的邊改走弧線繞開，否則
+        // 讀起來像本人有這段關係（例：蔣萬安頁的蔣經國—蔣孝嚴親子線）。淨空距離
+        // 涵蓋中心頭像半徑（44）加上姓名兩行的高度。
+        if (mode === 'ego' && centerKey) {
+          const g = cy as any;
+          const c = g.getElementById(centerKey).position();
+          g.edges().forEach((e: any) => {
+            if (e.source().id() === centerKey || e.target().id() === centerKey) return;
+            const d = bendAroundCenter(e.source().position(), e.target().position(), c, CENTER_CLEARANCE);
+            if (d !== null) {
+              e.style({ 'curve-style': 'unbundled-bezier', 'control-point-distances': d, 'control-point-weights': 0.5 });
+            }
+          });
+        }
 
         // global（/graph，361 節點）：以「整張圖剛好塞進畫布」的比例為 minZoom 下限——
         // 使用者仍可自由放大，但滾輪縮小到底也只會停在全圖可見，不會縮到一小撮塞在畫布
@@ -234,9 +264,33 @@
   });
 </script>
 
-<div bind:this={container} class="graph" class:global={mode === 'global'} role="img" aria-label="人物關係圖"></div>
+<div class="graph-wrap">
+  <div bind:this={container} class="graph" class:global={mode === 'global'} role="img" aria-label="人物關係圖"></div>
+  {#if mode === 'ego' && zoomApi}
+    <div class="zoom-ctl" role="group" aria-label="關係圖縮放">
+      <button type="button" aria-label="放大" onclick={() => zoomApi?.zoomBy(1.3)}>＋</button>
+      <button type="button" aria-label="縮小" onclick={() => zoomApi?.zoomBy(1 / 1.3)}>－</button>
+      <button type="button" aria-label="重置縮放" class="reset" onclick={() => zoomApi?.reset()}>重置</button>
+    </div>
+  {/if}
+</div>
 
 <style>
+  .graph-wrap { position: relative; }
+  .zoom-ctl {
+    position: absolute; top: 10px; right: 10px; z-index: 4;
+    display: flex; gap: 4px;
+  }
+  .zoom-ctl button {
+    min-width: 32px; height: 32px; padding: 0 8px;
+    font-family: var(--sans); font-size: 16px; line-height: 1;
+    color: var(--muted); background: var(--surface);
+    border: 1px solid var(--line-strong); border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .zoom-ctl button.reset { font-size: var(--t-xs); }
+  .zoom-ctl button:hover { color: var(--fg); border-color: var(--fg); }
+  .zoom-ctl button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
   .graph {
     position: relative;
     width: 100%; height: 420px;

@@ -2,6 +2,10 @@ import { describe, it, expect } from 'vitest';
 import { officeRole, shortParty, officialPageTitle } from '../src/lib/seoTitle';
 
 describe('officeRole', () => {
+  it('參選人：2026＋縣市首長職稱＋參選人', () => {
+    expect(officeRole('candidate', '新北市')).toBe('2026 新北市長參選人');
+    expect(officeRole('candidate', '臺東縣')).toBe('2026 臺東縣長參選人');
+  });
   it('縣市首長：縣市名＋長', () => {
     expect(officeRole('mayor_magistrate', '臺北市')).toBe('臺北市長');
     expect(officeRole('mayor_magistrate', '宜蘭縣')).toBe('宜蘭縣長');

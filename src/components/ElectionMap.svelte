@@ -6,7 +6,7 @@
      繪製與互動，不動資料管線。 -->
 <script lang="ts">
   import { onDestroy, onMount, tick } from 'svelte';
-  import { geoMercator, geoPath } from 'd3-geo';
+  import { geoArea, geoCentroid, geoMercator, geoPath } from 'd3-geo';
   import { feature } from 'topojson-client';
   import { SvelteMap } from 'svelte/reactivity';
   import { isUnassignedVillage, PARTY_VAR, type MapLayer, type MapArea } from '../lib/mapTypes';
@@ -58,10 +58,62 @@
   // 南北位置（馬祖緯度較高、在北）。兩個框的寬高比是照各自的實際地理外形量出來
   // 的（金門東西狹長、馬祖較方），讓 fitExtent 之後框內幾乎不留白，插圖看起來
   // 才會「大而清楚」而不是小方塊裡飄一個小點。
-  const LIENCHIANG_BOX = { x: 24, y: 124, w: 140, h: 117 };
-  const KINMEN_BOX = { x: 24, y: 297, w: 140, h: 97 };
+  //
+  // 2026-10-05 放大：原本兩框只有 140 寬，島群看起來像幾個小點。實測主投影下本島
+  // 西岸在 y≈100~450 這段的 x 都在 368 以上（北段更達 560~700），澎湖則從 y≈500
+  // 起、x≈164 以東——所以左上角可以把框加寬到 x≈300 而不碰到本島，金門框底部
+  // 則要停在 y<500 以免壓到澎湖。
+  //
+  // 馬祖再放大（同日）：群島從莒光一路散到東引（東西約 0.6 度），整群一起算比例尺
+  // 時南竿、北竿只剩幾個小點。改成框內再分兩區——左側大區只依南竿、北竿、莒光算
+  // 比例尺（LIENCHIANG_MAIN），東引另外放在右上角的小框（DONGYIN_BOX），兩區各自
+  // fitExtent。亮島（北竿鄉轄、無人定居）距主島群稍遠，落在大區之外被切掉，圖說註明。
+  const LIENCHIANG_BOX = { x: 24, y: 50, w: 260, h: 300 };
+  const LIENCHIANG_MAIN = { x: 30, y: 56, w: 168, h: 288 };
+  const DONGYIN_BOX = { x: 208, y: 86, w: 68, h: 54 };
+  // 金門比照馬祖（同日）：大、小金門放左側大區，烏坵另放右上角小框。框加寬到
+  // x≈284，該高度的本島西岸仍在 x≥368，不會相碰。
+  const KINMEN_BOX = { x: 24, y: 388, w: 260, h: 111 };
+  const KINMEN_MAIN = { x: 30, y: 394, w: 184, h: 99 };
+  const WUQIU_BOX = { x: 222, y: 414, w: 56, h: 44 };
 
-  interface Inset { shape: Shape }
+  // 金門縣轄下的烏坵（東經 119.45，距大金門約 100 公里）與北碇（大金門正南方的
+  // 礁岩燈塔島）若一起算 fitExtent，大、小金門會被壓成框角落的小點。插圖只拿
+  // 「主要島群」算比例尺：面積至少 0.3 平方公里、且中心距最大島不超過 0.3 度的
+  // 多邊形；其餘仍畫出，但會被框的 clipPath 切掉（點進金門縣即可看完整範圍，
+  // 圖說另有說明）。馬祖主島群（南竿、北竿、莒光）同樣用這個篩選，東引另走小框。
+  function polygonStats(f: any) {
+    const polys: number[][][][] = f.geometry.type === 'MultiPolygon' ? f.geometry.coordinates : [f.geometry.coordinates];
+    return polys.map((p) => {
+      const g = { type: 'Polygon', coordinates: p } as any;
+      return { p, area: geoArea(g) * 6371 ** 2, c: geoCentroid(g) };
+    });
+  }
+  const withPolys = (f: any, polys: number[][][][]) =>
+    ({ ...f, geometry: { type: 'MultiPolygon', coordinates: polys } });
+
+  function mainCluster(f: any): any {
+    const stats = polygonStats(f);
+    const big = stats.reduce((a, b) => (b.area > a.area ? b : a));
+    const keep = stats.filter((s) => s.area >= 0.3 && Math.hypot(s.c[0] - big.c[0], s.c[1] - big.c[1]) <= 0.3);
+    return withPolys(f, keep.map((s) => s.p));
+  }
+
+  // 東引（東引島、西引島與周邊礁岩）：連江縣裡東經 120.45 以東的多邊形（120.40 附近另有一塊
+  // 0.08 平方公里的礁岩在東引正南方約 25 公里，納入會把小框比例尺拉垮）。
+  const DONGYIN_MIN_LON = 120.45;
+  // 烏坵（大坵、小坵）：金門縣裡東經 119.3 以東的多邊形。
+  const WUQIU_MIN_LON = 119.3;
+  const eastOf = (f: any, lon: number) =>
+    withPolys(f, polygonStats(f).filter((s) => s.c[0] > lon).map((s) => s.p));
+
+  type Box = { x: number; y: number; w: number; h: number };
+  const fitPath = (box: Box, fitTo: any, draw: any): string =>
+    geoPath(geoMercator().fitExtent([[box.x, box.y], [box.x + box.w, box.y + box.h]], fitTo))(draw) ?? '';
+
+  // extra：同一縣市在插圖裡的第二塊（目前只有馬祖的東引小框），畫法同主塊但不進
+  // tab 順序（鍵盤操作由主塊負責，避免同一個縣市被 tab 到兩次）。
+  interface Inset { shape: Shape; extra?: string }
 
   // 金門、連江插圖：兩者「必須」各自獨立呼叫 fitExtent，這是這次插圖能成立的
   // 關鍵。插圖曾經做過一版、後來被整個移除——原因是那一版把金門與馬祖塞進
@@ -76,21 +128,27 @@
     if (!counties) return null;
     const feats = featuresOf(counties.topology);
     const byCode = new Map(counties.areas.map((a) => [a.code, a]));
-    const build = (code: string, box: { x: number; y: number; w: number; h: number }): Inset | null => {
+    const featOf = (code: string) => {
       const area = byCode.get(code);
-      if (!area) return null;
-      const f = feats.find((ft) => ft.properties.key === area.key);
-      if (!f) return null;
-      const proj = geoMercator().fitExtent([[box.x, box.y], [box.x + box.w, box.y + box.h]], f as any);
-      const path = geoPath(proj);
-      const d = path(f) ?? '';
-      if (!d) return null;
-      return { shape: { d, key: f.properties.key as string, area, feature: f } };
+      const f = area && feats.find((ft) => ft.properties.key === area.key);
+      return area && f ? { area, f } : null;
     };
-    const kinmen = build(KINMEN_CODE, KINMEN_BOX);
-    const lienchiang = build(LIENCHIANG_CODE, LIENCHIANG_BOX);
-    if (!kinmen || !lienchiang) return null;
-    return { kinmen, lienchiang };
+    const k = featOf(KINMEN_CODE);
+    const l = featOf(LIENCHIANG_CODE);
+    if (!k || !l) return null;
+    const kd = fitPath(KINMEN_MAIN, mainCluster(k.f), k.f);
+    const ld = fitPath(LIENCHIANG_MAIN, mainCluster(l.f), l.f);
+    const pad = 6;
+    const inner = (b: Box): Box => ({ x: b.x + pad, y: b.y + pad, w: b.w - pad * 2, h: b.h - pad * 2 });
+    const dong = eastOf(l.f, DONGYIN_MIN_LON);
+    const dd = fitPath(inner(DONGYIN_BOX), dong, dong);
+    const wu = eastOf(k.f, WUQIU_MIN_LON);
+    const wd = fitPath(inner(WUQIU_BOX), wu, wu);
+    if (!kd || !ld) return null;
+    return {
+      kinmen: { shape: { d: kd, key: k.f.properties.key as string, area: k.area, feature: k.f }, extra: wd || undefined },
+      lienchiang: { shape: { d: ld, key: l.f.properties.key as string, area: l.area, feature: l.f }, extra: dd || undefined },
+    };
   });
 
   // 已載入的圖層集合，取代原本的「目前顯示哪一層」單一堆疊——全國層永遠在，
@@ -178,7 +236,9 @@
 
   function fillFor(area: MapArea, flatten = false, dim = false, hover = false): string {
     if (neutral) {
-      const base = 'var(--map-appointed-bg)';
+      // 尚未開票：全圖單一中性色，不暗示選情。原本借用官派底色（很淺），2026 成為
+      // 預設檢視後輪廓太淡，改用專屬、稍深的 --map-neutral。
+      const base = 'var(--map-neutral)';
       if (hover) return hoverTint(base);
       return dim ? dimmed(base) : base;
     }
@@ -551,6 +611,23 @@
   {/if}
 {/snippet}
 
+<!-- 插圖裡同一縣市的第二塊小框（馬祖的東引、金門的烏坵）：滑鼠互動同主區（hover
+     同步高亮、點擊下鑽），但不進 tab 順序——鍵盤操作由主區負責，避免同一縣市被
+     tab 到兩次。 -->
+{#snippet insetExtra(d: string, a: MapArea, box: { x: number; y: number; w: number; h: number }, label: string)}
+  <rect x={box.x} y={box.y} width={box.w} height={box.h} class="inset-frame" vector-effect="non-scaling-stroke" />
+  <text x={box.x} y={box.y - 8} class="inset-sublabel">{label}</text>
+  <path {d} fill={fillFor(a, false, false, hovered === a.code || kbFocused === a.code)}
+    class:clickable={!!a.childFile} vector-effect="non-scaling-stroke" aria-hidden="true"
+    onclick={() => drillInto(a, counties!)}
+    onmouseenter={() => { cancelRestore(); hovered = a.code; onSelect?.(a, counties!); }}
+    onmouseleave={() => { hovered = null; scheduleRestore(); }} />
+  {#if (hovered ?? kbFocused) === a.code}
+    <path {d} class="hover-outline-halo" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+    <path {d} class="hover-outline" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+  {/if}
+{/snippet}
+
 <div class="map-wrap" onkeydown={onMapKey}>
   <!-- Escape 掛在這個容器上（見上方 onMapKey 與其註解）：不論目前焦點在麵包屑
        按鈕、互動中的 <path> 或下鑽後被 focusMap() 收回的 <svg> 本身，keydown
@@ -659,10 +736,19 @@
           <rect x={LIENCHIANG_BOX.x} y={LIENCHIANG_BOX.y} width={LIENCHIANG_BOX.w} height={LIENCHIANG_BOX.h}
             class="inset-frame" vector-effect="non-scaling-stroke" />
           <text x={LIENCHIANG_BOX.x} y={LIENCHIANG_BOX.y - 12} class="inset-label">馬祖</text>
-          {@render shapePath(insets.lienchiang.shape, counties, false, true)}
-          {#if (hovered ?? kbFocused) === insets.lienchiang.shape.area.code}
-            <path d={insets.lienchiang.shape.d} class="hover-outline-halo" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
-            <path d={insets.lienchiang.shape.d} class="hover-outline" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+          <!-- 主區：南竿、北竿、莒光（見 LIENCHIANG_MAIN），東引與亮島落在區外，切掉。 -->
+          <clipPath id="inset-clip-lienchiang">
+            <rect x={LIENCHIANG_MAIN.x} y={LIENCHIANG_MAIN.y} width={LIENCHIANG_MAIN.w} height={LIENCHIANG_MAIN.h} />
+          </clipPath>
+          <g clip-path="url(#inset-clip-lienchiang)">
+            {@render shapePath(insets.lienchiang.shape, counties, false, true)}
+            {#if (hovered ?? kbFocused) === insets.lienchiang.shape.area.code}
+              <path d={insets.lienchiang.shape.d} class="hover-outline-halo" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+              <path d={insets.lienchiang.shape.d} class="hover-outline" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+            {/if}
+          </g>
+          {#if insets.lienchiang.extra}
+            {@render insetExtra(insets.lienchiang.extra, insets.lienchiang.shape.area, DONGYIN_BOX, '東引')}
           {/if}
 
           <!-- 金門縣插圖：同上，在馬祖插圖下方，維持「馬祖在上、金門在下」的
@@ -670,10 +756,20 @@
           <rect x={KINMEN_BOX.x} y={KINMEN_BOX.y} width={KINMEN_BOX.w} height={KINMEN_BOX.h}
             class="inset-frame" vector-effect="non-scaling-stroke" />
           <text x={KINMEN_BOX.x} y={KINMEN_BOX.y - 12} class="inset-label">金門</text>
-          {@render shapePath(insets.kinmen.shape, counties, false, true)}
-          {#if (hovered ?? kbFocused) === insets.kinmen.shape.area.code}
-            <path d={insets.kinmen.shape.d} class="hover-outline-halo" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
-            <path d={insets.kinmen.shape.d} class="hover-outline" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+          <!-- 比例尺只依大、小金門算（見 mainCluster），烏坵等遠處小島落在框外，
+               以 clipPath 切齊框線，不讓它們飄到主圖上。 -->
+          <clipPath id="inset-clip-kinmen">
+            <rect x={KINMEN_MAIN.x} y={KINMEN_MAIN.y} width={KINMEN_MAIN.w} height={KINMEN_MAIN.h} />
+          </clipPath>
+          <g clip-path="url(#inset-clip-kinmen)">
+            {@render shapePath(insets.kinmen.shape, counties, false, true)}
+            {#if (hovered ?? kbFocused) === insets.kinmen.shape.area.code}
+              <path d={insets.kinmen.shape.d} class="hover-outline-halo" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+              <path d={insets.kinmen.shape.d} class="hover-outline" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
+            {/if}
+          </g>
+          {#if insets.kinmen.extra}
+            {@render insetExtra(insets.kinmen.extra, insets.kinmen.shape.area, WUQIU_BOX, '烏坵')}
           {/if}
         </g>
       {/if}
@@ -792,6 +888,7 @@
      高度、寬螢幕則自然更大一些——地圖標籤隨整張圖縮放本來就是常見的地圖慣例。
      顏色（--muted）與字族（--sans）兩者不受 viewBox 縮放影響，維持用 token。 */
   .inset-label { font-family: var(--sans); font-size: 24px; fill: var(--muted); }
+  .inset-sublabel { font-family: var(--sans); font-size: 16px; fill: var(--muted); }
 
   /* 返回上一層：只在下鑽後出現（markup 見上方 {#if crumbs.length > 1}）。位置
      要在地圖的左上角，但不能疊在左欄報頭（ElectionPanel.svelte 的 .title-float，

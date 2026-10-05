@@ -5,6 +5,8 @@ import type { OfficeType } from './types';
 // 改成人們實際搜尋的講法（「新竹縣議員」「臺北市長」「不分區立委」），完整選區仍留在 description。
 export function officeRole(officeType: OfficeType, district: string): string {
   const county = district.match(/^(.+?[縣市])/)?.[1];
+  // 因參選建檔者（office_type candidate）：district 為登記縣市。
+  if (officeType === 'candidate') return county ? `2026 ${county}長參選人` : '2026 參選人';
   if (officeType === 'mayor_magistrate') return county ? `${county}長` : '縣市首長';
   if (officeType === 'councilor') return county ? `${county}議員` : '議員';
   if (district.includes('不分區')) return '不分區立委';

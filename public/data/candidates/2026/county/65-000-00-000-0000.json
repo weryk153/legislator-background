@@ -1,0 +1,1143 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "countyCode": "65-000-00-000-0000",
+ "countyName": "新北市",
+ "districts": [
+  {
+   "no": 1,
+   "label": "第1選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "鄭宇恩",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-鄭宇恩-民進黨-新北市第01選舉區",
+     "identity": "現任議員（新北市第1選舉區）"
+    },
+    {
+     "name": "陳偉杰",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳偉杰-國民黨-新北市第01選舉區",
+     "identity": "現任議員（新北市第1選舉區）"
+    },
+    {
+     "name": "游明諺",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳家琪",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳家琪-國民黨-新北市第01選舉區",
+     "identity": "現任議員（新北市第1選舉區）"
+    },
+    {
+     "name": "呂鈞鴻",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "label": "第2選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "戴翎育",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張昭隆",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡淑君",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蔡淑君-國民黨-新北市第02選舉區",
+     "identity": "現任議員（新北市第2選舉區）"
+    },
+    {
+     "name": "鄭丞宏",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳明義",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳明義-國民黨-新北市第02選舉區",
+     "identity": "現任議員（新北市第2選舉區）"
+    },
+    {
+     "name": "蔡佩呈",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李宇翔",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-李宇翔-民進黨-新北市第02選舉區",
+     "identity": "現任議員（新北市第2選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "label": "第3選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "翁震州",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-翁震州-民進黨-新北市第03選舉區",
+     "identity": "現任議員（新北市第3選舉區）"
+    },
+    {
+     "name": "簡麗花",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林秉宥",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林秉宥-民進黨-新北市第03選舉區",
+     "identity": "現任議員（新北市第3選舉區）"
+    },
+    {
+     "name": "蔣根煌",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蔣根煌-國民黨-新北市第03選舉區",
+     "identity": "現任議員（新北市第3選舉區）"
+    },
+    {
+     "name": "蔡健棠",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蔡健棠-國民黨-新北市第03選舉區",
+     "identity": "現任議員（新北市第3選舉區）"
+    },
+    {
+     "name": "吳奕萱",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳岱吟",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王珮宇",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳世軒",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳世軒-民眾黨-新北市第03選舉區",
+     "identity": "現任議員（新北市第3選舉區）"
+    },
+    {
+     "name": "甘崇緯",
+     "partyName": "台灣綠黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蕭夙玲",
+     "partyName": "親民黨",
+     "partyCode": "90",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳茂嘉",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "label": "第4選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "李翁月娥",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-李翁月娥-無黨籍及未經政黨推薦-新北市第04選舉區",
+     "identity": "現任議員（新北市第4選舉區）"
+    },
+    {
+     "name": "黃桂蘭",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-黃桂蘭-國民黨-新北市第04選舉區",
+     "identity": "現任議員（新北市第4選舉區）"
+    },
+    {
+     "name": "彭佳芸",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-彭佳芸-民進黨-新北市第04選舉區",
+     "identity": "現任議員（新北市第4選舉區）"
+    },
+    {
+     "name": "陳彥廷",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王威元",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-王威元-國民黨-新北市第04選舉區",
+     "identity": "現任議員（新北市第4選舉區）"
+    },
+    {
+     "name": "李余典",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李余典-民進黨-新北市第04選舉區",
+     "identity": "現任議員（新北市第4選舉區）"
+    },
+    {
+     "name": "陳俊維",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李倩萍",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李倩萍-民進黨-新北市第04選舉區",
+     "identity": "現任議員（新北市第4選舉區）"
+    },
+    {
+     "name": "董俊良",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "顏蔚慈",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-顏蔚慈-民進黨-新北市第04選舉區",
+     "identity": "現任議員（新北市第4選舉區）"
+    },
+    {
+     "name": "邱婷蔚",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-邱婷蔚-民進黨-新北市第04選舉區",
+     "identity": "現任議員（新北市第4選舉區）"
+    },
+    {
+     "name": "陳東雲",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡政呈",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "劉成謙",
+     "partyName": "親民黨",
+     "partyCode": "90",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳宛毓",
+     "partyName": "小民參政歐巴桑聯盟",
+     "partyCode": "357",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許宏平",
+     "partyName": "台聯黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蕭告",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "label": "第5選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "李昆穎",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "劉美芳",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-劉美芳-國民黨-新北市第05選舉區",
+     "identity": "現任議員（新北市第5選舉區）"
+    },
+    {
+     "name": "戴瑋姗",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-戴瑋姗-民進黨-新北市第05選舉區",
+     "identity": "現任議員（新北市第5選舉區）"
+    },
+    {
+     "name": "黃淑君",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-黃淑君-民進黨-新北市第05選舉區",
+     "identity": "現任議員（新北市第5選舉區）"
+    },
+    {
+     "name": "鄧凱勛",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳俊諺",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "山田摩衣",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-山田摩衣-民進黨-新北市第05選舉區",
+     "identity": "現任議員（新北市第5選舉區）"
+    },
+    {
+     "name": "林國春",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林國春-國民黨-新北市第05選舉區",
+     "identity": "現任議員（新北市第5選舉區）"
+    },
+    {
+     "name": "曾煥嘉",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-曾煥嘉-國民黨-新北市第05選舉區",
+     "identity": "現任議員（新北市第5選舉區）"
+    },
+    {
+     "name": "林子宇",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "周韋翰",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃淑珍",
+     "partyName": "司法改革黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "label": "第6選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "張維倩",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-張維倩-民進黨-新北市第06選舉區",
+     "identity": "現任議員（新北市第6選舉區）"
+    },
+    {
+     "name": "張志豪",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "金瑞龍",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-金瑞龍-國民黨-新北市第06選舉區",
+     "identity": "現任議員（新北市第6選舉區）"
+    },
+    {
+     "name": "林達",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳怡君",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張嘉玲",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張嘉玲-民進黨-新北市第06選舉區",
+     "identity": "現任議員（新北市第6選舉區）"
+    },
+    {
+     "name": "邱烽堯",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-邱烽堯-國民黨-新北市第06選舉區",
+     "identity": "現任議員（新北市第6選舉區）"
+    },
+    {
+     "name": "游輝宂",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-游輝宂-國民黨-新北市第06選舉區",
+     "identity": "現任議員（新北市第6選舉區）"
+    },
+    {
+     "name": "陳錦錠",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳錦錠-國民黨-新北市第06選舉區",
+     "identity": "現任議員（新北市第6選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "label": "第7選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "羅文崇",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳以樂",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許昭興",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-許昭興-民進黨-新北市第07選舉區",
+     "identity": "現任議員（新北市第7選舉區）"
+    },
+    {
+     "name": "陳鴻源",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳鴻源-國民黨-新北市第07選舉區",
+     "identity": "現任議員（新北市第7選舉區）"
+    },
+    {
+     "name": "蘇昭龍",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 8,
+   "label": "第8選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "高乃芸",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "廖宜琨",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-廖宜琨-民進黨-新北市第08選舉區",
+     "identity": "現任議員（新北市第8選舉區）"
+    },
+    {
+     "name": "吳亞倫",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "卓冠廷",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-卓冠廷-民進黨-新北市第08選舉區",
+     "identity": "現任議員（新北市第8選舉區）"
+    },
+    {
+     "name": "吳昇翰",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "彭一書",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-彭一書-民進黨-新北市第08選舉區",
+     "identity": "現任議員（新北市第8選舉區）"
+    },
+    {
+     "name": "呂家愷",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-呂家愷-國民黨-新北市第08選舉區",
+     "identity": "現任議員（新北市第8選舉區）"
+    },
+    {
+     "name": "蘇泓欽",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蘇泓欽-無黨籍及未經政黨推薦-新北市第08選舉區",
+     "identity": "現任議員（新北市第8選舉區）"
+    },
+    {
+     "name": "黃永昌",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-黃永昌-國民黨-新北市第08選舉區",
+     "identity": "現任議員（新北市第8選舉區）"
+    },
+    {
+     "name": "林金結",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-林金結-國民黨-新北市第08選舉區",
+     "identity": "現任議員（新北市第8選舉區）"
+    },
+    {
+     "name": "洪佳君",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-洪佳君-國民黨-新北市第08選舉區",
+     "identity": "現任議員（新北市第8選舉區）"
+    },
+    {
+     "name": "陳膺涵",
+     "partyName": "愛民黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 9,
+   "label": "第9選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "張柏詠",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "邸聖德",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張佑輔",
+     "partyName": "台灣綠黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳乃瑜",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳乃瑜-民進黨-新北市第09選舉區",
+     "identity": "現任議員（新北市第9選舉區）"
+    },
+    {
+     "name": "黃心華",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃心華-國民黨-新北市第09選舉區",
+     "identity": "現任議員（新北市第9選舉區）"
+    },
+    {
+     "name": "陳韋任",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "游皓麟",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "劉哲彰",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-劉哲彰-國民黨-新北市第09選舉區",
+     "identity": "現任議員（新北市第9選舉區）"
+    },
+    {
+     "name": "陳儀君",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-陳儀君-國民黨-新北市第09選舉區",
+     "identity": "現任議員（新北市第9選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 10,
+   "label": "第10選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "林裔綺",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林裔綺-民進黨-新北市第10選舉區",
+     "identity": "現任議員（新北市第10選舉區）"
+    },
+    {
+     "name": "林正峰",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 11,
+   "label": "第11選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "張錦豪",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-張錦豪-民進黨-新北市第11選舉區",
+     "identity": "現任議員（新北市第11選舉區）"
+    },
+    {
+     "name": "陳語倢",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳竹音",
+     "partyName": "勞動黨",
+     "partyCode": "15",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡美華",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "劉財鑫",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "白珮茹",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-白珮茹-國民黨-新北市第11選舉區",
+     "identity": "現任議員（新北市第11選舉區）"
+    },
+    {
+     "name": "何元楷",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃瑞傳",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "郭書成",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 12,
+   "label": "第12選舉區（平地原住民）",
+   "type": "plainIndigenous",
+   "candidates": [
+    {
+     "name": "忠仁‧達祿斯",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳國譽La‧Is‧Amid",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蘇錦雄Paylang‧Caya",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蘇錦雄paylang．caya-民進黨-新北市第12選舉區",
+     "identity": "現任議員（新北市第12選舉區）"
+    },
+    {
+     "name": "楊春妹",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-楊春妹-國民黨-新北市第12選舉區",
+     "identity": "現任議員（新北市第12選舉區）"
+    },
+    {
+     "name": "宋雨蓁Nikar‧Falong",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-宋雨蓁nikar．falong-無黨籍及未經政黨推薦-新北市第12選舉區",
+     "identity": "現任議員（新北市第12選舉區）"
+    },
+    {
+     "name": "吳建智咖啡哥",
+     "partyName": "親民黨",
+     "partyCode": "90",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "連祐崧",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 13,
+   "label": "第13選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "何應明",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "布落‧馬信",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王珍珍",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "馬見Lahuy‧Ipin",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-馬見lahuy．ipin-無黨團結聯盟-新北市第13選舉區",
+     "identity": "現任議員（新北市第13選舉區）"
+    },
+    {
+     "name": "林啟明",
+     "partyName": "親民黨",
+     "partyCode": "90",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "羅美菁",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  }
+ ],
+ "townToDistrict": {
+  "65-000-00-010-0000": 5,
+  "65-000-00-020-0000": 4,
+  "65-000-00-140-0000": 4,
+  "65-000-00-030-0000": 6,
+  "65-000-00-040-0000": 7,
+  "65-000-00-050-0000": 3,
+  "65-000-00-060-0000": 9,
+  "65-000-00-180-0000": 9,
+  "65-000-00-190-0000": 9,
+  "65-000-00-200-0000": 9,
+  "65-000-00-290-0000": 9,
+  "65-000-00-070-0000": 8,
+  "65-000-00-080-0000": 8,
+  "65-000-00-090-0000": 8,
+  "65-000-00-130-0000": 8,
+  "65-000-00-100-0000": 1,
+  "65-000-00-210-0000": 1,
+  "65-000-00-220-0000": 1,
+  "65-000-00-230-0000": 1,
+  "65-000-00-110-0000": 11,
+  "65-000-00-270-0000": 11,
+  "65-000-00-280-0000": 11,
+  "65-000-00-120-0000": 10,
+  "65-000-00-240-0000": 10,
+  "65-000-00-250-0000": 10,
+  "65-000-00-260-0000": 10,
+  "65-000-00-150-0000": 2,
+  "65-000-00-160-0000": 2,
+  "65-000-00-170-0000": 2
+ },
+ "splitTowns": [],
+ "mappingNote": null
+}

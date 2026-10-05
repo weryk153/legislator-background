@@ -1,0 +1,633 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "countyCode": "10-008-00-000-0000",
+ "countyName": "南投縣",
+ "districts": [
+  {
+   "no": 1,
+   "label": "第1選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "陳聰鑑",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林儒暘",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-林儒暘-國民黨-南投縣第01選舉區",
+     "identity": "現任議員（南投縣第1選舉區）"
+    },
+    {
+     "name": "許纘融",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "洪志杰",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林憶如",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林憶如-國民黨-南投縣第01選舉區",
+     "identity": "現任議員（南投縣第1選舉區）"
+    },
+    {
+     "name": "張錫淵",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張婉慈",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張婉慈-無黨籍及未經政黨推薦-南投縣第01選舉區",
+     "identity": "現任議員（南投縣第1選舉區）"
+    },
+    {
+     "name": "賴燕雪",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "洪明科",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-洪明科-無黨籍及未經政黨推薦-南投縣第01選舉區",
+     "identity": "現任議員（南投縣第1選舉區）"
+    },
+    {
+     "name": "張秀枝",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張秀枝-無黨籍及未經政黨推薦-南投縣第01選舉區",
+     "identity": "現任議員（南投縣第1選舉區）"
+    },
+    {
+     "name": "陳志斌",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "宋懷琳",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-宋懷琳-國民黨-南投縣第01選舉區",
+     "identity": "現任議員（南投縣第1選舉區）"
+    },
+    {
+     "name": "廖詒綉",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "簡千翔",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-簡千翔-民眾黨-南投縣第01選舉區",
+     "identity": "現任議員（南投縣第1選舉區）"
+    },
+    {
+     "name": "吳棋楠",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-吳棋楠-民進黨-南投縣第01選舉區",
+     "identity": "現任議員（南投縣第1選舉區）"
+    },
+    {
+     "name": "史雪燕",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳淳祐",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "label": "第2選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "張至順",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "廖梓佑",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-廖梓佑-民進黨-南投縣第02選舉區",
+     "identity": "現任議員（南投縣第2選舉區）"
+    },
+    {
+     "name": "洪巧娟",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡銘軒",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蔡銘軒-民進黨-南投縣第02選舉區",
+     "identity": "現任議員（南投縣第2選舉區）"
+    },
+    {
+     "name": "簡百聰",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "洪宗呈",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "簡峻庭",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-簡峻庭-無黨籍及未經政黨推薦-南投縣第02選舉區",
+     "identity": "現任議員（南投縣第2選舉區）"
+    },
+    {
+     "name": "林昆熠",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李洲忠",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-李洲忠-國民黨-南投縣第02選舉區",
+     "identity": "現任議員（南投縣第2選舉區）"
+    },
+    {
+     "name": "莊士傑",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-莊士傑-無黨籍及未經政黨推薦-南投縣第02選舉區",
+     "identity": "現任議員（南投縣第2選舉區）"
+    },
+    {
+     "name": "林佳穎",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李帛璋",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林友友",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-林友友-無黨籍及未經政黨推薦-南投縣第02選舉區",
+     "identity": "現任議員（南投縣第2選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "label": "第3選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "王秋淑",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-王秋淑-民進黨-南投縣第03選舉區",
+     "identity": "現任議員（南投縣第3選舉區）"
+    },
+    {
+     "name": "謝明謀",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-謝明謀-國民黨-南投縣第03選舉區",
+     "identity": "現任議員（南投縣第3選舉區）"
+    },
+    {
+     "name": "蕭志全",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳淑惠",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳淑惠-國民黨-南投縣第03選舉區",
+     "identity": "現任議員（南投縣第3選舉區）"
+    },
+    {
+     "name": "黃馨瑩",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃春麟",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-黃春麟-無黨籍及未經政黨推薦-南投縣第03選舉區",
+     "identity": "現任議員（南投縣第3選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "label": "第4選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "何勝豐",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-何勝豐-無黨籍及未經政黨推薦-南投縣第04選舉區",
+     "identity": "現任議員（南投縣第4選舉區）"
+    },
+    {
+     "name": "李廣演",
+     "partyName": "勞動黨",
+     "partyCode": "15",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林哲生",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃丹怡",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許耿禎",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡易呈",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "邱如平",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳玉鈴",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳玉鈴-民進黨-南投縣第04選舉區",
+     "identity": "現任議員（南投縣第4選舉區）"
+    },
+    {
+     "name": "劉子維",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "label": "第5選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "戴世詮",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-戴世詮-無黨籍及未經政黨推薦-南投縣第05選舉區",
+     "identity": "現任議員（南投縣第5選舉區）"
+    },
+    {
+     "name": "羅俞欣",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許文忠",
+     "partyName": "勞動黨",
+     "partyCode": "15",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林芳伃",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林芳伃-國民黨-南投縣第05選舉區",
+     "identity": "現任議員（南投縣第5選舉區）"
+    },
+    {
+     "name": "廖崑堯",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蘇昱誠",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蘇昱誠-民進黨-南投縣第05選舉區",
+     "identity": "現任議員（南投縣第5選舉區）"
+    },
+    {
+     "name": "吳維倫",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林奕辰",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳宜君",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳宜君-民進黨-南投縣第05選舉區",
+     "identity": "現任議員（南投縣第5選舉區）"
+    },
+    {
+     "name": "黃國裕",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "label": "第6選舉區（平地原住民）",
+   "type": "plainIndigenous",
+   "candidates": [
+    {
+     "name": "石慶龍Rungquan‧Lhkatafatu",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-石慶龍rungquan．lhkatafatu-無黨籍及未經政黨推薦-南投縣第06選舉區",
+     "identity": "現任議員（南投縣第6選舉區）"
+    },
+    {
+     "name": "江秉翰",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "label": "第7選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "王榮儀",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "田東憲",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "全文才Balan‧Soqluman",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-全文才balan．soqluman-國民黨-南投縣第07選舉區",
+     "identity": "現任議員（南投縣第7選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 8,
+   "label": "第8選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "林庭秝Ali Walis",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林婷立ali．walis-國民黨-南投縣第08選舉區",
+     "identity": "現任議員（南投縣第8選舉區）"
+    }
+   ]
+  }
+ ],
+ "townToDistrict": {
+  "10-008-00-010-0000": 1,
+  "10-008-00-060-0000": 1,
+  "10-008-00-020-0000": 5,
+  "10-008-00-100-0000": 5,
+  "10-008-00-130-0000": 5,
+  "10-008-00-030-0000": 2,
+  "10-008-00-080-0000": 2,
+  "10-008-00-040-0000": 4,
+  "10-008-00-070-0000": 4,
+  "10-008-00-050-0000": 3,
+  "10-008-00-090-0000": 3,
+  "10-008-00-110-0000": 3,
+  "10-008-00-120-0000": 3
+ },
+ "splitTowns": [],
+ "mappingNote": null
+}

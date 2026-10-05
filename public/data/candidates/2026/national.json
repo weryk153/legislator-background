@@ -1,0 +1,1068 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "races": [
+  {
+   "countyCode": "63-000-00-000-0000",
+   "countyName": "臺北市",
+   "isMunicipality": true,
+   "candidates": [
+    {
+     "name": "郭璽",
+     "partyName": "台灣麻將最大黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-郭璽-臺北市",
+     "identity": null
+    },
+    {
+     "name": "沈伯洋",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "shenpao-yang",
+     "identity": "現任不分區立委"
+    },
+    {
+     "name": "蕭文乾",
+     "partyName": "臺灣SoR無法黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-蕭文乾-臺北市",
+     "identity": null
+    },
+    {
+     "name": "唐新民",
+     "partyName": "三勢團結促進聯盟",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-唐新民-臺北市",
+     "identity": null
+    },
+    {
+     "name": "蔣萬安",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "mayor-taipei",
+     "identity": "現任臺北市長"
+    },
+    {
+     "name": "林志成",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-林志成-臺北市",
+     "identity": null
+    }
+   ],
+   "incumbent2022": {
+    "name": "蔣萬安",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-taipei",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
+  },
+  {
+   "countyCode": "65-000-00-000-0000",
+   "countyName": "新北市",
+   "isMunicipality": true,
+   "candidates": [
+    {
+     "name": "蘇巧慧",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "suchiao-hui",
+     "identity": "現任立委（新北市第5選舉區）"
+    },
+    {
+     "name": "李四川",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-李四川-新北市",
+     "identity": null
+    },
+    {
+     "name": "蘇輝湟",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-蘇輝湟-新北市",
+     "identity": null
+    }
+   ],
+   "incumbent2022": {
+    "name": "侯友宜",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-new-taipei",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
+  },
+  {
+   "countyCode": "68-000-00-000-0000",
+   "countyName": "桃園市",
+   "isMunicipality": true,
+   "candidates": [
+    {
+     "name": "張善政",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "mayor-taoyuan",
+     "identity": "現任桃園市長"
+    },
+    {
+     "name": "黃世杰",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-黃世杰-桃園市",
+     "identity": null
+    }
+   ],
+   "incumbent2022": {
+    "name": "張善政",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-taoyuan",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
+  },
+  {
+   "countyCode": "66-000-00-000-0000",
+   "countyName": "臺中市",
+   "isMunicipality": true,
+   "candidates": [
+    {
+     "name": "何欣純",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "ho-hsin-chun",
+     "identity": "現任立委（臺中市第7選舉區）"
+    },
+    {
+     "name": "江啟臣",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "chiang-chi-chen",
+     "identity": "現任立委（臺中市第8選舉區）"
+    },
+    {
+     "name": "洪麗華",
+     "partyName": "司法正義黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-洪麗華-臺中市",
+     "identity": null
+    }
+   ],
+   "incumbent2022": {
+    "name": "盧秀燕",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-taichung",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
+  },
+  {
+   "countyCode": "67-000-00-000-0000",
+   "countyName": "臺南市",
+   "isMunicipality": true,
+   "candidates": [
+    {
+     "name": "謝龍介",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "hsieh-lung-chieh",
+     "identity": "現任不分區立委"
+    },
+    {
+     "name": "蕭燐洪",
+     "partyName": "臺灣SoR無法黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-蕭燐洪-臺南市",
+     "identity": null
+    },
+    {
+     "name": "葉人文",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-葉人文-臺南市",
+     "identity": null
+    },
+    {
+     "name": "陳亭妃",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "chen-ting-fei",
+     "identity": "現任立委（臺南市第3選舉區）"
+    }
+   ],
+   "incumbent2022": {
+    "name": "黃偉哲",
+    "partyName": "民主進步黨",
+    "partyCode": "16",
+    "slug": "mayor-tainan",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
+  },
+  {
+   "countyCode": "64-000-00-000-0000",
+   "countyName": "高雄市",
+   "isMunicipality": true,
+   "candidates": [
+    {
+     "name": "張靜",
+     "partyName": "司法改革黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-張靜-高雄市",
+     "identity": null
+    },
+    {
+     "name": "賴瑞隆",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "laijui-lung",
+     "identity": "現任立委（高雄市第8選舉區）"
+    },
+    {
+     "name": "王肇民",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-王肇民-高雄市",
+     "identity": null
+    },
+    {
+     "name": "柯志恩",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "ko-chih-en",
+     "identity": "現任不分區立委"
+    },
+    {
+     "name": "洪方隆",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-洪方隆-高雄市",
+     "identity": null
+    }
+   ],
+   "incumbent2022": {
+    "name": "陳其邁",
+    "partyName": "民主進步黨",
+    "partyCode": "16",
+    "slug": "mayor-kaohsiung",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
+  },
+  {
+   "countyCode": "09-007-00-000-0000",
+   "countyName": "連江縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "王忠銘",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "mayor-lienchiang",
+     "identity": "現任連江縣長"
+    },
+    {
+     "name": "曹爾元",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-曹爾元-連江縣",
+     "identity": null
+    }
+   ],
+   "incumbent2022": {
+    "name": "王忠銘",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-lienchiang",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
+  },
+  {
+   "countyCode": "09-020-00-000-0000",
+   "countyName": "金門縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "洪和成",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-洪和成-金門縣",
+     "identity": null
+    },
+    {
+     "name": "李文良",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-李文良-金門縣",
+     "identity": null
+    },
+    {
+     "name": "黃世團",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-黃世團-金門縣",
+     "identity": null
+    },
+    {
+     "name": "陳玉珍",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "chenyu-jen",
+     "identity": "現任立委（金門縣選舉區）"
+    },
+    {
+     "name": "張國威",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-張國威-金門縣",
+     "identity": null
+    },
+    {
+     "name": "梁文韜",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-梁文韜-金門縣",
+     "identity": null
+    },
+    {
+     "name": "張火木",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-張火木-金門縣",
+     "identity": null
+    }
+   ],
+   "incumbent2022": {
+    "name": "陳福海",
+    "partyName": "無黨籍及未經政黨推薦",
+    "partyCode": "999",
+    "slug": "mayor-kinmen",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
+  },
+  {
+   "countyCode": "10-002-00-000-0000",
+   "countyName": "宜蘭縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "陳宏毅",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-陳宏毅-宜蘭縣",
+     "identity": null
+    },
+    {
+     "name": "吳宗憲",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "wutsung-hsien",
+     "identity": "現任不分區立委"
+    },
+    {
+     "name": "劉燦輝",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-劉燦輝-宜蘭縣",
+     "identity": null
+    },
+    {
+     "name": "林國漳",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-林國漳-宜蘭縣",
+     "identity": null
+    },
+    {
+     "name": "楊鉯婷",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-楊鉯婷-宜蘭縣",
+     "identity": null
+    }
+   ],
+   "incumbent2022": {
+    "name": "林姿妙",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-yilan",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
+  },
+  {
+   "countyCode": "10-004-00-000-0000",
+   "countyName": "新竹縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "鄭朝方",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-鄭朝方-新竹縣",
+     "identity": null
+    },
+    {
+     "name": "朱定瑀",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-朱定瑀-新竹縣",
+     "identity": null
+    },
+    {
+     "name": "徐欣瑩",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "hsu-hsin-ying",
+     "identity": "現任立委（新竹縣第1選舉區）"
+    }
+   ],
+   "incumbent2022": {
+    "name": "楊文科",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-hsinchu-county",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
+  },
+  {
+   "countyCode": "10-005-00-000-0000",
+   "countyName": "苗栗縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "陳品安",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳品安-無黨籍及未經政黨推薦-苗栗縣第03選舉區",
+     "identity": "現任議員（苗栗縣第3選舉區）"
+    },
+    {
+     "name": "鍾東錦",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "mayor-miaoli",
+     "identity": "現任苗栗縣長"
+    }
+   ],
+   "incumbent2022": {
+    "name": "鍾東錦",
+    "partyName": "無黨籍及未經政黨推薦",
+    "partyCode": "999",
+    "slug": "mayor-miaoli",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
+  },
+  {
+   "countyCode": "10-007-00-000-0000",
+   "countyName": "彰化縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "陳重嘉",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-陳重嘉-民眾黨-彰化縣第05選舉區",
+     "identity": "現任議員（彰化縣第5選舉區）"
+    },
+    {
+     "name": "陳素月",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "chensu-yueh",
+     "identity": "現任立委（彰化縣第4選舉區）"
+    },
+    {
+     "name": "邱建富",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-邱建富-彰化縣",
+     "identity": null
+    },
+    {
+     "name": "魏平政",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-魏平政-彰化縣",
+     "identity": null
+    }
+   ],
+   "incumbent2022": {
+    "name": "王惠美",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-changhua",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
+  },
+  {
+   "countyCode": "10-008-00-000-0000",
+   "countyName": "南投縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "温世政",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-温世政-南投縣",
+     "identity": null
+    },
+    {
+     "name": "許淑華",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "mayor-nantou",
+     "identity": "現任南投縣長"
+    }
+   ],
+   "incumbent2022": {
+    "name": "許淑華",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-nantou",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
+  },
+  {
+   "countyCode": "10-009-00-000-0000",
+   "countyName": "雲林縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "吳炳輝",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-吳炳輝-雲林縣",
+     "identity": null
+    },
+    {
+     "name": "張嘉郡",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "chang-chia-chun",
+     "identity": "現任不分區立委"
+    },
+    {
+     "name": "劉建國",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "liu-chien-kuo",
+     "identity": "現任立委（雲林縣第2選舉區）"
+    },
+    {
+     "name": "林佳瑜",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-林佳瑜-雲林縣",
+     "identity": null
+    }
+   ],
+   "incumbent2022": {
+    "name": "張麗善",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-yunlin",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
+  },
+  {
+   "countyCode": "10-010-00-000-0000",
+   "countyName": "嘉義縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "吳品叡",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-吳品叡-嘉義縣",
+     "identity": null
+    },
+    {
+     "name": "蔡易餘",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "tsai-yi-yu",
+     "identity": "現任立委（嘉義縣第1選舉區）"
+    }
+   ],
+   "incumbent2022": {
+    "name": "翁章梁",
+    "partyName": "民主進步黨",
+    "partyCode": "16",
+    "slug": "mayor-chiayi-county",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
+  },
+  {
+   "countyCode": "10-013-00-000-0000",
+   "countyName": "屏東縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "蘇清泉",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "su-ching-chuan",
+     "identity": "現任不分區立委"
+    },
+    {
+     "name": "周春米",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "mayor-pingtung",
+     "identity": "現任屏東縣長"
+    }
+   ],
+   "incumbent2022": {
+    "name": "周春米",
+    "partyName": "民主進步黨",
+    "partyCode": "16",
+    "slug": "mayor-pingtung",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
+  },
+  {
+   "countyCode": "10-014-00-000-0000",
+   "countyName": "臺東縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "陳瑩",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "chen-ying",
+     "identity": "現任平地原住民選舉區立委"
+    },
+    {
+     "name": "吳秀華",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-吳秀華-國民黨-臺東縣第01選舉區",
+     "identity": "現任議員（臺東縣第1選舉區）"
+    },
+    {
+     "name": "李吳穎智",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-李吳穎智-臺東縣",
+     "identity": null
+    },
+    {
+     "name": "王志偉",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-王志偉-臺東縣",
+     "identity": null
+    }
+   ],
+   "incumbent2022": {
+    "name": "饒慶鈴",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-taitung",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
+  },
+  {
+   "countyCode": "10-015-00-000-0000",
+   "countyName": "花蓮縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "游淑貞",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-游淑貞-花蓮縣",
+     "identity": null
+    },
+    {
+     "name": "張峻",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-張峻-無黨籍及未經政黨推薦-花蓮縣第03選舉區",
+     "identity": "現任議員（花蓮縣第3選舉區）"
+    },
+    {
+     "name": "魏嘉賢",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-魏嘉賢-無黨籍及未經政黨推薦-花蓮縣第01選舉區",
+     "identity": "現任議員（花蓮縣第1選舉區）"
+    },
+    {
+     "name": "羅佩秦",
+     "partyName": "台灣工黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-羅佩秦-花蓮縣",
+     "identity": null
+    }
+   ],
+   "incumbent2022": {
+    "name": "徐榛蔚",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-hualien",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
+  },
+  {
+   "countyCode": "10-016-00-000-0000",
+   "countyName": "澎湖縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "吳淑瑾",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-吳淑瑾-澎湖縣",
+     "identity": null
+    },
+    {
+     "name": "陳振中",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-陳振中-澎湖縣",
+     "identity": null
+    },
+    {
+     "name": "周倪安",
+     "partyName": "台聯黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-周倪安-澎湖縣",
+     "identity": null
+    },
+    {
+     "name": "許智富",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-許智富-澎湖縣",
+     "identity": null
+    },
+    {
+     "name": "陳盡川",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-陳盡川-澎湖縣",
+     "identity": null
+    },
+    {
+     "name": "葉竹林",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-葉竹林-澎湖縣",
+     "identity": null
+    }
+   ],
+   "incumbent2022": {
+    "name": "陳光復",
+    "partyName": "民主進步黨",
+    "partyCode": "16",
+    "slug": "mayor-penghu",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
+  },
+  {
+   "countyCode": "10-017-00-000-0000",
+   "countyName": "基隆市",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "謝國樑",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "mayor-keelung",
+     "identity": "現任基隆市長"
+    },
+    {
+     "name": "魏造文",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-魏造文-基隆市",
+     "identity": null
+    },
+    {
+     "name": "童子瑋",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-童子瑋-民進黨-基隆市第03選舉區",
+     "identity": "現任議員（基隆市第3選舉區）"
+    }
+   ],
+   "incumbent2022": {
+    "name": "謝國樑",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-keelung",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
+  },
+  {
+   "countyCode": "10-018-00-000-0000",
+   "countyName": "新竹市",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "高虹安",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "mayor-hsinchu-city",
+     "identity": "現任新竹市長"
+    },
+    {
+     "name": "莊競程",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-莊競程-新竹市",
+     "identity": null
+    },
+    {
+     "name": "何志勇",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-何志勇-新竹市",
+     "identity": null
+    }
+   ],
+   "incumbent2022": {
+    "name": "高虹安",
+    "partyName": "台灣民眾黨",
+    "partyCode": "350",
+    "slug": "mayor-hsinchu-city",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
+  },
+  {
+   "countyCode": "10-020-00-000-0000",
+   "countyName": "嘉義市",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "黃宏成台灣阿成世界偉人財神總統",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-黃宏成台灣阿成世界偉人財神總統-嘉義市",
+     "identity": null
+    },
+    {
+     "name": "陳愷璜",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-陳愷璜-嘉義市",
+     "identity": null
+    },
+    {
+     "name": "張啓楷",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "張啓楷-不分區",
+     "identity": "前任不分區立委"
+    },
+    {
+     "name": "王美惠",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "wangmei-hui",
+     "identity": "現任立委（嘉義市選舉區）"
+    },
+    {
+     "name": "王義成",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-王義成-嘉義市",
+     "identity": null
+    }
+   ],
+   "incumbent2022": {
+    "name": "黃敏惠",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-chiayi-city",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選（2022 為重行選舉，當選人出生日期由 2018 年原始檔以「同縣市同職務同姓名同政黨相符」回填認定）"
+   }
+  }
+ ]
+}

@@ -1,0 +1,8 @@
+{
+  "registration": {
+    "dir": "scraper/out-roster/cec/2026-registration",
+    "url": "https://web.cec.gov.tw/central/article/64709",
+    "tableDate": "2026-09-07",
+    "files": { "municipalMayor": "1-1.pdf", "municipalCouncil": "2-1.pdf", "countyMayor": "3-1.pdf", "countyCouncil": "4-1.pdf" }
+  }
+}

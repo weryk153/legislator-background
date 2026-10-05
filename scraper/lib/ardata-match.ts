@@ -3,7 +3,7 @@
 // 其餘 none/ambiguous 進 review 清單。
 export interface OfficialLite {
   id: string; name: string;
-  office_type: 'legislator' | 'mayor_magistrate' | 'councilor';
+  office_type: 'legislator' | 'mayor_magistrate' | 'councilor' | 'candidate';
   district: string; is_incumbent: boolean;
 }
 
@@ -38,7 +38,12 @@ const ABORIGINAL_AREAS = ['平地原住民', '山地原住民'];
 export function matchAccount(
   account: { name: string; electionName: string; area?: string },
   officials: OfficialLite[],
+  // 人工確認的參選人專戶：`${姓名}|${選舉名稱}` → official id。參選人不是現任、職類也
+  // 不同，自動規則配不上（也不該配），只有逐筆查證過的專戶才掛上去。
+  confirmed: Map<string, string> = new Map(),
 ): MatchResult {
+  const pinned = confirmed.get(`${account.name}|${account.electionName}`);
+  if (pinned) return { status: 'matched', officialId: pinned };
   const office = officeTypeOfElection(account.electionName);
   if (!office) return { status: 'none', reason: `選舉類型不明: ${account.electionName}` };
   let pool = officials.filter(

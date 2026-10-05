@@ -61,10 +61,26 @@ async function main() {
     if (!offs || offs.length < PAGE) break;
   }
 
+  // 人工確認的參選人專戶：檔案存 slug，這裡換成 id。
+  const candConfirmed = JSON.parse(readFileSync(join(here, 'ardata-candidate-confirmed.json'), 'utf8')) as
+    { name: string; election_name: string; slug: string; basis: string }[];
+  const idBySlug = new Map<string, string>();
+  for (let from = 0; ; from += PAGE) {
+    const { data, error } = await sb.from('officials').select('id, slug').range(from, from + PAGE - 1);
+    if (error) throw new Error(`officials slug query failed: ${error.message}`);
+    for (const o of data ?? []) idBySlug.set(o.slug, o.id);
+    if (!data || data.length < PAGE) break;
+  }
+  const pinned = new Map(candConfirmed.map((c) => {
+    const id = idBySlug.get(c.slug);
+    if (!id) throw new Error(`ardata-candidate-confirmed.json：${c.name} 的 slug ${c.slug} 不存在`);
+    return [`${c.name}|${c.election_name}`, id] as [string, string];
+  }));
+
   const review: Array<{ account: AccountSummary; status: string; reason: string }> = [];
   let inserted = 0, dup = 0;
   for (const s of summaries) {
-    const m = matchAccount({ name: s.name, electionName: s.electionName, area: s.area }, officials);
+    const m = matchAccount({ name: s.name, electionName: s.electionName, area: s.area }, officials, pinned);
     if (m.status !== 'matched') {
       review.push({ account: { ...s, topDonors: [] }, status: m.status, reason: m.reason });
       continue;

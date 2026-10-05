@@ -51,6 +51,7 @@
      同一件事——它們是三件不同的事（見 ElectionSidebar.svelte 的說明文字）。 */
   --map-appointed-bg: #efe9dc;   /* 官派區（無選舉）：斜線紋理的底色，見 ElectionMap.svelte 的 #hatch-appointed */
   --map-appointed-line: #3c3527; /* 官派區斜線本身的顏色 */
+  --map-neutral: #d8ceb8;        /* 尚未開票年份（2026）的中性底色：比官派底色深，讓縣市輪廓看得清楚，但不帶政黨色相 */
   --map-unedited: #e3ddd0;       /* 未編定村里（真實土地但無村里長，非選舉缺口） */
   --map-pending: #9c8760;        /* 得票相同待抽籤：中性但較深，跟「本站無資料」的淺灰分得開 */
   --map-nodata: #c7bfab;         /* 本站無資料（制度上有選舉，但本站資料缺漏） */
@@ -78,6 +79,7 @@
 
   --map-appointed-bg: #3a3629;
   --map-appointed-line: #d8cdb8;
+  --map-neutral: #4a4435;
   --map-unedited: #2c2921;
   --map-pending: #9c8967;
   --map-nodata: #5a543f;

@@ -1,0 +1,1067 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "countyCode": "64-000-00-000-0000",
+ "countyName": "高雄市",
+ "districts": [
+  {
+   "no": 1,
+   "label": "第1選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "林富寶",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-林富寶-民進黨-高雄市第01選舉區",
+     "identity": "現任議員（高雄市第1選舉區）"
+    },
+    {
+     "name": "林慧欣",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林義迪",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林義迪-國民黨-高雄市第01選舉區",
+     "identity": "現任議員（高雄市第1選舉區）"
+    },
+    {
+     "name": "鍾炳光",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李振豪",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "label": "第2選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "李柏融",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃明太",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-黃明太-民進黨-高雄市第02選舉區",
+     "identity": "現任議員（高雄市第2選舉區）"
+    },
+    {
+     "name": "鄭東元",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳琳潔",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李亞築",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-李亞築-國民黨-高雄市第02選舉區",
+     "identity": "現任議員（高雄市第2選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "label": "第3選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "張騏晟",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林志誠",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林志誠-民進黨-高雄市第03選舉區",
+     "identity": "現任議員（高雄市第3選舉區）"
+    },
+    {
+     "name": "方信淵",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-方信淵-國民黨-高雄市第03選舉區",
+     "identity": "現任議員（高雄市第3選舉區）"
+    },
+    {
+     "name": "宋立彬",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-宋立彬-國民黨-高雄市第03選舉區",
+     "identity": "現任議員（高雄市第3選舉區）"
+    },
+    {
+     "name": "蔡秉璁",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃秋媖",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃秋媖-民進黨-高雄市第03選舉區",
+     "identity": "現任議員（高雄市第3選舉區）"
+    },
+    {
+     "name": "黃韻涵",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔣黃女",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "label": "第4選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "陳冠宇",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "尹立",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳麗珍",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳麗珍-國民黨-高雄市第04選舉區",
+     "identity": "現任議員（高雄市第4選舉區）"
+    },
+    {
+     "name": "李雅慧",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李雅慧-民進黨-高雄市第04選舉區",
+     "identity": "現任議員（高雄市第4選舉區）"
+    },
+    {
+     "name": "張以理",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃文志",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃文志-民進黨-高雄市第04選舉區",
+     "identity": "現任議員（高雄市第4選舉區）"
+    },
+    {
+     "name": "李雅芬",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李雅芬-國民黨-高雄市第04選舉區",
+     "identity": "現任議員（高雄市第4選舉區）"
+    },
+    {
+     "name": "陳玫娟",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳玫娟-國民黨-高雄市第04選舉區",
+     "identity": "現任議員（高雄市第4選舉區）"
+    },
+    {
+     "name": "薛兆基",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "柳淑芳",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李眉蓁",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-李眉蓁-國民黨-高雄市第04選舉區",
+     "identity": "現任議員（高雄市第4選舉區）"
+    },
+    {
+     "name": "白喬茵",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-白喬茵-國民黨-高雄市第04選舉區",
+     "identity": "現任議員（高雄市第4選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "label": "第5選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "邱俊憲",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-邱俊憲-民進黨-高雄市第05選舉區",
+     "identity": "現任議員（高雄市第5選舉區）"
+    },
+    {
+     "name": "黃飛鳳",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-黃飛鳳-民進黨-高雄市第05選舉區",
+     "identity": "現任議員（高雄市第5選舉區）"
+    },
+    {
+     "name": "張勝富",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-張勝富-民進黨-高雄市第05選舉區",
+     "identity": "現任議員（高雄市第5選舉區）"
+    },
+    {
+     "name": "江瑞鴻",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-江瑞鴻-民進黨-高雄市第05選舉區",
+     "identity": "現任議員（高雄市第5選舉區）"
+    },
+    {
+     "name": "陳若翠",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳利成",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-吳利成-國民黨-高雄市第05選舉區",
+     "identity": "現任議員（高雄市第5選舉區）"
+    },
+    {
+     "name": "陳惠君",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "label": "第6選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "簡煥宗",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-簡煥宗-民進黨-高雄市第06選舉區",
+     "identity": "現任議員（高雄市第6選舉區）"
+    },
+    {
+     "name": "陳美雅",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-陳美雅-國民黨-高雄市第06選舉區",
+     "identity": "現任議員（高雄市第6選舉區）"
+    },
+    {
+     "name": "李喬如",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李喬如-民進黨-高雄市第06選舉區",
+     "identity": "現任議員（高雄市第6選舉區）"
+    },
+    {
+     "name": "蔡金晏",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-蔡金晏-國民黨-高雄市第06選舉區",
+     "identity": "現任議員（高雄市第6選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "label": "第7選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "鄭孟洳",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-鄭孟洳-民進黨-高雄市第07選舉區",
+     "identity": "現任議員（高雄市第7選舉區）"
+    },
+    {
+     "name": "黃柏霖",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃柏霖-國民黨-高雄市第07選舉區",
+     "identity": "現任議員（高雄市第7選舉區）"
+    },
+    {
+     "name": "黃淑美",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "曾俊傑",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-曾俊傑-國民黨-高雄市第07選舉區",
+     "identity": "現任議員（高雄市第7選舉區）"
+    },
+    {
+     "name": "何權峰",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-何權峰-民進黨-高雄市第07選舉區",
+     "identity": "現任議員（高雄市第7選舉區）"
+    },
+    {
+     "name": "張博洋",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張博洋-台灣基進-高雄市第07選舉區",
+     "identity": "現任議員（高雄市第7選舉區）"
+    },
+    {
+     "name": "康裕成",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-康裕成-民進黨-高雄市第07選舉區",
+     "identity": "現任議員（高雄市第7選舉區）"
+    },
+    {
+     "name": "余聖明",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林彥",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "童燕珍",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃香菽",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-黃香菽-國民黨-高雄市第07選舉區",
+     "identity": "現任議員（高雄市第7選舉區）"
+    },
+    {
+     "name": "林于凱",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 8,
+   "label": "第8選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "黃文益",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-黃文益-民進黨-高雄市第08選舉區",
+     "identity": "現任議員（高雄市第8選舉區）"
+    },
+    {
+     "name": "郭建盟",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-郭建盟-民進黨-高雄市第08選舉區",
+     "identity": "現任議員（高雄市第8選舉區）"
+    },
+    {
+     "name": "湯詠瑜",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-湯詠瑜-民進黨-高雄市第08選舉區",
+     "identity": "現任議員（高雄市第8選舉區）"
+    },
+    {
+     "name": "陳雅敏",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃舜杰",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許采蓁",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-許釆蓁-國民黨-高雄市第08選舉區",
+     "identity": "現任議員（高雄市第8選舉區）"
+    },
+    {
+     "name": "鄒約翰",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃裕庭",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃鈺婷",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 9,
+   "label": "第9選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "林智鴻",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-林智鴻-民進黨-高雄市第09選舉區",
+     "identity": "現任議員（高雄市第9選舉區）"
+    },
+    {
+     "name": "鄭安秝",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-鄭安秝-國民黨-高雄市第09選舉區",
+     "identity": "現任議員（高雄市第9選舉區）"
+    },
+    {
+     "name": "蘇致榮",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李雅靜",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李雅靜-國民黨-高雄市第09選舉區",
+     "identity": "現任議員（高雄市第9選舉區）"
+    },
+    {
+     "name": "劉德林",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-劉德林-國民黨-高雄市第09選舉區",
+     "identity": "現任議員（高雄市第9選舉區）"
+    },
+    {
+     "name": "陳慧文",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳慧文-民進黨-高雄市第09選舉區",
+     "identity": "現任議員（高雄市第9選舉區）"
+    },
+    {
+     "name": "張漢忠",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張漢忠-民進黨-高雄市第09選舉區",
+     "identity": "現任議員（高雄市第9選舉區）"
+    },
+    {
+     "name": "鄧巧佩",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "鍾易仲",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-鍾易仲-國民黨-高雄市第09選舉區",
+     "identity": "現任議員（高雄市第9選舉區）"
+    },
+    {
+     "name": "徐尚賢",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 10,
+   "label": "第10選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "鄭光峰",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-鄭光峰-民進黨-高雄市第10選舉區",
+     "identity": "現任議員（高雄市第10選舉區）"
+    },
+    {
+     "name": "李政憲",
+     "partyName": "司法改革黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "劉仙娥",
+     "partyName": "勞動黨",
+     "partyCode": "15",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳麗娜",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳麗娜-國民黨-高雄市第10選舉區",
+     "identity": "現任議員（高雄市第10選舉區）"
+    },
+    {
+     "name": "吳昱鋒",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳銘賜",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-吳銘賜-台灣團結聯盟-高雄市第10選舉區",
+     "identity": "現任議員（高雄市第10選舉區）"
+    },
+    {
+     "name": "李順進",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李順進-無黨團結聯盟-高雄市第10選舉區",
+     "identity": "現任議員（高雄市第10選舉區）"
+    },
+    {
+     "name": "黃敬雅",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李紘毅",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡武宏",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-蔡武宏-國民黨-高雄市第10選舉區",
+     "identity": "現任議員（高雄市第10選舉區）"
+    },
+    {
+     "name": "于仙玲",
+     "partyName": "小民參政歐巴桑聯盟",
+     "partyCode": "357",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "湯茹婷",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張藝璉",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 11,
+   "label": "第11選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "張耀中",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李雨庭",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李雨庭-民進黨-高雄市第11選舉區",
+     "identity": "現任議員（高雄市第11選舉區）"
+    },
+    {
+     "name": "王耀裕",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-王耀裕-國民黨-高雄市第11選舉區",
+     "identity": "現任議員（高雄市第11選舉區）"
+    },
+    {
+     "name": "黃天煌",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃天煌-國民黨-高雄市第11選舉區",
+     "identity": "現任議員（高雄市第11選舉區）"
+    },
+    {
+     "name": "洪村銘",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "邱于軒",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-邱于軒-國民黨-高雄市第11選舉區",
+     "identity": "現任議員（高雄市第11選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 12,
+   "label": "第12選舉區（平地原住民）",
+   "type": "plainIndigenous",
+   "candidates": [
+    {
+     "name": "巫振興",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "宋紹銘",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王義雄",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-王義雄-國民黨-高雄市第12選舉區",
+     "identity": "現任議員（高雄市第12選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 13,
+   "label": "第13選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "陳幸富",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳幸富-無黨籍及未經政黨推薦-高雄市第13選舉區",
+     "identity": "現任議員（高雄市第13選舉區）"
+    },
+    {
+     "name": "葛姵瑩",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 14,
+   "label": "第14選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "林錫閔",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "洪英雄Salizan．binkinuan",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "高忠德Takiludun．Anu",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-高忠德takiludun．anu-無黨籍及未經政黨推薦-高雄市第14選舉區",
+     "identity": "現任議員（高雄市第14選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 15,
+   "label": "第15選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "金禾雅",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳奕蓁",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  }
+ ],
+ "townToDistrict": {
+  "64-000-00-010-0000": 6,
+  "64-000-00-020-0000": 6,
+  "64-000-00-100-0000": 6,
+  "64-000-00-030-0000": 4,
+  "64-000-00-040-0000": 4,
+  "64-000-00-050-0000": 7,
+  "64-000-00-060-0000": 8,
+  "64-000-00-070-0000": 8,
+  "64-000-00-080-0000": 8,
+  "64-000-00-090-0000": 10,
+  "64-000-00-110-0000": 10,
+  "64-000-00-120-0000": 9,
+  "64-000-00-130-0000": 11,
+  "64-000-00-140-0000": 11,
+  "64-000-00-150-0000": 5,
+  "64-000-00-160-0000": 5,
+  "64-000-00-170-0000": 5,
+  "64-000-00-180-0000": 5,
+  "64-000-00-190-0000": 3,
+  "64-000-00-200-0000": 3,
+  "64-000-00-210-0000": 3,
+  "64-000-00-270-0000": 3,
+  "64-000-00-280-0000": 3,
+  "64-000-00-290-0000": 3,
+  "64-000-00-220-0000": 2,
+  "64-000-00-230-0000": 2,
+  "64-000-00-240-0000": 2,
+  "64-000-00-250-0000": 2,
+  "64-000-00-260-0000": 2,
+  "64-000-00-300-0000": 1,
+  "64-000-00-310-0000": 1,
+  "64-000-00-320-0000": 1,
+  "64-000-00-330-0000": 1,
+  "64-000-00-340-0000": 1,
+  "64-000-00-350-0000": 1,
+  "64-000-00-360-0000": 1,
+  "64-000-00-370-0000": 1,
+  "64-000-00-380-0000": 1
+ },
+ "splitTowns": [],
+ "mappingNote": null
+}

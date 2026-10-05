@@ -6,6 +6,9 @@
     type MapArea, type MapLayer, type PartySeat, type RaceCandidate,
   } from '../lib/mapTypes';
 
+  import { STAGE_LABEL, chiefTitle, type CandidateEntry, type CandidateSource, type ChiefRace } from '../lib/candidateTypes';
+  import { groupDistricts, type SidebarCandidates } from '../lib/candidateView';
+
   /** 政黨色，與地圖共用 mapTypes.ts 的同一份對照，不在此另立一套。 */
   const partyColor = (code: string) => `var(${PARTY_VAR[code] ?? '--party-other'})`;
 
@@ -21,8 +24,9 @@
   // area／layer 仍然是既有那年（如 2022）的資料——地圖只是拿它畫界線與驅動
   // 下鑽，不代表尚未舉行那屆的結果，所以側欄要整段改講「尚無結果」，不能把
   // area.chief 等 2022 年的當選人資訊當成現在的答案顯示出來。
-  let { area, layer, upcoming = false }: {
+  let { area, layer, upcoming = false, candidates = null, candidateSource = null, countyLoadFailed = false }: {
     area: MapArea | null; layer: MapLayer | null; upcoming?: boolean;
+    candidates?: SidebarCandidates | null; candidateSource?: CandidateSource | null; countyLoadFailed?: boolean;
   } = $props();
 
   // 未選取單一區時，把整層的首長政黨彙總成分佈
@@ -99,15 +103,128 @@
   </li>
 {/snippet}
 
+<!-- 候選人一列：政黨色點、姓名、推薦政黨；有站上檔案才給連結與身分說明。
+     所有候選人同字級、同版型——不依政黨大小區分。partyCode 為 null（新政黨）
+     時 partyColor 退回 --party-other，不會變成無黨籍的灰。 -->
+{#snippet candRow(c: CandidateEntry)}
+  <li>
+    <span class="swatch" aria-hidden="true" style={`--c:${partyColor(c.partyCode ?? '')}`}></span>
+    <span class="cand-main">
+      {#if c.number !== null}<span class="num">{c.number}</span>{/if}
+      {#if c.slug}
+        <a href={`/officials/${c.slug}/`}>{c.name}<span aria-hidden="true"> →</span></a>
+      {:else}
+        <span class="nm">{c.name}</span>
+      {/if}
+      <span class="cand-party">{c.partyName === '無' ? '無黨籍' : c.partyName}</span>
+      {#if c.identity}<span class="cand-id">{c.identity}</span>{/if}
+    </span>
+  </li>
+{/snippet}
+
+{#snippet candList(list: CandidateEntry[])}
+  <ul class="cand-2026">
+    {#each list as c (c.name + c.registeredOn)}{@render candRow(c)}{/each}
+  </ul>
+{/snippet}
+
+<!-- 2022 年當選者對照：2026 主軸、2022 只作對照，所以放在候選人名單之下的小字。
+     資料是建置期從地圖檔帶進 race.incumbent2022（含補選修正），這裡不另查。
+     任期屆滿者說明「為何不在名單上」；連任狀態未知就明說待查，不猜。 -->
+{#snippet compare(r: ChiefRace)}
+  {#if r.incumbent2022}
+    {@const inc = r.incumbent2022}
+    <p class="compare">
+      2022 當選：{#if inc.slug}<a href={`/officials/${inc.slug}/`}>{inc.name}</a>{:else}{inc.name}{/if}（{inc.partyName}）{#if inc.termLimitStatus === 'limited'}・{inc.termLimitReason || '任期屆滿，不得連任'}{:else if inc.termLimitStatus === 'unknown'}・連任狀態待查{/if}
+    </p>
+  {/if}
+{/snippet}
+
 <aside class="side">
   {#if upcoming}
-    <!-- 尚未舉行的年份：不論有沒有點選行政區，一律不揭露沿用資料裡的當選人／
-         政黨，只說明「尚無結果」，並重申開票後會更新——跟左欄的說法一致。 -->
-    <h2>{area?.name ?? layer?.parentName ?? '2026 九合一選舉'}</h2>
-    <p class="institutional">
-      2026 年地方公職人員選舉尚未舉行，本站尚無{area ? '此區' : ''}結果可顯示。
-      投票日 2026 年 11 月 28 日，開票後本頁將更新為當屆結果。
-    </p>
+    <!-- 尚未舉行：沒有候選人資料時，一律不揭露沿用資料裡的當選人／政黨，只說明「尚無結果」。 -->
+    {#if !candidates}
+      <h2>{area?.name ?? layer?.parentName ?? '2026 九合一選舉'}</h2>
+      <p class="institutional">
+        2026 年地方公職人員選舉尚未舉行，本站尚無{area ? '此區' : ''}結果可顯示。
+        投票日 2026 年 11 月 28 日，開票後本頁將更新為當屆結果。
+      </p>
+    {:else if candidates.mode === 'nationalOverview'}
+      <h2>2026 縣市長候選人</h2>
+      <h3 class="group">六都</h3>
+      {#each candidates.municipalities as r (r.countyCode)}
+        <section class="race-2026">
+          <h4>{chiefTitle(r.countyName)}<span class="count">{r.candidates.length} 人</span></h4>
+          {@render candList(r.candidates)}
+          {@render compare(r)}
+        </section>
+      {/each}
+      <h3 class="group">其他 {candidates.others.length} 縣市</h3>
+      <ul class="others">
+        {#each candidates.others as o (o.countyCode)}
+          <li>{o.countyName}<span class="count">{o.count} 人</span></li>
+        {/each}
+      </ul>
+      <p class="hint">點選地圖上的縣市可查看完整名單與議員候選人。</p>
+    {:else if candidates.mode === 'chief'}
+      <h2>{chiefTitle(candidates.countyName)}候選人</h2>
+      {#if candidates.race}{@render candList(candidates.race.candidates)}{@render compare(candidates.race)}
+      {:else}<p class="note">此縣市無首長候選人資料。</p>{/if}
+      <p class="hint">點進此縣市查看議員候選人。</p>
+    {:else if candidates.mode === 'county'}
+      <h2>{layer?.parentName}</h2>
+      {#if candidates.race}
+        <section><h3>{chiefTitle(candidates.race.countyName)}候選人</h3>{@render candList(candidates.race.candidates)}{@render compare(candidates.race)}</section>
+      {/if}
+      {#if area}
+        <section>
+          <h3>{area.name}的議員選區</h3>
+          {#if candidates.highlight}
+            <h4>{candidates.highlight.label}</h4>{@render candList(candidates.highlight.candidates)}
+            {#if candidates.county && groupDistricts(candidates.county.districts).indigenous.length}
+              <p class="note">本縣另有原住民選區，見選區列表。</p>
+            {/if}
+          {:else if candidates.townNote}<p class="note">{candidates.townNote}</p>{/if}
+        </section>
+      {:else if candidates.county}
+        {@const grp = groupDistricts(candidates.county.districts)}
+        <section>
+          <h3>議員候選人</h3>
+          {#if candidates.county.mappingNote}<p class="note">{candidates.county.mappingNote}</p>{/if}
+          {#each grp.regional as d (d.no)}
+            <details class="district">
+              <summary>{d.label}<span class="count">{d.candidates.length} 人</span></summary>
+              {@render candList(d.candidates)}
+            </details>
+          {/each}
+          {#if grp.indigenous.length}
+            <h4 class="group-ind">原住民選區</h4>
+            {#each grp.indigenous as d (d.no)}
+              <details class="district">
+                <summary>{d.label}<span class="count">{d.candidates.length} 人</span></summary>
+                {@render candList(d.candidates)}
+              </details>
+            {/each}
+          {/if}
+        </section>
+      {:else}
+        <p class="note">{countyLoadFailed ? '議員候選人資料載入失敗。' : '議員候選人載入中…'}</p>
+      {/if}
+    {:else}
+      <h2>{candidates.townName}</h2>
+      <section>
+        <h3>議員選區</h3>
+        {#if candidates.district}
+          <h4>{candidates.district.label}</h4>{@render candList(candidates.district.candidates)}
+        {:else if candidates.note}<p class="note">{candidates.note}</p>{/if}
+      </section>
+    {/if}
+    {#if candidateSource}
+      <p class="cand-source">
+        資料：<a href={candidateSource.url} rel="noopener" target="_blank">{STAGE_LABEL[candidateSource.stage]}</a>，
+        製表 {candidateSource.tableDate}。{candidateSource.stage === 'registration' || candidateSource.stage === 'certified' ? '號次待 10/23 抽籤。' : ''}
+      </p>
+    {/if}
   {:else if area}
     <h2>{area.name}</h2>
 
@@ -285,4 +402,19 @@
   .more summary::before { content: '▸ '; }
   .more[open] summary::before { content: '▾ '; }
   .more .cand-list { margin-top: .2rem; }
+  .cand-2026 { list-style: none; margin: 0 0 .75rem; padding: 0; }
+  .cand-2026 li { display: grid; grid-template-columns: .55rem 1fr; gap: .5rem; align-items: baseline; padding: .2rem 0; }
+  .cand-main { display: flex; flex-wrap: wrap; gap: .1rem .5rem; align-items: baseline; }
+  .cand-main .num { font-variant-numeric: tabular-nums; color: var(--muted); min-width: 1.2em; }
+  .cand-party { color: var(--muted); font-size: .85rem; }
+  .cand-id { flex-basis: 100%; color: var(--muted); font-size: .8rem; }
+  .group { margin: 1rem 0 .25rem; font-size: .8rem; letter-spacing: .08em; color: var(--muted); }
+  .race-2026 h4, .district summary { display: flex; justify-content: space-between; margin: .5rem 0 .2rem; }
+  .group-ind { margin: 1rem 0 .2rem; font-size: .8rem; letter-spacing: .08em; color: var(--muted); }
+  .count { color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
+  .others { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .1rem 1rem; }
+  .others li { display: flex; justify-content: space-between; }
+  .compare { margin: -.45rem 0 .75rem; font-size: .8rem; color: var(--muted); }
+  .compare a { text-decoration: underline; text-underline-offset: 2px; }
+  .cand-source { margin-top: 1rem; font-size: .75rem; color: var(--muted); }
 </style>

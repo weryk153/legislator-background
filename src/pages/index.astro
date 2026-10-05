@@ -4,7 +4,8 @@ import OfficialTable from "../components/OfficialTable.svelte";
 import { loadOfficials } from "../lib/data";
 import { toListRow } from "../lib/transform";
 
-const officials = await loadOfficials();
+// 參選人檔案由選舉頁進入，不列入總覽（總覽收錄對象為現任公職）。
+const officials = (await loadOfficials()).filter((o) => o.officeType !== "candidate");
 const rows = officials.map(toListRow);
 const desc = `查詢台灣 ${officials.length} 位立法委員、縣市首長與縣市議員的經歷、司法判決、爭議報導與財產申報，每筆皆附公開資料出處。`;
 const siteUrl = Astro.site ? Astro.site.href.replace(/\/$/, "") : "";

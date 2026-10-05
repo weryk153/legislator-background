@@ -28,7 +28,7 @@ export const ENTITY_LABEL: Record<EntityType, string> = {
 };
 // 公職類別 → 白話標籤。供關係圖節點標籤與檔案頁標題共用。
 export const OFFICE_LABEL: Record<OfficeType, string> = {
-  legislator: '立委', mayor_magistrate: '縣市首長', councilor: '議員',
+  legislator: '立委', mayor_magistrate: '縣市首長', councilor: '議員', candidate: '參選人',
 };
 
 // Pure: raw rows → GraphData + validation errors. No fs / no network (unit-testable, browser-safe).
