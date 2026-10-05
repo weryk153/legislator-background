@@ -1,7 +1,7 @@
 // test/candidateLinks.test.ts
 import { describe, it, expect } from 'vitest';
 import {
-  linkCandidate, identityLine, nameKey, normalizeDistrict, countyOf, type OfficialRef,
+  linkCandidate, identityLine, nameKey, fullKey, normalizeDistrict, countyOf, type OfficialRef,
 } from '../scraper/lib/candidateLinks';
 import { chiefTitle } from '../src/lib/candidateTypes';
 
@@ -22,6 +22,11 @@ describe('正規化', () => {
     expect(nameKey('楊清順 Cinsun Pawtawan')).toBe(nameKey('楊清順Cinsun‧Pawtawan'));
     expect(nameKey('張啓楷')).toBe(nameKey('張啟楷'));
     expect(nameKey('瓦力司．比尤')).toBe(nameKey('瓦力司‧比尤'));
+  });
+  it('純羅馬拼音姓名有獨立 key，不會全部相等', () => {
+    expect(nameKey('LalingYumin')).not.toBe('');
+    expect(nameKey('LalingYumin')).not.toBe(nameKey('KacawYumin'));
+    expect(fullKey('楊清順 Cinsun・Pawtawan')).toBe(fullKey('楊清順Cinsun‧Pawtawan'));
   });
   it('首長職稱', () => {
     expect(chiefTitle('臺北市')).toBe('臺北市長');
@@ -109,4 +114,27 @@ describe('identityLine', () => {
   it('議員（去補零）', () => expect(identityLine(off({}))).toBe('現任議員（臺北市第1選舉區）'));
   it('已離任', () => expect(identityLine(off({ isIncumbent: false }))).toBe('前任議員（臺北市第1選舉區）'));
   it('因參選建檔者沒有公職身分', () => expect(identityLine(off({ officeType: 'candidate' }))).toBeNull());
+});
+
+describe('linkCandidate：確認檔以完整姓名比對', () => {
+  const offs = [off({ slug: 'A', name: '楊清順' }), off({ slug: 'B', name: '楊清順 ' })];
+  const race = council('臺北市第1選舉區');
+  const confs = [
+    { name: '楊清順Cinsun‧Pawtawan', race: '臺北市第1選舉區', slug: 'A', basis: 'a' },
+    { name: '楊清順Lisin‧Pawtawan', race: '臺北市第01選舉區', slug: 'B', basis: 'b' },
+  ];
+  it('同選區兩位漢字相同者各自對到自己的 slug', () => {
+    expect(linkCandidate('楊清順Cinsun‧Pawtawan', race, offs, confs)).toMatchObject({ kind: 'confirmed', slug: 'A' });
+    expect(linkCandidate('楊清順Lisin‧Pawtawan', race, offs, confs)).toMatchObject({ kind: 'confirmed', slug: 'B' });
+  });
+  it('他人的確認不套用到拼音不同者', () => {
+    // 確認檔不套用 → 回到一般規則（此處同名唯一現任同選區 → auto，reason 不是人工確認）
+    const r = linkCandidate('楊清順Lisin‧Pawtawan', race, [offs[0]], [confs[0]]);
+    expect(r.kind).toBe('auto');
+  });
+  it('分隔符變體仍相符', () => {
+    const r = linkCandidate('楊清順Cinsun‧Pawtawan', race, offs,
+      [{ name: '楊清順Cinsun・Pawtawan', race: '臺北市第1選舉區', slug: 'A', basis: 'a' }]);
+    expect(r).toMatchObject({ kind: 'confirmed', slug: 'A' });
+  });
 });

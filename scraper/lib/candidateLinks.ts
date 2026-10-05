@@ -19,7 +19,19 @@ export type LinkResult =
  * 漢字部分撞名的風險由後續的縣市／選區／職務條件把關。
  */
 export function nameKey(name: string): string {
-  return normalizeNameChars(name).replace(/[^\p{Script=Han}]/gu, '');
+  const n = normalizeNameChars(name);
+  const han = n.replace(/[^\p{Script=Han}]/gu, '');
+  if (han) return han;
+  // 名冊有純羅馬拼音姓名（如 LalingYumin）；Han key 為空會讓它們全部相等，改用帶前綴的拉丁 key
+  return `latin:${n.replace(/[^A-Za-z]/g, '').toLowerCase()}`;
+}
+
+/**
+ * 人工確認檔用完整姓名比對（去空白、統一異體字與分隔符）：同選區可能有漢字相同、
+ * 羅馬拼音不同的兩位原住民候選人，只比漢字會讓一筆確認（連結或否決）套到另一人身上。
+ */
+export function fullKey(s: string): string {
+  return normalizeNameChars(s).replace(/\s/g, '');
 }
 
 /** 選區字串正規化：去前導零、統一異體字。新北市第05選舉區 ≡ 新北市第5選舉區。 */
@@ -39,7 +51,7 @@ export function linkCandidate(
 ): LinkResult {
   const key = nameKey(name);
   const raceKey = normalizeDistrict(race.district);
-  const conf = confirmed.find((c) => nameKey(c.name) === key && normalizeDistrict(c.race) === raceKey);
+  const conf = confirmed.find((c) => fullKey(c.name) === fullKey(name) && normalizeDistrict(c.race) === raceKey);
   if (conf) {
     if (conf.slug === null) return { kind: 'rejected', slug: null, reason: `人工確認非本人：${conf.basis}` };
     if (!officials.some((o) => o.slug === conf.slug)) {
