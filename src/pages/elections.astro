@@ -5,6 +5,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { buildYears } from "../lib/electionYears";
 import type { MapLayer } from "../lib/mapTypes";
+import { STAGE_LABEL, chiefTitle, type NationalCandidates } from "../lib/candidateTypes";
 
 const meta = JSON.parse(readFileSync(join(process.cwd(), "public", "data", "map", "meta.json"), "utf8"));
 // 年份切換器的資料來源，見 src/lib/electionYears.ts 開頭的說明——日後加 2018
@@ -19,6 +20,15 @@ const years = buildYears(meta);
 const national: MapLayer = JSON.parse(
   readFileSync(join(process.cwd(), "public", "data", "map", "national.json"), "utf8"),
 );
+
+// 2026 候選人靜態表：側欄是 client-side 元件，搜尋引擎與讀屏讀不到，這裡另出一份
+// 伺服器端渲染的表。檔案不存在時略過整段，不擋建置。
+let candidates2026: NationalCandidates | null = null;
+try {
+  candidates2026 = JSON.parse(readFileSync(join(process.cwd(), "public", "data", "candidates", "2026", "national.json"), "utf8"));
+} catch (e) {
+  console.warn(`candidates national.json 讀取失敗，/elections 候選人表略過：${(e as Error).message}`);
+}
 
 const fmtInt = (n: number): string => n.toLocaleString("en-US");
 const fmtPercent = (n: number | null | undefined): string => (typeof n === "number" ? `${n.toFixed(2)}%` : "—");
@@ -153,6 +163,40 @@ const jsonLd = [
       </table>
     </div>
   </section>
+
+  {candidates2026 && (
+    <section class="overview" aria-labelledby="cand-title">
+      <h2 id="cand-title">2026 縣市長候選人</h2>
+      <p class="overview-note">
+        資料：<a href={candidates2026.source.url} rel="noopener">{STAGE_LABEL[candidates2026.source.stage]}</a>，
+        製表 {candidates2026.source.tableDate}。六都在前，其餘依縣市代碼順序；同一縣市內依{candidates2026.races.every((r) => r.candidates.every((c) => c.number !== null)) ? "號次" : "中選會名冊順序"}排列。
+      </p>
+      <div class="table-scroll">
+        <table>
+          <caption class="sr-only">2026 年各縣市首長選舉候選人</caption>
+          <thead>
+            <tr><th scope="col">選舉</th><th scope="col">候選人</th></tr>
+          </thead>
+          <tbody>
+            {candidates2026.races.map((r) => (
+              <tr>
+                <th scope="row">{chiefTitle(r.countyName)}</th>
+                <td>
+                  {r.candidates.map((c, i) => (
+                    <>
+                      {i > 0 && "、"}
+                      {c.slug ? <a href={`/officials/${c.slug}`}>{c.name}</a> : c.name}
+                      （{c.partyName === "無" ? "無黨籍" : c.partyName}）
+                    </>
+                  ))}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )}
 </Base>
 
 <style>
