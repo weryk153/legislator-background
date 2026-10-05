@@ -4,7 +4,13 @@ import ElectionPanel from "../components/ElectionPanel.svelte";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { buildYears } from "../lib/electionYears";
-import { STAGE_LABEL, chiefTitle, type CandidateEntry, type CountyCandidates, type NationalCandidates } from "../lib/candidateTypes";
+import {
+  ELECTION_MILESTONES, STAGE_LABEL, chiefTitle, taipeiToday, timelineProgress,
+  type CandidateEntry, type CountyCandidates, type NationalCandidates,
+} from "../lib/candidateTypes";
+import { candidateOverview, isChiefReelect, isCouncilReelect, orderCandidates, partyTally, recordCounts, type PartyBar } from "../lib/candidateStats";
+import { PARTY_VAR } from "../lib/mapTypes";
+import { loadOfficials } from "../lib/data";
 
 const meta = JSON.parse(readFileSync(join(process.cwd(), "public", "data", "map", "meta.json"), "utf8"));
 // 年份切換器的資料來源，見 src/lib/electionYears.ts 開頭的說明——日後加 2018
@@ -30,10 +36,46 @@ const councils2026: CountyCandidates[] = (() => {
   return candidates2026.races.map((r) => byCode.get(r.countyCode)).filter((c): c is CountyCandidates => !!c);
 })();
 const councilTotal = councils2026.reduce((n, c) => n + c.districts.reduce((m, d) => m + d.candidates.length, 0), 0);
-// 現任議員爭取連任：連到的檔案身分為現任議員（含新竹縣這類選區重劃後換編號者）。
-const councilReelect = (c: CandidateEntry) => !!c.slug && !!c.identity?.startsWith("現任議員");
+// 現任議員爭取連任：與「參選概況」數字磚共用同一條規則（src/lib/candidateStats.ts），
+// 粗體人數與數字磚的人數才不會兜不攏。
+const councilReelect = isCouncilReelect;
 
 const fmtInt = (n: number): string => n.toLocaleString("en-US");
+
+// ── 選務時程軸 ─────────────────────────────────────────────
+// 以建置當天（臺灣日期）標出目前位置。頁面是靜態建置，「今天」就是最後一次建置的日期；
+// 名單換版時會重新建置，時程軸跟著前進。
+const today = taipeiToday();
+const progress = timelineProgress(ELECTION_MILESTONES, today);
+const shortDate = (iso: string) => `${Number(iso.slice(5, 7))}/${Number(iso.slice(8, 10))}`;
+// 節點與「今天」標記攤成一串，畫成同一條線上的項目；今天正逢某節點時不另畫標記。
+type TimelineItem = { kind: "node"; i: number } | { kind: "today" };
+const timelineItems: TimelineItem[] = [
+  ...(progress.todayAfter === -1 ? [{ kind: "today" as const }] : []),
+  ...ELECTION_MILESTONES.flatMap((_, i): TimelineItem[] =>
+    progress.todayAfter === i ? [{ kind: "node", i }, { kind: "today" }] : [{ kind: "node", i }]),
+];
+
+// ── 參選概況 ─────────────────────────────────────────────
+const overview = candidates2026 ? candidateOverview(candidates2026, councils2026) : null;
+const chiefBars = candidates2026 ? partyTally(candidates2026.races.flatMap((r) => r.candidates)) : [];
+const councilBars = partyTally(councils2026.flatMap((co) => co.districts.flatMap((d) => d.candidates)));
+const barGroups: { title: string; total: number; bars: PartyBar[] }[] = [
+  ...(overview ? [{ title: "縣市長", total: overview.chiefCount, bars: chiefBars }] : []),
+  ...(overview && councils2026.length > 0 ? [{ title: "縣市議員", total: overview.councilCount, bars: councilBars }] : []),
+];
+const barPct = (b: PartyBar, bars: PartyBar[]) => `${(b.count / Math.max(...bars.map((x) => x.count))) * 100}%`;
+
+// ── 六都對決卡片 ／ 縣市長表「站上資料」欄 ──────────────────────
+// 筆數取自站上檔案（以 slug 對應）；只列數字與連結，判決／爭議內容一律不上這頁。
+const officialsBySlug = new Map((await loadOfficials()).map((o) => [o.slug, o]));
+const countsOf = (c: CandidateEntry) => (c.slug ? recordCounts(officialsBySlug.get(c.slug)) : null);
+const photoOf = (c: CandidateEntry) => (c.slug ? officialsBySlug.get(c.slug)?.photoUrl ?? null : null);
+const muniRaces = candidates2026 ? candidates2026.races.filter((r) => r.isMunicipality) : [];
+const partyLabel = (c: CandidateEntry) => (c.partyName === "無" ? "無黨籍" : c.partyName);
+// 與 partyTally 同規則：無黨籍用 --party-none；新政黨（代碼 null）與未列代碼用 --party-other。
+const partyVar = (c: CandidateEntry) =>
+  c.partyName === "無" || c.partyCode === "999" ? "--party-none" : (c.partyCode && PARTY_VAR[c.partyCode]) || "--party-other";
 
 const siteUrl = Astro.site ? Astro.site.href.replace(/\/$/, "") : "";
 const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
@@ -83,6 +125,131 @@ const jsonLd = [
     <ElectionPanel client:load {years} />
   </div>
 
+  <!-- 選務時程軸：伺服器端渲染，節點實心＝已過、空心＝未到；今天落在兩節點之間時，
+       在線上另畫一個「今天」標記。窄螢幕改直排。 -->
+  <section class="overview" aria-labelledby="timeline-title">
+    <h2 id="timeline-title">選務時程</h2>
+    <ol class="timeline">
+      {timelineItems.map((it) => {
+        if (it.kind === "today") {
+          return (
+            <li class="tl-today">
+              <span class="tl-mark" aria-hidden="true"></span>
+              <span class="tl-label">今天</span>
+              <time class="tl-date" datetime={today}>{shortDate(today)}</time>
+            </li>
+          );
+        }
+        const m = ELECTION_MILESTONES[it.i];
+        const st = progress.states[it.i];
+        return (
+          <li class={`tl-node ${st}`} aria-current={st === "current" ? "step" : undefined}>
+            <span class="tl-dot" aria-hidden="true"></span>
+            <span class="tl-label">{m.label}</span>
+            <time class="tl-date" datetime={m.start}>{m.dateText}</time>
+            <span class="sr-only">{st === "done" ? "（已過）" : st === "current" ? "（進行中）" : "（未到）"}</span>
+          </li>
+        );
+      })}
+    </ol>
+    {candidates2026 && (
+      <p class="overview-note">
+        本站名單目前為：{STAGE_LABEL[candidates2026.source.stage]}（製表 {candidates2026.source.tableDate}）
+      </p>
+    )}
+  </section>
+
+  {overview && (
+    <section class="overview" aria-labelledby="stats-title">
+      <h2 id="stats-title">參選概況</h2>
+      <dl class="tiles">
+        <div class="tile"><dt>縣市長候選人</dt><dd class="tile-num">{fmtInt(overview.chiefCount)}</dd></div>
+        {councils2026.length > 0 && (
+          <div class="tile"><dt>縣市議員候選人</dt><dd class="tile-num">{fmtInt(overview.councilCount)}</dd></div>
+        )}
+        <div class="tile"><dt>現任縣市長爭取連任</dt><dd class="tile-num">{fmtInt(overview.chiefReelect)}</dd></div>
+        {councils2026.length > 0 && (
+          <div class="tile"><dt>現任議員爭取連任</dt><dd class="tile-num">{fmtInt(overview.councilReelect)}</dd></div>
+        )}
+        <div class="tile tile-wide">
+          <dt>現任縣市長不得連任的縣市</dt>
+          <dd class="tile-num">{fmtInt(overview.termLimited.length)}</dd>
+          <dd class="tile-list">{overview.termLimited.join("、") || "無"}</dd>
+        </div>
+      </dl>
+
+      <div class="bar-groups">
+        {barGroups.map((g) => (
+          <div class="bar-group">
+            <h3>各黨提名人數・{g.title}</h3>
+            <ul class="bars" aria-label={`${g.title}候選人各黨提名人數，共 ${fmtInt(g.total)} 人`}>
+              {g.bars.map((b) => (
+                <li class="bar-row">
+                  <span class="bar-label">{b.label}</span>
+                  <span class="bar-track" aria-hidden="true">
+                    <span class="bar-fill" style={`width: ${barPct(b, g.bars)}; background: var(${b.cssVar});`}></span>
+                  </span>
+                  <span class="bar-count">{fmtInt(b.count)}<span class="sr-only"> 人</span></span>
+                  {b.parties && (
+                    <span class="bar-parties">{b.parties.map((p) => `${p.name} ${p.count}`).join("、")}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- 六都對決卡片：所有候選人同字級、同版型、同大小；排序依名冊（有號次時依號次），
+       不依政黨或筆數。筆數只列數字，內容請見個人頁。 -->
+  {muniRaces.length > 0 && (
+    <section class="overview" aria-labelledby="muni-title">
+      <h2 id="muni-title">六都市長候選人</h2>
+      <div class="muni-grid">
+        {muniRaces.map((r) => (
+          <article class="muni-card" aria-labelledby={`muni-${r.countyCode}`}>
+            <header class="muni-head">
+              <h3 id={`muni-${r.countyCode}`}>{chiefTitle(r.countyName)}</h3>
+              {r.incumbent2022 && (
+                <p class="muni-inc">
+                  2022 當選：{r.incumbent2022.name}（{r.incumbent2022.partyName}）{r.incumbent2022.termLimitStatus === "limited" ? "・不得連任" : r.incumbent2022.termLimitStatus === "unknown" ? "・連任狀態待查" : ""}
+                </p>
+              )}
+            </header>
+            <ul class="muni-cands">
+              {orderCandidates(r.candidates).map((c) => {
+                const photo = photoOf(c);
+                const n = countsOf(c);
+                return (
+                  <li class="mc">
+                    {photo
+                      ? <img class="mc-avatar" src={photo} alt="" width="48" height="48" loading="lazy" />
+                      : <span class="mc-avatar ph" aria-hidden="true">{c.name[0]}</span>}
+                    <div class="mc-body">
+                      <p class="mc-name">
+                        {c.number !== null && <span class="mc-no">{c.number} 號</span>}
+                        {c.slug ? <a href={`/officials/${c.slug}`}>{c.name}</a> : c.name}
+                        {isChiefReelect(c, r) && <span class="mc-tag">爭取連任</span>}
+                      </p>
+                      <p class="mc-party"><span class="dot" style={`background: var(${partyVar(c)});`} aria-hidden="true"></span>{partyLabel(c)}</p>
+                      {c.identity && <p class="mc-id">{c.identity}</p>}
+                      <p class="mc-recs">
+                        {n ? `經歷 ${n.careers}・判決 ${n.judgments}・爭議 ${n.controversies}・獻金 ${n.donations}` : "本站尚無檔案"}
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </article>
+        ))}
+      </div>
+      <p class="overview-note muni-foot">筆數為本站收錄之公開紀錄，非完整紀錄；內容與出處請見個人頁。</p>
+    </section>
+  )}
+
   {candidates2026 && (
     <section class="overview" aria-labelledby="cand-title">
       <h2 id="cand-title">2026 縣市長候選人</h2>
@@ -94,7 +261,7 @@ const jsonLd = [
         <table class="cand-table">
           <caption class="sr-only">2026 年各縣市首長選舉候選人</caption>
           <thead>
-            <tr><th scope="col">選舉</th><th scope="col">候選人</th></tr>
+            <tr><th scope="col">選舉</th><th scope="col">候選人</th><th scope="col">站上資料</th></tr>
           </thead>
           <tbody>
             {candidates2026.races.map((r) => (
@@ -107,6 +274,14 @@ const jsonLd = [
                       <span class={c.slug && c.slug === r.incumbent2022?.slug ? "cand reelect" : "cand"}><span class="nm">{c.slug ? <a href={`/officials/${c.slug}`}>{c.name}</a> : c.name}</span>（{c.partyName === "無" ? "無黨籍" : c.partyName}）</span>
                     </>
                   ))}
+                </td>
+                <td class="recs">
+                  {r.candidates.map((c) => {
+                    const n = countsOf(c);
+                    return n && (
+                      <span class="rec"><a href={`/officials/${c.slug}`}>{c.name}</a>：<span class="kv">判決 {n.judgments}</span>・<span class="kv">爭議 {n.controversies}</span>・<span class="kv">獻金 {n.donations}</span></span>
+                    );
+                  })}
                 </td>
               </tr>
             ))}
@@ -266,4 +441,130 @@ const jsonLd = [
     font-family: var(--serif);
     font-variant-numeric: tabular-nums;
   }
+
+  /* ── 選務時程軸 ──────────────────────────────────────────
+     一條髮絲線串起各節點：實心＝已過或進行中、空心＝未到；「今天」是線上的一道短豎線。
+     節點等寬排開，不按日期比例——時程只有五個點，比例尺反而讓 8/31 與 9/4 擠在一起。 */
+  .timeline {
+    position: relative;
+    display: flex; gap: 12px;
+    list-style: none; margin: 8px 0 12px; padding: 0;
+  }
+  .timeline::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 6px;
+    border-top: 1px solid var(--line-strong);
+  }
+  .timeline li { position: relative; padding-top: 22px; display: flex; flex-direction: column; gap: 2px; }
+  .tl-node { flex: 1 1 0; min-width: 0; }
+  .tl-today { flex: 0 0 auto; }
+  .tl-dot {
+    position: absolute; top: 0; left: 0;
+    width: 13px; height: 13px; border-radius: 50%;
+    border: 1.5px solid var(--fg); background: var(--bg);
+  }
+  .tl-node.done .tl-dot, .tl-node.current .tl-dot { background: var(--fg); }
+  .tl-node.current .tl-dot { box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--fg); }
+  .tl-mark { position: absolute; top: -3px; left: 6px; height: 19px; border-left: 2px solid var(--accent); }
+  .tl-label { font-family: var(--serif); font-weight: 700; font-size: 0.9375rem; line-height: 1.4; }
+  .tl-date { color: var(--muted); font-size: var(--t-sm); font-variant-numeric: tabular-nums; }
+  .tl-today .tl-label, .tl-today .tl-date { color: var(--accent); }
+  @media (max-width: 640px) {
+    .timeline { flex-direction: column; gap: 14px; }
+    .timeline::before { left: 6px; right: auto; top: 6px; bottom: 6px; border-top: 0; border-left: 1px solid var(--line-strong); }
+    .timeline li { padding: 0 0 0 26px; }
+    .tl-dot { top: 3px; }
+    .tl-mark { top: 4px; left: 0; height: 0; width: 13px; border-left: 0; border-top: 2px solid var(--accent); }
+  }
+
+  /* ── 參選概況：數字磚＋各黨橫向長條 ────────────────────────
+     長條只用 CSS 寬度百分比（相對該組最多的一條），不引入圖表套件。 */
+  .tiles {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0 24px; margin: 8px 0 28px;
+  }
+  .tile { border-top: 1px solid var(--line-strong); padding: 10px 0 12px; display: flex; flex-direction: column; }
+  .tile dt { color: var(--muted); font-size: var(--t-sm); order: 2; }
+  .tile dd { margin: 0; }
+  .tile-num { font-family: var(--serif); font-weight: 700; font-size: var(--t-xl); line-height: 1.15; font-variant-numeric: tabular-nums; order: 1; }
+  .tile-list { order: 3; font-size: var(--t-sm); line-height: 1.6; margin-top: 4px !important; }
+  .tile-wide { grid-column: 1 / -1; }
+  @media (max-width: 640px) {
+    .tiles { grid-template-columns: 1fr 1fr; gap: 0 16px; }
+  }
+
+  .bar-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 40px; }
+  @media (max-width: 760px) { .bar-groups { grid-template-columns: 1fr; } }
+  .bar-group h3 { font-size: 1rem; margin: 0 0 8px; }
+  .bars { list-style: none; margin: 0; padding: 0; }
+  .bar-row {
+    display: grid; grid-template-columns: minmax(5em, 9em) 1fr 3.5em;
+    align-items: center; gap: 2px 10px; padding: 4px 0; font-size: 0.875rem;
+  }
+  .bar-label { line-height: 1.35; }
+  .bar-track { height: 10px; background: var(--row-hover); }
+  .bar-fill { display: block; height: 100%; min-width: 2px; }
+  .bar-count { text-align: right; font-family: var(--serif); font-variant-numeric: tabular-nums; }
+  .bar-parties { grid-column: 1 / -1; color: var(--muted); font-size: var(--t-sm); line-height: 1.6; }
+
+  /* ── 六都對決卡片 ───────────────────────────────────────
+     中立原則：每位候選人同字級、同版型、同大小；「爭取連任」是中性小標籤，
+     筆數一律同色同字級，不因判決或爭議筆數改變視覺強度。 */
+  .muni-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 32px; margin-top: 8px; }
+  @media (max-width: 900px) { .muni-grid { grid-template-columns: 1fr; } }
+  .muni-card { border-top: 1px solid var(--line-strong); padding-top: 12px; min-width: 0; }
+  .muni-head h3 { font-size: var(--t-md); margin: 0; }
+  .muni-inc { color: var(--muted); font-size: var(--t-sm); margin: 4px 0 0; line-height: 1.6; }
+  .muni-cands { list-style: none; margin: 8px 0 0; padding: 0; }
+  .mc { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .mc:last-child { border-bottom: 0; }
+  .mc-avatar {
+    width: 48px; height: 48px; flex: none; border-radius: 50%;
+    object-fit: cover; object-position: center top;
+    border: 1px solid var(--line); background: var(--bg);
+  }
+  .mc-avatar.ph { display: grid; place-items: center; color: var(--muted); font-family: var(--serif); font-size: 1.25rem; }
+  .mc-body { min-width: 0; }
+  .mc-body p { margin: 0; line-height: 1.6; }
+  .mc-name { font-family: var(--serif); font-weight: 700; font-size: 1.0625rem; }
+  .mc-name a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+  .mc-name a:hover { color: var(--accent); }
+  .mc-no { font-family: var(--sans); font-weight: 400; font-size: var(--t-sm); color: var(--muted); margin-right: 6px; }
+  .mc-tag {
+    display: inline-block; margin-left: 8px; padding: 0 6px;
+    font-family: var(--sans); font-weight: 400; font-size: var(--t-xs); line-height: 1.6;
+    color: var(--muted); border: 1px solid var(--line-strong); border-radius: 3px; vertical-align: 2px;
+  }
+  .mc-party, .mc-id { font-size: 0.875rem; }
+  .mc-id { color: var(--muted); }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+  .mc-recs { font-size: var(--t-sm); color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 2px !important; }
+  .muni-foot { margin-top: 12px; }
+
+  /* 縣市長表「站上資料」欄：每位有檔案的候選人一行小字，只列筆數與連結。 */
+  .cand-table td.recs { font-size: var(--t-sm); color: var(--muted); line-height: 1.7; }
+  .cand-table .rec { display: block; }
+  .cand-table .kv { white-space: nowrap; }
+  /* 桌機：整行不換行、欄寬縮到內容寬，把剩下的寬度留給候選人欄；
+     窄螢幕才允許在「・」之間換行，不讓表格撐出橫向捲動。 */
+  @media (min-width: 641px) {
+    .cand-table td.recs { width: 1%; }
+    .cand-table .rec { white-space: nowrap; }
+  }
+  /* 窄螢幕三欄擠不下（表格會在 .table-scroll 裡橫向捲動），改成每列兩欄：
+     左欄縣市、右欄上方候選人、下方站上資料，欄名改由小標「站上資料」帶出。 */
+  @media (max-width: 640px) {
+    .cand-table tr { display: grid; grid-template-columns: 5.5em minmax(0, 1fr); }
+    .cand-table thead th:first-child, .cand-table tbody th { width: auto; grid-row: span 2; }
+    .cand-table thead th:last-child { display: none; }
+    .cand-table thead th:nth-child(2) { grid-row: span 2; }
+    .cand-table td { border-bottom: 0; padding-bottom: 0; }
+    .cand-table td.recs { grid-column: 2; padding: 4px 0 9px; border-bottom: 1px solid var(--line); }
+    .cand-table tbody th { border-bottom: 1px solid var(--line); }
+    .cand-table td.recs::before { content: "站上資料"; display: block; font-family: var(--serif); font-weight: 700; }
+    /* 極長的登記姓名（如「黃宏成台灣阿成世界偉人財神總統」）連政黨一起不斷行會撐出表格；
+       窄螢幕只保住姓名不斷開，政黨括號可換到下一行。 */
+    .cand-table .cand { white-space: normal; }
+    .cand-table .cand .nm { white-space: nowrap; }
+  }
+  .cand-table .rec a { color: var(--fg); }
 </style>
