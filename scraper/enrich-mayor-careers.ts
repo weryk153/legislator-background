@@ -54,17 +54,24 @@ function parseCareers(wt: string): Array<{ title: string; start: string; end: st
 async function main() {
   const sb = createClient(process.env.PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
   const only = process.env.ONLY ? process.env.ONLY.split(',') : null;
-  const { data } = await sb.from('officials').select('id, name').in('office_type', ['mayor_magistrate', 'candidate']).order('name');
-  let list = (data as { id: string; name: string }[]);
+  const { data } = await sb.from('officials').select('id, name, office_type').in('office_type', ['mayor_magistrate', 'candidate']).order('name');
+  let list = (data as { id: string; name: string; office_type: string }[]);
   if (only) list = list.filter((o) => only.includes(o.name));
   // Disambiguation pages: map name → the specific officeholder sub-page.
   const PAGE: Record<string, string> = {
     許淑華: '許淑華 (1975年)', 王忠銘: '王忠銘 (中華民國)',
-    // 2026 參選人：本名頁為消歧義頁，指到經查證（政黨、參選縣市相符）的人物頁。
-    黃世杰: '黃世杰 (政治人物)', 郭璽: '郭璽 (政治人物)',
+  };
+  // 2026 參選人：只處理經查證（政黨、參選縣市相符）的維基頁；同名者多，不得以裸名去抓，
+  // 名單外的候選人一律略過。
+  const CANDIDATE_PAGES: Record<string, string> = {
+    李四川: '李四川', 黃世杰: '黃世杰 (政治人物)',
   };
   for (const off of list) {
-    const page = PAGE[off.name] ?? off.name;
+    if (off.office_type === 'candidate' && !CANDIDATE_PAGES[off.name]) {
+      console.log('⊘', off.name, '候選人不在已驗證維基頁名單，略過');
+      continue;
+    }
+    const page = (off.office_type === 'candidate' ? CANDIDATE_PAGES[off.name] : PAGE[off.name]) ?? off.name;
     let wt: string | null = null;
     for (let a = 0; a < 3 && !wt; a++) {
       try {
@@ -80,7 +87,10 @@ async function main() {
     if (!careers.length) { console.log('—', off.name, 'no careers parsed'); continue; }
     const url = 'https://zh.wikipedia.org/wiki/' + encodeURIComponent(page);
     const { data: src } = await sb.from('sources').insert({ url, type: 'wiki', title: '維基百科', retrieved_at: '2026-06-23' }).select('id').single();
-    await sb.from('careers').delete().eq('official_id', off.id);
+    // 只清掉先前由維基寫入的經歷；其他來源（如中選會參選那一筆）不動。
+    const { data: old } = await sb.from('careers').select('id, sources!inner(type)').eq('official_id', off.id).eq('sources.type', 'wiki');
+    const oldIds = (old ?? []).map((r: { id: string }) => r.id);
+    if (oldIds.length) await sb.from('careers').delete().in('id', oldIds);
     for (const c of careers) await sb.from('careers').insert({ official_id: off.id, title: c.title, organization: '', start_date: c.start || null, end_date: c.end, source_id: src!.id });
     console.log('✓', off.name, '→', careers.length, 'careers');
     await sleep(1000);
