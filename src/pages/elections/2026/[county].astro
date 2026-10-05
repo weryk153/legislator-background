@@ -1,0 +1,275 @@
+---
+// 2026 縣市選舉頁：/elections/2026/<key>/，22 縣市各一頁。
+//
+// /elections 的側欄是 client-side 元件，搜尋引擎讀不到；那頁的伺服器端表格又把 22 縣市
+// 擠在同一頁。搜尋「新北市議員候選人」「臺東縣長候選人」的人需要一個以縣市為單位、
+// 全部伺服器端渲染的落地頁——本頁就是。內容全部建置期產出，不靠 client JS。
+//
+// 中立原則同 /elections：候選人同版型、依名冊順序，筆數只列數字，內容請見個人頁。
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+import Base from "../../../layouts/Base.astro";
+import ChiefRaceCard from "../../../components/ChiefRaceCard.astro";
+import { STAGE_LABEL, chiefTitle, type ChiefRace, type CountyCandidates, type NationalCandidates } from "../../../lib/candidateTypes";
+import { isChiefReelect, isCouncilReelect, orderCandidates, partyLabel } from "../../../lib/candidateStats";
+import { COUNTY_KEYS, countyByCode, countyPagePath, type CountyKey } from "../../../lib/countyKeys";
+import { countyPageDescription, countyPageHeading, countyPageTitle, districtTowns, groupDistricts } from "../../../lib/countyPage";
+import { loadOfficials } from "../../../lib/data";
+import type { Official } from "../../../lib/types";
+
+interface MapCandidate { name: string; partyName: string; votes: number; share: number; elected: boolean }
+interface MapArea { code: string; name: string; race?: { candidates: MapCandidate[] } }
+
+interface Props {
+  county: CountyKey;
+  race: ChiefRace;
+  council: CountyCandidates | null;
+  source: NationalCandidates["source"];
+  elected2022: MapCandidate | null;
+  townNames: Map<string, string>;
+  officialsBySlug: Map<string, Official>;
+}
+
+export async function getStaticPaths() {
+  const readJson = <T,>(...p: string[]): T | null => {
+    const f = join(process.cwd(), "public", "data", ...p);
+    return existsSync(f) ? (JSON.parse(readFileSync(f, "utf8")) as T) : null;
+  };
+  const national = readJson<NationalCandidates>("candidates", "2026", "national.json");
+  if (!national) return [];
+  // 2022 當選對照：地圖檔各縣市的 race.candidates 中 elected 者（得票數、得票率）。
+  const mapAreas = readJson<{ areas: MapArea[] }>("map", "national.json")?.areas ?? [];
+  const officialsBySlug = new Map((await loadOfficials()).map((o) => [o.slug, o]));
+  return national.races.flatMap((race) => {
+    const county = countyByCode(race.countyCode);
+    if (!county) {
+      console.warn(`縣市代碼 ${race.countyCode}（${race.countyName}）不在 src/lib/countyKeys.ts，略過縣市頁`);
+      return [];
+    }
+    // 鄉鎮市區名稱：地圖的縣市檔 areas（code → name），給議員選區標示涵蓋範圍。
+    const townAreas = readJson<{ areas: MapArea[] }>("map", "county", `${race.countyCode}.json`)?.areas ?? [];
+    return [{
+      params: { county: county.key },
+      props: {
+        county, race, source: national.source, officialsBySlug,
+        council: readJson<CountyCandidates>("candidates", "2026", "county", `${race.countyCode}.json`),
+        elected2022: mapAreas.find((a) => a.code === race.countyCode)?.race?.candidates.find((c) => c.elected) ?? null,
+        townNames: new Map(townAreas.map((a) => [a.code, a.name])),
+      } satisfies Props,
+    }];
+  });
+}
+
+const { county, race, council, source, elected2022, townNames, officialsBySlug } = Astro.props;
+const name = county.name;
+const chief = chiefTitle(name);
+const chiefCands = orderCandidates(race.candidates);
+const districts = council?.districts ?? [];
+const councilCount = districts.reduce((n, d) => n + d.candidates.length, 0);
+const groups = groupDistricts(districts);
+const towns = districtTowns(council?.townToDistrict ?? null, townNames);
+// 有原住民選區時分「區域／原住民」兩組、各加小標（h3），選區標題降為 h4；否則選區標題即 h3，不跳級。
+const grouped = groups.indigenous.length > 0;
+const DistrictHeading = grouped ? "h4" : "h3";
+// 選區對應未確認（townToDistrict 為 null）的縣市：只寫選區號，附上原因說明。
+const mappingKnown = !!council?.townToDistrict;
+// 資料狀態以議員檔為準（議員名冊與縣市長名冊同步換版；議員檔缺時退回全國檔）。
+const dataSource = council?.source ?? source;
+
+const title = countyPageTitle(name);
+const description = countyPageDescription(name, chiefCands.map((c) => c.name), districts.length, councilCount);
+const fmtInt = (n: number) => n.toLocaleString("en-US");
+
+// 2022 當選對照一行。連任狀態取自 incumbent2022（已含補選／重行選舉修正）；
+// 地圖檔的當選人與現任者不同人時（如補選），不套用現任者的連任狀態。
+const inc = race.incumbent2022;
+const incSame = !!(inc && elected2022 && inc.name === elected2022.name);
+const runsAgain = race.candidates.some((c) => isChiefReelect(c, race));
+const termText = !incSame ? ""
+  : inc!.termLimitStatus === "limited" ? "依法不得連任"
+  : inc!.termLimitStatus === "unknown" ? "連任狀態待查"
+  : runsAgain ? "本屆爭取連任" : "可連任，未在本屆候選人名冊";
+
+const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const homeUrl = Astro.site ? Astro.site.href : undefined;
+const electionsUrl = Astro.site ? new URL("/elections/", Astro.site).href : undefined;
+const abs = (path: string) => (Astro.site ? new URL(path, Astro.site).href : undefined);
+const ogImage = abs(`/og/elections-2026-${county.key}.png`);
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: countyPageHeading(name),
+    description,
+    url: pageUrl,
+    inLanguage: "zh-Hant",
+    isPartOf: { "@type": "WebSite", name: "政治人物背景資料庫", url: homeUrl },
+    dateModified: dataSource.tableDate,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "總覽", item: homeUrl },
+      { "@type": "ListItem", position: 2, name: "九合一選舉", item: electionsUrl },
+      { "@type": "ListItem", position: 3, name, item: pageUrl },
+    ],
+  },
+  // 縣市長候選人：依名冊順序；個人頁網址只在本站有檔案時才放。
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `2026 ${chief}候選人`,
+    numberOfItems: chiefCands.length,
+    itemListElement: chiefCands.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Person",
+        name: c.name,
+        affiliation: { "@type": "Organization", name: partyLabel(c) },
+        ...(c.slug && { url: abs(`/officials/${c.slug}/`) }),
+      },
+    })),
+  },
+];
+---
+<Base title={title} description={description} ogImage={ogImage} ogImageAlt={`2026 ${chief}候選人`}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <nav class="crumbs" aria-label="頁面位置">
+    <a href="/">總覽</a><span aria-hidden="true"> › </span><a href="/elections/">九合一選舉</a><span aria-hidden="true"> › </span><span aria-current="page">{name}</span>
+  </nav>
+
+  <header class="head">
+    <h1>{countyPageHeading(name)}</h1>
+    <p class="status">
+      本站名單目前為：<a href={dataSource.url} rel="noopener">{STAGE_LABEL[dataSource.stage]}</a>（製表 {dataSource.tableDate}），名單會隨選務進度更新。
+    </p>
+  </header>
+
+  <section class="sec" aria-labelledby="chief-title">
+    <h2 id="chief-title">{chief}候選人</h2>
+    {elected2022 && (
+      <p class="inc2022">
+        2022 當選：{elected2022.name}（{elected2022.partyName}），{fmtInt(elected2022.votes)} 票（{elected2022.share}%）{termText && `・${termText}`}
+      </p>
+    )}
+    <ChiefRaceCard race={race} officialsBySlug={officialsBySlug} showHead={false} />
+    <p class="note">
+      共 {chiefCands.length} 人，依{chiefCands.every((c) => c.number !== null) ? "號次" : "中選會名冊順序"}排列。筆數為本站收錄之公開紀錄，非完整紀錄；內容與出處請見個人頁。
+    </p>
+  </section>
+
+  {council && (
+    <section class="sec" aria-labelledby="council-title">
+      <h2 id="council-title">{name}議員候選人</h2>
+      <p class="note">
+        {districts.length} 個選區、{fmtInt(councilCount)} 位候選人。<strong>粗體</strong>為爭取連任的現任議員；有連結者為本站已收錄檔案之人物。選區編號以中選會 2026 名冊為準。
+      </p>
+      {!mappingKnown && council.mappingNote && <p class="note mapping">{council.mappingNote}</p>}
+      {mappingKnown && council.splitTowns.length > 0 && (
+        <p class="note mapping">{council.splitTowns.map((c) => townNames.get(c) ?? c).join("、")}分屬多個選區，未列入下方的涵蓋範圍。</p>
+      )}
+
+      {[
+        { key: "regional", title: mappingKnown ? "區域選舉區" : "各選舉區", list: groups.regional },
+        { key: "indigenous", title: "原住民選舉區", list: groups.indigenous },
+      ].filter((g) => g.list.length > 0).map((g) => (
+        <div class="dgroup">
+          {grouped && <h3 class="dgroup-title">{g.title}</h3>}
+          {g.list.map((d) => {
+            const t = g.key === "regional" ? towns.get(d.no) : undefined;
+            return (
+              <section class="district" aria-labelledby={`d-${d.no}`}>
+                <DistrictHeading class="d-head" id={`d-${d.no}`}>
+                  <span class="d-label">{d.label}</span>
+                  {t && t.length > 0 && <span class="d-towns">{t.join("、")}</span>}
+                  <span class="d-count">{d.candidates.length} 人</span>
+                </DistrictHeading>
+                <ul class="clist">
+                  {d.candidates.map((c) => (
+                    <li class={isCouncilReelect(c) ? "reelect" : undefined}>
+                      <span class="nm">{c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}</span>
+                      <span class="pt">{partyLabel(c)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            );
+          })}
+        </div>
+      ))}
+    </section>
+  )}
+
+  <nav class="sec others" aria-labelledby="others-title">
+    <h2 id="others-title">其他縣市</h2>
+    <ul class="county-links">
+      {COUNTY_KEYS.map((k) => (
+        <li>{k.key === county.key
+          ? <span aria-current="page">{k.name}</span>
+          : <a href={countyPagePath(k.key)}>{k.name}</a>}</li>
+      ))}
+    </ul>
+    <p class="back"><a href="/elections/">← 回九合一選舉總覽（地圖、選務時程、全國候選人）</a></p>
+  </nav>
+</Base>
+
+<style>
+  .crumbs { font-size: var(--t-sm); color: var(--muted); }
+  .crumbs a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+  .crumbs a:hover { color: var(--accent); }
+  .head { margin: 14px 0 36px; }
+  .head h1 { font-size: var(--t-xl); margin: 0 0 10px; }
+  .status { color: var(--muted); font-size: 0.9375rem; line-height: 1.7; margin: 0; }
+  .status a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  .status a:hover { color: var(--accent); }
+
+  .sec { margin-bottom: 48px; }
+  .sec h2 { font-size: var(--t-lg); margin: 0 0 8px; }
+  .note { color: var(--muted); font-size: 0.9375rem; line-height: 1.7; max-width: 72ch; margin: 12px 0 20px; }
+  .note.mapping { border-left: 2px solid var(--accent); padding-left: 10px; }
+  .inc2022 { font-size: 0.9375rem; line-height: 1.7; margin: 0 0 4px; font-variant-numeric: tabular-nums; }
+
+  /* 議員選區：全部展開（不用 <details>），讓讀者與搜尋引擎直接看到每一區的名單。
+     報紙特輯調性：髮絲線分隔，選區標題列出涵蓋的鄉鎮市區。 */
+  .dgroup-title { font-size: var(--t-md); margin: 28px 0 4px; }
+  .district { border-top: 1px solid var(--line); padding: 12px 0 14px; }
+  .district .d-head {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px;
+    margin: 0 0 8px; font-size: 1rem; line-height: 1.5;
+  }
+  .d-label { font-family: var(--serif); font-weight: 700; }
+  .d-towns { font-family: var(--sans); font-weight: 400; font-size: 0.875rem; color: var(--muted); }
+  .d-count { font-family: var(--sans); font-weight: 400; font-size: var(--t-sm); color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
+  .clist {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(11em, 1fr)); gap: 4px 20px;
+    font-size: 0.9375rem; line-height: 1.7;
+  }
+  .clist li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 8px; min-width: 0; }
+  .clist .nm a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+  .clist .nm a:hover { color: var(--accent); }
+  .clist .pt { color: var(--muted); font-size: var(--t-sm); }
+  /* 現任議員爭取連任：只加粗姓名（與 /elections 同規則）。 */
+  .clist .reelect .nm { font-weight: 700; }
+
+  .others h2 { font-size: var(--t-md); }
+  .county-links {
+    list-style: none; margin: 8px 0 0; padding: 0;
+    display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.9375rem; line-height: 1.8;
+  }
+  .county-links a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+  .county-links a:hover { color: var(--accent); }
+  .county-links [aria-current] { font-weight: 700; }
+  .back { margin: 20px 0 0; font-size: 0.9375rem; }
+  .back a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+  .back a:hover { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .head h1 { font-size: var(--t-lg); }
+    .d-count { margin-left: 0; }
+  }
+</style>
