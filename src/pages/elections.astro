@@ -75,6 +75,19 @@ const electionsDesc = "2022 年地方公職人員選舉（九合一選舉）22 �
 // 選舉尚未舉行，本站尚無該屆結果）。型別選 Dataset：本頁的核心是一份可查詢的
 // 選舉結果資料集，而非單篇敘事文章，比照首頁既有的 Dataset 寫法（src/pages/index.astro）。
 const jsonLd = [
+  // 2026 候選人：只在有資料時加入，排在 2022 結果之前（主軸是 2026）
+  ...(candidates2026 ? [{
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    name: "2026 年九合一選舉縣市長候選人",
+    description: `2026 年九合一選舉縣市長候選人名單，資料來源為中央選舉委員會公布之名冊（${STAGE_LABEL[candidates2026.source.stage]}，製表 ${candidates2026.source.tableDate}），名單會隨選務進度更新。`,
+    url: pageUrl,
+    inLanguage: "zh-Hant",
+    temporalCoverage: "2026",
+    spatialCoverage: { "@type": "Place", name: "臺灣" },
+    creator: { "@type": "Organization", name: "政治人物背景資料庫（本站）" },
+    license: "資料彙整自中央選舉委員會（候選人名冊），非官方資料，請以原始出處為準。",
+  }] : []),
   {
     "@context": "https://schema.org",
     "@type": "Dataset",
@@ -100,7 +113,7 @@ const jsonLd = [
 ---
 
 <Base title="選舉地圖｜政治人物背景資料庫"
-      description="2026 年九合一選舉。以行政區地圖呈現各級公職現任者的政黨版圖，可逐層下鑽至村里。">
+      description="2026 年九合一選舉：縣市長與縣市議員候選人名單，連結候選人經歷、判決與政治獻金；並以 2022 年結果作對照。">
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <!-- 地圖滿版出血：跳出 .wrap 的 940px 上限、佔滿整個視窗寬度、緊接頁首，讓天下雜誌
        那種「地圖是主角、控制項浮在上面」的感覺成立——一進頁面不捲動就看到完整地圖。
@@ -117,6 +130,50 @@ const jsonLd = [
   <div class="map-stage">
     <ElectionPanel client:load {years} />
   </div>
+
+  {candidates2026 && (
+    <section class="overview" aria-labelledby="cand-title">
+      <h2 id="cand-title">2026 縣市長候選人</h2>
+      <p class="overview-note">
+        資料：<a href={candidates2026.source.url} rel="noopener">{STAGE_LABEL[candidates2026.source.stage]}</a>，
+        製表 {candidates2026.source.tableDate}。六都在前，其餘依縣市代碼順序；同一縣市內依{candidates2026.races.every((r) => r.candidates.every((c) => c.number !== null)) ? "號次" : "中選會名冊順序"}排列。
+      </p>
+      <div class="table-scroll">
+        <table>
+          <caption class="sr-only">2026 年各縣市首長選舉候選人</caption>
+          <thead>
+            <tr><th scope="col">選舉</th><th scope="col">候選人</th><th scope="col">2022 當選</th></tr>
+          </thead>
+          <tbody>
+            {candidates2026.races.map((r) => (
+              <tr>
+                <th scope="row">{chiefTitle(r.countyName)}</th>
+                <td>
+                  {r.candidates.map((c, i) => (
+                    <>
+                      {i > 0 && "、"}
+                      {c.slug ? <a href={`/officials/${c.slug}`}>{c.name}</a> : c.name}
+                      （{c.partyName === "無" ? "無黨籍" : c.partyName}）
+                    </>
+                  ))}
+                </td>
+                <td>
+                  {r.incumbent2022 ? (
+                    <>
+                      {r.incumbent2022.slug ? <a href={`/officials/${r.incumbent2022.slug}`}>{r.incumbent2022.name}</a> : r.incumbent2022.name}
+                      （{r.incumbent2022.partyName}）
+                      {r.incumbent2022.termLimitStatus === "limited" && `・${r.incumbent2022.termLimitReason || "任期屆滿，不得連任"}`}
+                      {r.incumbent2022.termLimitStatus === "unknown" && "・連任狀態待查"}
+                    </>
+                  ) : "—"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )}
 
   <!-- 全國一覽：伺服器端渲染的靜態表格，滿版地圖之下。地圖／側欄是 client:load
        的 Svelte 元件，爬蟲與無 JS 的使用者看不到裡面的縣市名、首長、席次、得票
@@ -164,39 +221,6 @@ const jsonLd = [
     </div>
   </section>
 
-  {candidates2026 && (
-    <section class="overview" aria-labelledby="cand-title">
-      <h2 id="cand-title">2026 縣市長候選人</h2>
-      <p class="overview-note">
-        資料：<a href={candidates2026.source.url} rel="noopener">{STAGE_LABEL[candidates2026.source.stage]}</a>，
-        製表 {candidates2026.source.tableDate}。六都在前，其餘依縣市代碼順序；同一縣市內依{candidates2026.races.every((r) => r.candidates.every((c) => c.number !== null)) ? "號次" : "中選會名冊順序"}排列。
-      </p>
-      <div class="table-scroll">
-        <table>
-          <caption class="sr-only">2026 年各縣市首長選舉候選人</caption>
-          <thead>
-            <tr><th scope="col">選舉</th><th scope="col">候選人</th></tr>
-          </thead>
-          <tbody>
-            {candidates2026.races.map((r) => (
-              <tr>
-                <th scope="row">{chiefTitle(r.countyName)}</th>
-                <td>
-                  {r.candidates.map((c, i) => (
-                    <>
-                      {i > 0 && "、"}
-                      {c.slug ? <a href={`/officials/${c.slug}`}>{c.name}</a> : c.name}
-                      （{c.partyName === "無" ? "無黨籍" : c.partyName}）
-                    </>
-                  ))}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
-  )}
 </Base>
 
 <style>

@@ -8,7 +8,7 @@ const src = { stage: 'registration' as const, url: '', tableDate: '' };
 
 describe('candidacyIndex', () => {
   const idx = candidacyIndex(
-    { source: src, races: [{ countyCode: '63', countyName: '臺北市', isMunicipality: true, candidates: [c('蔣萬安', 'mayor-taipei'), c('郭璽', null)] }] },
+    { source: src, races: [{ countyCode: '63', countyName: '臺北市', isMunicipality: true, candidates: [c('蔣萬安', 'mayor-taipei'), c('郭璽', null)], incumbent2022: null }] },
     [{ source: src, countyCode: '63', countyName: '臺北市', townToDistrict: null, splitTowns: [], mappingNote: null,
       districts: [{ no: 1, label: '第1選舉區', type: 'regional', candidates: [c('甲', 'c-甲')] }] }],
   );

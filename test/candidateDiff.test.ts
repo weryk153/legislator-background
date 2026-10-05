@@ -6,7 +6,7 @@ const c = (name: string, o: Partial<CandidateEntry> = {}): CandidateEntry =>
   ({ name, partyName: '無', partyCode: '999', number: null, registeredOn: '2026-09-02', slug: null, identity: null, ...o });
 const nat = (cands: CandidateEntry[]): NationalCandidates => ({
   source: { stage: 'registration', url: '', tableDate: '' },
-  races: [{ countyCode: '63-000-00-000-0000', countyName: '臺北市', isMunicipality: true, candidates: cands }],
+  races: [{ countyCode: '63-000-00-000-0000', countyName: '臺北市', isMunicipality: true, candidates: cands, incumbent2022: null }],
 });
 
 describe('diffCandidates', () => {

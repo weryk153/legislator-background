@@ -8,8 +8,8 @@ const src = { stage: 'registration' as const, url: '', tableDate: '' };
 const national: NationalCandidates = {
   source: src,
   races: [
-    { countyCode: '63-000-00-000-0000', countyName: '臺北市', isMunicipality: true, candidates: [c('甲'), c('乙')] },
-    { countyCode: '10-017-00-000-0000', countyName: '基隆市', isMunicipality: false, candidates: [c('丙')] },
+    { countyCode: '63-000-00-000-0000', countyName: '臺北市', isMunicipality: true, candidates: [c('甲'), c('乙')], incumbent2022: null },
+    { countyCode: '10-017-00-000-0000', countyName: '基隆市', isMunicipality: false, candidates: [c('丙')], incumbent2022: null },
   ],
 };
 const taipei: CountyCandidates = {

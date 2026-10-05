@@ -23,9 +23,10 @@
   let area = $state<MapArea | null>(null);
   let layer = $state<MapLayer | null>(null);
 
-  // 預設選中「已有結果」的那個年份（目前只有 2022）。找不到就退回清單第一筆
-  // ——理論上不會發生（buildYears 至少會給一筆 done），純屬防禦。
-  const DEFAULT_YEAR = years.find((y) => y.status === 'done')?.year ?? years[0].year;
+  // 預設選中第一筆「即將舉行」的年份（目前是 2026）：本站的主軸是即將到來的
+  // 選舉，2022 結果留在切換器裡作對照。沒有 upcoming 才退回第一筆 done，
+  // 再不行就取清單第一筆（理論上不會發生，buildYears 至少會給一筆）。
+  const DEFAULT_YEAR = (years.find((y) => y.status === 'upcoming') ?? years.find((y) => y.status === 'done') ?? years[0]).year;
   let selectedYear = $state(DEFAULT_YEAR);
   const current = $derived(years.find((y) => y.year === selectedYear) ?? years[0]);
   const upcoming = $derived(current.status === 'upcoming');

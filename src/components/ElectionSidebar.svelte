@@ -6,7 +6,7 @@
     type MapArea, type MapLayer, type PartySeat, type RaceCandidate,
   } from '../lib/mapTypes';
 
-  import { STAGE_LABEL, chiefTitle, type CandidateEntry, type CandidateSource } from '../lib/candidateTypes';
+  import { STAGE_LABEL, chiefTitle, type CandidateEntry, type CandidateSource, type ChiefRace } from '../lib/candidateTypes';
   import type { SidebarCandidates } from '../lib/candidateView';
 
   /** 政黨色，與地圖共用 mapTypes.ts 的同一份對照，不在此另立一套。 */
@@ -128,6 +128,18 @@
   </ul>
 {/snippet}
 
+<!-- 2022 年當選者對照：2026 主軸、2022 只作對照，所以放在候選人名單之下的小字。
+     資料是建置期從地圖檔帶進 race.incumbent2022（含補選修正），這裡不另查。
+     任期屆滿者說明「為何不在名單上」；連任狀態未知就明說待查，不猜。 -->
+{#snippet compare(r: ChiefRace)}
+  {#if r.incumbent2022}
+    {@const inc = r.incumbent2022}
+    <p class="compare">
+      2022 當選：{#if inc.slug}<a href={`/officials/${inc.slug}`}>{inc.name}</a>{:else}{inc.name}{/if}（{inc.partyName}）{#if inc.termLimitStatus === 'limited'}・{inc.termLimitReason || '任期屆滿，不得連任'}{:else if inc.termLimitStatus === 'unknown'}・連任狀態待查{/if}
+    </p>
+  {/if}
+{/snippet}
+
 <aside class="side">
   {#if upcoming}
     <!-- 尚未舉行：沒有候選人資料時，一律不揭露沿用資料裡的當選人／政黨，只說明「尚無結果」。 -->
@@ -144,6 +156,7 @@
         <section class="race-2026">
           <h4>{chiefTitle(r.countyName)}<span class="count">{r.candidates.length} 人</span></h4>
           {@render candList(r.candidates)}
+          {@render compare(r)}
         </section>
       {/each}
       <h3 class="group">其他 {candidates.others.length} 縣市</h3>
@@ -155,13 +168,13 @@
       <p class="hint">點選地圖上的縣市可查看完整名單與議員候選人。</p>
     {:else if candidates.mode === 'chief'}
       <h2>{chiefTitle(candidates.countyName)}候選人</h2>
-      {#if candidates.race}{@render candList(candidates.race.candidates)}
+      {#if candidates.race}{@render candList(candidates.race.candidates)}{@render compare(candidates.race)}
       {:else}<p class="note">此縣市無首長候選人資料。</p>{/if}
       <p class="hint">點進此縣市查看議員候選人。</p>
     {:else if candidates.mode === 'county'}
       <h2>{layer?.parentName}</h2>
       {#if candidates.race}
-        <section><h3>{chiefTitle(candidates.race.countyName)}候選人</h3>{@render candList(candidates.race.candidates)}</section>
+        <section><h3>{chiefTitle(candidates.race.countyName)}候選人</h3>{@render candList(candidates.race.candidates)}{@render compare(candidates.race)}</section>
       {/if}
       {#if area}
         <section>
@@ -387,5 +400,7 @@
   .count { color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
   .others { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .1rem 1rem; }
   .others li { display: flex; justify-content: space-between; }
+  .compare { margin: -.45rem 0 .75rem; font-size: .8rem; color: var(--muted); }
+  .compare a { text-decoration: underline; text-underline-offset: 2px; }
   .cand-source { margin-top: 1rem; font-size: .75rem; color: var(--muted); }
 </style>
