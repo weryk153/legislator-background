@@ -65,6 +65,10 @@ async function main() {
   // 名單外的候選人一律略過。
   const CANDIDATE_PAGES: Record<string, string> = {
     李四川: '李四川', 黃世杰: '黃世杰 (政治人物)',
+    // 非六都：與中央社 2026 縣市長登記名單（https://www.cna.com.tw/news/aipl/202609045002.aspx）
+    // 的生日、黨籍、經歷逐一比對相符者。
+    鄭朝方: '鄭朝方', 邱建富: '邱建富', 魏平政: '魏平政', 周倪安: '周倪安', 葉竹林: '葉竹林',
+    莊競程: '莊競程', 何志勇: '何志勇 (1980年)',
   };
   for (const off of list) {
     if (off.office_type === 'candidate' && !CANDIDATE_PAGES[off.name]) {
