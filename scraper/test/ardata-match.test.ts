@@ -78,3 +78,16 @@ describe('matchAccount', () => {
       .toEqual({ status: 'matched', officialId: 'A2' });
   });
 });
+
+describe('人工確認的參選人專戶', () => {
+  const offs = [{ id: 'cand-1', name: '黃世杰', office_type: 'candidate' as const, district: '桃園市', is_incumbent: false }];
+  it('清單中的專戶直接配到指定檔案', () => {
+    const r = matchAccount({ name: '黃世杰', electionName: '113年立法委員選舉', area: '桃園市' }, offs,
+      new Map([['黃世杰|113年立法委員選舉', 'cand-1']]));
+    expect(r).toEqual({ status: 'matched', officialId: 'cand-1' });
+  });
+  it('不在清單中的參選人專戶不配對', () => {
+    const r = matchAccount({ name: '黃世杰', electionName: '113年立法委員選舉', area: '桃園市' }, offs, new Map());
+    expect(r.status).toBe('none');
+  });
+});

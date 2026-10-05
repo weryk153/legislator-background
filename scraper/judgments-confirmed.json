@@ -358,5 +358,75 @@
     "is_final": true,
     "judgment_date": "2025-03-06",
     "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TPSM,114,台上,497,20250306,1"
+  },
+  {
+    "name": "郭璽",
+    "case_reason": "妨害名譽（加重誹謗；於 LINE 群組指摘王志鵬「假博士」，起因潛艦國造爭議）",
+    "court": "臺灣高等法院",
+    "case_number": "112年度上易字第1626號",
+    "outcome": "散布文字誹謗罪處拘役50日（得易科罰金）確定（二審上訴駁回，維持士林地院112年度易字第231號；再審聲請經113年度聲再字第284號駁回）",
+    "is_final": true,
+    "judgment_date": "2024-05-30",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TPHM,112,上易,1626,20240530,1"
+  },
+  {
+    "name": "郭璽",
+    "case_reason": "誹謗（於「台灣麻將最大黨」YouTube 頻道直播指摘陳秋妏，自訴）",
+    "court": "臺灣高雄地方法院",
+    "case_number": "114年度自字第1號",
+    "outcome": "一審：犯誹謗罪，處有期徒刑4月（得易科罰金）；其餘言論部分不另為無罪；得上訴",
+    "is_final": false,
+    "judgment_date": "2026-06-09",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=KSDM,114,自,1,20260609,3"
+  },
+  {
+    "name": "張靜",
+    "case_reason": "公然侮辱（擔任彭文正「確認博士論文不存在」民事事件訴訟代理人時，於法庭內外辱罵承審法官）",
+    "court": "臺灣高等法院",
+    "case_number": "114年度上易字第7號",
+    "outcome": "公然侮辱罪處罰金新臺幣8,000元確定（二審上訴駁回，維持臺北地院112年度易字第847號；妨害公務部分一審不另為無罪）",
+    "is_final": true,
+    "judgment_date": "2025-05-15",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TPHM,114,上易,7,20250515,1"
+  },
+  {
+    "name": "張靜",
+    "case_reason": "違反個人資料保護法等（所經營沙龍按摩室裝設監視器竊錄顧客，並將影像複製至其律師事務所電腦作訴訟素材）",
+    "court": "臺灣臺東地方法院",
+    "case_number": "111年度訴字第55號",
+    "outcome": "一審：共同犯個人資料保護法第41條非法利用個人資料罪，處有期徒刑10月，扣案監視器主機、事務所電腦主機沒收；得上訴（裁判書系統查無二審裁判）",
+    "is_final": false,
+    "judgment_date": "2024-08-28",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TTDM,111,訴,55,20240828,1"
+  },
+  {
+    "name": "林志成",
+    "case_reason": "傷害（時任中華民國健美協會秘書長，於協會理事長遭討債者毆打時出手互毆）",
+    "court": "臺灣高等法院",
+    "case_number": "100年度上易字第2444號",
+    "outcome": "傷害罪處有期徒刑2月（得易科罰金）確定（二審撤銷臺北地院99年度易字第3263號一審之3月，改判2月）",
+    "is_final": true,
+    "judgment_date": "2012-04-10",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TPHM,100,上易,2444,20120410,1"
+  },
+  {
+    "name": "林志成",
+    "case_reason": "妨害公務（持斧頭砍劈司法院、公務員懲戒委員會機關銜牌）",
+    "court": "臺灣臺北地方法院",
+    "case_number": "100年度簡上字第422號",
+    "outcome": "損壞公務員職務上掌管之物品罪處有期徒刑6月（得易科罰金），斧頭2把沒收；確定（簡易二審上訴駁回，維持100年度簡字第3780號）",
+    "is_final": true,
+    "judgment_date": "2012-04-30",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TPDM,100,簡上,422,20120430,1"
+  },
+  {
+    "name": "林志成",
+    "case_reason": "傷害（以健美協會前秘書長身分至協會毆打現任秘書長等2人，檢察官以重傷害起訴）",
+    "court": "臺灣高等法院",
+    "case_number": "103年度上訴字第82號",
+    "outcome": "傷害罪2罪（累犯）各處有期徒刑5月、4月，應執行8月（得易科罰金）；二審駁回檢察官上訴、維持臺北地院102年度易字第847號一審（被告不得上訴，裁判書系統查無第三審裁判）",
+    "is_final": true,
+    "judgment_date": "2014-03-18",
+    "judgment_url": "https://judgment.judicial.gov.tw/FJUD/data.aspx?ty=JD&id=TPHM,103,上訴,82,20140318,1"
   }
 ]

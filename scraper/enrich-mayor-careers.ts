@@ -25,20 +25,26 @@ function cleanOffice(s: string): string {
 const yearOf = (s: string): string => { const m = String(s).match(/(\d{4})/); return m ? m[1] : ''; };
 
 function parseCareers(wt: string): Array<{ title: string; start: string; end: string | null }> {
-  const offices = new Map<string, string>();
-  const starts = new Map<string, string>();
-  const ends = new Map<string, string>();
-  for (const m of wt.matchAll(/\|\s*(?:office|order)(\d*)\s*=\s*([^\n]+)/g)) if (!offices.has(m[1])) offices.set(m[1], m[2]);
-  for (const m of wt.matchAll(/\|\s*term_start(\d*)\s*=\s*([^\n]+)/g)) starts.set(m[1], m[2]);
-  for (const m of wt.matchAll(/\|\s*term_end(\d*)\s*=\s*([^\n]+)/g)) ends.set(m[1], m[2]);
+  // 等號後只吃同一行的空白：欄位留空（`| office = ` 換行）時若跨行，會把下一行的
+  // `}}`、`| predecessor = ` 當成職稱抓進來。
+  const offices = new Map<string, { raw: string; at: number }>();
+  for (const m of wt.matchAll(/\|\s*(?:office|order)(\d*)[ \t]*=[ \t]*([^\n]+)/g)) if (!offices.has(m[1])) offices.set(m[1], { raw: m[2], at: m.index! });
+  const starts = [...wt.matchAll(/\|\s*term_start(\d*)[ \t]*=[ \t]*([^\n]+)/g)];
+  const ends = [...wt.matchAll(/\|\s*term_end(\d*)[ \t]*=[ \t]*([^\n]+)/g)];
+  // 起訖年取「該職稱之後最近的同編號欄位」：嵌入的子 infobox 會重用同一編號，只看編號
+  // 會把別的職務年份套上來——李四川頁 office4 行政院秘書長之後，子框又有一組 term_start4
+  // 屬新北市副市長；陳光復頁則相反，外框先有一組無職稱的 term_start2（第二任縣長），
+  // 子框的 office2 國策顧問才接著自己的 term_start2。取「之後最近」兩種都對。
+  const after = (list: RegExpMatchArray[], k: string, at: number): string =>
+    (list.find((m) => m[1] === k && m.index! > at) ?? list.find((m) => m[1] === k))?.[2] ?? '';
   const out: Array<{ title: string; start: string; end: string | null }> = [];
   const seen = new Set<string>();
-  for (const [k, raw] of offices) {
+  for (const [k, { raw, at }] of offices) {
     const title = cleanOffice(raw);
     if (!title || title.length < 2 || title.length > 40) continue;
     if (seen.has(title)) continue; seen.add(title);
-    const start = yearOf(starts.get(k) ?? '');
-    const endRaw = ends.get(k) ?? '';
+    const start = yearOf(after(starts, k, at));
+    const endRaw = after(ends, k, at);
     const end = /現任|至今|incumbent/.test(endRaw) || !endRaw.trim() ? null : yearOf(endRaw) || null;
     out.push({ title, start, end });
   }
@@ -52,7 +58,11 @@ async function main() {
   let list = (data as { id: string; name: string }[]);
   if (only) list = list.filter((o) => only.includes(o.name));
   // Disambiguation pages: map name → the specific officeholder sub-page.
-  const PAGE: Record<string, string> = { 許淑華: '許淑華 (1975年)', 王忠銘: '王忠銘 (中華民國)' };
+  const PAGE: Record<string, string> = {
+    許淑華: '許淑華 (1975年)', 王忠銘: '王忠銘 (中華民國)',
+    // 2026 參選人：本名頁為消歧義頁，指到經查證（政黨、參選縣市相符）的人物頁。
+    黃世杰: '黃世杰 (政治人物)', 郭璽: '郭璽 (政治人物)',
+  };
   for (const off of list) {
     const page = PAGE[off.name] ?? off.name;
     let wt: string | null = null;
