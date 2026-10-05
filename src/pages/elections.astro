@@ -139,7 +139,7 @@ const jsonLd = [
         製表 {candidates2026.source.tableDate}。六都在前，其餘依縣市代碼順序；同一縣市內依{candidates2026.races.every((r) => r.candidates.every((c) => c.number !== null)) ? "號次" : "中選會名冊順序"}排列。
       </p>
       <div class="table-scroll">
-        <table>
+        <table class="cand-table">
           <caption class="sr-only">2026 年各縣市首長選舉候選人</caption>
           <thead>
             <tr><th scope="col">選舉</th><th scope="col">候選人</th><th scope="col">2022 當選</th></tr>
@@ -152,8 +152,7 @@ const jsonLd = [
                   {r.candidates.map((c, i) => (
                     <>
                       {i > 0 && "、"}
-                      {c.slug ? <a href={`/officials/${c.slug}`}>{c.name}</a> : c.name}
-                      （{c.partyName === "無" ? "無黨籍" : c.partyName}）
+                      <span class="cand">{c.slug ? <a href={`/officials/${c.slug}`}>{c.name}</a> : c.name}（{c.partyName === "無" ? "無黨籍" : c.partyName}）</span>
                     </>
                   ))}
                 </td>
@@ -290,6 +289,15 @@ const jsonLd = [
     border-bottom: 1px solid var(--line-strong);
   }
   tbody tr:hover { background: var(--row-hover); }
+
+  /* 2026 候選人表：一格裡列一整串候選人，必須能換行——上面 th, td 的 nowrap 是給
+     2022 數字表用的，套到這裡會把整串名字撐成一行、整張表橫向溢出。換行只發生在
+     候選人之間（.cand 內不斷開「姓名（政黨）」），表格也不需要 720px 的最小寬度。 */
+  .cand-table { min-width: 0; }
+  .cand-table td { white-space: normal; line-height: 1.8; vertical-align: top; }
+  .cand-table thead th:first-child, .cand-table tbody th { width: 6.5em; vertical-align: top; }
+  .cand-table td:last-child { width: 30%; }
+  .cand { white-space: nowrap; }
   td a { text-decoration: underline; text-underline-offset: 2px; }
   td a:hover { color: var(--accent); }
 
