@@ -109,6 +109,9 @@
   let candNational = $state<NationalCandidates | null>(null);
   const candCounties = new Map<string, CountyCandidates>();
   let candCounty = $state<CountyCandidates | null>(null);
+  // 同一縣市同時只發一個請求；失敗的縣市本次瀏覽不再重抓（否則每次 hover 都重打）
+  const candInFlight = new Set<string>();
+  let candFailed = $state<Set<string>>(new Set());
 
   $effect(() => {
     if (!upcoming || candNational) return;
@@ -125,21 +128,31 @@
     const cached = candCounties.get(code);
     if (cached) { candCounty = cached; return; }
     candCounty = null;
+    if (candInFlight.has(code) || candFailed.has(code)) return;
+    candInFlight.add(code);
+    const fail = () => { candFailed = new Set([...candFailed, code]); };
     fetch(`/data/candidates/2026/county/${code}.json`)
       .then((r) => (r.ok ? r.json() : null))
       .then((j: CountyCandidates | null) => {
-        if (!j) return;
+        if (!j) { fail(); return; }
         candCounties.set(code, j);
         // 回來時使用者可能已經換到別的縣市，只在仍聚焦同一縣市時才套用
         if (layer && focusCountyCode(layer.level, area, layer) === code) candCounty = j;
       })
-      .catch(() => {});
+      .catch(fail)
+      .finally(() => candInFlight.delete(code));
   });
 
-  const sidebarCandidates = $derived(
-    upcoming && candNational && layer
-      ? selectCandidates(layer.level, area, layer, candNational, candCounty)
-      : null);
+  // 只把「代碼等於目前聚焦縣市」的縣市檔交給 selectCandidates：layer 剛換時，
+  // candCounty 還是上一個縣市的（effect 晚一拍才清），不擋的話會閃出別縣的選區。
+  const sidebarCandidates = $derived.by(() => {
+    if (!upcoming || !candNational || !layer) return null;
+    const code = focusCountyCode(layer.level, area, layer);
+    const cc = candCounty && candCounty.countyCode === code ? candCounty : null;
+    return selectCandidates(layer.level, area, layer, candNational, cc);
+  });
+  const countyLoadFailed = $derived(
+    !!layer && candFailed.has(focusCountyCode(layer.level, area, layer) ?? ''));
 </script>
 
 <div class="stage">
@@ -205,7 +218,7 @@
            的 dateline 出現過一次，不必在這裡重複放大。 -->
       <p class="lede">
         {#if candNational}
-          候選人名單已出爐（{STAGE_LABEL[candNational.source.stage]}），開票後本頁將更新為 2026 年結果。
+          候選人名單已出爐：{STAGE_LABEL[candNational.source.stage]}。開票後本頁將更新為 2026 年結果。
           點選地圖上的縣市可查看首長與議員候選人。
         {:else}
           開票日起本頁將更新為 2026 年結果。地圖上的行政區界線仍是既有資料，可照常
@@ -255,7 +268,7 @@
       onmouseleave={() => mapRef?.releaseSelection()}
       role="presentation">
       <ElectionSidebar {area} {layer} {upcoming}
-        candidates={sidebarCandidates} candidateSource={candNational?.source ?? null} />
+        candidates={sidebarCandidates} candidateSource={candNational?.source ?? null} {countyLoadFailed} />
     </div>
 
     <!-- 圖說：授權標示與領土說明。原本浮在地圖左下角獨立定位、又曾經併入左欄

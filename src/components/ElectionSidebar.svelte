@@ -24,9 +24,9 @@
   // area／layer 仍然是既有那年（如 2022）的資料——地圖只是拿它畫界線與驅動
   // 下鑽，不代表尚未舉行那屆的結果，所以側欄要整段改講「尚無結果」，不能把
   // area.chief 等 2022 年的當選人資訊當成現在的答案顯示出來。
-  let { area, layer, upcoming = false, candidates = null, candidateSource = null }: {
+  let { area, layer, upcoming = false, candidates = null, candidateSource = null, countyLoadFailed = false }: {
     area: MapArea | null; layer: MapLayer | null; upcoming?: boolean;
-    candidates?: SidebarCandidates | null; candidateSource?: CandidateSource | null;
+    candidates?: SidebarCandidates | null; candidateSource?: CandidateSource | null; countyLoadFailed?: boolean;
   } = $props();
 
   // 未選取單一區時，把整層的首長政黨彙總成分佈
@@ -182,7 +182,7 @@
           {/each}
         </section>
       {:else}
-        <p class="note">議員候選人載入中…</p>
+        <p class="note">{countyLoadFailed ? '議員候選人資料載入失敗。' : '議員候選人載入中…'}</p>
       {/if}
     {:else}
       <h2>{candidates.townName}</h2>
