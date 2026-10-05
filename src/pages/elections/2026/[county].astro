@@ -88,7 +88,7 @@ const runsAgain = race.candidates.some((c) => isChiefReelect(c, race));
 const termText = !incSame ? ""
   : inc!.termLimitStatus === "limited" ? "依法不得連任"
   : inc!.termLimitStatus === "unknown" ? "連任狀態待查"
-  : runsAgain ? "本屆爭取連任" : "可連任，未在本屆候選人名冊";
+  : runsAgain ? "本屆爭取連任" : "未登記參選本屆";
 
 const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const homeUrl = Astro.site ? Astro.site.href : undefined;

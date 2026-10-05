@@ -59,11 +59,15 @@ export function toTermRecords(year: number, winners: Candidate[]): TermRecord[] 
  */
 type YearVerdict = 'yes' | 'no' | 'maybe';
 
+/** 定期選舉以外取得的任期（目前只有補選）。中選會 2018／2022 定期選舉資料看不到，由呼叫端提供。 */
+export interface InterimTerm { year: number; countyCode: string; name: string; label: string }
+
 export function termLimited(
   person: { name: string; birthDate: string },
   history: TermRecord[],
   countyCode: string,
   upcomingYear: number,
+  interim: InterimTerm[] = [],
 ): TermLimitResult {
   const prev = upcomingYear - TERM_YEARS;
   const before = prev - TERM_YEARS;
@@ -79,6 +83,13 @@ export function termLimited(
 
   const vPrev = verdict(prev);
   const vBefore = verdict(before);
+
+  // 前一屆任期中（before 之後、prev 之前）以補選取得同縣市首長職位，再於 prev 當選，
+  // 補選任期亦計入「連任一次」——例：陳其邁 2020 高雄市長補選、2022 連任。
+  const midTerm = interim.find((t) => t.countyCode === countyCode && t.name === person.name && t.year > before && t.year < prev);
+  if (vPrev === 'yes' && midTerm) {
+    return { status: 'limited', reason: `已連任一次（${midTerm.label}當選、${prev} 年連任），依地方制度法不得再選` };
+  }
 
   if (vPrev === 'yes' && vBefore === 'yes') {
     return { status: 'limited', reason: `已連任一次（${before}、${prev} 當選），依地方制度法不得再選` };

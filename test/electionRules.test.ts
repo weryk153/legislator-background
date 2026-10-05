@@ -66,6 +66,27 @@ describe('termLimited：縣市長連任一次為限', () => {
   });
 });
 
+describe('termLimited：前一屆任期中補選當選也算一任', () => {
+  // 地方制度法「連選得連任一次」，補選當選的任期亦計入：陳其邁 2020 年高雄市長補選當選、
+  // 2022 年連任，2026 年依法不得再選。中選會 2018／2022 的定期選舉資料看不到 2020 補選，
+  // 由呼叫端以 interim 參數補進。
+  const 高雄 = '64-000-00-000-0000';
+  const 陳 = { name: '陳其邁', birthDate: '19650423' };
+  const r2022 = { year: 2022, countyCode: 高雄, name: '陳其邁', birthDate: '19650423' };
+  it('2020 補選＋2022 當選 → 不得連任', () => {
+    const r = termLimited(陳, [r2022], 高雄, 2026, [{ year: 2020, countyCode: 高雄, name: '陳其邁', label: '2020 年高雄市長補選' }]);
+    expect(r.status).toBe('limited');
+    expect(r.reason).toMatch(/2020 年高雄市長補選.*2022/);
+  });
+  it('補選在別縣市或不在前一屆任期內 → 不影響', () => {
+    expect(termLimited(陳, [r2022], 高雄, 2026, [{ year: 2020, countyCode: '63-000-00-000-0000', name: '陳其邁', label: 'x' }]).status).toBe('notLimited');
+    expect(termLimited(陳, [r2022], 高雄, 2026, [{ year: 2016, countyCode: 高雄, name: '陳其邁', label: 'x' }]).status).toBe('notLimited');
+  });
+  it('2022 沒當選 → 補選不構成連任', () => {
+    expect(termLimited(陳, [], 高雄, 2026, [{ year: 2020, countyCode: 高雄, name: '陳其邁', label: 'x' }]).status).toBe('notLimited');
+  });
+});
+
 describe('seatBreakdown：政黨席次統計', () => {
   const parties = parseElpaty('1,中國國民黨\n16,民主進步黨\n999,無黨籍及未經政黨推薦');
   const winners = parseElcand([

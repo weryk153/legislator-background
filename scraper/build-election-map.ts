@@ -28,6 +28,11 @@ const R22 = `${CEC}/voteData/2022-111年地方公職人員選舉`;
 const R18 = `${CEC}/voteData/2018-107年地方公職人員選舉`;
 const OUT = 'public/data/map';
 const UPCOMING = 2026;
+// 縣市長補選取得的任期（中選會 2018／2022 定期選舉資料看不到），連任判斷要算進去。
+// 逐筆有出處才收：陳其邁 2020-08-15 高雄市長補選當選（中選會 109 年高雄市長補選公告）。
+const INTERIM_TERMS = [
+  { year: 2020, countyCode: '64-000-00-000-0000', name: '陳其邁', label: '2020 年高雄市長補選' },
+];
 
 const read = (p: string) => readFileSync(p, 'utf8');
 
@@ -593,7 +598,7 @@ function holder(c: Candidate | undefined, isCountyChief: boolean): Officeholder 
   if (c.electedBy === 'quota') o.electedBy = 'quota';
   if (isCountyChief) {
     const countyCode = countyCodeOf(c.areaCode);
-    const r = termLimited(c, history, countyCode, UPCOMING);
+    const r = termLimited(c, history, countyCode, UPCOMING, INTERIM_TERMS);
     o.termLimitStatus = r.status;
     o.termLimitReason = r.status === 'limited' && backfilledBirthDates.has(countyCode)
       ? r.reason + BACKFILL_NOTE
