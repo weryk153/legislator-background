@@ -1,0 +1,593 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "countyCode": "10-005-00-000-0000",
+ "countyName": "苗栗縣",
+ "districts": [
+  {
+   "no": 1,
+   "label": "第1選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "魏漢相",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林志豪",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "彭賢淳",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "湯維岳",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "楊明燁",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-楊明燁-無黨籍及未經政黨推薦-苗栗縣第01選舉區",
+     "identity": "現任議員（苗栗縣第1選舉區）"
+    },
+    {
+     "name": "曾美露",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-曾美露-國民黨-苗栗縣第01選舉區",
+     "identity": "現任議員（苗栗縣第1選舉區）"
+    },
+    {
+     "name": "徐筱菁",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-徐筱菁-民進黨-苗栗縣第01選舉區",
+     "identity": "現任議員（苗栗縣第1選舉區）"
+    },
+    {
+     "name": "黃萬盛",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "孫素娥",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-孫素娥-無黨籍及未經政黨推薦-苗栗縣第01選舉區",
+     "identity": "現任議員（苗栗縣第1選舉區）"
+    },
+    {
+     "name": "彭晧宇",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "呂晟",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "巫召清",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許櫻萍",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-許櫻萍-民進黨-苗栗縣第01選舉區",
+     "identity": "現任議員（苗栗縣第1選舉區）"
+    },
+    {
+     "name": "鄭碧玉",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-鄭碧玉-國民黨-苗栗縣第01選舉區",
+     "identity": "現任議員（苗栗縣第1選舉區）"
+    },
+    {
+     "name": "張志宇",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-張志宇-無黨籍及未經政黨推薦-苗栗縣第01選舉區",
+     "identity": "現任議員（苗栗縣第1選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "label": "第2選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "謝昌年",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黎尚安",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-黎尚安-國民黨-苗栗縣第02選舉區",
+     "identity": "現任議員（苗栗縣第2選舉區）"
+    },
+    {
+     "name": "羅貴星",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-羅貴星-民進黨-苗栗縣第02選舉區",
+     "identity": "現任議員（苗栗縣第2選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "label": "第3選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "翁杰",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-翁杰-民進黨-苗栗縣第03選舉區",
+     "identity": "現任議員（苗栗縣第3選舉區）"
+    },
+    {
+     "name": "陳薈茗",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "郭汶沂",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王建鑫",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "杜文卿",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "周玉滿",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-周玉滿-無黨籍及未經政黨推薦-苗栗縣第03選舉區",
+     "identity": "現任議員（苗栗縣第3選舉區）"
+    },
+    {
+     "name": "徐瑞轅",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "label": "第4選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "李文斌",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-李文斌-無黨籍及未經政黨推薦-苗栗縣第04選舉區",
+     "identity": "現任議員（苗栗縣第4選舉區）"
+    },
+    {
+     "name": "林寶珠",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-林寶珠-無黨籍及未經政黨推薦-苗栗縣第04選舉區",
+     "identity": "現任議員（苗栗縣第4選舉區）"
+    },
+    {
+     "name": "鄭秋風",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-鄭秋風-國民黨-苗栗縣第04選舉區",
+     "identity": "現任議員（苗栗縣第4選舉區）"
+    },
+    {
+     "name": "陳碧華",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-陳碧華-無黨籍及未經政黨推薦-苗栗縣第04選舉區",
+     "identity": "現任議員（苗栗縣第4選舉區）"
+    },
+    {
+     "name": "吳翌立",
+     "partyName": "時代力量",
+     "partyCode": "267",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "邱毓興",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-邱毓興-民進黨-苗栗縣第04選舉區",
+     "identity": "現任議員（苗栗縣第4選舉區）"
+    },
+    {
+     "name": "蔡君婷",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "廖秀紅",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-廖秀紅-無黨籍及未經政黨推薦-苗栗縣第04選舉區",
+     "identity": "現任議員（苗栗縣第4選舉區）"
+    },
+    {
+     "name": "吳亭亭",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "謝美香",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張佳玲",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-張佳玲-無黨籍及未經政黨推薦-苗栗縣第04選舉區",
+     "identity": "現任議員（苗栗縣第4選舉區）"
+    },
+    {
+     "name": "廖英利",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-廖英利-無黨籍及未經政黨推薦-苗栗縣第04選舉區",
+     "identity": "現任議員（苗栗縣第4選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "label": "第5選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "古益弦",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "彭茜柔",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳詩弦",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳光軒",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳光軒-民進黨-苗栗縣第05選舉區",
+     "identity": "現任議員（苗栗縣第5選舉區）"
+    },
+    {
+     "name": "黎煥強",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "鍾孟儒",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蕭詠萱",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-蕭詠萱-無黨籍及未經政黨推薦-苗栗縣第05選舉區",
+     "identity": "現任議員（苗栗縣第5選舉區）"
+    },
+    {
+     "name": "張淑芬",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-張淑芬-國民黨-苗栗縣第05選舉區",
+     "identity": "現任議員（苗栗縣第5選舉區）"
+    },
+    {
+     "name": "鄭聚然",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-鄭聚然-國民黨-苗栗縣第05選舉區",
+     "identity": "現任議員（苗栗縣第5選舉區）"
+    },
+    {
+     "name": "陳永賢",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-陳永賢-無黨籍及未經政黨推薦-苗栗縣第05選舉區",
+     "identity": "現任議員（苗栗縣第5選舉區）"
+    },
+    {
+     "name": "温俊勇",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-温俊勇-無黨籍及未經政黨推薦-苗栗縣第05選舉區",
+     "identity": "現任議員（苗栗縣第5選舉區）"
+    },
+    {
+     "name": "林志學",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "label": "第6選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "楊恭林",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-楊恭林-無黨籍及未經政黨推薦-苗栗縣第06選舉區",
+     "identity": "現任議員（苗栗縣第6選舉區）"
+    },
+    {
+     "name": "詹錦章",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "盛瑛",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "label": "第7選舉區（平地原住民）",
+   "type": "plainIndigenous",
+   "candidates": [
+    {
+     "name": "風志雄",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "朱仲一Kalih．Tahes．Didiyun",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 8,
+   "label": "第8選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "黃茹君HakingYumaʼ",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "劉美蘭Iwan．Sigiy",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-劉美蘭iwan·sigiy-國民黨-苗栗縣第08選舉區",
+     "identity": "現任議員（苗栗縣第8選舉區）"
+    }
+   ]
+  }
+ ],
+ "townToDistrict": {
+  "10-005-00-010-0000": 1,
+  "10-005-00-090-0000": 1,
+  "10-005-00-120-0000": 1,
+  "10-005-00-020-0000": 3,
+  "10-005-00-030-0000": 3,
+  "10-005-00-040-0000": 4,
+  "10-005-00-060-0000": 4,
+  "10-005-00-150-0000": 4,
+  "10-005-00-050-0000": 5,
+  "10-005-00-110-0000": 5,
+  "10-005-00-160-0000": 5,
+  "10-005-00-070-0000": 6,
+  "10-005-00-080-0000": 6,
+  "10-005-00-170-0000": 6,
+  "10-005-00-180-0000": 6,
+  "10-005-00-100-0000": 2,
+  "10-005-00-130-0000": 2,
+  "10-005-00-140-0000": 2
+ },
+ "splitTowns": [],
+ "mappingNote": null
+}

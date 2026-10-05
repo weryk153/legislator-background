@@ -1,0 +1,593 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "countyCode": "10-015-00-000-0000",
+ "countyName": "花蓮縣",
+ "districts": [
+  {
+   "no": 1,
+   "label": "第1選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "許願神",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳財能",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "謝國榮",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-謝國榮-國民黨-花蓮縣第01選舉區",
+     "identity": "現任議員（花蓮縣第1選舉區）"
+    },
+    {
+     "name": "徐子芳",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-徐子芳-國民黨-花蓮縣第01選舉區",
+     "identity": "現任議員（花蓮縣第1選舉區）"
+    },
+    {
+     "name": "黃達祥",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "江躍辰",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林宗昆",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "洪士閔",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "田珍綺",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "謝豪杰",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "莊依婕",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "傅國淵",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-傅國淵-民眾黨-花蓮縣第01選舉區",
+     "identity": "現任議員（花蓮縣第1選舉區）"
+    },
+    {
+     "name": "胡仁順",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-胡仁順-民進黨-花蓮縣第01選舉區",
+     "identity": "現任議員（花蓮縣第1選舉區）"
+    },
+    {
+     "name": "韓林梅",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-韓林梅-國民黨-花蓮縣第01選舉區",
+     "identity": "現任議員（花蓮縣第1選舉區）"
+    },
+    {
+     "name": "蔡翼陽",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "label": "第2選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "張美華",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "鄭寶秀",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-鄭寶秀-國民黨-花蓮縣第02選舉區",
+     "identity": "現任議員（花蓮縣第2選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "label": "第3選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "劉靜文",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張宸瑋",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "鄭乾龍",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-鄭乾龍-無黨籍及未經政黨推薦-花蓮縣第03選舉區",
+     "identity": "現任議員（花蓮縣第3選舉區）"
+    },
+    {
+     "name": "徐雪玉",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-徐雪玉-國民黨-花蓮縣第03選舉區",
+     "identity": "現任議員（花蓮縣第3選舉區）"
+    },
+    {
+     "name": "陳思伃",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃宣寓",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "彭建華",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "孟繁嘉",
+     "partyName": "台灣基進",
+     "partyCode": "303",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林則葹",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-林則葹-民進黨-花蓮縣第03選舉區",
+     "identity": "現任議員（花蓮縣第3選舉區）"
+    },
+    {
+     "name": "蘇文將",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "楊悟空",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "姜景文",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳建志",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-吳建志-國民黨-花蓮縣第03選舉區",
+     "identity": "現任議員（花蓮縣第3選舉區）"
+    },
+    {
+     "name": "蔡文隆",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "label": "第4選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "鍾素政",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-鍾素政-國民黨-花蓮縣第04選舉區",
+     "identity": "現任議員（花蓮縣第4選舉區）"
+    },
+    {
+     "name": "黃玲蘭",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-黃玲蘭-無黨籍及未經政黨推薦-花蓮縣第04選舉區",
+     "identity": "現任議員（花蓮縣第4選舉區）"
+    },
+    {
+     "name": "林宏熙",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳新文",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "詹金富",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-詹金富-國民黨-花蓮縣第04選舉區",
+     "identity": "現任議員（花蓮縣第4選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "label": "第5選舉區（平地原住民）",
+   "type": "plainIndigenous",
+   "candidates": [
+    {
+     "name": "李正文",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-李正文-無黨籍及未經政黨推薦-花蓮縣第05選舉區",
+     "identity": "現任議員（花蓮縣第5選舉區）"
+    },
+    {
+     "name": "笛布斯．顗賚",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-笛布斯．顗賚-無黨籍及未經政黨推薦-花蓮縣第05選舉區",
+     "identity": "現任議員（花蓮縣第5選舉區）"
+    },
+    {
+     "name": "陳進德",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "那莫諾虎NamohNofu",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "周駿宥",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-周駿宥-國民黨-花蓮縣第05選舉區",
+     "identity": "現任議員（花蓮縣第5選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "label": "第6選舉區（平地原住民）",
+   "type": "plainIndigenous",
+   "candidates": [
+    {
+     "name": "邱福順Kacaw．Folaw",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡依靜Lamen‧Panay",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-蔡依靜lamen．panay-無黨籍及未經政黨推薦-花蓮縣第06選舉區",
+     "identity": "現任議員（花蓮縣第6選舉區）"
+    },
+    {
+     "name": "林正福",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-林正福-國民黨-花蓮縣第06選舉區",
+     "identity": "現任議員（花蓮縣第6選舉區）"
+    },
+    {
+     "name": "萬中興",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "label": "第7選舉區（平地原住民）",
+   "type": "plainIndigenous",
+   "candidates": [
+    {
+     "name": "哈尼．噶照HaniKacaw",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-哈尼．噶照hanikacaw-無黨籍及未經政黨推薦-花蓮縣第07選舉區",
+     "identity": "現任議員（花蓮縣第7選舉區）"
+    },
+    {
+     "name": "秀吉．撒夫洛",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林玉芬",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-林玉芬-國民黨-花蓮縣第07選舉區",
+     "identity": "現任議員（花蓮縣第7選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 8,
+   "label": "第8選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "王玫瑰SitangYuci",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王沈剛竹",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "田韻馨",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 9,
+   "label": "第9選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "伊布．達納畢瑪Ibu·Tanapinma",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳群",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 10,
+   "label": "第10選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "李忠祥",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "金淑敏",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-金淑敏-國民黨-花蓮縣第10選舉區",
+     "identity": "現任議員（花蓮縣第10選舉區）"
+    }
+   ]
+  }
+ ],
+ "townToDistrict": {
+  "10-015-00-010-0000": 1,
+  "10-015-00-020-0000": 3,
+  "10-015-00-050-0000": 3,
+  "10-015-00-060-0000": 3,
+  "10-015-00-070-0000": 3,
+  "10-015-00-080-0000": 3,
+  "10-015-00-120-0000": 3,
+  "10-015-00-030-0000": 4,
+  "10-015-00-090-0000": 4,
+  "10-015-00-100-0000": 4,
+  "10-015-00-130-0000": 4,
+  "10-015-00-040-0000": 2,
+  "10-015-00-110-0000": 2
+ },
+ "splitTowns": [],
+ "mappingNote": null
+}

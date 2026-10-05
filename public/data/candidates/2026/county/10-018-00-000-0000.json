@@ -1,0 +1,567 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "countyCode": "10-018-00-000-0000",
+ "countyName": "新竹市",
+ "districts": [
+  {
+   "no": 1,
+   "label": "第1選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "黃文政",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-黃文政-國民黨-新竹市第01選舉區",
+     "identity": "現任議員（新竹市第1選舉區）"
+    },
+    {
+     "name": "劉崇顯",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-劉崇顯-綠黨-新竹市第01選舉區",
+     "identity": "現任議員（新竹市第1選舉區）"
+    },
+    {
+     "name": "劉詳樽",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張文興",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李國璋",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李國璋-民眾黨-新竹市第01選舉區",
+     "identity": "現任議員（新竹市第1選舉區）"
+    },
+    {
+     "name": "宋品瑩",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-宋品瑩-民眾黨-新竹市第01選舉區",
+     "identity": "現任議員（新竹市第1選舉區）"
+    },
+    {
+     "name": "劉彥伶",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-劉彥伶-民進黨-新竹市第01選舉區",
+     "identity": "現任議員（新竹市第1選舉區）"
+    },
+    {
+     "name": "張祖琰",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張祖琰-國民黨-新竹市第01選舉區",
+     "identity": "現任議員（新竹市第1選舉區）"
+    },
+    {
+     "name": "樊一嶢",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "鄭宏輝",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許登淇",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "曾翰揚",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "鄭美娟",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-鄭美娟-民進黨-新竹市第01選舉區",
+     "identity": "現任議員（新竹市第1選舉區）"
+    },
+    {
+     "name": "蔡惠婷",
+     "partyName": "時代力量",
+     "partyCode": "267",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-蔡惠婷-時代力量-新竹市第01選舉區",
+     "identity": "現任議員（新竹市第1選舉區）"
+    },
+    {
+     "name": "林妤芬",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳清智",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "錢康明",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳珍裕",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "鍾淑英",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-鍾淑英-國民黨-新竹市第01選舉區",
+     "identity": "現任議員（新竹市第1選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "label": "第2選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "施乃如",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-施乃如-民進黨-新竹市第02選舉區",
+     "identity": "現任議員（新竹市第2選舉區）"
+    },
+    {
+     "name": "李玫",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳鶴文",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "徐美惠",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-徐美惠-國民黨-新竹市第02選舉區",
+     "identity": "現任議員（新竹市第2選舉區）"
+    },
+    {
+     "name": "許修睿",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-許修睿-國民黨-新竹市第02選舉區",
+     "identity": "現任議員（新竹市第2選舉區）"
+    },
+    {
+     "name": "田雅芳",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-田雅芳-無黨籍及未經政黨推薦-新竹市第02選舉區",
+     "identity": "現任議員（新竹市第2選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "label": "第3選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "施淑婷",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳思妤",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳建名",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳建名-民進黨-新竹市第03選舉區",
+     "identity": "現任議員（新竹市第3選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "label": "第4選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "彭昆耀",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-彭昆耀-無黨籍及未經政黨推薦-新竹市第04選舉區",
+     "identity": "現任議員（新竹市第4選舉區）"
+    },
+    {
+     "name": "王雲慶",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蕭志潔",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-蕭志潔-國民黨-新竹市第04選舉區",
+     "identity": "現任議員（新竹市第4選舉區）"
+    },
+    {
+     "name": "林士凱",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "曾國維",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃美慧",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-黃美慧-國民黨-新竹市第04選舉區",
+     "identity": "現任議員（新竹市第4選舉區）"
+    },
+    {
+     "name": "楊玲宜",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-楊玲宜-民進黨-新竹市第04選舉區",
+     "identity": "現任議員（新竹市第4選舉區）"
+    },
+    {
+     "name": "鄭慶欽",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-鄭慶欽-無黨籍及未經政黨推薦-新竹市第04選舉區",
+     "identity": "現任議員（新竹市第4選舉區）"
+    },
+    {
+     "name": "林彥甫",
+     "partyName": "時代力量",
+     "partyCode": "267",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-林彥甫-時代力量-新竹市第04選舉區",
+     "identity": "現任議員（新竹市第4選舉區）"
+    },
+    {
+     "name": "吳旭豐",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-吳旭豐-國民黨-新竹市第04選舉區",
+     "identity": "現任議員（新竹市第4選舉區）"
+    },
+    {
+     "name": "許竹見",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "孫宗孝",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡文盛",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "label": "第5選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "吳若茵",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳國寶",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-吳國寶-無黨籍及未經政黨推薦-新竹市第05選舉區",
+     "identity": "現任議員（新竹市第5選舉區）"
+    },
+    {
+     "name": "葉國文",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳啓源",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳啓源-無黨籍及未經政黨推薦-新竹市第05選舉區",
+     "identity": "現任議員（新竹市第5選舉區）"
+    },
+    {
+     "name": "蔡志堅",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳慶齡",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳慶齡-國民黨-新竹市第05選舉區",
+     "identity": "現任議員（新竹市第5選舉區）"
+    },
+    {
+     "name": "廖子齊",
+     "partyName": "時代力量",
+     "partyCode": "267",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-廖子齊-時代力量-新竹市第05選舉區",
+     "identity": "現任議員（新竹市第5選舉區）"
+    },
+    {
+     "name": "林盈徹",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-林盈徹-民進黨-新竹市第05選舉區",
+     "identity": "現任議員（新竹市第5選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "label": "第6選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "李雅雯",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林慈愛",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林慈愛-國民黨-新竹市第06選舉區",
+     "identity": "現任議員（新竹市第6選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "label": "第7選舉區",
+   "type": "unknown",
+   "candidates": [
+    {
+     "name": "趙若芸",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林夏陞",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "楊家玲",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "雲翔",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "卡伊．馬賴",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  }
+ ],
+ "townToDistrict": null,
+ "splitTowns": [],
+ "mappingNote": "議員選區與 2022 年劃分不同（2022 有 6 個選區、2026 名冊有 7 個，選區可能已重劃），無法標示各鄉鎮市區所屬選區。"
+}

@@ -1,0 +1,364 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "countyCode": "10-020-00-000-0000",
+ "countyName": "嘉義市",
+ "districts": [
+  {
+   "no": 1,
+   "label": "第1選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "凌子楚",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "郭文居",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "何苡睿",
+     "partyName": "台聯黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳玥妗",
+     "partyName": "小民參政歐巴桑聯盟",
+     "partyCode": "357",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "梁樹綸",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張敏琪",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張敏琪-國民黨-嘉義市第01選舉區",
+     "identity": "現任議員（嘉義市第1選舉區）"
+    },
+    {
+     "name": "林昱孜",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃露慧",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃露慧-民進黨-嘉義市第01選舉區",
+     "identity": "現任議員（嘉義市第1選舉區）"
+    },
+    {
+     "name": "黃盈智",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃盈智-民進黨-嘉義市第01選舉區",
+     "identity": "現任議員（嘉義市第1選舉區）"
+    },
+    {
+     "name": "柯莉絲汀",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳宗泓",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "顏翎熹",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-顏色不分藍綠支持性專區顏色田慎節-無黨籍及未經政黨推薦-嘉義市第01選舉區",
+     "identity": "現任議員（嘉義市第1選舉區）"
+    },
+    {
+     "name": "陳家平",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳家平-國民黨-嘉義市第01選舉區",
+     "identity": "現任議員（嘉義市第1選舉區）"
+    },
+    {
+     "name": "郭定緯",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-郭定緯-國民黨-嘉義市第01選舉區",
+     "identity": "現任議員（嘉義市第1選舉區）"
+    },
+    {
+     "name": "傅大偉",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-傅大偉-國民黨-嘉義市第01選舉區",
+     "identity": "現任議員（嘉義市第1選舉區）"
+    },
+    {
+     "name": "洪斐昭",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "label": "第2選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "陳嘉弘",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳姿妏",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-陳姿妏-無黨籍及未經政黨推薦-嘉義市第02選舉區",
+     "identity": "現任議員（嘉義市第2選舉區）"
+    },
+    {
+     "name": "鄭光宏",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-鄭光宏-國民黨-嘉義市第02選舉區",
+     "identity": "現任議員（嘉義市第2選舉區）"
+    },
+    {
+     "name": "林煒軒",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-林煒軒-民進黨-嘉義市第02選舉區",
+     "identity": "現任議員（嘉義市第2選舉區）"
+    },
+    {
+     "name": "王浩",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-王浩-時代力量-嘉義市第02選舉區",
+     "identity": "現任議員（嘉義市第2選舉區）"
+    },
+    {
+     "name": "林子淨",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡坤達",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林詩涵",
+     "partyName": "小民參政歐巴桑聯盟",
+     "partyCode": "357",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳品蓁",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李忠曆",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李忠曆-無黨籍及未經政黨推薦-嘉義市第02選舉區",
+     "identity": "現任議員（嘉義市第2選舉區）"
+    },
+    {
+     "name": "蔡坤叡",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蔡坤叡-無黨籍及未經政黨推薦-嘉義市第02選舉區",
+     "identity": "現任議員（嘉義市第2選舉區）"
+    },
+    {
+     "name": "李明燦",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張秀華",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張秀華-國民黨-嘉義市第02選舉區",
+     "identity": "現任議員（嘉義市第2選舉區）"
+    },
+    {
+     "name": "黃思婷",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃思婷-無黨籍及未經政黨推薦-嘉義市第02選舉區",
+     "identity": "現任議員（嘉義市第2選舉區）"
+    },
+    {
+     "name": "黃政融",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃敏修",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃敏修-民進黨-嘉義市第02選舉區",
+     "identity": "現任議員（嘉義市第2選舉區）"
+    },
+    {
+     "name": "黃大祐",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃大祐-民進黨-嘉義市第02選舉區",
+     "identity": "現任議員（嘉義市第2選舉區）"
+    },
+    {
+     "name": "曾奕豪",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳致愷",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "魏志軒",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "孫貫志",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-孫貫志-無黨籍及未經政黨推薦-嘉義市第02選舉區",
+     "identity": "現任議員（嘉義市第2選舉區）"
+    }
+   ]
+  }
+ ],
+ "townToDistrict": {
+  "10-020-00-010-0000": 1,
+  "10-020-00-020-0000": 2
+ },
+ "splitTowns": [],
+ "mappingNote": null
+}

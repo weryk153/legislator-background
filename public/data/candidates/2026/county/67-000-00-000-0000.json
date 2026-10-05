@@ -1,0 +1,935 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "countyCode": "67-000-00-000-0000",
+ "countyName": "臺南市",
+ "districts": [
+  {
+   "no": 1,
+   "label": "第1選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "李宗翰",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-李宗翰-民進黨-臺南市第01選舉區",
+     "identity": "現任議員（臺南市第1選舉區）"
+    },
+    {
+     "name": "蔡育輝",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-蔡育輝-國民黨-臺南市第01選舉區",
+     "identity": "現任議員（臺南市第1選舉區）"
+    },
+    {
+     "name": "侯陸太",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "沈家鳳",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-沈家鳳-民進黨-臺南市第01選舉區",
+     "identity": "現任議員（臺南市第1選舉區）"
+    },
+    {
+     "name": "趙昆原",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-趙昆原-無黨籍及未經政黨推薦-臺南市第01選舉區",
+     "identity": "現任議員（臺南市第1選舉區）"
+    },
+    {
+     "name": "王宣貿",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-王宣貿-民進黨-臺南市第01選舉區",
+     "identity": "現任議員（臺南市第1選舉區）"
+    },
+    {
+     "name": "張新斛",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳詩薇",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "label": "第2選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "謝舒凡",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-謝舒凡-民進黨-臺南市第02選舉區",
+     "identity": "現任議員（臺南市第2選舉區）"
+    },
+    {
+     "name": "蔡蘇秋金",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蔡蘇秋金-民進黨-臺南市第02選舉區",
+     "identity": "現任議員（臺南市第2選舉區）"
+    },
+    {
+     "name": "蔡秋蘭",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蔡秋蘭-民進黨-臺南市第02選舉區",
+     "identity": "現任議員（臺南市第2選舉區）"
+    },
+    {
+     "name": "王詩媛",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "方一峰",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-方一峰-國民黨-臺南市第02選舉區",
+     "identity": "現任議員（臺南市第2選舉區）"
+    },
+    {
+     "name": "陳昆和",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳昆和-無黨籍及未經政黨推薦-臺南市第02選舉區",
+     "identity": "現任議員（臺南市第2選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "label": "第3選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "吳通龍",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-吳通龍-民進黨-臺南市第03選舉區",
+     "identity": "現任議員（臺南市第3選舉區）"
+    },
+    {
+     "name": "陳秋宏",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳秋宏-民進黨-臺南市第03選舉區",
+     "identity": "現任議員（臺南市第3選舉區）"
+    },
+    {
+     "name": "尤淨寬",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "施朝清",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "label": "第4選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "賴懋慶",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "周奕齊",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-周奕齊-無黨籍及未經政黨推薦-臺南市第04選舉區",
+     "identity": "現任議員（臺南市第4選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "label": "第5選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "陳碧玉",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-陳碧玉-民進黨-臺南市第05選舉區",
+     "identity": "現任議員（臺南市第5選舉區）"
+    },
+    {
+     "name": "余柷青",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-余柷青-民進黨-臺南市第05選舉區",
+     "identity": "現任議員（臺南市第5選舉區）"
+    },
+    {
+     "name": "李偉智",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-李偉智-民進黨-臺南市第05選舉區",
+     "identity": "現任議員（臺南市第5選舉區）"
+    },
+    {
+     "name": "林志展",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-林志展-民進黨-臺南市第05選舉區",
+     "identity": "現任議員（臺南市第5選舉區）"
+    },
+    {
+     "name": "李佳蓉",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李文俊",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李文俊-國民黨-臺南市第05選舉區",
+     "identity": "現任議員（臺南市第5選舉區）"
+    },
+    {
+     "name": "廖俊道",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "label": "第6選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "邱昭勝",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-邱昭勝-無黨籍及未經政黨推薦-臺南市第06選舉區",
+     "identity": "現任議員（臺南市第6選舉區）"
+    },
+    {
+     "name": "郭信良",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-郭信良-無黨籍及未經政黨推薦-臺南市第06選舉區",
+     "identity": "現任議員（臺南市第6選舉區）"
+    },
+    {
+     "name": "李中岑",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李中岑-國民黨-臺南市第06選舉區",
+     "identity": "現任議員（臺南市第6選舉區）"
+    },
+    {
+     "name": "唐儀靜",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "郭品辰",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "姚正玉",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡麗青",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蔡麗青-民進黨-臺南市第06選舉區",
+     "identity": "現任議員（臺南市第6選舉區）"
+    },
+    {
+     "name": "黃麗招",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-黃麗招-無黨籍及未經政黨推薦-臺南市第06選舉區",
+     "identity": "現任議員（臺南市第6選舉區）"
+    },
+    {
+     "name": "林緯",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "label": "第7選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "黄肇輝",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-黄肇輝-民進黨-臺南市第07選舉區",
+     "identity": "現任議員（臺南市第7選舉區）"
+    },
+    {
+     "name": "林乃立",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "周宏昌",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "曹暐國",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "楊中成",
+     "partyName": "台聯黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-楊中成-台灣團結聯盟-臺南市第07選舉區",
+     "identity": "現任議員（臺南市第7選舉區）"
+    },
+    {
+     "name": "林燕祝",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林燕祝-國民黨-臺南市第07選舉區",
+     "identity": "現任議員（臺南市第7選舉區）"
+    },
+    {
+     "name": "陳秋萍",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳秋萍-民進黨-臺南市第07選舉區",
+     "identity": "現任議員（臺南市第7選舉區）"
+    },
+    {
+     "name": "朱正軒",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-朱正軒-民進黨-臺南市第07選舉區",
+     "identity": "現任議員（臺南市第7選舉區）"
+    },
+    {
+     "name": "李秉倫",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "卞宗康",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳依潔",
+     "partyName": "台灣基進",
+     "partyCode": "303",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林冠維",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-林冠維-無黨團結聯盟-臺南市第07選舉區",
+     "identity": "現任議員（臺南市第7選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 8,
+   "label": "第8選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "沈震南",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "江明宗",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林建南",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "鄭方形",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許至椿",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-許至椿-國民黨-臺南市第08選舉區",
+     "identity": "現任議員（臺南市第8選舉區）"
+    },
+    {
+     "name": "邱莉莉",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-邱莉莉-民進黨-臺南市第08選舉區",
+     "identity": "現任議員（臺南市第8選舉區）"
+    },
+    {
+     "name": "周嘉韋",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-周嘉韋-民進黨-臺南市第08選舉區",
+     "identity": "現任議員（臺南市第8選舉區）"
+    },
+    {
+     "name": "蔡宗豪",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-蔡宗豪-國民黨-臺南市第08選舉區",
+     "identity": "現任議員（臺南市第8選舉區）"
+    },
+    {
+     "name": "陳昌輝",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "童小芸",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "謝秉舟",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 9,
+   "label": "第9選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "陳冠諭",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林依婷",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-林依婷-民進黨-臺南市第09選舉區",
+     "identity": "現任議員（臺南市第9選舉區）"
+    },
+    {
+     "name": "盧崑福",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-盧崑福-國民黨-臺南市第09選舉區",
+     "identity": "現任議員（臺南市第9選舉區）"
+    },
+    {
+     "name": "葉翰勲",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "呂維胤",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "周麗津",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-周麗津-民進黨-臺南市第09選舉區",
+     "identity": "現任議員（臺南市第9選舉區）"
+    },
+    {
+     "name": "李啓維",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李啓維-民進黨-臺南市第09選舉區",
+     "identity": "現任議員（臺南市第9選舉區）"
+    },
+    {
+     "name": "蕭漍華",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李伯利",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 10,
+   "label": "第10選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "歐政豪",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡筱薇",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蔡筱薇-民進黨-臺南市第10選舉區",
+     "identity": "現任議員（臺南市第10選舉區）"
+    },
+    {
+     "name": "陳金鐘",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王家貞",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-王家貞-國民黨-臺南市第10選舉區",
+     "identity": "現任議員（臺南市第10選舉區）"
+    },
+    {
+     "name": "李宗霖",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-李宗霖-台灣基進-臺南市第10選舉區",
+     "identity": "現任議員（臺南市第10選舉區）"
+    },
+    {
+     "name": "陳進男",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "曾之婕",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-曾之婕-無黨籍及未經政黨推薦-臺南市第10選舉區",
+     "identity": "現任議員（臺南市第10選舉區）"
+    }
+   ]
+  },
+  {
+   "no": 11,
+   "label": "第11選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "翁語含",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳禹寰",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-吳禹寰-無黨籍及未經政黨推薦-臺南市第11選舉區",
+     "identity": "現任議員（臺南市第11選舉區）"
+    },
+    {
+     "name": "鄭佳欣",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-鄭佳欣-民進黨-臺南市第11選舉區",
+     "identity": "現任議員（臺南市第11選舉區）"
+    },
+    {
+     "name": "許又仁",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳皇宇",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳皇宇-民進黨-臺南市第11選舉區",
+     "identity": "現任議員（臺南市第11選舉區）"
+    },
+    {
+     "name": "郭鴻儀",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-郭鴻儀-民進黨-臺南市第11選舉區",
+     "identity": "現任議員（臺南市第11選舉區）"
+    },
+    {
+     "name": "郭如芳",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "杜素吟",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-杜素吟-無黨團結聯盟-臺南市第11選舉區",
+     "identity": "現任議員（臺南市第11選舉區）"
+    },
+    {
+     "name": "劉正昌",
+     "partyName": "台聯黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 12,
+   "label": "第12選舉區（平地原住民）",
+   "type": "plainIndigenous",
+   "candidates": [
+    {
+     "name": "李美素",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳東明",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 13,
+   "label": "第13選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "施余興望TjakumayTagaw",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-施余興望tjakumaytagaw-無黨籍及未經政黨推薦-臺南市第13選舉區",
+     "identity": "現任議員（臺南市第13選舉區）"
+    },
+    {
+     "name": "辛晴晴LanguiTamapima",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  }
+ ],
+ "townToDistrict": {
+  "67-000-00-010-0000": 1,
+  "67-000-00-020-0000": 1,
+  "67-000-00-030-0000": 1,
+  "67-000-00-040-0000": 1,
+  "67-000-00-050-0000": 1,
+  "67-000-00-060-0000": 1,
+  "67-000-00-070-0000": 3,
+  "67-000-00-080-0000": 3,
+  "67-000-00-090-0000": 3,
+  "67-000-00-100-0000": 3,
+  "67-000-00-110-0000": 3,
+  "67-000-00-120-0000": 2,
+  "67-000-00-130-0000": 2,
+  "67-000-00-140-0000": 2,
+  "67-000-00-150-0000": 2,
+  "67-000-00-160-0000": 2,
+  "67-000-00-170-0000": 2,
+  "67-000-00-180-0000": 5,
+  "67-000-00-190-0000": 5,
+  "67-000-00-200-0000": 5,
+  "67-000-00-210-0000": 5,
+  "67-000-00-220-0000": 5,
+  "67-000-00-230-0000": 4,
+  "67-000-00-240-0000": 4,
+  "67-000-00-250-0000": 4,
+  "67-000-00-260-0000": 4,
+  "67-000-00-270-0000": 11,
+  "67-000-00-280-0000": 11,
+  "67-000-00-290-0000": 11,
+  "67-000-00-300-0000": 11,
+  "67-000-00-310-0000": 7,
+  "67-000-00-320-0000": 10,
+  "67-000-00-330-0000": 9,
+  "67-000-00-360-0000": 9,
+  "67-000-00-340-0000": 8,
+  "67-000-00-370-0000": 8,
+  "67-000-00-350-0000": 6
+ },
+ "splitTowns": [],
+ "mappingNote": null
+}

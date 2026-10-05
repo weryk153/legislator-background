@@ -1,0 +1,965 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "countyCode": "63-000-00-000-0000",
+ "countyName": "臺北市",
+ "districts": [
+  {
+   "no": 1,
+   "label": "第1選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "謝閔弘",
+     "partyName": "時代力量",
+     "partyCode": "267",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李文",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳彥廷",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "鍾佩玲",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-鍾佩玲-民進黨-臺北市第01選舉區",
+     "identity": "現任議員（臺北市第1選舉區）"
+    },
+    {
+     "name": "紀建漢",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳賢蔚",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳賢蔚-民進黨-臺北市第01選舉區",
+     "identity": "現任議員（臺北市第1選舉區）"
+    },
+    {
+     "name": "林世宗",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林世宗-民進黨-臺北市第01選舉區",
+     "identity": "現任議員（臺北市第1選舉區）"
+    },
+    {
+     "name": "黃瀞瑩",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃瀞瑩-民眾黨-臺北市第01選舉區",
+     "identity": "現任議員（臺北市第1選舉區）"
+    },
+    {
+     "name": "林揚庭",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳慈慧",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳慈慧-民進黨-臺北市第01選舉區",
+     "identity": "現任議員（臺北市第1選舉區）"
+    },
+    {
+     "name": "陳重文",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳重文-國民黨-臺北市第01選舉區",
+     "identity": "現任議員（臺北市第1選舉區）"
+    },
+    {
+     "name": "陳怡潔",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林杏兒",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-林杏兒-國民黨-臺北市第01選舉區",
+     "identity": "現任議員（臺北市第1選舉區）"
+    },
+    {
+     "name": "張斯綱",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-張斯綱-國民黨-臺北市第01選舉區",
+     "identity": "現任議員（臺北市第1選舉區）"
+    },
+    {
+     "name": "賴苡任",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "汪志冰",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-汪志冰-國民黨-臺北市第01選舉區",
+     "identity": "現任議員（臺北市第1選舉區）"
+    },
+    {
+     "name": "劉致妤",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林延鳳",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-林延鳳-民進黨-臺北市第01選舉區",
+     "identity": "現任議員（臺北市第1選舉區）"
+    },
+    {
+     "name": "侯漢廷",
+     "partyName": "新黨",
+     "partyCode": "74",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-侯漢廷-新黨-臺北市第01選舉區",
+     "identity": "現任議員（臺北市第1選舉區）"
+    },
+    {
+     "name": "林聖峰",
+     "partyName": "天宙和平統一家庭黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "label": "第2選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "吳欣岱",
+     "partyName": "台灣基進",
+     "partyCode": "303",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李明賢",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-李明賢-國民黨-臺北市第02選舉區",
+     "identity": "現任議員（臺北市第2選舉區）"
+    },
+    {
+     "name": "陳冠安",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "高嘉瑜",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王孝維",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-王孝維-民進黨-臺北市第02選舉區",
+     "identity": "現任議員（臺北市第2選舉區）"
+    },
+    {
+     "name": "游淑慧",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-游淑慧-國民黨-臺北市第02選舉區",
+     "identity": "現任議員（臺北市第2選舉區）"
+    },
+    {
+     "name": "何孟樺",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-何孟樺-民進黨-臺北市第02選舉區",
+     "identity": "現任議員（臺北市第2選舉區）"
+    },
+    {
+     "name": "陳宥丞",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳宥丞-民眾黨-臺北市第02選舉區",
+     "identity": "現任議員（臺北市第2選舉區）"
+    },
+    {
+     "name": "何恕懷",
+     "partyName": "新黨",
+     "partyCode": "74",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "闕枚莎",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-闕枚莎-國民黨-臺北市第02選舉區",
+     "identity": "現任議員（臺北市第2選舉區）"
+    },
+    {
+     "name": "陳又新",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳世正",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-吳世正-國民黨-臺北市第02選舉區",
+     "identity": "現任議員（臺北市第2選舉區）"
+    },
+    {
+     "name": "黃啟彬",
+     "partyName": "永久和平自然法",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "label": "第3選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "鄧樂強",
+     "partyName": "台灣基進",
+     "partyCode": "303",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "詹為元",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-詹為元-國民黨-臺北市第03選舉區",
+     "identity": "現任議員（臺北市第3選舉區）"
+    },
+    {
+     "name": "張文潔",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張文潔-民進黨-臺北市第03選舉區",
+     "identity": "現任議員（臺北市第3選舉區）"
+    },
+    {
+     "name": "郭凡",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李明璇",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "秦慧珠",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-秦慧珠-國民黨-臺北市第03選舉區",
+     "identity": "現任議員（臺北市第3選舉區）"
+    },
+    {
+     "name": "洪健益",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-洪健益-民進黨-臺北市第03選舉區",
+     "identity": "現任議員（臺北市第3選舉區）"
+    },
+    {
+     "name": "戴錫欽",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-戴錫欽-國民黨-臺北市第03選舉區",
+     "identity": "現任議員（臺北市第3選舉區）"
+    },
+    {
+     "name": "許甫",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "左曉明",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許淑華",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林柏勛",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許原榮",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "label": "第4選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "朱政騏",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "顏若芳",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "c-顏若芳-民進黨-臺北市第04選舉區",
+     "identity": "現任議員（臺北市第4選舉區）"
+    },
+    {
+     "name": "賴俊翰",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "熊羿",
+     "partyName": "勞動黨",
+     "partyCode": "15",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李易儒",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳炳甫",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳炳甫-國民黨-臺北市第04選舉區",
+     "identity": "現任議員（臺北市第4選舉區）"
+    },
+    {
+     "name": "林子揚",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "柳采葳",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-柳采葳-國民黨-臺北市第04選舉區",
+     "identity": "現任議員（臺北市第4選舉區）"
+    },
+    {
+     "name": "林亮君",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林亮君-無黨籍及未經政黨推薦-臺北市第04選舉區",
+     "identity": "現任議員（臺北市第4選舉區）"
+    },
+    {
+     "name": "葉林傳",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-葉林傳-國民黨-臺北市第04選舉區",
+     "identity": "現任議員（臺北市第4選舉區）"
+    },
+    {
+     "name": "黃麗香",
+     "partyName": "台聯黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林珍羽",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-林珍羽-民眾黨-臺北市第04選舉區",
+     "identity": "現任議員（臺北市第4選舉區）"
+    },
+    {
+     "name": "陳怡君",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳怡君-民進黨-臺北市第04選舉區",
+     "identity": "現任議員（臺北市第4選舉區）"
+    },
+    {
+     "name": "李惠暄",
+     "partyName": "小民參政歐巴桑聯盟",
+     "partyCode": "357",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "label": "第5選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "張銘祐",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳志剛",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-吳志剛-國民黨-臺北市第05選舉區",
+     "identity": "現任議員（臺北市第5選舉區）"
+    },
+    {
+     "name": "鍾小平",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-鍾小平-國民黨-臺北市第05選舉區",
+     "identity": "現任議員（臺北市第5選舉區）"
+    },
+    {
+     "name": "陳力新",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王振庭",
+     "partyName": "台灣綠黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "洪婉臻",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-洪婉臻-民進黨-臺北市第05選舉區",
+     "identity": "現任議員（臺北市第5選舉區）"
+    },
+    {
+     "name": "吳怡萱",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "應佳妤",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "劉耀仁",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-劉耀仁-民進黨-臺北市第05選舉區",
+     "identity": "現任議員（臺北市第5選舉區）"
+    },
+    {
+     "name": "張延廷",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "徐立信",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-徐立信-無黨籍及未經政黨推薦-臺北市第05選舉區",
+     "identity": "現任議員（臺北市第5選舉區）"
+    },
+    {
+     "name": "馬郁雯",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "郭昭巖",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-郭昭巖-國民黨-臺北市第05選舉區",
+     "identity": "現任議員（臺北市第5選舉區）"
+    },
+    {
+     "name": "譚傳紹",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "label": "第6選舉區",
+   "type": "regional",
+   "candidates": [
+    {
+     "name": "李道翔",
+     "partyName": "左翼聯盟",
+     "partyCode": "338",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳峙穎",
+     "partyName": "時代力量",
+     "partyCode": "267",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李奇峯",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "簡舒培",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-簡舒培-民進黨-臺北市第06選舉區",
+     "identity": "現任議員（臺北市第6選舉區）"
+    },
+    {
+     "name": "楊植斗",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-楊植斗-國民黨-臺北市第06選舉區",
+     "identity": "現任議員（臺北市第6選舉區）"
+    },
+    {
+     "name": "陳聖文",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "游智彬",
+     "partyName": "新黨",
+     "partyCode": "74",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "耿葳",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-耿葳-國民黨-臺北市第06選舉區",
+     "identity": "現任議員（臺北市第6選舉區）"
+    },
+    {
+     "name": "徐弘庭",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-徐弘庭-國民黨-臺北市第06選舉區",
+     "identity": "現任議員（臺北市第6選舉區）"
+    },
+    {
+     "name": "苗博雅",
+     "partyName": "社會民主黨",
+     "partyCode": "269",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-苗博雅-社會民主黨-臺北市第06選舉區",
+     "identity": "現任議員（臺北市第6選舉區）"
+    },
+    {
+     "name": "陳錦祥",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳錦祥-國民黨-臺北市第06選舉區",
+     "identity": "現任議員（臺北市第6選舉區）"
+    },
+    {
+     "name": "李柏毅",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "鍾沛君",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-鍾沛君-國民黨-臺北市第06選舉區",
+     "identity": "現任議員（臺北市第6選舉區）"
+    },
+    {
+     "name": "劉品妡",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張志豪",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-張志豪-民眾黨-臺北市第06選舉區",
+     "identity": "現任議員（臺北市第6選舉區）"
+    },
+    {
+     "name": "曾獻瑩",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-曾獻瑩-無黨籍及未經政黨推薦-臺北市第06選舉區",
+     "identity": "現任議員（臺北市第6選舉區）"
+    },
+    {
+     "name": "王欣儀",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-王欣儀-國民黨-臺北市第06選舉區",
+     "identity": "現任議員（臺北市第6選舉區）"
+    },
+    {
+     "name": "王閔生",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "c-王閔生-民進黨-臺北市第06選舉區",
+     "identity": "現任議員（臺北市第6選舉區）"
+    },
+    {
+     "name": "張維學",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "label": "第7選舉區（平地原住民）",
+   "type": "plainIndigenous",
+   "candidates": [
+    {
+     "name": "李芳儒",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-李芳儒-國民黨-臺北市第07選舉區",
+     "identity": "現任議員（臺北市第7選舉區）"
+    },
+    {
+     "name": "林筱薇IcyangTamana",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "no": 8,
+   "label": "第8選舉區（山地原住民）",
+   "type": "mountainIndigenous",
+   "candidates": [
+    {
+     "name": "林家豪",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李傅鈺婷",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "孔垂崢HaisulIslituan",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  }
+ ],
+ "townToDistrict": {
+  "63-000-00-010-0000": 3,
+  "63-000-00-020-0000": 3,
+  "63-000-00-030-0000": 6,
+  "63-000-00-080-0000": 6,
+  "63-000-00-040-0000": 4,
+  "63-000-00-060-0000": 4,
+  "63-000-00-050-0000": 5,
+  "63-000-00-070-0000": 5,
+  "63-000-00-090-0000": 2,
+  "63-000-00-100-0000": 2,
+  "63-000-00-110-0000": 1,
+  "63-000-00-120-0000": 1
+ },
+ "splitTowns": [],
+ "mappingNote": null
+}

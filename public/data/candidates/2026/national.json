@@ -1,0 +1,892 @@
+{
+ "source": {
+  "stage": "registration",
+  "url": "https://web.cec.gov.tw/central/article/64709",
+  "tableDate": "2026-09-07"
+ },
+ "races": [
+  {
+   "countyCode": "63-000-00-000-0000",
+   "countyName": "臺北市",
+   "isMunicipality": true,
+   "candidates": [
+    {
+     "name": "郭璽",
+     "partyName": "台灣麻將最大黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "沈伯洋",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蕭文乾",
+     "partyName": "臺灣SoR無法黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "唐新民",
+     "partyName": "三勢團結促進聯盟",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔣萬安",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "mayor-taipei",
+     "identity": "現任臺北市長"
+    },
+    {
+     "name": "林志成",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "countyCode": "65-000-00-000-0000",
+   "countyName": "新北市",
+   "isMunicipality": true,
+   "candidates": [
+    {
+     "name": "蘇巧慧",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "suchiao-hui",
+     "identity": "現任立委（新北市第5選舉區）"
+    },
+    {
+     "name": "李四川",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蘇輝湟",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "countyCode": "68-000-00-000-0000",
+   "countyName": "桃園市",
+   "isMunicipality": true,
+   "candidates": [
+    {
+     "name": "張善政",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "mayor-taoyuan",
+     "identity": "現任桃園市長"
+    },
+    {
+     "name": "黃世杰",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "countyCode": "66-000-00-000-0000",
+   "countyName": "臺中市",
+   "isMunicipality": true,
+   "candidates": [
+    {
+     "name": "何欣純",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "ho-hsin-chun",
+     "identity": "現任立委（臺中市第7選舉區）"
+    },
+    {
+     "name": "江啟臣",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "chiang-chi-chen",
+     "identity": "現任立委（臺中市第8選舉區）"
+    },
+    {
+     "name": "洪麗華",
+     "partyName": "司法正義黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "countyCode": "67-000-00-000-0000",
+   "countyName": "臺南市",
+   "isMunicipality": true,
+   "candidates": [
+    {
+     "name": "謝龍介",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蕭燐洪",
+     "partyName": "臺灣SoR無法黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "葉人文",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳亭妃",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "chen-ting-fei",
+     "identity": "現任立委（臺南市第3選舉區）"
+    }
+   ]
+  },
+  {
+   "countyCode": "64-000-00-000-0000",
+   "countyName": "高雄市",
+   "isMunicipality": true,
+   "candidates": [
+    {
+     "name": "張靜",
+     "partyName": "司法改革黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "賴瑞隆",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "laijui-lung",
+     "identity": "現任立委（高雄市第8選舉區）"
+    },
+    {
+     "name": "王肇民",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "柯志恩",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "洪方隆",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "countyCode": "09-007-00-000-0000",
+   "countyName": "連江縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "王忠銘",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "mayor-lienchiang",
+     "identity": "現任連江縣長"
+    },
+    {
+     "name": "曹爾元",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "countyCode": "09-020-00-000-0000",
+   "countyName": "金門縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "洪和成",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "李文良",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "黃世團",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳玉珍",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "chenyu-jen",
+     "identity": "現任立委（金門縣選舉區）"
+    },
+    {
+     "name": "張國威",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "梁文韜",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張火木",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "countyCode": "10-002-00-000-0000",
+   "countyName": "宜蘭縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "陳宏毅",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳宗憲",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "劉燦輝",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "林國漳",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "楊鉯婷",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "countyCode": "10-004-00-000-0000",
+   "countyName": "新竹縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "鄭朝方",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "朱定瑀",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "徐欣瑩",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "hsu-hsin-ying",
+     "identity": "現任立委（新竹縣第1選舉區）"
+    }
+   ]
+  },
+  {
+   "countyCode": "10-005-00-000-0000",
+   "countyName": "苗栗縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "陳品安",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳品安-無黨籍及未經政黨推薦-苗栗縣第03選舉區",
+     "identity": "現任議員（苗栗縣第3選舉區）"
+    },
+    {
+     "name": "鍾東錦",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "mayor-miaoli",
+     "identity": "現任苗栗縣長"
+    }
+   ]
+  },
+  {
+   "countyCode": "10-007-00-000-0000",
+   "countyName": "彰化縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "陳重嘉",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": "c-陳重嘉-民眾黨-彰化縣第05選舉區",
+     "identity": "現任議員（彰化縣第5選舉區）"
+    },
+    {
+     "name": "陳素月",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "chensu-yueh",
+     "identity": "現任立委（彰化縣第4選舉區）"
+    },
+    {
+     "name": "邱建富",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "魏平政",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "countyCode": "10-008-00-000-0000",
+   "countyName": "南投縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "温世政",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許淑華",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "countyCode": "10-009-00-000-0000",
+   "countyName": "雲林縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "吳炳輝",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張嘉郡",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "劉建國",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": "liu-chien-kuo",
+     "identity": "現任立委（雲林縣第2選舉區）"
+    },
+    {
+     "name": "林佳瑜",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "countyCode": "10-010-00-000-0000",
+   "countyName": "嘉義縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "吳品叡",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "蔡易餘",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "tsai-yi-yu",
+     "identity": "現任立委（嘉義縣第1選舉區）"
+    }
+   ]
+  },
+  {
+   "countyCode": "10-013-00-000-0000",
+   "countyName": "屏東縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "蘇清泉",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "周春米",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "mayor-pingtung",
+     "identity": "現任屏東縣長"
+    }
+   ]
+  },
+  {
+   "countyCode": "10-014-00-000-0000",
+   "countyName": "臺東縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "陳瑩",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "吳秀華",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-吳秀華-國民黨-臺東縣第01選舉區",
+     "identity": "現任議員（臺東縣第1選舉區）"
+    },
+    {
+     "name": "李吳穎智",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王志偉",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "countyCode": "10-015-00-000-0000",
+   "countyName": "花蓮縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "游淑貞",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張峻",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-張峻-無黨籍及未經政黨推薦-花蓮縣第03選舉區",
+     "identity": "現任議員（花蓮縣第3選舉區）"
+    },
+    {
+     "name": "魏嘉賢",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": "c-魏嘉賢-無黨籍及未經政黨推薦-花蓮縣第01選舉區",
+     "identity": "現任議員（花蓮縣第1選舉區）"
+    },
+    {
+     "name": "羅佩秦",
+     "partyName": "台灣工黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "countyCode": "10-016-00-000-0000",
+   "countyName": "澎湖縣",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "吳淑瑾",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳振中",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "周倪安",
+     "partyName": "台聯黨",
+     "partyCode": null,
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "許智富",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳盡川",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "葉竹林",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "countyCode": "10-017-00-000-0000",
+   "countyName": "基隆市",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "謝國樑",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": "mayor-keelung",
+     "identity": "現任基隆市長"
+    },
+    {
+     "name": "魏造文",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "童子瑋",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "c-童子瑋-民進黨-基隆市第03選舉區",
+     "identity": "現任議員（基隆市第3選舉區）"
+    }
+   ]
+  },
+  {
+   "countyCode": "10-018-00-000-0000",
+   "countyName": "新竹市",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "高虹安",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "mayor-hsinchu-city",
+     "identity": "現任新竹市長"
+    },
+    {
+     "name": "莊競程",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "何志勇",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-04",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  },
+  {
+   "countyCode": "10-020-00-000-0000",
+   "countyName": "嘉義市",
+   "isMunicipality": false,
+   "candidates": [
+    {
+     "name": "黃宏成台灣阿成世界偉人財神總統",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-08-31",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "陳愷璜",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-01",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "張啓楷",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": null,
+     "identity": null
+    },
+    {
+     "name": "王美惠",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": null,
+     "registeredOn": "2026-09-02",
+     "slug": "wangmei-hui",
+     "identity": "現任立委（嘉義市選舉區）"
+    },
+    {
+     "name": "王義成",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": null,
+     "registeredOn": "2026-09-03",
+     "slug": null,
+     "identity": null
+    }
+   ]
+  }
+ ]
+}
