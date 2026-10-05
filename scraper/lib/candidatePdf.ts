@@ -4,7 +4,8 @@
 // （「天宙和平統一家庭黨」）在 PDF 裡折成兩三行，而且是以登記日期那一列為中心
 // 上下展開——逐行正則會把上一行的半個姓名當成獨立一列或乾脆漏掉（試做時 1,583 列
 // 只抓到 1,577 列）。改用 -bbox 取每個字詞的座標：以表頭字詞的 x 中心切欄，以
-// 「登記日期」字詞為列錨點，每個字詞歸給 y 中心最近的錨點。
+// 「登記日期」字詞為列錨點；同欄內行距小於門檻的字詞先垂直成群（同一儲存格），
+// 整群再歸給跨越或最近的錨點（不逐字詞找最近錨點，長姓名會被切到鄰列）。
 import { execFileSync, execSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -126,8 +127,17 @@ function parsePage(words: Word[], pageNo: number): RegistrationRow[] {
     }
   }
 
-  const text = (m: Map<Col, Word[]>, c: Col) =>
-    (m.get(c) ?? []).sort((a, b) => a.y0 - b.y0 || a.x0 - b.x0).map((w) => w.text).join('');
+  // 原住民姓名的每個拉丁字詞各佔一行（「Cinsun」「Pawtawan」）：不同行、前字以拉丁字母結尾、
+  // 後字以大寫拉丁字母開頭才補一個空格；字中間折行（小寫開頭）、分隔符（‧．·・）、漢↔拉丁都直接相接。
+  const text = (m: Map<Col, Word[]>, c: Col) => {
+    const ws = (m.get(c) ?? []).sort((a, b) => a.y0 - b.y0 || a.x0 - b.x0);
+    let out = '';
+    ws.forEach((w, i) => {
+      if (i > 0 && Math.abs(w.y0 - ws[i - 1].y0) > 2 && /[A-Za-z]$/.test(ws[i - 1].text) && /^[A-Z]/.test(w.text)) out += ' ';
+      out += w.text;
+    });
+    return out;
+  };
 
   return anchors.map((a, i) => {
     const m = cells[i];
@@ -155,8 +165,13 @@ function parsePage(words: Word[], pageNo: number): RegistrationRow[] {
  */
 export function parseRegistrationBbox(html: string): RegistrationRow[] {
   const pages = pagesOf(html);
+  const REQUIRED = ['選舉區', '登記日期', '姓名', '推薦之政黨'];
+  if (!pages.some((ws) => REQUIRED.every((h) => ws.some((w) => w.text === h)))) {
+    throw new Error(`名冊沒有任何一頁具備必要表頭（${REQUIRED.join('、')}）——PDF 版面可能已改`);
+  }
   const rows = pages.flatMap((ws, i) => parsePage(ws, i + 1));
   const expected = pages.flat().filter((w) => DATE_RE.test(w.text)).length;
+  if (rows.length === 0) throw new Error('名冊解析結果為 0 列——PDF 版面可能已改');
   if (rows.length !== expected) {
     throw new Error(`名冊解析列數 ${rows.length} 與登記日期字詞數 ${expected} 不符——有列被漏抓或重複`);
   }

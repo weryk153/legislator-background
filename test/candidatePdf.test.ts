@@ -85,6 +85,37 @@ describe('parseRegistrationBbox：號次欄', () => {
   });
 });
 
+describe('parseRegistrationBbox：羅馬拼音詞間空格', () => {
+  const head: [number, number, string][] = [
+    [110, 80, '選舉區'], [210, 80, '登記日期'], [290, 80, '姓名'], [360, 80, '推薦之政黨'], [460, 80, '備註'],
+  ];
+  const nameOf = (lines: string[]) => parseRegistrationBbox(synth([
+    ...head,
+    [100, 100, '臺北市'], [204, 100, '115/09/02'], [356, 100, '民主進步黨'],
+    ...lines.map((t, i) => [290, 100 + i * 15.6, t] as [number, number, string]),
+  ]))[0].name;
+  it('不同行、前字母結尾、後大寫開頭 → 補空格', () => {
+    expect(nameOf(['楊清順Cinsun', 'Pawtawan'])).toBe('楊清順Cinsun Pawtawan');
+    expect(nameOf(['Laling', 'Yumin'])).toBe('Laling Yumin');
+  });
+  it('字中間折行（小寫開頭）、分隔符、漢↔拉丁不補空格', () => {
+    expect(nameOf(['邱登星Adru·', 'Drus', 'n'])).toBe('邱登星Adru·Drusn');
+    expect(nameOf(['蘇錦雄Pay‧', 'Caya'])).toBe('蘇錦雄Pay‧Caya');
+    expect(nameOf(['楊清順', 'Cinsun'])).toBe('楊清順Cinsun');
+  });
+});
+
+describe('parseRegistrationBbox：結構守門', () => {
+  it('完全沒有資料列就拋錯', () => {
+    expect(() => parseRegistrationBbox('<doc><page width="1" height="1"></page></doc>')).toThrow(/0 列|沒有/);
+  });
+  it('沒有任何頁具備必要表頭就拋錯', () => {
+    expect(() => parseRegistrationBbox(synth([
+      [110, 80, '選舉區'], [290, 80, '姓名'], [100, 100, '臺北市'], [204, 100, '115/09/02'],
+    ]))).toThrow(/表頭/);
+  });
+});
+
 // 完整性斷言只數列數，抓不到「折行字詞歸給鄰列」；對完整名冊檢查每格形狀。
 // 讀本機 gitignored 的 bbox 檔（不在測試裡呼叫 pdftotext）；檔案不在時略過。
 import { existsSync } from 'node:fs';
