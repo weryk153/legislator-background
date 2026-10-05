@@ -1,15 +1,26 @@
 // 名單換版（登記 → 審定 → 號次 → 公告）時的差異報告，人工檢閱後才 commit。
 import type { CandidateEntry, CountyCandidates, NationalCandidates } from '../../src/lib/candidateTypes';
-import { nameKey } from './candidateLinks';
+import { fullKey } from './candidateLinks';
 
 export interface DiffLine { kind: 'added' | 'removed' | 'partyChanged' | 'numberChanged'; race: string; name: string; detail: string }
 type Flat = Map<string, { race: string; c: CandidateEntry }>;
 
 export function flatten(national: NationalCandidates | null, counties: CountyCandidates[]): Flat {
   const m: Flat = new Map();
-  const put = (race: string, c: CandidateEntry) => m.set(`${race}|${nameKey(c.name)}`, { race, c });
-  for (const r of national?.races ?? []) for (const c of r.candidates) put(r.countyName, c);
-  for (const co of counties) for (const d of co.districts) for (const c of d.candidates) put(`${co.countyName}${d.label}`, c);
+  // key 用穩定的選區 id（不含類型後綴：選區對應由未確認變確認時標籤會變），
+  // race 另存可讀標籤給報告。姓名用完整姓名：漢字相同、羅馬拼音不同的原住民候選人是兩個人。
+  const put = (raceId: string, race: string, c: CandidateEntry) => {
+    const key = `${raceId}|${fullKey(c.name)}`;
+    const dup = m.get(key);
+    if (dup) throw new Error(`${race} 有完整姓名重複的候選人：${dup.c.name}、${c.name}`);
+    m.set(key, { race, c });
+  };
+  for (const r of national?.races ?? []) for (const c of r.candidates) put(r.countyName, r.countyName, c);
+  for (const co of counties) {
+    for (const d of co.districts) {
+      for (const c of d.candidates) put(`${co.countyName}第${d.no}選舉區`, `${co.countyName}${d.label}`, c);
+    }
+  }
   return m;
 }
 
