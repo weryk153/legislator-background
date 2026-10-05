@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { nodeDepths, avatarDataUri, toCytoscapeElements, entityRole, wrapRole } from '../src/lib/graphView';
+import { nodeDepths, avatarDataUri, toCytoscapeElements, entityRole, wrapRole, bendAroundCenter } from '../src/lib/graphView';
 import type { GraphData } from '../src/lib/types';
 
 const data: GraphData = {
@@ -207,5 +207,56 @@ describe('toCytoscapeElements：entity 照片與 tooltip 資料', () => {
     expect(nodes.find((n) => n.data.id === 'official:a')!.data).toMatchObject({
       description: '', wikipediaUrl: '', photoCredit: '', photoSourceUrl: '',
     });
+  });
+});
+
+describe('toCytoscapeElements：同心圓同一圈的排序', () => {
+  // 同一圈裡彼此有關係的人要排在相鄰位置（concentric layout 依節點順序沿圓周擺放），
+  // 否則兩人之間的線會穿過中心人物，讓人誤讀成「跟本人有這段關係」。
+  // 實例：蔣萬安檔案頁，蔣經國與蔣孝嚴都在第一圈、互為親子，原本分居蔣萬安兩側。
+  const ego: GraphData = {
+    nodes: [
+      { key: 'official:c', name: '中心', kind: 'official', subtype: 'mayor_magistrate', slug: 'c', party: '無', officeType: 'mayor_magistrate' },
+      { key: 'entity:a', name: '甲', kind: 'entity', subtype: 'family_member' },
+      { key: 'entity:x', name: '乙', kind: 'entity', subtype: 'family_member' },
+      { key: 'entity:b', name: '丙', kind: 'entity', subtype: 'family_member' },
+      { key: 'entity:y', name: '丁', kind: 'entity', subtype: 'family_member' },
+    ],
+    edges: [
+      { id: 'e1', source: 'official:c', target: 'entity:a', type: 'relative', directed: false, note: null, sourceUrl: '' },
+      { id: 'e2', source: 'official:c', target: 'entity:x', type: 'relative', directed: false, note: null, sourceUrl: '' },
+      { id: 'e3', source: 'official:c', target: 'entity:b', type: 'relative', directed: false, note: null, sourceUrl: '' },
+      { id: 'e4', source: 'official:c', target: 'entity:y', type: 'relative', directed: false, note: null, sourceUrl: '' },
+      { id: 'e5', source: 'entity:a', target: 'entity:b', type: 'parent_child', directed: true, note: null, sourceUrl: '' },
+    ],
+  };
+  it('互有關係的第一圈節點排在相鄰位置', () => {
+    const ids = toCytoscapeElements(ego, 'official:c').nodes.map((n) => n.data.id);
+    expect(ids).toEqual(['official:c', 'entity:a', 'entity:b', 'entity:x', 'entity:y']);
+  });
+  it('沒有圈內關係時維持原順序', () => {
+    const plain = { ...ego, edges: ego.edges.filter((e) => e.id !== 'e5') };
+    expect(toCytoscapeElements(plain, 'official:c').nodes.map((n) => n.data.id))
+      .toEqual(['official:c', 'entity:a', 'entity:x', 'entity:b', 'entity:y']);
+  });
+});
+
+describe('bendAroundCenter', () => {
+  const c = { x: 0, y: 0 };
+  it('線段遠離中心：不彎', () => {
+    expect(bendAroundCenter({ x: -100, y: 200 }, { x: 100, y: 200 }, c, 70)).toBeNull();
+  });
+  it('中心不在線段範圍內（投影落在端點外）：不彎', () => {
+    expect(bendAroundCenter({ x: 50, y: 10 }, { x: 200, y: 10 }, c, 70)).toBeNull();
+  });
+  it('線段穿過中心：彎出 2 倍淨空距離（二次貝茲中點只走控制點的一半）', () => {
+    expect(Math.abs(bendAroundCenter({ x: -100, y: 0 }, { x: 100, y: 0 }, c, 70)!)).toBe(140);
+  });
+  it('中心在線的一側：往另一側彎，彎曲後中點與中心至少隔淨空距離', () => {
+    // 線 y=-20、中心 (0,0) 在 source→target 的右手側（螢幕座標 y 向下）距離 20。
+    // 正值代表朝中心那側，所以應回負值：中點往上移 50，落在 y=-70，與中心正好隔 70。
+    const d = bendAroundCenter({ x: -100, y: -20 }, { x: 100, y: -20 }, c, 70)!;
+    expect(d).toBe(-100);
+    expect(Math.abs(-20 + d / 2)).toBe(70);
   });
 });

@@ -134,6 +134,31 @@ export function toCytoscapeElements(
     };
   });
 
+  // ego 圖用 concentric layout，同一圈的節點沿圓周依陣列順序擺放。同一圈裡彼此有
+  // 關係的人若被排在本人兩側，兩人之間的線會直接穿過本人的頭像、邊標籤還落在本人
+  // 旁邊，讀起來像「跟本人有這段關係」（實例：蔣萬安頁的蔣經國—蔣孝嚴親子線）。
+  // 依同圈相連的群組重排，讓它們在圓周上相鄰；其餘維持原順序。
+  if (centerKey) {
+    const sameRing = new Map<string, string[]>();
+    for (const e of data.edges) {
+      const ds = depths.get(e.source), dt = depths.get(e.target);
+      if (ds === undefined || ds !== dt || ds === 0) continue;
+      (sameRing.get(e.source) ?? sameRing.set(e.source, []).get(e.source)!).push(e.target);
+      (sameRing.get(e.target) ?? sameRing.set(e.target, []).get(e.target)!).push(e.source);
+    }
+    const byId = new Map(nodes.map((n) => [n.data.id, n]));
+    const placed = new Set<string>();
+    const ordered: CyNode[] = [];
+    const visit = (id: string) => {
+      if (placed.has(id)) return;
+      placed.add(id);
+      ordered.push(byId.get(id)!);
+      for (const next of sameRing.get(id) ?? []) visit(next);
+    };
+    for (const n of nodes) visit(n.data.id);
+    nodes.splice(0, nodes.length, ...ordered);
+  }
+
   const edges: CyEdge[] = data.edges.map((e) => ({
     data: {
       id: e.id, source: e.source, target: e.target,
@@ -146,4 +171,26 @@ export function toCytoscapeElements(
   }));
 
   return { nodes, edges };
+}
+
+/**
+ * ego 圖排版後，不連到本人、但直線會經過本人頭像的邊（例：蔣經國—蔣孝嚴 親子線
+ * 從蔣萬安身上穿過），改成繞開中心的弧線。回傳 cytoscape 的 control-point-distances
+ * （沿 source→target 的垂直方向，正負代表兩側），不需要彎時回 null。
+ * 二次貝茲曲線的中點只走控制點偏移的一半，所以回傳值是中點偏移的兩倍。
+ */
+export function bendAroundCenter(
+  s: { x: number; y: number }, t: { x: number; y: number }, c: { x: number; y: number }, clearance: number,
+): number | null {
+  const dx = t.x - s.x, dy = t.y - s.y;
+  const len2 = dx * dx + dy * dy;
+  if (!len2) return null;
+  const u = ((c.x - s.x) * dx + (c.y - s.y) * dy) / len2;
+  if (u <= 0 || u >= 1) return null;
+  // 中心到直線的有號垂直距離（正：中心在 source→target 的右手側，螢幕座標 y 向下）
+  const side = (dx * (c.y - s.y) - dy * (c.x - s.x)) / Math.sqrt(len2);
+  if (Math.abs(side) >= clearance) return null;
+  // 中點要落到中心的另一側、距中心 clearance：中點偏移 = side − sign(side)·clearance
+  const sign = side >= 0 ? 1 : -1;
+  return 2 * (side - sign * clearance);
 }
