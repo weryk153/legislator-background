@@ -6,6 +6,7 @@ import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL, OFFICE_LAB
 import { loadGraph } from "../../lib/loadGraph";
 import { categorizeCareer, careerText, careerPeriod, sharedSource, type CareerCategory } from "../../lib/careerCategory";
 import { chiefTitle } from "../../lib/candidateTypes";
+import { loadCandidacies } from "../../lib/candidacy";
 import RelationshipGraph from "../../components/RelationshipGraph.svelte";
 
 export async function getStaticPaths() {
@@ -75,6 +76,7 @@ const assetCategoryName: Record<string, string> = {
 };
 // 參選人以「2026 某市長參選人」表述其身分，不沿用「公職・選區・第N屆」。
 const isCandidate = o.officeType === "candidate";
+const candidacy = loadCandidacies().get(o.slug) ?? null;
 const roleText = isCandidate ? `2026 ${chiefTitle(o.district)}參選人` : `${OFFICE_LABEL[o.officeType]}・${o.district}`;
 const title = `${o.name}（${o.party}・${roleText}）經歷、判決、財產申報與政治獻金｜政治人物背景`;
 const desc = `${o.name}（${o.party}・${roleText}）的經歷、財產申報、政治獻金與相關爭議報導整理，每筆皆附公開資料出處。`;
@@ -116,6 +118,7 @@ const jsonLd = [
   <header class="head">
     <span class="pill">{OFFICE_LABEL[o.officeType]}</span>
     {o.departedReason && <span class="pill departed">已解職</span>}
+    {candidacy && !isCandidate && <span class="pill candidacy">{candidacy}</span>}
     <h1>{o.name}</h1>
     <p class="lede">
       {isCandidate ? `${o.party}・${roleText}` : `${o.party}・${o.district}・第${o.term}屆`}{o.bio ? `　${o.bio}` : ""}
