@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { validateOp, generateCouncilorSlug } from '../lib/roster-record-lib';
+import { validateOp, generateCouncilorSlug, generateCandidateSlug } from '../lib/roster-record-lib';
 
 describe('generateCouncilorSlug', () => {
   it('joins name/party/district with the c- prefix matching existing councilor slugs', () => {
@@ -97,4 +97,14 @@ describe('validateOp: generic', () => {
     expect(r.ok).toBe(false);
     if (!r.ok) expect(r.errors.join()).toContain('office_type');
   });
+});
+
+describe('candidate', () => {
+  const add = {
+    op: 'add', name: '李四川', office_type: 'candidate', district: '新北市', party: '國民黨', term: '2026',
+    career_title: '2026 新北市長候選人', career_org: '中央選舉委員會 115年地方公職人員選舉候選人登記名冊',
+    start_date: '2026-09-04', source_url: 'https://web.cec.gov.tw/central/article/64709', source_title: '中選會',
+  };
+  it('validateOp 接受 office_type=candidate', () => expect(validateOp(add)).toEqual({ ok: true }));
+  it('generateCandidateSlug', () => expect(generateCandidateSlug('李四川', '新北市')).toBe('cand-李四川-新北市'));
 });

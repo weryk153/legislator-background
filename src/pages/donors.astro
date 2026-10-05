@@ -22,7 +22,7 @@ try {
   console.warn(`donors.json 讀取失敗，/donors 靜態排行略過：${(e as Error).message}`);
 }
 const fmt = (n: number) => new Intl.NumberFormat("zh-Hant").format(n);
-const officeName: Record<string, string> = { legislator: "立委", mayor_magistrate: "縣市首長", councilor: "議員" };
+const officeName: Record<string, string> = { legislator: "立委", mayor_magistrate: "縣市首長", councilor: "議員", candidate: "參選人" };
 ---
 <Base title="政治獻金查詢｜政治人物背景" description={desc}>
   <header class="head">

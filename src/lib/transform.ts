@@ -71,7 +71,8 @@ export function toListRow(o: Official): OfficialListRow {
     controversyCount: o.controversies.length,
     latestAssetTotal,
     // departed_reason 存在但 is_incumbent 未翻的資料不一致曾實際發生過——兩者取聯集防禦。
-    departed: !o.isIncumbent || !!o.departedReason,
+    // 因參選建檔者本來就不是現任，is_incumbent=false 不代表解職。
+    departed: o.officeType !== 'candidate' && (!o.isIncumbent || !!o.departedReason),
     photoUrl: o.photoUrl,
   };
 }

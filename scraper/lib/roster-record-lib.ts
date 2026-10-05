@@ -2,8 +2,8 @@
 // 見 docs/superpowers/specs/2026-07-23-roster-audit-design.md「修復流程」；
 // 三種操作（rename/depart/add）的欄位形狀見 scraper/roster-record.ts 檔頭註解。
 
-export type OfficeType = 'legislator' | 'mayor_magistrate' | 'councilor';
-const OFFICE_TYPES = new Set<OfficeType>(['legislator', 'mayor_magistrate', 'councilor']);
+export type OfficeType = 'legislator' | 'mayor_magistrate' | 'councilor' | 'candidate';
+const OFFICE_TYPES = new Set<OfficeType>(['legislator', 'mayor_magistrate', 'councilor', 'candidate']);
 
 export type RenameOp = {
   op: 'rename';
@@ -47,7 +47,7 @@ export function validateOp(row: unknown): ValidationResult {
     if (typeof v !== 'string' || v.trim() === '') errors.push(`缺欄位或為空: ${field}`);
   }
   if (typeof r.office_type === 'string' && r.office_type !== '' && !OFFICE_TYPES.has(r.office_type as OfficeType)) {
-    errors.push(`office_type 不合法: ${r.office_type}（僅接受 legislator/mayor_magistrate/councilor）`);
+    errors.push(`office_type 不合法: ${r.office_type}（僅接受 legislator/mayor_magistrate/councilor/candidate）`);
   }
   return errors.length ? { ok: false, errors } : { ok: true };
 }
@@ -57,4 +57,10 @@ export function validateOp(row: unknown): ValidationResult {
 // 目前已確認的 add 名單僅有議員，非議員新增留待人工個案處理，呼叫端應視此為錯誤而非靜默降級。
 export function generateCouncilorSlug(name: string, party: string, district: string): string {
   return `c-${name}-${party}-${district}`;
+}
+
+// 因參選建檔者 slug：cand-{姓名}-{登記縣市}，如 cand-李四川-新北市。選後若當選改為首長，
+// slug 維持不變以保 URL 穩定。
+export function generateCandidateSlug(name: string, county: string): string {
+  return `cand-${name}-${county}`;
 }

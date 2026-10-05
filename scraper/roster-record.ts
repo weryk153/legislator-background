@@ -39,7 +39,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { loadEnv } from './lib/loadEnv';
-import { validateOp, generateCouncilorSlug } from './lib/roster-record-lib';
+import { validateOp, generateCouncilorSlug, generateCandidateSlug } from './lib/roster-record-lib';
 import type { ConfirmedOp, RenameOp, DepartOp, AddOp } from './lib/roster-record-lib';
 
 loadEnv();
@@ -119,18 +119,20 @@ async function handleAdd(sb: any, r: AddOp): Promise<'done' | 'skip' | 'error'> 
   if (qe) { console.log('✗ add', r.name, 'query失敗:', qe.message); return 'error'; }
   if ((existing ?? []).length > 0) { console.log('= add', r.name, '已存在，跳過'); return 'skip'; }
 
-  if (r.office_type !== 'councilor') {
-    console.log('✗ add', r.name, `office_type=${r.office_type} 尚不支援自動產生 slug（僅支援 councilor）——請人工個案處理`);
+  if (r.office_type !== 'councilor' && r.office_type !== 'candidate') {
+    console.log('✗ add', r.name, `office_type=${r.office_type} 尚不支援自動產生 slug（僅支援 councilor／candidate）——請人工個案處理`);
     return 'error';
   }
-  const slug = generateCouncilorSlug(r.name, r.party, r.district);
+  const slug = r.office_type === 'candidate'
+    ? generateCandidateSlug(r.name, r.district)
+    : generateCouncilorSlug(r.name, r.party, r.district);
 
   if (DRY_RUN) { console.log('✓(dry) add', r.name, `(${r.office_type}/${r.district})`, 'slug=', slug); return 'done'; }
 
   const sourceId = await insertSource(sb, r.source_url, r.source_title);
   const { data: off, error: oe } = await sb.from('officials').insert({
     slug, name: r.name, party: r.party, office_type: r.office_type, district: r.district, term: r.term,
-    photo_url: null, bio: '', is_incumbent: true,
+    photo_url: null, bio: '', is_incumbent: r.office_type !== 'candidate',
   }).select('id').single();
   if (oe) { console.log('✗ add', r.name, 'official insert失敗:', oe.message); return 'error'; }
   const { error: ce } = await sb.from('careers').insert({

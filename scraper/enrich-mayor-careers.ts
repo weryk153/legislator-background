@@ -48,7 +48,7 @@ function parseCareers(wt: string): Array<{ title: string; start: string; end: st
 async function main() {
   const sb = createClient(process.env.PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
   const only = process.env.ONLY ? process.env.ONLY.split(',') : null;
-  const { data } = await sb.from('officials').select('id, name').eq('office_type', 'mayor_magistrate').order('name');
+  const { data } = await sb.from('officials').select('id, name').in('office_type', ['mayor_magistrate', 'candidate']).order('name');
   let list = (data as { id: string; name: string }[]);
   if (only) list = list.filter((o) => only.includes(o.name));
   // Disambiguation pages: map name → the specific officeholder sub-page.

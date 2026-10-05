@@ -3,7 +3,7 @@
 // 其餘 none/ambiguous 進 review 清單。
 export interface OfficialLite {
   id: string; name: string;
-  office_type: 'legislator' | 'mayor_magistrate' | 'councilor';
+  office_type: 'legislator' | 'mayor_magistrate' | 'councilor' | 'candidate';
   district: string; is_incumbent: boolean;
 }
 

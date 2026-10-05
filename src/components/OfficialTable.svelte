@@ -23,7 +23,7 @@
   $: view = queryList(rows, q);
 
   const fmt = (n: number | null) => (n === null ? '—' : new Intl.NumberFormat('zh-Hant').format(n));
-  const officeName: Record<string, string> = { legislator: '立委', mayor_magistrate: '縣市首長', councilor: '議員' };
+  const officeName: Record<string, string> = { legislator: '立委', mayor_magistrate: '縣市首長', councilor: '議員', candidate: '參選人' };
 </script>
 
 <div class="controls">
