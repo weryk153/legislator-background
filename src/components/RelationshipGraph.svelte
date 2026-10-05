@@ -72,6 +72,10 @@
   const esc = (s: string) =>
     s.replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]!));
 
+  // ego（個人頁）的縮放按鈕。滾輪縮放刻意不開（會在捲動頁面時吃掉滾輪），改用按鈕；
+  // 放大後可拖曳平移。cytoscape 實例建好後才有值。
+  let zoomApi = $state<{ zoomBy: (f: number) => void; reset: () => void } | null>(null);
+
   onMount(() => {
     let cy: { destroy: () => void; style: (s: unknown) => { update: () => void };
              layout: (o: unknown) => { run: () => void }; on: (...a: unknown[]) => void;
@@ -122,6 +126,19 @@
               levelWidth: () => 1, minNodeSpacing: 44, padding: 28, animate: false, startAngle: Math.PI / 4 }
           : { name: 'cose', padding: 30, animate: false, nodeRepulsion: 9000, idealEdgeLength: 110 };
         cy!.layout(layout).run();
+
+        if (mode === 'ego') {
+          // 初始 fit 仍受 maxZoom 1.2 限制（讓各頁節點大小一致），fit 完才放寬上限給按鈕放大用。
+          const g = cy as any;
+          const z0 = g.zoom();
+          const p0 = { ...g.pan() };
+          g.maxZoom(3);
+          g.minZoom(z0 * 0.5);
+          zoomApi = {
+            zoomBy: (f: number) => g.zoom({ level: g.zoom() * f, renderedPosition: { x: g.width() / 2, y: g.height() / 2 } }),
+            reset: () => g.viewport({ zoom: z0, pan: p0 }),
+          };
+        }
 
         // ego：不連到本人、但直線會穿過本人頭像（含下方姓名）的邊改走弧線繞開，否則
         // 讀起來像本人有這段關係（例：蔣萬安頁的蔣經國—蔣孝嚴親子線）。淨空距離
@@ -247,9 +264,33 @@
   });
 </script>
 
-<div bind:this={container} class="graph" class:global={mode === 'global'} role="img" aria-label="人物關係圖"></div>
+<div class="graph-wrap">
+  <div bind:this={container} class="graph" class:global={mode === 'global'} role="img" aria-label="人物關係圖"></div>
+  {#if mode === 'ego' && zoomApi}
+    <div class="zoom-ctl" role="group" aria-label="關係圖縮放">
+      <button type="button" aria-label="放大" onclick={() => zoomApi?.zoomBy(1.3)}>＋</button>
+      <button type="button" aria-label="縮小" onclick={() => zoomApi?.zoomBy(1 / 1.3)}>－</button>
+      <button type="button" aria-label="重置縮放" class="reset" onclick={() => zoomApi?.reset()}>重置</button>
+    </div>
+  {/if}
+</div>
 
 <style>
+  .graph-wrap { position: relative; }
+  .zoom-ctl {
+    position: absolute; top: 10px; right: 10px; z-index: 4;
+    display: flex; gap: 4px;
+  }
+  .zoom-ctl button {
+    min-width: 32px; height: 32px; padding: 0 8px;
+    font-family: var(--sans); font-size: 16px; line-height: 1;
+    color: var(--muted); background: var(--surface);
+    border: 1px solid var(--line-strong); border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .zoom-ctl button.reset { font-size: var(--t-xs); }
+  .zoom-ctl button:hover { color: var(--fg); border-color: var(--fg); }
+  .zoom-ctl button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
   .graph {
     position: relative;
     width: 100%; height: 420px;
