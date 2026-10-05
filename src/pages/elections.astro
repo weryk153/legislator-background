@@ -41,6 +41,7 @@ interface OverviewRow {
   chiefParty: string | null;
   seatsTotal: number;
   largestParty: { name: string; seats: number } | null;
+  electedVotes: number | null;
   electedShare: number | null;
   turnout: number | null;
 }
@@ -61,6 +62,7 @@ const overviewRows: OverviewRow[] = national.areas.map((a): OverviewRow => {
     largestParty: largest ? { name: largest.partyName, seats: largest.seats } : null,
     // 得票率／投票率若查無 race 資料（本輪任務前，只有嘉義市會落入這個分支）
     // 就留 null、表格顯示「—」，不拿 0 湊數——見 fmtPercent。
+    electedVotes: elected?.votes ?? null,
     electedShare: elected?.share ?? null,
     turnout: a.race?.turnout ?? null,
   };
@@ -185,6 +187,7 @@ const jsonLd = [
             <th scope="col">政黨</th>
             <th scope="col" class="num">議會席次</th>
             <th scope="col">最大黨</th>
+            <th scope="col" class="num">當選得票數</th>
             <th scope="col" class="num">當選得票率</th>
             <th scope="col" class="num">投票率</th>
           </tr>
@@ -201,6 +204,7 @@ const jsonLd = [
               <td>{r.chiefParty ?? "—"}</td>
               <td class="num">{fmtInt(r.seatsTotal)}</td>
               <td>{r.largestParty ? `${r.largestParty.name}（${fmtInt(r.largestParty.seats)}）` : "—"}</td>
+              <td class="num">{r.electedVotes === null ? "—" : fmtInt(r.electedVotes)}</td>
               <td class="num">{fmtPercent(r.electedShare)}</td>
               <td class="num">{fmtPercent(r.turnout)}</td>
             </tr>
