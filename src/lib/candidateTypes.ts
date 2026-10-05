@@ -61,3 +61,50 @@ export interface CountyCandidates {
   /** 對應未確認的原因，給側欄顯示。 */
   mappingNote: string | null;
 }
+
+/**
+ * 2026 九合一選務時程（中選會公告）。/elections 頁的時程軸用這份畫節點，並以建置當天
+ * 標出目前位置。區間節點（登記、公告）以 start～end 表示；單日節點 start === end。
+ * 審定名單的日期是「最晚於此日前」審定，故 dateText 寫「前」，判斷已過與否仍以該日為準。
+ * 公告名單分兩天：直轄市長 11/12、其餘選舉 11/17，當成一個區間節點。
+ */
+export interface ElectionMilestone {
+  key: string;
+  label: string;
+  start: string;      // ISO 日期
+  end: string;        // ISO 日期；單日節點與 start 相同
+  dateText: string;   // 顯示用
+}
+
+export const ELECTION_MILESTONES: readonly ElectionMilestone[] = [
+  { key: 'registration', label: '候選人登記', start: '2026-08-31', end: '2026-09-04', dateText: '8/31～9/4' },
+  { key: 'certified', label: '審定候選人名單', start: '2026-10-16', end: '2026-10-16', dateText: '10/16 前' },
+  { key: 'numbered', label: '抽籤定號次', start: '2026-10-23', end: '2026-10-23', dateText: '10/23' },
+  { key: 'announced', label: '公告候選人名單', start: '2026-11-12', end: '2026-11-17', dateText: '11/12（直轄市長）・11/17（其餘）' },
+  { key: 'vote', label: '投票', start: '2026-11-28', end: '2026-11-28', dateText: '11/28' },
+];
+
+/** done：已過；current：今天正落在該節點（含區間節點的期間內）；upcoming：未到。 */
+export type MilestoneState = 'done' | 'current' | 'upcoming';
+
+export interface TimelineProgress {
+  states: MilestoneState[];
+  /**
+   * 「今天」標記要畫在第 i 個節點之後（i = -1 表示畫在第一個節點之前）。
+   * 今天正逢某節點（該節點為 current）時為 null——節點本身已標出目前位置，不另畫標記。
+   */
+  todayAfter: number | null;
+}
+
+/** 給定今天（ISO 日期），算出各節點狀態與「今天」標記的位置。ISO 日期字串可直接比大小。 */
+export function timelineProgress(milestones: readonly ElectionMilestone[], today: string): TimelineProgress {
+  const states = milestones.map((m): MilestoneState =>
+    today > m.end ? 'done' : today >= m.start ? 'current' : 'upcoming');
+  if (states.includes('current')) return { states, todayAfter: null };
+  return { states, todayAfter: states.lastIndexOf('done') };
+}
+
+/** 建置當天的臺灣日期（ISO）。建置機器可能在 UTC，不能直接取 toISOString() 的日期。 */
+export function taipeiToday(now: Date = new Date()): string {
+  return new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Taipei' }).format(now);
+}
