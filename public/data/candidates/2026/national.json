@@ -322,7 +322,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-曹爾元-連江縣",
      "identity": null
     }
    ],
@@ -346,7 +346,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-洪和成-金門縣",
      "identity": null
     },
     {
@@ -355,7 +355,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李文良-金門縣",
      "identity": null
     },
     {
@@ -364,7 +364,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-黃世團-金門縣",
      "identity": null
     },
     {
@@ -382,7 +382,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-張國威-金門縣",
      "identity": null
     },
     {
@@ -391,7 +391,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-梁文韜-金門縣",
      "identity": null
     },
     {
@@ -400,7 +400,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-張火木-金門縣",
      "identity": null
     }
    ],
@@ -424,7 +424,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-陳宏毅-宜蘭縣",
      "identity": null
     },
     {
@@ -442,7 +442,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-劉燦輝-宜蘭縣",
      "identity": null
     },
     {
@@ -451,7 +451,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-林國漳-宜蘭縣",
      "identity": null
     },
     {
@@ -460,7 +460,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-楊鉯婷-宜蘭縣",
      "identity": null
     }
    ],
@@ -484,7 +484,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-鄭朝方-新竹縣",
      "identity": null
     },
     {
@@ -493,7 +493,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-朱定瑀-新竹縣",
      "identity": null
     },
     {
@@ -577,7 +577,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-邱建富-彰化縣",
      "identity": null
     },
     {
@@ -586,7 +586,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-魏平政-彰化縣",
      "identity": null
     }
    ],
@@ -610,7 +610,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-温世政-南投縣",
      "identity": null
     },
     {
@@ -643,7 +643,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-吳炳輝-雲林縣",
      "identity": null
     },
     {
@@ -670,7 +670,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-林佳瑜-雲林縣",
      "identity": null
     }
    ],
@@ -694,7 +694,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-吳品叡-嘉義縣",
      "identity": null
     },
     {
@@ -778,7 +778,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-李吳穎智-臺東縣",
      "identity": null
     },
     {
@@ -787,7 +787,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-王志偉-臺東縣",
      "identity": null
     }
    ],
@@ -811,7 +811,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-游淑貞-花蓮縣",
      "identity": null
     },
     {
@@ -838,7 +838,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-羅佩秦-花蓮縣",
      "identity": null
     }
    ],
@@ -862,7 +862,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-吳淑瑾-澎湖縣",
      "identity": null
     },
     {
@@ -871,7 +871,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-陳振中-澎湖縣",
      "identity": null
     },
     {
@@ -880,7 +880,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-周倪安-澎湖縣",
      "identity": null
     },
     {
@@ -889,7 +889,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-許智富-澎湖縣",
      "identity": null
     },
     {
@@ -898,7 +898,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-陳盡川-澎湖縣",
      "identity": null
     },
     {
@@ -907,7 +907,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-葉竹林-澎湖縣",
      "identity": null
     }
    ],
@@ -940,7 +940,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-魏造文-基隆市",
      "identity": null
     },
     {
@@ -982,7 +982,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-莊競程-新竹市",
      "identity": null
     },
     {
@@ -991,7 +991,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-何志勇-新竹市",
      "identity": null
     }
    ],
@@ -1015,7 +1015,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-黃宏成台灣阿成世界偉人財神總統-嘉義市",
      "identity": null
     },
     {
@@ -1024,7 +1024,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-陳愷璜-嘉義市",
      "identity": null
     },
     {
@@ -1051,7 +1051,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-王義成-嘉義市",
      "identity": null
     }
    ],
