@@ -136,7 +136,7 @@ const jsonLd = [
       <h2 id="cand-title">2026 縣市長候選人</h2>
       <p class="overview-note">
         資料：<a href={candidates2026.source.url} rel="noopener">{STAGE_LABEL[candidates2026.source.stage]}</a>，
-        製表 {candidates2026.source.tableDate}。六都在前，其餘依縣市代碼順序；同一縣市內依{candidates2026.races.every((r) => r.candidates.every((c) => c.number !== null)) ? "號次" : "中選會名冊順序"}排列。
+        製表 {candidates2026.source.tableDate}。六都在前，其餘依縣市代碼順序；同一縣市內依{candidates2026.races.every((r) => r.candidates.every((c) => c.number !== null)) ? "號次" : "中選會名冊順序"}排列。<strong>粗體</strong>為爭取連任的現任縣市長。
       </p>
       <div class="table-scroll">
         <table class="cand-table">
@@ -152,7 +152,7 @@ const jsonLd = [
                   {r.candidates.map((c, i) => (
                     <>
                       {i > 0 && "、"}
-                      <span class="cand">{c.slug ? <a href={`/officials/${c.slug}`}>{c.name}</a> : c.name}（{c.partyName === "無" ? "無黨籍" : c.partyName}）</span>
+                      <span class={c.slug && c.slug === r.incumbent2022?.slug ? "cand reelect" : "cand"}>{c.slug ? <a href={`/officials/${c.slug}`}>{c.name}</a> : c.name}（{c.partyName === "無" ? "無黨籍" : c.partyName}）</span>
                     </>
                   ))}
                 </td>
@@ -287,6 +287,9 @@ const jsonLd = [
   .cand-table td { white-space: normal; line-height: 1.8; vertical-align: top; }
   .cand-table thead th:first-child, .cand-table tbody th { width: 6.5em; vertical-align: top; }
   .cand { white-space: nowrap; }
+  /* 現任縣市長爭取連任：候選人連到的檔案即 2022 當選、目前在任的首長
+     （ChiefRace.incumbent2022.slug）。只加粗姓名，政黨與其他候選人同樣式。 */
+  .cand.reelect > a, .cand.reelect { font-weight: 700; }
   td a { text-decoration: underline; text-underline-offset: 2px; }
   td a:hover { color: var(--accent); }
 
