@@ -1,0 +1,156 @@
+---
+// 2022 年九合一選舉結果一覽。原本附在 /elections 底部；/elections 改以 2026 為主軸後
+// 使用者要求另外放（2026-10-05），這裡獨立成頁，內容與資料來源不變。
+import Base from "../../layouts/Base.astro";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import type { MapLayer } from "../../lib/mapTypes";
+
+// 地圖與側欄是 client 元件，爬蟲、無 JS 的使用者、螢幕閱讀器讀不到縣市、首長、席次、
+// 得票；這裡直接讀建置期的 national.json（見 scraper/build-election-map.ts），以純
+// HTML 表格呈現。
+const national: MapLayer = JSON.parse(
+  readFileSync(join(process.cwd(), "public", "data", "map", "national.json"), "utf8"),
+);
+
+const fmtInt = (n: number): string => n.toLocaleString("en-US");
+const fmtPercent = (n: number | null | undefined): string => (typeof n === "number" ? `${n.toFixed(2)}%` : "—");
+
+interface OverviewRow {
+  code: string;
+  name: string;
+  chiefName: string | null;
+  chiefSlug: string | null;
+  chiefParty: string | null;
+  seatsTotal: number;
+  largestParty: { name: string; seats: number } | null;
+  electedVotes: number | null;
+  electedShare: number | null;
+  turnout: number | null;
+}
+
+// 22 縣市依 national.json 原本的順序（中選會五段代碼的行政區樹順序，與地圖、
+// 側欄一致），不另外重新排序。
+const overviewRows: OverviewRow[] = national.areas.map((a): OverviewRow => {
+  const seatsTotal = a.seats.reduce((n, s) => n + s.seats, 0);
+  const largest = [...a.seats].sort((x, y) => y.seats - x.seats)[0] ?? null;
+  const elected = a.race?.candidates.find((c) => c.elected) ?? null;
+  return {
+    code: a.code,
+    name: a.name,
+    chiefName: a.chief?.name ?? null,
+    chiefSlug: a.chief?.slug ?? null,
+    chiefParty: a.chief?.partyName ?? null,
+    seatsTotal,
+    largestParty: largest ? { name: largest.partyName, seats: largest.seats } : null,
+    // 得票率／投票率若查無 race 資料（本輪任務前，只有嘉義市會落入這個分支）
+    // 就留 null、表格顯示「—」，不拿 0 湊數——見 fmtPercent。
+    electedVotes: elected?.votes ?? null,
+    electedShare: elected?.share ?? null,
+    turnout: a.race?.turnout ?? null,
+  };
+});
+
+const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const homeUrl = Astro.site ? Astro.site.href : undefined;
+const electionsUrl = Astro.site ? new URL("/elections", Astro.site).href : undefined;
+const desc = "2022 年地方公職人員選舉（九合一選舉）22 縣市首長、議會席次組成與得票結果一覽，含其後補選與重行選舉之現況。";
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    name: "2022 年九合一選舉結果",
+    description: desc,
+    url: pageUrl,
+    inLanguage: "zh-Hant",
+    temporalCoverage: "2022",
+    spatialCoverage: { "@type": "Place", name: "臺灣" },
+    creator: { "@type": "Organization", name: "政治人物背景資料庫（本站）" },
+    license: "資料彙整自中央選舉委員會（選舉結果），非官方資料，請以原始出處為準。",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "總覽", item: homeUrl },
+      { "@type": "ListItem", position: 2, name: "九合一選舉", item: electionsUrl },
+      { "@type": "ListItem", position: 3, name: "2022 年結果", item: pageUrl },
+    ],
+  },
+];
+---
+
+<Base title="2022 年九合一選舉結果｜政治人物背景資料庫" description={desc}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <a href="/elections" class="back">← 返回 2026 九合一選舉</a>
+  <h1>2022 年九合一選舉結果</h1>
+
+  <!-- 全國一覽：伺服器端渲染的靜態表格，滿版地圖之下。地圖／側欄是 client:load
+       的 Svelte 元件，爬蟲與無 JS 的使用者看不到裡面的縣市名、首長、席次、得票
+       ——這裡是同一份資料（national.json）以純 HTML 表格重新呈現一次，服務的
+       不只是搜尋引擎，也包含沒有 JavaScript 與使用螢幕閱讀器的讀者。 -->
+  <section class="overview" aria-labelledby="overview-title">
+    <h2 id="overview-title" class="sr-only">全國一覽</h2>
+    <p class="overview-note">
+      以下為<strong>西元 2022 年（111年地方公職人員選舉）</strong>22 縣市的首長、議會席次組成與得票結果，
+      含其後補選／重行選舉之現況（如嘉義市長 2022 年因候選人於投票前過世延後重行選舉）。
+      2026 年候選人請見<a href="/elections">2026 九合一選舉</a>。
+    </p>
+    <div class="table-scroll">
+      <table>
+        <caption class="sr-only">2022 年 22 縣市首長、議會席次與得票一覽表</caption>
+        <thead>
+          <tr>
+            <th scope="col">縣市</th>
+            <th scope="col">縣市長</th>
+            <th scope="col">政黨</th>
+            <th scope="col" class="num">議會席次</th>
+            <th scope="col">最大黨</th>
+            <th scope="col" class="num">當選得票數</th>
+            <th scope="col" class="num">當選得票率</th>
+            <th scope="col" class="num">投票率</th>
+          </tr>
+        </thead>
+        <tbody>
+          {overviewRows.map((r) => (
+            <tr>
+              <td>{r.name}</td>
+              <td>
+                {r.chiefName
+                  ? (r.chiefSlug ? <a href={`/officials/${r.chiefSlug}`}>{r.chiefName}</a> : r.chiefName)
+                  : "—"}
+              </td>
+              <td>{r.chiefParty ?? "—"}</td>
+              <td class="num">{fmtInt(r.seatsTotal)}</td>
+              <td>{r.largestParty ? `${r.largestParty.name}（${fmtInt(r.largestParty.seats)}）` : "—"}</td>
+              <td class="num">{r.electedVotes === null ? "—" : fmtInt(r.electedVotes)}</td>
+              <td class="num">{fmtPercent(r.electedShare)}</td>
+              <td class="num">{fmtPercent(r.turnout)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .back { display: inline-block; margin-bottom: 16px; color: var(--muted); font-size: 0.9375rem; }
+  h1 { font-size: var(--t-xl, 2rem); margin: 0 0 16px; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+  .overview-note { color: var(--muted); font-size: 0.9375rem; line-height: 1.7; max-width: 72ch; margin: 0 0 20px; }
+  .overview-note a { text-decoration: underline; text-underline-offset: 2px; }
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 0.9375rem; }
+  caption { text-align: left; }
+  th, td { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  thead th { font-family: var(--serif); font-weight: 700; color: var(--muted); border-bottom: 1px solid var(--line-strong); }
+  tbody tr:hover { background: var(--row-hover); }
+  td a { text-decoration: underline; text-underline-offset: 2px; }
+  td a:hover { color: var(--accent); }
+  .num { text-align: right; font-family: var(--serif); font-variant-numeric: tabular-nums; }
+</style>

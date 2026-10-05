@@ -4,22 +4,12 @@ import ElectionPanel from "../components/ElectionPanel.svelte";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { buildYears } from "../lib/electionYears";
-import type { MapLayer } from "../lib/mapTypes";
 import { STAGE_LABEL, chiefTitle, type CandidateEntry, type CountyCandidates, type NationalCandidates } from "../lib/candidateTypes";
 
 const meta = JSON.parse(readFileSync(join(process.cwd(), "public", "data", "map", "meta.json"), "utf8"));
 // 年份切換器的資料來源，見 src/lib/electionYears.ts 開頭的說明——日後加 2018
 // 等更早年份時，只改 buildYears()，這裡與 ElectionPanel.svelte 都不必動。
 const years = buildYears(meta);
-
-// 全國一覽表：地圖與側欄是 client:load（Svelte 元件，建置產物裡只有「載入中…」的
-// 殼），爬蟲、無 JS 的使用者、螢幕閱讀器完全讀不到 22 個縣市的名字、首長、席次、
-// 得票——這頁的實質內容在搜尋引擎上等於不存在。這裡直接在 frontmatter 讀
-// national.json（建置期就有，見 scraper/build-election-map.ts），組成一份純
-// HTML 的表格，不經任何 client 元件，滿版地圖之下渲染成真正的靜態內容。
-const national: MapLayer = JSON.parse(
-  readFileSync(join(process.cwd(), "public", "data", "map", "national.json"), "utf8"),
-);
 
 // 2026 候選人靜態表：側欄是 client-side 元件，搜尋引擎與讀屏讀不到，這裡另出一份
 // 伺服器端渲染的表。檔案不存在時略過整段，不擋建置。
@@ -44,51 +34,11 @@ const councilTotal = councils2026.reduce((n, c) => n + c.districts.reduce((m, d)
 const councilReelect = (c: CandidateEntry) => !!c.slug && !!c.identity?.startsWith("現任議員");
 
 const fmtInt = (n: number): string => n.toLocaleString("en-US");
-const fmtPercent = (n: number | null | undefined): string => (typeof n === "number" ? `${n.toFixed(2)}%` : "—");
-
-interface OverviewRow {
-  code: string;
-  name: string;
-  chiefName: string | null;
-  chiefSlug: string | null;
-  chiefParty: string | null;
-  seatsTotal: number;
-  largestParty: { name: string; seats: number } | null;
-  electedVotes: number | null;
-  electedShare: number | null;
-  turnout: number | null;
-}
-
-// 22 縣市依 national.json 原本的順序（中選會五段代碼的行政區樹順序，與地圖、
-// 側欄一致），不另外重新排序。
-const overviewRows: OverviewRow[] = national.areas.map((a): OverviewRow => {
-  const seatsTotal = a.seats.reduce((n, s) => n + s.seats, 0);
-  const largest = [...a.seats].sort((x, y) => y.seats - x.seats)[0] ?? null;
-  const elected = a.race?.candidates.find((c) => c.elected) ?? null;
-  return {
-    code: a.code,
-    name: a.name,
-    chiefName: a.chief?.name ?? null,
-    chiefSlug: a.chief?.slug ?? null,
-    chiefParty: a.chief?.partyName ?? null,
-    seatsTotal,
-    largestParty: largest ? { name: largest.partyName, seats: largest.seats } : null,
-    // 得票率／投票率若查無 race 資料（本輪任務前，只有嘉義市會落入這個分支）
-    // 就留 null、表格顯示「—」，不拿 0 湊數——見 fmtPercent。
-    electedVotes: elected?.votes ?? null,
-    electedShare: elected?.share ?? null,
-    turnout: a.race?.turnout ?? null,
-  };
-});
 
 const siteUrl = Astro.site ? Astro.site.href.replace(/\/$/, "") : "";
 const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const homeUrl = Astro.site ? Astro.site.href : undefined;
-const electionsDesc = "2022 年地方公職人員選舉（九合一選舉）22 縣市首長、議會席次組成與得票結果，"
-  + "以行政區地圖與全國一覽表呈現，可逐層下鑽至村里。";
-// 結構化資料：如實描述這是「2022 年」選舉結果的呈現，不宣稱是 2026 年（2026 年
-// 選舉尚未舉行，本站尚無該屆結果）。型別選 Dataset：本頁的核心是一份可查詢的
-// 選舉結果資料集，而非單篇敘事文章，比照首頁既有的 Dataset 寫法（src/pages/index.astro）。
+// 結構化資料：本頁主軸是 2026 候選人；2022 結果另見 /elections/2022（該頁有自己的 Dataset）。
 const jsonLd = [
   // 2026 候選人：只在有資料時加入，排在 2022 結果之前（主軸是 2026）
   ...(candidates2026 ? [{
@@ -103,19 +53,6 @@ const jsonLd = [
     creator: { "@type": "Organization", name: "政治人物背景資料庫（本站）" },
     license: "資料彙整自中央選舉委員會（候選人名冊），非官方資料，請以原始出處為準。",
   }] : []),
-  {
-    "@context": "https://schema.org",
-    "@type": "Dataset",
-    name: "2022 年九合一選舉結果",
-    description: electionsDesc,
-    url: pageUrl,
-    inLanguage: "zh-Hant",
-    temporalCoverage: "2022",
-    spatialCoverage: { "@type": "Place", name: "臺灣" },
-    creator: { "@type": "Organization", name: "政治人物背景資料庫（本站）" },
-    license: "資料彙整自中央選舉委員會（選舉結果）與內政部國土測繪中心（行政區界線，"
-      + "政府資料開放授權條款），非官方資料，請以原始出處為準。",
-  },
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -212,53 +149,9 @@ const jsonLd = [
     </section>
   )}
 
-  <!-- 全國一覽：伺服器端渲染的靜態表格，滿版地圖之下。地圖／側欄是 client:load
-       的 Svelte 元件，爬蟲與無 JS 的使用者看不到裡面的縣市名、首長、席次、得票
-       ——這裡是同一份資料（national.json）以純 HTML 表格重新呈現一次，服務的
-       不只是搜尋引擎，也包含沒有 JavaScript 與使用螢幕閱讀器的讀者。 -->
-  <section class="overview" aria-labelledby="overview-title">
-    <h2 id="overview-title">全國一覽：2022 年九合一選舉結果</h2>
-    <p class="overview-note">
-      以下為<strong>西元 2022 年（111年地方公職人員選舉）</strong>22 縣市的首長、議會席次組成與得票結果，
-      含其後補選／重行選舉之現況（如嘉義市長 2022 年因候選人於投票前過世延後重行選舉）。
-      <strong>非 2026 年選情</strong><span class="dash">——</span>2026 年選舉尚未舉行，本站尚無該屆結果可顯示。
-    </p>
-    <div class="table-scroll">
-      <table>
-        <caption class="sr-only">2022 年 22 縣市首長、議會席次與得票一覽表</caption>
-        <thead>
-          <tr>
-            <th scope="col">縣市</th>
-            <th scope="col">縣市長</th>
-            <th scope="col">政黨</th>
-            <th scope="col" class="num">議會席次</th>
-            <th scope="col">最大黨</th>
-            <th scope="col" class="num">當選得票數</th>
-            <th scope="col" class="num">當選得票率</th>
-            <th scope="col" class="num">投票率</th>
-          </tr>
-        </thead>
-        <tbody>
-          {overviewRows.map((r) => (
-            <tr>
-              <td>{r.name}</td>
-              <td>
-                {r.chiefName
-                  ? (r.chiefSlug ? <a href={`/officials/${r.chiefSlug}`}>{r.chiefName}</a> : r.chiefName)
-                  : "—"}
-              </td>
-              <td>{r.chiefParty ?? "—"}</td>
-              <td class="num">{fmtInt(r.seatsTotal)}</td>
-              <td>{r.largestParty ? `${r.largestParty.name}（${fmtInt(r.largestParty.seats)}）` : "—"}</td>
-              <td class="num">{r.electedVotes === null ? "—" : fmtInt(r.electedVotes)}</td>
-              <td class="num">{fmtPercent(r.electedShare)}</td>
-              <td class="num">{fmtPercent(r.turnout)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </section>
+  <p class="past-link">
+    <a href="/elections/2022">2022 年九合一選舉結果一覽（縣市長、議會席次、得票率）→</a>
+  </p>
 
 </Base>
 
@@ -298,7 +191,7 @@ const jsonLd = [
     border: 0;
   }
 
-  /* 全國一覽：報紙特輯的調性——髮絲線分隔、襯線體數字、不用卡片陰影或圓角。
+  /* 2026 候選人表與議員名單：報紙特輯的調性——髮絲線分隔、襯線體數字、不用卡片陰影或圓角。
      與地圖區塊隔開足夠留白，讓讀者一眼看出這是滿版地圖之後的另一段內容，
      不是地圖的附屬控制項。 */
   .overview { margin-top: 48px; }
@@ -359,6 +252,9 @@ const jsonLd = [
   /* 現任縣市長爭取連任：候選人連到的檔案即 2022 當選、目前在任的首長
      （ChiefRace.incumbent2022.slug）。只加粗姓名，政黨與其他候選人同樣式。 */
   .cand.reelect .nm, .cand.reelect .nm a { font-weight: 700; }
+  .past-link { margin: 48px 0 0; font-size: 0.9375rem; }
+  .past-link a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+  .past-link a:hover { color: var(--accent); }
   td a { text-decoration: underline; text-underline-offset: 2px; }
   td a:hover { color: var(--accent); }
 
