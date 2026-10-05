@@ -102,3 +102,13 @@ export function recordCounts(
     controversies: o.controversies.length, donations: o.donations.length,
   };
 }
+
+/** 名冊的「無」顯示為「無黨籍」。 */
+export function partyLabel(c: Pick<CandidateEntry, 'partyName'>): string {
+  return c.partyName === '無' ? '無黨籍' : c.partyName;
+}
+
+/** 候選人政黨色點的 CSS 變數名，與 partyTally 同規則：無黨籍用 --party-none；新政黨（代碼 null）與未列代碼用 --party-other。 */
+export function partyColorVar(c: Pick<CandidateEntry, 'partyName' | 'partyCode'>): string {
+  return c.partyName === '無' || c.partyCode === '999' ? '--party-none' : (c.partyCode && PARTY_VAR[c.partyCode]) || '--party-other';
+}

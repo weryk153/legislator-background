@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import {
-  candidateOverview, isChiefReelect, orderCandidates, partyTally, recordCounts,
+  candidateOverview, isChiefReelect, orderCandidates, partyColorVar, partyLabel, partyTally, recordCounts,
 } from '../src/lib/candidateStats';
 import type { CandidateEntry, ChiefRace, CountyCandidates, NationalCandidates } from '../src/lib/candidateTypes';
 
@@ -79,5 +79,17 @@ describe('排序與筆數', () => {
     expect(recordCounts(undefined)).toBeNull();
     expect(recordCounts({ careers: [{}, {}], judgments: [], controversies: [{}], donations: [] } as never))
       .toEqual({ careers: 2, judgments: 0, controversies: 1, donations: 0 });
+  });
+});
+
+describe('partyLabel / partyColorVar', () => {
+  it('名冊「無」顯示為無黨籍', () => {
+    expect(partyLabel(c('甲'))).toBe('無黨籍');
+    expect(partyLabel(c('乙', KMT))).toBe('中國國民黨');
+  });
+  it('色點與 partyTally 同規則', () => {
+    expect(partyColorVar(c('甲'))).toBe('--party-none');
+    expect(partyColorVar(c('乙', KMT))).toBe(partyTally([c('乙', KMT)])[0].cssVar);
+    expect(partyColorVar(c('丙', { partyName: '新黨甲', partyCode: null }))).toBe('--party-other');
   });
 });
