@@ -18,7 +18,12 @@
   import { PARTY_VAR, isUnassignedVillage, type MapArea, type MapLayer } from '../lib/mapTypes';
   import type { ElectionYearConfig } from '../lib/electionYears';
 
-  let { years }: { years: ElectionYearConfig[] } = $props();
+  // initialYear：這一頁固定呈現的年份。yearHref：各年份各自有獨立頁面時，切換器改成
+  // 連到另一頁（/elections 是 2026、/elections/2022 是 2022），整頁內容跟著年份走，
+  // 不會出現「地圖是 2022、下方表格還是 2026」的混搭（使用者 2026-10-05 要求）。
+  let { years, initialYear, yearHref }: {
+    years: ElectionYearConfig[]; initialYear?: number; yearHref?: Record<number, string>;
+  } = $props();
 
   let area = $state<MapArea | null>(null);
   let layer = $state<MapLayer | null>(null);
@@ -26,7 +31,8 @@
   // 預設選中第一筆「即將舉行」的年份（目前是 2026）：本站的主軸是即將到來的
   // 選舉，2022 結果留在切換器裡作對照。沒有 upcoming 才退回第一筆 done，
   // 再不行就取清單第一筆（理論上不會發生，buildYears 至少會給一筆）。
-  const DEFAULT_YEAR = (years.find((y) => y.status === 'upcoming') ?? years.find((y) => y.status === 'done') ?? years[0]).year;
+  const DEFAULT_YEAR = initialYear
+    ?? (years.find((y) => y.status === 'upcoming') ?? years.find((y) => y.status === 'done') ?? years[0]).year;
   let selectedYear = $state(DEFAULT_YEAR);
   const current = $derived(years.find((y) => y.year === selectedYear) ?? years[0]);
   const upcoming = $derived(current.status === 'upcoming');
@@ -164,7 +170,7 @@
          瀏覽器自動換行（欄寬夠窄時會斷出孤字「舉」單獨一行）。第二行加 nowrap，
          五個漢字在目前欄寬（含 900px 斷點以下的全寬版）都放得下，不會再被逼著
          二次換行。 -->
-    <h1><span class="masthead-year">2026</span><span class="masthead-theme">九合一選舉</span></h1>
+    <h1><span class="masthead-year">{DEFAULT_YEAR}</span><span class="masthead-theme">九合一選舉</span></h1>
     <hr class="rule-hair" />
 
     <!-- 版次：原本浮在地圖底部、壓住台灣南端的年份切換器，現在當成報頭裡的
@@ -174,6 +180,18 @@
          src/lib/electionYears.ts），日後加版次只改那邊。 -->
     <div class="edition">
       <span class="edition-label" id="edition-label">本期版次</span>
+      {#if yearHref}
+        <nav class="edition-tabs" aria-label="選舉年份">
+          {#each years as y, i (y.year)}
+            {#if i > 0}<span class="tab-sep" aria-hidden="true"></span>{/if}
+            {#if y.year === selectedYear}
+              <span class="edition-link current" aria-current="page">{y.year}</span>
+            {:else}
+              <a class="edition-link" href={yearHref[y.year]}>{y.year}</a>
+            {/if}
+          {/each}
+        </nav>
+      {:else}
       <div class="edition-tabs" role="tablist" aria-label="選舉年份">
         {#each years as y, i (y.year)}
           {#if i > 0}<span class="tab-sep" aria-hidden="true"></span>{/if}
@@ -186,6 +204,7 @@
           </button>
         {/each}
       </div>
+      {/if}
     </div>
     <p class="edition-sub">{current.status === 'done' ? current.electionName : '選舉尚未舉行'}</p>
     <p class="dateline">
@@ -420,6 +439,13 @@
   .edition-tabs button[aria-selected="true"] {
     color: var(--fg); font-size: var(--t-lg); font-weight: 700; border-bottom-color: var(--accent);
   }
+  .edition-link {
+    font-family: var(--serif); color: var(--muted); font-size: var(--t-sm); font-weight: 600;
+    padding: 0 .5rem .2rem; border-bottom: 2px solid transparent; text-decoration: none;
+    font-variant-numeric: tabular-nums; line-height: 1.3; transition: color var(--ease);
+  }
+  a.edition-link:hover { color: var(--accent); }
+  .edition-link.current { color: var(--fg); font-size: var(--t-lg); font-weight: 700; border-bottom-color: var(--accent); }
   .edition-tabs .tab-sep { width: 1px; align-self: stretch; background: var(--line); margin: 0 .05rem; }
 
   /* 版次的副標（該屆選舉正式名稱）與 dateline：都是小字級、輔助資訊，不與上面的

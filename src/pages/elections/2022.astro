@@ -5,6 +5,13 @@ import Base from "../../layouts/Base.astro";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { MapLayer } from "../../lib/mapTypes";
+import ElectionPanel from "../../components/ElectionPanel.svelte";
+import { buildYears } from "../../lib/electionYears";
+
+// 與 /elections 共用同一張地圖元件，這頁固定停在 2022；年份切換器連回 2026 頁。
+const meta = JSON.parse(readFileSync(join(process.cwd(), "public", "data", "map", "meta.json"), "utf8"));
+const years = buildYears(meta);
+const YEAR_HREF: Record<number, string> = { 2026: "/elections", 2022: "/elections/2022" };
 
 // 地圖與側欄是 client 元件，爬蟲、無 JS 的使用者、螢幕閱讀器讀不到縣市、首長、席次、
 // 得票；這裡直接讀建置期的 national.json（見 scraper/build-election-map.ts），以純
@@ -82,8 +89,11 @@ const jsonLd = [
 
 <Base title="2022 年九合一選舉結果｜政治人物背景資料庫" description={desc}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <a href="/elections" class="back">← 返回 2026 九合一選舉</a>
-  <h1>2022 年九合一選舉結果</h1>
+  <div class="map-stage">
+    <ElectionPanel client:load {years} initialYear={2022} yearHref={YEAR_HREF} />
+  </div>
+
+  <h2 class="table-title">全國一覽：2022 年九合一選舉結果</h2>
 
   <!-- 全國一覽：伺服器端渲染的靜態表格，滿版地圖之下。地圖／側欄是 client:load
        的 Svelte 元件，爬蟲與無 JS 的使用者看不到裡面的縣市名、首長、席次、得票
@@ -136,8 +146,10 @@ const jsonLd = [
 </Base>
 
 <style>
-  .back { display: inline-block; margin-bottom: 16px; color: var(--muted); font-size: 0.9375rem; }
-  h1 { font-size: var(--t-xl, 2rem); margin: 0 0 16px; }
+  /* 滿版地圖：與 src/pages/elections.astro 的 .map-stage 相同（頁首實測高度見該檔說明）。 */
+  .map-stage { position: relative; width: 100vw; margin: 0 0 0 calc(50% - 50vw); height: calc(100dvh - 130px); }
+  @media (max-width: 900px) { .map-stage { height: auto; margin-top: 0; } }
+  .table-title { font-size: var(--t-lg); margin: 48px 0 8px; }
   .sr-only {
     position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
     overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;

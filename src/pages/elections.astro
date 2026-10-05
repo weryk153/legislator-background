@@ -16,6 +16,8 @@ const meta = JSON.parse(readFileSync(join(process.cwd(), "public", "data", "map"
 // 年份切換器的資料來源，見 src/lib/electionYears.ts 開頭的說明——日後加 2018
 // 等更早年份時，只改 buildYears()，這裡與 ElectionPanel.svelte 都不必動。
 const years = buildYears(meta);
+// 年份切換器：各年份是獨立頁面（2026 在本頁、2022 在 /elections/2022）。
+const YEAR_HREF: Record<number, string> = { 2026: "/elections", 2022: "/elections/2022" };
 
 // 2026 候選人靜態表：側欄是 client-side 元件，搜尋引擎與讀屏讀不到，這裡另出一份
 // 伺服器端渲染的表。檔案不存在時略過整段，不擋建置。
@@ -122,7 +124,7 @@ const jsonLd = [
        底下本來就空著。這裡不需要再另外的殼或腳本，細節見 ElectionPanel.svelte
        的樣式與注釋。 -->
   <div class="map-stage">
-    <ElectionPanel client:load {years} />
+    <ElectionPanel client:load {years} initialYear={2026} yearHref={YEAR_HREF} />
   </div>
 
   <!-- 選務時程軸：伺服器端渲染，節點實心＝已過、空心＝未到；今天落在兩節點之間時，
