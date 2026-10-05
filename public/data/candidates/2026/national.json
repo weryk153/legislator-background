@@ -16,7 +16,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-郭璽-臺北市",
      "identity": null
     },
     {
@@ -34,7 +34,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-蕭文乾-臺北市",
      "identity": null
     },
     {
@@ -43,7 +43,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-唐新民-臺北市",
      "identity": null
     },
     {
@@ -61,7 +61,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-林志成-臺北市",
      "identity": null
     }
    ]
@@ -86,7 +86,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-李四川-新北市",
      "identity": null
     },
     {
@@ -95,7 +95,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-蘇輝湟-新北市",
      "identity": null
     }
    ]
@@ -120,7 +120,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-黃世杰-桃園市",
      "identity": null
     }
    ]
@@ -154,7 +154,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-洪麗華-臺中市",
      "identity": null
     }
    ]
@@ -179,7 +179,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-蕭燐洪-臺南市",
      "identity": null
     },
     {
@@ -188,7 +188,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-葉人文-臺南市",
      "identity": null
     },
     {
@@ -213,7 +213,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-張靜-高雄市",
      "identity": null
     },
     {
@@ -231,7 +231,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-王肇民-高雄市",
      "identity": null
     },
     {
@@ -249,7 +249,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-洪方隆-高雄市",
      "identity": null
     }
    ]
