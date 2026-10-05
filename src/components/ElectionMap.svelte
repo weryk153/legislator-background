@@ -178,7 +178,9 @@
 
   function fillFor(area: MapArea, flatten = false, dim = false, hover = false): string {
     if (neutral) {
-      const base = 'var(--map-appointed-bg)';
+      // 尚未開票：全圖單一中性色，不暗示選情。原本借用官派底色（很淺），2026 成為
+      // 預設檢視後輪廓太淡，改用專屬、稍深的 --map-neutral。
+      const base = 'var(--map-neutral)';
       if (hover) return hoverTint(base);
       return dim ? dimmed(base) : base;
     }
