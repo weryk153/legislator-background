@@ -53,6 +53,20 @@ describe('assemble：首長', () => {
   });
 });
 
+describe('assemble：2022 當選者對照', () => {
+  const chief = { name: '蔣萬安', partyName: '中國國民黨', partyCode: '1', slug: 'mayor-taipei', termLimitStatus: 'notLimited' as const, termLimitReason: '' };
+  it('countyOrder 帶 chief 時 race.incumbent2022 帶出', () => {
+    const { national } = assemble(input({
+      countyOrder: [{ code: '10-014-00-000-0000', name: '臺東縣' }, { code: '63-000-00-000-0000', name: '臺北市', chief }],
+    }));
+    expect(national.races[0].incumbent2022).toEqual(chief);
+  });
+  it('不帶 chief 時為 null', () => {
+    const { national } = assemble(input());
+    expect(national.races.every((r) => r.incumbent2022 === null)).toBe(true);
+  });
+});
+
 describe('assemble：號次', () => {
   it('全數有號次時依號次排序', () => {
     const { national } = assemble(input({

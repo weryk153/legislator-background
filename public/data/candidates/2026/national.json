@@ -64,7 +64,15 @@
      "slug": "cand-林志成-臺北市",
      "identity": null
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "蔣萬安",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-taipei",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
   },
   {
    "countyCode": "65-000-00-000-0000",
@@ -98,7 +106,15 @@
      "slug": "cand-蘇輝湟-新北市",
      "identity": null
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "侯友宜",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-new-taipei",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
   },
   {
    "countyCode": "68-000-00-000-0000",
@@ -123,7 +139,15 @@
      "slug": "cand-黃世杰-桃園市",
      "identity": null
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "張善政",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-taoyuan",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
   },
   {
    "countyCode": "66-000-00-000-0000",
@@ -157,7 +181,15 @@
      "slug": "cand-洪麗華-臺中市",
      "identity": null
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "盧秀燕",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-taichung",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
   },
   {
    "countyCode": "67-000-00-000-0000",
@@ -200,7 +232,15 @@
      "slug": "chen-ting-fei",
      "identity": "現任立委（臺南市第3選舉區）"
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "黃偉哲",
+    "partyName": "民主進步黨",
+    "partyCode": "16",
+    "slug": "mayor-tainan",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
   },
   {
    "countyCode": "64-000-00-000-0000",
@@ -252,7 +292,15 @@
      "slug": "cand-洪方隆-高雄市",
      "identity": null
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "陳其邁",
+    "partyName": "民主進步黨",
+    "partyCode": "16",
+    "slug": "mayor-kaohsiung",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
   },
   {
    "countyCode": "09-007-00-000-0000",
@@ -277,7 +325,15 @@
      "slug": null,
      "identity": null
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "王忠銘",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-lienchiang",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
   },
   {
    "countyCode": "09-020-00-000-0000",
@@ -347,7 +403,15 @@
      "slug": null,
      "identity": null
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "陳福海",
+    "partyName": "無黨籍及未經政黨推薦",
+    "partyCode": "999",
+    "slug": "mayor-kinmen",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
   },
   {
    "countyCode": "10-002-00-000-0000",
@@ -399,7 +463,15 @@
      "slug": null,
      "identity": null
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "林姿妙",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-yilan",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
   },
   {
    "countyCode": "10-004-00-000-0000",
@@ -433,7 +505,15 @@
      "slug": "hsu-hsin-ying",
      "identity": "現任立委（新竹縣第1選舉區）"
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "楊文科",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-hsinchu-county",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
   },
   {
    "countyCode": "10-005-00-000-0000",
@@ -458,7 +538,15 @@
      "slug": "mayor-miaoli",
      "identity": "現任苗栗縣長"
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "鍾東錦",
+    "partyName": "無黨籍及未經政黨推薦",
+    "partyCode": "999",
+    "slug": "mayor-miaoli",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
   },
   {
    "countyCode": "10-007-00-000-0000",
@@ -501,7 +589,15 @@
      "slug": null,
      "identity": null
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "王惠美",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-changhua",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
   },
   {
    "countyCode": "10-008-00-000-0000",
@@ -526,7 +622,15 @@
      "slug": "mayor-nantou",
      "identity": "現任南投縣長"
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "許淑華",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-nantou",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
   },
   {
    "countyCode": "10-009-00-000-0000",
@@ -569,7 +673,15 @@
      "slug": null,
      "identity": null
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "張麗善",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-yunlin",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
   },
   {
    "countyCode": "10-010-00-000-0000",
@@ -594,7 +706,15 @@
      "slug": "tsai-yi-yu",
      "identity": "現任立委（嘉義縣第1選舉區）"
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "翁章梁",
+    "partyName": "民主進步黨",
+    "partyCode": "16",
+    "slug": "mayor-chiayi-county",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
   },
   {
    "countyCode": "10-013-00-000-0000",
@@ -619,7 +739,15 @@
      "slug": "mayor-pingtung",
      "identity": "現任屏東縣長"
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "周春米",
+    "partyName": "民主進步黨",
+    "partyCode": "16",
+    "slug": "mayor-pingtung",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
   },
   {
    "countyCode": "10-014-00-000-0000",
@@ -662,7 +790,15 @@
      "slug": null,
      "identity": null
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "饒慶鈴",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-taitung",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
   },
   {
    "countyCode": "10-015-00-000-0000",
@@ -705,7 +841,15 @@
      "slug": null,
      "identity": null
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "徐榛蔚",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-hualien",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   }
   },
   {
    "countyCode": "10-016-00-000-0000",
@@ -766,7 +910,15 @@
      "slug": null,
      "identity": null
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "陳光復",
+    "partyName": "民主進步黨",
+    "partyCode": "16",
+    "slug": "mayor-penghu",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
   },
   {
    "countyCode": "10-017-00-000-0000",
@@ -800,7 +952,15 @@
      "slug": "c-童子瑋-民進黨-基隆市第03選舉區",
      "identity": "現任議員（基隆市第3選舉區）"
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "謝國樑",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-keelung",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
   },
   {
    "countyCode": "10-018-00-000-0000",
@@ -834,7 +994,15 @@
      "slug": null,
      "identity": null
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "高虹安",
+    "partyName": "台灣民眾黨",
+    "partyCode": "350",
+    "slug": "mayor-hsinchu-city",
+    "termLimitStatus": "notLimited",
+    "termLimitReason": ""
+   }
   },
   {
    "countyCode": "10-020-00-000-0000",
@@ -886,7 +1054,15 @@
      "slug": null,
      "identity": null
     }
-   ]
+   ],
+   "incumbent2022": {
+    "name": "黃敏惠",
+    "partyName": "中國國民黨",
+    "partyCode": "1",
+    "slug": "mayor-chiayi-city",
+    "termLimitStatus": "limited",
+    "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選（2022 為重行選舉，當選人出生日期由 2018 年原始檔以「同縣市同職務同姓名同政黨相符」回填認定）"
+   }
   }
  ]
 }

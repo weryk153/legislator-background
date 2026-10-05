@@ -10,6 +10,7 @@ import { linkCandidate, identityLine, type LinkConfirmation, type OfficialRef } 
 import { assemble } from './lib/candidateAssemble';
 import { flatten, diffCandidates, renderDiff } from './lib/candidateDiff';
 import type { CandidateStage, CountyCandidates, NationalCandidates } from '../src/lib/candidateTypes';
+import type { Officeholder } from '../src/lib/mapTypes';
 
 const R22 = 'scraper/out-roster/cec/voteData/2022-111年地方公職人員選舉';
 const OUT = 'public/data/candidates/2026';
@@ -43,12 +44,19 @@ const officials = (JSON.parse(read('src/data/officials.json')) as OfficialRef[])
 const bySlug = new Map(officials.map((o) => [o.slug, o]));
 const confirmed = JSON.parse(read('scraper/candidates-links-confirmed.json')) as LinkConfirmation[];
 
-const nationalMap = JSON.parse(read('public/data/map/national.json')) as { areas: { code: string; name: string }[] };
+const nationalMap = JSON.parse(read('public/data/map/national.json')) as { areas: { code: string; name: string; chief: Officeholder | null }[] };
 
 const { national, counties, review, warnings } = assemble({
   source: { stage, url: cfg.url, tableDate: cfg.tableDate },
   chiefRows, councilRows,
-  countyOrder: nationalMap.areas.map((a) => ({ code: a.code, name: a.name })),
+  countyOrder: nationalMap.areas.map((a) => ({
+    code: a.code, name: a.name,
+    // 只取對照需要的欄位；無 termLimit 資料時標 unknown，不憑空當成可連任
+    chief: a.chief ? {
+      name: a.chief.name, partyName: a.chief.partyName, partyCode: a.chief.partyCode, slug: a.chief.slug,
+      termLimitStatus: a.chief.termLimitStatus ?? 'unknown', termLimitReason: a.chief.termLimitReason ?? '',
+    } : null,
+  })),
   partyCode: partyCodeLookup(parties),
   link: (name, race) => linkCandidate(name, race, officials, confirmed),
   identity: (slug) => identityLine(bySlug.get(slug)!),

@@ -5,7 +5,7 @@ import { reconcileCounty, type CountyDistrictRef } from './councilDistricts';
 import { normalizeAreaName } from './areaMatch';
 import {
   MUNICIPALITIES, type CandidateEntry, type CandidateSource, type ChiefRace, type CountyCandidates,
-  type CouncilDistrict, type NationalCandidates,
+  type CouncilDistrict, type Incumbent2022, type NationalCandidates,
 } from '../../src/lib/candidateTypes';
 
 export interface ReviewItem { name: string; race: string; reason: string; candidates: string[] }
@@ -13,7 +13,7 @@ export interface AssembleInput {
   source: CandidateSource;
   chiefRows: RegistrationRow[];
   councilRows: RegistrationRow[];
-  countyOrder: { code: string; name: string }[];
+  countyOrder: { code: string; name: string; chief?: Incumbent2022 | null }[];
   partyCode: (name: string) => string | null;
   link: (name: string, race: RaceRef) => LinkResult;
   identity: (slug: string) => string | null;
@@ -78,7 +78,7 @@ export function assemble(input: AssembleInput) {
     .filter((c) => chiefBy.has(normalizeAreaName(c.name)))
     .map((c) => {
       const name = normalizeAreaName(c.name);
-      return { countyCode: c.code, countyName: name, isMunicipality: isMunicipality(name), candidates: ordered(chiefBy.get(name)!) };
+      return { countyCode: c.code, countyName: name, isMunicipality: isMunicipality(name), candidates: ordered(chiefBy.get(name)!), incumbent2022: c.chief ?? null };
     });
   const national: NationalCandidates = { source: input.source, races };
 

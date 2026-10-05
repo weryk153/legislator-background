@@ -1,4 +1,5 @@
 // 2026 候選人資料的型別。scraper（產出）與前端（讀取）共用同一份，不各自宣告。
+import type { Officeholder, TermLimitStatus } from './mapTypes';
 
 /** 議員選區類型。unknown：2026 選區與 2022 對不上，類型無從得知（見 spec §2.3）。 */
 export type DistrictType = 'regional' | 'plainIndigenous' | 'mountainIndigenous' | 'unknown';
@@ -33,7 +34,18 @@ export interface CandidateEntry {
   identity: string | null;      // 一行身分說明，如「現任臺北市長」
 }
 
-export interface ChiefRace { countyCode: string; countyName: string; isMunicipality: boolean; candidates: CandidateEntry[] }
+/**
+ * 2022 選出、目前在任的首長，給 2026 側欄與靜態表做對照。資料來自地圖檔
+ * public/data/map/national.json 的 chief（已含補選／重行選舉修正），建置期帶入，前端不另查。
+ */
+export type Incumbent2022 = Pick<Officeholder, 'name' | 'partyName' | 'partyCode' | 'slug'> & {
+  termLimitStatus: TermLimitStatus; termLimitReason: string;
+};
+
+export interface ChiefRace {
+  countyCode: string; countyName: string; isMunicipality: boolean; candidates: CandidateEntry[];
+  incumbent2022: Incumbent2022 | null;   // 地圖檔查無首長（如尚未補選）時為 null
+}
 export interface NationalCandidates { source: CandidateSource; races: ChiefRace[] }
 
 export interface CouncilDistrict { no: number; label: string; type: DistrictType; candidates: CandidateEntry[] }
