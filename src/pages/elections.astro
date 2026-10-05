@@ -142,7 +142,7 @@ const jsonLd = [
         <table class="cand-table">
           <caption class="sr-only">2026 年各縣市首長選舉候選人</caption>
           <thead>
-            <tr><th scope="col">選舉</th><th scope="col">候選人</th><th scope="col">2022 當選</th></tr>
+            <tr><th scope="col">選舉</th><th scope="col">候選人</th></tr>
           </thead>
           <tbody>
             {candidates2026.races.map((r) => (
@@ -155,16 +155,6 @@ const jsonLd = [
                       <span class="cand">{c.slug ? <a href={`/officials/${c.slug}`}>{c.name}</a> : c.name}（{c.partyName === "無" ? "無黨籍" : c.partyName}）</span>
                     </>
                   ))}
-                </td>
-                <td>
-                  {r.incumbent2022 ? (
-                    <>
-                      {r.incumbent2022.slug ? <a href={`/officials/${r.incumbent2022.slug}`}>{r.incumbent2022.name}</a> : r.incumbent2022.name}
-                      （{r.incumbent2022.partyName}）
-                      {r.incumbent2022.termLimitStatus === "limited" && `・${r.incumbent2022.termLimitReason || "任期屆滿，不得連任"}`}
-                      {r.incumbent2022.termLimitStatus === "unknown" && "・連任狀態待查"}
-                    </>
-                  ) : "—"}
                 </td>
               </tr>
             ))}
@@ -296,7 +286,6 @@ const jsonLd = [
   .cand-table { min-width: 0; }
   .cand-table td { white-space: normal; line-height: 1.8; vertical-align: top; }
   .cand-table thead th:first-child, .cand-table tbody th { width: 6.5em; vertical-align: top; }
-  .cand-table td:last-child { width: 30%; }
   .cand { white-space: nowrap; }
   td a { text-decoration: underline; text-underline-offset: 2px; }
   td a:hover { color: var(--accent); }
