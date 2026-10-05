@@ -128,9 +128,17 @@ describe('linkCandidate：確認檔以完整姓名比對', () => {
     expect(linkCandidate('楊清順Lisin‧Pawtawan', race, offs, confs)).toMatchObject({ kind: 'confirmed', slug: 'B' });
   });
   it('他人的確認不套用到拼音不同者', () => {
-    // 確認檔不套用 → 回到一般規則（此處同名唯一現任同選區 → auto，reason 不是人工確認）
-    const r = linkCandidate('楊清順Lisin‧Pawtawan', race, [offs[0]], [confs[0]]);
-    expect(r.kind).toBe('auto');
+    // 確認檔不套用 → 回到一般規則；雙方都有拼音且不同 → 審核
+    const r = linkCandidate('楊清順Lisin‧Pawtawan', race, [off({ slug: 'A', name: '楊清順 Cinsun Pawtawan' })], [confs[0]]);
+    expect(r.kind).toBe('review');
+  });
+  it('雙方拼音相同（空白與分隔符不計）→ auto', () => {
+    const r = linkCandidate('楊清順Cinsun‧Pawtawan', race, [off({ slug: 'A', name: '楊清順 Cinsun Pawtawan' })], []);
+    expect(r).toMatchObject({ kind: 'auto', slug: 'A' });
+  });
+  it('只有一方有拼音 → 照常 auto', () => {
+    const r = linkCandidate('楊清順', race, [off({ slug: 'A', name: '楊清順 Cinsun Pawtawan' })], []);
+    expect(r).toMatchObject({ kind: 'auto', slug: 'A' });
   });
   it('分隔符變體仍相符', () => {
     const r = linkCandidate('楊清順Cinsun‧Pawtawan', race, offs,

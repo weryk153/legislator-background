@@ -67,6 +67,12 @@ export function linkCandidate(
   if (same.length > 1) return review(`同名 ${same.length} 筆`);
 
   const o = same[0];
+  // 漢字相同的原住民候選人可能是不同人：雙方都有羅馬拼音卻不同就不能當同一人。
+  // 只有單方有拼音時照舊（站上資料常省略拼音）。
+  const latin = (x: string) => x.replace(/[^A-Za-z]/g, '').toLowerCase();
+  if (latin(name) && latin(o.name) && latin(name) !== latin(o.name)) {
+    return review(`羅馬拼音不同（${name} vs ${o.name}）`);
+  }
   if (race.kind === 'chief') {
     if (o.officeType === 'candidate') {
       return normalizeNameChars(o.district) === normalizeNameChars(race.county)
