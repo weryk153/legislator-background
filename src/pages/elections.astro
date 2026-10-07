@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import ElectionPanel from "../components/ElectionPanel.svelte";
 import ChiefRaceCard from "../components/ChiefRaceCard.astro";
 import ElectionTimeline from "../components/ElectionTimeline.astro";
+import SectionHead from "../components/SectionHead.astro";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { buildYears } from "../lib/electionYears";
@@ -134,7 +135,7 @@ const jsonLd = [
   <!-- 選務時程軸：伺服器端渲染，節點實心＝已過、空心＝未到；今天落在兩節點之間時，
        在線上另畫一個「今天」標記。窄螢幕改直排。 -->
   <section class="overview" aria-labelledby="timeline-title">
-    <h2 id="timeline-title">選務時程</h2>
+    <SectionHead id="timeline-title" text="選務時程" />
     <ElectionTimeline />
     {candidates2026 && (
       <p class="overview-note">
@@ -145,7 +146,7 @@ const jsonLd = [
 
   {overview && (
     <section class="overview" aria-labelledby="stats-title">
-      <h2 id="stats-title">參選概況</h2>
+      <SectionHead id="stats-title" text="參選概況" />
       <dl class="tiles">
         <div class="tile"><dt>縣市長候選人</dt><dd class="tile-num">{fmtInt(overview.chiefCount)}</dd></div>
         {councils2026.length > 0 && (
@@ -191,7 +192,7 @@ const jsonLd = [
        （與縣市選舉頁共用），標題連到該縣市的選舉頁。 -->
   {muniRaces.length > 0 && (
     <section class="overview" aria-labelledby="muni-title">
-      <h2 id="muni-title">六都市長候選人</h2>
+      <SectionHead id="muni-title" text="六都市長候選人" />
       <div class="muni-grid">
         {muniRaces.map((r) => <ChiefRaceCard race={r} officialsBySlug={officialsBySlug} href={countyHref(r.countyCode)} />)}
       </div>
@@ -201,7 +202,7 @@ const jsonLd = [
 
   {candidates2026 && (
     <section class="overview" aria-labelledby="cand-title">
-      <h2 id="cand-title">2026 縣市長候選人</h2>
+      <SectionHead id="cand-title" text="2026 縣市長候選人" />
       <p class="overview-note">
         資料：<a href={candidates2026.source.url} rel="noopener">{STAGE_LABEL[candidates2026.source.stage]}</a>，
         製表 {candidates2026.source.tableDate}。六都在前，其餘依縣市代碼順序；同一縣市內依{candidates2026.races.every((r) => r.candidates.every((c) => c.number !== null)) ? "號次" : "中選會名冊順序"}排列。<strong>粗體</strong>為爭取連任的現任縣市長。
@@ -242,7 +243,7 @@ const jsonLd = [
 
   {councils2026.length > 0 && (
     <section class="overview" aria-labelledby="council-title">
-      <h2 id="council-title">2026 縣市議員候選人</h2>
+      <SectionHead id="council-title" text="2026 縣市議員候選人" />
       <p class="overview-note">
         22 縣市共 {fmtInt(councilTotal)} 人，依縣市展開查看各選區名單。<strong>粗體</strong>為爭取連任的現任議員；
         有連結者為本站已收錄檔案之人物。選區編號以中選會 2026 名冊為準，部分縣市已重劃。
@@ -307,23 +308,10 @@ const jsonLd = [
     .map-stage { height: auto; margin-top: 0; }
   }
 
-  /* 視覺上隱藏但螢幕閱讀器讀得到：表格自己的 caption 已有 <h2> 當視覺標題，
-     caption 只用來讓讀屏在直接跳到表格物件時仍報得出這是什麼表。 */
-  .sr-only {
-    position: absolute;
-    width: 1px; height: 1px;
-    padding: 0; margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
   /* 2026 候選人表與議員名單：報紙特輯的調性——髮絲線分隔、襯線體數字、不用卡片陰影或圓角。
      與地圖區塊隔開足夠留白，讓讀者一眼看出這是滿版地圖之後的另一段內容，
      不是地圖的附屬控制項。 */
   .overview { margin-top: 48px; }
-  .overview h2 { font-size: var(--t-lg); margin: 0 0 8px; }
   .overview-note { color: var(--muted); font-size: 0.9375rem; line-height: 1.7; max-width: 72ch; margin: 0 0 20px; }
 
   /* 表格本身可能比 940px 的 .wrap 還寬（尤其中文縣市長全名＋政黨全名），窄螢幕
@@ -363,7 +351,7 @@ const jsonLd = [
   .council { border-bottom: 1px solid var(--line); }
   .council summary {
     display: flex; justify-content: space-between; gap: 12px;
-    padding: 12px 0; cursor: pointer; font-family: var(--serif); font-weight: 700;
+    padding: 12px 0; cursor: pointer; font-family: var(--serif); font-weight: 900;
   }
   .council-count { font-family: var(--sans); font-weight: 400; color: var(--muted); font-size: 0.875rem; }
   .council-list {
@@ -413,7 +401,7 @@ const jsonLd = [
 
   .bar-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 40px; }
   @media (max-width: 760px) { .bar-groups { grid-template-columns: 1fr; } }
-  .bar-group h3 { font-size: 1rem; margin: 0 0 8px; }
+  .bar-group h3 { font-weight: 900; font-size: 1rem; margin: 0 0 8px; }
   .bars { list-style: none; margin: 0; padding: 0; }
   .bar-row {
     display: grid; grid-template-columns: minmax(5em, 9em) 1fr 3.5em;

@@ -17,6 +17,7 @@
   import ElectionSidebar from './ElectionSidebar.svelte';
   import { PARTY_VAR, isUnassignedVillage, type MapArea, type MapLayer } from '../lib/mapTypes';
   import type { ElectionYearConfig } from '../lib/electionYears';
+  import { squashStyle } from '../lib/squash';
 
   // initialYear：這一頁固定呈現的年份。yearHref：各年份各自有獨立頁面時，切換器改成
   // 連到另一頁（/elections 是 2026、/elections/2022 是 2022），整頁內容跟著年份走，
@@ -170,7 +171,7 @@
          瀏覽器自動換行（欄寬夠窄時會斷出孤字「舉」單獨一行）。第二行加 nowrap，
          五個漢字在目前欄寬（含 900px 斷點以下的全寬版）都放得下，不會再被逼著
          二次換行。 -->
-    <h1><span class="masthead-year">{DEFAULT_YEAR}</span><span class="masthead-theme">九合一選舉</span></h1>
+    <h1 class="tcard ep-card"><span class="tcard-v masthead-year">{DEFAULT_YEAR}</span><span class="tcard-body"><span class="tcard-line"><span class="sq masthead-theme" style={squashStyle('九合一選舉', 0.62)}>九合一選舉</span></span></span></h1>
     <hr class="rule-hair" />
 
     <!-- 版次：原本浮在地圖底部、壓住台灣南端的年份切換器，現在當成報頭裡的
@@ -403,7 +404,7 @@
   /* 髮絲線／粗線分隔——報頭各段之間的分節線，取代原本卡片式的留白分段。 */
   .masthead hr { border: none; margin: .7rem 0; }
   .masthead .rule-hair { border-top: 1px solid var(--line); }
-  .masthead .rule-thick { border-top: 2px solid var(--line-strong); margin: .4rem 0 .55rem; }
+  .masthead .rule-thick { border-top: 4px solid var(--fg); margin: .4rem 0 .55rem; }
 
   /* 眉題：本頁主題（報紙特輯的欄目名），比大標小很多、寬字距，讀起來是「欄目」
      不是「標題」——沿用全站既有的 .kicker 語彙（見 tokens.css），不再另外造字級。 */
@@ -415,11 +416,9 @@
      display:block 成一行，第二行加 white-space: nowrap 防止五個漢字本身又被
      再次擠斷；兩行字級相同，用行距與些微字距做出「刻意的兩行報頭」而非「被擠斷」
      的觀感。 */
-  .masthead h1 {
-    font-size: var(--t-xl); font-weight: 700; margin: 0; line-height: 1.2;
-  }
-  .masthead h1 span { display: block; }
-  .masthead h1 .masthead-theme { white-space: nowrap; letter-spacing: .02em; margin-top: .05em; }
+  .masthead .ep-card { margin: 0; }
+  .masthead .ep-card .masthead-theme { font-size: 52px; }
+  .masthead .ep-card .masthead-year { font-size: 15px; }
 
   /* 版次：這是「兩個版次擇一」的選擇器，不是兩個並列的標題——用字級與粗細的
      落差＋accent 底線做出「選中／未選中」的區分，兩個版次之間再用一條垂直髮絲線
