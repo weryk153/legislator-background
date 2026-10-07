@@ -1,0 +1,31 @@
+---
+// 黑標題卡（EVA 標題卡構圖）：左側直排朱紅小字，右側兩行大小對比的壓扁字。
+// 語意標題與視覺字串不同時（縣市頁、個人頁的 h1 字串為 SEO 調過，不能改），
+// 視覺字串 aria-hidden、語意標題以 sr-only 保留。直排字永遠在標題元素外。
+// 兩行之間不留空白文字節點，標題元素的 textContent 才會等於 lines.join("")。
+import { fitStyle } from "../lib/squash";
+
+interface Props {
+  vertical: string;
+  lines: [string] | [string, string];
+  heading?: string;
+  as?: "h1" | "h2";
+  href?: string;
+}
+const { vertical, lines, heading, as: Tag = "h1", href } = Astro.props;
+// 大字 84px／小字 38px，壓扁 .62；窄螢幕扣掉槽寬 48、卡片內距 36、直排欄 24＋間距 10 ≈ 120px 後依寬度縮字。
+const l1 = fitStyle(lines[0], 0.62, 84, 120);
+const l2 = lines[1] ? fitStyle(lines[1], 0.62, 38, 120) : null;
+const Wrap = href ? "a" : "div";
+---
+<Wrap class="tcard" href={href}>
+  <span class="tcard-v" aria-hidden="true">{vertical}</span>
+  {heading ? (
+    <>
+      <span class="tcard-body" aria-hidden="true"><span class="tcard-line"><span class="sq tcard-l1" style={l1}>{lines[0]}</span></span>{l2 && <span class="tcard-line"><span class="sq tcard-l2" style={l2}>{lines[1]}</span></span>}</span>
+      <Tag class="sr-only">{heading}</Tag>
+    </>
+  ) : (
+    <Tag class="tcard-body"><span class="tcard-line"><span class="sq tcard-l1" style={l1}>{lines[0]}</span></span>{l2 && <span class="tcard-line"><span class="sq tcard-l2" style={l2}>{lines[1]}</span></span>}</Tag>
+  )}
+</Wrap>
