@@ -133,13 +133,13 @@
 {/if}
 
 <style>
-  .ctrl { width: 100%; max-width: 480px; padding: 8px 12px; font-size: 1rem; border: 1px solid var(--line-strong); background: transparent; color: var(--fg); }
+  .ctrl { width: 100%; max-width: 480px; padding: 8px 12px; font-size: 1rem; border: 1px solid var(--fg); border-radius: 0; background: transparent; color: var(--fg); }
   .controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 10px 0 0; }
-  .controls .ctrl { width: auto; max-width: none; padding: 7px 11px; font-size: 0.8125rem; border-radius: 7px; background: var(--surface); transition: border-color var(--ease); }
-  .controls .ctrl:hover { border-color: var(--accent); }
+  .controls .ctrl { width: auto; max-width: none; padding: 7px 11px; font-size: 0.8125rem; border-radius: 0; border-color: var(--fg); background: transparent; }
+  .controls .ctrl:hover { box-shadow: inset 0 0 0 1px var(--fg); }
   .stats { margin: 14px 0 6px; font-size: 0.8125rem; color: var(--muted); }
   .filter-note { margin: 0 0 6px; font-size: 0.75rem; color: var(--muted); }
-  h2 { font-size: 1.0625rem; margin: 22px 0 8px; }
+  h2 { font-weight: 900; font-size: 1.0625rem; margin: 22px 0 8px; }
   .donor { margin: 8px 0; }
   .donor-head { display: flex; justify-content: space-between; gap: 12px; width: 100%; padding: 10px 0; background: none; border: none; cursor: pointer; color: var(--fg); font: inherit; text-align: left; }
   .donor-name { font-weight: 700; }

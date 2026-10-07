@@ -17,7 +17,7 @@
     const v = (n: string) => c.getPropertyValue(n).trim();
     return {
       bg: v('--bg'), surface: v('--surface'), fg: v('--fg'), muted: v('--muted'),
-      faint: v('--faint'), line: v('--line-strong'), accent: v('--accent'),
+      faint: v('--faint'), line: v('--graph-line'), accent: v('--accent'),
       serif: v('--serif'), sans: v('--sans'),
     };
   }

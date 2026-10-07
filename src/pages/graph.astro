@@ -1,5 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
+import TitleCard from "../components/TitleCard.astro";
+import SectionHead from "../components/SectionHead.astro";
 import RelationshipGraph from "../components/RelationshipGraph.svelte";
 import { loadGraph } from "../lib/loadGraph";
 import { OFFICE_LABEL } from "../lib/graph";
@@ -28,7 +30,7 @@ const peopleList = [...graph.nodes]
 ---
 
 <Base title={title} description={desc}>
-  <h1>人物關係圖</h1>
+  <div class="gh"><TitleCard vertical="公開資料" lines={["人物", "關係圖"]} /></div>
   <p class="lede">{desc}</p>
   <p class="note">關係資料整理自司法判決、媒體報導與公開資料，僅呈現已查證者。實線圓為本站收錄之政治人物（可點選進入檔案頁），虛線圓為相關之其他公眾人物。實線連線為家族關係，虛線為政治關係。</p>
 
@@ -41,7 +43,7 @@ const peopleList = [...graph.nodes]
   <RelationshipGraph client:load data={graph} centerKey={null} mode="global" />
 
   <section class="sec people">
-    <h2>圖中人物清單</h2>
+    <SectionHead text="圖中人物清單" />
     <p class="note">以上關係圖之文字版本，依姓名排序；可點選的姓名為本站收錄之政治人物（連至其檔案頁），其餘為相關之其他公眾人物。關係說明與出處請至各政治人物之檔案頁查看。</p>
     <ul class="people-list">
       {peopleList.map((p) => (
@@ -56,7 +58,7 @@ const peopleList = [...graph.nodes]
   </section>
 
   <style>
-    h1 { font-size: var(--t-xl); margin: 14px 0 6px; }
+    .gh { margin: 14px 0 12px; }
     .lede { margin: 0 0 8px; }
     .note { font-size: var(--t-sm); color: var(--muted); margin: 0 0 16px; max-width: 72ch; line-height: 1.7; }
     .controls { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
@@ -69,10 +71,6 @@ const peopleList = [...graph.nodes]
     .controls label { font-size: var(--t-sm); color: var(--muted); display: flex; align-items: center; gap: 5px; }
 
     .sec.people { margin: 32px 0 8px; }
-    .sec.people h2 {
-      font-size: 1.25rem; margin: 0 0 14px;
-      padding-bottom: 8px; border-bottom: 1px solid var(--line-strong);
-    }
     .people-list {
       list-style: none; margin: 0; padding: 0;
       columns: 3; column-gap: 24px;

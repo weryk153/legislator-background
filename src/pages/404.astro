@@ -1,13 +1,13 @@
 ---
 import Base from "../layouts/Base.astro";
+import TitleCard from "../components/TitleCard.astro";
 // Cloudflare Pages 在找不到頂層 404.html 時會把整站當 SPA，對任何不存在的網址
 // 回傳首頁內容與 200——搜尋引擎會把這些網址當成首頁的重複內容（soft 404）。
 // 有了這頁，不存在的網址就會正確回 404。noindex 為雙重保險。
 ---
 <Base title="找不到頁面｜政治人物背景資料庫" description="您要找的頁面不存在，或該人物已不在收錄範圍內。" noindex>
   <article class="nf">
-    <span class="kicker">404</span>
-    <h1>找不到這個頁面</h1>
+    <TitleCard vertical="404" lines={["找不到", "這個頁面"]} />
     <p class="lede">網址可能有誤，或該人物已不在本站收錄範圍內。可以回到總覽搜尋姓名，或從下列頁面繼續瀏覽。</p>
     <ul>
       <li><a href="/">總覽：搜尋政治人物</a></li>
@@ -19,8 +19,7 @@ import Base from "../layouts/Base.astro";
 
   <style>
     .nf { max-width: 62ch; }
-    .nf h1 { font-size: var(--t-xl); margin: 8px 0 8px; }
-    .nf .lede { margin: 0 0 20px; }
+    .nf .lede { margin: 12px 0 20px; }
     .nf ul { line-height: 1.9; padding-left: 1.2em; margin: 0; }
     .nf a { text-decoration: underline; text-underline-offset: 2px; }
     .nf a:hover { color: var(--accent); }

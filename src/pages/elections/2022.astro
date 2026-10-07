@@ -2,6 +2,7 @@
 // 2022 年九合一選舉結果一覽。原本附在 /elections 底部；/elections 改以 2026 為主軸後
 // 使用者要求另外放（2026-10-05），這裡獨立成頁，內容與資料來源不變。
 import Base from "../../layouts/Base.astro";
+import SectionHead from "../../components/SectionHead.astro";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { MapLayer } from "../../lib/mapTypes";
@@ -93,7 +94,7 @@ const jsonLd = [
     <ElectionPanel client:load {years} initialYear={2022} yearHref={YEAR_HREF} />
   </div>
 
-  <h2 class="table-title">全國一覽：2022 年九合一選舉結果</h2>
+  <SectionHead text="全國一覽：2022 年九合一選舉結果" />
 
   <!-- 全國一覽：伺服器端渲染的靜態表格，滿版地圖之下。地圖／側欄是 client:load
        的 Svelte 元件，爬蟲與無 JS 的使用者看不到裡面的縣市名、首長、席次、得票
@@ -149,11 +150,6 @@ const jsonLd = [
   /* 滿版地圖：與 src/pages/elections.astro 的 .map-stage 相同（頁首實測高度見該檔說明）。 */
   .map-stage { position: relative; width: 100vw; margin: 0 0 0 calc(50% - 50vw); height: calc(100dvh - 130px); }
   @media (max-width: 900px) { .map-stage { height: auto; margin-top: 0; } }
-  .table-title { font-size: var(--t-lg); margin: 48px 0 8px; }
-  .sr-only {
-    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
-  }
   .overview-note { color: var(--muted); font-size: 0.9375rem; line-height: 1.7; max-width: 72ch; margin: 0 0 20px; }
   .overview-note a { text-decoration: underline; text-underline-offset: 2px; }
   .table-scroll { overflow-x: auto; }
