@@ -67,7 +67,7 @@
   --surface: #1c1b19;
   --fg: #ece9e2;
   --muted: #a8a49b;
-  --faint: #7d7a72;
+  --faint: #827f77;  /* 深色底對比約 4.6:1（AA） */
   --line: rgba(190, 185, 175, 0.16);
   --line-strong: #ece9e2;
   --block-bg: #ece9e2;

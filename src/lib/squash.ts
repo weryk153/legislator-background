@@ -1,12 +1,12 @@
 // 壓扁特粗明朝（tokens.css 的 .sq）用 transform: scaleX 壓扁，但 transform 不改版面寬度，
 // 壓扁後右側會留一截空白。.sq 以 margin-right: (k-1) × n × .97em 收回，n 就是這裡算的
-// 「未壓扁寬度（em）」。半形字只有約 0.56em 寬，若一律當 1em 算，負 margin 會收過頭、
-// 吃掉後面的字。
-const HALF_WIDTH = /[ -ɏ]/;
+// 「未壓扁寬度（em）」。半形字約 0.6em、空白只有約 0.22em（Noto Serif TC 900 實測），
+// 若一律當 1em 算，負 margin 會收過頭、吃掉後面的字。
+const HALF_WIDTH = /[!-ɏ]/;
 
 export function squashWidth(text: string): number {
   let w = 0;
-  for (const ch of text) w += HALF_WIDTH.test(ch) ? 0.56 : 1;
+  for (const ch of text) w += ch === ' ' ? 0.25 : HALF_WIDTH.test(ch) ? 0.6 : 1;
   return Math.round(w * 100) / 100;
 }
 

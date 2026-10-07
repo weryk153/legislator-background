@@ -6,9 +6,12 @@ describe('squashWidth', () => {
     expect(squashWidth('政治人物背景資料庫')).toBe(9);
     expect(squashWidth('縣長・議員選舉')).toBe(7);
   });
-  it('半形數字與拉丁字每字 0.56em，避免負 margin 吃掉後面的字', () => {
-    expect(squashWidth('2026')).toBe(2.24);
-    expect(squashWidth('第1選舉區')).toBe(4.56);
+  it('半形數字與拉丁字每字 0.6em，避免負 margin 吃掉後面的字', () => {
+    expect(squashWidth('2026')).toBe(2.4);
+    expect(squashWidth('第1選舉區')).toBe(4.6);
+  });
+  it('空白只算 0.25em（Noto Serif TC 900 實測約 0.22em），否則含空白的字串會收過頭', () => {
+    expect(squashWidth('2026 澎湖縣長參選人')).toBe(9.65);
   });
   it('空字串為 0', () => {
     expect(squashWidth('')).toBe(0);
