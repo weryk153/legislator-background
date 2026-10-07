@@ -47,18 +47,21 @@ const councilReelect = isCouncilReelect;
 const fmtInt = (n: number): string => n.toLocaleString("en-US");
 
 // ── 選務時程軸 ─────────────────────────────────────────────
-// 以建置當天（臺灣日期）標出目前位置。頁面是靜態建置，「今天」就是最後一次建置的日期；
-// 名單換版時會重新建置，時程軸跟著前進。
+// 建置時先以建置當天（臺灣日期）畫出一版，免 JS 也看得到；頁面是靜態建置、不會每天重建，
+// 所以頁尾的腳本會在瀏覽器端依「訪客的今天」重算節點狀態並搬動「今天」標記。
 const today = taipeiToday();
 const progress = timelineProgress(ELECTION_MILESTONES, today);
 const shortDate = (iso: string) => `${Number(iso.slice(5, 7))}/${Number(iso.slice(8, 10))}`;
-// 節點與「今天」標記攤成一串，畫成同一條線上的項目；今天正逢某節點時不另畫標記。
+// 節點與「今天」標記攤成一串，畫成同一條線上的項目；今天正逢某節點時標記藏起來（仍輸出，
+// 讓瀏覽器端換日後有東西可搬）。
 type TimelineItem = { kind: "node"; i: number } | { kind: "today" };
 const timelineItems: TimelineItem[] = [
   ...(progress.todayAfter === -1 ? [{ kind: "today" as const }] : []),
   ...ELECTION_MILESTONES.flatMap((_, i): TimelineItem[] =>
     progress.todayAfter === i ? [{ kind: "node", i }, { kind: "today" }] : [{ kind: "node", i }]),
+  ...(progress.todayAfter === null ? [{ kind: "today" as const }] : []),
 ];
+const SR_STATE = { done: "（已過）", current: "（進行中）", upcoming: "（未到）" } as const;
 
 // ── 參選概況 ─────────────────────────────────────────────
 const overview = candidates2026 ? candidateOverview(candidates2026, councils2026) : null;
@@ -151,7 +154,7 @@ const jsonLd = [
       {timelineItems.map((it) => {
         if (it.kind === "today") {
           return (
-            <li class="tl-today">
+            <li class="tl-today" hidden={progress.todayAfter === null}>
               <span class="tl-mark" aria-hidden="true"></span>
               <span class="tl-label">今天</span>
               <time class="tl-date" datetime={today}>{shortDate(today)}</time>
@@ -161,11 +164,11 @@ const jsonLd = [
         const m = ELECTION_MILESTONES[it.i];
         const st = progress.states[it.i];
         return (
-          <li class={`tl-node ${st}`} aria-current={st === "current" ? "step" : undefined}>
+          <li class={`tl-node ${st}`} data-i={it.i} aria-current={st === "current" ? "step" : undefined}>
             <span class="tl-dot" aria-hidden="true"></span>
             <span class="tl-label">{m.label}</span>
             <time class="tl-date" datetime={m.start}>{m.dateText}</time>
-            <span class="sr-only">{st === "done" ? "（已過）" : st === "current" ? "（進行中）" : "（未到）"}</span>
+            <span class="sr-only">{SR_STATE[st]}</span>
           </li>
         );
       })}
@@ -314,6 +317,35 @@ const jsonLd = [
     <a href="/elections/2022/">2022 年九合一選舉結果一覽（縣市長、議會席次、得票率）→</a>
   </p>
 
+  <script>
+    // 時程軸換日：建置出來的是建置當天的版本，這裡依訪客的今天（臺灣日期）重算。
+    // 與伺服器端共用同一套 timelineProgress，規則只有一份。
+    import { ELECTION_MILESTONES, taipeiToday, timelineProgress } from "../lib/candidateTypes";
+
+    const SR_STATE = { done: "（已過）", current: "（進行中）", upcoming: "（未到）" } as const;
+    const list = document.querySelector<HTMLOListElement>(".timeline");
+    const todayLi = list?.querySelector<HTMLLIElement>(".tl-today");
+    const todayTime = todayLi?.querySelector<HTMLTimeElement>(".tl-date");
+    const today = taipeiToday();
+    if (list && todayLi && todayTime && todayTime.dateTime !== today) {
+      const { states, todayAfter } = timelineProgress(ELECTION_MILESTONES, today);
+      const nodes = [...list.querySelectorAll<HTMLLIElement>(".tl-node")];
+      nodes.forEach((li) => {
+        const st = states[Number(li.dataset.i)];
+        li.classList.remove("done", "current", "upcoming");
+        li.classList.add(st);
+        if (st === "current") li.setAttribute("aria-current", "step");
+        else li.removeAttribute("aria-current");
+        const sr = li.querySelector(".sr-only");
+        if (sr) sr.textContent = SR_STATE[st];
+      });
+      todayTime.dateTime = today;
+      todayTime.textContent = `${Number(today.slice(5, 7))}/${Number(today.slice(8, 10))}`;
+      todayLi.hidden = todayAfter === null;
+      if (todayAfter === -1) list.prepend(todayLi);
+      else if (todayAfter !== null) nodes[todayAfter].after(todayLi);
+    }
+  </script>
 </Base>
 
 <style>
@@ -443,6 +475,7 @@ const jsonLd = [
   .timeline li { position: relative; padding-top: 22px; display: flex; flex-direction: column; gap: 2px; }
   .tl-node { flex: 1 1 0; min-width: 0; }
   .tl-today { flex: 0 0 auto; }
+  .tl-today[hidden] { display: none; }
   .tl-dot {
     position: absolute; top: 0; left: 0;
     width: 13px; height: 13px; border-radius: 50%;
