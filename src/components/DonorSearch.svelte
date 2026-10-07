@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import { rankDonors, filterOfficials, collectParties, collectElectionGroups, ELECTION_GROUP_LABEL, filterOfficialsByName, filterDonorsByName, type DonorSort, type Donor, type Official } from '../lib/donorFilter';
 
   type Data = { generatedAt: string; elections: string[]; officials: Official[]; donors: Donor[] };
@@ -13,7 +12,13 @@
   let officeType = '';
   let election = '';
 
-  onMount(async () => {
+  // donors.json 有 4MB，而大多數讀者只看頁面上已有的靜態排行（donors.astro 建置時輸出）。
+  // 不在掛載時就抓：等讀者開始互動（搜尋框或篩選選單取得焦點／被點擊、或開始輸入）才載入，
+  // 手機上省下 4MB 流量與解析時間。
+  let requested = false;
+  async function ensureData() {
+    if (requested) return;
+    requested = true;
     try {
       const res = await fetch('/data/donors.json');
       if (!res.ok) throw new Error(String(res.status));
@@ -22,7 +27,8 @@
       // 一旦本元件成功接手（互動版可搜尋/篩選），移除靜態版避免重複內容；載入失敗則保留靜態版作為後備內容。
       document.getElementById('static-ranking')?.remove();
     } catch { failed = true; }
-  });
+  }
+  $: if (search) ensureData();
 
   const fmt = (n: number) => new Intl.NumberFormat('zh-Hant').format(n);
   const officeName: Record<string, string> = { legislator: '立委', mayor_magistrate: '縣市首長', councilor: '議員', candidate: '參選人' };
@@ -40,6 +46,7 @@
   $: totalAmount = data ? data.donors.reduce((s, d) => s + d.total, 0) : 0;
 </script>
 
+<div class="search-area" on:focusin={ensureData} on:pointerdown={ensureData}>
 <input class="ctrl" type="search" placeholder="輸入政治人物姓名，或公司名稱／統一編號" aria-label="搜尋" bind:value={search} />
 
 <div class="controls">
@@ -62,11 +69,12 @@
     {#each elections as e}<option value={e}>{ELECTION_GROUP_LABEL[e] ?? e}</option>{/each}
   </select>
 </div>
+</div>
 
 {#if failed}
   <p class="dim">資料載入失敗，請重新整理。</p>
 {:else if !data}
-  <p class="dim">載入中…</p>
+  {#if requested}<p class="dim">載入中…</p>{/if}
 {:else}
   {#if q.length < 2}
     <p class="stats num">收錄營利事業 {fmt(data.donors.length)} 家・捐贈總額 NT$ {fmt(totalAmount)}・{data.elections.length} 場選舉（{data.generatedAt} 匯出）</p>
