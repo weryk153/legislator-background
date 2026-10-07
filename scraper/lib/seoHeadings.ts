@@ -3,7 +3,7 @@ const ENTITIES: Record<string, string> = { '&amp;': '&', '&lt;': '<', '&gt;': '>
 
 function plain(s: string): string {
   return s
-    .replace(/<[^>]+>/g, ' ')
+    .replace(/<[^>]+>/g, '')
     .replace(/&(amp|lt|gt|quot|#39|nbsp);/g, (m) => ENTITIES[m])
     .replace(/\s+/g, ' ')
     .trim();
