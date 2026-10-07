@@ -197,7 +197,7 @@
           if (slug) window.location.href = `/officials/${slug}/`;
         });
 
-        // hover 連線 → tooltip（關係＋說明＋出處）。tooltip 自身可 hover，方便點出處連結。
+        // 說明框（tooltip）自身可 hover，方便點出處連結。
         tip = document.createElement('div');
         tip.className = 'rg-tip';
         container.appendChild(tip);
@@ -207,27 +207,30 @@
         tip.addEventListener('mouseenter', () => clearTimeout(hideTimer));
         tip.addEventListener('mouseleave', hideSoon);
 
-        cy!.on('mouseover', 'edge', (evt: any) => {
+        // 說明框的內容：連線（關係＋說明＋出處）與外部人物節點（描述＋條目連結＋照片署名）。
+        // 桌機 hover 顯示；手機沒有 hover，改成點一下顯示、點圖上空白處收起（共用同一份內容）。
+        let hlEdge: any = null;
+        const showEdgeTip = (edge: any) => {
           clearTimeout(hideTimer);
-          evt.target.addClass('hl');
-          const d = evt.target.data();
+          if (hlEdge && hlEdge !== edge) hlEdge.removeClass('hl');
+          hlEdge = edge;
+          edge.addClass('hl');
+          const d = edge.data();
           const note = d.note ? `<div class="rg-note">${esc(d.note)}</div>` : '';
           const src = d.sourceUrl
             ? `<a class="rg-src" href="${esc(d.sourceUrl)}" target="_blank" rel="noopener">查看出處 ↗</a>` : '';
-          const m = evt.target.renderedMidpoint();
+          const m = edge.renderedMidpoint();
           tip!.innerHTML = `<div class="rg-rel">${esc(d.label)}</div>${note}${src}`;
           tip!.style.left = `${m.x}px`;
           tip!.style.top = `${m.y}px`;
           tip!.style.opacity = '1';
           tip!.style.pointerEvents = 'auto';
-        });
-        cy!.on('mouseout', 'edge', (evt: any) => { evt.target.removeClass('hl'); hideSoon(); });
-
-        // hover 外部人物節點 → tooltip（描述＋條目連結＋照片署名）。本站收錄的公職點擊即進檔案頁，不需要。
+        };
+        // 外部人物節點：本站收錄的公職點擊即進檔案頁，不需要說明框。
         // 照片來自 Wikimedia Commons，CC BY 系列要求可見署名，故署名放在圖上、不只放 about 頁。
-        cy!.on('mouseover', 'node[kind = "entity"]', (evt: any) => {
+        const showEntityTip = (node: any) => {
           clearTimeout(hideTimer);
-          const d = evt.target.data();
+          const d = node.data();
           const desc = d.description ? `<div class="rg-note">${esc(d.description)}</div>` : '';
           const wiki = d.wikipediaUrl
             ? `<a class="rg-src" href="${esc(d.wikipediaUrl)}" target="_blank" rel="noopener">維基百科條目 ↗</a>` : '';
@@ -237,15 +240,29 @@
             ? `<div class="rg-credit">照片：<a class="rg-src" href="${esc(d.photoSourceUrl)}" target="_blank" rel="noopener">${esc(d.photoCredit)}</a>（本站縮圖）</div>`
             : `<div class="rg-credit">照片：${esc(d.photoCredit)}</div>`;
           if (!desc && !wiki && !credit) { hideSoon(); return; }
-          const p = evt.target.renderedPosition();
-          const r = evt.target.renderedOuterWidth() / 2;
+          const p = node.renderedPosition();
+          const r = node.renderedOuterWidth() / 2;
           tip!.innerHTML = `<div class="rg-rel">${esc(d.name)}</div>${desc}${wiki}${credit}`;
           tip!.style.left = `${p.x}px`;
           tip!.style.top = `${p.y - r}px`;
           tip!.style.opacity = '1';
           tip!.style.pointerEvents = 'auto';
-        });
+        };
+        const hideNow = () => {
+          clearTimeout(hideTimer);
+          tip!.style.opacity = '0';
+          tip!.style.pointerEvents = 'none';
+          if (hlEdge) { hlEdge.removeClass('hl'); hlEdge = null; }
+        };
+
+        cy!.on('mouseover', 'edge', (evt: any) => showEdgeTip(evt.target));
+        cy!.on('mouseout', 'edge', (evt: any) => { evt.target.removeClass('hl'); if (hlEdge === evt.target) hlEdge = null; hideSoon(); });
+        cy!.on('mouseover', 'node[kind = "entity"]', (evt: any) => showEntityTip(evt.target));
         cy!.on('mouseout', 'node[kind = "entity"]', hideSoon);
+        // 觸控：點連線／外部人物顯示說明框；點空白處收起。
+        cy!.on('tap', 'edge', (evt: any) => showEdgeTip(evt.target));
+        cy!.on('tap', 'node[kind = "entity"]', (evt: any) => showEntityTip(evt.target));
+        cy!.on('tap', (evt: any) => { if (evt.target === cy) hideNow(); });
 
         // 跟著亮/暗模式切換重新上色
         mo = new MutationObserver(() => cy!.style(buildStyle(readColors())).update());
