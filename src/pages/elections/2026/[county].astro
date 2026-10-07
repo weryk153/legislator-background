@@ -10,6 +10,8 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import Base from "../../../layouts/Base.astro";
 import ChiefRaceCard from "../../../components/ChiefRaceCard.astro";
+import TitleCard from "../../../components/TitleCard.astro";
+import SectionHead from "../../../components/SectionHead.astro";
 import { STAGE_LABEL, chiefTitle, type ChiefRace, type CountyCandidates, type NationalCandidates } from "../../../lib/candidateTypes";
 import { isChiefReelect, isCouncilReelect, orderCandidates, partyLabel } from "../../../lib/candidateStats";
 import { COUNTY_KEYS, countyByCode, countyPagePath, type CountyKey } from "../../../lib/countyKeys";
@@ -143,14 +145,14 @@ const jsonLd = [
   </nav>
 
   <header class="head">
-    <h1>{countyPageHeading(name)}</h1>
+    <TitleCard vertical="二〇二六" lines={[name, `${name.endsWith("市") ? "市" : "縣"}長・議員選舉`]} heading={countyPageHeading(name)} />
     <p class="status">
       本站名單目前為：<a href={dataSource.url} rel="noopener">{STAGE_LABEL[dataSource.stage]}</a>（製表 {dataSource.tableDate}），名單會隨選務進度更新。
     </p>
   </header>
 
   <section class="sec" aria-labelledby="chief-title">
-    <h2 id="chief-title">{chief}候選人</h2>
+    <SectionHead id="chief-title" text={`${chief}候選人`} />
     {elected2022 && (
       <p class="inc2022">
         2022 當選：{elected2022.name}（{elected2022.partyName}），{fmtInt(elected2022.votes)} 票（{elected2022.share}%）{termText && `・${termText}`}
@@ -164,7 +166,7 @@ const jsonLd = [
 
   {council && (
     <section class="sec" aria-labelledby="council-title">
-      <h2 id="council-title">{name}議員候選人</h2>
+      <SectionHead id="council-title" text={`${name}議員候選人`} />
       <p class="note">
         {districts.length} 個選區、{fmtInt(councilCount)} 位候選人。<strong>粗體</strong>為爭取連任的現任議員；有連結者為本站已收錄檔案之人物。選區編號以中選會 2026 名冊為準。
       </p>
@@ -205,7 +207,7 @@ const jsonLd = [
   )}
 
   <nav class="sec others" aria-labelledby="others-title">
-    <h2 id="others-title">其他縣市</h2>
+    <SectionHead id="others-title" text="其他縣市" />
     <ul class="county-links">
       {COUNTY_KEYS.map((k) => (
         <li>{k.key === county.key
@@ -221,27 +223,27 @@ const jsonLd = [
   .crumbs { font-size: var(--t-sm); color: var(--muted); }
   .crumbs a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
   .crumbs a:hover { color: var(--accent); }
-  .head { margin: 14px 0 36px; }
-  .head h1 { font-size: var(--t-xl); margin: 0 0 10px; }
+  .head { margin: 14px 0 0; display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; }
+  .head .status { max-width: 32em; }
   .status { color: var(--muted); font-size: 0.9375rem; line-height: 1.7; margin: 0; }
   .status a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
   .status a:hover { color: var(--accent); }
 
   .sec { margin-bottom: 48px; }
-  .sec h2 { font-size: var(--t-lg); margin: 0 0 8px; }
   .note { color: var(--muted); font-size: 0.9375rem; line-height: 1.7; max-width: 72ch; margin: 12px 0 20px; }
-  .note.mapping { border-left: 2px solid var(--accent); padding-left: 10px; }
+  .note.mapping { border-left: 2px solid var(--fg); padding-left: 10px; }
   .inc2022 { font-size: 0.9375rem; line-height: 1.7; margin: 0 0 4px; font-variant-numeric: tabular-nums; }
 
   /* 議員選區：全部展開（不用 <details>），讓讀者與搜尋引擎直接看到每一區的名單。
      報紙特輯調性：髮絲線分隔，選區標題列出涵蓋的鄉鎮市區。 */
   .dgroup-title { font-size: var(--t-md); margin: 28px 0 4px; }
   .district { border-top: 1px solid var(--line); padding: 12px 0 14px; }
+  .dgroup > .district:first-of-type, .dgroup-title + .district { border-top: 1px solid var(--fg); }
   .district .d-head {
     display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px;
     margin: 0 0 8px; font-size: 1rem; line-height: 1.5;
   }
-  .d-label { font-family: var(--serif); font-weight: 700; }
+  .d-label { font-family: var(--serif); font-weight: 900; }
   .d-towns { font-family: var(--sans); font-weight: 400; font-size: 0.875rem; color: var(--muted); }
   .d-count { font-family: var(--sans); font-weight: 400; font-size: var(--t-sm); color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
   .clist {
@@ -256,20 +258,18 @@ const jsonLd = [
   /* 現任議員爭取連任：只加粗姓名（與 /elections 同規則）。 */
   .clist .reelect .nm { font-weight: 700; }
 
-  .others h2 { font-size: var(--t-md); }
   .county-links {
     list-style: none; margin: 8px 0 0; padding: 0;
     display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.9375rem; line-height: 1.8;
   }
   .county-links a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
   .county-links a:hover { color: var(--accent); }
-  .county-links [aria-current] { font-weight: 700; }
+  .county-links [aria-current] { font-weight: 700; background: var(--block-bg); color: var(--block-fg); padding: 0 6px; }
   .back { margin: 20px 0 0; font-size: 0.9375rem; }
   .back a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
   .back a:hover { color: var(--accent); }
 
   @media (max-width: 640px) {
-    .head h1 { font-size: var(--t-lg); }
     .d-count { margin-left: 0; }
     /* 窄螢幕仍排兩欄（姓名＋政黨約 8em），長黨名在格內換行，不讓名單拉成一長條。 */
     .clist { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); gap: 4px 14px; }
