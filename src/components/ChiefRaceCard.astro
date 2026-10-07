@@ -91,7 +91,9 @@ const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
   .mc-body { min-width: 0; }
   .mc-body p { margin: 0; line-height: 1.6; }
   .mc-name { font-size: 22px; line-height: 1.1 !important; margin-bottom: 4px !important; }
-  .mc-name a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+  /* 有站上檔案的候選人要看得出是連結（觸控螢幕沒有 hover），與議員名單一致加細底線。 */
+  .mc-name a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .mc-name a:hover { text-decoration-thickness: 2px; }
   .mc-no { font-family: var(--sans); font-weight: 400; font-size: var(--t-sm); color: var(--muted); margin-right: 6px; }
   .mc-tag { display: inline-block; margin-left: 8px; padding: 0 6px; font-family: var(--sans); font-weight: 400; font-size: var(--t-xs); line-height: 1.6; color: var(--fg); border: 1px solid var(--fg); vertical-align: 4px; }
   .mc-party, .mc-id { font-size: 0.8125rem; }

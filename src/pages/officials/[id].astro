@@ -13,7 +13,7 @@ import { chiefTitle } from "../../lib/candidateTypes";
 import { loadCandidacies } from "../../lib/candidacy";
 import { countyPagePath } from "../../lib/countyKeys";
 import RelationshipGraph from "../../components/RelationshipGraph.svelte";
-import { officeRole, officialPageTitle } from "../../lib/seoTitle";
+import { officeRole, officialPageTitle, shortParty } from "../../lib/seoTitle";
 
 export async function getStaticPaths() {
   const officials = await loadOfficials();
@@ -142,7 +142,7 @@ const jsonLd = [
   <a href={isCandidate ? "/elections/" : "/"} class="back">{isCandidate ? "← 返回 2026 選舉" : "← 返回總覽"}</a>
 
   <header class="head">
-    <TitleCard vertical={o.party} lines={[o.name, roleText]} heading={o.name} />
+    <TitleCard vertical={shortParty(o.party)} lines={[o.name, roleText]} heading={o.name} />
     <div class="pills">
       <span class="pill">{OFFICE_LABEL[o.officeType]}</span>
       {o.departedReason && <span class="pill departed">已解職</span>}

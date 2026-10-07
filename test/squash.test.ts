@@ -6,12 +6,16 @@ describe('squashWidth', () => {
     expect(squashWidth('政治人物背景資料庫')).toBe(9);
     expect(squashWidth('縣長・議員選舉')).toBe(7);
   });
-  it('半形數字與拉丁字每字 0.6em，避免負 margin 吃掉後面的字', () => {
-    expect(squashWidth('2026')).toBe(2.4);
-    expect(squashWidth('第1選舉區')).toBe(4.6);
+  it('半形字依 Noto Serif TC 900 實測寬度（含 -.03em 字距）換算：數字約 0.6em', () => {
+    expect(squashWidth('2026')).toBeCloseTo(2.4, 1);
+    expect(squashWidth('第1選舉區')).toBeCloseTo(4.45, 1);
   });
-  it('空白只算 0.25em（Noto Serif TC 900 實測約 0.22em），否則含空白的字串會收過頭', () => {
-    expect(squashWidth('2026 澎湖縣長參選人')).toBe(9.65);
+  it('空白約 0.22em，含空白的字串不會收過頭', () => {
+    expect(squashWidth('2026 澎湖縣長參選人')).toBeCloseTo(9.63, 1);
+  });
+  it('原住民族拉丁拼音姓名逐字依實測寬度（i、l、· 窄，m、w 寬）', () => {
+    expect(squashWidth('Iwan·Sigiy')).toBeCloseTo(5.37, 1);
+    expect(squashWidth('kaying．kuying．kalang')).toBeCloseTo(12.49, 1);
   });
   it('空字串為 0', () => {
     expect(squashWidth('')).toBe(0);
