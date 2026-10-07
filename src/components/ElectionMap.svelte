@@ -187,6 +187,24 @@
   // 背景分支，瀏覽器的 blur 事件在這個切換時機並不可靠（同一個既有問題見下方
   // onMapKey 附近的說明），與其依賴 blur 事件，不如在每個會改變 crumbs 的入口
   // 明確清空，較不會有殘留高亮跟錯層的風險。
+  // 下鑽後新一層（鄉鎮市區／村里）的界線延到縮放動畫結束才畫上去。新一層一次要插入
+  // 數十條、合計二三十萬字元的 <path>，跟縮放在同一幀發生時，手機上那一幀卡 0.3 秒，
+  // 0.6 秒的縮放前半段被吃掉、看起來一頓一跳。先縮放已畫好的縣市，放大完成再補上細界線。
+  // revealedDepth：目前已畫出的層數（1＝只有縣市層）。返回時立即同步（移除圖層很便宜）。
+  let revealedDepth = $state(1);
+  let revealTimer: ReturnType<typeof setTimeout> | null = null;
+  function revealAfterZoom() {
+    if (revealTimer !== null) clearTimeout(revealTimer);
+    // 與 .zoom-group 的 transition 時長一致（減少動態效果時為 180ms）。
+    const ms = matchMedia('(prefers-reduced-motion: reduce)').matches ? 200 : 620;
+    revealTimer = setTimeout(() => { revealTimer = null; revealedDepth = crumbs.length; }, ms);
+  }
+  function syncRevealOnBack() {
+    if (revealTimer !== null) { clearTimeout(revealTimer); revealTimer = null; }
+    revealedDepth = Math.min(revealedDepth, crumbs.length);
+  }
+  onDestroy(() => { if (revealTimer !== null) clearTimeout(revealTimer); });
+
   let hovered = $state<string | null>(null);
   let kbFocused = $state<string | null>(null);
 
@@ -490,6 +508,7 @@
     if (map.has(area.code)) {
       // 幾何已經載入過：只推進對焦、換 transform，不重新 fetch，瞬間且平滑。
       crumbs = [...crumbs, { level: nextLevel, code: area.code, name: area.name }];
+      revealAfterZoom();
       hovered = null; kbFocused = null; // 見上方宣告處說明：不依賴 blur，下鑽時明確清空
       // 下鑽這一刻若剛好有一個 mouseleave 排的延遲還原（見 scheduleRestore）尚未
       // 觸發，必須連同取消——不然它稍後醒來時會用 focusLayer() 重算，這裡雖然算
@@ -512,6 +531,7 @@
       const child: MapLayer = await res.json();
       map.set(area.code, child);
       crumbs = [...crumbs, { level: nextLevel, code: area.code, name: area.name }];
+      revealAfterZoom();
       hovered = null; kbFocused = null;
       cancelRestore(); // 理由同上（cache-hit 分支）
       onSelect?.(null, focusLayer());
@@ -531,6 +551,7 @@
   function back() {
     if (crumbs.length <= 1) return;
     crumbs = crumbs.slice(0, -1);
+    syncRevealOnBack();
     hovered = null; kbFocused = null;
     cancelRestore(); // 理由見 drillInto 內同一行的註解
     error = null;
@@ -544,6 +565,7 @@
   export function jumpTo(i: number) {
     if (i >= crumbs.length - 1) return;
     crumbs = crumbs.slice(0, i + 1);
+    syncRevealOnBack();
     hovered = null; kbFocused = null;
     cancelRestore(); // 理由見 drillInto 內同一行的註解
     error = null;
@@ -585,35 +607,33 @@
 </script>
 
 {#snippet shapePath(s: Shape, layer: MapLayer, dim: boolean, interactive: boolean)}
-  {#if !neutral && isUnedited(s.area)}
-    <!-- 未編定村里：真實土地但無村里長，不可點擊的中性色區塊。neutral 模式下不
-         特別處理——尚未舉行的年份整張圖本來就已經是同一個中性色，沒必要再區分。 -->
-    <path d={s.d} class="unedited" role="img" aria-label={uneditedLabel(s.area)}
-      vector-effect="non-scaling-stroke" />
-  {:else if interactive}
-    <!-- hover／鍵盤焦點的視覺回饋不在這個 <path> 身上加深色描邊或降低透明度
-         （見下方 CSS 註解與 style 區塊最上方 hover-outline 的說明）：填色的微調
-         由 fillFor() 的 hover 參數處理，外框則由 .zoom-group 最上層另外疊的
-         .hover-outline 畫出完整、不斷線的一圈。這裡只要把「目前是否 hover／
-         focus」透過 fillFor 的第四個參數帶進填色即可。 -->
-    <path d={s.d} fill={fillFor(s.area, false, false, hovered === s.area.code || kbFocused === s.area.code)}
-      class:clickable={!!s.area.childFile}
-      vector-effect="non-scaling-stroke"
-      tabindex="0" role="button"
-      aria-label={areaLabel(s.area)}
-      onclick={() => drillInto(s.area, layer)}
-      onkeydown={(e) => onKey(e, s.area, layer)}
-      onmouseenter={() => { cancelRestore(); hovered = s.area.code; onSelect?.(s.area, layer); }}
-      onmouseleave={() => { hovered = null; scheduleRestore(); }}
-      onfocus={() => { kbFocused = s.area.code; }}
-      onblur={() => { kbFocused = null; }} />
-  {:else}
-    <!-- 非對焦，或已被下一層蓋過的背景區塊：只呈現地理脈絡，不進 tab 順序、不接收互動。
-         flatten=true——官派區不畫斜線紋理，見上方 fillFor 的說明。dim=true 時 fillFor
-         回傳 color-mix() 調淡版填色（保留色相），不再靠 CSS opacity。 -->
-    <path d={s.d} fill={fillFor(s.area, true, dim)} class="bg-shape"
-      vector-effect="non-scaling-stroke" aria-hidden="true" />
-  {/if}
+  <!-- 三種狀態共用同一個 <path>，只換屬性：
+       ・未編定村里（unedited）：真實土地但無村里長，不可點擊的中性色區塊（填色由 CSS
+         .unedited 給）。neutral 模式下不特別處理——尚未舉行的年份整張圖本來就是同一個中性色。
+       ・可互動（interactive）：可點擊下鑽、可 tab 聚焦。hover／鍵盤焦點不在這個 <path>
+         身上描邊，填色微調由 fillFor() 的 hover 參數處理，外框由 .zoom-group 最上層另外
+         疊的 .hover-outline 畫出（見 style 區塊說明）。
+       ・背景（非對焦或已被下一層蓋過）：只呈現地理脈絡，不進 tab 順序、不接收互動。
+         flatten=true——官派區不畫斜線紋理；dim=true 時 fillFor 回傳 color-mix() 調淡版填色。
+       過去用 {#if} 分三個分支，下鑽／返回時縣市從「可互動」切到「背景」，Svelte 會把
+       22 個縣市的 <path> 拆掉重建，瀏覽器重新解析約 50 萬字元的路徑資料，手機上點下去
+       的那一幀卡 0.3 秒、縮放動畫前半段被吃掉。同一個元素只改屬性就不必重新解析。 -->
+  {@const unedited = !neutral && isUnedited(s.area)}
+  {@const live = interactive && !unedited}
+  <path d={s.d}
+    class={unedited ? 'unedited' : live ? (s.area.childFile ? 'clickable' : undefined) : 'bg-shape'}
+    fill={unedited ? undefined : live ? fillFor(s.area, false, false, hovered === s.area.code || kbFocused === s.area.code) : fillFor(s.area, true, dim)}
+    vector-effect="non-scaling-stroke"
+    tabindex={live ? 0 : undefined}
+    role={unedited ? 'img' : live ? 'button' : undefined}
+    aria-label={unedited ? uneditedLabel(s.area) : live ? areaLabel(s.area) : undefined}
+    aria-hidden={!unedited && !live ? 'true' : undefined}
+    onclick={live ? () => drillInto(s.area, layer) : undefined}
+    onkeydown={live ? (e) => onKey(e, s.area, layer) : undefined}
+    onmouseenter={live ? () => { cancelRestore(); hovered = s.area.code; onSelect?.(s.area, layer); } : undefined}
+    onmouseleave={live ? () => { hovered = null; scheduleRestore(); } : undefined}
+    onfocus={live ? () => { kbFocused = s.area.code; } : undefined}
+    onblur={live ? () => { kbFocused = null; } : undefined} />
 {/snippet}
 
 <!-- 插圖裡同一縣市的第二塊小框（馬祖的東引、金門的烏坵）：滑鼠互動同主區（hover
@@ -693,12 +713,12 @@
         {#each countyShapes as s (s.key)}
           {@render shapePath(s, counties, crumbs.length > 1 && s.area.code !== focusCountyCode, crumbs.length === 1)}
         {/each}
-        {#if townsLayer}
+        {#if townsLayer && revealedDepth >= 2}
           {#each townShapes as s (s.key)}
             {@render shapePath(s, townsLayer, crumbs.length > 2 && s.area.code !== focusTownCode, crumbs.length === 2)}
           {/each}
         {/if}
-        {#if villagesLayer}
+        {#if villagesLayer && revealedDepth >= 3}
           {#each villageShapes as s (s.key)}
             {@render shapePath(s, villagesLayer, false, true)}
           {/each}
