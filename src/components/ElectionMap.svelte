@@ -340,8 +340,13 @@
   // 使用者鑽進的是不是金門／連江本身，都得靠這份清單當作「目前對焦層的上一層」
   // 背景脈絡（見 shapePath 呼叫處的 dim 參數），也是 focused／target 這兩個
   // $derived 找得到「使用者剛從金門插圖點下去」那個形狀的唯一來源。
+  //
+  // 幾何只依 counties 算一次（allCountyShapes），換層時只重跑這裡的過濾。過去把
+  // crumbs.length 寫在同一個 $derived 裡，每次下鑽／返回都會把全國 22 縣市的
+  // topology 重新解碼、重算路徑，手機上每換一層卡上半秒以上。
+  const allCountyShapes = $derived(shapesFor(counties));
   const countyShapes = $derived(
-    shapesFor(counties).filter((s) => crumbs.length > 1 || !INSET_CODES.has(s.area.code)),
+    crumbs.length > 1 ? allCountyShapes : allCountyShapes.filter((s) => !INSET_CODES.has(s.area.code)),
   );
   const focusCountyCode = $derived(crumbs.length >= 2 ? crumbs[1].code : null);
   const focusTownCode = $derived(crumbs.length >= 3 ? crumbs[2].code : null);
