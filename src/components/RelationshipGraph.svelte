@@ -6,8 +6,11 @@
   import { toCytoscapeElements, bendAroundCenter } from '../lib/graphView';
   const CENTER_CLEARANCE = 80;
 
-  let { data, centerKey = null, mode = 'ego' }:
-    { data: GraphData; centerKey?: string | null; mode?: 'ego' | 'global' } = $props();
+  // positions：global（/graph）建置時預先算好的座標（src/lib/graphLayout.ts）。有就直接用
+  // preset 排版，不在瀏覽器端跑力導向——手機上 416 個節點的 cose 會卡主執行緒 3–4 秒。
+  let { data, centerKey = null, mode = 'ego', positions = null }:
+    { data: GraphData; centerKey?: string | null; mode?: 'ego' | 'global';
+      positions?: Record<string, { x: number; y: number }> | null } = $props();
 
   let container: HTMLDivElement;
 
@@ -124,7 +127,9 @@
         const layout = mode === 'ego'
           ? { name: 'concentric', concentric: (n: { data: (k: string) => number }) => 10 - n.data('depth'),
               levelWidth: () => 1, minNodeSpacing: 44, padding: 28, animate: false, startAngle: Math.PI / 4 }
-          : { name: 'cose', padding: 30, animate: false, nodeRepulsion: 9000, idealEdgeLength: 110 };
+          : positions
+            ? { name: 'preset', positions: (n: { id: () => string }) => positions![n.id()], fit: true, padding: 30 }
+            : { name: 'cose', padding: 30, animate: false, nodeRepulsion: 9000, idealEdgeLength: 110 };
         cy!.layout(layout).run();
 
         if (mode === 'ego') {

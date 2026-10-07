@@ -4,10 +4,13 @@ import TitleCard from "../components/TitleCard.astro";
 import SectionHead from "../components/SectionHead.astro";
 import RelationshipGraph from "../components/RelationshipGraph.svelte";
 import { loadGraph } from "../lib/loadGraph";
+import { computeGlobalLayout } from "../lib/graphLayout";
 import { OFFICE_LABEL } from "../lib/graph";
 import { entityRole } from "../lib/graphView";
 
 const graph = loadGraph();
+// 力導向排版在建置時算好，前端用固定座標（見 src/lib/graphLayout.ts）。
+const positions = computeGlobalLayout(graph);
 const title = "政治人物關係圖｜家族、派系、師徒與政治支持關係網";
 const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物、${graph.edges.length} 條已查證關係的互動關係圖，每條關係皆附公開資料出處。`;
 
@@ -40,7 +43,7 @@ const peopleList = [...graph.nodes]
     <label><input type="checkbox" class="kind" value="pol" checked /> 政治關係</label>
   </div>
 
-  <RelationshipGraph client:load data={graph} centerKey={null} mode="global" />
+  <RelationshipGraph client:load data={graph} centerKey={null} mode="global" {positions} />
 
   <section class="sec people">
     <SectionHead text="圖中人物清單" />
