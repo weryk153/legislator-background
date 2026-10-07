@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { OfficialListRow } from '../lib/types';
   import { queryList, type ListQuery, type SortKey } from '../lib/filterSort';
+  import { squashStyle } from '../lib/squash';
 
   export let rows: OfficialListRow[] = [];
 
@@ -65,20 +66,20 @@
   <a class="row" href={`/officials/${r.slug}/`}>
     <div class="who">
       {#if r.photoUrl}
-        <img class="avatar" src={r.photoUrl} alt="" loading="lazy" width="40" height="40" />
+        <img class="ph-box" src={r.photoUrl} alt="" loading="lazy" width="36" height="45" />
       {:else}
-        <span class="avatar ph" aria-hidden="true">{r.name[0]}</span>
+        <span class="ph-box ph" aria-hidden="true">{r.name[0]}</span>
       {/if}
       <div class="who-text">
-        <div class="name">{r.name}<span class="meta">{r.party}・{r.district}</span></div>
-        <div class="office">{officeName[r.officeType]}{#if r.departed}<span class="departed"> · 已解職</span>{/if}</div>
+        <div class="name"><span class="sq" style={squashStyle(r.name, 0.8)}>{r.name}</span></div>
+        <div class="office">{r.party}・{r.district}・{officeName[r.officeType]}{#if r.departed}<span class="departed">・已解職</span>{/if}</div>
       </div>
     </div>
     <div class="stat"><span class="slabel">判決</span>
-      <div class="num v" class:accent={r.judgmentCount > 0} class:dim={r.judgmentCount === 0}>{r.judgmentCount}</div>
+      <div class="num v" class:dim={r.judgmentCount === 0}>{r.judgmentCount}</div>
     </div>
     <div class="stat"><span class="slabel">爭議</span>
-      <div class="num v" class:accent={r.controversyCount > 0} class:dim={r.controversyCount === 0}>{r.controversyCount}</div>
+      <div class="num v" class:dim={r.controversyCount === 0}>{r.controversyCount}</div>
     </div>
     <div class="stat"><span class="slabel">申報財產</span>
       <div class="num asset">{fmt(r.latestAssetTotal)}</div>
@@ -90,44 +91,36 @@
   .controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 18px; }
   .ctrl {
     padding: 7px 11px; font-size: 0.8125rem;
-    border: 1px solid var(--line-strong); border-radius: 7px;
-    background: var(--surface); color: inherit;
+    border: 1px solid var(--fg); border-radius: 0;
+    background: transparent; color: inherit;
     transition: border-color var(--ease);
   }
-  .ctrl:hover { border-color: var(--accent); }
+  .ctrl:hover { box-shadow: inset 0 0 0 1px var(--fg); }
   input.ctrl { min-width: 140px; }
   .count { margin-left: auto; font-size: 0.8125rem; color: var(--faint); font-variant-numeric: tabular-nums; }
 
   .grid, .thead, .row { display: grid; grid-template-columns: 1fr 56px 56px 104px; gap: 16px; align-items: baseline; }
   .thead {
-    padding: 0 6px 8px; border-bottom: 1px solid var(--line-strong);
+    padding: 0 6px 8px; border-bottom: 1px solid var(--fg);
     font-size: var(--t-xs); letter-spacing: 0.08em; color: var(--faint);
   }
   .thead .r { text-align: right; }
 
   .row {
-    padding: 15px 6px; border-bottom: 1px solid var(--line);
+    align-items: center;
+    padding: 12px 6px; border-bottom: 1px solid var(--line);
     transition: background-color var(--ease);
   }
   .row:hover { background: var(--row-hover); }
   .who { display: flex; align-items: center; gap: 12px; min-width: 0; }
   .who-text { min-width: 0; }
-  .avatar {
-    width: 40px; height: 40px; flex: none; border-radius: 50%;
-    object-fit: cover; object-position: center top;
-    border: 1px solid var(--line); background: var(--bg);
-    transition: border-color var(--ease);
-  }
-  /* 無照片（議員/首長尚未補）→ 以姓氏首字佔位，維持對齊 */
-  .avatar.ph { display: grid; place-items: center; color: var(--faint); font-family: var(--serif); font-size: 1.0625rem; }
-  .row:hover .avatar { border-color: var(--accent); }
-  .name { font-family: var(--serif); font-size: var(--t-md); font-weight: 700; }
-  .name .meta { font-family: var(--sans); font-size: 0.75rem; font-weight: 400; color: var(--faint); margin-left: 9px; }
-  .office { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-  .office .departed { color: #b3261e; }
+  .name { font-size: 19px; line-height: 1.1; }
+  .office { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+  .office .departed { color: var(--accent); }
   .stat { text-align: right; }
-  .v { font-size: var(--t-md); font-weight: 800; line-height: 1.1; }
-  .asset { font-size: 0.9375rem; font-weight: 700; }
+  .v { font-family: var(--serif); font-size: 18px; font-weight: 700; line-height: 1.1; }
+  .v.dim { color: var(--faint); font-weight: 400; }
+  .asset { font-size: 0.8125rem; font-weight: 400; color: var(--muted); }
   .slabel { display: none; }
   .empty { color: var(--faint); padding: 28px 6px; text-align: center; }
 
@@ -140,7 +133,6 @@
       gap: 10px 12px; align-items: center; padding: 14px 4px;
     }
     .who { grid-column: 1 / -1; }
-    .name .meta { display: block; margin-left: 0; margin-top: 3px; }
     .stat {
       text-align: left; display: flex; flex-direction: column; gap: 1px;
       padding-top: 9px; border-top: 1px solid var(--line);

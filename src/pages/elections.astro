@@ -2,11 +2,12 @@
 import Base from "../layouts/Base.astro";
 import ElectionPanel from "../components/ElectionPanel.svelte";
 import ChiefRaceCard from "../components/ChiefRaceCard.astro";
+import ElectionTimeline from "../components/ElectionTimeline.astro";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { buildYears } from "../lib/electionYears";
 import {
-  ELECTION_MILESTONES, STAGE_LABEL, chiefTitle, taipeiToday, timelineProgress,
+  STAGE_LABEL, chiefTitle,
   type CandidateEntry, type CountyCandidates, type NationalCandidates,
 } from "../lib/candidateTypes";
 import { candidateOverview, isCouncilReelect, partyTally, recordCounts, type PartyBar } from "../lib/candidateStats";
@@ -46,22 +47,6 @@ const councilReelect = isCouncilReelect;
 
 const fmtInt = (n: number): string => n.toLocaleString("en-US");
 
-// ── 選務時程軸 ─────────────────────────────────────────────
-// 建置時先以建置當天（臺灣日期）畫出一版，免 JS 也看得到；頁面是靜態建置、不會每天重建，
-// 所以頁尾的腳本會在瀏覽器端依「訪客的今天」重算節點狀態並搬動「今天」標記。
-const today = taipeiToday();
-const progress = timelineProgress(ELECTION_MILESTONES, today);
-const shortDate = (iso: string) => `${Number(iso.slice(5, 7))}/${Number(iso.slice(8, 10))}`;
-// 節點與「今天」標記攤成一串，畫成同一條線上的項目；今天正逢某節點時標記藏起來（仍輸出，
-// 讓瀏覽器端換日後有東西可搬）。
-type TimelineItem = { kind: "node"; i: number } | { kind: "today" };
-const timelineItems: TimelineItem[] = [
-  ...(progress.todayAfter === -1 ? [{ kind: "today" as const }] : []),
-  ...ELECTION_MILESTONES.flatMap((_, i): TimelineItem[] =>
-    progress.todayAfter === i ? [{ kind: "node", i }, { kind: "today" }] : [{ kind: "node", i }]),
-  ...(progress.todayAfter === null ? [{ kind: "today" as const }] : []),
-];
-const SR_STATE = { done: "（已過）", current: "（進行中）", upcoming: "（未到）" } as const;
 
 // ── 參選概況 ─────────────────────────────────────────────
 const overview = candidates2026 ? candidateOverview(candidates2026, councils2026) : null;
@@ -150,29 +135,7 @@ const jsonLd = [
        在線上另畫一個「今天」標記。窄螢幕改直排。 -->
   <section class="overview" aria-labelledby="timeline-title">
     <h2 id="timeline-title">選務時程</h2>
-    <ol class="timeline">
-      {timelineItems.map((it) => {
-        if (it.kind === "today") {
-          return (
-            <li class="tl-today" hidden={progress.todayAfter === null}>
-              <span class="tl-mark" aria-hidden="true"></span>
-              <span class="tl-label">今天</span>
-              <time class="tl-date" datetime={today}>{shortDate(today)}</time>
-            </li>
-          );
-        }
-        const m = ELECTION_MILESTONES[it.i];
-        const st = progress.states[it.i];
-        return (
-          <li class={`tl-node ${st}`} data-i={it.i} aria-current={st === "current" ? "step" : undefined}>
-            <span class="tl-dot" aria-hidden="true"></span>
-            <span class="tl-label">{m.label}</span>
-            <time class="tl-date" datetime={m.start}>{m.dateText}</time>
-            <span class="sr-only">{SR_STATE[st]}</span>
-          </li>
-        );
-      })}
-    </ol>
+    <ElectionTimeline />
     {candidates2026 && (
       <p class="overview-note">
         本站名單目前為：{STAGE_LABEL[candidates2026.source.stage]}（製表 {candidates2026.source.tableDate}）
@@ -317,35 +280,7 @@ const jsonLd = [
     <a href="/elections/2022/">2022 年九合一選舉結果一覽（縣市長、議會席次、得票率）→</a>
   </p>
 
-  <script>
-    // 時程軸換日：建置出來的是建置當天的版本，這裡依訪客的今天（臺灣日期）重算。
-    // 與伺服器端共用同一套 timelineProgress，規則只有一份。
-    import { ELECTION_MILESTONES, taipeiToday, timelineProgress } from "../lib/candidateTypes";
 
-    const SR_STATE = { done: "（已過）", current: "（進行中）", upcoming: "（未到）" } as const;
-    const list = document.querySelector<HTMLOListElement>(".timeline");
-    const todayLi = list?.querySelector<HTMLLIElement>(".tl-today");
-    const todayTime = todayLi?.querySelector<HTMLTimeElement>(".tl-date");
-    const today = taipeiToday();
-    if (list && todayLi && todayTime && todayTime.dateTime !== today) {
-      const { states, todayAfter } = timelineProgress(ELECTION_MILESTONES, today);
-      const nodes = [...list.querySelectorAll<HTMLLIElement>(".tl-node")];
-      nodes.forEach((li) => {
-        const st = states[Number(li.dataset.i)];
-        li.classList.remove("done", "current", "upcoming");
-        li.classList.add(st);
-        if (st === "current") li.setAttribute("aria-current", "step");
-        else li.removeAttribute("aria-current");
-        const sr = li.querySelector(".sr-only");
-        if (sr) sr.textContent = SR_STATE[st];
-      });
-      todayTime.dateTime = today;
-      todayTime.textContent = `${Number(today.slice(5, 7))}/${Number(today.slice(8, 10))}`;
-      todayLi.hidden = todayAfter === null;
-      if (todayAfter === -1) list.prepend(todayLi);
-      else if (todayAfter !== null) nodes[todayAfter].after(todayLi);
-    }
-  </script>
 </Base>
 
 <style>
@@ -458,41 +393,6 @@ const jsonLd = [
     text-align: right;
     font-family: var(--serif);
     font-variant-numeric: tabular-nums;
-  }
-
-  /* ── 選務時程軸 ──────────────────────────────────────────
-     一條髮絲線串起各節點：實心＝已過或進行中、空心＝未到；「今天」是線上的一道短豎線。
-     節點等寬排開，不按日期比例——時程只有五個點，比例尺反而讓 8/31 與 9/4 擠在一起。 */
-  .timeline {
-    position: relative;
-    display: flex; gap: 12px;
-    list-style: none; margin: 8px 0 12px; padding: 0;
-  }
-  .timeline::before {
-    content: ""; position: absolute; left: 0; right: 0; top: 6px;
-    border-top: 1px solid var(--line-strong);
-  }
-  .timeline li { position: relative; padding-top: 22px; display: flex; flex-direction: column; gap: 2px; }
-  .tl-node { flex: 1 1 0; min-width: 0; }
-  .tl-today { flex: 0 0 auto; }
-  .tl-today[hidden] { display: none; }
-  .tl-dot {
-    position: absolute; top: 0; left: 0;
-    width: 13px; height: 13px; border-radius: 50%;
-    border: 1.5px solid var(--fg); background: var(--bg);
-  }
-  .tl-node.done .tl-dot, .tl-node.current .tl-dot { background: var(--fg); }
-  .tl-node.current .tl-dot { box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--fg); }
-  .tl-mark { position: absolute; top: -3px; left: 6px; height: 19px; border-left: 2px solid var(--accent); }
-  .tl-label { font-family: var(--serif); font-weight: 700; font-size: 0.9375rem; line-height: 1.4; }
-  .tl-date { color: var(--muted); font-size: var(--t-sm); font-variant-numeric: tabular-nums; }
-  .tl-today .tl-label, .tl-today .tl-date { color: var(--accent); }
-  @media (max-width: 640px) {
-    .timeline { flex-direction: column; gap: 14px; }
-    .timeline::before { left: 6px; right: auto; top: 6px; bottom: 6px; border-top: 0; border-left: 1px solid var(--line-strong); }
-    .timeline li { padding: 0 0 0 26px; }
-    .tl-dot { top: 3px; }
-    .tl-mark { top: 4px; left: 0; height: 0; width: 13px; border-left: 0; border-top: 2px solid var(--accent); }
   }
 
   /* ── 參選概況：數字磚＋各黨橫向長條 ────────────────────────
