@@ -2,6 +2,7 @@
   import type { OfficialListRow } from '../lib/types';
   import { queryList, type ListQuery, type SortKey } from '../lib/filterSort';
   import { squashStyle } from '../lib/squash';
+  import { onMount, tick } from 'svelte';
 
   export let rows: OfficialListRow[] = [];
 
@@ -22,6 +23,32 @@
   $: parties = Array.from(new Set(rows.map((r) => r.party)));
   $: q = { search, region: region || undefined, party: party || undefined, officeType: (officeType || undefined) as ListQuery['officeType'], sort } as ListQuery;
   $: view = queryList(rows, q);
+
+  // 滾動載入：一次只畫 PAGE 筆。1,053 列全部輸出時首頁 DOM 有 1.7 萬個節點，手機上
+  // 載入與每次篩選都要卡 0.5–1 秒。篩選／排序一變就回到前 PAGE 筆。伺服器端也只輸出
+  // 前 PAGE 筆（各人物頁另由 sitemap 與縣市頁連結）。
+  const PAGE = 100;
+  let limit = PAGE;
+  $: q, (limit = PAGE);
+  $: shown = view.slice(0, limit);
+  let sentinel: HTMLElement;
+
+  async function more() {
+    limit += PAGE;
+    // 載入後若哨兵仍在可視範圍附近（列表太短或螢幕很高），IntersectionObserver 不會
+    // 再觸發——重新觀察一次，讓它重新判斷。
+    await tick();
+    if (io && sentinel) { io.unobserve(sentinel); io.observe(sentinel); }
+  }
+
+  let io: IntersectionObserver | null = null;
+  onMount(() => {
+    io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting) && limit < view.length) more();
+    }, { rootMargin: '800px 0px' });
+    if (sentinel) io.observe(sentinel);
+    return () => io?.disconnect();
+  });
 
   const fmt = (n: number | null) => (n === null ? '—' : new Intl.NumberFormat('zh-Hant').format(n));
   const officeName: Record<string, string> = { legislator: '立委', mayor_magistrate: '縣市首長', councilor: '議員', candidate: '參選人' };
@@ -62,7 +89,7 @@
   <p class="empty">查無符合條件的對象。</p>
 {/if}
 
-{#each view as r}
+{#each shown as r (r.slug)}
   <a class="row" href={`/officials/${r.slug}/`}>
     <div class="who">
       {#if r.photoUrl}
@@ -86,6 +113,11 @@
     </div>
   </a>
 {/each}
+
+<div class="more" bind:this={sentinel} hidden={shown.length >= view.length}>
+  <button type="button" class="more-btn" on:click={more}>載入更多</button>
+  <span class="more-count">已顯示 {shown.length}／{view.length} 筆</span>
+</div>
 
 <style>
   .controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 18px; }
@@ -123,6 +155,11 @@
   .asset { font-size: 0.8125rem; font-weight: 400; color: var(--muted); }
   .slabel { display: none; }
   .empty { color: var(--faint); padding: 28px 6px; text-align: center; }
+  .more { display: flex; align-items: center; gap: 14px; padding: 18px 6px; }
+  .more[hidden] { display: none; }
+  .more-btn { font: inherit; font-size: 0.875rem; padding: 7px 16px; border: 1px solid var(--fg); border-radius: 0; background: transparent; color: var(--fg); cursor: pointer; }
+  .more-btn:hover { background: var(--fg); color: var(--bg); }
+  .more-count { font-size: 0.8125rem; color: var(--faint); font-variant-numeric: tabular-nums; }
 
   /* Mobile: stack each row as a card — name spans the full width, the three stats
      sit in a labelled row below, so the 政黨・選舉區 text no longer wraps awkwardly. */
