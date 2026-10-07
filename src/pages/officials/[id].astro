@@ -54,14 +54,16 @@ const relations = ego.edges
     const otherKey = e.source === centerKey ? e.target : e.source;
     return { other: egoByKey.get(otherKey)!, type: e.type, note: e.note, sourceUrl: e.sourceUrl };
   });
-const statusLabel = {
+// 'other' 不給標籤：判斷不出司法階段的多半根本不是司法案件（政治、言論類爭議），
+// 掛「未分類」反而像在暗示有待釐清的法律問題。
+const statusLabel: Record<string, string> = {
   investigating: "偵查中", indicted: "已起訴", first_instance: "一審",
-  settled: "已和解", cleared: "查無不法", other: "未分類",
+  settled: "已和解", cleared: "查無不法",
 };
 
 // Conservatively infer a legal stage from the report text, ONLY on unambiguous wording, so
 // the badge reflects what the cited reports say rather than asserting a verdict. Anything
-// unclear stays "未分類". Real data (a non-'other' status) is respected as-is. The section
+// unclear stays 'other' (no badge). Real data (a non-'other' status) is respected as-is. The section
 // disclaimer makes clear this is per-report and 以官方資料為準.
 function inferStatus(c: { status: string; summary: string; title: string }): string {
   if (c.status && c.status !== "other") return c.status;
@@ -206,14 +208,17 @@ const jsonLd = [
       </p>
     )}
     {o.controversies.length === 0 && <p class="dim none">尚無資料</p>}
-    {o.controversies.map((c) => (
+    {o.controversies.map((c) => {
+      const label = statusLabel[inferStatus(c)];
+      return (
       <article class="card entry">
-        <div class="entry-head">{c.title}　<span class="pill">{statusLabel[inferStatus(c)]}</span></div>
+        <div class="entry-head">{c.title}{label && <>　<span class="pill">{label}</span></>}</div>
         <p class="entry-body">{c.summary}</p>
         <div class="entry-meta">整理日期：<span class="num">{c.reportDate}</span></div>
         <Sources sources={c.sources} />
       </article>
-    ))}
+      );
+    })}
   </section>
 
   <section class="sec">
