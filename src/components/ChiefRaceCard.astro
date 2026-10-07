@@ -7,6 +7,7 @@ import type { ChiefRace } from "../lib/candidateTypes";
 import { chiefTitle } from "../lib/candidateTypes";
 import { isChiefReelect, orderCandidates, partyColorVar, partyLabel, recordCounts } from "../lib/candidateStats";
 import type { Official } from "../lib/types";
+import { candidatePhotoCredits } from "../lib/candidatePhotos";
 
 interface Props {
   race: ChiefRace;
@@ -20,6 +21,12 @@ interface Props {
 const { race: r, officialsBySlug, href, showHead = true } = Astro.props;
 const headId = `chief-${r.countyCode}`;
 const inc = r.incumbent2022;
+// 取自維基共享資源的參選人照片：CC BY／CC BY-SA 須署名，列在卡片底部（頭像只有 48px，放不下）。
+const credits = candidatePhotoCredits();
+const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
+  const p = c.slug ? credits.get(c.slug) : undefined;
+  return p ? [{ name: c.name, ...p }] : [];
+});
 ---
 <article class="chief-card" aria-labelledby={showHead ? headId : undefined} aria-label={showHead ? undefined : `${chiefTitle(r.countyName)}候選人`}>
   {showHead && (
@@ -58,6 +65,13 @@ const inc = r.incumbent2022;
       );
     })}
   </ul>
+  {photoCredits.length > 0 && (
+    <p class="cc-credit">
+      照片：{photoCredits.map((p, i) => (
+        <>{i > 0 && "；"}{p.name}／<a href={p.commonsUrl} target="_blank" rel="noopener">{p.author}，{p.license}</a></>
+      ))}（維基共享資源，本站縮圖）
+    </p>
+  )}
 </article>
 
 <style>
@@ -89,5 +103,8 @@ const inc = r.incumbent2022;
   .mc-party, .mc-id { font-size: 0.875rem; }
   .mc-id { color: var(--muted); }
   .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+  .cc-credit { color: var(--faint); font-size: var(--t-xs); line-height: 1.6; margin: 8px 0 0; overflow-wrap: anywhere; }
+  .cc-credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+  .cc-credit a:hover { color: var(--accent); }
   .mc-recs { font-size: var(--t-sm); color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 2px !important; }
 </style>
