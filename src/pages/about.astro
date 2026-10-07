@@ -1,16 +1,17 @@
 ---
 import Base from "../layouts/Base.astro";
+import TitleCard from "../components/TitleCard.astro";
+import SectionHead from "../components/SectionHead.astro";
 ---
 <Base title="關於｜政治人物背景資料庫" description="本站的資料來源、方法論、無罪推定原則、更正管道與授權說明。">
   <article class="about">
     <header class="head">
-      <span class="kicker">About</span>
-      <h1>關於本站</h1>
+      <TitleCard vertical="說明" lines={["關於", "本站"]} />
       <p class="lede">以可查證、附出處的方式，公開現任政治人物的背景，協助選民判讀。</p>
     </header>
 
     <section class="sec">
-      <h2>收錄範圍與屆別</h2>
+      <SectionHead text="收錄範圍與屆別" />
       <p>本站以「屆別」為基準收錄：</p>
       <ul>
         <li>立法委員：第11屆（2024年1月當選，任期至2028年）。</li>
@@ -21,7 +22,7 @@ import Base from "../layouts/Base.astro";
     </section>
 
     <section class="sec">
-      <h2>資料來源</h2>
+      <SectionHead text="資料來源" />
       <ul>
         <li>司法判決：司法院裁判書開放資料（公開判決，經人工確認身分後上架）</li>
         <li>經歷／背景：立法院官方資料（立委）、中選會選舉紀錄；縣市首長之歷任職務另參考維基百科並標註出處</li>
@@ -30,6 +31,7 @@ import Base from "../layouts/Base.astro";
         <li>政治獻金：監察院政治獻金公開查閱平臺（政治獻金）</li>
         <li>議員照片：各縣市議會官網議員介紹頁（官方肖像，程式下載縮圖並標註來源）</li>
         <li>已解職議員部分照片：中選會選舉公報／議會官網存檔（逐張來源見原始碼庫 <code>scraper/fixtures/photo-attributions.md</code>）</li>
+        <li>2026 縣市長參選人照片：維基百科條目主圖（Wikimedia Commons，僅收經查證為本人且授權為政府資料開放授權條款、CC BY／CC BY-SA 或公有領域者），作者與授權列於各縣市候選人卡片底部，原始清單見原始碼庫 <code>scraper/candidate-photos-wiki.json</code>；其餘參選人待中選會選舉公報公布後補上</li>
         <li>外部人物照片：維基百科條目主圖（Wikimedia Commons，授權以政府資料開放授權條款之 Attribution 居多，另有 CC BY／CC BY-SA、公有領域），逐張作者與授權於關係圖節點提示顯示，原始清單見原始碼庫 <code>scraper/entities-wiki.json</code></li>
         <li>行政區界線：內政部國土測繪中心開放資料
           <ul style="list-style-type: disc; padding-left: 2em; margin: 8px 0;">
@@ -45,7 +47,7 @@ import Base from "../layouts/Base.astro";
     </section>
 
     <section class="sec">
-      <h2>方法論與原則</h2>
+      <SectionHead text="方法論與原則" />
       <ul>
         <li>每一筆事實資料都附可點擊的出處，無出處者不上架。</li>
         <li>「司法判決」與「媒體爭議」分開呈現，各自標示狀態。</li>
@@ -56,12 +58,12 @@ import Base from "../layouts/Base.astro";
     </section>
 
     <section class="sec">
-      <h2>無罪推定</h2>
+      <SectionHead text="無罪推定" />
       <p>判決結果不代表最終定罪。未定讞之案件，當事人依法受無罪推定保障，請讀者審慎判讀。</p>
     </section>
 
     <section class="sec">
-      <h2>司法判決的收錄範圍與限制</h2>
+      <SectionHead text="司法判決的收錄範圍與限制" />
       <p>「司法判決」一欄來自司法院裁判書開放資料，並以每日開放資料比對接續最新案件。收錄原則與已知限制如下：</p>
       <ul>
         <li><strong>查證後上架</strong>：每筆判決均經人工確認當事人身分、並查閱至最新審級（含上訴改判、發回更審、二審改判無罪等）後才上架，避免以一審結果誤載已獲改判者；<strong>尚未定讞之案件明確標示「未定讞」</strong>，提醒讀者該結果可能於上訴後變更。</li>
@@ -73,7 +75,7 @@ import Base from "../layouts/Base.astro";
     </section>
 
     <section class="sec" id="correction">
-      <h2>更正與權利</h2>
+      <SectionHead text="更正與權利" />
       <p>若發現資料有誤、需更新狀態，或您是當事人希望更正或移除特定資料，歡迎至
         <a href="https://github.com/weryk153/legislator-background/issues" target="_blank" rel="noopener">GitHub 回報</a>，
         並附上對應頁面與佐證；我們會查核後盡速更正或移除。</p>
@@ -81,7 +83,7 @@ import Base from "../layouts/Base.astro";
     </section>
 
     <section class="sec">
-      <h2>授權</h2>
+      <SectionHead text="授權" />
       <ul>
         <li>政府公開資料（監察院、中選會、立法院、司法院）依其開放授權條款使用，並標註出處。</li>
         <li>「爭議報導」部分內容改寫自維基百科，依
@@ -94,13 +96,8 @@ import Base from "../layouts/Base.astro";
   <style>
     .about { max-width: 62ch; }
     .head { margin-bottom: 36px; }
-    .head h1 { font-size: var(--t-xl); margin: 8px 0 8px; }
-    .head .lede { margin: 0; }
+    .head .lede { margin: 12px 0 0; }
     .sec { margin-bottom: 32px; }
-    .sec h2 {
-      font-size: 1.25rem; margin: 0 0 12px;
-      padding-bottom: 8px; border-bottom: 1px solid var(--line-strong);
-    }
     .sec ul { line-height: 1.9; padding-left: 1.2em; margin: 0; }
     .sec p { margin: 0; }
   </style>

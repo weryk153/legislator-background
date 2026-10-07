@@ -2,6 +2,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import Base from "../layouts/Base.astro";
+import TitleCard from "../components/TitleCard.astro";
 import DonorSearch from "../components/DonorSearch.svelte";
 import { rankDonors, type Donor } from "../lib/donorFilter";
 const desc = "查詢政治人物的政治獻金，或以公司名稱／統一編號反查營利事業捐贈給哪些候選人。資料來源：監察院政治獻金公開查閱平臺整批電子檔。";
@@ -26,7 +27,7 @@ const officeName: Record<string, string> = { legislator: "立委", mayor_magistr
 ---
 <Base title="政治獻金查詢｜政治人物背景資料庫" description={desc}>
   <header class="head">
-    <h1>政治獻金查詢</h1>
+    <TitleCard vertical="監察院資料" lines={["政治獻金", "查詢"]} />
     <p class="lede">輸入政治人物姓名，或營利事業名稱／統一編號，反查政治獻金流向。</p>
   </header>
   <DonorSearch client:load />
@@ -61,7 +62,7 @@ const officeName: Record<string, string> = { legislator: "立委", mayor_magistr
   </p>
   <style>
     .head { margin: 14px 0 22px; }
-    .head h1 { font-size: var(--t-xl); margin: 0 0 6px; }
+    .head .lede { margin: 12px 0 0; }
     .lede { margin: 0; color: var(--muted); }
     .note { font-size: var(--t-sm); color: var(--muted); margin-top: 28px; max-width: 72ch; }
     #static-ranking h2 { font-size: 1.0625rem; margin: 22px 0 8px; }

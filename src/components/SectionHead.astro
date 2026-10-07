@@ -1,0 +1,9 @@
+---
+// 章節標：黑塊（壓扁字）＋延伸到欄寬的粗線。取代各頁原本的 h2 樣式。
+import { squashStyle } from "../lib/squash";
+
+interface Props { text: string; id?: string; level?: 2 | 3 }
+const { text, id, level = 2 } = Astro.props;
+const Tag = level === 3 ? "h3" : "h2";
+---
+<Tag class="sh" id={id}><span class="sh-text"><span class="sq" style={squashStyle(text)}>{text}</span></span></Tag>

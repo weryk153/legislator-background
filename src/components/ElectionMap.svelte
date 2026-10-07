@@ -945,6 +945,6 @@
   .badge-error { color: var(--fg); }
   .state-error button, .badge-error button {
     margin-left: .5rem; color: var(--accent); background: none;
-    border: 1px solid var(--line-strong); border-radius: 4px; padding: .1rem .5rem; cursor: pointer;
+    border: 1px solid var(--line-strong); border-radius: 0; padding: .1rem .5rem; cursor: pointer;
   }
 </style>

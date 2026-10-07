@@ -7,6 +7,8 @@ import type { ChiefRace } from "../lib/candidateTypes";
 import { chiefTitle } from "../lib/candidateTypes";
 import { isChiefReelect, orderCandidates, partyColorVar, partyLabel, recordCounts } from "../lib/candidateStats";
 import type { Official } from "../lib/types";
+import { candidatePhotoCredits } from "../lib/candidatePhotos";
+import { squashStyle } from "../lib/squash";
 
 interface Props {
   race: ChiefRace;
@@ -20,6 +22,12 @@ interface Props {
 const { race: r, officialsBySlug, href, showHead = true } = Astro.props;
 const headId = `chief-${r.countyCode}`;
 const inc = r.incumbent2022;
+// 取自維基共享資源的參選人照片：CC BY／CC BY-SA 須署名，列在卡片底部（頭像只有 48px，放不下）。
+const credits = candidatePhotoCredits();
+const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
+  const p = c.slug ? credits.get(c.slug) : undefined;
+  return p ? [{ name: c.name, ...p }] : [];
+});
 ---
 <article class="chief-card" aria-labelledby={showHead ? headId : undefined} aria-label={showHead ? undefined : `${chiefTitle(r.countyName)}候選人`}>
   {showHead && (
@@ -40,12 +48,14 @@ const inc = r.incumbent2022;
       return (
         <li class="mc">
           {photo
-            ? <img class="mc-avatar" src={photo} alt="" width="48" height="48" loading="lazy" />
-            : <span class="mc-avatar ph" aria-hidden="true">{c.name[0]}</span>}
+            ? <img class="ph-box mc-photo" src={photo} alt="" width="56" height="70" loading="lazy" />
+            : <span class="ph-box ph mc-photo" aria-hidden="true">{c.name[0]}</span>}
           <div class="mc-body">
             <p class="mc-name">
               {c.number !== null && <span class="mc-no">{c.number} 號</span>}
-              {c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}
+              {c.slug
+                ? <a href={`/officials/${c.slug}/`} class="sq" style={squashStyle(c.name, 0.78)}>{c.name}</a>
+                : <span class="sq" style={squashStyle(c.name, 0.78)}>{c.name}</span>}
               {isChiefReelect(c, r) && <span class="mc-tag">爭取連任</span>}
             </p>
             <p class="mc-party"><span class="dot" style={`background: var(${partyColorVar(c)});`} aria-hidden="true"></span>{partyLabel(c)}</p>
@@ -58,36 +68,43 @@ const inc = r.incumbent2022;
       );
     })}
   </ul>
+  {photoCredits.length > 0 && (
+    <p class="cc-credit">
+      照片：{photoCredits.map((p, i) => (
+        <>{i > 0 && "；"}{p.name}／<a href={p.commonsUrl} target="_blank" rel="noopener">{p.author}，{p.license}</a></>
+      ))}（維基共享資源，本站縮圖）
+    </p>
+  )}
 </article>
 
 <style>
-  .chief-card { border-top: 1px solid var(--line-strong); padding-top: 12px; min-width: 0; }
-  .cc-head h3 { font-size: var(--t-md); margin: 0; }
+  .chief-card { padding-top: 12px; min-width: 0; }
+  .cc-head h3 { font-family: var(--serif); font-weight: 900; font-size: var(--t-md); margin: 0; }
   .cc-head h3 a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   .cc-head h3 a:hover { color: var(--accent); }
   .cc-inc { color: var(--muted); font-size: var(--t-sm); margin: 4px 0 0; line-height: 1.6; }
-  .cc-cands { list-style: none; margin: 8px 0 0; padding: 0; }
-  .mc { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
-  .mc:last-child { border-bottom: 0; }
-  .mc-avatar {
-    width: 48px; height: 48px; flex: none; border-radius: 50%;
-    object-fit: cover; object-position: center top;
-    border: 1px solid var(--line); background: var(--bg);
-  }
-  .mc-avatar.ph { display: grid; place-items: center; color: var(--muted); font-family: var(--serif); font-size: 1.25rem; }
+  .cc-cands { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--fg); }
+  .mc { display: flex; gap: 14px; padding: 14px 18px 14px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+  .mc:nth-child(even) { padding-left: 18px; padding-right: 0; border-left: 1px solid var(--line); }
+  .mc-photo { width: 56px; height: 70px; }
+  .mc-photo.ph { font-size: 24px; }
   .mc-body { min-width: 0; }
   .mc-body p { margin: 0; line-height: 1.6; }
-  .mc-name { font-family: var(--serif); font-weight: 700; font-size: 1.0625rem; }
-  .mc-name a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
-  .mc-name a:hover { color: var(--accent); }
+  .mc-name { font-size: 22px; line-height: 1.1 !important; margin-bottom: 4px !important; }
+  /* 有站上檔案的候選人要看得出是連結（觸控螢幕沒有 hover），與議員名單一致加細底線。 */
+  .mc-name a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .mc-name a:hover { text-decoration-thickness: 2px; }
   .mc-no { font-family: var(--sans); font-weight: 400; font-size: var(--t-sm); color: var(--muted); margin-right: 6px; }
-  .mc-tag {
-    display: inline-block; margin-left: 8px; padding: 0 6px;
-    font-family: var(--sans); font-weight: 400; font-size: var(--t-xs); line-height: 1.6;
-    color: var(--muted); border: 1px solid var(--line-strong); border-radius: 3px; vertical-align: 2px;
-  }
-  .mc-party, .mc-id { font-size: 0.875rem; }
+  .mc-tag { display: inline-block; margin-left: 8px; padding: 0 6px; font-family: var(--sans); font-weight: 400; font-size: var(--t-xs); line-height: 1.6; color: var(--fg); border: 1px solid var(--fg); vertical-align: 4px; }
+  .mc-party, .mc-id { font-size: 0.8125rem; }
   .mc-id { color: var(--muted); }
-  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
-  .mc-recs { font-size: var(--t-sm); color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 2px !important; }
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 5px; vertical-align: 1px; }
+  .mc-recs { font-size: var(--t-sm); color: var(--muted); font-variant-numeric: tabular-nums; }
+  @media (max-width: 640px) {
+    .cc-cands { grid-template-columns: 1fr; }
+    .mc:nth-child(even) { padding-left: 0; border-left: 0; }
+  }
+  .cc-credit { color: var(--faint); font-size: var(--t-xs); line-height: 1.6; margin: 8px 0 0; overflow-wrap: anywhere; }
+  .cc-credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+  .cc-credit a:hover { color: var(--accent); }
 </style>

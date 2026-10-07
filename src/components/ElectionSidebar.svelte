@@ -347,14 +347,14 @@
   .person.none { color: var(--muted); }
   .party { margin: .2rem 0 0; color: var(--fg); }
   .note { color: var(--muted); font-size: .85rem; margin: .2rem 0 0; }
-  .limit { color: var(--fg); background: var(--surface); padding: .35rem .5rem; border-radius: 2px; font-size: .85rem; }
+  .limit { color: var(--fg); background: var(--surface); padding: .35rem .5rem; border-radius: 0; font-size: .85rem; }
   .limit.pending { color: var(--muted); }
   /* 制度事實（官派、無此機關、待抽籤）與「本站查無資料」在視覺上也要分得開 */
   .institutional {
     color: var(--fg); background: var(--surface); border-left: 3px solid var(--line-strong);
-    padding: .4rem .55rem; border-radius: 2px; font-size: .85rem; margin: .2rem 0 0; line-height: 1.6;
+    padding: .4rem .55rem; border-radius: 0; font-size: .85rem; margin: .2rem 0 0; line-height: 1.6;
   }
-  .tag { color: var(--muted); font-size: .75rem; border: 1px solid var(--line); border-radius: 2px; padding: 0 .3rem; margin-left: .35rem; }
+  .tag { color: var(--muted); font-size: .75rem; border: 1px solid var(--fg); border-radius: 0; padding: 0 .3rem; margin-left: .35rem; }
   /* 席次組成長條：整條＝全部席次，依政黨色分段。段與段之間用背景色細縫分隔，
      不用邊框——邊框會在窄段上吃掉整個色塊。 */
   .composition {

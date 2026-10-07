@@ -21,6 +21,7 @@
     "import:relationships": "tsx scraper/import-relationships.ts",
     "enrich:photos": "tsx scraper/enrich-legislator-photos.ts",
     "enrich:mayor-photos": "tsx scraper/enrich-mayor-photos.ts",
+    "enrich:candidate-photos": "tsx scraper/enrich-candidate-photos.ts",
     "judgments:discover": "tsx scraper/judgments-discover.ts",
     "judgments:record": "tsx scraper/judgments-record.ts",
     "controversies:record": "tsx scraper/controversies-record.ts",

@@ -1,15 +1,21 @@
 :root {
-  /* color — restrained editorial, single accent (朱紅) */
-  --bg: #faf9f6;
-  --surface: #ffffff;
-  --fg: #1b1a17;
-  --muted: #595650;
-  --faint: #8c887f;
-  --line: rgba(120, 110, 100, 0.20);
-  --line-strong: rgba(60, 55, 50, 0.42);
+  /* color — 報紙：白底墨黑，單一朱紅點綴（只用在標題卡直排字、時程「今天」、「已解職」） */
+  --bg: #fff;
+  --surface: #fff;
+  --fg: #000;
+  --muted: #4d4d4d;   /* 白底對比約 8.5:1 */
+  --faint: #767676;   /* 白底對比約 4.5:1（AA 下限） */
+  --line: rgba(0, 0, 0, 0.14);
+  --line-strong: #000;
   --accent: #b3271e;
   --accent-wash: rgba(179, 39, 30, 0.06);
-  --row-hover: rgba(120, 110, 100, 0.07); /* 中性暖灰，列表 hover（避免紅 wash 變粉紅） */
+  --row-hover: rgba(0, 0, 0, 0.04);
+  /* 黑塊（標題卡、章節標）：淺色模式黑底白字；深色模式反轉，否則與背景融成一片。 */
+  --block-bg: #000;
+  --block-fg: #fff;
+  --block-accent: #ff4a3a;  /* 黑底上的朱紅要提亮才讀得到 */
+  /* 關係圖連線：沿用改版前的半透明線色——--line-strong 改成純黑後，圖上連線會變太重。 */
+  --graph-line: rgba(60, 55, 50, 0.42);
 
   /* type */
   --serif: "Noto Serif TC", "Libre Bodoni", Georgia, "Songti TC", serif;
@@ -30,7 +36,7 @@
      裡面的面板退回文件流，就必須自己把這段槽寬補回來，否則會貼死螢幕邊緣、與
      頁面其餘內容對不齊。抽成變數是為了讓「跳出去」與「補回來」引用同一個數字。 */
   --gutter: 24px;
-  --radius: 8px;
+  --radius: 0;
   --ease: 180ms cubic-bezier(0.4, 0, 0.2, 1);
 
   /* 政黨識別色（選舉地圖用）。元件內不得寫死色碼，一律讀這組變數。
@@ -61,9 +67,13 @@
   --surface: #1c1b19;
   --fg: #ece9e2;
   --muted: #a8a49b;
-  --faint: #7d7a72;
+  --faint: #827f77;  /* 深色底對比約 4.6:1（AA） */
   --line: rgba(190, 185, 175, 0.16);
-  --line-strong: rgba(210, 205, 195, 0.34);
+  --line-strong: #ece9e2;
+  --block-bg: #ece9e2;
+  --block-fg: #131312;
+  --block-accent: #b3271e;
+  --graph-line: rgba(210, 205, 195, 0.34);
   --accent: #e8635a;
   --accent-wash: rgba(232, 99, 90, 0.10);
   --row-hover: rgba(210, 205, 195, 0.07);
@@ -113,7 +123,6 @@ button, select, input { font-family: inherit; }
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-  border-radius: 4px;
 }
 :focus:not(:focus-visible) { outline: none; }
 
@@ -125,7 +134,7 @@ button, select, input { font-family: inherit; }
   background: var(--accent);
   color: #fff;
   padding: 8px 14px;
-  border-radius: 6px;
+  border-radius: 0;
   z-index: 100;
 }
 .skip-link:focus { left: 8px; }
@@ -156,11 +165,56 @@ button, select, input { font-family: inherit; }
   font-size: var(--t-xs);
   font-family: var(--sans);
   letter-spacing: 0.02em;
-  border: 1px solid var(--line-strong);
-  border-radius: 99px;
-  padding: 2px 9px;
+  border: 1px solid var(--fg);
+  border-radius: 0;
+  padding: 1px 7px;
   vertical-align: middle;
-  color: var(--muted);
+  color: var(--fg);
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* 壓扁特粗明朝（EVA 標題字的近似）：Noto Serif TC 900 水平壓扁。--k 壓扁比例、
+   --n 未壓扁寬度（em），由 src/lib/squash.ts 產生；margin-right 把壓扁後多出的版面寬度收回。 */
+.sq {
+  font-family: var(--serif); font-weight: 900; display: inline-block;
+  line-height: .95; letter-spacing: -.03em; white-space: nowrap;
+  transform-origin: left bottom; transform: scaleX(var(--k, .7));
+  margin-right: calc((var(--k, .7) - 1) * var(--n, 0) * .97em);
+}
+
+/* 黑標題卡：只包住字，不撐滿寬。左側直排朱紅小字，右側兩行大小對比的壓扁字。 */
+.tcard {
+  display: inline-grid; grid-template-columns: auto auto; gap: 0 10px; align-items: end;
+  padding: 16px 18px 14px; max-width: 100%;
+  background: var(--block-bg); color: var(--block-fg);
+}
+a.tcard:hover .tcard-l1, a.tcard:focus-visible .tcard-l1 { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
+.tcard-v {
+  writing-mode: vertical-rl; text-orientation: upright;
+  font-family: var(--serif); font-weight: 900; font-size: 14px; letter-spacing: .12em; line-height: 1;
+  color: var(--block-accent);
+}
+.tcard-body { margin: 0; font: inherit; letter-spacing: 0; }
+.tcard-line { display: block; }
+.tcard-line + .tcard-line { margin-top: 2px; }
+
+/* 章節標：黑塊＋延伸到欄寬的粗線。語意仍是 h2（或 h3）。 */
+.sh { display: flex; align-items: center; margin: 48px 0 16px; font-size: 26px; line-height: 1; }
+.sh-text { flex: none; background: var(--block-bg); color: var(--block-fg); padding: 5px 12px 3px; }
+.sh::after { content: ""; flex: 1; border-top: 4px solid var(--fg); }
+
+/* 頭像：報紙常見的直式方框（4:5）。無照片時同尺寸淺灰方框＋姓氏。 */
+.ph-box {
+  width: 36px; height: 45px; flex: none; display: block;
+  object-fit: cover; object-position: center top; background: var(--row-hover);
+}
+.ph-box.ph {
+  display: grid; place-items: center;
+  font-family: var(--serif); font-weight: 900; color: var(--faint); font-size: 17px;
 }
 
 @media (prefers-reduced-motion: reduce) {

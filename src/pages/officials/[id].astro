@@ -2,6 +2,8 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import Base from "../../layouts/Base.astro";
+import TitleCard from "../../components/TitleCard.astro";
+import SectionHead from "../../components/SectionHead.astro";
 import Sources from "../../components/Sources.astro";
 import { loadOfficials } from "../../lib/data";
 import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL, OFFICE_LABEL } from "../../lib/graph";
@@ -11,7 +13,7 @@ import { chiefTitle } from "../../lib/candidateTypes";
 import { loadCandidacies } from "../../lib/candidacy";
 import { countyPagePath } from "../../lib/countyKeys";
 import RelationshipGraph from "../../components/RelationshipGraph.svelte";
-import { officeRole, officialPageTitle } from "../../lib/seoTitle";
+import { officeRole, officialPageTitle, shortParty } from "../../lib/seoTitle";
 
 export async function getStaticPaths() {
   const officials = await loadOfficials();
@@ -54,14 +56,16 @@ const relations = ego.edges
     const otherKey = e.source === centerKey ? e.target : e.source;
     return { other: egoByKey.get(otherKey)!, type: e.type, note: e.note, sourceUrl: e.sourceUrl };
   });
-const statusLabel = {
+// 'other' 不給標籤：判斷不出司法階段的多半根本不是司法案件（政治、言論類爭議），
+// 掛「未分類」反而像在暗示有待釐清的法律問題。
+const statusLabel: Record<string, string> = {
   investigating: "偵查中", indicted: "已起訴", first_instance: "一審",
-  settled: "已和解", cleared: "查無不法", other: "未分類",
+  settled: "已和解", cleared: "查無不法",
 };
 
 // Conservatively infer a legal stage from the report text, ONLY on unambiguous wording, so
 // the badge reflects what the cited reports say rather than asserting a verdict. Anything
-// unclear stays "未分類". Real data (a non-'other' status) is respected as-is. The section
+// unclear stays 'other' (no badge). Real data (a non-'other' status) is respected as-is. The section
 // disclaimer makes clear this is per-report and 以官方資料為準.
 function inferStatus(c: { status: string; summary: string; title: string }): string {
   if (c.status && c.status !== "other") return c.status;
@@ -138,12 +142,14 @@ const jsonLd = [
   <a href={isCandidate ? "/elections/" : "/"} class="back">{isCandidate ? "← 返回 2026 選舉" : "← 返回總覽"}</a>
 
   <header class="head">
-    <span class="pill">{OFFICE_LABEL[o.officeType]}</span>
-    {o.departedReason && <span class="pill departed">已解職</span>}
-    {candidacy && !isCandidate && (candidacyHref
-      ? <a class="pill candidacy" href={candidacyHref}>{candidacy.label}</a>
-      : <span class="pill candidacy">{candidacy.label}</span>)}
-    <h1>{o.name}</h1>
+    <TitleCard vertical={shortParty(o.party)} lines={[o.name, roleText]} heading={o.name} />
+    <div class="pills">
+      <span class="pill">{OFFICE_LABEL[o.officeType]}</span>
+      {o.departedReason && <span class="pill departed">已解職</span>}
+      {candidacy && !isCandidate && (candidacyHref
+        ? <a class="pill candidacy" href={candidacyHref}>{candidacy.label}</a>
+        : <span class="pill candidacy">{candidacy.label}</span>)}
+    </div>
     <p class="lede">
       {isCandidate ? `${o.party}・${roleText}` : `${o.party}・${o.district}・第${o.term}屆`}{o.bio ? `　${o.bio}` : ""}
     </p>
@@ -156,7 +162,7 @@ const jsonLd = [
   </header>
 
   <section class="sec">
-    <h2>經歷</h2>
+    <SectionHead text="經歷" />
     {o.careers.length === 0 && <p class="dim none">尚無資料</p>}
     {careersByCategory.map((g) => (
       <div class="career-group">
@@ -183,7 +189,7 @@ const jsonLd = [
   </section>
 
   <section class="sec">
-    <h2>司法判決</h2>
+    <SectionHead text="司法判決" />
     <p class="note">判決結果不代表最終定罪；未定讞案件當事人依法受無罪推定保障。</p>
     {o.judgments.length === 0 && <p class="dim none">尚無資料</p>}
     {o.judgments.map((j) => (
@@ -196,7 +202,7 @@ const jsonLd = [
   </section>
 
   <section class="sec">
-    <h2>相關爭議報導</h2>
+    <SectionHead text="相關爭議報導" />
     {o.controversies.length > 0 && (
       <p class="note">
         以下為維基百科與所附媒體報導之<strong>整理</strong>，屬外部報導與指控，
@@ -206,18 +212,21 @@ const jsonLd = [
       </p>
     )}
     {o.controversies.length === 0 && <p class="dim none">尚無資料</p>}
-    {o.controversies.map((c) => (
+    {o.controversies.map((c) => {
+      const label = statusLabel[inferStatus(c)];
+      return (
       <article class="card entry">
-        <div class="entry-head">{c.title}　<span class="pill">{statusLabel[inferStatus(c)]}</span></div>
+        <div class="entry-head">{c.title}{label && <>　<span class="pill">{label}</span></>}</div>
         <p class="entry-body">{c.summary}</p>
         <div class="entry-meta">整理日期：<span class="num">{c.reportDate}</span></div>
         <Sources sources={c.sources} />
       </article>
-    ))}
+      );
+    })}
   </section>
 
   <section class="sec">
-    <h2>財產申報</h2>
+    <SectionHead text="財產申報" />
     {o.assets.length > 0 && <p class="note">金額由程式自動解析監察院公報 PDF，可能有解析誤差；土地/建物因多數逾五年免申報價額，僅列筆數。請點出處核對。</p>}
     {o.assets.length === 0 && <p class="dim none">尚無資料</p>}
     {o.assets.map((a) => (
@@ -238,7 +247,7 @@ const jsonLd = [
   </section>
 
   <section class="sec">
-    <h2>政治獻金</h2>
+    <SectionHead text="政治獻金" />
     {o.officeType === "legislator" && /不分區|全國/.test(o.district) ? (
       <p class="dim none">不分區立法委員之政治獻金依法申報於推薦政黨名下，無個人專戶。</p>
     ) : o.donations.length === 0 ? (
@@ -279,7 +288,7 @@ const jsonLd = [
 
   {relations.length > 0 && (
     <section class="sec">
-      <h2>人物關係</h2>
+      <SectionHead text="人物關係" />
       <p class="note">關係資料整理自司法判決、媒體報導與公開資料，每條皆附出處，僅呈現已查證者。可點選的姓名為本站收錄之政治人物（連至其檔案頁），其餘為相關之其他公眾人物。</p>
       <RelationshipGraph client:visible data={ego} centerKey={centerKey} mode="ego" />
       <p class="note graph-note">圖中外圈較小、較淡者為「關係人的關係人」，與本人無直接關係。滑過連線可看說明與出處；下方清單為完整明細。</p>
@@ -299,17 +308,13 @@ const jsonLd = [
   <style>
     .back { font-size: 0.8125rem; color: var(--muted); }
     .back:hover { color: var(--accent); }
-    .head { margin: 14px 0 36px; }
-    .head h1 { font-size: var(--t-xl); margin: 10px 0 6px; }
+    .head { margin: 14px 0 28px; }
+    .pills { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 6px; }
     .head .lede { margin: 0; }
-    a.pill.candidacy:hover { color: var(--accent); border-color: var(--accent); }
-    .pill.departed { margin-left: 6px; color: #b3261e; border-color: #b3261e; }
-    .departed-note { margin: 12px 0 0; font-size: 0.8125rem; color: #b3261e; max-width: 64ch; line-height: 1.6; }
+    a.pill.candidacy:hover { background: var(--fg); color: var(--bg); }
+    .pill.departed { color: var(--accent); border-color: var(--accent); }
+    .departed-note { margin: 12px 0 0; font-size: 0.8125rem; color: var(--accent); max-width: 64ch; line-height: 1.6; }
     .sec { margin-bottom: 40px; }
-    .sec h2 {
-      font-size: 1.25rem; margin: 0 0 14px;
-      padding-bottom: 8px; border-bottom: 1px solid var(--line-strong);
-    }
     .note { font-size: var(--t-sm); color: var(--muted); margin: -4px 0 16px; }
     .group-source { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; margin: -6px 0 12px; }
     .group-source :global(.sources) { margin-top: 0; }
@@ -318,7 +323,7 @@ const jsonLd = [
     .career-group-head {
       font-family: var(--sans); font-size: var(--t-sm); font-weight: 700;
       color: var(--muted); letter-spacing: 0.06em;
-      margin: 0 0 8px; padding-bottom: 5px; border-bottom: 1px solid var(--line);
+      margin: 0 0 8px; padding-bottom: 5px; border-bottom: 1px solid var(--fg);
     }
     .graph-note { margin: 10px 0 18px; }
     .none { padding: 4px 0; }
