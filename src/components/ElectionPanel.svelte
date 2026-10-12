@@ -13,6 +13,8 @@
      舉行說明）→髮絲線→圖例。年份只在這裡出現一次，不再與地圖下緣的浮動切換器
      互相打架；麵包屑也一樣，不再浮在地圖上。 -->
 <script lang="ts">
+  import { untrack } from 'svelte';
+  import { fetchElectionJson } from '../lib/fetchElectionJson';
   import ElectionMap from './ElectionMap.svelte';
   import ElectionSidebar from './ElectionSidebar.svelte';
   import { PARTY_VAR, isUnassignedVillage, type MapArea, type MapLayer } from '../lib/mapTypes';
@@ -22,8 +24,8 @@
   // initialYear：這一頁固定呈現的年份。yearHref：各年份各自有獨立頁面時，切換器改成
   // 連到另一頁（/elections 是 2026、/elections/2022 是 2022），整頁內容跟著年份走，
   // 不會出現「地圖是 2022、下方表格還是 2026」的混搭（使用者 2026-10-05 要求）。
-  let { years, initialYear, yearHref }: {
-    years: ElectionYearConfig[]; initialYear?: number; yearHref?: Record<number, string>;
+  let { years, initialYear, yearHref, embedded = false }: {
+    years: ElectionYearConfig[]; embedded?: boolean; initialYear?: number; yearHref?: Record<number, string>;
   } = $props();
 
   let area = $state<MapArea | null>(null);
@@ -113,7 +115,7 @@
   import { STAGE_LABEL, type CountyCandidates, type NationalCandidates } from '../lib/candidateTypes';
 
   // 2026 候選人：只在 upcoming 時載入。全國檔一次；縣市檔依目前聚焦的縣市按需載入並快取。
-  // 載入失敗（檔案不存在、網路錯誤）時維持 null，側欄退回「尚無結果」的說法，不擋地圖操作。
+  // 載入失敗時顯示獨立錯誤與重試，不將網路失敗誤當成尚無選舉結果。
   let candNational = $state<NationalCandidates | null>(null);
   const candCounties = new Map<string, CountyCandidates>();
   let candCounty = $state<CountyCandidates | null>(null);
@@ -121,13 +123,23 @@
   const candInFlight = new Set<string>();
   let candFailed = $state<Set<string>>(new Set());
 
-  $effect(() => {
-    if (!upcoming || candNational) return;
-    fetch('/data/candidates/2026/national.json')
-      .then((r) => (r.ok ? r.json() : null))
-      .then((j) => { candNational = j; })
-      .catch(() => { candNational = null; });
-  });
+  let nationalError = $state(false);
+  let nationalLoading = $state(false);
+  async function loadCandidatesNational() {
+    if (nationalLoading || candNational) return;
+    nationalLoading = true;
+    nationalError = false;
+    try {
+      candNational = await fetchElectionJson<NationalCandidates>('/data/candidates/2026/national.json');
+    } catch { nationalError = true; }
+    finally { nationalLoading = false; }
+  }
+  $effect(() => { if (upcoming) untrack(() => { void loadCandidatesNational(); }); });
+
+  function retryCounty() {
+    const code = layer && focusCountyCode(layer.level, area, layer);
+    if (code) candFailed = new Set([...candFailed].filter(failed => failed !== code));
+  }
 
   $effect(() => {
     if (!upcoming || !layer) { candCounty = null; return; }
@@ -136,11 +148,11 @@
     const cached = candCounties.get(code);
     if (cached) { candCounty = cached; return; }
     candCounty = null;
-    if (candInFlight.has(code) || candFailed.has(code)) return;
+    // 先讀取反應式的失敗集合；請求尚未清除時也保留重試的訂閱。
+    if (candFailed.has(code) || candInFlight.has(code)) return;
     candInFlight.add(code);
     const fail = () => { candFailed = new Set([...candFailed, code]); };
-    fetch(`/data/candidates/2026/county/${code}.json`)
-      .then((r) => (r.ok ? r.json() : null))
+    fetchElectionJson<CountyCandidates>(`/data/candidates/2026/county/${code}.json`)
       .then((j: CountyCandidates | null) => {
         if (!j) { fail(); return; }
         candCounties.set(code, j);
@@ -163,7 +175,17 @@
     !!layer && candFailed.has(focusCountyCode(layer.level, area, layer) ?? ''));
 </script>
 
-<div class="stage">
+<div class="stage" class:embedded>
+  {#if embedded}
+    <nav class="map-toolbar crumbs" aria-label="地圖層級">
+      <span>目前位置</span>
+      {#each crumbItems as c, i}
+        {#if i > 0}<span aria-hidden="true">›</span>{/if}
+        {#if c.disabled}<strong aria-current="location">{c.label}</strong>{:else}<button type="button" onclick={() => mapRef?.jumpTo(i)}>{c.label}</button>{/if}
+      {/each}
+      <small>2026 候選人・行政區界線供查詢使用</small>
+    </nav>
+  {:else}
   <header class="title-float masthead">
     <p class="kicker">選舉特輯</p>
     <hr class="rule-thick" />
@@ -266,6 +288,7 @@
       {/if}
     {/if}
   </header>
+  {/if}
 
   <div class="map-region">
     <ElectionMap neutral={upcoming} onSelect={(a, l) => { area = a; layer = l; }}
@@ -288,8 +311,14 @@
       onmouseenter={() => mapRef?.holdSelection()}
       onmouseleave={() => mapRef?.releaseSelection()}
       role="presentation">
+      {#if upcoming && !candNational}
+        <h2>候選人名單</h2>
+        {#if nationalError}<p role="alert">候選人資料載入失敗，請重試。</p><button type="button" onclick={loadCandidatesNational}>重新載入候選人</button>
+        {:else}<p role="status">候選人資料載入中…</p>{/if}
+      {:else}
       <ElectionSidebar {area} {layer} {upcoming}
-        candidates={sidebarCandidates} candidateSource={candNational?.source ?? null} {countyLoadFailed} />
+        candidates={sidebarCandidates} candidateSource={candNational?.source ?? null} {countyLoadFailed} onRetryCounty={retryCounty} />
+      {/if}
     </div>
 
     <!-- 圖說：授權標示與領土說明。原本浮在地圖左下角獨立定位、又曾經併入左欄
@@ -532,5 +561,24 @@
     }
     .title-float { margin-top: 0; margin-bottom: 1rem; max-height: none; overflow-y: visible; }
     .sidebar-panel { max-height: none; overflow-y: visible; }
+  }
+  .embedded { height:auto;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;--map-back-left:16px; }
+  .map-toolbar { grid-column:1/-1;display:flex;gap:10px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px;font-size:13px; }
+  .map-toolbar > span:first-child { color:var(--muted); }
+  .map-toolbar small { margin-left:auto;color:var(--muted); }
+  .embedded .map-region { height:620px;min-width:0;background:var(--surface); }
+  .embedded .sidebar-float { position:static;width:auto;margin:0;max-height:620px;gap:16px;min-width:0; }
+  .embedded .sidebar-panel { border-top:3px solid var(--fg); }
+  .embedded .map-caption { margin-top:0; }
+  @media(max-width:900px) {
+    .embedded { grid-template-columns:minmax(0,1fr) 300px; }
+    .embedded .sidebar-panel { overflow-y:auto; }
+  }
+  @media(max-width:760px) {
+    .embedded { grid-template-columns:minmax(0,1fr); }
+    .embedded .map-region { height:420px; }
+    .embedded .sidebar-float { max-height:none; }
+    .embedded .sidebar-panel { overflow-y:visible; }
+    .map-toolbar small { width:100%;margin-left:0; }
   }
 </style>

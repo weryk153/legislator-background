@@ -1,5 +1,8 @@
 ---
 import Base from "../layouts/Base.astro";
+import TitleCard from "../components/TitleCard.astro";
+import ElectionFinder from "../components/ElectionFinder.svelte";
+import { electionCandidates } from "../lib/electionFinder";
 import ElectionPanel from "../components/ElectionPanel.svelte";
 import ChiefRaceCard from "../components/ChiefRaceCard.astro";
 import ElectionTimeline from "../components/ElectionTimeline.astro";
@@ -116,21 +119,23 @@ const jsonLd = [
       ogImage={ogImage}
       ogImageAlt="2026 九合一選舉候選人">
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <!-- 地圖滿版出血：跳出 .wrap 的 940px 上限、佔滿整個視窗寬度、緊接頁首，讓天下雜誌
-       那種「地圖是主角、控制項浮在上面」的感覺成立——一進頁面不捲動就看到完整地圖。
-       標題／倒數／年度標示改成浮在地圖左側的欄（見 ElectionPanel）。
+  <header class="election-hero">
+    <div class="hero-title"><TitleCard vertical="選舉特輯" lines={["九合一選舉", "找出你的候選人"]} heading="2026 九合一選舉候選人" variant="feature" fitContainer /></div>
+    <div class="hero-meta"><p class="year">2026</p><p class="vote-date">投票日 11 月 28 日</p>
+      {candidates2026 && <p class="data-stage"><a href={candidates2026.source.url}>{STAGE_LABEL[candidates2026.source.stage]}</a><br />製表 {candidates2026.source.tableDate}・名單隨選務進度更新</p>}
+      <nav aria-label="選舉年份"><span aria-current="page">2026 候選人</span><a href="/elections/2022/">2022 選舉結果 →</a></nav>
+    </div>
+  </header>
+  <nav class="section-nav" aria-label="選舉頁段落"><a href="#finder-title">找候選人</a><a href="#election-map">地圖查詢</a><a href="#timeline-title">選務時程</a><a href="#stats-title">參選概況</a><a href="#full-roster">完整名冊</a></nav>
+  {candidates2026 && <ElectionFinder client:load candidates={electionCandidates(candidates2026, councils2026)} />}
 
-       圖說（授權標示、領土說明）曾經是這裡一個獨立定位、疊在地圖左下角的區塊
-       （用 JS 動態量報頭高度來避開它，量測時機抓不準）；後來又併入左欄報頭的
-       欄位流，但左欄報頭內容本來就多（眉題／大標／版次／dateline／本期位置／
-       導言／圖例），1568×766 這種較矮的視窗下最後一段仍會被切掉。現在圖說改放
-       右欄——ElectionPanel.svelte 的 .sidebar-float 裡，接在資訊面板
-       （.sidebar-panel）之下、釘在整欄底部；右欄在全國層通常只佔上半部，
-       底下本來就空著。這裡不需要再另外的殼或腳本，細節見 ElectionPanel.svelte
-       的樣式與注釋。 -->
-  <div class="map-stage">
-    <ElectionPanel client:load {years} initialYear={2026} yearHref={YEAR_HREF} />
-  </div>
+  <details class="map-disclosure" id="election-map" open>
+    <summary><span>地圖查詢</span><small>點選縣市，逐層查看行政區與候選人</small><span class="expand" aria-hidden="true">＋</span></summary>
+    <div class="map-stage"><ElectionPanel client:visible {years} initialYear={2026} yearHref={YEAR_HREF} embedded /></div>
+  </details>
+  <script is:inline>
+    if (window.matchMedia('(max-width: 760px)').matches) document.getElementById('election-map').open = false;
+  </script>
 
   <!-- 選務時程軸：伺服器端渲染，節點實心＝已過、空心＝未到；今天落在兩節點之間時，
        在線上另畫一個「今天」標記。窄螢幕改直排。 -->
@@ -200,6 +205,7 @@ const jsonLd = [
     </section>
   )}
 
+  <details class="full-roster" id="full-roster"><summary>完整名冊<span>縣市長與議員・依縣市展開</span></summary>
   {candidates2026 && (
     <section class="overview" aria-labelledby="cand-title">
       <SectionHead id="cand-title" text="2026 縣市長候選人" />
@@ -277,6 +283,8 @@ const jsonLd = [
     </section>
   )}
 
+  </details>
+
   <p class="past-link">
     <a href="/elections/2022/">2022 年九合一選舉結果一覽（縣市長、議會席次、得票率）→</a>
   </p>
@@ -285,33 +293,45 @@ const jsonLd = [
 </Base>
 
 <style>
-  /* 標準的「跳出置中容器」技巧：50% 相對於父層（.wrap，已置中），50vw 相對於視窗，
-     兩者相減剛好抵消置中造成的偏移，讓這個區塊左右都貼齊視窗邊緣。 */
-  .map-stage {
-    position: relative;
-    width: 100vw;
-    margin: 0 0 0 calc(50% - 50vw);
-    /* 緊接頁首、填滿首屏：130px = 頁首 .site-head 實測高度 98px（padding-top 22px
-       ＋padding-bottom 16px＋2px 邊框＋內容本身，實測 97.45px 取整）＋ Base.astro
-       .main 的 padding-top 32px。這兩個數字都是量測值，不是變數，Base.astro 或
-       站台頁首若改版就要重新量測。用 100dvh 而非 100vh，行動裝置網址列收合/展開時
-       高度才不會跳動。 */
-    height: calc(100dvh - 130px);
-  }
-
-  /* 窄螢幕：ElectionPanel 內的標題欄／資訊面板改回靜態排版、各自佔滿寬度，
-     這裡的滿版地圖區塊也要跟著放棄固定滿版高度，否則會被硬撐出捲動軸內的
-     捲動軸（雙重捲動）。斷點跟 ElectionPanel.svelte 的 900px 一致，必須同步改。
-     圖說（現在是 ElectionPanel.svelte 報頭欄位流的一部分）會隨報頭本身的
-     900px 規則一起退回一般文件流，這裡不需要再另外處理。 */
-  @media (max-width: 900px) {
-    .map-stage { height: auto; margin-top: 0; }
+  .election-hero { display:grid;grid-template-columns:1.4fr 1fr;background:var(--block-bg);color:var(--block-fg);padding:28px;gap:30px; }
+  .hero-title { container-type:inline-size;align-self:center;--feature-first-size:min(84px,calc((100cqw - 76px)/3.1)); }
+  .hero-title :global(.tcard) { padding:0;background:transparent; }
+  .hero-meta { border-left:1px solid color-mix(in srgb,var(--block-fg) 30%,transparent);padding-left:30px; }
+  .year { font:900 66px/1 var(--serif);letter-spacing:-.05em;margin:0; }
+  .vote-date { margin:8px 0 12px;font-size:15px; }
+  .data-stage { font-size:12px;line-height:1.8;margin:0;opacity:.8; }
+  .election-hero a { color:inherit; }
+  .hero-meta nav { display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;font-size:13px; }
+  .hero-meta nav span { border-bottom:2px solid var(--accent);padding-bottom:4px; }
+  .section-nav { display:flex;flex-wrap:wrap;gap:8px 24px;padding:14px 0;border-bottom:1px solid var(--line);font-size:13px; }
+  .section-nav a { text-decoration:none; }
+  .map-disclosure { margin:26px 0;border:1px solid var(--line-strong); }
+  .map-disclosure > summary { display:flex;align-items:center;gap:18px;padding:16px 20px;cursor:pointer;list-style:none; }
+  .map-disclosure > summary::-webkit-details-marker { display:none; }
+  .map-disclosure > summary > span:first-child { font:900 24px var(--serif); }
+  .map-disclosure small { color:var(--muted); }
+  .expand { margin-left:auto; }
+  .map-disclosure[open] .expand { transform:rotate(45deg); }
+  .map-stage { border-top:1px solid var(--line);padding:18px; }
+  .full-roster { margin-top:32px;border-top:3px solid var(--fg);border-bottom:1px solid var(--line); }
+  .full-roster > summary { padding:20px 0;font:900 26px var(--serif);cursor:pointer; }
+  .full-roster > summary span { font:400 13px var(--sans);color:var(--muted);margin-left:20px; }
+  :global(#finder-title),:global(#timeline-title),:global(#stats-title),#election-map,#full-roster { scroll-margin-top:20px; }
+  @media(max-width:760px) {
+    .election-hero { grid-template-columns:1fr;padding:20px;gap:18px; }
+    .hero-title { --feature-first-size:min(64px,calc((100cqw - 52px)/3.1));--feature-second-size:min(28px,calc((100cqw - 52px)/4.34)); }
+    .hero-meta { border-left:0;border-top:1px solid color-mix(in srgb,var(--block-fg) 30%,transparent);padding:16px 0 0; }
+    .year { font-size:40px;float:left;margin-right:18px; }
+    .vote-date { margin:8px 0 18px; }.data-stage { clear:both; }
+    .section-nav { gap:10px 18px; }
+    .map-disclosure > summary { padding:14px;flex-wrap:wrap;gap:8px; }.map-disclosure small { order:3;width:100%; }
+    .map-stage { padding:12px; }.full-roster > summary span { display:block;margin:8px 0 0; }
   }
 
   /* 2026 候選人表與議員名單：報紙特輯的調性——髮絲線分隔、襯線體數字、不用卡片陰影或圓角。
      與地圖區塊隔開足夠留白，讓讀者一眼看出這是滿版地圖之後的另一段內容，
      不是地圖的附屬控制項。 */
-  .overview { margin-top: 48px; }
+  .overview { margin-top: 30px; }
   .overview-note { color: var(--muted); font-size: 0.9375rem; line-height: 1.7; max-width: 72ch; margin: 0 0 20px; }
 
   /* 表格本身可能比 940px 的 .wrap 還寬（尤其中文縣市長全名＋政黨全名），窄螢幕

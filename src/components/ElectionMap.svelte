@@ -5,6 +5,7 @@
      資料由 scraper/build-election-map.ts 產出到 public/data/map/，此處只負責
      繪製與互動，不動資料管線。 -->
 <script lang="ts">
+  import { fetchElectionJson } from '../lib/fetchElectionJson';
   import { onDestroy, onMount, tick } from 'svelte';
   import { geoArea, geoCentroid, geoMercator, geoPath } from 'd3-geo';
   import { feature } from 'topojson-client';
@@ -473,9 +474,7 @@
     loading = true;
     error = null;
     try {
-      const res = await fetch('/data/map/national.json');
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const layer: MapLayer = await res.json();
+      const layer = await fetchElectionJson<MapLayer>('/data/map/national.json');
       counties = layer;
       // 投影只算這一次：20 個縣市（濾除極端外島、以及改走插圖的金門／連江後）的
       // 幾何 fitExtent 到固定座標系——金門、連江不進來，本島才會自然置中、放大
@@ -526,9 +525,7 @@
     loading = true;
     error = null;
     try {
-      const res = await fetch(`/data/map/${area.childFile}`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const child: MapLayer = await res.json();
+      const child = await fetchElectionJson<MapLayer>(`/data/map/${area.childFile}`);
       map.set(area.code, child);
       crumbs = [...crumbs, { level: nextLevel, code: area.code, name: area.name }];
       revealAfterZoom();
@@ -929,7 +926,7 @@
   .back-control {
     position: absolute;
     top: 2rem;
-    left: calc(2rem + min(320px, 26vw) + 1rem);
+    left: var(--map-back-left, calc(2rem + min(320px, 26vw) + 1rem));
     z-index: 5;
     display: inline-flex;
     align-items: center;
