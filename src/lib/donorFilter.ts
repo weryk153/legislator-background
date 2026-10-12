@@ -41,6 +41,57 @@ export interface RankedDonor {
   view: DonorView;
 }
 
+export interface RankedRecipient {
+  key: string;
+  name: string;
+  slug: string | null;
+  party: string | null;
+  officeType: string | null;
+  election: string;
+  total: number;
+  count: number;
+  donors: { uid: string; name: string; amount: number }[];
+}
+
+/**
+ * 反向彙總各選舉受贈者的企業獻金。跨選舉分列，避免將不同專戶混為一次選舉；
+ * 已連結者以 slug 辨識，未連結者僅在同一選舉內依原始姓名彙總，不猜測身分。
+ * 企業以 uid 去重；所有金額取自受贈明細，與個人專戶 totalIncome 無關。
+ */
+export function rankRecipients(
+  donors: Donor[],
+  query: DonorFilterQuery = {},
+  opts: { search?: string; limit?: number } = {},
+): RankedRecipient[] {
+  const groups = new Map<string, Omit<RankedRecipient, 'count' | 'donors'> & {
+    companies: Map<string, RankedRecipient['donors'][number]>;
+  }>();
+  const search = opts.search?.trim();
+  for (const donor of donors) {
+    for (const recipient of donor.recipients) {
+      if (!matchRecipient(recipient, query) || (search && !matchName(recipient.name, search))) continue;
+      const key = JSON.stringify([recipient.election, recipient.slug ? `slug:${recipient.slug}` : `name:${recipient.name}`]);
+      let group = groups.get(key);
+      if (!group) {
+        group = { key, name: recipient.name, slug: recipient.slug, party: recipient.party,
+          officeType: recipient.officeType, election: recipient.election, total: 0, companies: new Map() };
+        groups.set(key, group);
+      }
+      group.total += recipient.amount;
+      const company = group.companies.get(donor.uid);
+      if (company) company.amount += recipient.amount;
+      else group.companies.set(donor.uid, { uid: donor.uid, name: donor.name, amount: recipient.amount });
+    }
+  }
+  return [...groups.values()].map(({ companies, ...recipient }) => ({
+    ...recipient, count: companies.size,
+    donors: [...companies.values()].sort((a, b) => b.amount - a.amount || a.uid.localeCompare(b.uid)),
+  })).sort((a, b) => (query.sort === 'count'
+    ? b.count - a.count || b.total - a.total
+    : b.total - a.total || b.count - a.count) || a.key.localeCompare(b.key))
+    .slice(0, opts.limit ?? Infinity);
+}
+
 type FilterFields = Pick<DonorFilterQuery, 'party' | 'officeType' | 'election'>;
 
 /** 是否有任一政黨/職務/選舉篩選啟用。 */

@@ -42,25 +42,51 @@ const jsonLd = [
 ---
 <Base title="政治人物背景資料庫" description={desc}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <section class="lead">
-    <TitleCard as="h2" vertical="第壱話" lines={["九合一", "候選人背景總整理"]} href="/elections/" />
+  <section class="lead" aria-label="2026 九合一選舉專題">
+    <TitleCard as="h2" vertical="第壱話" lines={["九合一選舉", "候選人背景總整理"]} href="/elections/" variant="feature" />
     <div class="lead-text">
-      <p>2026 縣市長與縣市議員參選人的經歷、判決、爭議與政治獻金，逐縣市整理。</p>
-      <a class="go" href="/elections/">看選舉頁 →</a>
+      <p class="edition">2026 <span>LOCAL ELECTIONS</span></p>
+      <p class="lead-desc">縣市長與縣市議員參選人的經歷、判決、爭議與政治獻金，逐縣市整理。</p>
+      <a class="go" href="/elections/">進入選舉專題 <span aria-hidden="true">↗</span></a>
     </div>
   </section>
 
-  <SectionHead text="選務時程" />
-  <ElectionTimeline />
+  <section class="home-schedule" aria-label="選務時程">
+    <SectionHead text="選務時程" />
+    <ElectionTimeline />
+  </section>
 
-  <SectionHead text="名冊" />
+  <div class="roster-heading"><SectionHead text="名冊" /></div>
   <p class="term-note">收錄對象：第11屆立法委員（2024年當選）、2022年當選之縣市首長與縣市議員（任期至2026）。任內已解職者保留並標註「已解職」。</p>
   <OfficialTable client:load rows={rows} />
   <style>
-    .lead { display: flex; gap: 28px; align-items: flex-end; margin: 4px 0 0; }
-    .lead-text p { margin: 0; max-width: 30em; color: var(--muted); }
-    .go { display: inline-block; margin-top: 10px; font-weight: 700; border-bottom: 2px solid var(--fg); }
-    .term-note { margin: 0 0 14px; font-size: var(--t-sm); color: var(--faint); max-width: 64ch; line-height: 1.6; }
-    @media (max-width: 640px) { .lead { flex-direction: column; align-items: flex-start; gap: 14px; } }
+    /* EVA 字卡構圖：壓扁特粗明朝、黑白大片對比與朱紅直排章節字。 */
+    .lead { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(260px, .8fr); gap: 32px; align-items: center; margin: 0; padding: 24px 28px; background: var(--block-bg); color: var(--block-fg); }
+    .lead :global(.tcard) { padding: 0; justify-self: start; }
+    .lead-text { border-left: 1px solid color-mix(in srgb, var(--block-fg) 28%, transparent); padding-left: 28px; }
+    .edition { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px; margin: 0 0 8px; font: 700 30px/1 var(--sans); letter-spacing: -.04em; }
+    .edition span { font-size: 10px; font-weight: 500; letter-spacing: .14em; }
+    .lead-desc { margin: 0; max-width: 28em; font-size: 13px; line-height: 1.8; opacity: .8; }
+    .go { display: inline-flex; align-items: center; justify-content: space-between; gap: 28px; margin-top: 14px; padding-bottom: 3px; border-bottom: 1px solid currentColor; font-size: 13px; font-weight: 700; }
+    .go:hover { color: var(--block-accent); }
+    .go span { color: var(--block-accent); font-size: 20px; line-height: 1; }
+    .home-schedule :global(.sh), .roster-heading :global(.sh) { margin-top: 26px; margin-bottom: 14px; font-size: 32px; }
+    .term-note { margin: 0 0 14px; font-size: var(--t-sm); color: var(--faint); max-width: 80ch; line-height: 1.6; }
+    @media (max-width: 900px) {
+      .lead { grid-template-columns: minmax(0, 1.2fr) minmax(220px, 1fr); gap: 24px; padding: 22px; }
+      .lead-text { padding-left: 22px; }
+      .lead { --feature-first-size: 76px; --feature-second-size: 32px; }
+    }
+    @media (max-width: 640px) {
+      .lead { grid-template-columns: minmax(0, 1fr); gap: 18px; padding: 20px; }
+      .lead { --feature-first-size: min(72px, calc((100vw - 100px) / 3.1)); --feature-second-size: min(32px, calc((100vw - 100px) / 4.96)); }
+      .lead-text { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 12px; padding: 14px 0 0; border-left: 0; border-top: 1px solid color-mix(in srgb, var(--block-fg) 28%, transparent); }
+      .edition { font-size: 22px; gap: 8px; margin: 0; }
+      .edition span { font-size: 8px; letter-spacing: .06em; }
+      .lead-desc { grid-column: 1 / -1; grid-row: 2; font-size: 12px; line-height: 1.65; }
+      .go { gap: 10px; font-size: 11px; margin-top: 0; }
+      .home-schedule :global(.sh), .roster-heading :global(.sh) { margin-top: 22px; margin-bottom: 8px; font-size: 28px; }
+      .term-note { font-size: 11px; }
+    }
   </style>
 </Base>

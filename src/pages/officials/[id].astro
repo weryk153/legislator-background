@@ -14,6 +14,9 @@ import { loadCandidacies } from "../../lib/candidacy";
 import { countyPagePath } from "../../lib/countyKeys";
 import RelationshipGraph from "../../components/RelationshipGraph.svelte";
 import { officeRole, officialPageTitle, shortParty } from "../../lib/seoTitle";
+import { partyEmblem } from "../../lib/partyEmblems";
+import { candidatePhotoCredits } from "../../lib/candidatePhotos";
+import { squashWidth } from "../../lib/squash";
 
 export async function getStaticPaths() {
   const officials = await loadOfficials();
@@ -96,6 +99,16 @@ const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : unde
 const homeUrl = Astro.site ? Astro.site.href : undefined;
 // 大頭照為站內收錄之直式照片（非標準 1200x630），供 og:image 與 JSON-LD image 使用。
 const photoUrl = o.photoUrl && Astro.site ? new URL(o.photoUrl, Astro.site).href : undefined;
+const photoCredit = candidatePhotoCredits().get(o.slug);
+const emblem = partyEmblem(o.party);
+const sections = [
+  { id: "careers", label: "經歷" },
+  { id: "judgments", label: "司法判決" },
+  { id: "reports", label: "相關爭議報導" },
+  { id: "assets", label: "財產申報" },
+  { id: "donations", label: "政治獻金" },
+  ...(relations.length ? [{ id: "relations", label: "人物關係" }] : []),
+];
 // 所有檔案頁共用同一份資料快照，以其匯出日作為頁面的 dateModified（與 sitemap lastmod 同源）。
 let dataDate: string | undefined;
 try {
@@ -141,27 +154,47 @@ const jsonLd = [
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <a href={isCandidate ? "/elections/" : "/"} class="back">{isCandidate ? "← 返回 2026 選舉" : "← 返回總覽"}</a>
 
-  <header class="head">
-    <TitleCard vertical={shortParty(o.party)} lines={[o.name, roleText]} heading={o.name} />
+  <header class:list={["head", { "long-name": squashWidth(o.name) > 9 }]}>
+    <figure class="portrait">
+      <div class="portrait-frame">
+        {o.photoUrl
+          ? <img class="portrait-photo" src={o.photoUrl} alt={`${o.name}的人物照片`} width="240" height="300" loading="eager" />
+          : <div class="portrait-empty"><span aria-hidden="true">{o.name.slice(0, 1)}</span><span>尚無照片</span></div>}
+        {o.departedReason && <span class="departed-stamp">已解職</span>}
+      </div>
+      {o.photoUrl && photoCredit && <figcaption>攝影：{photoCredit.author}・<a href={photoCredit.commonsUrl} target="_blank" rel="noopener">{photoCredit.license} ↗</a></figcaption>}
+    </figure>
+    <div class="profile-info">
+    <TitleCard vertical={shortParty(o.party)} lines={[o.name, roleText]} heading={o.name} fitContainer />
+    <div class="party-line">
+      {emblem && <img src={emblem} alt="" width="24" height="24" />}
+      <span>{o.party}</span>
+      {!isCandidate && <span class="term">第{o.term}屆</span>}
+    </div>
     <div class="pills">
       <span class="pill">{OFFICE_LABEL[o.officeType]}</span>
-      {o.departedReason && <span class="pill departed">已解職</span>}
       {candidacy && !isCandidate && (candidacyHref
         ? <a class="pill candidacy" href={candidacyHref}>{candidacy.label}</a>
         : <span class="pill candidacy">{candidacy.label}</span>)}
     </div>
-    <p class="lede">
-      {isCandidate ? `${o.party}・${roleText}` : `${o.party}・${o.district}・第${o.term}屆`}{o.bio ? `　${o.bio}` : ""}
-    </p>
+    {o.bio && <p class="lede">{o.bio}</p>}
     {o.departedReason && (
       <p class="departed-note">
         本人已非現任：{o.departedReason}。以下為其任內（第{o.term}屆當選時）之公開資料。
         {dismissalRecord && <Sources sources={[dismissalRecord.source]} />}
       </p>
     )}
+    </div>
   </header>
 
-  <section class="sec">
+  <div class="profile-body">
+  <nav class="profile-nav" aria-label="個人資料目錄">
+    <p class="nav-title">資料目錄</p>
+    <ol>{sections.map((section, index) => <li><a href={`#${section.id}`}><span class="nav-num" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>{section.label}</a></li>)}</ol>
+    <p class="nav-note">各筆資料皆附公開出處<br />請點選連結核對原文</p>
+  </nav>
+  <div class="profile-content">
+  <section class="sec" id="careers">
     <SectionHead text="經歷" />
     {o.careers.length === 0 && <p class="dim none">尚無資料</p>}
     {careersByCategory.map((g) => (
@@ -188,7 +221,7 @@ const jsonLd = [
     )}
   </section>
 
-  <section class="sec">
+  <section class="sec" id="judgments">
     <SectionHead text="司法判決" />
     <p class="note">判決結果不代表最終定罪；未定讞案件當事人依法受無罪推定保障。</p>
     {o.judgments.length === 0 && <p class="dim none">尚無資料</p>}
@@ -201,7 +234,7 @@ const jsonLd = [
     ))}
   </section>
 
-  <section class="sec">
+  <section class="sec" id="reports">
     <SectionHead text="相關爭議報導" />
     {o.controversies.length > 0 && (
       <p class="note">
@@ -225,7 +258,7 @@ const jsonLd = [
     })}
   </section>
 
-  <section class="sec">
+  <section class="sec" id="assets">
     <SectionHead text="財產申報" />
     {o.assets.length > 0 && <p class="note">金額由程式自動解析監察院公報 PDF，可能有解析誤差；土地/建物因多數逾五年免申報價額，僅列筆數。請點出處核對。</p>}
     {o.assets.length === 0 && <p class="dim none">尚無資料</p>}
@@ -246,7 +279,7 @@ const jsonLd = [
     ))}
   </section>
 
-  <section class="sec">
+  <section class="sec" id="donations">
     <SectionHead text="政治獻金" />
     {o.officeType === "legislator" && /不分區|全國/.test(o.district) ? (
       <p class="dim none">不分區立法委員之政治獻金依法申報於推薦政黨名下，無個人專戶。</p>
@@ -287,7 +320,7 @@ const jsonLd = [
   </section>
 
   {relations.length > 0 && (
-    <section class="sec">
+    <section class="sec" id="relations">
       <SectionHead text="人物關係" />
       <p class="note">關係資料整理自司法判決、媒體報導與公開資料，每條皆附出處，僅呈現已查證者。可點選的姓名為本站收錄之政治人物（連至其檔案頁），其餘為相關之其他公眾人物。</p>
       <RelationshipGraph client:visible data={ego} centerKey={centerKey} mode="ego" />
@@ -304,17 +337,40 @@ const jsonLd = [
       ))}
     </section>
   )}
+  </div>
+  </div>
 
   <style>
     .back { font-size: 0.8125rem; color: var(--muted); }
     .back:hover { color: var(--accent); }
-    .head { margin: 14px 0 28px; }
-    .pills { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 6px; }
+    .head { display: grid; grid-template-columns: 216px minmax(0, 1fr); gap: 32px; align-items: start; margin: 18px 0 38px; padding-bottom: 32px; border-bottom: 3px solid var(--fg); }
+    .portrait { margin: 0; min-width: 0; }
+    .portrait-frame { position: relative; background: var(--surface); border: 1px solid var(--line); }
+    .portrait-photo { display: block; width: 100%; height: 260px; object-fit: contain; }
+    .portrait-empty { height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--muted); font-size: var(--t-sm); }
+    .portrait-empty > span:first-child { font-family: var(--serif); font-weight: 900; font-size: 76px; color: var(--faint); }
+    .portrait figcaption { margin-top: 6px; color: var(--muted); font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+    .portrait figcaption a { text-decoration: underline; }
+    .departed-stamp { position: absolute; top: 0; right: 0; padding: 2px 7px; border: 4px double var(--accent); color: var(--accent); background: var(--bg); font-family: var(--serif); font-weight: 900; font-size: 20px; line-height: 1.2; }
+    .profile-info { min-width: 0; container-type: inline-size; }
+    .party-line { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; margin-top: 18px; font-weight: 700; }
+    .party-line img { object-fit: contain; flex: none; }
+    .term { color: var(--muted); font-size: var(--t-sm); font-weight: 400; border-left: 1px solid var(--line); padding-left: 10px; margin-left: 3px; }
+    .pills { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
     .head .lede { margin: 0; }
     a.pill.candidacy:hover { background: var(--fg); color: var(--bg); }
-    .pill.departed { color: var(--accent); border-color: var(--accent); }
     .departed-note { margin: 12px 0 0; font-size: 0.8125rem; color: var(--accent); max-width: 64ch; line-height: 1.6; }
-    .sec { margin-bottom: 40px; }
+    .profile-body { display: grid; grid-template-columns: 216px minmax(0, 1fr); gap: 32px; align-items: start; }
+    .profile-nav { position: sticky; top: 24px; }
+    .nav-title { margin: 0 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--fg); font-family: var(--serif); font-weight: 900; font-size: 20px; }
+    .profile-nav ol { list-style: none; padding: 0; margin: 0; }
+    .profile-nav a { display: flex; gap: 12px; align-items: baseline; padding: 9px 8px; font-size: 14px; }
+    .profile-nav a:hover, .profile-nav a:focus-visible { background: var(--block-bg); color: var(--block-fg); }
+    .nav-num { color: var(--accent); font-family: var(--serif); font-weight: 900; font-size: 12px; }
+    .nav-note { font-size: 12px; line-height: 1.7; color: var(--faint); margin-top: 20px; }
+    .profile-content { min-width: 0; max-width: 880px; overflow-wrap: anywhere; }
+    .sec { margin-bottom: 42px; scroll-margin-top: 24px; }
+    .sec :global(.sh) { margin-top: 0; }
     .note { font-size: var(--t-sm); color: var(--muted); margin: -4px 0 16px; }
     .group-source { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; margin: -6px 0 12px; }
     .group-source :global(.sources) { margin-top: 0; }
@@ -351,5 +407,27 @@ const jsonLd = [
     .don-donors table { border-collapse: collapse; margin-top: 6px; width: 100%; max-width: 480px; }
     .don-donors th, .don-donors td { text-align: left; padding: 3px 8px 3px 0; border-bottom: 1px solid var(--line); }
     .don-donors .amt { text-align: right; }
+    @media (max-width: 760px) {
+      .head { grid-template-columns: 152px minmax(0, 1fr); gap: 20px; margin-bottom: 24px; padding-bottom: 24px; }
+      .portrait-photo, .portrait-empty { height: 200px; }
+      .profile-body { display: block; }
+      .profile-nav { position: static; margin-bottom: 28px; }
+      .nav-title { font-size: 16px; margin-bottom: 6px; padding-bottom: 7px; }
+      .profile-nav ol { display: flex; flex-wrap: wrap; gap: 0 14px; }
+      .profile-nav a { padding: 7px 0; gap: 6px; }
+      .nav-note { display: none; }
+      .sec { margin-bottom: 32px; }
+    }
+    @media (max-width: 540px) {
+      .head { grid-template-columns: 112px minmax(0, 1fr); gap: 16px; }
+      .portrait-photo, .portrait-empty { height: 150px; }
+      .head.long-name { grid-template-columns: minmax(0, 1fr); }
+      .long-name .portrait { width: 152px; }
+      .long-name .portrait-photo, .long-name .portrait-empty { height: 190px; }
+      .party-line { margin-top: 14px; }
+      .profile-nav ol { gap: 0 16px; }
+      .profile-nav a { font-size: 13px; }
+      .don-type { flex-wrap: wrap; gap: 0 10px; }
+    }
   </style>
 </Base>

@@ -1,13 +1,14 @@
 ---
 // 選務時程軸（首頁與 /elections 共用）：節點實心＝已過、空心＝未到；今天落在兩節點之間時，
-// 在線上另畫一個「今天」紅色短豎線。窄螢幕改直排。
-import { ELECTION_MILESTONES, taipeiToday, timelineProgress } from "../lib/candidateTypes";
+// 在線上另畫一個「今天」紅色短豎線。手機先顯示近期節點摘要，可展開完整直排時程。
+import { ELECTION_MILESTONES, taipeiToday, timelineProgress, timelineHighlight } from "../lib/candidateTypes";
 
 // ── 選務時程軸 ─────────────────────────────────────────────
 // 建置時先以建置當天（臺灣日期）畫出一版，免 JS 也看得到；頁面是靜態建置、不會每天重建，
 // 所以頁尾的腳本會在瀏覽器端依「訪客的今天」重算節點狀態並搬動「今天」標記。
 const today = taipeiToday();
 const progress = timelineProgress(ELECTION_MILESTONES, today);
+const highlight = timelineHighlight(ELECTION_MILESTONES, today);
 const shortDate = (iso: string) => `${Number(iso.slice(5, 7))}/${Number(iso.slice(8, 10))}`;
 // 節點與「今天」標記攤成一串，畫成同一條線上的項目；今天正逢某節點時標記藏起來（仍輸出，
 // 讓瀏覽器端換日後有東西可搬）。
@@ -20,6 +21,15 @@ const timelineItems: TimelineItem[] = [
 ];
 const SR_STATE = { done: "（已過）", current: "（進行中）", upcoming: "（未到）" } as const;
 ---
+<details class="election-schedule" open>
+  <summary class="schedule-summary">
+    <span class="summary-copy">
+      <span class="summary-kicker" data-highlight-status>{highlight.status}</span>
+      <span class="summary-event" data-highlight-label>{highlight.milestone?.label ?? '本屆選務時程已結束'}</span>
+      <time class="summary-date" data-highlight-date datetime={highlight.milestone?.start} hidden={!highlight.milestone}>{highlight.milestone?.dateText}</time>
+    </span>
+    <span class="summary-action"><span class="when-closed">完整時程</span><span class="when-open">收起</span><span class="summary-chevron" aria-hidden="true"></span></span>
+  </summary>
 <ol class="timeline">
   {timelineItems.map((it) => {
     if (it.kind === "today") {
@@ -43,27 +53,52 @@ const SR_STATE = { done: "（已過）", current: "（進行中）", upcoming: "
     );
   })}
 </ol>
+</details>
+<script is:inline>
+  // 首次繪製就收合手機時程；未啟用 JS 時保留完整、可原生操作的 details。
+  document.currentScript.previousElementSibling.open = !window.matchMedia('(max-width: 640px)').matches;
+</script>
 
 <script>
   // 時程軸換日：建置出來的是建置當天的版本，這裡依訪客的今天（臺灣日期）重算。
   // 與伺服器端共用同一套 timelineProgress，規則只有一份。
-  import { ELECTION_MILESTONES, taipeiToday, timelineProgress } from "../lib/candidateTypes";
+  import { ELECTION_MILESTONES, taipeiToday, timelineProgress, timelineHighlight } from "../lib/candidateTypes";
 
   const SR_STATE = { done: "（已過）", current: "（進行中）", upcoming: "（未到）" } as const;
-  const list = document.querySelector<HTMLOListElement>(".timeline");
-  const todayLi = list?.querySelector<HTMLLIElement>(".tl-today");
-  const todayTime = todayLi?.querySelector<HTMLTimeElement>(".tl-date");
+  const mobile = window.matchMedia('(max-width: 640px)');
   const today = taipeiToday();
-  if (list && todayLi && todayTime && todayTime.dateTime !== today) {
+  const highlight = timelineHighlight(ELECTION_MILESTONES, today);
+  document.querySelectorAll<HTMLDetailsElement>('.election-schedule').forEach((schedule) => {
+    // 桌機固定展開，手機可用原生 summary 點擊／鍵盤操作。
+    const syncViewport = () => { schedule.open = !mobile.matches; };
+    syncViewport();
+    mobile.addEventListener('change', syncViewport);
+
+    const status = schedule.querySelector<HTMLElement>('[data-highlight-status]');
+    const label = schedule.querySelector<HTMLElement>('[data-highlight-label]');
+    const date = schedule.querySelector<HTMLTimeElement>('[data-highlight-date]');
+    if (status) status.textContent = highlight.status;
+    if (label) label.textContent = highlight.milestone?.label ?? '本屆選務時程已結束';
+    if (date) {
+      date.hidden = !highlight.milestone;
+      date.textContent = highlight.milestone?.dateText ?? '';
+      if (highlight.milestone) date.dateTime = highlight.milestone.start;
+      else date.removeAttribute('datetime');
+    }
+
+    const list = schedule.querySelector<HTMLOListElement>('.timeline');
+    const todayLi = list?.querySelector<HTMLLIElement>('.tl-today');
+    const todayTime = todayLi?.querySelector<HTMLTimeElement>('.tl-date');
+    if (!list || !todayLi || !todayTime || todayTime.dateTime === today) return;
     const { states, todayAfter } = timelineProgress(ELECTION_MILESTONES, today);
-    const nodes = [...list.querySelectorAll<HTMLLIElement>(".tl-node")];
+    const nodes = [...list.querySelectorAll<HTMLLIElement>('.tl-node')];
     nodes.forEach((li) => {
       const st = states[Number(li.dataset.i)];
-      li.classList.remove("done", "current", "upcoming");
+      li.classList.remove('done', 'current', 'upcoming');
       li.classList.add(st);
-      if (st === "current") li.setAttribute("aria-current", "step");
-      else li.removeAttribute("aria-current");
-      const sr = li.querySelector(".sr-only");
+      if (st === 'current') li.setAttribute('aria-current', 'step');
+      else li.removeAttribute('aria-current');
+      const sr = li.querySelector('.sr-only');
       if (sr) sr.textContent = SR_STATE[st];
     });
     todayTime.dateTime = today;
@@ -71,10 +106,22 @@ const SR_STATE = { done: "（已過）", current: "（進行中）", upcoming: "
     todayLi.hidden = todayAfter === null;
     if (todayAfter === -1) list.prepend(todayLi);
     else if (todayAfter !== null) nodes[todayAfter].after(todayLi);
-  }
+  });
 </script>
 
 <style>
+.schedule-summary { display: none; }
+.summary-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.summary-kicker { font: 700 11px/1.5 var(--sans); letter-spacing: .05em; color: var(--accent); }
+.summary-event { font: 900 18px/1.4 var(--serif); letter-spacing: -.03em; }
+.summary-date { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.summary-action { display: flex; align-items: center; gap: 10px; flex: none; font-size: 11px; color: var(--muted); }
+.summary-chevron { width: 7px; height: 7px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: rotate(45deg); margin: -4px 2px 0 0; }
+.when-open { display: none; }
+.election-schedule[open] .when-open { display: inline; }
+.election-schedule[open] .when-closed { display: none; }
+.election-schedule[open] .summary-chevron { transform: rotate(225deg); margin-top: 4px; }
+
 /* ── 選務時程軸 ──────────────────────────────────────────
    一條髮絲線串起各節點：實心＝已過或進行中、空心＝未到；「今天」是線上的一道短豎線。
    節點等寬排開，不按日期比例——時程只有五個點，比例尺反而讓 8/31 與 9/4 擠在一起。 */
@@ -103,6 +150,10 @@ const SR_STATE = { done: "（已過）", current: "（進行中）", upcoming: "
 .tl-date { color: var(--muted); font-size: var(--t-sm); font-variant-numeric: tabular-nums; }
 .tl-today .tl-label, .tl-today .tl-date { color: var(--accent); }
 @media (max-width: 640px) {
+  .schedule-summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0; cursor: pointer; list-style: none; }
+  .schedule-summary::-webkit-details-marker { display: none; }
+  .election-schedule[open] .schedule-summary { margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+
   .timeline { flex-direction: column; gap: 14px; }
   .timeline::before { left: 6px; right: auto; top: 6px; bottom: 6px; border-top: 0; border-left: 1px solid var(--fg); }
   .timeline li { padding: 0 0 0 26px; }

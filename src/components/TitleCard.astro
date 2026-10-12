@@ -11,11 +11,23 @@ interface Props {
   heading?: string;
   as?: "h1" | "h2";
   href?: string;
+  variant?: "default" | "feature";
+  fitContainer?: boolean;
 }
-const { vertical, lines, heading, as: Tag = "h1", href } = Astro.props;
+const { vertical, lines, heading, as: Tag = "h1", href, variant = "default", fitContainer = false } = Astro.props;
 // 大字 84px／小字 38px，壓扁 .62；窄螢幕扣掉槽寬 48、卡片內距 36、直排欄 24＋間距 10 ≈ 120px 後依寬度縮字。
-const l1 = fitStyle(lines[0], 0.62, 84, 120);
-const l2 = lines[1] ? fitStyle(lines[1], 0.62, 38, 120) : null;
+const titleStyle = (text: string, maxPx: number, line: "first" | "second") => {
+  // 個人頁使用並排欄位，依父層 inline-size container 縮字，避免長姓名溢出。
+  const fitted = fitContainer
+    ? fitStyle(text, 0.62, maxPx, 76).replace("100vw", "100cqw")
+    : fitStyle(text, 0.62, maxPx, 120);
+  // 特色字卡可由容器控制響應式尺寸，其他頁保留原本的縮字規則。
+  return variant === "feature"
+    ? fitted.replace(/font-size:(.*)$/, `font-size:var(--feature-${line}-size,$1)`)
+    : fitted;
+};
+const l1 = titleStyle(lines[0], variant === "feature" ? 96 : 84, "first");
+const l2 = lines[1] ? titleStyle(lines[1], 38, "second") : null;
 const Wrap = href ? "a" : "div";
 ---
 <Wrap class="tcard" href={href}>

@@ -156,7 +156,7 @@
   .office { font: 900 15px/1.4 var(--serif); letter-spacing: .04em; }
   .region { color: var(--muted); font-size: 11px; }
   .portrait { position: relative; aspect-ratio: 5 / 4; max-height: 160px; flex: none; border: 1px solid var(--line); background: var(--row-hover); overflow: hidden; }
-  .portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .portrait img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
   .no-photo { height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; color: var(--faint); }
   .no-photo > span { font: 700 64px/1 var(--serif); }
   .no-photo small { font-size: 11px; letter-spacing: .12em; }

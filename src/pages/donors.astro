@@ -4,79 +4,82 @@ import { join } from "node:path";
 import Base from "../layouts/Base.astro";
 import TitleCard from "../components/TitleCard.astro";
 import DonorSearch from "../components/DonorSearch.svelte";
-import { rankDonors, type Donor } from "../lib/donorFilter";
+import { rankDonors, collectParties, collectElectionGroups, type Donor } from "../lib/donorFilter";
 const desc = "查詢政治人物的政治獻金，或以公司名稱／統一編號反查營利事業捐贈給哪些候選人。資料來源：監察院政治獻金公開查閱平臺整批電子檔。";
 
-// donors.astro 的主要內容（企業排行）原僅由 DonorSearch.svelte 在瀏覽器 onMount 後 fetch 取得，
-// 搜尋引擎爬蟲看不到。此處在建置時直接讀同一份 public/data/donors.json，套用與
-// DonorSearch 預設畫面相同的排序規則（rankDonors + minCount 2 + limit 50），
-// 靜態輸出成純 HTML，供爬蟲索引；瀏覽器端 JS 成功載入資料後會移除此區塊（見 DonorSearch.svelte）。
-type DonorsFile = { generatedAt: string; donors: Donor[] };
-const donorsPath = join(process.cwd(), "public", "data", "donors.json");
-// 檔案缺漏/損毀時退化為無靜態排行（頁面仍可由 client fetch 運作），不讓整個 build 失敗——
-// 與 astro.config.mjs / Base.astro 讀 meta.json 的防護慣例一致。
-let staticRanking: ReturnType<typeof rankDonors> = [];
+// 在建置時提供初始排行與摘要，Svelte 直接 SSR 相同清單；無 JS 也能展開與閱讀。
+// 完整查詢資料仍於使用者操作搜尋或篩選時才載入。
+type DonorsFile = { generatedAt: string; elections: string[]; donors: Donor[] };
+let donorsFile: DonorsFile | null = null;
 try {
-  const donorsFile: DonorsFile = JSON.parse(readFileSync(donorsPath, "utf8"));
-  staticRanking = rankDonors(donorsFile.donors, { sort: "count" }, { minCount: 2, limit: 50 });
+  donorsFile = JSON.parse(readFileSync(join(process.cwd(), "public", "data", "donors.json"), "utf8"));
 } catch (e) {
-  console.warn(`donors.json 讀取失敗，/donors 靜態排行略過：${(e as Error).message}`);
+  console.warn(`donors.json 讀取失敗，/donors 初始排行略過：${(e as Error).message}`);
 }
+const initialRanking = donorsFile ? rankDonors(donorsFile.donors, { sort: "count" }, { minCount: 2, limit: 50 }) : [];
+const initialParties = donorsFile ? collectParties(donorsFile.donors) : [];
+const initialElections = donorsFile ? collectElectionGroups(donorsFile.donors) : [];
+const totalAmount = donorsFile?.donors.reduce((sum, donor) => sum + donor.total, 0) ?? 0;
 const fmt = (n: number) => new Intl.NumberFormat("zh-Hant").format(n);
-const officeName: Record<string, string> = { legislator: "立委", mayor_magistrate: "縣市首長", councilor: "議員", candidate: "參選人" };
 ---
 <Base title="政治獻金查詢｜政治人物背景資料庫" description={desc}>
   <header class="head">
-    <TitleCard vertical="監察院資料" lines={["政治獻金", "查詢"]} />
-    <p class="lede">輸入政治人物姓名，或營利事業名稱／統一編號，反查政治獻金流向。</p>
+    <div class="hero-title"><TitleCard vertical="監察院資料" lines={["政治獻金", "捐贈與流向查詢"]} heading="政治獻金查詢" variant="feature" fitContainer /></div>
+    <div class="hero-copy">
+      <p class="eyebrow">公開申報・依據可查</p>
+      <p class="lede">從一家公司，看見捐贈流向。<br />從一位政治人物，查閱獻金紀錄。</p>
+      <p class="scope">企業流向收錄營利事業捐贈，個人捐贈不列入企業清單。</p>
+      <a href="#data-notes">資料範圍與來源 ↘</a>
+    </div>
   </header>
-  <DonorSearch client:load />
-  <div id="static-ranking">
-    <ol class="static-list">
-      {staticRanking.map(({ donor, view }) => (
-        <li>
-          <div class="static-donor-head">
-            <span class="static-donor-name">{donor.name}</span>
-            <span class="static-donor-meta">{view.count} 位現任・NT$ {fmt(view.total)}</span>
-          </div>
-          <ul class="static-recips">
-            {view.recipients.map((r) => (
-              <li>
-                {r.slug
-                  ? <a href={`/officials/${r.slug}/`}>{r.name}</a>
-                  : <span class="plain">{r.name}</span>}
-                <span class="tag">{r.party}{r.officeType ? `・${officeName[r.officeType] ?? ""}` : ""}</span>
-                <span class="amt">NT$ {fmt(r.amount)}</span>
-                <span class="elec">{r.election}</span>
-              </li>
-            ))}
-          </ul>
-        </li>
-      ))}
-    </ol>
-  </div>
-  <p class="note">
-    政治獻金為依《政治獻金法》申報之合法公開紀錄。
-    資料彙總自<a href="https://ardata.cy.gov.tw/data/downloads/election" target="_blank" rel="noopener">監察院政治獻金公開查閱平臺</a>整批電子檔（113年立法委員選舉、111年地方公職選舉及現任屆議員補選之首次申報），僅含營利事業捐贈；
-    同統一編號之名稱變體已合併。個人捐贈不在本頁範圍。金額為程式彙總，請以平臺原始明細為準。
-  </p>
+  {donorsFile && <div class="overview" aria-label="全站收錄資料摘要">
+    <div><span class="stat-label">收錄營利事業</span><p><strong class="num">{fmt(donorsFile.donors.length)}</strong><span>家</span></p></div>
+    <div><span class="stat-label">企業捐贈總額</span><p class="total"><span>NT$</span><strong class="num">{fmt(totalAmount)}</strong></p></div>
+    <div><span class="stat-label">資料涵蓋選舉</span><p><strong class="num">{donorsFile.elections.length}</strong><span>場</span></p></div>
+  </div>}
+  <DonorSearch client:load {initialRanking} {initialParties} {initialElections} />
+  <aside class="data-notes" id="data-notes" aria-label="資料範圍與來源">
+    <div class="notes-title"><h2>資料範圍與來源</h2>{donorsFile && <span>資料匯出 {donorsFile.generatedAt}</span>}</div>
+    <p>政治獻金為依《政治獻金法》申報之合法公開紀錄。</p>
+    <p>資料彙總自<a href="https://ardata.cy.gov.tw/data/downloads/election" target="_blank" rel="noopener">監察院政治獻金公開查閱平臺 ↗</a>整批電子檔（113年立法委員選舉、111年地方公職選舉及現任屆議員補選之首次申報），企業清單僅含營利事業捐贈；同統一編號之名稱變體已合併。個人捐贈不在企業流向查詢範圍。金額為程式彙總，請以平臺原始明細為準。</p>
+    <p>上方摘要為本頁全部收錄資料，不隨篩選變動；企業清單的捐贈金額與現任受贈人數會依篩選重新計算。</p>
+  </aside>
   <style>
-    .head { margin: 14px 0 22px; }
-    .head .lede { margin: 12px 0 0; }
-    .lede { margin: 0; color: var(--muted); }
-    .note { font-size: var(--t-sm); color: var(--muted); margin-top: 28px; max-width: 72ch; }
-    #static-ranking h2 { font-size: 1.0625rem; margin: 22px 0 8px; }
-    .static-list { list-style: none; margin: 0; padding: 0; }
-    .static-list > li { margin: 8px 0; padding: 10px 0; border-top: 1px solid var(--line); }
-    .static-donor-head { display: flex; justify-content: space-between; gap: 12px; }
-    .static-donor-name { font-weight: 700; }
-    .static-donor-meta { color: var(--muted); font-size: 0.8125rem; flex: none; }
-    .static-recips { list-style: none; margin: 6px 0 0; padding: 0; font-size: 0.875rem; }
-    .static-recips li { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; padding: 4px 0; }
-    .static-recips a { font-weight: 700; }
-    .static-recips .plain { color: var(--muted); }
-    .static-recips .tag { font-size: 0.75rem; color: var(--muted); }
-    .static-recips .amt { margin-left: auto; }
-    .static-recips .elec { flex: none; font-size: 0.75rem; color: var(--faint); }
+    .head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: center; margin: 14px 0 28px; }
+    .hero-title { container-type: inline-size; min-width: 0; --feature-first-size: 84px; }
+    .eyebrow { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .16em; margin: 0 0 10px; }
+    .lede { color: var(--fg); font-size: 20px; line-height: 1.65; margin: 0; font-family: var(--serif); font-weight: 700; }
+    .scope { font-size: 12px; color: var(--muted); margin: 10px 0 8px; }
+    .hero-copy > a { font-size: 12px; text-decoration: underline; text-underline-offset: 4px; }
+    .overview { display: grid; grid-template-columns: 1fr 1.5fr 1fr; border-top: 1px solid var(--fg); border-bottom: 1px solid var(--line); margin-bottom: 28px; padding: 20px 0; }
+    .overview > div { padding: 0 24px; border-right: 1px solid var(--line); }
+    .overview > div:first-child { padding-left: 0; }
+    .overview > div:last-child { border-right: 0; }
+    .stat-label { color: var(--muted); font-size: 12px; }
+    .overview p { display: flex; align-items: baseline; gap: 10px; margin: 5px 0 0; }
+    .overview strong { font-size: clamp(24px, 2.5vw, 36px); line-height: 1.2; letter-spacing: -.03em; }
+    .overview p span { font-size: 12px; color: var(--muted); }
+    .data-notes { margin: 40px 0 0; padding: 20px 24px; border-top: 3px solid var(--fg); background: var(--surface); color: var(--muted); font-size: 13px; scroll-margin-top: 24px; }
+    .notes-title { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 20px; }
+    .notes-title h2 { font-size: 18px; color: var(--fg); margin: 0; }
+    .notes-title span { font-size: 11px; }
+    .data-notes p { margin: 10px 0 0; max-width: 100ch; line-height: 1.8; }
+    .data-notes a { text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 760px) {
+      .head { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-bottom: 20px; }
+      .hero-title { --feature-first-size: 64px; --feature-second-size: 28px; }
+      .hero-copy .eyebrow, .hero-copy .lede { display: none; }
+      .scope { margin-top: 0; }
+      .lede { font-size: 18px; }
+      .overview { grid-template-columns: 1fr 1.5fr; row-gap: 16px; padding: 16px 0; }
+      .overview > div { padding: 0 14px; }
+      .overview > div:nth-child(2) { border-right: 0; }
+      .overview > div:last-child { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 14px; padding: 12px 0 0; border-top: 1px solid var(--line); }
+      .overview > div:last-child p { margin: 0; }
+      .overview > div:last-child strong { font-size: 20px; }
+      .overview .total { flex-wrap: wrap; gap: 0 6px; }
+      .overview .total strong { font-size: clamp(20px, 5vw, 30px); }
+      .data-notes { padding: 16px; }
+    }
   </style>
 </Base>

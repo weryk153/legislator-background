@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { ELECTION_MILESTONES, timelineProgress, taipeiToday } from '../src/lib/candidateTypes';
+import { ELECTION_MILESTONES, timelineProgress, timelineHighlight, taipeiToday } from '../src/lib/candidateTypes';
 
 describe('選務時程軸', () => {
   it('節點依日期先後排列，區間節點 start ≤ end', () => {
@@ -44,5 +44,31 @@ describe('選務時程軸', () => {
   it('建置日期以臺灣時區計：UTC 前一天 16:00 已是臺灣隔天', () => {
     expect(taipeiToday(new Date('2026-10-04T16:30:00Z'))).toBe('2026-10-05');
     expect(taipeiToday(new Date('2026-10-04T15:59:00Z'))).toBe('2026-10-04');
+  });
+
+  it('手機摘要在節點前顯示下一件事，當天切換為進行中，隔天推進', () => {
+    expect(timelineHighlight(ELECTION_MILESTONES, '2026-10-12')).toEqual({
+      milestone: ELECTION_MILESTONES[1], status: '接下來',
+    });
+    expect(timelineHighlight(ELECTION_MILESTONES, '2026-10-16')).toEqual({
+      milestone: ELECTION_MILESTONES[1], status: '進行中',
+    });
+    expect(timelineHighlight(ELECTION_MILESTONES, '2026-10-17')).toEqual({
+      milestone: ELECTION_MILESTONES[2], status: '接下來',
+    });
+  });
+
+  it('摘要保留區間節點與分次公告的完整日期說明', () => {
+    expect(timelineHighlight(ELECTION_MILESTONES, '2026-11-14')).toEqual({
+      milestone: ELECTION_MILESTONES[3], status: '進行中',
+    });
+  });
+
+  it('投票當天顯示進行中，結束後與空時程皆不再顯示未來事件', () => {
+    expect(timelineHighlight(ELECTION_MILESTONES, '2026-11-28')).toEqual({
+      milestone: ELECTION_MILESTONES[4], status: '進行中',
+    });
+    expect(timelineHighlight(ELECTION_MILESTONES, '2026-11-29')).toEqual({ milestone: null, status: '已結束' });
+    expect(timelineHighlight([], '2026-10-12')).toEqual({ milestone: null, status: '已結束' });
   });
 });

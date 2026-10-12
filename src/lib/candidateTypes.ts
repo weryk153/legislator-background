@@ -104,6 +104,15 @@ export function timelineProgress(milestones: readonly ElectionMilestone[], today
   return { states, todayAfter: states.lastIndexOf('done') };
 }
 
+/** 手機摘要：進行中的節點優先，其次是下一個節點；結束後不再標示「接下來」。 */
+export function timelineHighlight(milestones: readonly ElectionMilestone[], today: string) {
+  const { states } = timelineProgress(milestones, today);
+  const index = states.findIndex((state) => state !== 'done');
+  return index === -1
+    ? { milestone: null, status: '已結束' }
+    : { milestone: milestones[index], status: states[index] === 'current' ? '進行中' : '接下來' };
+}
+
 /** 建置當天的臺灣日期（ISO）。建置機器可能在 UTC，不能直接取 toISOString() 的日期。 */
 export function taipeiToday(now: Date = new Date()): string {
   return new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Taipei' }).format(now);

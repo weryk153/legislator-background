@@ -3,6 +3,7 @@ import {
   matchRecipient,
   donorView,
   rankDonors,
+  rankRecipients,
   filterOfficials,
   collectParties,
   electionGroup,
@@ -348,5 +349,53 @@ describe('filterDonorsByName', () => {
 
   it('uid 前綴比對維持原始字串，不做異體字正規化', () => {
     expect(filterDonorsByName(donorsForSearch, '1234').map((d) => d.uid)).toEqual(['12345678']);
+  });
+});
+
+describe('rankRecipients（企業獻金反查）', () => {
+  it('依受贈明細彙總，預設依金額排序，含未連結受贈者', () => {
+    const ranked = rankRecipients(donors);
+    expect(ranked[0]).toMatchObject({ name: '陳一', total: 350, count: 3 });
+    expect(ranked[0].donors.map(d => d.uid)).toEqual(['C', 'A', 'B']);
+    expect(ranked.find(r => r.slug === null)).toMatchObject({ name: '無名氏', total: 100, count: 1 });
+    expect(ranked.reduce((sum, r) => sum + r.total, 0)).toBe(750);
+  });
+
+  it('同人跨選舉分列，同名不同 slug 不混併；未連結者不跨選舉猜測身分', () => {
+    const row = donors[0].recipients[0];
+    const input: Donor[] = [{ uid: 'A', name: '甲', total: 10, recipients: [
+      { ...row, election: 'e1', amount: 1 }, { ...row, election: 'e2', amount: 2 },
+      { ...row, slug: 'another', election: 'e1', amount: 3 },
+      { ...row, slug: null, election: 'e1', amount: 4 }, { ...row, slug: null, election: 'e2', amount: 5 },
+    ] }];
+    const ranked = rankRecipients(input);
+    expect(ranked).toHaveLength(5);
+    expect(ranked.map(r => r.total)).toEqual([5, 4, 3, 2, 1]);
+  });
+
+  it('同企業重複紀錄累計金額，但家數只算一次', () => {
+    const input = [{ ...donors[1], recipients: [...donors[1].recipients, ...donors[1].recipients] }];
+    const ranked = rankRecipients(input);
+    expect(ranked[0]).toMatchObject({ total: 100, count: 1, donors: [{ uid: 'B', amount: 100 }] });
+  });
+
+  it('政黨、職務、選舉 AND 篩選，未連結者不套用猜測政黨', () => {
+    const ranked = rankRecipients(electionDonors, { party: '國民黨', officeType: 'legislator', election: '立委選舉' });
+    expect(ranked).toHaveLength(1);
+    expect(ranked[0]).toMatchObject({ name: '陳一', total: 100 });
+    expect(rankRecipients(electionDonors, { party: '國民黨', election: '議員選舉' })).toEqual([]);
+    expect(rankRecipients(electionDonors, { election: '立委選舉' })).toHaveLength(2);
+  });
+
+  it('依企業家數排序、支援限制及姓名異體字搜尋', () => {
+    const row = donors[0].recipients[0];
+    const input: Donor[] = [
+      { uid: 'X', name: '甲', total: 0, recipients: [{ ...row, name: '戴瑋姍', amount: 10 }, { ...row, slug: 's2', name: '王二', amount: 1000 }] },
+      { uid: 'Y', name: '乙', total: 0, recipients: [{ ...row, name: '戴瑋姍', amount: 20 }] },
+    ];
+    expect(rankRecipients(input, { sort: 'count' }, { limit: 1 })[0]).toMatchObject({ name: '戴瑋姍', count: 2, total: 30 });
+    expect(rankRecipients(input, {}, { search: '戴瑋姗' })).toHaveLength(1);
+    expect(rankRecipients(input, {}, { search: '不存在' })).toEqual([]);
+    expect(rankRecipients([])).toEqual([]);
   });
 });
