@@ -2,9 +2,25 @@
   import type { OfficialListRow } from '../lib/types';
   import { queryList, type ListQuery, type SortKey } from '../lib/filterSort';
   import { partyEmblem } from '../lib/partyEmblems';
+  import { fetchElectionJson } from '../lib/fetchElectionJson';
   import { onMount, tick } from 'svelte';
 
   export let rows: OfficialListRow[] = [];
+  export let dataUrl = '';
+  export let initialCount = rows.length;
+  export let initialRegions: string[] = [];
+  export let initialParties: string[] = [];
+  let loaded = !dataUrl;
+  let loading = false;
+  let failed = false;
+  async function ensureData() {
+    if (loaded || loading || failed) return;
+    loading = true;
+    try { rows = await fetchElectionJson<OfficialListRow[]>(dataUrl); loaded = true; }
+    catch { failed = true; }
+    finally { loading = false; }
+  }
+  function retry() { failed = false; void ensureData(); }
 
   let search = '';
   let region = '';
@@ -18,11 +34,14 @@
     '南投縣', '雲林縣', '嘉義市', '嘉義縣', '臺南市', '高雄市', '屏東縣', '宜蘭縣', '花蓮縣',
     '臺東縣', '澎湖縣', '金門縣', '連江縣', '其他',
   ];
-  $: regions = Array.from(new Set(rows.map((r) => r.region)))
+  $: regions = Array.from(new Set([...initialRegions, ...rows.map((r) => r.region)]))
     .sort((a, b) => (REGION_ORDER.indexOf(a) + 1 || 99) - (REGION_ORDER.indexOf(b) + 1 || 99));
-  $: parties = Array.from(new Set(rows.map((r) => r.party)));
+  $: parties = Array.from(new Set([...initialParties, ...rows.map((r) => r.party)]));
   $: q = { search, region: region || undefined, party: party || undefined, officeType: (officeType || undefined) as ListQuery['officeType'], sort } as ListQuery;
-  $: view = queryList(rows, q);
+  $: active = !!(search || region || party || officeType || sort !== 'judgments');
+  $: if (active) void ensureData();
+  $: view = !loaded && active ? [] : queryList(rows, q);
+  $: total = loaded ? view.length : initialCount;
 
   // 照片卡片分批顯示；篩選或排序改變時，回到第一批。
   const PAGE = 24;
@@ -32,6 +51,8 @@
   let sentinel: HTMLElement;
 
   async function more() {
+    await ensureData();
+    if (!loaded) return;
     limit += PAGE;
     // 載入後若哨兵仍在可視範圍附近（列表太短或螢幕很高），IntersectionObserver 不會
     // 再觸發——重新觀察一次，讓它重新判斷。
@@ -42,8 +63,8 @@
   let io: IntersectionObserver | null = null;
   onMount(() => {
     io = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting) && limit < view.length) more();
-    }, { rootMargin: '800px 0px' });
+      if (entries.some((e) => e.isIntersecting) && limit < total) more();
+    }, { rootMargin: '200px 0px' });
     if (sentinel) io.observe(sentinel);
     return () => io?.disconnect();
   });
@@ -52,7 +73,7 @@
   const officeName: Record<string, string> = { legislator: '立委', mayor_magistrate: '縣市首長', councilor: '議員', candidate: '參選人' };
 </script>
 
-<div class="controls">
+<div class="controls" on:focusin={ensureData}>
   <label class="search-field control-with-icon">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></svg>
     <input class="form-control" type="search" placeholder="搜尋姓名" aria-label="搜尋姓名" bind:value={search} />
@@ -79,7 +100,7 @@
 </div>
 
 <div class="result-bar">
-  <p class="count" role="status">共 <strong>{view.length.toLocaleString('zh-Hant')}</strong> 位人物</p>
+  <p class="count" role="status">共 <strong>{(!loaded && active) ? '…' : total.toLocaleString('zh-Hant')}</strong> 位人物</p>
   {#if search || region || party || officeType}
     <button class="reset" type="button" on:click={() => { search = ''; region = ''; party = ''; officeType = ''; }}>清除篩選 ×</button>
   {:else}
@@ -87,7 +108,12 @@
   {/if}
 </div>
 
-{#if view.length === 0}
+{#if failed}
+  <div class="empty" role="status">名冊載入失敗，請檢查連線。<button type="button" class="more-btn" on:click={retry}>重新載入</button></div>
+{:else if loading && active}
+  <p role="status">正在載入完整名冊…</p>
+{/if}
+{#if loaded && view.length === 0}
   <div class="empty"><p>查無符合條件的對象。</p><span>試試其他姓名，或清除篩選條件。</span></div>
 {/if}
 
@@ -126,9 +152,9 @@
   {/each}
 </div>
 
-<div class="more" bind:this={sentinel} hidden={shown.length >= view.length}>
-  <button type="button" class="more-btn" on:click={more}>載入更多</button>
-  <span class="more-count">已顯示 {shown.length}／{view.length} 筆</span>
+<div class="more" bind:this={sentinel} hidden={shown.length >= total}>
+  <button type="button" class="more-btn" on:click={more} disabled={loading}>{loading ? '載入中…' : '載入更多'}</button>
+  <span class="more-count">已顯示 {shown.length}／{total} 筆</span>
 </div>
 
 <style>

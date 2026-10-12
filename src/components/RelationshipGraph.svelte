@@ -4,6 +4,7 @@
   import { onMount } from 'svelte';
   import type { GraphData } from '../lib/types';
   import type { Core } from 'cytoscape';
+  import { shouldLoadGraphAvatar } from '../lib/graphAvatars';
   import { toCytoscapeElements, bendAroundCenter } from '../lib/graphView';
   const CENTER_CLEARANCE = 80;
 
@@ -97,6 +98,7 @@
     let onResize: (() => void) | null = null;
     let resizeTimer: ReturnType<typeof setTimeout>;
     let disposed = false;
+    let avatarTimer: ReturnType<typeof setTimeout>;
 
     // Cytoscape 走動態 import（避免 SSR），因此設定過程是非同步的；
     // 但 Svelte 5 只認同步回傳的 cleanup，故把非同步設定包進 IIFE，
@@ -108,6 +110,13 @@
         // 否則 cleanup 已經跑過，掛在 document 上的 MutationObserver 會永遠留著。
         if (disposed) return;
         const elements = toCytoscapeElements(data, centerKey);
+        const pendingAvatars = new Map<string, string>();
+        if (mode === 'global') {
+          for (const node of elements.nodes) {
+            pendingAvatars.set(node.data.id, node.data.avatar);
+            node.data.avatar = 'none';
+          }
+        }
 
         cy = cytoscape({
           container,
@@ -197,6 +206,25 @@
         // bubbles 讓 document 層級的監聽收得到；不用輪詢，先後掛載都不會漏。
         container.dispatchEvent(new CustomEvent('rg:ready', { detail: cy, bubbles: true }));
         onReady?.(cy as unknown as Core);
+        if (mode === 'global') {
+          const graph = cy as unknown as Core;
+          const loadVisibleAvatars = () => {
+            if (disposed) return;
+            graph.batch(() => graph.nodes().forEach(node => {
+              const avatar = pendingAvatars.get(node.id());
+              if (!avatar || !shouldLoadGraphAvatar(node.renderedPosition(), node.renderedWidth(),
+                { width: graph.width(), height: graph.height() }, node.visible())) return;
+              node.data('avatar', avatar);
+              pendingAvatars.delete(node.id());
+            }));
+          };
+          const scheduleAvatars = () => {
+            clearTimeout(avatarTimer);
+            avatarTimer = setTimeout(loadVisibleAvatars, 100);
+          };
+          graph.on('viewport resize position style', scheduleAvatars);
+          scheduleAvatars();
+        }
 
         // 點本站收錄的節點 → 進其檔案頁（entity 的 slug 為空字串，不觸發）
         cy!.on('tap', 'node', (evt: { target: { data: (k: string) => string } }) => {
@@ -293,6 +321,7 @@
       disposed = true;
       clearTimeout(hideTimer);
       clearTimeout(resizeTimer);
+      clearTimeout(avatarTimer);
       if (onResize) window.removeEventListener('resize', onResize);
       mo?.disconnect();
       cy?.destroy();

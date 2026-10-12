@@ -16,7 +16,7 @@ try {
 } catch (e) {
   console.warn(`donors.json 讀取失敗，/donors 初始排行略過：${(e as Error).message}`);
 }
-const initialRanking = donorsFile ? rankDonors(donorsFile.donors, { sort: "count" }, { minCount: 2, limit: 50 }) : [];
+const initialRanking = donorsFile ? rankDonors(donorsFile.donors, { sort: "count" }, { minCount: 2, limit: 50 }).map(({ donor, view }) => ({ donor: { uid: donor.uid, name: donor.name }, view })) : [];
 const initialParties = donorsFile ? collectParties(donorsFile.donors) : [];
 const initialElections = donorsFile ? collectElectionGroups(donorsFile.donors) : [];
 const totalAmount = donorsFile?.donors.reduce((sum, donor) => sum + donor.total, 0) ?? 0;

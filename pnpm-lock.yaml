@@ -14,6 +14,12 @@ importers:
       '@astrojs/svelte':
         specifier: ^7.1.0
         version: 7.2.5(@types/node@25.9.3)(astro@5.18.2(@types/node@25.9.3)(idb-keyval@6.3.0)(rollup@4.62.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0))(svelte@5.56.3)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
+      '@fontsource-variable/noto-serif-tc':
+        specifier: ^5.3.1
+        version: 5.3.1
+      '@fontsource-variable/public-sans':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@supabase/supabase-js':
         specifier: ^2.58.0
         version: 2.108.2
@@ -642,6 +648,12 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@fontsource-variable/noto-serif-tc@5.3.1':
+    resolution: {integrity: sha512-IW3Pydbc5NWA5JNPyk2SST3x85STRtakYXs4HQKU2cv3xB4Y192z1OV2z09XOS9TcZckbPPzagpQ1lgeBjSFNw==}
+
+  '@fontsource-variable/public-sans@5.3.0':
+    resolution: {integrity: sha512-AVfkmAt50BMXWpOO21FAntiJFKGX6xTc2dSL8dxtDteONe9IuRXJWGbs0EbG955vAMCq23ENeuopuW87cGWDSQ==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -3865,6 +3877,10 @@ snapshots:
 
   '@esbuild/win32-x64@0.28.1':
     optional: true
+
+  '@fontsource-variable/noto-serif-tc@5.3.1': {}
+
+  '@fontsource-variable/public-sans@5.3.0': {}
 
   '@img/colour@1.1.0':
     optional: true

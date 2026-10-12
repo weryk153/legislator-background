@@ -4,13 +4,13 @@ import OfficialTable from "../components/OfficialTable.svelte";
 import TitleCard from "../components/TitleCard.astro";
 import SectionHead from "../components/SectionHead.astro";
 import ElectionTimeline from "../components/ElectionTimeline.astro";
-import { loadOfficials } from "../lib/data";
-import { toListRow } from "../lib/transform";
+import { rosterDataset } from "../lib/clientDatasets";
+import { queryList } from "../lib/filterSort";
 
 // 參選人檔案由選舉頁進入，不列入總覽（總覽收錄對象為現任公職）。
-const officials = (await loadOfficials()).filter((o) => o.officeType !== "candidate");
-const rows = officials.map(toListRow);
-const desc = `查詢台灣 ${officials.length} 位立法委員、縣市首長與縣市議員的經歷、司法判決、爭議報導與財產申報，每筆皆附公開資料出處。`;
+const dataset = await rosterDataset();
+const rows = dataset.data;
+const desc = `查詢台灣 ${rows.length} 位立法委員、縣市首長與縣市議員的經歷、司法判決、爭議報導與財產申報，每筆皆附公開資料出處。`;
 const siteUrl = Astro.site ? Astro.site.href.replace(/\/$/, "") : "";
 const jsonLd = [
   {
@@ -58,7 +58,7 @@ const jsonLd = [
 
   <div class="roster-heading"><SectionHead text="名冊" /></div>
   <p class="term-note">收錄對象：第11屆立法委員（2024年當選）、2022年當選之縣市首長與縣市議員（任期至2026）。任內已解職者保留並標註「已解職」。</p>
-  <OfficialTable client:load rows={rows} />
+  <OfficialTable client:load rows={queryList(rows, { sort: "judgments", search: "" }).slice(0, 24)} initialCount={rows.length} initialRegions={[...new Set(rows.map(r => r.region))]} initialParties={[...new Set(rows.map(r => r.party))]} dataUrl={dataset.url} />
   <style>
     /* EVA 字卡構圖：壓扁特粗明朝、黑白大片對比與朱紅直排章節字。 */
     .lead { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(260px, .8fr); gap: 32px; align-items: center; margin: 0; padding: 24px 28px; background: var(--block-bg); color: var(--block-fg); }

@@ -240,3 +240,6 @@ export function collectElectionGroups(donors: Donor[]): string[] {
   }
   return ELECTION_GROUP_ORDER.filter((g) => present.has(g));
 }
+
+/** Initial cards need one recipient list, without duplicating the source donor payload. */
+export type DonorCardEntry = { donor: Pick<Donor, 'uid' | 'name'>; view: DonorView };

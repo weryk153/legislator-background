@@ -1,8 +1,21 @@
 <script lang="ts">
+  import { fetchElectionJson } from '../lib/fetchElectionJson';
   import { COUNTY_KEYS } from '../lib/countyKeys';
   import { filterElectionCandidates, type ElectionCandidate } from '../lib/electionFinder';
   import { partyEmblem } from '../lib/partyEmblems';
-  let { candidates }: { candidates: ElectionCandidate[] } = $props();
+  let { countyCounts, dataUrl }: { countyCounts: Record<string, { chief: number; council: number }>; dataUrl: string } = $props();
+  let candidates = $state<ElectionCandidate[]>([]);
+  let loaded = $state(false);
+  let loading = $state(false);
+  let failed = $state(false);
+  async function ensureData() {
+    if (loaded || loading || failed) return;
+    loading = true;
+    try { candidates = await fetchElectionJson<ElectionCandidate[]>(dataUrl); loaded = true; }
+    catch { failed = true; }
+    finally { loading = false; }
+  }
+  function retry() { failed = false; void ensureData(); }
   let county = $state('');
   let office = $state('');
   let query = $state('');
@@ -10,13 +23,14 @@
   const active = $derived(!!county || !!office || !!query.trim());
   const results = $derived(filterElectionCandidates(candidates, { county, office, query }));
   const selectedCounty = $derived(COUNTY_KEYS.find(c => c.code === county));
+  $effect(() => { if (active) void ensureData(); });
   $effect(() => { county; office; query; limit = 24; });
   function reset() { county = ''; office = ''; query = ''; }
 </script>
 
 <section class="finder" aria-labelledby="finder-title">
   <div class="finder-head"><h2 id="finder-title">找候選人</h2><p>選擇縣市，或直接輸入姓名</p></div>
-  <div class="controls">
+  <div class="controls" onfocusin={ensureData}>
     <label>縣市<select class="form-control" bind:value={county}><option value="">全部縣市</option>{#each COUNTY_KEYS as c}<option value={c.code}>{c.name}</option>{/each}</select></label>
     <label>選舉類別<select class="form-control" bind:value={office}><option value="">縣市長與議員</option><option value="chief">縣市長</option><option value="council">縣市議員</option></select></label>
     <label class="search">候選人姓名<input class="form-control" type="search" bind:value={query} placeholder="輸入姓名查詢" /></label>
@@ -25,10 +39,14 @@
   {#if !active}
     <nav class="counties" aria-label="選擇縣市查看候選人">
       {#each COUNTY_KEYS as c}
-        {@const rows = candidates.filter(row => row.countyCode === c.code)}
-        <button type="button" onclick={() => { county = c.code; }}><strong>{c.name}</strong><span>首長 {rows.filter(r => r.office === 'chief').length}・議員 {rows.filter(r => r.office === 'council').length}</span><span class="arrow" aria-hidden="true">↗</span></button>
+        {@const counts = countyCounts[c.code]}
+        <button type="button" onclick={() => { county = c.code; }}><strong>{c.name}</strong><span>首長 {counts?.chief ?? 0}・議員 {counts?.council ?? 0}</span><span class="arrow" aria-hidden="true">↗</span></button>
       {/each}
     </nav>
+  {:else if failed}
+    <div class="empty" role="status"><p>候選人名冊載入失敗，請檢查連線後重試。</p><button type="button" onclick={retry}>重新載入</button></div>
+  {:else if !loaded}
+    <p role="status">正在載入候選人名冊…</p>
   {:else}
     <div class="result-head"><p role="status">{selectedCounty?.name ?? '全國'}・符合 <strong>{results.length}</strong> 人</p>{#if selectedCounty}<a href={`/elections/2026/${selectedCounty.key}/`}>縣市完整名單 →</a>{/if}</div>
     {#if results.length}

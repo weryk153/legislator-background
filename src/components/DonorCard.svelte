@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { RankedDonor } from '../lib/donorFilter';
-  export let entry: RankedDonor;
+  import type { DonorCardEntry } from '../lib/donorFilter';
+  export let entry: DonorCardEntry;
   export let rank: number | undefined = undefined;
   const fmt = (n: number) => new Intl.NumberFormat('zh-Hant').format(n);
   const officeName: Record<string, string> = { legislator: '立委', mayor_magistrate: '縣市首長', councilor: '議員', candidate: '參選人' };

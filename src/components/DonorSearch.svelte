@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { rankDonors, filterOfficials, collectParties, collectElectionGroups, ELECTION_GROUP_LABEL, filterOfficialsByName, filterDonorsByName, type DonorSort, type Donor, type Official, type RankedDonor } from '../lib/donorFilter';
+  import { rankDonors, filterOfficials, collectParties, collectElectionGroups, ELECTION_GROUP_LABEL, filterOfficialsByName, filterDonorsByName, type DonorSort, type Donor, type Official, type DonorCardEntry } from '../lib/donorFilter';
   import DonorCard from './DonorCard.svelte';
   import RecipientCard from './RecipientCard.svelte';
   import { rankRecipients } from '../lib/donorFilter';
 
-  export let initialRanking: RankedDonor[] = [];
+  export let initialRanking: DonorCardEntry[] = [];
   export let initialParties: string[] = [];
   export let initialElections: string[] = [];
   type Data = { generatedAt: string; elections: string[]; officials: Official[]; donors: Donor[] };

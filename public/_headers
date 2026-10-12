@@ -1,0 +1,6 @@
+# Content hashes change whenever the file changes. Do not apply to HTML or mutable data.
+# https://developers.cloudflare.com/pages/configuration/headers/
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+/data/query/*
+  Cache-Control: public, max-age=31536000, immutable
