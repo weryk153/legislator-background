@@ -1,0 +1,106 @@
+[
+  {
+    "name": "新黨",
+    "key": "new",
+    "sourcePage": "https://party.moi.gov.tw/PartyMainContent.aspx?n=16100&sms=13073&s=133",
+    "sourceImage": "https://ws.moi.gov.tw/001/Upload/OldFile_PARTY/2016/ff808081542c937601542d14e6b30014.jpg",
+    "retrievedAt": "2026-10-12",
+    "path": "/images/parties/new.webp"
+  },
+  {
+    "name": "中國國民黨",
+    "key": "kmt",
+    "sourcePage": "https://party.moi.gov.tw/PartyMainContent.aspx?n=16100&sms=13073&s=2",
+    "sourceImage": "https://ws.moi.gov.tw/001/Upload/OldFile_PARTY/2016/ff808081542c937601542d21be91001b.jpg",
+    "retrievedAt": "2026-10-12",
+    "path": "/images/parties/kmt.webp"
+  },
+  {
+    "name": "民主進步黨",
+    "key": "dpp",
+    "sourcePage": "https://party.moi.gov.tw/PartyMainContent.aspx?n=16100&sms=13073&s=31",
+    "sourceImage": "https://ws.moi.gov.tw/001/Upload/OldFile_PARTY/2016/ff808081542c937601542d16549d0015.jpg",
+    "retrievedAt": "2026-10-12",
+    "path": "/images/parties/dpp.webp"
+  },
+  {
+    "name": "勞動黨",
+    "key": "labor",
+    "sourcePage": "https://party.moi.gov.tw/PartyMainContent.aspx?n=16100&sms=13073&s=29",
+    "sourceImage": "https://ws.moi.gov.tw/001/Upload/OldFile_PARTY/2016/ff808081542c937601542d3309430023.jpg",
+    "retrievedAt": "2026-10-12",
+    "path": "/images/parties/labor.webp"
+  },
+  {
+    "name": "台灣綠黨",
+    "key": "green",
+    "sourcePage": "https://party.moi.gov.tw/PartyMainContent.aspx?n=16100&sms=13073&s=138",
+    "sourceImage": "https://ws.moi.gov.tw/001/Upload/444/relpic/13073/138/b9f31d1b-60c4-45a6-8162-da1fd3e323dc.png",
+    "retrievedAt": "2026-10-12",
+    "path": "/images/parties/green.webp"
+  },
+  {
+    "name": "台聯黨",
+    "key": "tsu",
+    "sourcePage": "https://party.moi.gov.tw/PartyMainContent.aspx?n=16100&sms=13073&s=154",
+    "sourceImage": "https://ws.moi.gov.tw/001/Upload/OldFile_PARTY/2021/8a428aff7c83259a017ca5bf7d5400d0.jpg",
+    "retrievedAt": "2026-10-12",
+    "path": "/images/parties/tsu.webp"
+  },
+  {
+    "name": "親民黨",
+    "key": "pfp",
+    "sourcePage": "https://party.moi.gov.tw/PartyMainContent.aspx?n=16100&sms=13073&s=149",
+    "sourceImage": "https://ws.moi.gov.tw/001/Upload/OldFile_PARTY/2021/ff80808166f6b48c0166f6d88e25000b.jpg",
+    "retrievedAt": "2026-10-12",
+    "path": "/images/parties/pfp.webp"
+  },
+  {
+    "name": "無黨團結聯盟",
+    "key": "npsu",
+    "sourcePage": "https://party.moi.gov.tw/PartyMainContent.aspx?n=16100&sms=13073&s=165",
+    "sourceImage": "https://ws.moi.gov.tw/001/Upload/OldFile_PARTY/2016/ff808081542c937601542d3c0e6c0031.jpg",
+    "retrievedAt": "2026-10-12",
+    "path": "/images/parties/npsu.webp"
+  },
+  {
+    "name": "社會民主黨",
+    "key": "sdp",
+    "sourcePage": "https://party.moi.gov.tw/PartyMainContent.aspx?n=16100&sms=13073&s=328",
+    "sourceImage": "https://ws.moi.gov.tw/001/Upload/OldFile_PARTY/2016/ff808081542c937601542d4a4adf0041.jpg",
+    "retrievedAt": "2026-10-12",
+    "path": "/images/parties/sdp.webp"
+  },
+  {
+    "name": "時代力量",
+    "key": "npp",
+    "sourcePage": "https://party.moi.gov.tw/PartyMainContent.aspx?n=16100&sms=13073&s=326",
+    "sourceImage": "https://ws.moi.gov.tw/001/Upload/444/relpic/13073/326/b045d6b6-d6bd-49fc-a6ce-f0aa754ac16a.jpg",
+    "retrievedAt": "2026-10-12",
+    "path": "/images/parties/npp.webp"
+  },
+  {
+    "name": "台灣基進",
+    "key": "tsp",
+    "sourcePage": "https://party.moi.gov.tw/PartyMainContent.aspx?n=16100&sms=13073&s=362",
+    "sourceImage": "https://ws.moi.gov.tw/001/Upload/OldFile_PARTY/2021/ff8080816e68e248016eb14f795b01e9.jpg",
+    "retrievedAt": "2026-10-12",
+    "path": "/images/parties/tsp.webp"
+  },
+  {
+    "name": "台灣民眾黨",
+    "key": "tpp",
+    "sourcePage": "https://party.moi.gov.tw/PartyMainContent.aspx?n=16100&sms=13073&s=409",
+    "sourceImage": "https://ws.moi.gov.tw/001/Upload/OldFile_PARTY/2021/ff8080816e68e248016ecb15220c0260.png",
+    "retrievedAt": "2026-10-12",
+    "path": "/images/parties/tpp.webp"
+  },
+  {
+    "name": "正神名黨",
+    "key": "zsmp",
+    "sourcePage": "https://party.moi.gov.tw/PartyMainContent.aspx?n=16100&sms=13073&s=434",
+    "sourceImage": "https://ws.moi.gov.tw/001/Upload/OldFile_PARTY/2021/8a428aff774c22100179ea47ee3e21b0.jpg",
+    "retrievedAt": "2026-10-12",
+    "path": "/images/parties/zsmp.webp"
+  }
+]
