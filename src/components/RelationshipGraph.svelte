@@ -3,14 +3,18 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import type { GraphData } from '../lib/types';
+  import type { Core } from 'cytoscape';
   import { toCytoscapeElements, bendAroundCenter } from '../lib/graphView';
   const CENTER_CLEARANCE = 80;
 
   // positions：global（/graph）建置時預先算好的座標（src/lib/graphLayout.ts）。有就直接用
   // preset 排版，不在瀏覽器端跑力導向——手機上 416 個節點的 cose 會卡主執行緒 3–4 秒。
-  let { data, centerKey = null, mode = 'ego', positions = null }:
+  let { data, centerKey = null, mode = 'ego', positions = null, onReady, onInspect, onError }:
     { data: GraphData; centerKey?: string | null; mode?: 'ego' | 'global';
-      positions?: Record<string, { x: number; y: number }> | null } = $props();
+      positions?: Record<string, { x: number; y: number }> | null;
+      onReady?: (graph: Core) => void;
+      onInspect?: (selection: { nodeKey: string } | { edgeKey: string } | null) => void;
+      onError?: () => void } = $props();
 
   let container: HTMLDivElement;
 
@@ -69,6 +73,8 @@
       { selector: 'edge.hl', style: {
         'line-color': c.accent, 'target-arrow-color': c.accent, color: c.accent, width: 2,
       } },
+      { selector: 'node.inspected', style: { 'border-width': 3, 'border-color': c.accent } },
+      { selector: 'edge.inspected', style: { 'line-color': c.accent, 'target-arrow-color': c.accent, color: c.accent, width: 2.2 } },
     ];
   }
 
@@ -190,9 +196,11 @@
         // 通知頁面實例已就緒（/graph 的篩選/搜尋需要它，見 src/pages/graph.astro）。
         // bubbles 讓 document 層級的監聽收得到；不用輪詢，先後掛載都不會漏。
         container.dispatchEvent(new CustomEvent('rg:ready', { detail: cy, bubbles: true }));
+        onReady?.(cy as unknown as Core);
 
         // 點本站收錄的節點 → 進其檔案頁（entity 的 slug 為空字串，不觸發）
         cy!.on('tap', 'node', (evt: { target: { data: (k: string) => string } }) => {
+          if (onInspect) { onInspect({ nodeKey: evt.target.data('id') }); return; }
           const slug = evt.target.data('slug');
           if (slug) window.location.href = `/officials/${slug}/`;
         });
@@ -255,14 +263,20 @@
           if (hlEdge) { hlEdge.removeClass('hl'); hlEdge = null; }
         };
 
-        cy!.on('mouseover', 'edge', (evt: any) => showEdgeTip(evt.target));
+        cy!.on('mouseover', 'edge', (evt: any) => {
+          if (onInspect) evt.target.addClass('hl');
+          else showEdgeTip(evt.target);
+        });
         cy!.on('mouseout', 'edge', (evt: any) => { evt.target.removeClass('hl'); if (hlEdge === evt.target) hlEdge = null; hideSoon(); });
-        cy!.on('mouseover', 'node[kind = "entity"]', (evt: any) => showEntityTip(evt.target));
+        cy!.on('mouseover', 'node[kind = "entity"]', (evt: any) => { if (!onInspect) showEntityTip(evt.target); });
         cy!.on('mouseout', 'node[kind = "entity"]', hideSoon);
         // 觸控：點連線／外部人物顯示說明框；點空白處收起。
-        cy!.on('tap', 'edge', (evt: any) => showEdgeTip(evt.target));
-        cy!.on('tap', 'node[kind = "entity"]', (evt: any) => showEntityTip(evt.target));
-        cy!.on('tap', (evt: any) => { if (evt.target === cy) hideNow(); });
+        cy!.on('tap', 'edge', (evt: any) => {
+          if (onInspect) { hideNow(); onInspect({ edgeKey: evt.target.id() }); }
+          else showEdgeTip(evt.target);
+        });
+        cy!.on('tap', 'node[kind = "entity"]', (evt: any) => { if (!onInspect) showEntityTip(evt.target); });
+        cy!.on('tap', (evt: any) => { if (evt.target === cy) { hideNow(); onInspect?.(null); } });
 
         // 跟著亮/暗模式切換重新上色
         mo = new MutationObserver(() => cy!.style(buildStyle(readColors())).update());
@@ -271,6 +285,7 @@
         // Cytoscape 載入或初始化失敗 → 整區隱藏。下方的文字關係清單為 SSG 靜態 HTML，
         // 不依賴本元件，仍可正常閱讀。
         container.style.display = 'none';
+        onError?.();
       }
     })();
 
@@ -320,7 +335,7 @@
     border-radius: var(--radius);
     background: var(--bg);
   }
-  .graph.global { height: 78vh; min-height: 520px; }
+  .graph.global { height: var(--global-graph-height, 78vh); min-height: var(--global-graph-min-height, 520px); }
   :global(.rg-tip) {
     position: absolute;
     transform: translate(-50%, calc(-100% - 12px));

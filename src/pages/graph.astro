@@ -2,21 +2,22 @@
 import Base from "../layouts/Base.astro";
 import TitleCard from "../components/TitleCard.astro";
 import SectionHead from "../components/SectionHead.astro";
-import RelationshipGraph from "../components/RelationshipGraph.svelte";
+import GraphExplorer from "../components/GraphExplorer.svelte";
 import { loadGraph } from "../lib/loadGraph";
 import { computeGlobalLayout } from "../lib/graphLayout";
-import { OFFICE_LABEL } from "../lib/graph";
+import { OFFICE_LABEL, FAMILY_RELATIONS } from "../lib/graph";
 import { entityRole } from "../lib/graphView";
 
 const graph = loadGraph();
 // 力導向排版在建置時算好，前端用固定座標（見 src/lib/graphLayout.ts）。
 const positions = computeGlobalLayout(graph);
+const familyCount = graph.edges.filter(edge => FAMILY_RELATIONS.has(edge.type)).length;
 const title = "政治人物關係圖｜家族、派系、師徒與政治支持關係網";
 const desc = `涵蓋 ${graph.nodes.length} 位政治人物與相關公眾人物、${graph.edges.length} 條已查證關係的互動關係圖，每條關係皆附公開資料出處。`;
 
 // 圖本身完全由 client-side JS（Cytoscape）畫出，無 JS 或爬蟲看不到任何人名。
 // 這裡另外輸出一份 SSG 純文字人物清單，作為圖的文字版本；只列人，不重複列 277 條
-// 關係的 note／出處——那些已經逐筆列在各自的檔案頁，這裡重複只會製造重複內容。
+// 關係的 note／出處——互動明細與各自的檔案頁已提供逐筆出處。
 // 第二行（括號內）：公職用職稱，外部人物優先用其描述而非通用類別——站上刻意保留了
 // 幾組同名不同人（李佳芬、李傑），只印類別會讓兩人在清單裡完全一樣，看起來像重複資料。
 // 圖上的標籤會截斷過長描述（版面所限），這裡有空間，顯示完整描述。
@@ -33,113 +34,64 @@ const peopleList = [...graph.nodes]
 ---
 
 <Base title={title} description={desc}>
-  <div class="gh"><TitleCard vertical="公開資料" lines={["人物", "關係圖"]} /></div>
-  <p class="lede">{desc}</p>
-  <p class="note">關係資料整理自司法判決、媒體報導與公開資料，僅呈現已查證者。實線圓為本站收錄之政治人物（可點選進入檔案頁），虛線圓為相關之其他公眾人物。實線連線為家族關係，虛線為政治關係。</p>
+  <header class="graph-head">
+    <div class="hero-title"><TitleCard vertical="公開資料" lines={["人物關係", "家族與政治網絡"]} heading="政治人物關係圖" fitContainer variant="feature" /></div>
+    <div class="hero-copy"><p class="eyebrow">人物・關係・出處</p><p class="lede">循著一條關係，<br />查閱人物之間的公開紀錄。</p><p class="intro">搜尋姓名可聚焦直接關係；點選人物或連線，即可查看說明與出處。</p><a href="#graph-people">圖中人物文字清單 ↓</a></div>
+  </header>
+  <div class="graph-stats" aria-label="收錄關係摘要"><div><span>收錄人物</span><strong class="num">{graph.nodes.length}</strong><small>位</small></div><div><span>家族關係</span><strong class="num">{familyCount}</strong><small>條</small></div><div><span>政治關係</span><strong class="num">{graph.edges.length - familyCount}</strong><small>條</small></div></div>
+  <GraphExplorer client:load data={graph} {positions} />
+  <p class="data-note">關係資料整理自司法判決、媒體報導與公開資料，僅呈現已查證者，每條皆附出處。圖上位置僅供閱讀，不代表親疏或影響力；收錄關係不代表對當事人的評價。</p>
 
-  <div class="controls">
-    <input id="q" type="search" placeholder="搜尋姓名" aria-label="搜尋姓名" />
-    <label><input type="checkbox" class="kind" value="fam" checked /> 家族關係</label>
-    <label><input type="checkbox" class="kind" value="pol" checked /> 政治關係</label>
-  </div>
-
-  <RelationshipGraph client:load data={graph} centerKey={null} mode="global" {positions} />
-
-  <section class="sec people">
+  <section class="sec people" id="graph-people">
     <SectionHead text="圖中人物清單" />
-    <p class="note">以上關係圖之文字版本，依姓名排序；可點選的姓名為本站收錄之政治人物（連至其檔案頁），其餘為相關之其他公眾人物。關係說明與出處請至各政治人物之檔案頁查看。</p>
+    <p class="note">關係圖的文字索引，依姓名排序。可點選的姓名連至本站個人檔案，其餘為相關公眾人物；同名者保留各自的身分說明。</p>
+    <details class="people-directory"><summary><strong>展開全部人物</strong><span>{peopleList.length} 位・依姓名排序</span></summary>
     <ul class="people-list">
       {peopleList.map((p) => (
-        <li>
-          {p.slug
-            ? <a class="rel-name" href={`/officials/${p.slug}/`}>{p.name}</a>
-            : <span class="rel-name plain">{p.name}</span>}
-          <span class="rel-ext">（{p.role}）</span>
-        </li>
+        <li>{p.slug ? <a class="rel-name" href={`/officials/${p.slug}/`}>{p.name} ↗</a> : <span class="rel-name plain">{p.name}</span>}<span class="rel-ext">{p.role}</span></li>
       ))}
     </ul>
+    </details>
   </section>
 
   <style>
-    .gh { margin: 14px 0 12px; }
-    .lede { margin: 0 0 8px; }
-    .note { font-size: var(--t-sm); color: var(--muted); margin: 0 0 16px; max-width: 72ch; line-height: 1.7; }
-    .controls { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
-    .controls input[type="search"] {
-      font-family: var(--sans); font-size: var(--t-sm); padding: 7px 11px;
-      border: 1px solid var(--line-strong); border-radius: var(--radius);
-      background: var(--surface); color: var(--fg); min-width: 200px;
-    }
-    .controls input[type="search"]:focus { outline: none; border-color: var(--accent); }
-    .controls label { font-size: var(--t-sm); color: var(--muted); display: flex; align-items: center; gap: 5px; }
-
-    .sec.people { margin: 32px 0 8px; }
-    .people-list {
-      list-style: none; margin: 0; padding: 0;
-      columns: 3; column-gap: 24px;
-    }
-    .people-list li { padding: 6px 0; break-inside: avoid; }
-    .rel-name { font-family: var(--serif); font-weight: 700; font-size: 1.0625rem; }
+    .graph-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 36px; margin: 14px 0 28px; }
+    .hero-title { container-type: inline-size; min-width: 0; --feature-first-size: 84px; }
+    .eyebrow { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .16em; margin: 0 0 10px; }
+    .lede { font: 700 20px/1.65 var(--serif); color: var(--fg); margin: 0; }
+    .intro { font-size: 12px; color: var(--muted); margin: 10px 0; max-width: 34em; }
+    .hero-copy > a { font-size: 12px; text-decoration: underline; text-underline-offset: 4px; }
+    .graph-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 16px 0; border-block: 1px solid var(--line); border-top-color: var(--fg); }
+    .graph-stats > div { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; padding: 0 24px; border-right: 1px solid var(--line); }
+    .graph-stats > div:first-child { padding-left: 0; }
+    .graph-stats > div:last-child { border-right: 0; }
+    .graph-stats span { flex: 1; color: var(--muted); font-size: 12px; }
+    .graph-stats strong { font-size: 30px; line-height: 1.2; }
+    .graph-stats small { font-size: 12px; color: var(--muted); }
+    .data-note { margin: 16px 0; font-size: 12px; color: var(--muted); line-height: 1.8; max-width: 110ch; }
+    .sec.people { margin: 32px 0 8px; scroll-margin-top: 24px; }
+    .people :global(.sh) { margin-top: 0; }
+    .note { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .people-directory { border: 1px solid var(--line); }
+    .people-directory summary { padding: 16px; cursor: pointer; background: var(--surface); }
+    .people-directory summary strong { font-size: 14px; }
+    .people-directory summary span { color: var(--muted); font-size: 12px; margin-left: 16px; }
+    .people-list { list-style: none; margin: 0; padding: 12px 20px; columns: 3; column-gap: 28px; }
+    .people-list li { padding: 10px 0; break-inside: avoid; border-bottom: 1px solid var(--line); }
+    .rel-name { font-family: var(--serif); font-weight: 700; font-size: 17px; }
     a.rel-name:hover { color: var(--accent); }
     .rel-name.plain { color: var(--muted); }
-    .rel-ext { font-family: var(--sans); font-weight: 400; font-size: var(--t-sm); color: var(--faint); }
-  </style>
-
-  <script>
-    // 篩選/搜尋直接操作元件掛好的 Cytoscape 實例。元件初始化完成後會在自己的容器上
-    // 派發 rg:ready（bubbles: true），事件的 detail 即為該實例——不必輪詢或猜時序。
-    let cy: any = null;
-
-    // global 模式刻意無 maxZoom 上限（見 RelationshipGraph.svelte 註解，供使用者手動放大）：
-    // 實際值是 cytoscape 的預設 1e50。fit() 本身會用 maxZoom／minZoom 夾住算出的縮放
-    // （見 cytoscape 的 getFitViewport），但這裡的上限等於沒有，篩到只剩兩三個散開的節點時
-    // 算出的縮放仍會誇張到失真，因此在 fit() 之後自己再夾一次。
-    const MAX_FIT_ZOOM = 1.6;
-
-    function apply() {
-      if (!cy) return;
-      const q = (document.getElementById("q") as HTMLInputElement).value.trim();
-      const kinds = new Set(
-        [...document.querySelectorAll<HTMLInputElement>(".kind")].filter((c) => c.checked).map((c) => c.value),
-      );
-
-      // 搜尋是「以這個人為中心看他的關係網」，不是「只留下名字有命中的節點」：
-      // 命中者的鄰居幾乎都不同名，若把他們一起隱藏，Cytoscape 也畫不出兩端被隱藏的邊，
-      // 結果是搜一個人反而抹掉他所有關係——與這頁的用途完全相反。
-      // 因此改以「邊」為判準：一條邊只要通過關係類型篩選、且任一端命中姓名就顯示，
-      // 節點則跟著自己的可見邊走。兩層篩選因此可疊加：被關係類型關掉的邊不會顯示，
-      // 只能透過那種邊連到的鄰居也就不會被搜尋帶出來。
-      const matches = (n: any) => !q || String(n.data("name")).includes(q);
-      cy.batch(() => {
-        cy.edges().forEach((e: any) => {
-          const want = e.data("fam") === 1 ? "fam" : "pol";
-          const show = kinds.has(want) && (matches(e.source()) || matches(e.target()));
-          e.style("display", show ? "element" : "none");
-        });
-        cy.nodes().forEach((n: any) => {
-          // 關係全被篩掉的人一併隱藏，避免留下一堆孤點
-          const hasVisibleEdge = n.connectedEdges().some((e: any) => e.style("display") !== "none");
-          n.style("display", hasVisibleEdge ? "element" : "none");
-        });
-      });
-
-      // 倖存節點仍停在全圖佈局時的原始座標；不重新 fit 會讓少數倖存節點散落在
-      // 幾乎全空的畫布上、小到讀不清。兩個篩選框都關掉時可見元素為空集合，
-      // cy.fit() 對空集合本身就是 no-op（見 cytoscape 原始碼 getFitViewport），
-      // 這裡仍明確跳過以避免呼叫 cy.zoom() 時以目前（篩選前）的縮放做夾取判斷。
-      const visible = cy.nodes().filter((n: any) => n.style("display") !== "none");
-      if (visible.length === 0) return;
-      cy.fit(visible, 40);
-      if (cy.zoom() > MAX_FIT_ZOOM) {
-        const mid = { x: cy.width() / 2, y: cy.height() / 2 };
-        cy.zoom({ level: MAX_FIT_ZOOM, renderedPosition: mid });
-      }
+    .rel-ext { display: block; margin-top: 3px; font-size: 12px; color: var(--faint); overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      .graph-head { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-bottom: 20px; }
+      .hero-title { --feature-first-size: 64px; --feature-second-size: 28px; }
+      .hero-copy .eyebrow, .hero-copy .lede { display: none; }
+      .intro { margin-top: 0; }
+      .graph-stats > div { padding: 0 12px; gap: 4px; }
+      .graph-stats span { flex-basis: 100%; }
+      .graph-stats strong { font-size: 26px; }
+      .people-list { columns: 2; }
     }
-
-    // island 可能在本 script 之後才掛好；監聽事件即可，無論先後都收得到。
-    document.addEventListener("rg:ready", (e) => { cy = (e as CustomEvent).detail; apply(); });
-
-    document.getElementById("q")?.addEventListener("input", apply);
-    document.querySelectorAll(".kind").forEach((c) => c.addEventListener("change", apply));
-  </script>
+    @media (max-width: 420px) { .people-list { columns: 1; } .people-directory summary span { display: block; margin: 6px 0 0 20px; } }
+  </style>
 </Base>
