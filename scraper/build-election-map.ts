@@ -740,7 +740,7 @@ function buildArea(
   const area: MapArea = {
     code: a.code,
     key: codeIndex.get(a.code) ?? a.code,
-    name: a.name,
+    name: normalizeAreaName(a.name),
     chief: holder(chief, a.level === 'county'),
     seats: seatWinners.length ? seatBreakdown(seatWinners, parties) : [],
     childFile,

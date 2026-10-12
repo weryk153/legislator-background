@@ -1,3 +1,22 @@
+/* Rare name glyphs missing from the primary webfont. Only fetched when used.
+   Source and OFL-1.1: /fonts/cns-sung-LICENSE.txt */
+@font-face {
+  font-family: "Civic Rare Glyphs";
+  src: url("../assets/fonts/civic-rare-bmp.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+3CF5, U+49EE, U+5BEA;
+}
+@font-face {
+  font-family: "Civic Rare Glyphs";
+  src: url("../assets/fonts/civic-rare-ext.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+209CA, U+2137C, U+2B387, U+2C9F7;
+}
+
 :root {
   /* color — 報紙：白底墨黑，單一朱紅點綴（只用在標題卡直排字、時程「今天」、「已解職」） */
   --bg: #fff;
@@ -18,8 +37,8 @@
   --graph-line: rgba(60, 55, 50, 0.42);
 
   /* type */
-  --serif: "Noto Serif TC Variable", "Libre Bodoni", Georgia, "Songti TC", serif;
-  --sans: "Public Sans Variable", system-ui, -apple-system, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  --serif: "Noto Serif TC Variable", "Civic Rare Glyphs", "Libre Bodoni", Georgia, "Songti TC", serif;
+  --sans: "Public Sans Variable", "Civic Rare Glyphs", system-ui, -apple-system, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
 
   /* type scale */
   --t-xs: 0.6875rem;   /* 11 */

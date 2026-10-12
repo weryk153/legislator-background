@@ -1,3 +1,5 @@
+import { normalizeCecCandidateName } from './cecNameCorrections';
+
 // 中選會投開票資料的解析。純字串處理，無 I/O。
 //
 // CSV 為 UTF-8、無標頭列。五段代碼是「省市別, 縣市別, 選區別, 鄉鎮市區別, 村里別」，
@@ -237,7 +239,7 @@ export function parseElcand(csv: string): Candidate[] {
     out.push({
       areaCode: f.slice(0, 5).map((s) => s.trim()).join('-'),
       number: Number(t(5)),
-      name: t(6),
+      name: normalizeCecCandidateName(t(6)),
       partyCode: t(7),
       sex: t(8) === '2' ? '2' : '1',
       birthDate: t(9),

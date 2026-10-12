@@ -16,6 +16,7 @@ import RelationshipGraph from "../../components/RelationshipGraph.svelte";
 import { officeRole, officialPageTitle, shortParty } from "../../lib/seoTitle";
 import { partyEmblem } from "../../lib/partyEmblems";
 import { candidatePhotoCredits } from "../../lib/candidatePhotos";
+import { displaySourceText, hasSourceMissingGlyph } from "../../lib/sourceText";
 import { squashWidth } from "../../lib/squash";
 
 export async function getStaticPaths() {
@@ -304,11 +305,14 @@ const jsonLd = [
                 <thead><tr><th>捐贈者</th><th>類別</th><th class="amt">金額</th></tr></thead>
                 <tbody>
                   {d.topDonors.map((t) => (
-                    <tr><td>{t.donorName}</td><td>{t.donorType}</td><td class="amt num">NT$ {fmt(t.amount)}</td></tr>
+                    <tr><td>{displaySourceText(t.donorName)}</td><td>{t.donorType}</td><td class="amt num">NT$ {fmt(t.amount)}</td></tr>
                   ))}
                 </tbody>
               </table>
             </details>
+          )}
+          {d.topDonors.some((t) => hasSourceMissingGlyph(t.donorName)) && (
+            <p class="group-source-note">〔缺字〕表示原始申報資料含尚未能確認的造字，姓名暫保留可辨識部分。</p>
           )}
           <Sources sources={[d.source]} />
         </article>

@@ -413,3 +413,19 @@ describe('pendingDrawByArea：待抽籤席位', () => {
     expect(winnersByArea(cands).size + pendingDrawByArea(cands).size).toBe(villages.length);
   });
 });
+
+
+describe('parseElcand：經官方名冊核對的造字碼', () => {
+  it('還原江聰淵的姓名，保留候選人號次與其他欄位', () => {
+    const [candidate] = parseElcand('10,002,00,000,0000,5,江\uE018淵,16,1,0581023,53,臺灣省,碩士,N, , ');
+    expect(candidate.name).toBe('江聰淵');
+    expect(candidate.number).toBe(5);
+    expect(candidate.partyCode).toBe('16');
+    expect(candidate.elected).toBe(false);
+  });
+  it('不猜測其他姓名中的相同私用字，也保留正常姓名', () => {
+    for (const name of ['陳\uE018明', '江聰淵', '陳琬惠']) {
+      expect(parseElcand(`10,002,00,000,0000,5,${name},16,1,0581023,53,臺灣省,碩士,N, , `)[0].name).toBe(name);
+    }
+  });
+});
