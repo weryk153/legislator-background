@@ -52,15 +52,15 @@
 </div>
 <section class="search-area" aria-label="政治獻金搜尋與篩選" on:focusin={ensureData}>
   <div class="search-top"><label for="donor-search">{mode === 'recipients' ? '查詢受贈者' : '查詢獻金流向'}</label><span>{mode === 'recipients' ? '輸入受贈者姓名，反查捐贈企業' : '政治人物姓名／營利事業名稱／統一編號'}</span></div>
-  <div class="search-field">
+  <div class="search-field control-with-icon">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
-    <input id="donor-search" class="ctrl" type="search" placeholder="輸入至少 2 個字或數字" aria-describedby="search-help" bind:value={search} />
+    <input id="donor-search" class="form-control" type="search" placeholder="輸入至少 2 個字或數字" aria-describedby="search-help" bind:value={search} />
   </div>
   <div class="controls">
-    <label>排序方式<select class="ctrl" aria-label="排序方式" bind:value={sort}><option value="count">{mode === 'recipients' ? '捐贈企業家數' : '現任受贈人數'}</option><option value="total">{mode === 'recipients' ? '企業受贈總額' : '捐贈總額'}</option></select></label>
-    <label>受贈者政黨<select class="ctrl" aria-label="篩選政黨" bind:value={party}><option value="">全部政黨</option>{#each parties as p}<option value={p}>{p}</option>{/each}</select></label>
-    <label>受贈者職務<select class="ctrl" aria-label="篩選職務" bind:value={officeType}><option value="">全部職務</option><option value="legislator">立委</option><option value="councilor">議員</option><option value="mayor_magistrate">縣市長</option></select></label>
-    <label>選舉範圍<select class="ctrl" aria-label="篩選選舉" bind:value={election}><option value="">全部選舉</option>{#each elections as e}<option value={e}>{ELECTION_GROUP_LABEL[e] ?? e}</option>{/each}</select></label>
+    <label>排序方式<select class="form-control" aria-label="排序方式" bind:value={sort}><option value="count">{mode === 'recipients' ? '捐贈企業家數' : '現任受贈人數'}</option><option value="total">{mode === 'recipients' ? '企業受贈總額' : '捐贈總額'}</option></select></label>
+    <label>受贈者政黨<select class="form-control" aria-label="篩選政黨" bind:value={party}><option value="">全部政黨</option>{#each parties as p}<option value={p}>{p}</option>{/each}</select></label>
+    <label>受贈者職務<select class="form-control" aria-label="篩選職務" bind:value={officeType}><option value="">全部職務</option><option value="legislator">立委</option><option value="councilor">議員</option><option value="mayor_magistrate">縣市長</option></select></label>
+    <label>選舉範圍<select class="form-control" aria-label="篩選選舉" bind:value={election}><option value="">全部選舉</option>{#each elections as e}<option value={e}>{ELECTION_GROUP_LABEL[e] ?? e}</option>{/each}</select></label>
     <button class="reset" on:click={reset} disabled={!active}>重設條件 ↺</button>
   </div>
   <p class="search-help" id="search-help">{q.length === 1 ? '再輸入 1 個字或數字即可搜尋。' : mode === 'recipients' ? '依企業捐贈紀錄彙總，包含未連結本站現任者資料的受贈者；政黨與職務篩選僅適用已連結者。' : '依受贈者條件篩選，企業金額與人數會一併重新計算。'}</p>
@@ -114,14 +114,9 @@
   .search-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin-bottom: 12px; }
   .search-top label { font-weight: 700; font-size: 16px; }
   .search-top span { color: var(--muted); font-size: 12px; }
-  .search-field { display: flex; gap: 12px; align-items: center; padding: 0 14px; border: 1px solid var(--fg); background: var(--bg); }
-  .search-field:focus-within { outline: 2px solid var(--fg); outline-offset: 2px; }
-  .search-field svg { flex: none; }
-  .ctrl { min-width: 0; width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 0; background: var(--bg); color: var(--fg); font: inherit; }
-  input.ctrl { padding: 14px 0; border: 0; outline: none; font-size: 16px; }
   .controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.35fr) auto; gap: 14px; align-items: end; margin-top: 18px; }
+  .controls select { margin-top: 6px; }
   .controls label { min-width: 0; font-size: 12px; color: var(--muted); }
-  .controls select { margin-top: 6px; font-size: 13px; }
   .reset { min-height: 40px; border: 1px solid var(--fg); background: transparent; color: var(--fg); padding: 8px 12px; cursor: pointer; font: inherit; font-size: 12px; }
   .reset:disabled { opacity: .4; cursor: default; }
   .reset:not(:disabled):hover { background: var(--block-bg); color: var(--block-fg); }
@@ -147,7 +142,6 @@
   @media (max-width: 540px) {
     .search-area { padding: 16px 12px; }
     .controls { gap: 12px 10px; }
-    .controls select { padding: 10px 5px; font-size: 12px; }
     .search-top span { font-size: 11px; }
     h2 { font-size: 20px; }
     .result-head { gap: 8px; }

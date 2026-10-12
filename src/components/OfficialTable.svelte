@@ -53,25 +53,25 @@
 </script>
 
 <div class="controls">
-  <label class="search-field">
+  <label class="search-field control-with-icon">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></svg>
-    <input type="search" placeholder="搜尋姓名" aria-label="搜尋姓名" bind:value={search} />
+    <input class="form-control" type="search" placeholder="搜尋姓名" aria-label="搜尋姓名" bind:value={search} />
   </label>
-  <select class="ctrl" aria-label="篩選縣市" bind:value={region}>
+  <select class="form-control" aria-label="篩選縣市" bind:value={region}>
     <option value="">全部縣市</option>
     {#each regions as r}<option value={r}>{r}</option>{/each}
   </select>
-  <select class="ctrl" aria-label="篩選政黨" bind:value={party}>
+  <select class="form-control" aria-label="篩選政黨" bind:value={party}>
     <option value="">全部政黨</option>
     {#each parties as p}<option value={p}>{p}</option>{/each}
   </select>
-  <select class="ctrl" aria-label="篩選職位" bind:value={officeType}>
+  <select class="form-control" aria-label="篩選職位" bind:value={officeType}>
     <option value="">全部職位</option>
     <option value="legislator">立委</option>
     <option value="mayor_magistrate">縣市首長</option>
     <option value="councilor">議員</option>
   </select>
-  <select class="ctrl" aria-label="排序方式" bind:value={sort}>
+  <select class="form-control" aria-label="排序方式" bind:value={sort}>
     <option value="judgments">判決最多</option>
     <option value="controversies">爭議最多</option>
     <option value="assets">財產最高</option>
@@ -132,16 +132,7 @@
 </div>
 
 <style>
-  .controls { display: flex; align-items: stretch; min-height: 62px; border: 1px solid var(--fg); background: var(--surface); }
-  .search-field { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 160px; padding: 0 18px; }
-  .search-field svg { flex: none; color: var(--muted); }
-  .search-field input { width: 100%; min-width: 0; padding: 18px 0; border: 0; border-radius: 0; background: transparent; color: var(--fg); font-size: 13px; }
-  .search-field input::placeholder { color: var(--muted); }
-  .search-field:focus-within { box-shadow: inset 0 0 0 2px var(--accent); }
-  .search-field input:focus-visible { outline: none; }
-  .ctrl { min-width: 0; max-width: 180px; padding: 12px 16px; border: 0; border-left: 1px solid var(--line); border-radius: 0; background: var(--surface); color: var(--fg); font-size: 13px; cursor: pointer; }
-  .ctrl:hover { background: var(--row-hover); }
-  .ctrl:focus-visible { outline-offset: -2px; }
+  .controls { display: grid; grid-template-columns: minmax(180px, 2fr) repeat(4, minmax(0, 1fr)); gap: 12px; align-items: center; }
   .result-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; }
   .count { margin: 0; font-size: 12px; color: var(--muted); }
   .count strong { margin: 0 4px; color: var(--fg); font-variant-numeric: tabular-nums; }
@@ -188,21 +179,15 @@
   }
   @media (max-width: 1050px) {
     .roster-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .ctrl { padding: 12px 10px; max-width: 155px; }
+
   }
   @media (max-width: 760px) {
     .roster-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; }
-    .controls { flex-wrap: wrap; }
-    .search-field { flex: 1 1 100%; border-bottom: 1px solid var(--line); }
-    .ctrl { width: 25%; max-width: none; }
-    .ctrl:nth-child(2) { border-left: 0; }
+    .controls { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .search-field { grid-column: 1 / -1; }
   }
   @media (max-width: 520px) {
-    .search-field { padding: 0 12px; }
-    .search-field input { font-size: 16px; padding: 14px 0; }
-    .ctrl { width: 50%; font-size: 16px; padding: 12px; }
-    .ctrl:nth-child(n+4) { border-top: 1px solid var(--line); }
-    .ctrl:nth-child(4) { border-left: 0; }
+    .controls { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
     .result-note { display: none; }
     .roster-grid { gap: 18px 12px; }
     .person-card { padding: 9px 10px; }

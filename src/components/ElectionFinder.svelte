@@ -17,9 +17,9 @@
 <section class="finder" aria-labelledby="finder-title">
   <div class="finder-head"><h2 id="finder-title">找候選人</h2><p>選擇縣市，或直接輸入姓名</p></div>
   <div class="controls">
-    <label>縣市<select bind:value={county}><option value="">全部縣市</option>{#each COUNTY_KEYS as c}<option value={c.code}>{c.name}</option>{/each}</select></label>
-    <label>選舉類別<select bind:value={office}><option value="">縣市長與議員</option><option value="chief">縣市長</option><option value="council">縣市議員</option></select></label>
-    <label class="search">候選人姓名<input type="search" bind:value={query} placeholder="輸入姓名查詢" /></label>
+    <label>縣市<select class="form-control" bind:value={county}><option value="">全部縣市</option>{#each COUNTY_KEYS as c}<option value={c.code}>{c.name}</option>{/each}</select></label>
+    <label>選舉類別<select class="form-control" bind:value={office}><option value="">縣市長與議員</option><option value="chief">縣市長</option><option value="council">縣市議員</option></select></label>
+    <label class="search">候選人姓名<input class="form-control" type="search" bind:value={query} placeholder="輸入姓名查詢" /></label>
     <button class="reset" type="button" onclick={reset} disabled={!active}>重設</button>
   </div>
   {#if !active}
@@ -60,7 +60,6 @@
   .finder-head p { margin:0; }
   .controls { display:grid;grid-template-columns:1fr 1fr 2fr auto;gap:12px;align-items:end;margin-bottom:20px; }
   label { display:grid;gap:6px;font-size:13px;font-weight:600;min-width:0; }
-  input,select { width:100%;min-width:0;height:44px;border:1px solid var(--line-strong);border-radius:0;padding:8px 10px;background:var(--surface);color:var(--fg);font:inherit; }
   button { cursor:pointer;color:var(--fg);background:var(--surface);border:1px solid var(--line-strong);font:inherit; }
   .reset { height:44px;padding:0 16px; }
   .reset:disabled { opacity:.4;cursor:default; }

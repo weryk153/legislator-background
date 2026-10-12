@@ -99,7 +99,7 @@
 
 <section class="explorer" aria-label="探索人物關係">
   <div class="toolbar">
-    <div class="search"><label for="graph-search">從姓名查關係</label><input id="graph-search" type="search" placeholder="輸入姓名，查看直接相連的人物" bind:value={query} on:input={searchChanged} /></div>
+    <div class="search"><label for="graph-search">從姓名查關係</label><input class="form-control" id="graph-search" type="search" placeholder="輸入姓名，查看直接相連的人物" bind:value={query} on:input={searchChanged} /></div>
     <fieldset><legend>顯示關係</legend><label><input type="checkbox" bind:checked={family} /><span class="line fam"></span>家族</label><label><input type="checkbox" bind:checked={political} /><span class="line pol"></span>政治</label></fieldset>
     <button class="reset" on:click={reset}>重設全部 ↺</button>
   </div>
@@ -149,16 +149,15 @@
 
 <style>
   .explorer { margin-top: 24px; }
-  button, input { font: inherit; }
+  button { font: inherit; }
   button, a { -webkit-tap-highlight-color: transparent; }
   button { cursor: pointer; color: var(--fg); background: var(--bg); border: 1px solid var(--line-strong); border-radius: 0; }
   button:hover { border-color: var(--fg); background: var(--row-hover); }
-  button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   button:disabled { opacity: .4; cursor: default; }
   .toolbar { display: flex; gap: 24px; align-items: end; padding: 20px; border: 1px solid var(--line); border-top: 3px solid var(--fg); background: var(--surface); }
   .search { flex: 1; min-width: 0; }
   .search > label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; }
-  .search input { width: 100%; min-width: 0; padding: 11px 12px; border: 1px solid var(--fg); border-radius: 0; font-size: 16px; color: var(--fg); background: var(--bg); }
   fieldset { display: flex; gap: 14px; border: 0; padding: 0 0 12px; margin: 0; flex: none; }
   legend { font-size: 12px; color: var(--muted); margin-bottom: 13px; padding: 0; }
   fieldset label { display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer; }
