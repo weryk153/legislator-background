@@ -2,16 +2,43 @@
 import Base from "../layouts/Base.astro";
 import TitleCard from "../components/TitleCard.astro";
 import SectionHead from "../components/SectionHead.astro";
+const sections = [
+  { id: "scope", label: "收錄範圍與屆別" },
+  { id: "sources", label: "資料來源" },
+  { id: "principles", label: "方法論與原則" },
+  { id: "presumption", label: "無罪推定" },
+  { id: "judgments", label: "判決收錄與限制" },
+  { id: "correction", label: "更正與權利" },
+  { id: "license", label: "授權" },
+];
 ---
 <Base title="關於｜政治人物背景資料庫" description="本站的資料來源、方法論、無罪推定原則、更正管道與授權說明。">
   <article class="about">
     <header class="head">
-      <TitleCard vertical="說明" lines={["關於", "本站"]} />
-      <p class="lede">以可查證、附出處的方式，公開現任政治人物的背景，協助選民判讀。</p>
+      <div class="hero-title"><TitleCard vertical="本站說明" lines={["關於本站", "資料・原則・權利"]} heading="關於政治人物背景資料庫" variant="feature" fitContainer /></div>
+      <div class="hero-copy">
+        <p class="eyebrow">公開紀錄，回到出處</p>
+        <p class="lede">以可查證、附出處的方式，<br />整理政治人物與候選人的背景。</p>
+        <p class="intro">本站非官方網站，彙整公開資料，協助選民判讀。</p>
+        <a class="correction-link" href="#correction">資料有誤？查看更正方式 <span aria-hidden="true">↗</span></a>
+      </div>
     </header>
 
-    <section class="sec">
-      <SectionHead text="收錄範圍與屆別" />
+    <div class="reading-guide" aria-label="閱讀資料的三項原則">
+      <a href="#sources"><span class="index" aria-hidden="true">01</span><div><strong>追溯出處</strong><p>從每筆紀錄的來源，查閱原始資料。</p></div><span aria-hidden="true">↓</span></a>
+      <a href="#presumption"><span class="index" aria-hidden="true">02</span><div><strong>留意案件狀態</strong><p>司法判決與媒體爭議分開閱讀。</p></div><span aria-hidden="true">↓</span></a>
+      <a href="#correction"><span class="index" aria-hidden="true">03</span><div><strong>協助更正</strong><p>提供對應頁面與佐證，讓資料更準確。</p></div><span aria-hidden="true">↓</span></a>
+    </div>
+
+    <div class="about-layout">
+      <nav class="contents" aria-label="關於頁段落">
+        <p>閱讀目錄</p>
+        <ol>{sections.map((section, i) => <li><a href={`#${section.id}`}><span aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>{section.label}</a></li>)}</ol>
+        <a class="repo-link" href="https://github.com/weryk153/legislator-background" target="_blank" rel="noopener">查看原始碼 ↗</a>
+      </nav>
+      <div class="about-content">
+    <section class="sec" id="scope" aria-labelledby="scope-title">
+      <SectionHead id="scope-title" text="收錄範圍與屆別" />
       <p>本站以「屆別」為基準收錄：</p>
       <ul>
         <li>立法委員：第11屆（2024年1月當選，任期至2028年）。</li>
@@ -21,21 +48,26 @@ import SectionHead from "../components/SectionHead.astro";
       <p>任期內因解職、當選無效、辭職或逝世而離任者，<strong>保留於名冊並標註「已解職」及原因</strong>，不逕予刪除，其資料為任內當選時之公開紀錄。停職（如經一審判決停職之首長）仍為現任，不另標註。</p>
     </section>
 
-    <section class="sec">
-      <SectionHead text="資料來源" />
+    <section class="sec" id="sources" aria-labelledby="sources-title">
+      <SectionHead id="sources-title" text="資料來源" />
+      <div class="source-group"><h3>文字與公開紀錄</h3>
       <ul>
         <li>司法判決：司法院裁判書開放資料（公開判決，經人工確認身分後上架）</li>
         <li>經歷／背景：立法院官方資料（立委）、中選會選舉紀錄；縣市首長之歷任職務另參考維基百科並標註出處</li>
         <li>爭議報導：現任公職者之爭議，整理自維基百科與所附媒體報導（程式擷取，僅保留有原始新聞來源者，未經本站逐筆查核）；2026年縣市長候選人之爭議，由本站以新聞、法院與政府公開資料查證，經兩輪查證與獨立核對後才上架（收錄原則見下方）</li>
         <li>財產申報：監察院公職人員財產申報公報（程式自動解析 PDF）</li>
         <li>政治獻金：監察院政治獻金公開查閱平臺（政治獻金）</li>
+      </ul></div>
+      <div class="source-group"><h3>照片與政黨圖示</h3><ul>
         <li>議員照片：各縣市議會官網議員介紹頁（官方肖像，程式下載縮圖並標註來源）</li>
         <li>政黨黨徽：<a href="https://party.moi.gov.tw/PartyMain.aspx?gs=P01&n=16100&sms=13073" target="_blank" rel="noopener">內政部政黨資訊網</a>各政黨登記頁，僅縮製為識別用圖示；<a href="/images/parties/sources.json">逐張來源</a>。</li>
         <li>已解職議員部分照片：中選會選舉公報／議會官網存檔（逐張來源見原始碼庫 <code>scraper/fixtures/photo-attributions.md</code>）</li>
         <li>2026 縣市長參選人照片：維基百科條目主圖（Wikimedia Commons，僅收經查證為本人且授權為政府資料開放授權條款、CC BY／CC BY-SA 或公有領域者），作者與授權列於各縣市候選人卡片底部，原始清單見原始碼庫 <code>scraper/candidate-photos-wiki.json</code>；其餘參選人待中選會選舉公報公布後補上</li>
         <li>外部人物照片：維基百科條目主圖（Wikimedia Commons，授權以政府資料開放授權條款之 Attribution 居多，另有 CC BY／CC BY-SA、公有領域），逐張作者與授權於關係圖節點提示顯示，原始清單見原始碼庫 <code>scraper/entities-wiki.json</code></li>
+      </ul></div>
+      <div class="source-group"><h3>地圖與選舉資料</h3><ul>
         <li>行政區界線：內政部國土測繪中心開放資料
-          <ul style="list-style-type: disc; padding-left: 2em; margin: 8px 0;">
+          <ul class="boundary-versions">
             <li>直轄市、縣市界線（民國114年3月18日版，政府資料開放授權條款-第1版）</li>
             <li>鄉鎮市區界線（民國114年3月18日版，政府資料開放授權條款-第1版）</li>
             <li>村里界歷史圖資（民國111年11月18日版，政府資料開放授權條款-第1版）；屏東縣瑪家鄉三和村補正圖層（民國115年8月17日版）</li>
@@ -44,11 +76,12 @@ import SectionHead from "../components/SectionHead.astro";
         <li>選舉結果：中央選舉委員會投開票資料（2018、2022年地方公職人員選舉；2022年嘉義市長重行選舉；2023年起議員缺額補選）</li>
         <li>2026年候選人名單：中央選舉委員會候選人名冊（依選務進度更新：登記名冊 → 審定名單 → 抽籤號次 → 公告名單）</li>
       </ul>
-      <p>本站<strong>非官方網站</strong>，僅彙整上述公開資料並標註出處。</p>
+      </div>
+      <p class="source-note">本站<strong>非官方網站</strong>，僅彙整上述公開資料並標註出處。</p>
     </section>
 
-    <section class="sec">
-      <SectionHead text="方法論與原則" />
+    <section class="sec" id="principles" aria-labelledby="principles-title">
+      <SectionHead id="principles-title" text="方法論與原則" />
       <ul>
         <li>每一筆事實資料都附可點擊的出處，無出處者不上架。</li>
         <li>「司法判決」與「媒體爭議」分開呈現，各自標示狀態。</li>
@@ -58,13 +91,13 @@ import SectionHead from "../components/SectionHead.astro";
       </ul>
     </section>
 
-    <section class="sec">
-      <SectionHead text="無罪推定" />
+    <section class="sec" id="presumption" aria-labelledby="presumption-title">
+      <SectionHead id="presumption-title" text="無罪推定" />
       <p>判決結果不代表最終定罪。未定讞之案件，當事人依法受無罪推定保障，請讀者審慎判讀。</p>
     </section>
 
-    <section class="sec">
-      <SectionHead text="司法判決的收錄範圍與限制" />
+    <section class="sec" id="judgments" aria-labelledby="judgments-title">
+      <SectionHead id="judgments-title" text="司法判決的收錄範圍與限制" />
       <p>「司法判決」一欄來自司法院裁判書開放資料，並以每日開放資料比對接續最新案件。收錄原則與已知限制如下：</p>
       <ul>
         <li><strong>查證後上架</strong>：每筆判決均經人工確認當事人身分、並查閱至最新審級（含上訴改判、發回更審、二審改判無罪等）後才上架，避免以一審結果誤載已獲改判者；<strong>尚未定讞之案件明確標示「未定讞」</strong>，提醒讀者該結果可能於上訴後變更。</li>
@@ -75,16 +108,17 @@ import SectionHead from "../components/SectionHead.astro";
       </ul>
     </section>
 
-    <section class="sec" id="correction">
-      <SectionHead text="更正與權利" />
+    <section class="sec correction" id="correction" aria-labelledby="correction-title">
+      <SectionHead id="correction-title" text="更正與權利" />
       <p>若發現資料有誤、需更新狀態，或您是當事人希望更正或移除特定資料，歡迎至
         <a href="https://github.com/weryk153/legislator-background/issues" target="_blank" rel="noopener">GitHub 回報</a>，
         並附上對應頁面與佐證；我們會查核後盡速更正或移除。</p>
+      <a class="report-button" href="https://github.com/weryk153/legislator-background/issues" target="_blank" rel="noopener">前往 GitHub 回報 <span aria-hidden="true">↗</span></a>
       <p>依《個人資料保護法》，當事人得就本站所載個人資料請求查詢、更正或刪除。本站對爭議報導不主張為事實認定，並以官方資料為準。</p>
     </section>
 
-    <section class="sec">
-      <SectionHead text="授權" />
+    <section class="sec" id="license" aria-labelledby="license-title">
+      <SectionHead id="license-title" text="授權" />
       <ul>
         <li>政府公開資料（監察院、中選會、立法院、司法院）依其開放授權條款使用，並標註出處。</li>
         <li>「爭議報導」部分內容改寫自維基百科，依
@@ -92,14 +126,69 @@ import SectionHead from "../components/SectionHead.astro";
           授權，相同方式分享；原文與貢獻者見各筆出處連結。</li>
       </ul>
     </section>
+      </div>
+    </div>
   </article>
 
   <style>
-    .about { max-width: 62ch; }
-    .head { margin-bottom: 36px; }
-    .head .lede { margin: 12px 0 0; }
-    .sec { margin-bottom: 32px; }
-    .sec ul { line-height: 1.9; padding-left: 1.2em; margin: 0; }
-    .sec p { margin: 0; }
+    .head { display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:40px;margin:12px 0 28px; }
+    .hero-title { container-type:inline-size;--feature-first-size:min(84px,calc((100cqw - 76px)/2.48));min-width:0; }
+    .eyebrow { color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.14em;margin:0 0 12px; }
+    .lede { font:700 22px/1.7 var(--serif);margin:0; }
+    .intro { font-size:13px;color:var(--muted);line-height:1.8;margin:12px 0 18px; }
+    .correction-link { font-size:13px;text-underline-offset:5px; }
+    .correction-link span { color:var(--accent);margin-left:14px; }
+    .reading-guide { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-block:1px solid var(--line);border-top:3px solid var(--fg);margin-bottom:36px; }
+    .reading-guide a { display:flex;align-items:baseline;gap:14px;text-decoration:none;padding:20px;border-right:1px solid var(--line); }
+    .reading-guide a:first-child { padding-left:0; }.reading-guide a:last-child { border-right:0; }
+    .reading-guide a > span:last-child { margin-left:auto;color:var(--accent); }
+    .index { font:700 13px var(--serif);color:var(--accent); }
+    .reading-guide strong { font:900 20px var(--serif); }
+    .reading-guide p { font-size:12px;color:var(--muted);margin:7px 0 0;line-height:1.7; }
+    .about-layout { display:grid;grid-template-columns:216px minmax(0,1fr);gap:40px;align-items:start; }
+    .contents { position:sticky;top:24px;border-top:3px solid var(--fg);padding-top:16px; }
+    .contents > p { font-size:11px;letter-spacing:.16em;color:var(--muted);margin:0 0 12px; }
+    .contents ol { margin:0;padding:0;list-style:none; }
+    .contents li { border-bottom:1px solid var(--line); }
+    .contents li a { display:flex;gap:12px;padding:12px 0;font-size:13px;text-decoration:none; }
+    .contents li span { color:var(--accent);font-size:11px;min-width:18px; }
+    .contents .repo-link { display:inline-block;font-size:12px;margin-top:20px;text-underline-offset:4px;color:var(--muted); }
+    .about-content { max-width:880px;min-width:0; }
+    .sec { margin-bottom:38px;scroll-margin-top:24px;font-size:15px;line-height:1.95; }
+    .sec :global(.sh) { margin-top:0;margin-bottom:20px; }
+    .sec p { margin:14px 0; }.sec p:last-child { margin-bottom:0; }
+    .sec ul { padding-left:1.25em;margin:12px 0; }
+    .sec li { padding-left:4px;margin-bottom:10px; }
+    .sec li::marker { color:var(--muted); }
+    .sec a { text-underline-offset:3px;overflow-wrap:anywhere; }
+    .sec code { font-size:12px;overflow-wrap:anywhere; }
+    .source-group { border-top:1px solid var(--line);padding:18px 0 4px; }
+    .source-group h3 { font:900 19px var(--serif);margin:0 0 12px; }
+    .source-group .boundary-versions { margin:8px 0;font-size:13px;color:var(--muted); }
+    .source-note { font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px; }
+    #presumption { padding:22px 24px;border-left:4px solid var(--accent);background:var(--surface); }
+    #presumption :global(.sh) { margin-bottom:14px; }
+    .correction { padding:24px;border:1px solid var(--line-strong);border-top:4px solid var(--fg); }
+    .report-button { display:inline-flex;align-items:center;gap:30px;padding:10px 16px;margin:4px 0;background:var(--block-bg);color:var(--block-fg);text-decoration:none;font-size:14px; }
+    @media(max-width:900px) {
+      .head { gap:24px; }.lede { font-size:19px; }
+      .about-layout { grid-template-columns:180px minmax(0,1fr);gap:24px; }
+      .reading-guide a { padding:16px 12px;gap:8px; }.reading-guide strong { font-size:18px; }
+    }
+    @media(max-width:760px) {
+      .head { grid-template-columns:minmax(0,1fr);gap:18px;margin:0 0 22px; }
+      .hero-title { --feature-first-size:min(64px,calc((100cqw - 76px)/2.48));--feature-second-size:min(28px,calc((100cqw - 76px)/4.34)); }
+      .eyebrow { display:none; }.lede { font-size:18px; }.intro { margin:8px 0 12px; }
+      .reading-guide { grid-template-columns:minmax(0,1fr);margin-bottom:24px; }
+      .reading-guide a,.reading-guide a:first-child { padding:13px 0;border-right:0;border-bottom:1px solid var(--line);gap:12px; }.reading-guide a:last-child { border-bottom:0; }
+      .reading-guide p { margin-top:4px; }
+      .about-layout { grid-template-columns:minmax(0,1fr);gap:26px; }
+      .contents { position:static;padding-top:12px; }
+      .contents ol { display:grid;grid-template-columns:1fr 1fr;column-gap:14px; }
+      .contents li a { gap:8px;font-size:12px;min-height:44px;align-items:center;padding:8px 0; }
+      .contents .repo-link { margin-top:12px; }
+      .sec { font-size:14px;margin-bottom:30px; }.sec :global(.sh) { margin-bottom:16px; }
+      .correction,#presumption { padding:18px 16px; }
+    }
   </style>
 </Base>
