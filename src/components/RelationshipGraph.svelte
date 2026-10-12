@@ -175,7 +175,7 @@
         // 不到全圖、也沒有復原的辦法。故記下佈局後的圖形邊界（graph 座標，不隨視窗變動），
         // 視窗改變時用 cytoscape 自己 fit 的公式（見 getFitViewport）重算下限即可，
         // 既不必重跑 layout，也不會動到使用者當下的視角。
-        if (mode === 'global') {
+        if (mode === 'global' && !onReady) {
           const bb = cy!.elements().boundingBox();
           const FIT_PAD = 30; // 與 cose layout 的 padding 一致，重算結果才等同 fit()
           const applyFloor = () => {

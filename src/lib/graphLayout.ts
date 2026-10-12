@@ -8,6 +8,7 @@
 import cytoscape from 'cytoscape';
 import type { GraphData } from './types';
 import { toCytoscapeElements } from './graphView';
+import { packGraphComponents } from './graphPacking';
 
 export const GLOBAL_COSE = { name: 'cose', padding: 30, animate: false, nodeRepulsion: 9000, idealEdgeLength: 110 } as const;
 
@@ -44,5 +45,5 @@ export function computeGlobalLayout(data: GraphData): Record<string, { x: number
     out[n.id()] = { x: Math.round(p.x * 10) / 10, y: Math.round(p.y * 10) / 10 };
   });
   cy.destroy();
-  return out;
+  return packGraphComponents(data, out);
 }

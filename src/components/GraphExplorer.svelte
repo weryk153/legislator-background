@@ -6,6 +6,8 @@
   import { FAMILY_RELATIONS, RELATION_LABEL, OFFICE_LABEL } from '../lib/graph';
   import { entityRole } from '../lib/graphView';
   import { normalizeNameChars } from '../lib/nameVariant';
+  import { onMount } from 'svelte';
+  import { packGraphComponents } from '../lib/graphPacking';
 
   export let data: GraphData;
   export let positions: Record<string, { x: number; y: number }>;
@@ -32,14 +34,20 @@
   function fit(graph: Core) {
     const visible = graph.nodes().filter(node => node.style('display') !== 'none');
     if (!visible.length) return;
-    graph.fit(visible, 42);
+    graph.minZoom(.001);
+    graph.fit(visible, 30);
+    graph.minZoom(Math.min(graph.zoom(), 1.3));
     if (graph.zoom() > 1.3) graph.zoom({ level: 1.3, renderedPosition: { x: graph.width() / 2, y: graph.height() / 2 } });
   }
   function applyView(graph: Core, visible: GraphData) {
     const nodes = new Set(visible.nodes.map(node => node.key));
     const edges = new Set(visible.edges.map(edge => edge.id));
+    const packed = packGraphComponents(visible, positions, graph.width() / graph.height());
     graph.batch(() => {
-      graph.nodes().forEach(node => { node.style('display', nodes.has(node.id()) ? 'element' : 'none'); });
+      graph.nodes().forEach(node => {
+        node.style('display', nodes.has(node.id()) ? 'element' : 'none');
+        if (packed[node.id()]) node.position(packed[node.id()]);
+      });
       graph.edges().forEach(edge => { edge.style('display', edges.has(edge.id()) ? 'element' : 'none'); });
     });
     fit(graph);
@@ -58,6 +66,35 @@
   function reset() { query = ''; family = true; political = true; focusKey = null; selectedKey = null; selectedEdgeId = null; if (cy) fit(cy); }
   function zoom(factor: number) { if (cy) cy.zoom({ level: cy.zoom() * factor, renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } }); }
   const role = (node: GraphNode) => node.kind === 'official' ? `${node.party ?? ''}・${OFFICE_LABEL[node.officeType!] ?? ''}` : entityRole(node.description, node.subtype);
+
+  onMount(() => {
+    let observer: ResizeObserver | null = null;
+    let timer: ReturnType<typeof setTimeout>;
+    let lastWidth = 0, lastHeight = 0;
+    // 容器改寬（含側欄、旋轉與手機斷點）時重排群組，不在縮放／平移時改動位置。
+    const watch = () => {
+      if (!cy?.container()) return;
+      observer?.disconnect();
+      observer = new ResizeObserver(() => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          if (!cy || cy.destroyed()) return;
+          cy.resize();
+          const width = cy.width(), height = cy.height();
+          if (width === lastWidth && height === lastHeight) return;
+          lastWidth = width; lastHeight = height;
+          applyView(cy, view);
+        }, 100);
+      });
+      observer.observe(cy.container()!);
+    };
+    // 父層 onMount 早於圖的非同步 import；由 ready callback 安裝 observer。
+    startResizeWatch = watch;
+    watch();
+    return () => { clearTimeout(timer); observer?.disconnect(); startResizeWatch = () => {}; };
+  });
+  let startResizeWatch = () => {};
+  function ready(graph: Core) { cy = graph; startResizeWatch(); }
 </script>
 
 <section class="explorer" aria-label="探索人物關係">
@@ -72,7 +109,7 @@
     <div class="canvas-area">
       <div class="canvas-tools"><span>拖曳平移・滾輪／雙指縮放</span><div role="group" aria-label="關係圖縮放"><button aria-label="放大關係圖" disabled={!cy} on:click={() => zoom(1.3)}>＋</button><button aria-label="縮小關係圖" disabled={!cy} on:click={() => zoom(1 / 1.3)}>－</button><button disabled={!cy} on:click={() => cy && fit(cy)}>符合畫面</button></div></div>
       <div class="canvas">
-        <RelationshipGraph {data} {positions} mode="global" onReady={(graph) => cy = graph} onInspect={inspect} onError={() => failed = true} />
+        <RelationshipGraph {data} {positions} mode="global" onReady={ready} onInspect={inspect} onError={() => failed = true} />
         {#if failed}<div class="canvas-message"><strong>關係圖暫時無法載入</strong><a href="#graph-people">查看下方人物文字清單 ↓</a></div>
         {:else if !cy}<div class="canvas-message"><strong>正在載入關係圖…</strong><span>下方另有完整人物文字清單</span></div>
         {:else if view.nodes.length === 0}<div class="canvas-message"><strong>{!family && !political ? '尚未選擇關係類型' : '沒有符合條件的關係'}</strong><span>請調整姓名或勾選家族、政治關係。</span><button on:click={reset}>重設全部</button></div>{/if}
