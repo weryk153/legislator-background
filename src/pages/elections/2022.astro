@@ -2,6 +2,8 @@
 // 2022 年九合一選舉結果一覽。原本附在 /elections 底部；/elections 改以 2026 為主軸後
 // 使用者要求另外放（2026-10-05），這裡獨立成頁，內容與資料來源不變。
 import Base from "../../layouts/Base.astro";
+import TitleCard from "../../components/TitleCard.astro";
+import { partyEmblem } from "../../lib/partyEmblems";
 import SectionHead from "../../components/SectionHead.astro";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -90,18 +92,25 @@ const jsonLd = [
 
 <Base title="2022 年九合一選舉結果｜政治人物背景資料庫" description={desc}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <div class="map-stage">
-    <ElectionPanel client:load {years} initialYear={2022} yearHref={YEAR_HREF} />
-  </div>
+  <header class="election-hero">
+    <div class="hero-title"><TitleCard vertical="歷屆選舉" lines={["九合一選舉", "全國選舉結果"]} heading="2022 年九合一選舉結果" variant="feature" fitContainer /></div>
+    <div class="hero-meta"><p class="year">2022</p><p class="edition">地方公職人員選舉</p>
+      <p class="data-stage">22 縣市首長・議會席次・得票結果<br />資料來源：中央選舉委員會<br />含其後補選與重行選舉之現況</p>
+      <nav aria-label="選舉年份"><a href="/elections/">2026 候選人 →</a><span aria-current="page">2022 選舉結果</span></nav>
+    </div>
+  </header>
+  <nav class="section-nav" aria-label="選舉頁段落"><a href="#election-map">地圖查詢</a><a href="#overview-title">22 縣市結果</a></nav>
 
-  <SectionHead text="全國一覽：2022 年九合一選舉結果" />
+  <details class="map-disclosure" id="election-map" open>
+    <summary><span>選舉結果地圖</span><small>點選縣市，逐層查閱首長、席次與得票</small><span class="expand" aria-hidden="true">＋</span></summary>
+    <div class="map-stage"><ElectionPanel client:visible {years} initialYear={2022} yearHref={YEAR_HREF} embedded /></div>
+  </details>
+  <script is:inline>
+    if (window.matchMedia('(max-width: 760px)').matches) document.getElementById('election-map').open = false;
+  </script>
 
-  <!-- 全國一覽：伺服器端渲染的靜態表格，滿版地圖之下。地圖／側欄是 client:load
-       的 Svelte 元件，爬蟲與無 JS 的使用者看不到裡面的縣市名、首長、席次、得票
-       ——這裡是同一份資料（national.json）以純 HTML 表格重新呈現一次，服務的
-       不只是搜尋引擎，也包含沒有 JavaScript 與使用螢幕閱讀器的讀者。 -->
   <section class="overview" aria-labelledby="overview-title">
-    <h2 id="overview-title" class="sr-only">全國一覽</h2>
+    <SectionHead id="overview-title" text="22 縣市結果一覽" />
     <p class="overview-note">
       以下為<strong>西元 2022 年（111年地方公職人員選舉）</strong>22 縣市的首長、議會席次組成與得票結果，
       含其後補選／重行選舉之現況（如嘉義市長 2022 年因候選人於投票前過世延後重行選舉）。
@@ -125,18 +134,18 @@ const jsonLd = [
         <tbody>
           {overviewRows.map((r) => (
             <tr>
-              <td>{r.name}</td>
-              <td>
+              <td data-label="縣市" class="county-name">{r.name}</td>
+              <td data-label="縣市長" class="chief-name">
                 {r.chiefName
                   ? (r.chiefSlug ? <a href={`/officials/${r.chiefSlug}/`}>{r.chiefName}</a> : r.chiefName)
                   : "—"}
               </td>
-              <td>{r.chiefParty ?? "—"}</td>
-              <td class="num">{fmtInt(r.seatsTotal)}</td>
-              <td>{r.largestParty ? `${r.largestParty.name}（${fmtInt(r.largestParty.seats)}）` : "—"}</td>
-              <td class="num">{r.electedVotes === null ? "—" : fmtInt(r.electedVotes)}</td>
-              <td class="num">{fmtPercent(r.electedShare)}</td>
-              <td class="num">{fmtPercent(r.turnout)}</td>
+              <td data-label="政黨"><span class="party-cell">{partyEmblem(r.chiefParty ?? '') && <img src={partyEmblem(r.chiefParty ?? '')!} alt="" width="18" height="18" loading="lazy" />}{r.chiefParty ?? "—"}</span></td>
+              <td data-label="議會席次" class="num">{fmtInt(r.seatsTotal)}</td>
+              <td data-label="最大黨">{r.largestParty ? `${r.largestParty.name}（${fmtInt(r.largestParty.seats)}）` : "—"}</td>
+              <td data-label="當選得票數" class="num">{r.electedVotes === null ? "—" : fmtInt(r.electedVotes)}</td>
+              <td data-label="當選得票率" class="num">{fmtPercent(r.electedShare)}</td>
+              <td data-label="投票率" class="num">{fmtPercent(r.turnout)}</td>
             </tr>
           ))}
         </tbody>
@@ -147,9 +156,28 @@ const jsonLd = [
 </Base>
 
 <style>
-  /* 滿版地圖：與 src/pages/elections.astro 的 .map-stage 相同（頁首實測高度見該檔說明）。 */
-  .map-stage { position: relative; width: 100vw; margin: 0 0 0 calc(50% - 50vw); height: calc(100dvh - 130px); }
-  @media (max-width: 900px) { .map-stage { height: auto; margin-top: 0; } }
+  .election-hero { display:grid;grid-template-columns:1.4fr 1fr;background:var(--block-bg);color:var(--block-fg);padding:28px;gap:30px; }
+  .hero-title { container-type:inline-size;min-width:0;align-self:center;--feature-first-size:min(84px,calc((100cqw - 76px)/3.1)); }
+  .hero-title :global(.tcard) { padding:0;background:transparent; }
+  .hero-meta { border-left:1px solid color-mix(in srgb,var(--block-fg) 30%,transparent);padding-left:30px; }
+  .year { font:900 66px/1 var(--serif);letter-spacing:-.05em;margin:0; }
+  .edition { margin:8px 0 12px;font-size:15px; }
+  .data-stage { font-size:12px;line-height:1.8;margin:0;opacity:.8; }
+  .hero-meta nav { display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;font-size:13px; }
+  .hero-meta nav span { border-bottom:2px solid var(--accent);padding-bottom:4px; }
+  .section-nav { display:flex;flex-wrap:wrap;gap:8px 24px;padding:14px 0;border-bottom:1px solid var(--line);font-size:13px; }
+  .map-disclosure { margin:26px 0;border:1px solid var(--line-strong); }
+  .map-disclosure > summary { display:flex;align-items:center;gap:18px;padding:16px 20px;cursor:pointer;list-style:none; }
+  .map-disclosure > summary::-webkit-details-marker { display:none; }
+  .map-disclosure > summary > span:first-child { font:900 24px var(--serif); }
+  .map-disclosure small { color:var(--muted); }
+  .expand { margin-left:auto; }
+  .map-disclosure[open] .expand { transform:rotate(45deg); }
+  .map-stage { border-top:1px solid var(--line);padding:18px; }
+  #election-map,:global(#overview-title) { scroll-margin-top:20px; }
+  .party-cell { display:flex;align-items:center;gap:6px; }
+  .party-cell img { object-fit:contain; }
+  .county-name,.chief-name { font-weight:700; }
   .overview-note { color: var(--muted); font-size: 0.9375rem; line-height: 1.7; max-width: 72ch; margin: 0 0 20px; }
   .overview-note a { text-decoration: underline; text-underline-offset: 2px; }
   .table-scroll { overflow-x: auto; }
@@ -161,4 +189,26 @@ const jsonLd = [
   td a { text-decoration: underline; text-underline-offset: 2px; }
   td a:hover { color: var(--accent); }
   .num { text-align: right; font-family: var(--serif); font-variant-numeric: tabular-nums; }
+  @media(max-width:760px) {
+    .election-hero { grid-template-columns:1fr;padding:20px;gap:18px; }
+    .hero-title { --feature-first-size:min(64px,calc((100cqw - 52px)/3.1));--feature-second-size:min(28px,calc((100cqw - 52px)/3.72)); }
+    .hero-meta { border-left:0;border-top:1px solid color-mix(in srgb,var(--block-fg) 30%,transparent);padding:16px 0 0; }
+    .year { font-size:40px;float:left;margin-right:18px; }
+    .edition { margin:8px 0 18px; }.data-stage { clear:both; }
+    .map-disclosure > summary { padding:14px;flex-wrap:wrap;gap:8px; }.map-disclosure small { order:3;width:100%; }
+    .map-stage { padding:12px; }
+    .overview-note { font-size:13px; }
+  }
+  @media(max-width:600px) {
+    .table-scroll { overflow:visible; }
+    table,tbody { display:block;min-width:0; }
+    thead { position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%); }
+    tbody { display:grid;gap:18px; }
+    tbody tr { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:12px 14px;border:1px solid var(--line);border-top:3px solid var(--fg);background:var(--surface); }
+    td { display:block;min-width:0;white-space:normal;overflow-wrap:anywhere;padding:10px 6px 10px 0;font-size:14px; }
+    td::before { content:attr(data-label);display:block;font:400 11px/1.5 var(--sans);color:var(--muted);margin-bottom:5px; }
+    .num { text-align:left; }
+    .county-name,.chief-name { font:900 22px var(--serif); }
+    td:nth-last-child(-n+2) { border-bottom:0; }
+  }
 </style>

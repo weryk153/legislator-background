@@ -183,8 +183,15 @@
         {#if i > 0}<span aria-hidden="true">›</span>{/if}
         {#if c.disabled}<strong aria-current="location">{c.label}</strong>{:else}<button type="button" onclick={() => mapRef?.jumpTo(i)}>{c.label}</button>{/if}
       {/each}
-      <small>2026 候選人・行政區界線供查詢使用</small>
+      <small>{upcoming ? `${current.year} 候選人・行政區界線供查詢使用` : `${current.year} 選舉結果・含其後補選之現況`}</small>
     </nav>
+    {#if !upcoming && legend.length}
+      <ul class="legend embedded-legend" aria-label="地圖政黨圖例">
+        {#each legend as l (l.key)}
+          <li><span class="swatch {l.kind}" style={l.kind === 'party' ? `background: var(${l.cssVar})` : ''}></span>{l.label}</li>
+        {/each}
+      </ul>
+    {/if}
   {:else}
   <header class="title-float masthead">
     <p class="kicker">選舉特輯</p>
@@ -563,6 +570,7 @@
     .sidebar-panel { max-height: none; overflow-y: visible; }
   }
   .embedded { height:auto;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;--map-back-left:16px; }
+  .embedded-legend { grid-column:1/-1;margin:0; }
   .map-toolbar { grid-column:1/-1;display:flex;gap:10px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px;font-size:13px; }
   .map-toolbar > span:first-child { color:var(--muted); }
   .map-toolbar small { margin-left:auto;color:var(--muted); }
