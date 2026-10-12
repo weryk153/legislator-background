@@ -27,8 +27,17 @@ async function apiJson(base: string, params: Record<string, string>): Promise<an
 async function fetchPageImage(title: string): Promise<{ url: string; file: string } | null> {
   const j = await apiJson(API, { action: 'query', prop: 'pageimages', piprop: 'original|name', redirects: '1', titles: title });
   const page = Object.values(j?.query?.pages ?? {})[0] as { original?: { source?: string }; pageimage?: string } | undefined;
-  if (!page?.original?.source || !page.pageimage) return null;
-  return { url: page.original.source, file: page.pageimage };
+  if (page?.original?.source && page.pageimage) return { url: page.original.source, file: page.pageimage };
+  // pageimages 偶爾不把 infobox 圖當主圖（圖片品質評分過低、或條目太新未重算）——葉人文條目
+  // 就是：infobox 有 image，pageimages 卻回空。退回讀 wikitext 的 `| image =`，再以 imageinfo 取原圖 URL。
+  const wt = await apiJson(API, { action: 'parse', prop: 'wikitext', redirects: '1', page: title });
+  const m = String(wt?.parse?.wikitext?.['*'] ?? '').match(/\|\s*image\s*=\s*([^\n|]+)/);
+  const file = m?.[1].replace(/^(File|檔案|Image):/i, '').trim();
+  if (!file) return null;
+  const info = await apiJson(COMMONS_API, { action: 'query', prop: 'imageinfo', iiprop: 'url', titles: `File:${file}` });
+  const ip = Object.values(info?.query?.pages ?? {})[0] as { imageinfo?: { url?: string }[] } | undefined;
+  const url = ip?.imageinfo?.[0]?.url;
+  return url ? { url, file } : null;
 }
 
 async function fetchExtMetadata(file: string): Promise<ExtMetadata | undefined> {

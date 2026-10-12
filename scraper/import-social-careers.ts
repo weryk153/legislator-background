@@ -29,11 +29,15 @@ interface SocialCareers {
   district?: string;    // 議員必備：同名消歧義用
   wikipediaUrl: string; // 出處網址：維基條目，或議會官網個人頁
   sourceTitle?: string; // 出處標題；省略時預設為「維基百科：<wikiTitle>」
+  sourceType?: 'gov' | 'news' | 'wiki'; // 出處型別；省略時：有 sourceTitle 視為 gov（議會官網），否則 wiki
   positions: string[];
 }
 const FILES: { file: string; officeType: string; label: string }[] = [
   { file: 'mayor-social-careers.json', officeType: 'mayor_magistrate', label: '首長' },
   { file: 'councilor-social-careers.json', officeType: 'councilor', label: '議員' },
+  // 2026 縣市長參選人：多數沒有維基條目，經歷來自中選會登記資料（中央社整理的登記名單）
+  // 或新聞報導，屬參選人自填／記者整理，型別照實標 news。
+  { file: 'candidate-social-careers.json', officeType: 'candidate', label: '2026 參選人' },
 ];
 
 async function main() {
@@ -107,7 +111,7 @@ async function main() {
       const { data: src, error: se } = await sb.from('sources').insert({
         url: r.wikipediaUrl,
         // 議會官網的個人頁不是維基百科，型別與標題都要照實標示，否則檔案頁的出處會說謊。
-        type: r.sourceTitle ? 'gov' : 'wiki',
+        type: r.sourceType ?? (r.sourceTitle ? 'gov' : 'wiki'),
         title: r.sourceTitle ?? `維基百科：${r.wikiTitle ?? r.name}`,
         retrieved_at: new Date().toISOString().slice(0, 10),
       }).select('id').single();

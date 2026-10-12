@@ -40,5 +40,17 @@
     "election_name": "113年立法委員選舉",
     "slug": "cand-莊競程-新竹市",
     "basis": "專戶地區為臺中市；中選會選舉資料庫 elcand.csv（https://data.cec.gov.tw/選舉資料庫/votedata.zip）（2024總統立委）載臺中市第5選區候選人莊競程（民主進步黨），生日 69.12.22，與中央社 2026 縣市長登記名單（https://www.cna.com.tw/news/aipl/202609045002.aspx）所載 1980年12月22日、第10屆立法委員相符；維基百科「莊競程」載其 2026 年參選新竹市長（https://zh.wikipedia.org/wiki/%E8%8E%8A%E7%AB%B6%E7%A8%8B）"
+  },
+  {
+    "name": "吳品叡",
+    "election_name": "111年嘉義縣朴子市市長選舉",
+    "slug": "cand-吳品叡-嘉義縣",
+    "basis": "專戶為 2022 朴子市長選舉；中央社 2026-09-04 縣市長登記名單載吳品叡（無黨籍，1986 年生）為現任朴子市長、第 8 屆朴子市長、第 7 屆朴子市民代表（https://www.cna.com.tw/news/aipl/202609045002.aspx）；2026 中選會登記名冊：嘉義縣長 吳品叡（無）（https://web.cec.gov.tw/central/article/64709）"
+  },
+  {
+    "name": "游淑貞",
+    "election_name": "111年花蓮縣吉安鄉鄉長選舉",
+    "slug": "cand-游淑貞-花蓮縣",
+    "basis": "專戶為 2022 吉安鄉長選舉；中央社 2026-09-04 縣市長登記名單載游淑貞（中國國民黨，1967 年生）為現任花蓮縣吉安鄉長（https://www.cna.com.tw/news/aipl/202609045002.aspx）；2026 中選會登記名冊：花蓮縣長 游淑貞（中國國民黨）（https://web.cec.gov.tw/central/article/64709）"
   }
 ]

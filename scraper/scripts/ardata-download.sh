@@ -40,6 +40,9 @@ for a in "${DIRECT[@]}";    do fetch 111年直轄市議員選舉 "$a"; done
 for a in "${COUNTIES[@]}";  do fetch '111年縣(市)長選舉' "$a"; done
 for a in "${DIRECT[@]}";    do fetch 111年直轄市市長選舉 "$a"; done
 fetch 第20屆臺東縣議員補選 臺東縣
+# 2026 縣市長參選人中的現任鄉鎮市長（吳品叡 朴子、游淑貞 吉安）：鄉鎮長選舉不在現任席次範圍，
+# 只抓這幾個縣；專戶靠 ardata-candidate-confirmed.json 釘住，其餘鄉鎮長專戶自動判 none 不入庫。
+for a in 嘉義縣 花蓮縣 澎湖縣; do fetch '111年鄉(鎮、市)長選舉' "$a"; done
 fetch 第4屆臺中市議員補選 臺中市
 
 echo; echo "完成：$(ls -1 *_incomes.csv 2>/dev/null | wc -l | tr -d ' ') 個 incomes 檔"

@@ -29,8 +29,12 @@ async function rebuildOne(sb: any, off: { id: string; name: string }) {
   const rows = await queryDecls(off.name); // throws → caller skips (no wipe)
   // 一般申報 only, dedup by year keep highest 期別
   const byYear = new Map<number, any>();
+  // DEPT：只收指定申報機關（逗號分隔）。監察院查詢只能用姓名，常見名會混到別人的申報——
+  // 李文良（金門縣副縣長）同名者有 1999–2007 高雄市政府局長／議員的申報。只在 ONLY 指定人時使用。
+  const depts = process.env.DEPT ? process.env.DEPT.split(',') : null;
   for (const r of rows) {
     if (!String(r.PublishType ?? '').includes('一般申報')) continue;
+    if (depts && !depts.includes(String(r.Dept ?? ''))) continue;
     const y = yearOf(r.PublishDate);
     if (!y) continue;
     const cur = byYear.get(y);
