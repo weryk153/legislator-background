@@ -173,9 +173,21 @@
   });
   const countyLoadFailed = $derived(
     !!layer && candFailed.has(focusCountyCode(layer.level, area, layer) ?? ''));
+  // 保留移到右側途中經過的留白／欄距；游標與鍵盤焦點都離開才還原。
+  let pointerInside = false;
+  let focusInside = false;
+  function syncSelectionHold() {
+    if (pointerInside || focusInside) mapRef?.holdSelection();
+    else mapRef?.releaseSelection();
+  }
+  function pointerPresence(inside: boolean) { pointerInside = inside; syncSelectionHold(); }
+  function focusPresence(inside: boolean) { focusInside = inside; syncSelectionHold(); }
 </script>
 
-<div class="stage" class:embedded>
+<div class="stage" class:embedded role="presentation"
+  onmouseenter={() => pointerPresence(true)} onmouseleave={() => pointerPresence(false)}
+  onfocusin={() => focusPresence(true)}
+  onfocusout={(event) => focusPresence(event.relatedTarget instanceof Node && event.currentTarget.contains(event.relatedTarget))}>
   {#if embedded}
     <nav class="map-toolbar crumbs" aria-label="地圖層級">
       <span>目前位置</span>
@@ -310,14 +322,7 @@
        ElectionSidebar 本身；下鑽到縣市／村里層面板變高時，這個方盒自己
        overflow-y: auto 內部捲動，不會撐爆整欄、也不會把圖說擠出視窗。 -->
   <aside class="sidebar-float">
-    <!-- 滑鼠移進側欄時要按住「還原成當層彙總」——側欄的內容是 hover 地圖帶出來的，
-         但內容溢出時使用者得把滑鼠移過來才能捲動，那一移原本就會觸發還原，等於
-         溢出的部分永遠讀不到。判準應該是「離開地圖與側欄這整塊」，不是「離開某個
-         行政區」。離開側欄時再放行，行為與離開地圖一致。 -->
-    <div class="sidebar-panel"
-      onmouseenter={() => mapRef?.holdSelection()}
-      onmouseleave={() => mapRef?.releaseSelection()}
-      role="presentation">
+    <div class="sidebar-panel">
       {#if upcoming && !candNational}
         <h2>候選人名單</h2>
         {#if nationalError}<p role="alert">候選人資料載入失敗，請重試。</p><button type="button" onclick={loadCandidatesNational}>重新載入候選人</button>

@@ -415,28 +415,11 @@
     return villages.get(c.code!) ?? null;
   }
 
-  // 滑鼠移開某個可互動形狀後，側欄要還原成「目前對焦層」的彙總（原本只清了
-  // hovered，外框跟著消失，但側欄沒人通知，停在最後掃過那一區——這是本次要修的
-  // 問題）。還原不能在 mouseleave 當下立刻做：從 A 區直接移到緊鄰的 B 區時，
-  // 瀏覽器保證會先送出 A 的 mouseleave、再送出 B 的 mouseenter，兩個事件之間有
-  // 一個 tick 的落差。若 mouseleave 立刻呼叫 onSelect(null, ...) 還原，側欄會在
-  // 這個落差裡先跳回彙總畫面，緊接著又被 B 的 mouseenter 蓋成 B 的細節——使用者
-  // 在相鄰縣市/鄉鎮市區之間滑動時會看到彙總畫面一閃而過，體感就是閃爍。
-  // 解法：mouseleave 只排一個很短的延遲（RESTORE_DELAY）才真的還原；延遲期間
-  // 若有任何新的 mouseenter 進來（不論是相鄰區域、或原本那一區的邊緣再次觸發），
-  // 一律取消這次還原——那代表滑鼠其實還在地圖的可互動範圍內、只是換了目標，不是
-  // 真的離開。若延遲結束都沒有新的 mouseenter 取消它，才代表滑鼠確實離開了所有
-  // 可互動形狀（移到空白處、面板外，或圖例等非地圖區域），這時才還原成目前對焦
-  // 層的彙總。80ms 短到使用者感覺不到「先跳回彙總再變細節」的中間態，卻足夠讓
-  // 同一個事件迴圈內先到的 mouseenter 趕在它之前把這次還原取消掉。
+  // 只有離開整個 ElectionPanel 才還原彙總；離開單一行政區時保留側欄，
+  // 讓游標能穿過海域留白與欄間空隙，到右側閱讀、捲動或點擊人物連結。
+  // 短暫離開後又回來（或進入下一個行政區）會取消尚未執行的還原。
   const RESTORE_DELAY = 80;
   let restoreTimer: ReturnType<typeof setTimeout> | null = null;
-
-  // 側欄內容溢出時（尤其加了得票數之後，候選人與席次讓面板常常超過視窗高度），
-  // 使用者必須把滑鼠移到側欄上才能捲動——而那一移就是 mouseleave，還原一觸發，
-  // 側欄立刻跳回彙總，等於溢出的內容永遠讀不到。問題出在「還原」的判準寫成「離開
-  // 某個行政區」，但正確的判準是「離開地圖與側欄這整塊可互動範圍」。地圖元件本身
-  // 看不到側欄，所以由容器（ElectionPanel）在滑鼠進入側欄時按住、離開時放行。
   let restoreHeld = false;
 
   function cancelRestore() {
@@ -455,13 +438,13 @@
     }, RESTORE_DELAY);
   }
 
-  /** 滑鼠進入側欄：按住還原，讓使用者能捲動、閱讀目前這一區的細節。 */
+  /** 游標或鍵盤焦點進入地圖與側欄的共同範圍。 */
   export function holdSelection() {
     restoreHeld = true;
     cancelRestore();
   }
 
-  /** 滑鼠離開側欄：放行，並比照離開地圖的行為還原成當層彙總。 */
+  /** 游標與鍵盤焦點都離開共同範圍後，還原成當層彙總。 */
   export function releaseSelection() {
     restoreHeld = false;
     scheduleRestore();
@@ -628,7 +611,7 @@
     onclick={live ? () => drillInto(s.area, layer) : undefined}
     onkeydown={live ? (e) => onKey(e, s.area, layer) : undefined}
     onmouseenter={live ? () => { cancelRestore(); hovered = s.area.code; onSelect?.(s.area, layer); } : undefined}
-    onmouseleave={live ? () => { hovered = null; scheduleRestore(); } : undefined}
+    onmouseleave={live ? () => { hovered = null; } : undefined}
     onfocus={live ? () => { kbFocused = s.area.code; } : undefined}
     onblur={live ? () => { kbFocused = null; } : undefined} />
 {/snippet}
@@ -643,7 +626,7 @@
     class:clickable={!!a.childFile} vector-effect="non-scaling-stroke" aria-hidden="true"
     onclick={() => drillInto(a, counties!)}
     onmouseenter={() => { cancelRestore(); hovered = a.code; onSelect?.(a, counties!); }}
-    onmouseleave={() => { hovered = null; scheduleRestore(); }} />
+    onmouseleave={() => { hovered = null; }} />
   {#if (hovered ?? kbFocused) === a.code}
     <path {d} class="hover-outline-halo" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
     <path {d} class="hover-outline" fill="none" vector-effect="non-scaling-stroke" aria-hidden="true" />
