@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "targets": {
+    "homepage-election-margin": {
+      "targetKind": "new-ui",
+      "projectId": "57d694aa-59f8-495e-9425-43df69727604",
+      "activeDraftId": "f01ea3ab-4391-42a8-8d77-a26ef1584d7c",
+      "designSystemPath": ".superdesign/design-system.md",
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        "src/styles/tokens.css",
+        "src/layouts/Base.astro",
+        "src/pages/index.astro",
+        "src/components/TitleCard.astro",
+        "src/components/SectionHead.astro"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "f38fc22590aa9dd3f7d0cd84239a3dbb6fbcd5c017c1992c7c36ce31711951d3",
+        "src/styles/tokens.css": "8e1ca02c6a336c619fa3f8c0016ac96c9dee25063df0b111be0c95e32ff8f7d3",
+        "src/layouts/Base.astro": "c7b5b4f831c08849c3620e82a9aaea9680e021349ed02cc808a21fb238fb2784",
+        "src/pages/index.astro": "1ffb7b9042631d4e07a450a167f954940ddf5ee5a6f3376427e7f73bd75cf0c5",
+        "src/components/TitleCard.astro": "b96301b5a373d8651f9206cdceae2c28b29674875e3c9daa57b6d73c72d10efb",
+        "src/components/SectionHead.astro": "e954ec13beb133071ed590383e2c8fa775b983095d1c8efae33671c3fa7cf4a5"
+      },
+      "components": [],
+      "drafts": {
+        "f01ea3ab-4391-42a8-8d77-a26ef1584d7c": {
+          "title": "Interactive Vote Margin Feature",
+          "visualDirection": "Compact black-and-white editorial section with vermilion vote margin; corrected real 2022 Hsinchu figures",
+          "currentVersion": 2
+        }
+      },
+      "updatedAt": "2026-10-13T02:20:06.271637+00:00"
+    }
+  }
+}

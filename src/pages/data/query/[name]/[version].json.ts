@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
-import { rosterDataset, electionsDataset } from '../../../../lib/clientDatasets';
+import { rosterDataset, electionsDataset, marginsDataset } from '../../../../lib/clientDatasets';
 export async function getStaticPaths() {
-  return [await rosterDataset(), electionsDataset()].map(dataset => ({
+  return [await rosterDataset(), electionsDataset(), await marginsDataset()].map(dataset => ({
     params: { name: dataset.name, version: dataset.version }, props: { json: dataset.json },
   }));
 }

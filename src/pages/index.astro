@@ -4,11 +4,13 @@ import OfficialTable from "../components/OfficialTable.svelte";
 import TitleCard from "../components/TitleCard.astro";
 import SectionHead from "../components/SectionHead.astro";
 import ElectionTimeline from "../components/ElectionTimeline.astro";
-import { rosterDataset } from "../lib/clientDatasets";
+import ElectionMargin from "../components/ElectionMargin.svelte";
+import { rosterDataset, marginsDataset } from "../lib/clientDatasets";
 import { queryList } from "../lib/filterSort";
 
 // 參選人檔案由選舉頁進入，不列入總覽（總覽收錄對象為現任公職）。
 const dataset = await rosterDataset();
+const margins = await marginsDataset();
 const rows = dataset.data;
 const desc = `查詢台灣 ${rows.length} 位立法委員、縣市首長與縣市議員的經歷、司法判決、爭議報導與財產申報，每筆皆附公開資料出處。`;
 const siteUrl = Astro.site ? Astro.site.href.replace(/\/$/, "") : "";
@@ -50,6 +52,8 @@ const jsonLd = [
       <a class="go" href="/elections/">進入選舉專題 <span aria-hidden="true">↗</span></a>
     </div>
   </section>
+
+  <ElectionMargin client:visible dataUrl={margins.url} year={margins.data.year} />
 
   <section class="home-schedule" aria-label="選務時程">
     <SectionHead text="選務時程" />

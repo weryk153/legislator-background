@@ -1,0 +1,4 @@
+# Tokens
+Astro 5 + Svelte 5 islands; custom CSS. White/black newspaper, vermilion #b3271e; dark mode #131312/#ece9e2. Noto Serif TC for headings, Public Sans/system CJK for body; scale 11,13,16,19,24,36px. Square corners, no shadows; max width 1280; gutters 40/28/20/16; breaks 1050/760/520. Form controls 44px.
+
+Product: 台灣政治人物背景資料庫, neutral source-backed civic research. New homepage feature asks 你這一區，上次差幾票？ County/district selectors reveal actual chief-election top-two vote margin. White compact section between black 2026 feature and schedule. Large red numeral, candidates equally styled, neutral labels. No invented statistics or polling predictions. Selects use form-control; button square black; keep existing fonts, colors and responsive rules. No image assets required; identity is an existing text masthead.

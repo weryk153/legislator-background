@@ -21,3 +21,8 @@ export function electionsDataset() {
     .map(f => JSON.parse(readFileSync(join(dir, 'county', f), 'utf8')) as CountyCandidates);
   return clientDataset('elections', electionCandidates(national, councils));
 }
+
+export async function marginsDataset() {
+  const { loadMarginData } = await import("./electionMarginData");
+  return clientDataset("margins", loadMarginData());
+}

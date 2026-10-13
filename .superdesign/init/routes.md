@@ -1,0 +1,10 @@
+# Astro file routes
+- /404/ → src/pages/404.astro (Base layout)
+- /about/ → src/pages/about.astro (Base layout)
+- / → src/pages/index.astro (Base layout)
+- /donors/ → src/pages/donors.astro (Base layout)
+- /elections/ → src/pages/elections.astro (Base layout)
+- /graph/ → src/pages/graph.astro (Base layout)
+- /officials/[id]/ → src/pages/officials/[id].astro (Base layout)
+- /elections/2022/ → src/pages/elections/2022.astro (Base layout)
+- /elections/2026/[county]/ → src/pages/elections/2026/[county].astro (Base layout)

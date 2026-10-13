@@ -1,0 +1,269 @@
+# Tokens
+Astro 5 + Svelte 5 islands; custom CSS. White/black newspaper, vermilion #b3271e; dark mode #131312/#ece9e2. Noto Serif TC for headings, Public Sans/system CJK for body; scale 11,13,16,19,24,36px. Square corners, no shadows; max width 1280; gutters 40/28/20/16; breaks 1050/760/520. Form controls 44px.
+## src/styles/tokens.css
+```
+/* Rare name glyphs missing from the primary webfont. Only fetched when used.
+   Source and OFL-1.1: /fonts/cns-sung-LICENSE.txt */
+@font-face {
+  font-family: "Civic Rare Glyphs";
+  src: url("../assets/fonts/civic-rare-bmp.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+3CF5, U+49EE, U+5BEA;
+}
+@font-face {
+  font-family: "Civic Rare Glyphs";
+  src: url("../assets/fonts/civic-rare-ext.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+209CA, U+2137C, U+2B387, U+2C9F7;
+}
+
+:root {
+  /* color — 報紙：白底墨黑，單一朱紅點綴（只用在標題卡直排字、時程「今天」、「已解職」） */
+  --bg: #fff;
+  --surface: #fff;
+  --fg: #000;
+  --muted: #4d4d4d;   /* 白底對比約 8.5:1 */
+  --faint: #767676;   /* 白底對比約 4.5:1（AA 下限） */
+  --line: rgba(0, 0, 0, 0.14);
+  --line-strong: #000;
+  --accent: #b3271e;
+  --accent-wash: rgba(179, 39, 30, 0.06);
+  --row-hover: rgba(0, 0, 0, 0.04);
+  /* 黑塊（標題卡、章節標）：淺色模式黑底白字；深色模式反轉，否則與背景融成一片。 */
+  --block-bg: #000;
+  --block-fg: #fff;
+  --block-accent: #ff4a3a;  /* 黑底上的朱紅要提亮才讀得到 */
+  /* 關係圖連線：沿用改版前的半透明線色——--line-strong 改成純黑後，圖上連線會變太重。 */
+  --graph-line: rgba(60, 55, 50, 0.42);
+
+  /* type */
+  --serif: "Noto Serif TC Variable", "Civic Rare Glyphs", "Libre Bodoni", Georgia, "Songti TC", serif;
+  --sans: "Public Sans Variable", "Civic Rare Glyphs", system-ui, -apple-system, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+
+  /* type scale */
+  --t-xs: 0.6875rem;   /* 11 */
+  --t-sm: 0.8125rem;   /* 13 */
+  --t-base: 1rem;      /* 16 */
+  --t-md: 1.1875rem;   /* 19 */
+  --t-lg: 1.5rem;      /* 24 */
+  --t-xl: 2.25rem;     /* 36 */
+
+  /* layout */
+  --maxw: 1280px;
+  /* 頁面左右槽寬。.wrap 的 padding 原本硬寫成 24px，滿版區塊（如 /elections 的
+     地圖）為了做出血會用 margin: 0 0 0 calc(50% - 50vw) 跳出這個容器；窄螢幕時
+     裡面的面板退回文件流，就必須自己把這段槽寬補回來，否則會貼死螢幕邊緣、與
+     頁面其餘內容對不齊。抽成變數是為了讓「跳出去」與「補回來」引用同一個數字。 */
+  --gutter: 40px;
+  --radius: 0;
+  --ease: 180ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* 政黨識別色（選舉地圖用）。元件內不得寫死色碼，一律讀這組變數。
+     刻意不用政黨官方品牌色（那是為螢幕發光設計的飽和色，貼在暖白紙底上像貼別人
+     的圖）——壓低彩度、往暖偏，讓色塊像印在紙上；同時保留可辨識的色相（藍/綠/青/
+     黃/橘/紫），讀者仍一眼認得出藍＝國民黨、綠＝民進黨。 */
+  --party-kmt: #4a6fa5;      /* 中國國民黨——靛藍 */
+  --party-dpp: #5a8055;      /* 民主進步黨——苔綠 */
+  --party-tpp: #5f9a9a;      /* 台灣民眾黨——灰青 */
+  --party-npp: #b8933f;      /* 時代力量——芥黃 */
+  --party-pfp: #b0664a;      /* 親民黨——磚橘 */
+  --party-none: #a49c90;     /* 無黨籍及未經政黨推薦——暖灰 */
+  --party-other: #8f7d99;    /* 其他政黨（含未知政黨代號）——藕紫 */
+
+  /* 選舉地圖的非政黨狀態。這些不是「政黨色」，刻意留在低彩度的暖中性色階，
+     跟上面那組政黨色的飽和度拉開，讀者一眼就能分出「這裡有政黨」跟「這裡沒有」。
+     三種狀態互相之間也要分得開，不可讓「官派」「待抽籤」「本站無資料」看起來像
+     同一件事——它們是三件不同的事（見 ElectionSidebar.svelte 的說明文字）。 */
+  --map-appointed-bg: #efe9dc;   /* 官派區（無選舉）：斜線紋理的底色，見 ElectionMap.svelte 的 #hatch-appointed */
+  --map-appointed-line: #3c3527; /* 官派區斜線本身的顏色 */
+  --map-neutral: #d8ceb8;        /* 尚未開票年份（2026）的中性底色：比官派底色深，讓縣市輪廓看得清楚，但不帶政黨色相 */
+  --map-unedited: #e3ddd0;       /* 未編定村里（真實土地但無村里長，非選舉缺口） */
+  --map-pending: #9c8760;        /* 得票相同待抽籤：中性但較深，跟「本站無資料」的淺灰分得開 */
+  --map-nodata: #c7bfab;         /* 本站無資料（制度上有選舉，但本站資料缺漏） */
+}
+:root[data-theme="dark"] {
+  --bg: #131312;
+  --surface: #1c1b19;
+  --fg: #ece9e2;
+  --muted: #a8a49b;
+  --faint: #827f77;  /* 深色底對比約 4.6:1（AA） */
+  --line: rgba(190, 185, 175, 0.16);
+  --line-strong: #ece9e2;
+  --block-bg: #ece9e2;
+  --block-fg: #131312;
+  --block-accent: #b3271e;
+  --graph-line: rgba(210, 205, 195, 0.34);
+  --accent: #e8635a;
+  --accent-wash: rgba(232, 99, 90, 0.10);
+  --row-hover: rgba(210, 205, 195, 0.07);
+
+  /* 深色底：同一組色相，提亮度、維持對比（見上方淺色模式的說明） */
+  --party-kmt: #7d9dc9;
+  --party-dpp: #8fb389;
+  --party-tpp: #86bdbd;
+  --party-npp: #d4b76a;
+  --party-pfp: #cf8e72;
+  --party-none: #8a847b;
+  --party-other: #b2a0bb;
+
+  --map-appointed-bg: #3a3629;
+  --map-appointed-line: #d8cdb8;
+  --map-neutral: #4a4435;
+  --map-unedited: #2c2921;
+  --map-pending: #9c8967;
+  --map-nodata: #5a543f;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: var(--t-base);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+
+@media (max-width: 1050px) { :root { --gutter: 28px; } }
+@media (max-width: 760px) { :root { --gutter: 20px; } }
+@media (max-width: 520px) { :root { --gutter: 16px; } }
+
+h1, h2, h3 { font-family: var(--serif); line-height: 1.2; letter-spacing: 0.01em; }
+
+a { color: inherit; text-decoration: none; transition: color var(--ease); }
+
+button, select, input { font-family: inherit; }
+
+/* 共用查詢欄位：以選舉頁的方角細框、44px 高度與內距為基準。 */
+input.form-control, select.form-control {
+  width: 100%; min-width: 0; height: 44px;
+  padding: 8px 10px;
+  border: 1px solid var(--line-strong); border-radius: 0;
+  background: var(--surface); color: var(--fg);
+  font: 600 13px var(--sans);
+}
+select.form-control { cursor: pointer; }
+input.form-control::placeholder { color: var(--muted); opacity: 1; }
+.control-with-icon { position: relative; min-width: 0; }
+.control-with-icon > svg {
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  color: var(--muted); pointer-events: none;
+}
+.control-with-icon > input.form-control { padding-left: 42px; }
+
+
+/* keyboard focus — visible everywhere */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+:focus:not(:focus-visible) { outline: none; }
+
+/* skip link */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 0;
+  z-index: 100;
+}
+.skip-link:focus { left: 8px; }
+
+/* utilities */
+.kicker { font-size: var(--t-xs); letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); }
+.lede { color: var(--muted); font-size: 0.9375rem; line-height: 1.7; }
+.num { font-variant-numeric: tabular-nums; }
+/* 破折號：正體中文的破折號是兩個 U+2014，必須接成一條不斷的線。但 --sans 裡實際
+   供應這個碼位的是 system-ui（Mac 的 SF Pro、Windows 的 Segoe UI），拉丁字型的
+   U+2014 只有 0.88em 寬、左右各留一點側邊空隙，兩個並排就裂成「— —」。中文字型
+   的 U+2014 是足 1em 的全形、左右不留白，兩個並排才接得成一條。
+   實測 11px：--sans 兩個共 19.3px，中文字型剛好 22px（＝2em）。
+   沒辦法只針對單一碼位調整字型順序——unicode-range 只能綁在 @font-face 上，管不到
+   system-ui 這種泛型字族，而本站不自架字型——所以改用工具類別，把破折號本身交給
+   中文字型。用法：<span class="dash">——</span>，只包破折號，不要包住前後文字。 */
+.dash { font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Heiti TC", sans-serif; }
+.accent { color: var(--accent); }
+.dim { color: var(--faint); }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+.pill {
+  display: inline-block;
+  font-size: var(--t-xs);
+  font-family: var(--sans);
+  letter-spacing: 0.02em;
+  border: 1px solid var(--fg);
+  border-radius: 0;
+  padding: 1px 7px;
+  vertical-align: middle;
+  color: var(--fg);
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* 壓扁特粗明朝（EVA 標題字的近似）：Noto Serif TC 900 水平壓扁。--k 壓扁比例、
+   --n 未壓扁寬度（em），由 src/lib/squash.ts 產生；margin-right 把壓扁後多出的版面寬度收回。 */
+.sq {
+  font-family: var(--serif); font-weight: 900; display: inline-block;
+  line-height: .95; letter-spacing: -.03em; white-space: nowrap;
+  transform-origin: left bottom; transform: scaleX(var(--k, .7));
+  margin-right: calc((var(--k, .7) - 1) * var(--n, 0) * .97em);
+}
+
+/* 黑標題卡：只包住字，不撐滿寬。左側直排朱紅小字，右側兩行大小對比的壓扁字。 */
+.tcard {
+  display: inline-grid; grid-template-columns: auto auto; gap: 0 10px; align-items: end;
+  padding: 16px 18px 14px; max-width: 100%;
+  background: var(--block-bg); color: var(--block-fg);
+}
+a.tcard:hover .tcard-l1, a.tcard:focus-visible .tcard-l1 { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
+.tcard-v {
+  writing-mode: vertical-rl; text-orientation: upright;
+  font-family: var(--serif); font-weight: 900; font-size: 14px; letter-spacing: .12em; line-height: 1;
+  color: var(--block-accent);
+}
+.tcard-body { margin: 0; font: inherit; letter-spacing: 0; }
+.tcard-line { display: block; }
+.tcard-line + .tcard-line { margin-top: 2px; }
+
+/* 章節標：黑塊＋延伸到欄寬的粗線。語意仍是 h2（或 h3）。 */
+.sh { display: flex; align-items: center; margin: 48px 0 16px; font-size: 26px; line-height: 1; }
+.sh-text { flex: none; background: var(--block-bg); color: var(--block-fg); padding: 5px 12px 3px; }
+.sh::after { content: ""; flex: 1; border-top: 4px solid var(--fg); }
+
+/* 頭像：報紙常見的直式方框（4:5）。無照片時同尺寸淺灰方框＋姓氏。 */
+.ph-box {
+  width: 36px; height: 45px; flex: none; display: block;
+  object-fit: cover; object-position: center top; background: var(--row-hover);
+}
+.ph-box.ph {
+  display: grid; place-items: center;
+  font-family: var(--serif); font-weight: 900; color: var(--faint); font-size: 17px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+```

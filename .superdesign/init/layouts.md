@@ -1,0 +1,168 @@
+# Shared shell — Astro Base contains masthead, navigation and footer
+## src/layouts/Base.astro
+```
+---
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import "../styles/tokens.css";
+import { fitStyle } from "../lib/squash";
+import '@fontsource-variable/noto-serif-tc';
+import '@fontsource-variable/public-sans/wght.css';
+const DEFAULT_DESC = "以可查證、附出處的方式，公開現任政治人物的經歷、司法判決、爭議事件與財產申報。";
+const {
+  title = "政治人物背景資料庫",
+  description = DEFAULT_DESC,
+  ogType = "website",
+  // ogImage: 絕對網址；預設為全站通用 og.png（1200x630）。傳入人物大頭照時務必搭配 ogImagePortrait。
+  ogImage: ogImageProp,
+  // 大頭照為 320px 直式，非標準 1200x630 橫式：改用 summary 卡片、省略未知的 width/height。
+  ogImagePortrait = false,
+  ogImageAlt,
+  // 不該被索引的頁面（如 404）：輸出 robots noindex，並省略 canonical。
+  noindex = false,
+} = Astro.props;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.pathname;
+const ogImage = ogImageProp ?? (Astro.site ? new URL("/og.png", Astro.site).href : "/og.png");
+let dataDate = "";
+try {
+  dataDate = JSON.parse(readFileSync(join(process.cwd(), "src", "data", "meta.json"), "utf8")).generatedAt ?? "";
+} catch { /* meta.json optional */ }
+const SITE_NAME = "政治人物背景資料庫";
+const path = Astro.url.pathname;
+const isHome = path === "/";
+// 導覽順序依改版 spec：總覽／九合一選舉／政治獻金／關係圖／關於。
+const NAV = [
+  { href: "/", label: "總覽", match: (p: string) => p === "/" },
+  { href: "/elections/", label: "九合一選舉", match: (p: string) => p.startsWith("/elections") },
+  { href: "/donors/", label: "政治獻金", match: (p: string) => p.startsWith("/donors") },
+  { href: "/graph/", label: "關係圖", match: (p: string) => p.startsWith("/graph") },
+  { href: "/about/", label: "關於", match: (p: string) => p.startsWith("/about") },
+];
+// 保留壓扁特粗明朝報頭；窄螢幕預留兩側槽寬與主題切換鈕。
+const mastStyle = fitStyle(SITE_NAME, 0.62, 64, 94);
+---
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="政治人物背景資料庫" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    {!ogImagePortrait && <meta property="og:image:width" content="1200" />}
+    {!ogImagePortrait && <meta property="og:image:height" content="630" />}
+    {ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
+    <meta name="twitter:card" content={ogImagePortrait ? "summary" : "summary_large_image"} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      const t = localStorage.getItem("theme");
+      if (t) document.documentElement.dataset.theme = t;
+    </script>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">跳至主要內容</a>
+
+    <header class="site-head wrap">
+      <div class="mast">
+        {isHome
+          ? <h1 class="mast-name"><span class="sq" style={mastStyle}>{SITE_NAME}</span></h1>
+          : <a href="/" class="mast-name" aria-label="回首頁"><span class="sq" style={mastStyle}>{SITE_NAME}</span></a>}
+        <div class="mast-side">
+          <p class="mast-date">
+            <span id="mast-today" hidden></span>
+            {dataDate && <span>資料更新 {dataDate}</span>}
+          </p>
+          <button id="theme-toggle" type="button" class="toggle" aria-label="切換深色或淺色模式">
+            <svg class="ic-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+            </svg>
+            <svg class="ic-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <nav class="nav" aria-label="主選單">
+        {NAV.map((n) => <a href={n.href} aria-current={n.match(path) ? "page" : undefined}>{n.label}</a>)}
+      </nav>
+    </header>
+
+    <main id="main" class="wrap main">
+      <slot />
+    </main>
+
+    <footer class="site-foot wrap">
+      <p class="disc">本站非官方網站，僅彙整公開資料並標註出處。判決與爭議資訊不代表最終定罪，未定讞前當事人受無罪推定保障；爭議報導未經逐筆查核，以官方資料為準。</p>
+      <p class="foot-src">資料來源：立法院開放資料、中央選舉委員會、司法院裁判書系統、監察院公職人員財產申報、維基百科</p>
+      <p class="foot-meta">
+        {dataDate && <span class="upd">資料更新 {dataDate}</span>}
+        <a href="/about/">關於與免責</a>
+        <a href="/about/#correction">更正</a>
+        <a href="https://github.com/weryk153/legislator-background/issues" target="_blank" rel="noopener">回報問題</a>
+      </p>
+    </footer>
+
+    <script is:inline>
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        const cur = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = cur;
+        localStorage.setItem("theme", cur);
+      });
+      // 報頭日期：靜態頁不能用建置日當「今天」，在瀏覽器端填；無 JS 時不顯示。
+      const td = document.getElementById("mast-today");
+      if (td) {
+        td.textContent = new Intl.DateTimeFormat("zh-TW", { timeZone: "Asia/Taipei", year: "numeric", month: "long", day: "numeric", weekday: "short" }).format(new Date());
+        td.hidden = false;
+      }
+    </script>
+
+    <style>
+      .site-head { padding-top: 24px; }
+      .mast { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding-bottom: 10px; border-bottom: 4px solid var(--fg); }
+      .mast-name { margin: 0; font-size: inherit; line-height: 1; }
+      a.mast-name:hover .sq { text-decoration: underline; text-decoration-thickness: 3px; }
+      .mast-side { display: flex; align-items: flex-end; gap: 12px; }
+      .mast-date { margin: 0; font-size: var(--t-xs); color: var(--muted); text-align: right; line-height: 1.5; display: flex; flex-direction: column; }
+      .nav { display: flex; flex-wrap: wrap; gap: 4px 18px; padding: 6px 0; border-bottom: 1px solid var(--fg); font-size: 0.8125rem; font-weight: 700; }
+      .nav a { color: var(--muted); padding: 3px 7px; }
+      .nav a:hover, .nav a[aria-current="page"] { color: var(--fg); }
+      .nav a[aria-current="page"] { background: var(--block-bg); color: var(--block-fg); }
+      .toggle {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 34px; height: 34px; padding: 0; flex: none;
+        background: none; border: 1px solid var(--fg); border-radius: 0;
+        color: var(--fg); cursor: pointer;
+      }
+      .toggle:hover { background: var(--fg); color: var(--bg); }
+      @media (max-width: 560px) {
+        /* 窄螢幕報頭放不下日期欄；資料更新日另在頁尾顯示，讀者仍看得到資料新舊。 */
+        .mast-date { display: none; }
+        .nav { gap: 4px 6px; font-size: 12px; }
+      }
+      .ic-moon { display: none; }
+      :root[data-theme="dark"] .ic-sun { display: none; }
+      :root[data-theme="dark"] .ic-moon { display: inline; }
+      .main { padding-top: 24px; padding-bottom: 72px; min-height: 60vh; }
+      .site-foot { margin-top: 24px; padding-top: 16px; padding-bottom: 48px; border-top: 4px solid var(--fg); font-size: var(--t-sm); color: var(--muted); line-height: 1.7; }
+      .site-foot p { margin: 0; max-width: 72ch; }
+      .disc { margin-bottom: 8px; }
+      .foot-src { color: var(--faint); font-size: var(--t-xs); margin-bottom: 12px; }
+      .foot-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+      .foot-meta a { color: var(--fg); text-decoration: underline; text-underline-offset: 2px; }
+      .foot-meta .upd { color: var(--muted); }
+    </style>
+  </body>
+</html>
+
+```
