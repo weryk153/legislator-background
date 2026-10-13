@@ -1,10 +1,10 @@
 // Build-only: content-addressed query files keep large arrays out of island props.
 import { createHash } from 'node:crypto';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadOfficials } from './data';
 import { toListRow } from './transform';
-import { electionCandidates } from './electionFinder';
+import { electionCandidates, electionDistrictAreas } from './electionFinder';
 import type { NationalCandidates, CountyCandidates } from './candidateTypes';
 export function clientDataset<T>(name: string, data: T) {
   const json = JSON.stringify(data);
@@ -19,7 +19,17 @@ export function electionsDataset() {
   const national = JSON.parse(readFileSync(join(dir, 'national.json'), 'utf8')) as NationalCandidates;
   const councils = readdirSync(join(dir, 'county')).filter(f => f.endsWith('.json'))
     .map(f => JSON.parse(readFileSync(join(dir, 'county', f), 'utf8')) as CountyCandidates);
-  return clientDataset('elections', electionCandidates(national, councils));
+  const townNames = new Map<string, string>();
+  for (const council of councils) {
+    const path = join(process.cwd(), 'public/data/map/county', `${council.countyCode}.json`);
+    if (!existsSync(path)) continue;
+    const map = JSON.parse(readFileSync(path, 'utf8')) as { areas: { code: string; name: string }[] };
+    for (const area of map.areas) townNames.set(area.code, area.name);
+  }
+  return clientDataset('elections', {
+    candidates: electionCandidates(national, councils),
+    areas: electionDistrictAreas(councils, townNames),
+  });
 }
 
 export async function marginsDataset() {

@@ -2,8 +2,7 @@
 import Base from "../layouts/Base.astro";
 import TitleCard from "../components/TitleCard.astro";
 import ElectionFinder from "../components/ElectionFinder.svelte";
-import { clientDataset } from "../lib/clientDatasets";
-import { electionCandidates } from "../lib/electionFinder";
+import { electionsDataset } from "../lib/clientDatasets";
 import ElectionPanel from "../components/ElectionPanel.svelte";
 import ChiefRaceCard from "../components/ChiefRaceCard.astro";
 import ElectionTimeline from "../components/ElectionTimeline.astro";
@@ -45,10 +44,10 @@ const councils2026: CountyCandidates[] = (() => {
     .map((c) => [c.countyCode, c]));
   return candidates2026.races.map((r) => byCode.get(r.countyCode)).filter((c): c is CountyCandidates => !!c);
 })();
-const finderDataset = candidates2026 ? clientDataset('elections', electionCandidates(candidates2026, councils2026)) : null;
+const finderDataset = candidates2026 ? electionsDataset() : null;
 const countyCounts = Object.fromEntries(COUNTY_KEYS.map(c => [c.code, {
-  chief: finderDataset?.data.filter(r => r.countyCode === c.code && r.office === 'chief').length ?? 0,
-  council: finderDataset?.data.filter(r => r.countyCode === c.code && r.office === 'council').length ?? 0,
+  chief: finderDataset?.data.candidates.filter(r => r.countyCode === c.code && r.office === 'chief').length ?? 0,
+  council: finderDataset?.data.candidates.filter(r => r.countyCode === c.code && r.office === 'council').length ?? 0,
 }]));
 const councilTotal = councils2026.reduce((n, c) => n + c.districts.reduce((m, d) => m + d.candidates.length, 0), 0);
 // 現任議員爭取連任：與「參選概況」數字磚共用同一條規則（src/lib/candidateStats.ts），

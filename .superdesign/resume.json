@@ -70,6 +70,39 @@
         }
       },
       "updatedAt": "2026-10-13T02:45:11.693361+00:00"
+    },
+    "/elections/#finder-title": {
+      "targetKind": "existing-ui",
+      "projectId": "57d694aa-59f8-495e-9425-43df69727604",
+      "activeDraftId": "f746a9bd-4ac2-470d-b5f3-aa7ef51fbfbb",
+      "designSystemPath": ".superdesign/design-system.md",
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        "src/styles/tokens.css",
+        "src/components/ElectionFinder.svelte",
+        "src/lib/electionFinder.ts",
+        "src/lib/clientDatasets.ts",
+        "src/lib/countyPage.ts",
+        "src/pages/elections.astro"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "bdf8a846cfca21d5d833ac263c0e458fa48e7fca3d1740bd4c8f23adf4123661",
+        "src/styles/tokens.css": "8e1ca02c6a336c619fa3f8c0016ac96c9dee25063df0b111be0c95e32ff8f7d3",
+        "src/components/ElectionFinder.svelte": "d917062165004d13d5685a6b3f65a8b88b580350df13a74af7f549eb36972be2",
+        "src/lib/electionFinder.ts": "3d92d71e953dbda4a32a197fbf2243b439ec6b86dd7dfe18985374df9d975703",
+        "src/lib/clientDatasets.ts": "95bd3179806cb484cf36fe665d07d68356e59418ca544ec90c92e9d3bd3e9fb7",
+        "src/lib/countyPage.ts": "f9e177ba1b0e369d761fb16b50059dfd8f3642d1d7f069d4a729a31929a3c972",
+        "src/pages/elections.astro": "5424da37acf4b722d115cd65e96bf5c90e81432bcd9e18ac1c06681fc0720b06"
+      },
+      "components": [],
+      "drafts": {
+        "f746a9bd-4ac2-470d-b5f3-aa7ef51fbfbb": {
+          "title": "候選人名單 — 職務與選區分組",
+          "visualDirection": "County/office/district filter with roster counts; grouped candidates; township names labeled as 2022 administrative reference; unconfirmed and indigenous districts separately described.",
+          "currentVersion": 2
+        }
+      },
+      "updatedAt": "2026-10-13T04:42:17.276Z"
     }
   }
 }

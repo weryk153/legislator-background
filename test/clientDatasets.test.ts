@@ -15,9 +15,11 @@ it('roster endpoint preserves every non-candidate row', async () => {
 });
 it('deferred elections lookup includes council and chief names with the same filtering', () => {
   const { data } = electionsDataset();
-  expect(new Set(data.map(c => c.countyCode)).size).toBe(22);
-  expect(data.some(c => c.office === 'council')).toBe(true);
-  expect(filterElectionCandidates(data, { county: '', office: 'chief', query: '蔣萬安' })).toHaveLength(1);
+  expect(new Set(data.candidates.map(c => c.countyCode)).size).toBe(22);
+  expect(data.candidates.some(c => c.office === 'council')).toBe(true);
+  expect(filterElectionCandidates(data.candidates, { county: '', office: 'chief', query: '蔣萬安' })).toHaveLength(1);
+  expect(data.areas[JSON.stringify(['63-000-00-000-0000', 'council', '第1選舉區'])].towns).toEqual(['士林區', '北投區']);
+  expect(Object.keys(data.areas)).toHaveLength(new Set(data.candidates.filter(c => c.office === 'council').map(c => JSON.stringify([c.countyCode, c.office, c.district]))).size);
 });
 
 it('connection payload preserves identities and original evidence without graph images', async () => {
