@@ -1,7 +1,7 @@
 // 2026 候選人資料的型別。scraper（產出）與前端（讀取）共用同一份，不各自宣告。
 import type { Officeholder, TermLimitStatus } from './mapTypes';
 
-/** 議員選區類型。unknown：2026 選區與 2022 對不上，類型無從得知（見 spec §2.3）。 */
+/** 議員選區類型。unknown：名冊與可用的選區參照對不上，類型尚未確認。 */
 export type DistrictType = 'regional' | 'plainIndigenous' | 'mountainIndigenous' | 'unknown';
 
 /** 縣市名 → 首長職稱：臺北市 → 臺北市長、宜蘭縣 → 宜蘭縣長。 */
@@ -24,6 +24,15 @@ export const MUNICIPALITIES = ['臺北市', '新北市', '桃園市', '臺中市
 
 export interface CandidateSource { stage: CandidateStage; url: string; tableDate: string }
 
+/** 有公開來源確認的首次公職參選；缺值代表未確認，不能解讀為曾參選。 */
+export interface FirstRunEvidence {
+  year: number;
+  scope: 'public-office';
+  source: { url: string; title: string; publishedOn: string | null };
+  reviewedOn: string;
+  basis: string;
+}
+
 export interface CandidateEntry {
   name: string;
   partyName: string;            // 名冊原文；無黨籍為「無」
@@ -32,6 +41,7 @@ export interface CandidateEntry {
   registeredOn: string;         // ISO
   slug: string | null;          // 站上檔案；無法確認是本人就是 null
   identity: string | null;      // 一行身分說明，如「現任臺北市長」
+  firstRun?: FirstRunEvidence;  // 人工查證，不由是否在任或缺少歷屆資料推算
 }
 
 /**
@@ -48,7 +58,10 @@ export interface ChiefRace {
 }
 export interface NationalCandidates { source: CandidateSource; races: ChiefRace[] }
 
-export interface CouncilDistrict { no: number; label: string; type: DistrictType; candidates: CandidateEntry[] }
+export interface DistrictSource {
+  url: string; pdfUrl: string; publishedOn: string; reviewedOn: string; documentNo: string; pages: number[];
+}
+export interface CouncilDistrict { no: number; label: string; type: DistrictType; candidates: CandidateEntry[]; scope?: string }
 export interface CountyCandidates {
   source: CandidateSource;
   countyCode: string;
@@ -60,6 +73,8 @@ export interface CountyCandidates {
   splitTowns: string[];
   /** 對應未確認的原因，給側欄顯示。 */
   mappingNote: string | null;
+  /** 已逐區核對的 2026 正式公告；未提供者仍是 2022 參照。 */
+  districtSource?: DistrictSource;
 }
 
 /**

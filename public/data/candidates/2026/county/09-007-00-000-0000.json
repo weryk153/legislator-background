@@ -27,7 +27,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-吳軾子-連江縣第1選舉區",
      "identity": null
     },
     {
@@ -45,7 +45,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-林惠萍-連江縣第1選舉區",
      "identity": null
     },
     {
@@ -106,8 +106,19 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
-     "identity": null
+     "slug": "cand-謝秉軒-連江縣第2選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "馬祖-連江縣北竿鄉公所",
+       "url": "https://www.beigan.gov.tw/Chhtml/Detail/2219?mcid=113322",
+       "publishedOn": null
+      },
+      "basis": "北竿鄉公所刊載的登記報導明確記載謝秉軒首次投入公職選舉。",
+      "reviewedOn": "2026-10-14"
+     }
     }
    ]
   },
@@ -122,7 +133,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-王孝榛-連江縣第3選舉區",
      "identity": null
     },
     {
@@ -147,7 +158,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林德建-連江縣第4選舉區",
      "identity": null
     },
     {
@@ -156,7 +167,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-馮印才-連江縣第4選舉區",
      "identity": null
     }
    ]

@@ -9,7 +9,7 @@ import { loadOfficials } from "../../lib/data";
 import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL, OFFICE_LABEL } from "../../lib/graph";
 import { loadGraph } from "../../lib/loadGraph";
 import { categorizeCareer, careerText, careerPeriod, sharedSource, type CareerCategory } from "../../lib/careerCategory";
-import { chiefTitle } from "../../lib/candidateTypes";
+import FirstRunBadge from '../../components/FirstRunBadge.svelte';
 import { loadCandidacies } from "../../lib/candidacy";
 import { countyPagePath } from "../../lib/countyKeys";
 import RelationshipGraph from "../../components/RelationshipGraph.svelte";
@@ -89,7 +89,7 @@ const assetCategoryName: Record<string, string> = {
 // 參選人以「2026 某市長參選人」表述其身分，不沿用「公職・選區・第N屆」。
 const isCandidate = o.officeType === "candidate";
 const candidacy = loadCandidacies().get(o.slug) ?? null;
-const roleText = isCandidate ? `2026 ${chiefTitle(o.district)}參選人` : `${OFFICE_LABEL[o.officeType]}・${o.district}`;
+const roleText = isCandidate ? (candidacy ? `2026 ${candidacy.role}參選人` : officeRole(o.officeType, o.district)) : `${OFFICE_LABEL[o.officeType]}・${o.district}`;
 const title = officialPageTitle(o);
 // 2026 候選人：描述開頭先講參選職位（搜尋「某某市長候選人」時摘要第一句就對得上），再接原本描述。
 const candidacyDesc = candidacy ? `2026 ${candidacy.role}候選人。` : "";
@@ -174,6 +174,7 @@ const jsonLd = [
     </div>
     <div class="pills">
       <span class="pill">{OFFICE_LABEL[o.officeType]}</span>
+      <FirstRunBadge evidence={candidacy?.firstRun} name={o.name} showYear variant="pill" />
       {candidacy && !isCandidate && (candidacyHref
         ? <a class="pill candidacy" href={candidacyHref}>{candidacy.label}</a>
         : <span class="pill candidacy">{candidacy.label}</span>)}
@@ -360,7 +361,8 @@ const jsonLd = [
     .party-line { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; margin-top: 18px; font-weight: 700; }
     .party-line img { object-fit: contain; flex: none; }
     .term { color: var(--muted); font-size: var(--t-sm); font-weight: 400; border-left: 1px solid var(--line); padding-left: 10px; margin-left: 3px; }
-    .pills { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+    .pills { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 12px 0; }
+    .pills .pill { display: inline-flex; align-items: center; font-weight: 600; line-height: 1.6; }
     .head .lede { margin: 0; }
     a.pill.candidacy:hover { background: var(--fg); color: var(--bg); }
     .departed-note { margin: 12px 0 0; font-size: 0.8125rem; color: var(--accent); max-width: 64ch; line-height: 1.6; }

@@ -18,7 +18,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-吳仁祥-澎湖縣第1選舉區",
      "identity": null
     },
     {
@@ -27,7 +27,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-顏家康-澎湖縣第1選舉區",
      "identity": null
     },
     {
@@ -45,8 +45,19 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
-     "identity": null
+     "slug": "cand-歐松林-澎湖縣第1選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "多位澎湖縣議員參選人競總成立 縣長參選人趕場",
+       "url": "https://tw.news.yahoo.com/%E5%A4%9A%E4%BD%8D%E6%BE%8E%E6%B9%96%E7%B8%A3%E8%AD%B0%E5%93%A1%E5%8F%83%E9%81%B8%E4%BA%BA%E7%AB%B6%E7%B8%BD%E6%88%90%E7%AB%8B-%E7%B8%A3%E9%95%B7%E5%8F%83%E9%81%B8%E4%BA%BA%E8%B6%95%E5%A0%B4-064713083.html",
+       "publishedOn": null
+      },
+      "basis": "報導明確記載歐松林在2026年選舉為首次參選；已核對選區與本人經歷，並交叉檢索歷屆候選人資料。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "林柏成",
@@ -54,7 +65,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-林柏成-澎湖縣第1選舉區",
      "identity": null
     },
     {
@@ -72,7 +83,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-鄭清發-澎湖縣第1選舉區",
      "identity": null
     },
     {
@@ -117,7 +128,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-張惠雅-澎湖縣第1選舉區",
      "identity": null
     },
     {
@@ -126,7 +137,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-呂光宇-澎湖縣第1選舉區",
      "identity": null
     },
     {
@@ -144,7 +155,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-陳慧娟-澎湖縣第1選舉區",
      "identity": null
     },
     {
@@ -153,7 +164,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-陳偉澄-澎湖縣第1選舉區",
      "identity": null
     },
     {
@@ -171,7 +182,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-胡正仁-澎湖縣第1選舉區",
      "identity": null
     },
     {
@@ -180,7 +191,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-莊國輝-澎湖縣第1選舉區",
      "identity": null
     }
    ]
@@ -196,7 +207,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-李麗美-澎湖縣第2選舉區",
      "identity": null
     },
     {
@@ -232,7 +243,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-廖璟華-澎湖縣第2選舉區",
      "identity": null
     }
    ]
@@ -248,7 +259,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-許皆詳-澎湖縣第3選舉區",
      "identity": null
     },
     {
@@ -266,7 +277,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-宋萬富-澎湖縣第3選舉區",
      "identity": null
     },
     {
@@ -300,7 +311,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李家萱-澎湖縣第4選舉區",
      "identity": null
     },
     {
@@ -309,7 +320,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-許嘉峻-澎湖縣第4選舉區",
      "identity": null
     }
    ]
@@ -334,7 +345,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-黃榮焜-澎湖縣第5選舉區",
      "identity": null
     }
    ]
@@ -350,7 +361,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-鄭淑卿-澎湖縣第6選舉區",
      "identity": null
     },
     {
@@ -368,7 +379,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-夏晨榮-澎湖縣第6選舉區",
      "identity": null
     }
    ]

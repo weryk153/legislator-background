@@ -2,7 +2,7 @@
 // 名單會換版，標記跟著輸出走，不必另外同步。
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { chiefTitle, type CountyCandidates, type NationalCandidates } from './candidateTypes';
+import { chiefTitle, type CountyCandidates, type NationalCandidates, type FirstRunEvidence } from './candidateTypes';
 import { countyByCode, countyByName } from './countyKeys';
 
 export interface Candidacy {
@@ -12,25 +12,26 @@ export interface Candidacy {
   label: string;
   /** 縣市選舉頁的 key（/elections/2026/<key>/）；對照表查無時為 null，標記就不加連結。 */
   countyKey: string | null;
+  firstRun?: FirstRunEvidence;
 }
 
 // 以代碼為準、縣市名備援：單元測試與舊版輸出的代碼可能是簡寫。
 const keyOf = (code: string, name: string): string | null =>
   (countyByCode(code) ?? countyByName(name))?.key ?? null;
 
-const entry = (role: string, countyKey: string | null): Candidacy =>
-  ({ role, label: `2026 參選：${role}`, countyKey });
+const entry = (role: string, countyKey: string | null, firstRun?: FirstRunEvidence): Candidacy =>
+  ({ role, label: `2026 參選：${role}`, countyKey, ...(firstRun ? { firstRun } : {}) });
 
 export function candidacyIndex(national: NationalCandidates | null, counties: CountyCandidates[]): Map<string, Candidacy> {
   const m = new Map<string, Candidacy>();
   for (const r of national?.races ?? []) {
     const key = keyOf(r.countyCode, r.countyName);
-    for (const c of r.candidates) if (c.slug) m.set(c.slug, entry(chiefTitle(r.countyName), key));
+    for (const c of r.candidates) if (c.slug) m.set(c.slug, entry(chiefTitle(r.countyName), key, c.firstRun));
   }
   for (const co of counties) {
     const key = keyOf(co.countyCode, co.countyName);
     for (const d of co.districts) {
-      for (const c of d.candidates) if (c.slug) m.set(c.slug, entry(`${co.countyName}${d.label}議員`, key));
+      for (const c of d.candidates) if (c.slug) m.set(c.slug, entry(`${co.countyName}${d.label}議員`, key, c.firstRun));
     }
   }
   return m;

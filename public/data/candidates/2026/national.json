@@ -95,7 +95,18 @@
      "number": null,
      "registeredOn": "2026-09-04",
      "slug": "cand-李四川-新北市",
-     "identity": null
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "url": "https://news.tvbs.com.tw/politics/4009743",
+       "title": "新北決戰百日／小草加持！藍營評李四川穩定領先 首場大造勢來了",
+       "publishedOn": "2026-08-20"
+      },
+      "basis": "報導明確記載李四川雖是政壇老將，此次卻為首次參選；過往副市長等職務為政務任命，未誤認為民選經歷。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "蘇輝湟",
@@ -452,7 +463,18 @@
      "number": null,
      "registeredOn": "2026-09-02",
      "slug": "cand-林國漳-宜蘭縣",
-     "identity": null
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "人物側寫／面對藍白進攻 魚販之子林國漳挑戰宜蘭縣長 | 2026九合一選舉",
+       "url": "https://udn.com/vote2026/story/124652/9521613",
+       "publishedOn": "2026-05-24"
+      },
+      "basis": "報導明確記載林國漳在2026年選舉為首次參選；已核對選區與本人經歷，並交叉檢索歷屆候選人資料。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "楊鉯婷",
@@ -788,7 +810,18 @@
      "number": null,
      "registeredOn": "2026-09-04",
      "slug": "cand-王志偉-臺東縣",
-     "identity": null
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "台東縣長選戰4搶1成形！李吳穎智、王志偉最後一天登記拚到底 | 2026九合一選舉",
+       "url": "https://udn.com/vote2026/story/124652/9734975",
+       "publishedOn": null
+      },
+      "basis": "2026年縣長登記報導明確記載本人過去未選村里長或民意代表，此次為首次參選公職。",
+      "reviewedOn": "2026-10-14"
+     }
     }
    ],
    "incumbent2022": {

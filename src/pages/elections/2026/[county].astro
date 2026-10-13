@@ -8,6 +8,7 @@
 // 中立原則同 /elections：候選人同版型、依名冊順序，筆數只列數字，內容請見個人頁。
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import FirstRunBadge from '../../../components/FirstRunBadge.svelte';
 import Base from "../../../layouts/Base.astro";
 import ChiefRaceCard from "../../../components/ChiefRaceCard.astro";
 import TitleCard from "../../../components/TitleCard.astro";
@@ -147,7 +148,7 @@ const jsonLd = [
   <header class="head">
     <TitleCard vertical="二〇二六" lines={[name, `${name.endsWith("市") ? "市" : "縣"}長・議員選舉`]} heading={countyPageHeading(name)} />
     <p class="status">
-      本站名單目前為：<a href={dataSource.url} rel="noopener">{STAGE_LABEL[dataSource.stage]}</a>（製表 {dataSource.tableDate}），名單會隨選務進度更新。
+      本站名單目前為：<a href={dataSource.url} rel="noopener">{STAGE_LABEL[dataSource.stage]}</a>（製表 {dataSource.tableDate}），名單會隨選務進度更新。<br />「首次參選」指首次參選公職，僅標示有公開來源確認者；點標記可查看來源。未標示不代表曾參選。
     </p>
   </header>
 
@@ -171,8 +172,9 @@ const jsonLd = [
         {districts.length} 個選區、{fmtInt(councilCount)} 位候選人。<strong>粗體</strong>為爭取連任的現任議員；有連結者為本站已收錄檔案之人物。選區編號以中選會 2026 名冊為準。
       </p>
       {!mappingKnown && council.mappingNote && <p class="note mapping">{council.mappingNote}</p>}
+      {council.districtSource && <p class="note">選區範圍已依 <a href={`${council.districtSource.pdfUrl}#page=${council.districtSource.pages[0]}`} target="_blank" rel="noopener noreferrer">中選會 2026 正式公告</a>核對（{council.districtSource.publishedOn}）。</p>}
       {mappingKnown && council.splitTowns.length > 0 && (
-        <p class="note mapping">{council.splitTowns.map((c) => townNames.get(c) ?? c).join("、")}分屬多個選區，未列入下方的涵蓋範圍。</p>
+        <p class="note mapping">{council.splitTowns.map((c) => townNames.get(c) ?? c).join("、")}分屬多個選區，{council.districtSource ? '請依各選區公告的里名確認；地圖不將整個行政區歸給單一選區。' : '未列入下方的涵蓋範圍。'}</p>
       )}
 
       {[
@@ -190,10 +192,13 @@ const jsonLd = [
                   {t && t.length > 0 && <span class="d-towns">{t.join("、")}</span>}
                   <span class="d-count">{d.candidates.length} 人</span>
                 </DistrictHeading>
+                {d.scope && (d.scope.length > 60
+                  ? <details class="note"><summary>公告選區範圍（展開里名）</summary><p>{d.scope}</p></details>
+                  : <p class="note">公告範圍：{d.scope}</p>)}
                 <ul class="clist">
                   {d.candidates.map((c) => (
                     <li class={isCouncilReelect(c) ? "reelect" : undefined}>
-                      <span class="nm">{c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}</span>
+                      <span class="nm">{c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}<FirstRunBadge evidence={c.firstRun} name={c.name} /></span>
                       <span class="pt">{partyLabel(c)}</span>
                     </li>
                   ))}

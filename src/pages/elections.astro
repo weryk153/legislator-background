@@ -1,4 +1,5 @@
 ---
+import FirstRunBadge from '../components/FirstRunBadge.svelte';
 import Base from "../layouts/Base.astro";
 import TitleCard from "../components/TitleCard.astro";
 import ElectionFinder from "../components/ElectionFinder.svelte";
@@ -232,7 +233,7 @@ const jsonLd = [
                   {r.candidates.map((c, i) => (
                     <>
                       {i > 0 && "、"}
-                      <span class={c.slug && c.slug === r.incumbent2022?.slug ? "cand reelect" : "cand"}><span class="nm">{c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}</span>（{c.partyName === "無" ? "無黨籍" : c.partyName}）</span>
+                      <span class={c.slug && c.slug === r.incumbent2022?.slug ? "cand reelect" : "cand"}><span class="nm">{c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}<FirstRunBadge evidence={c.firstRun} name={c.name} /></span>（{c.partyName === "無" ? "無黨籍" : c.partyName}）</span>
                     </>
                   ))}
                 </td>
@@ -276,7 +277,7 @@ const jsonLd = [
                   {d.candidates.map((c, i) => (
                     <>
                       {i > 0 && "、"}
-                      <span class={councilReelect(c) ? "cand reelect" : "cand"}><span class="nm">{c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}</span>（{c.partyName === "無" ? "無黨籍" : c.partyName}）</span>
+                      <span class={councilReelect(c) ? "cand reelect" : "cand"}><span class="nm">{c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}<FirstRunBadge evidence={c.firstRun} name={c.name} /></span>（{c.partyName === "無" ? "無黨籍" : c.partyName}）</span>
                     </>
                   ))}
                 </dd>

@@ -107,7 +107,8 @@ export function assemble(input: AssembleInput) {
       if (!rec.confirmed) warnings.push(`${name}：選區對應未確認——${rec.reason}`);
       const districts: CouncilDistrict[] = [...byNo.keys()].sort((a, b) => a - b).map((no) => {
         const type = rec.confirmed ? ref!.districts.get(no)!.type : 'unknown';
-        return { no, label: `第${no}選舉區${TYPE_SUFFIX[type]}`, type, candidates: ordered(byNo.get(no)!) };
+        const scope = rec.confirmed ? ref!.districts.get(no)!.scope : undefined;
+        return { no, label: `第${no}選舉區${TYPE_SUFFIX[type]}`, type, candidates: ordered(byNo.get(no)!), ...(scope ? { scope } : {}) };
       });
       let townToDistrict: Record<string, number> | null = null;
       if (rec.confirmed) {
@@ -120,7 +121,8 @@ export function assemble(input: AssembleInput) {
       return {
         source: input.source, countyCode: c.code, countyName: name, districts, townToDistrict,
         splitTowns: rec.confirmed ? [...ref!.splitTownCodes].sort() : [],
-        mappingNote: rec.confirmed ? null : `議員選區與 2022 年劃分不同（${rec.reason}），無法標示各鄉鎮市區所屬選區。`,
+        mappingNote: rec.confirmed ? null : `議員選區對應尚未確認（${rec.reason}），無法標示各鄉鎮市區所屬選區。`,
+        ...(rec.confirmed && ref!.source ? { districtSource: ref!.source } : {}),
       };
     });
 

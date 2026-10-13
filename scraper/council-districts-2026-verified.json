@@ -1,0 +1,468 @@
+{
+  "source": {
+    "url": "https://www.cec.gov.tw/central/article/63625",
+    "pdfUrl": "https://www.cec.gov.tw/api/file/45d8e965-f63a-46d5-b636-7d81e47cf4d1.pdf",
+    "publishedOn": "2026-08-20",
+    "reviewedOn": "2026-10-13",
+    "documentNo": "中選務字第1153150253號"
+  },
+  "counties": [
+    {
+      "countyName": "新竹縣",
+      "pages": [
+        7,
+        8
+      ],
+      "districts": [
+        {
+          "no": 1,
+          "type": "regional",
+          "scope": "竹北市尚義里、崇義里、新港里、大義里、白地里、大眉里、麻園里、溪州里、新庄里、聯興里、泰和里、新社里、新國里、竹義里、新崙里",
+          "townNames": [
+            "竹北市"
+          ],
+          "partialTownNames": [
+            "竹北市"
+          ]
+        },
+        {
+          "no": 2,
+          "type": "regional",
+          "scope": "竹北市竹北里、竹仁里、福德里、北崙里、中崙里、文化里、興安里、斗崙里、北興里、十興里、鹿場里、東興里、中興里、東平里、東海里、隘口里",
+          "townNames": [
+            "竹北市"
+          ],
+          "partialTownNames": [
+            "竹北市"
+          ]
+        },
+        {
+          "no": 3,
+          "type": "regional",
+          "scope": "湖口鄉",
+          "townNames": [
+            "湖口鄉"
+          ]
+        },
+        {
+          "no": 4,
+          "type": "regional",
+          "scope": "新豐鄉",
+          "townNames": [
+            "新豐鄉"
+          ]
+        },
+        {
+          "no": 5,
+          "type": "regional",
+          "scope": "關西鎮",
+          "townNames": [
+            "關西鎮"
+          ]
+        },
+        {
+          "no": 6,
+          "type": "regional",
+          "scope": "新埔鎮",
+          "townNames": [
+            "新埔鎮"
+          ]
+        },
+        {
+          "no": 7,
+          "type": "regional",
+          "scope": "橫山鄉、尖石鄉",
+          "townNames": [
+            "橫山鄉",
+            "尖石鄉"
+          ]
+        },
+        {
+          "no": 8,
+          "type": "regional",
+          "scope": "芎林鄉",
+          "townNames": [
+            "芎林鄉"
+          ]
+        },
+        {
+          "no": 9,
+          "type": "regional",
+          "scope": "竹東鎮、五峰鄉",
+          "townNames": [
+            "竹東鎮",
+            "五峰鄉"
+          ]
+        },
+        {
+          "no": 10,
+          "type": "regional",
+          "scope": "寶山鄉",
+          "townNames": [
+            "寶山鄉"
+          ]
+        },
+        {
+          "no": 11,
+          "type": "regional",
+          "scope": "北埔鄉、峨眉鄉",
+          "townNames": [
+            "北埔鄉",
+            "峨眉鄉"
+          ]
+        },
+        {
+          "no": 12,
+          "type": "plainIndigenous",
+          "scope": "新竹縣之平地原住民",
+          "townNames": []
+        },
+        {
+          "no": 13,
+          "type": "mountainIndigenous",
+          "scope": "尖石鄉及竹北市、湖口鄉、新豐鄉、關西鎮、新埔鎮、橫山鄉之山地原住民",
+          "townNames": []
+        },
+        {
+          "no": 14,
+          "type": "mountainIndigenous",
+          "scope": "五峰鄉及芎林鄉、竹東鎮、寶山鄉、北埔鄉、峨眉鄉之山地原住民",
+          "townNames": []
+        }
+      ]
+    },
+    {
+      "countyName": "彰化縣",
+      "pages": [
+        8
+      ],
+      "districts": [
+        {
+          "no": 1,
+          "type": "regional",
+          "scope": "彰化市、花壇鄉、芬園鄉",
+          "townNames": [
+            "彰化市",
+            "花壇鄉",
+            "芬園鄉"
+          ]
+        },
+        {
+          "no": 2,
+          "type": "regional",
+          "scope": "鹿港鎮、福興鄉、秀水鄉",
+          "townNames": [
+            "鹿港鎮",
+            "福興鄉",
+            "秀水鄉"
+          ]
+        },
+        {
+          "no": 3,
+          "type": "regional",
+          "scope": "和美鎮、伸港鄉、線西鄉",
+          "townNames": [
+            "和美鎮",
+            "伸港鄉",
+            "線西鄉"
+          ]
+        },
+        {
+          "no": 4,
+          "type": "regional",
+          "scope": "員林市、大村鄉、永靖鄉",
+          "townNames": [
+            "員林市",
+            "大村鄉",
+            "永靖鄉"
+          ]
+        },
+        {
+          "no": 5,
+          "type": "regional",
+          "scope": "溪湖鎮、埔鹽鄉、埔心鄉",
+          "townNames": [
+            "溪湖鎮",
+            "埔鹽鄉",
+            "埔心鄉"
+          ]
+        },
+        {
+          "no": 6,
+          "type": "regional",
+          "scope": "田中鎮、社頭鄉、二水鄉",
+          "townNames": [
+            "田中鎮",
+            "社頭鄉",
+            "二水鄉"
+          ]
+        },
+        {
+          "no": 7,
+          "type": "regional",
+          "scope": "北斗鎮、田尾鄉、埤頭鄉、溪州鄉",
+          "townNames": [
+            "北斗鎮",
+            "田尾鄉",
+            "埤頭鄉",
+            "溪州鄉"
+          ]
+        },
+        {
+          "no": 8,
+          "type": "regional",
+          "scope": "二林鎮、大城鄉、芳苑鄉、竹塘鄉",
+          "townNames": [
+            "二林鎮",
+            "大城鄉",
+            "芳苑鄉",
+            "竹塘鄉"
+          ]
+        },
+        {
+          "no": 9,
+          "type": "plainIndigenous",
+          "scope": "彰化縣之平地原住民",
+          "townNames": []
+        },
+        {
+          "no": 10,
+          "type": "mountainIndigenous",
+          "scope": "彰化縣之山地原住民",
+          "townNames": []
+        }
+      ]
+    },
+    {
+      "countyName": "雲林縣",
+      "pages": [
+        9
+      ],
+      "districts": [
+        {
+          "no": 1,
+          "type": "regional",
+          "scope": "斗六市、莿桐鄉、林內鄉",
+          "townNames": [
+            "斗六市",
+            "莿桐鄉",
+            "林內鄉"
+          ]
+        },
+        {
+          "no": 2,
+          "type": "regional",
+          "scope": "斗南鎮、古坑鄉、大埤鄉",
+          "townNames": [
+            "斗南鎮",
+            "古坑鄉",
+            "大埤鄉"
+          ]
+        },
+        {
+          "no": 3,
+          "type": "regional",
+          "scope": "虎尾鎮、土庫鎮、褒忠鄉、元長鄉",
+          "townNames": [
+            "虎尾鎮",
+            "土庫鎮",
+            "褒忠鄉",
+            "元長鄉"
+          ]
+        },
+        {
+          "no": 4,
+          "type": "regional",
+          "scope": "西螺鎮、二崙鄉、崙背鄉",
+          "townNames": [
+            "西螺鎮",
+            "二崙鄉",
+            "崙背鄉"
+          ]
+        },
+        {
+          "no": 5,
+          "type": "regional",
+          "scope": "臺西鄉、麥寮鄉、東勢鄉、四湖鄉",
+          "townNames": [
+            "臺西鄉",
+            "麥寮鄉",
+            "東勢鄉",
+            "四湖鄉"
+          ]
+        },
+        {
+          "no": 6,
+          "type": "regional",
+          "scope": "北港鎮、口湖鄉、水林鄉",
+          "townNames": [
+            "北港鎮",
+            "口湖鄉",
+            "水林鄉"
+          ]
+        },
+        {
+          "no": 7,
+          "type": "plainIndigenous",
+          "scope": "雲林縣之平地原住民",
+          "townNames": []
+        },
+        {
+          "no": 8,
+          "type": "mountainIndigenous",
+          "scope": "雲林縣之山地原住民",
+          "townNames": []
+        }
+      ]
+    },
+    {
+      "countyName": "基隆市",
+      "pages": [
+        14
+      ],
+      "districts": [
+        {
+          "no": 1,
+          "type": "regional",
+          "scope": "中正區",
+          "townNames": [
+            "中正區"
+          ]
+        },
+        {
+          "no": 2,
+          "type": "regional",
+          "scope": "信義區",
+          "townNames": [
+            "信義區"
+          ]
+        },
+        {
+          "no": 3,
+          "type": "regional",
+          "scope": "仁愛區",
+          "townNames": [
+            "仁愛區"
+          ]
+        },
+        {
+          "no": 4,
+          "type": "regional",
+          "scope": "中山區",
+          "townNames": [
+            "中山區"
+          ]
+        },
+        {
+          "no": 5,
+          "type": "regional",
+          "scope": "安樂區",
+          "townNames": [
+            "安樂區"
+          ]
+        },
+        {
+          "no": 6,
+          "type": "regional",
+          "scope": "暖暖區",
+          "townNames": [
+            "暖暖區"
+          ]
+        },
+        {
+          "no": 7,
+          "type": "regional",
+          "scope": "七堵區",
+          "townNames": [
+            "七堵區"
+          ]
+        },
+        {
+          "no": 8,
+          "type": "plainIndigenous",
+          "scope": "基隆市之平地原住民",
+          "townNames": []
+        },
+        {
+          "no": 9,
+          "type": "mountainIndigenous",
+          "scope": "基隆市之山地原住民",
+          "townNames": []
+        }
+      ]
+    },
+    {
+      "countyName": "新竹市",
+      "pages": [
+        14,
+        15
+      ],
+      "districts": [
+        {
+          "no": 1,
+          "type": "regional",
+          "scope": "東門里、榮光里、成功里、育賢里、中正里、親仁里、文華里、復中里、三民里、公園里、東園里、東山里、東勢里、光復里、前溪里、水源里、千甲里、綠水里、埔頂里、仙宮里、龍山里、新莊里、關新里、仙水里、金山里、建功里、光明里、立功里、軍功里、武功里、豐功里、科園里、關東里、建華里、錦華里、復興里",
+          "townNames": [
+            "東區"
+          ],
+          "partialTownNames": [
+            "東區"
+          ]
+        },
+        {
+          "no": 2,
+          "type": "regional",
+          "scope": "南門里、關帝里、南市里、福德里、振興里、新興里、竹蓮里、南大里、寺前里、下竹里、頂竹里、光鎮里、高峰里、柴橋里、新光里、湖濱里、明湖里",
+          "townNames": [
+            "東區"
+          ],
+          "partialTownNames": [
+            "東區"
+          ]
+        },
+        {
+          "no": 3,
+          "type": "regional",
+          "scope": "客雅里、中雅里、育英里、曲溪里、西雅里、南勢里、大鵬里、西門里、仁德里、潛園里、中央里、崇禮里、石坊里、興南里、台溪里",
+          "townNames": [
+            "北區"
+          ],
+          "partialTownNames": [
+            "北區"
+          ]
+        },
+        {
+          "no": 4,
+          "type": "regional",
+          "scope": "北門里、中興里、大同里、中山里、長和里、新民里、民富里、水田里、文雅里、光田里、士林里、福林里、古賢里、湳雅里、舊社里、武陵里、南寮里、舊港里、康樂里、港北里、中寮里、海濱里、磐石里、新雅里、光華里、金華里、境福里、金竹里、湳中里、金雅里",
+          "townNames": [
+            "北區"
+          ],
+          "partialTownNames": [
+            "北區"
+          ]
+        },
+        {
+          "no": 5,
+          "type": "regional",
+          "scope": "頂埔里、中埔里、埔前里、牛埔里、樹下里、浸水里、虎林里、虎山里、港南里、大庄里、美山里、朝山里、東香里、香山里、香村里、海山里、鹽水里、內湖里、南港里、中隘里、南隘里、大湖里、茄苳里、頂福里",
+          "townNames": [
+            "香山區"
+          ]
+        },
+        {
+          "no": 6,
+          "type": "plainIndigenous",
+          "scope": "新竹市之平地原住民",
+          "townNames": []
+        },
+        {
+          "no": 7,
+          "type": "mountainIndigenous",
+          "scope": "新竹市之山地原住民",
+          "townNames": []
+        }
+      ]
+    }
+  ]
+}

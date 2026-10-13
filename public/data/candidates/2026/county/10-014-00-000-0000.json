@@ -18,7 +18,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-傅文鵬-臺東縣第1選舉區",
      "identity": null
     },
     {
@@ -27,7 +27,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-林文隆-臺東縣第1選舉區",
      "identity": null
     },
     {
@@ -54,7 +54,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳炫諭-臺東縣第1選舉區",
      "identity": null
     },
     {
@@ -72,8 +72,19 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
-     "identity": null
+     "slug": "cand-王春梅-臺東縣第1選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "台東馬偕醫院急診醫師吳佩珊　行醫十年轉戰政壇登記參選縣議員 - 民視新聞網",
+       "url": "https://www.ftvnews.com.tw/news/detail/2026908N07M1",
+       "publishedOn": "2026-09-08"
+      },
+      "basis": "2026年臺東選情報導明確記載王春梅首度投入選舉。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "陳允萍",
@@ -81,7 +92,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳允萍-臺東縣第1選舉區",
      "identity": null
     },
     {
@@ -99,7 +110,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李哲-臺東縣第1選舉區",
      "identity": null
     },
     {
@@ -117,7 +128,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-江家榛-臺東縣第1選舉區",
      "identity": null
     },
     {
@@ -126,8 +137,19 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
-     "identity": null
+     "slug": "cand-饒慶鈺-臺東縣第1選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "台東馬偕醫院急診醫師吳佩珊　行醫十年轉戰政壇登記參選縣議員 - 民視新聞網",
+       "url": "https://www.ftvnews.com.tw/news/detail/2026908N07M1",
+       "publishedOn": "2026-09-08"
+      },
+      "basis": "2026年臺東選情報導明確記載饒慶鈺首度投入選舉。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "黃治維",
@@ -144,7 +166,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-潘頤頻-臺東縣第1選舉區",
      "identity": null
     },
     {
@@ -162,7 +184,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-吳佩珊-臺東縣第1選舉區",
      "identity": null
     }
    ]
@@ -187,7 +209,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-張家瑋-臺東縣第2選舉區",
      "identity": null
     }
    ]
@@ -221,7 +243,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-鄭銘顯-臺東縣第3選舉區",
      "identity": null
     }
    ]
@@ -271,7 +293,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-廖雙穎-臺東縣第5選舉區",
      "identity": null
     }
    ]
@@ -287,7 +309,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-王益凱-臺東縣第6選舉區",
      "identity": null
     },
     {
@@ -296,7 +318,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-謝賢裕-臺東縣第6選舉區",
      "identity": null
     }
    ]
@@ -321,7 +343,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-陽奇良-臺東縣第7選舉區（平地原住民）",
      "identity": null
     },
     {
@@ -330,7 +352,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陽昇宏-臺東縣第7選舉區（平地原住民）",
      "identity": null
     },
     {
@@ -357,7 +379,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-林茂松-臺東縣第7選舉區（平地原住民）",
      "identity": null
     },
     {
@@ -366,7 +388,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-巫化‧巴阿立佑司-臺東縣第7選舉區（平地原住民）",
      "identity": null
     }
    ]
@@ -391,7 +413,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-沙順恩-臺東縣第8選舉區（平地原住民）",
      "identity": null
     }
    ]
@@ -407,7 +429,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-羅春明-臺東縣第9選舉區（平地原住民）",
      "identity": null
     },
     {
@@ -466,7 +488,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-武雪恩-臺東縣第11選舉區（平地原住民）",
      "identity": null
     }
    ]
@@ -482,7 +504,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-邱文俊-臺東縣第12選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -491,7 +513,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-温源田-臺東縣第12選舉區（山地原住民）",
      "identity": null
     }
    ]
@@ -507,7 +529,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-胡金至-臺東縣第13選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -516,7 +538,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-余桂花-臺東縣第13選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -525,7 +547,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-余瑋廷Kavas Ispalidaz-臺東縣第13選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -534,7 +556,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-胡淑貞-臺東縣第13選舉區（山地原住民）",
      "identity": null
     }
    ]
@@ -550,7 +572,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-蔣爭光-臺東縣第14選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -575,7 +597,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林芳如-臺東縣第15選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -584,7 +606,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-包惠玲-臺東縣第15選舉區（山地原住民）",
      "identity": null
     }
    ]
@@ -609,7 +631,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李奉祈-臺東縣第16選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -618,7 +640,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-鍾文明-臺東縣第16選舉區（山地原住民）",
      "identity": null
     }
    ]

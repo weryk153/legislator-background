@@ -10,7 +10,7 @@
   {
    "no": 1,
    "label": "第1選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "黃文政",
@@ -36,7 +36,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-劉詳樽-新竹市第1選舉區",
      "identity": null
     },
     {
@@ -45,7 +45,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-張文興-新竹市第1選舉區",
      "identity": null
     },
     {
@@ -90,7 +90,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-樊一嶢-新竹市第1選舉區",
      "identity": null
     },
     {
@@ -99,7 +99,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-鄭宏輝-新竹市第1選舉區",
      "identity": null
     },
     {
@@ -108,7 +108,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-許登淇-新竹市第1選舉區",
      "identity": null
     },
     {
@@ -117,7 +117,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-曾翰揚-新竹市第1選舉區",
      "identity": null
     },
     {
@@ -144,7 +144,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林妤芬-新竹市第1選舉區",
      "identity": null
     },
     {
@@ -153,7 +153,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-陳清智-新竹市第1選舉區",
      "identity": null
     },
     {
@@ -162,7 +162,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-錢康明-新竹市第1選舉區",
      "identity": null
     },
     {
@@ -171,7 +171,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-陳珍裕-新竹市第1選舉區",
      "identity": null
     },
     {
@@ -183,12 +183,13 @@
      "slug": "c-鍾淑英-國民黨-新竹市第01選舉區",
      "identity": "現任議員（新竹市第1選舉區）"
     }
-   ]
+   ],
+   "scope": "東門里、榮光里、成功里、育賢里、中正里、親仁里、文華里、復中里、三民里、公園里、東園里、東山里、東勢里、光復里、前溪里、水源里、千甲里、綠水里、埔頂里、仙宮里、龍山里、新莊里、關新里、仙水里、金山里、建功里、光明里、立功里、軍功里、武功里、豐功里、科園里、關東里、建華里、錦華里、復興里"
   },
   {
    "no": 2,
    "label": "第2選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "施乃如",
@@ -205,8 +206,19 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
-     "identity": null
+     "slug": "cand-李玫-新竹市第2選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "url": "https://org-today.line-apps.com/tw/v3/article/EXrN3VY",
+       "title": "竹市7白營議員參選人組團隊出擊 推藝文遍竹市再升級政見 | 自由電子報 | LINE TODAY",
+       "publishedOn": null
+      },
+      "basis": "報導明確稱李玫此次為首次參選，並已核對地區、姓名與本人背景；未以「非現任」或「首選議員」推定。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "陳鶴文",
@@ -214,7 +226,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳鶴文-新竹市第2選舉區",
      "identity": null
     },
     {
@@ -244,12 +256,13 @@
      "slug": "c-田雅芳-無黨籍及未經政黨推薦-新竹市第02選舉區",
      "identity": "現任議員（新竹市第2選舉區）"
     }
-   ]
+   ],
+   "scope": "南門里、關帝里、南市里、福德里、振興里、新興里、竹蓮里、南大里、寺前里、下竹里、頂竹里、光鎮里、高峰里、柴橋里、新光里、湖濱里、明湖里"
   },
   {
    "no": 3,
    "label": "第3選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "施淑婷",
@@ -257,7 +270,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-施淑婷-新竹市第3選舉區",
      "identity": null
     },
     {
@@ -266,7 +279,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳思妤-新竹市第3選舉區",
      "identity": null
     },
     {
@@ -278,12 +291,13 @@
      "slug": "c-陳建名-民進黨-新竹市第03選舉區",
      "identity": "現任議員（新竹市第3選舉區）"
     }
-   ]
+   ],
+   "scope": "客雅里、中雅里、育英里、曲溪里、西雅里、南勢里、大鵬里、西門里、仁德里、潛園里、中央里、崇禮里、石坊里、興南里、台溪里"
   },
   {
    "no": 4,
    "label": "第4選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "彭昆耀",
@@ -300,7 +314,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-王雲慶-新竹市第4選舉區",
      "identity": null
     },
     {
@@ -318,8 +332,19 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
-     "identity": null
+     "slug": "cand-林士凱-新竹市第4選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "夜市囡仔林士凱竹市議員競總成立　    大咖齊力挺「最有經驗的新人」",
+       "url": "https://tw.news.yahoo.com/%E5%A4%9C%E5%B8%82%E5%9B%A1%E4%BB%94%E6%9E%97%E5%A3%AB%E5%87%B1%E7%AB%B9%E5%B8%82%E8%AD%B0%E5%93%A1%E7%AB%B6%E7%B8%BD%E6%88%90%E7%AB%8B-%E5%A4%A7%E5%92%96%E9%BD%8A%E5%8A%9B%E6%8C%BA-%E6%9C%80%E6%9C%89%E7%B6%93%E9%A9%97%E7%9A%84%E6%96%B0%E4%BA%BA-074432464.html",
+       "publishedOn": "2026-10-04"
+      },
+      "basis": "報導明確記載林士凱在2026年選舉為首次參選；已核對選區與本人經歷，並交叉檢索歷屆候選人資料。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "曾國維",
@@ -327,7 +352,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-曾國維-新竹市第4選舉區",
      "identity": null
     },
     {
@@ -381,7 +406,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-許竹見-新竹市第4選舉區",
      "identity": null
     },
     {
@@ -390,7 +415,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-孫宗孝-新竹市第4選舉區",
      "identity": null
     },
     {
@@ -399,15 +424,16 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-蔡文盛-新竹市第4選舉區",
      "identity": null
     }
-   ]
+   ],
+   "scope": "北門里、中興里、大同里、中山里、長和里、新民里、民富里、水田里、文雅里、光田里、士林里、福林里、古賢里、湳雅里、舊社里、武陵里、南寮里、舊港里、康樂里、港北里、中寮里、海濱里、磐石里、新雅里、光華里、金華里、境福里、金竹里、湳中里、金雅里"
   },
   {
    "no": 5,
    "label": "第5選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "吳若茵",
@@ -415,7 +441,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-吳若茵-新竹市第5選舉區",
      "identity": null
     },
     {
@@ -433,7 +459,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-葉國文-新竹市第5選舉區",
      "identity": null
     },
     {
@@ -451,7 +477,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-蔡志堅-新竹市第5選舉區",
      "identity": null
     },
     {
@@ -481,12 +507,13 @@
      "slug": "c-林盈徹-民進黨-新竹市第05選舉區",
      "identity": "現任議員（新竹市第5選舉區）"
     }
-   ]
+   ],
+   "scope": "頂埔里、中埔里、埔前里、牛埔里、樹下里、浸水里、虎林里、虎山里、港南里、大庄里、美山里、朝山里、東香里、香山里、香村里、海山里、鹽水里、內湖里、南港里、中隘里、南隘里、大湖里、茄苳里、頂福里"
   },
   {
    "no": 6,
-   "label": "第6選舉區",
-   "type": "unknown",
+   "label": "第6選舉區（平地原住民）",
+   "type": "plainIndigenous",
    "candidates": [
     {
      "name": "李雅雯",
@@ -494,7 +521,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-李雅雯-新竹市第6選舉區（平地原住民）",
      "identity": null
     },
     {
@@ -506,12 +533,13 @@
      "slug": "c-林慈愛-國民黨-新竹市第06選舉區",
      "identity": "現任議員（新竹市第6選舉區）"
     }
-   ]
+   ],
+   "scope": "新竹市之平地原住民"
   },
   {
    "no": 7,
-   "label": "第7選舉區",
-   "type": "unknown",
+   "label": "第7選舉區（山地原住民）",
+   "type": "mountainIndigenous",
    "candidates": [
     {
      "name": "趙若芸",
@@ -519,8 +547,19 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
-     "identity": null
+     "slug": "cand-趙若芸-新竹市第7選舉區（山地原住民）",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "url": "https://org-today.line-apps.com/tw/v3/article/EXrN3VY",
+       "title": "竹市7白營議員參選人組團隊出擊 推藝文遍竹市再升級政見 | 自由電子報 | LINE TODAY",
+       "publishedOn": null
+      },
+      "basis": "報導明確稱趙若芸此次為首次參選，並已核對地區、姓名與本人背景；未以「非現任」或「首選議員」推定。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "林夏陞",
@@ -528,7 +567,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-林夏陞-新竹市第7選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -537,7 +576,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-楊家玲-新竹市第7選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -546,7 +585,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-雲翔-新竹市第7選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -555,13 +594,30 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-卡伊．馬賴-新竹市第7選舉區（山地原住民）",
      "identity": null
     }
-   ]
+   ],
+   "scope": "新竹市之山地原住民"
   }
  ],
- "townToDistrict": null,
- "splitTowns": [],
- "mappingNote": "議員選區與 2022 年劃分不同（2022 有 6 個選區、2026 名冊有 7 個，選區可能已重劃），無法標示各鄉鎮市區所屬選區。"
+ "townToDistrict": {
+  "10-018-00-030-0000": 5
+ },
+ "splitTowns": [
+  "10-018-00-010-0000",
+  "10-018-00-020-0000"
+ ],
+ "mappingNote": null,
+ "districtSource": {
+  "url": "https://www.cec.gov.tw/central/article/63625",
+  "pdfUrl": "https://www.cec.gov.tw/api/file/45d8e965-f63a-46d5-b636-7d81e47cf4d1.pdf",
+  "publishedOn": "2026-08-20",
+  "reviewedOn": "2026-10-13",
+  "documentNo": "中選務字第1153150253號",
+  "pages": [
+   14,
+   15
+  ]
+ }
 }

@@ -10,7 +10,7 @@
   {
    "no": 1,
    "label": "第1選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "陳凱榮",
@@ -36,7 +36,7 @@
      "partyCode": "267",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-李雅芬-新竹縣第1選舉區",
      "identity": null
     },
     {
@@ -54,7 +54,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-陳秀玲-新竹縣第1選舉區",
      "identity": null
     },
     {
@@ -66,12 +66,13 @@
      "slug": "c-鄭美琴-無黨籍及未經政黨推薦-新竹縣第01選舉區",
      "identity": "現任議員（新竹縣第1選舉區）"
     }
-   ]
+   ],
+   "scope": "竹北市尚義里、崇義里、新港里、大義里、白地里、大眉里、麻園里、溪州里、新庄里、聯興里、泰和里、新社里、新國里、竹義里、新崙里"
   },
   {
    "no": 2,
    "label": "第2選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "游雅婷",
@@ -79,7 +80,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-游雅婷-新竹縣第2選舉區",
      "identity": null
     },
     {
@@ -97,7 +98,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-邵啟月-新竹縣第2選舉區",
      "identity": null
     },
     {
@@ -106,7 +107,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-戴佩如-新竹縣第2選舉區",
      "identity": null
     },
     {
@@ -124,7 +125,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-范格菱-新竹縣第2選舉區",
      "identity": null
     },
     {
@@ -151,8 +152,8 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
-     "identity": null
+     "slug": "c-林禹佑-無黨籍及未經政黨推薦-新竹縣第01選舉區",
+     "identity": "現任議員（新竹縣第1選舉區）"
     },
     {
      "name": "張育慈",
@@ -160,7 +161,7 @@
      "partyCode": "267",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-張育慈-新竹縣第2選舉區",
      "identity": null
     },
     {
@@ -178,7 +179,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-杜文中-新竹縣第2選舉區",
      "identity": null
     },
     {
@@ -187,7 +188,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-范揚琪-新竹縣第2選舉區",
      "identity": null
     },
     {
@@ -196,15 +197,16 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
-     "identity": null
+     "slug": "c-邱靖雅-無黨籍及未經政黨推薦-新竹縣第01選舉區",
+     "identity": "現任議員（新竹縣第1選舉區）"
     }
-   ]
+   ],
+   "scope": "竹北市竹北里、竹仁里、福德里、北崙里、中崙里、文化里、興安里、斗崙里、北興里、十興里、鹿場里、東興里、中興里、東平里、東海里、隘口里"
   },
   {
    "no": 3,
    "label": "第3選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "甄克堅",
@@ -212,8 +214,8 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
-     "identity": null
+     "slug": "c-甄克堅-無黨籍及未經政黨推薦-新竹縣第02選舉區",
+     "identity": "現任議員（新竹縣第2選舉區）"
     },
     {
      "name": "余筱菁",
@@ -221,7 +223,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-余筱菁-新竹縣第3選舉區",
      "identity": null
     },
     {
@@ -257,7 +259,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-翁紹軒-新竹縣第3選舉區",
      "identity": null
     },
     {
@@ -266,7 +268,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-賴寶鈺-新竹縣第3選舉區",
      "identity": null
     },
     {
@@ -284,7 +286,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-陳岫玫-新竹縣第3選舉區",
      "identity": null
     },
     {
@@ -293,7 +295,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-楊勝馭-新竹縣第3選舉區",
      "identity": null
     },
     {
@@ -302,15 +304,16 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-戴翊如-新竹縣第3選舉區",
      "identity": null
     }
-   ]
+   ],
+   "scope": "湖口鄉"
   },
   {
    "no": 4,
    "label": "第4選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "徐勝凌",
@@ -318,7 +321,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-徐勝凌-新竹縣第4選舉區",
      "identity": null
     },
     {
@@ -327,7 +330,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-何昌臨-新竹縣第4選舉區",
      "identity": null
     },
     {
@@ -336,7 +339,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-徐源發-新竹縣第4選舉區",
      "identity": null
     },
     {
@@ -345,7 +348,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-張以聖-新竹縣第4選舉區",
      "identity": null
     },
     {
@@ -363,15 +366,16 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-林茂青-新竹縣第4選舉區",
      "identity": null
     }
-   ]
+   ],
+   "scope": "新豐鄉"
   },
   {
    "no": 5,
    "label": "第5選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "羅仕琦",
@@ -397,15 +401,16 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-蔡澄均-新竹縣第5選舉區",
      "identity": null
     }
-   ]
+   ],
+   "scope": "關西鎮"
   },
   {
    "no": 6,
    "label": "第6選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "黃路加",
@@ -413,7 +418,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-黃路加-新竹縣第6選舉區",
      "identity": null
     },
     {
@@ -431,15 +436,16 @@
      "partyCode": "15",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳新源-新竹縣第6選舉區",
      "identity": null
     }
-   ]
+   ],
+   "scope": "新埔鎮"
   },
   {
    "no": 7,
    "label": "第7選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "張良印",
@@ -450,12 +456,13 @@
      "slug": "c-張良印-國民黨-新竹縣第06選舉區",
      "identity": "現任議員（新竹縣第6選舉區）"
     }
-   ]
+   ],
+   "scope": "橫山鄉、尖石鄉"
   },
   {
    "no": 8,
    "label": "第8選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "黃正彪",
@@ -463,15 +470,16 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-黃正彪-新竹縣第8選舉區",
      "identity": null
     }
-   ]
+   ],
+   "scope": "芎林鄉"
   },
   {
    "no": 9,
    "label": "第9選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "羅俊傑",
@@ -479,7 +487,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-羅俊傑-新竹縣第9選舉區",
      "identity": null
     },
     {
@@ -533,7 +541,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林裙靜-新竹縣第9選舉區",
      "identity": null
     },
     {
@@ -542,7 +550,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-鍾心渝-新竹縣第9選舉區",
      "identity": null
     },
     {
@@ -554,12 +562,13 @@
      "slug": "c-楊昌德-民進黨-新竹縣第08選舉區",
      "identity": "現任議員（新竹縣第8選舉區）"
     }
-   ]
+   ],
+   "scope": "竹東鎮、五峰鄉"
   },
   {
    "no": 10,
    "label": "第10選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "邱坤桶",
@@ -576,15 +585,16 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-何時名-新竹縣第10選舉區",
      "identity": null
     }
-   ]
+   ],
+   "scope": "寶山鄉"
   },
   {
    "no": 11,
    "label": "第11選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "王辰翔",
@@ -601,15 +611,16 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-范文鴻-新竹縣第11選舉區",
      "identity": null
     }
-   ]
+   ],
+   "scope": "北埔鄉、峨眉鄉"
   },
   {
    "no": 12,
-   "label": "第12選舉區",
-   "type": "unknown",
+   "label": "第12選舉區（平地原住民）",
+   "type": "plainIndigenous",
    "candidates": [
     {
      "name": "法隆伊佑",
@@ -617,7 +628,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-法隆伊佑-新竹縣第12選舉區（平地原住民）",
      "identity": null
     },
     {
@@ -626,15 +637,16 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
-     "identity": null
+     "slug": "c-林秉君kaying．kuying．kalang-國民黨-新竹縣第11選舉區",
+     "identity": "現任議員（新竹縣第11選舉區）"
     }
-   ]
+   ],
+   "scope": "新竹縣之平地原住民"
   },
   {
    "no": 13,
-   "label": "第13選舉區",
-   "type": "unknown",
+   "label": "第13選舉區（山地原住民）",
+   "type": "mountainIndigenous",
    "candidates": [
     {
      "name": "曾國大Masaw．Moto",
@@ -642,7 +654,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-曾國大Masaw．Moto-新竹縣第13選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -651,7 +663,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-羅恩加-新竹縣第13選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -660,7 +672,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-林世偉-新竹縣第13選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -669,7 +681,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-范經生-新竹縣第13選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -678,15 +690,16 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-高忠正-新竹縣第13選舉區（山地原住民）",
      "identity": null
     }
-   ]
+   ],
+   "scope": "尖石鄉及竹北市、湖口鄉、新豐鄉、關西鎮、新埔鎮、橫山鄉之山地原住民"
   },
   {
    "no": 14,
-   "label": "第14選舉區",
-   "type": "unknown",
+   "label": "第14選舉區（山地原住民）",
+   "type": "mountainIndigenous",
    "candidates": [
     {
      "name": "張雁萍",
@@ -694,7 +707,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-張雁萍-新竹縣第14選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -703,7 +716,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-Laling Yumin-新竹縣第14選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -712,13 +725,40 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
-     "identity": null
+     "slug": "c-張益生-國民黨-新竹縣第13選舉區",
+     "identity": "現任議員（新竹縣第13選舉區）"
     }
-   ]
+   ],
+   "scope": "五峰鄉及芎林鄉、竹東鎮、寶山鄉、北埔鄉、峨眉鄉之山地原住民"
   }
  ],
- "townToDistrict": null,
- "splitTowns": [],
- "mappingNote": "議員選區與 2022 年劃分不同（2022 有 13 個選區、2026 名冊有 14 個，選區可能已重劃），無法標示各鄉鎮市區所屬選區。"
+ "townToDistrict": {
+  "10-004-00-050-0000": 3,
+  "10-004-00-060-0000": 4,
+  "10-004-00-040-0000": 5,
+  "10-004-00-030-0000": 6,
+  "10-004-00-080-0000": 7,
+  "10-004-00-120-0000": 7,
+  "10-004-00-070-0000": 8,
+  "10-004-00-020-0000": 9,
+  "10-004-00-130-0000": 9,
+  "10-004-00-100-0000": 10,
+  "10-004-00-090-0000": 11,
+  "10-004-00-110-0000": 11
+ },
+ "splitTowns": [
+  "10-004-00-010-0000"
+ ],
+ "mappingNote": null,
+ "districtSource": {
+  "url": "https://www.cec.gov.tw/central/article/63625",
+  "pdfUrl": "https://www.cec.gov.tw/api/file/45d8e965-f63a-46d5-b636-7d81e47cf4d1.pdf",
+  "publishedOn": "2026-08-20",
+  "reviewedOn": "2026-10-13",
+  "documentNo": "中選務字第1153150253號",
+  "pages": [
+   7,
+   8
+  ]
+ }
 }

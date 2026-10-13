@@ -18,7 +18,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-凌子楚-嘉義市第1選舉區",
      "identity": null
     },
     {
@@ -27,7 +27,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-郭文居-嘉義市第1選舉區",
      "identity": null
     },
     {
@@ -36,7 +36,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-何苡睿-嘉義市第1選舉區",
      "identity": null
     },
     {
@@ -45,7 +45,7 @@
      "partyCode": "357",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-陳玥妗-嘉義市第1選舉區",
      "identity": null
     },
     {
@@ -54,7 +54,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-梁樹綸-嘉義市第1選舉區",
      "identity": null
     },
     {
@@ -72,7 +72,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-林昱孜-嘉義市第1選舉區",
      "identity": null
     },
     {
@@ -99,7 +99,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-柯莉絲汀-嘉義市第1選舉區",
      "identity": null
     },
     {
@@ -108,7 +108,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-吳宗泓-嘉義市第1選舉區",
      "identity": null
     },
     {
@@ -153,7 +153,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-洪斐昭-嘉義市第1選舉區",
      "identity": null
     }
    ]
@@ -169,7 +169,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-陳嘉弘-嘉義市第2選舉區",
      "identity": null
     },
     {
@@ -214,8 +214,19 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
-     "identity": null
+     "slug": "cand-林子淨-嘉義市第2選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "嘉市西區議員21搶13 選戰白熱化",
+       "url": "https://tw.news.yahoo.com/%E5%98%89%E5%B8%82%E8%A5%BF%E5%8D%80%E8%AD%B0%E5%93%A121%E6%90%B613-%E9%81%B8%E6%88%B0%E7%99%BD%E7%86%B1%E5%8C%96-201000383.html",
+       "publishedOn": "2026-09-18"
+      },
+      "basis": "報導明確記載林子淨在2026年選舉為首次參選；已核對選區與本人經歷，並交叉檢索歷屆候選人資料。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "蔡坤達",
@@ -223,7 +234,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-蔡坤達-嘉義市第2選舉區",
      "identity": null
     },
     {
@@ -232,7 +243,7 @@
      "partyCode": "357",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-林詩涵-嘉義市第2選舉區",
      "identity": null
     },
     {
@@ -241,7 +252,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳品蓁-嘉義市第2選舉區",
      "identity": null
     },
     {
@@ -268,7 +279,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李明燦-嘉義市第2選舉區",
      "identity": null
     },
     {
@@ -295,8 +306,19 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
-     "identity": null
+     "slug": "cand-黃政融-嘉義市第2選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "嘉市西區議員21搶13 選戰白熱化",
+       "url": "https://tw.news.yahoo.com/%E5%98%89%E5%B8%82%E8%A5%BF%E5%8D%80%E8%AD%B0%E5%93%A121%E6%90%B613-%E9%81%B8%E6%88%B0%E7%99%BD%E7%86%B1%E5%8C%96-201000383.html",
+       "publishedOn": "2026-09-18"
+      },
+      "basis": "報導明確記載黃政融在2026年選舉為首次參選；已核對選區與本人經歷，並交叉檢索歷屆候選人資料。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "黃敏修",
@@ -322,7 +344,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-曾奕豪-嘉義市第2選舉區",
      "identity": null
     },
     {
@@ -331,7 +353,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-陳致愷-嘉義市第2選舉區",
      "identity": null
     },
     {
@@ -340,7 +362,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-魏志軒-嘉義市第2選舉區",
      "identity": null
     },
     {

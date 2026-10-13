@@ -1,4 +1,5 @@
 <script lang="ts">
+  import FirstRunBadge from './FirstRunBadge.svelte';
   import { fetchElectionJson } from '../lib/fetchElectionJson';
   import { COUNTY_KEYS } from '../lib/countyKeys';
   import { filterElectionCandidates, groupElectionCandidates, visibleElectionGroups, type ElectionCandidate, type ElectionFinderData } from '../lib/electionFinder';
@@ -51,7 +52,7 @@
     <label class="search">候選人姓名<input class="form-control" type="search" bind:value={query} placeholder="輸入姓名查詢" /></label>
     <button class="reset" type="button" onclick={reset} disabled={!active}>重設</button>
   </div>
-  {#if active && loaded && groups.some(group => group.office === 'council')}<p class="scope area-scope">行政區參考沿用本站 2022 選區對照，2026 範圍以選委會公告為準；選區對應待確認者不列地名。</p>{/if}
+  {#if active && loaded && groups.some(group => group.office === 'council')}<p class="scope area-scope">附公告來源的選區已核對 2026 正式範圍；其餘行政區參考沿用本站 2022 選區對照，2026 範圍以選委會公告為準。</p>{/if}
   {#if !active}
     <nav class="counties" aria-label="選擇縣市查看候選人">
       {#each COUNTY_KEYS as c}
@@ -75,7 +76,11 @@
                 <span class="office-label">{group.office === 'chief' ? '縣市長' : '縣市議員'}</span>
                 <div class="group-heading">
                   <h3 id={`candidate-group-${i}`}>{group.office === 'chief' ? group.district : `${group.county}・${group.district}`}</h3>
-                  {#if area?.towns.length}<p class="group-area">行政區參考：{area.towns.join('、')}</p>{/if}
+                  {#if area?.scope}
+                    {#if area.scope.length > 60}<details class="group-area"><summary>公告選區範圍（展開里名）</summary><p>{area.scope}</p></details>
+                    {:else}<p class="group-area">公告範圍：{area.scope}</p>{/if}
+                    {#if area.source}<p class="group-area"><a href={`${area.source.pdfUrl}#page=${area.source.pages[0]}`} target="_blank" rel="noopener noreferrer">中選會 2026 正式公告</a>・{area.source.publishedOn}</p>{/if}
+                  {:else if area?.towns.length}<p class="group-area">行政區參考：{area.towns.join('、')}</p>{/if}
                   {#if area?.note}<p class="group-area">{area.note}</p>{/if}
                 </div>
               </div>
@@ -85,7 +90,7 @@
               {#each group.candidates as c}
                 {@const emblem = partyEmblem(c.party)}
                 <li>
-                  <h4>{#if c.number !== null}<small>{c.number} 號</small>{/if}{#if c.slug}<a href={`/officials/${c.slug}/`}>{c.name}</a>{:else}{c.name}{/if}</h4>
+                  <h4>{#if c.number !== null}<small>{c.number} 號</small>{/if}{#if c.slug}<a href={`/officials/${c.slug}/`}>{c.name}</a>{:else}{c.name}{/if}<FirstRunBadge evidence={c.firstRun} name={c.name} /></h4>
                   <p class="party">{#if emblem}<img src={emblem} alt="" width="18" height="18" loading="lazy" />{/if}<span>{c.party}</span></p>
                   <p class="profile-status">{#if c.slug}<a href={`/officials/${c.slug}/`} aria-label={`查看${c.name}的個人檔案`}>個人檔案 <span aria-hidden="true">↗</span></a>{:else}<span>尚未收錄個人檔案</span>{/if}</p>
                 </li>
@@ -99,7 +104,7 @@
       <div class="empty"><p>沒有符合條件的候選人，試試其他姓名或放寬縣市、選舉類別。</p><button type="button" onclick={reset}>清除查詢條件</button></div>
     {/if}
   {/if}
-  <p class="scope">依縣市、選舉類別與選區分組，組內保留名冊順序。名單階段與製表日期見頁首；有個人檔案者可點姓名查看背景。</p>
+  <p class="scope">依縣市、選舉類別與選區分組，組內保留名冊順序。「首次參選」僅標示有公開來源確認者，可點標記查看；未標示不代表曾參選。名單階段與製表日期見頁首；有個人檔案者可點姓名查看背景。</p>
   <noscript>姓名搜尋需啟用 JavaScript，亦可使用下方完整名冊與縣市頁連結。</noscript>
 </section>
 

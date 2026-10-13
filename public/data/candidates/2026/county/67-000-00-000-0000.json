@@ -36,7 +36,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-侯陸太-臺南市第1選舉區",
      "identity": null
     },
     {
@@ -72,7 +72,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-張新斛-臺南市第1選舉區",
      "identity": null
     },
     {
@@ -81,7 +81,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-陳詩薇-臺南市第1選舉區",
      "identity": null
     }
    ]
@@ -124,7 +124,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-王詩媛-臺南市第2選舉區",
      "identity": null
     },
     {
@@ -176,7 +176,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-尤淨寬-臺南市第3選舉區",
      "identity": null
     },
     {
@@ -185,7 +185,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-施朝清-臺南市第3選舉區",
      "identity": null
     }
    ]
@@ -201,8 +201,19 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
-     "identity": null
+     "slug": "cand-賴懋慶-臺南市第4選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "台南市議員選舉候選人登記首日 「惠郭」連線助陣搶頭香 | 政治 | Newtalk新聞",
+       "url": "https://newtalk.tw/news/view/2026-08-31/1056771",
+       "publishedOn": "2026-08-31"
+      },
+      "basis": "2026年登記報導明列賴懋慶、沈震南為首次參選者。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "周奕齊",
@@ -262,7 +273,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李佳蓉-臺南市第5選舉區",
      "identity": null
     },
     {
@@ -280,7 +291,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-廖俊道-臺南市第5選舉區",
      "identity": null
     }
    ]
@@ -323,7 +334,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-唐儀靜-臺南市第6選舉區",
      "identity": null
     },
     {
@@ -332,7 +343,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-郭品辰-臺南市第6選舉區",
      "identity": null
     },
     {
@@ -341,7 +352,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-姚正玉-臺南市第6選舉區",
      "identity": null
     },
     {
@@ -368,7 +379,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林緯-臺南市第6選舉區",
      "identity": null
     }
    ]
@@ -393,7 +404,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-林乃立-臺南市第7選舉區",
      "identity": null
     },
     {
@@ -402,7 +413,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-周宏昌-臺南市第7選舉區",
      "identity": null
     },
     {
@@ -411,7 +422,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-曹暐國-臺南市第7選舉區",
      "identity": null
     },
     {
@@ -456,7 +467,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-李秉倫-臺南市第7選舉區",
      "identity": null
     },
     {
@@ -465,7 +476,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-卞宗康-臺南市第7選舉區",
      "identity": null
     },
     {
@@ -474,7 +485,7 @@
      "partyCode": "303",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-吳依潔-臺南市第7選舉區",
      "identity": null
     },
     {
@@ -499,8 +510,19 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
-     "identity": null
+     "slug": "cand-沈震南-臺南市第8選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "台南市議員選舉候選人登記首日 「惠郭」連線助陣搶頭香 | 政治 | Newtalk新聞",
+       "url": "https://newtalk.tw/news/view/2026-08-31/1056771",
+       "publishedOn": "2026-08-31"
+      },
+      "basis": "2026年登記報導明列賴懋慶、沈震南為首次參選者。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "江明宗",
@@ -508,7 +530,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-江明宗-臺南市第8選舉區",
      "identity": null
     },
     {
@@ -517,7 +539,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-林建南-臺南市第8選舉區",
      "identity": null
     },
     {
@@ -526,7 +548,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-鄭方形-臺南市第8選舉區",
      "identity": null
     },
     {
@@ -571,7 +593,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-陳昌輝-臺南市第8選舉區",
      "identity": null
     },
     {
@@ -580,7 +602,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-童小芸-臺南市第8選舉區",
      "identity": null
     },
     {
@@ -589,7 +611,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-謝秉舟-臺南市第8選舉區",
      "identity": null
     }
    ]
@@ -605,7 +627,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-陳冠諭-臺南市第9選舉區",
      "identity": null
     },
     {
@@ -632,7 +654,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-葉翰勲-臺南市第9選舉區",
      "identity": null
     },
     {
@@ -641,7 +663,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-呂維胤-臺南市第9選舉區",
      "identity": null
     },
     {
@@ -668,7 +690,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-蕭漍華-臺南市第9選舉區",
      "identity": null
     },
     {
@@ -677,7 +699,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-李伯利-臺南市第9選舉區",
      "identity": null
     }
    ]
@@ -693,7 +715,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-歐政豪-臺南市第10選舉區",
      "identity": null
     },
     {
@@ -711,7 +733,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳金鐘-臺南市第10選舉區",
      "identity": null
     },
     {
@@ -738,7 +760,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-陳進男-臺南市第10選舉區",
      "identity": null
     },
     {
@@ -763,7 +785,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-翁語含-臺南市第11選舉區",
      "identity": null
     },
     {
@@ -790,7 +812,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-許又仁-臺南市第11選舉區",
      "identity": null
     },
     {
@@ -817,7 +839,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-郭如芳-臺南市第11選舉區",
      "identity": null
     },
     {
@@ -835,7 +857,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-劉正昌-臺南市第11選舉區",
      "identity": null
     }
    ]
@@ -851,7 +873,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-李美素-臺南市第12選舉區（平地原住民）",
      "identity": null
     },
     {
@@ -860,7 +882,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-吳東明-臺南市第12選舉區（平地原住民）",
      "identity": null
     }
    ]
@@ -885,7 +907,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-辛晴晴Langui Tamapima-臺南市第13選舉區（山地原住民）",
      "identity": null
     }
    ]

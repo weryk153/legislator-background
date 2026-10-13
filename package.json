@@ -41,7 +41,10 @@
     "build:boundaries": "tsx scraper/fetch-boundaries.ts",
     "build:election-map": "tsx scraper/build-election-map.ts",
     "build:candidates": "tsx scraper/build-candidates-2026.ts",
-    "build:og-elections": "tsx scraper/scripts/build-og-elections.ts"
+    "build:og-elections": "tsx scraper/scripts/build-og-elections.ts",
+    "append:candidate-profiles": "tsx scraper/append-candidate-profiles.ts",
+    "candidates:coverage": "tsx scraper/candidate-coverage.ts",
+    "candidates:first-run-audit": "tsx scraper/first-run-audit-report.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

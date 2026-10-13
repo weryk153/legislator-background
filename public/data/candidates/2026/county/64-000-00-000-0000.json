@@ -27,7 +27,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-林慧欣-高雄市第1選舉區",
      "identity": null
     },
     {
@@ -45,7 +45,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-鍾炳光-高雄市第1選舉區",
      "identity": null
     },
     {
@@ -54,7 +54,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-李振豪-高雄市第1選舉區",
      "identity": null
     }
    ]
@@ -70,7 +70,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-李柏融-高雄市第2選舉區",
      "identity": null
     },
     {
@@ -88,7 +88,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-鄭東元-高雄市第2選舉區",
      "identity": null
     },
     {
@@ -97,7 +97,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳琳潔-高雄市第2選舉區",
      "identity": null
     },
     {
@@ -122,7 +122,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-張騏晟-高雄市第3選舉區",
      "identity": null
     },
     {
@@ -158,8 +158,19 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
-     "identity": null
+     "slug": "cand-蔡秉璁-高雄市第3選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "高市議員初選吹起「本人」風拜票 | 地方 | NOWnews今日新聞",
+       "url": "https://www.nownews.com/news/6788001",
+       "publishedOn": null
+      },
+      "basis": "報導明確記載蔡秉璁在2026年選舉為首次參選；已核對選區與本人經歷，並交叉檢索歷屆候選人資料。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "黃秋媖",
@@ -176,7 +187,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-黃韻涵-高雄市第3選舉區",
      "identity": null
     },
     {
@@ -185,8 +196,19 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
-     "identity": null
+     "slug": "cand-蔣黃女-高雄市第3選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "「憨膽啦」83歲蔣黃女披戰袍 為守護橋頭糖廠森林拚議員 | 縣市長議員選戰 | 要聞 | 聯合新聞網",
+       "url": "https://udn.com/news/amp/story/124652/9736377?from=udnamp-relatednews_ch2artbottom",
+       "publishedOn": "2026-09-05"
+      },
+      "basis": "2026年登記報導引述本人說明這是第一次投入選舉。",
+      "reviewedOn": "2026-10-14"
+     }
     }
    ]
   },
@@ -201,7 +223,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-陳冠宇-高雄市第4選舉區",
      "identity": null
     },
     {
@@ -210,7 +232,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-尹立-高雄市第4選舉區",
      "identity": null
     },
     {
@@ -237,7 +259,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-張以理-高雄市第4選舉區",
      "identity": null
     },
     {
@@ -273,7 +295,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-薛兆基-高雄市第4選舉區",
      "identity": null
     },
     {
@@ -282,7 +304,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-柳淑芳-高雄市第4選舉區",
      "identity": null
     },
     {
@@ -352,7 +374,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-陳若翠-高雄市第5選舉區",
      "identity": null
     },
     {
@@ -370,7 +392,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-陳惠君-高雄市第5選舉區",
      "identity": null
     }
    ]
@@ -447,7 +469,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-黃淑美-高雄市第7選舉區",
      "identity": null
     },
     {
@@ -492,7 +514,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-余聖明-高雄市第7選舉區",
      "identity": null
     },
     {
@@ -501,7 +523,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-林彥-高雄市第7選舉區",
      "identity": null
     },
     {
@@ -510,7 +532,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-童燕珍-高雄市第7選舉區",
      "identity": null
     },
     {
@@ -528,7 +550,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-林于凱-高雄市第7選舉區",
      "identity": null
     }
    ]
@@ -571,7 +593,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳雅敏-高雄市第8選舉區",
      "identity": null
     },
     {
@@ -580,7 +602,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-黃舜杰-高雄市第8選舉區",
      "identity": null
     },
     {
@@ -598,7 +620,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-鄒約翰-高雄市第8選舉區",
      "identity": null
     },
     {
@@ -607,7 +629,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-黃裕庭-高雄市第8選舉區",
      "identity": null
     },
     {
@@ -616,7 +638,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-黃鈺婷-高雄市第8選舉區",
      "identity": null
     }
    ]
@@ -650,7 +672,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-蘇致榮-高雄市第9選舉區",
      "identity": null
     },
     {
@@ -695,7 +717,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-鄧巧佩-高雄市第9選舉區",
      "identity": null
     },
     {
@@ -713,7 +735,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-徐尚賢-高雄市第9選舉區",
      "identity": null
     }
    ]
@@ -738,7 +760,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-李政憲-高雄市第10選舉區",
      "identity": null
     },
     {
@@ -747,7 +769,7 @@
      "partyCode": "15",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-劉仙娥-高雄市第10選舉區",
      "identity": null
     },
     {
@@ -765,7 +787,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-吳昱鋒-高雄市第10選舉區",
      "identity": null
     },
     {
@@ -792,7 +814,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-黃敬雅-高雄市第10選舉區",
      "identity": null
     },
     {
@@ -801,7 +823,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李紘毅-高雄市第10選舉區",
      "identity": null
     },
     {
@@ -819,7 +841,7 @@
      "partyCode": "357",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-于仙玲-高雄市第10選舉區",
      "identity": null
     },
     {
@@ -828,7 +850,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-湯茹婷-高雄市第10選舉區",
      "identity": null
     },
     {
@@ -837,8 +859,19 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
-     "identity": null
+     "slug": "cand-張藝璉-高雄市第10選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "高雄市議員參選人張藝璉誠徵競選團隊工作人員 - 以AI為學伴，重啟讀書人生 - udn部落格",
+       "url": "https://blog.udn.com/fude/192576802",
+       "publishedOn": null
+      },
+      "basis": "本人參選網站明確自述第一次參與公職人員選舉，無參加選舉經驗。",
+      "reviewedOn": "2026-10-14"
+     }
     }
    ]
   },
@@ -853,7 +886,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-張耀中-高雄市第11選舉區",
      "identity": null
     },
     {
@@ -889,7 +922,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-洪村銘-高雄市第11選舉區",
      "identity": null
     },
     {
@@ -914,7 +947,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-巫振興-高雄市第12選舉區（平地原住民）",
      "identity": null
     },
     {
@@ -923,7 +956,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-宋紹銘-高雄市第12選舉區（平地原住民）",
      "identity": null
     },
     {
@@ -957,7 +990,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-葛姵瑩-高雄市第13選舉區（山地原住民）",
      "identity": null
     }
    ]
@@ -973,7 +1006,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-林錫閔-高雄市第14選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -982,7 +1015,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-洪英雄Salizan．binkinuan-高雄市第14選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -1007,8 +1040,19 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
-     "identity": null
+     "slug": "cand-金禾雅-高雄市第15選舉區（山地原住民）",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "金禾雅歌手轉戰議會 端出八大政見拚「原鄉有根、城市有家」 | 政治 | Newtalk新聞",
+       "url": "https://newtalk.tw/news/view/2026-09-02/1057224",
+       "publishedOn": "2026-09-02"
+      },
+      "basis": "報導明確記載金禾雅在2026年選舉為首次參選；已核對選區與本人經歷，並交叉檢索歷屆候選人資料。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "陳奕蓁",
@@ -1016,7 +1060,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳奕蓁-高雄市第15選舉區（山地原住民）",
      "identity": null
     }
    ]

@@ -18,7 +18,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-尚文凱-金門縣第1選舉區",
      "identity": null
     },
     {
@@ -27,7 +27,7 @@
      "partyCode": "74",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-戴德滿-金門縣第1選舉區",
      "identity": null
     },
     {
@@ -54,7 +54,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-林鑫一-金門縣第1選舉區",
      "identity": null
     },
     {
@@ -72,7 +72,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-倪于媃-金門縣第1選舉區",
      "identity": null
     },
     {
@@ -81,7 +81,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-董家瑋-金門縣第1選舉區",
      "identity": null
     },
     {
@@ -99,7 +99,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-許玉仙-金門縣第1選舉區",
      "identity": null
     },
     {
@@ -108,7 +108,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-楊霈璿-金門縣第1選舉區",
      "identity": null
     },
     {
@@ -126,7 +126,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-莊勝騏-金門縣第1選舉區",
      "identity": null
     },
     {
@@ -135,7 +135,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-李慧艷-金門縣第1選舉區",
      "identity": null
     },
     {
@@ -144,7 +144,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-黃世丞-金門縣第1選舉區",
      "identity": null
     },
     {
@@ -153,7 +153,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-楊忠俊-金門縣第1選舉區",
      "identity": null
     },
     {
@@ -180,7 +180,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-陳子芸-金門縣第1選舉區",
      "identity": null
     },
     {
@@ -189,7 +189,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-傅蒼松-金門縣第1選舉區",
      "identity": null
     }
    ]
@@ -214,7 +214,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李應文-金門縣第2選舉區",
      "identity": null
     },
     {
@@ -241,7 +241,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李文益-金門縣第2選舉區",
      "identity": null
     },
     {
@@ -250,8 +250,19 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
-     "identity": null
+     "slug": "cand-陳麒翔-金門縣第2選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "url": "https://udn.com/news/story/124652/9730479",
+       "title": "金門議員戰火升溫！這些「黑馬」雨中登記 陳麒翔、許玉仙成焦點 | 縣市長議員選戰 | 要聞 | 聯合新聞網",
+       "publishedOn": "2026-09-02"
+      },
+      "basis": "報導明確稱陳麒翔此次為首次參選，並已核對地區、姓名與本人背景；未以「非現任」或「首選議員」推定。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "吳佩雯",
@@ -277,7 +288,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-黃萱萱-金門縣第2選舉區",
      "identity": null
     },
     {
@@ -286,8 +297,8 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
-     "identity": null
+     "slug": "c-楊育菡-無黨籍及未經政黨推薦-金門縣第02選舉區",
+     "identity": "前任議員（金門縣第2選舉區）"
     },
     {
      "name": "陳錦偉",
@@ -311,7 +322,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-洪長享-金門縣第3選舉區",
      "identity": null
     },
     {
@@ -320,7 +331,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-洪毓壕-金門縣第3選舉區",
      "identity": null
     },
     {
@@ -329,7 +340,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-洪若珊-金門縣第3選舉區",
      "identity": null
     },
     {
@@ -338,7 +349,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-洪和興-金門縣第3選舉區",
      "identity": null
     }
    ]

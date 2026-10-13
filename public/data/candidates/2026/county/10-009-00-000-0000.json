@@ -10,7 +10,7 @@
   {
    "no": 1,
    "label": "第1選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "廖昶淳",
@@ -18,7 +18,7 @@
      "partyCode": "267",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-廖昶淳-雲林縣第1選舉區",
      "identity": null
     },
     {
@@ -27,7 +27,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-黃釋瑩-雲林縣第1選舉區",
      "identity": null
     },
     {
@@ -45,7 +45,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-林靖冠-雲林縣第1選舉區",
      "identity": null
     },
     {
@@ -54,7 +54,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-廖郁賢-雲林縣第1選舉區",
      "identity": null
     },
     {
@@ -72,7 +72,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-邱世文-雲林縣第1選舉區",
      "identity": null
     },
     {
@@ -90,7 +90,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-張光儀-雲林縣第1選舉區",
      "identity": null
     },
     {
@@ -99,7 +99,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-王竣毅-雲林縣第1選舉區",
      "identity": null
     },
     {
@@ -108,7 +108,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林群力-雲林縣第1選舉區",
      "identity": null
     },
     {
@@ -126,7 +126,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-許百芳-雲林縣第1選舉區",
      "identity": null
     },
     {
@@ -135,7 +135,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-賴瑪玲-雲林縣第1選舉區",
      "identity": null
     },
     {
@@ -162,7 +162,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-楊朝祈-雲林縣第1選舉區",
      "identity": null
     },
     {
@@ -174,12 +174,13 @@
      "slug": "c-陳芳盈-無黨籍及未經政黨推薦-雲林縣第01選舉區",
      "identity": "現任議員（雲林縣第1選舉區）"
     }
-   ]
+   ],
+   "scope": "斗六市、莿桐鄉、林內鄉"
   },
   {
    "no": 2,
    "label": "第2選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "陳麗蘭",
@@ -187,7 +188,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-陳麗蘭-雲林縣第2選舉區",
      "identity": null
     },
     {
@@ -214,7 +215,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-洪惠玲-雲林縣第2選舉區",
      "identity": null
     },
     {
@@ -223,7 +224,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-高明達-雲林縣第2選舉區",
      "identity": null
     },
     {
@@ -232,7 +233,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-黃景鴻-雲林縣第2選舉區",
      "identity": null
     },
     {
@@ -250,7 +251,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林森寳-雲林縣第2選舉區",
      "identity": null
     },
     {
@@ -259,15 +260,16 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-吳延豐-雲林縣第2選舉區",
      "identity": null
     }
-   ]
+   ],
+   "scope": "斗南鎮、古坑鄉、大埤鄉"
   },
   {
    "no": 3,
    "label": "第3選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "陳乙辰",
@@ -293,7 +295,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-魏順興-雲林縣第3選舉區",
      "identity": null
     },
     {
@@ -302,7 +304,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-沈昱霆-雲林縣第3選舉區",
      "identity": null
     },
     {
@@ -329,7 +331,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李明明-雲林縣第3選舉區",
      "identity": null
     },
     {
@@ -368,12 +370,13 @@
      "slug": "c-王鈺齊-台灣團結聯盟-雲林縣第03選舉區",
      "identity": "現任議員（雲林縣第3選舉區）"
     }
-   ]
+   ],
+   "scope": "虎尾鎮、土庫鎮、褒忠鄉、元長鄉"
   },
   {
    "no": 4,
    "label": "第4選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "廖子漢",
@@ -381,7 +384,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-廖子漢-雲林縣第4選舉區",
      "identity": null
     },
     {
@@ -399,7 +402,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-鍾任明-雲林縣第4選舉區",
      "identity": null
     },
     {
@@ -408,7 +411,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-廖庭輝-雲林縣第4選舉區",
      "identity": null
     },
     {
@@ -435,7 +438,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-張家閎-雲林縣第4選舉區",
      "identity": null
     },
     {
@@ -444,7 +447,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-李泓儀-雲林縣第4選舉區",
      "identity": null
     },
     {
@@ -453,7 +456,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-王裔迪-雲林縣第4選舉區",
      "identity": null
     },
     {
@@ -471,15 +474,16 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-楊智凱-雲林縣第4選舉區",
      "identity": null
     }
-   ]
+   ],
+   "scope": "西螺鎮、二崙鄉、崙背鄉"
   },
   {
    "no": 5,
    "label": "第5選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "郭佩瑄",
@@ -487,7 +491,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-郭佩瑄-雲林縣第5選舉區",
      "identity": null
     },
     {
@@ -496,7 +500,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-林宜豊-雲林縣第5選舉區",
      "identity": null
     },
     {
@@ -505,7 +509,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-蔡永順-雲林縣第5選舉區",
      "identity": null
     },
     {
@@ -523,7 +527,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-吳宗典-雲林縣第5選舉區",
      "identity": null
     },
     {
@@ -532,7 +536,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-蘇國誼-雲林縣第5選舉區",
      "identity": null
     },
     {
@@ -541,7 +545,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-趙育祥-雲林縣第5選舉區",
      "identity": null
     },
     {
@@ -559,7 +563,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-蔡梨美-雲林縣第5選舉區",
      "identity": null
     },
     {
@@ -568,15 +572,16 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林建鴻-雲林縣第5選舉區",
      "identity": null
     }
-   ]
+   ],
+   "scope": "臺西鄉、麥寮鄉、東勢鄉、四湖鄉"
   },
   {
    "no": 6,
    "label": "第6選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "蔡孟真",
@@ -611,7 +616,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳定鈞-雲林縣第6選舉區",
      "identity": null
     },
     {
@@ -620,7 +625,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-黃美蘭-雲林縣第6選舉區",
      "identity": null
     },
     {
@@ -629,7 +634,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-王承宏-雲林縣第6選舉區",
      "identity": null
     },
     {
@@ -638,15 +643,16 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-王新堯-雲林縣第6選舉區",
      "identity": null
     }
-   ]
+   ],
+   "scope": "北港鎮、口湖鄉、水林鄉"
   },
   {
    "no": 7,
-   "label": "第7選舉區",
-   "type": "unknown",
+   "label": "第7選舉區（平地原住民）",
+   "type": "plainIndigenous",
    "candidates": [
     {
      "name": "呂佶娜",
@@ -654,7 +660,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-呂佶娜-雲林縣第7選舉區（平地原住民）",
      "identity": null
     },
     {
@@ -663,7 +669,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-周志祥Kacaw．Kaco-雲林縣第7選舉區（平地原住民）",
      "identity": null
     },
     {
@@ -672,15 +678,16 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-鄭玫惠-雲林縣第7選舉區（平地原住民）",
      "identity": null
     }
-   ]
+   ],
+   "scope": "雲林縣之平地原住民"
   },
   {
    "no": 8,
-   "label": "第8選舉區",
-   "type": "unknown",
+   "label": "第8選舉區（山地原住民）",
+   "type": "mountainIndigenous",
    "candidates": [
     {
      "name": "高瑛翠",
@@ -688,7 +695,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-高瑛翠-雲林縣第8選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -697,7 +704,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-蔡嘉峻Pisaw Hakaw-雲林縣第8選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -706,7 +713,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李丘威達-雲林縣第8選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -715,13 +722,45 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-張忠豪-雲林縣第8選舉區（山地原住民）",
      "identity": null
     }
-   ]
+   ],
+   "scope": "雲林縣之山地原住民"
   }
  ],
- "townToDistrict": null,
+ "townToDistrict": {
+  "10-009-00-010-0000": 1,
+  "10-009-00-090-0000": 1,
+  "10-009-00-100-0000": 1,
+  "10-009-00-020-0000": 2,
+  "10-009-00-070-0000": 2,
+  "10-009-00-080-0000": 2,
+  "10-009-00-030-0000": 3,
+  "10-009-00-050-0000": 3,
+  "10-009-00-150-0000": 3,
+  "10-009-00-170-0000": 3,
+  "10-009-00-040-0000": 4,
+  "10-009-00-110-0000": 4,
+  "10-009-00-120-0000": 4,
+  "10-009-00-160-0000": 5,
+  "10-009-00-130-0000": 5,
+  "10-009-00-140-0000": 5,
+  "10-009-00-180-0000": 5,
+  "10-009-00-060-0000": 6,
+  "10-009-00-190-0000": 6,
+  "10-009-00-200-0000": 6
+ },
  "splitTowns": [],
- "mappingNote": "議員選區與 2022 年劃分不同（2022 有 6 個選區、2026 名冊有 8 個，選區可能已重劃），無法標示各鄉鎮市區所屬選區。"
+ "mappingNote": null,
+ "districtSource": {
+  "url": "https://www.cec.gov.tw/central/article/63625",
+  "pdfUrl": "https://www.cec.gov.tw/api/file/45d8e965-f63a-46d5-b636-7d81e47cf4d1.pdf",
+  "publishedOn": "2026-08-20",
+  "reviewedOn": "2026-10-13",
+  "documentNo": "中選務字第1153150253號",
+  "pages": [
+   9
+  ]
+ }
 }

@@ -27,8 +27,19 @@
      "partyCode": "267",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
-     "identity": null
+     "slug": "cand-劉仲書-宜蘭縣第1選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "url": "https://udn.com/vote2026/story/124652/9550834",
+       "title": "聯合報：劉仲書投入宜蘭市選區議員選舉",
+       "publishedOn": "2026-06-07"
+      },
+      "basis": "報導明述劉仲書為首次參選的政治素人，參選宜蘭市選區縣議員。",
+      "reviewedOn": "2026-10-13"
+     }
     },
     {
      "name": "游國連",
@@ -36,7 +47,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-游國連-宜蘭縣第1選舉區",
      "identity": null
     },
     {
@@ -45,7 +56,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-黃光佑-宜蘭縣第1選舉區",
      "identity": null
     },
     {
@@ -63,7 +74,7 @@
      "partyCode": "375",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-何加忻-宜蘭縣第1選舉區",
      "identity": null
     },
     {
@@ -72,8 +83,8 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
-     "identity": null
+     "slug": "c-莊淑如-國民黨-宜蘭縣第01選舉區",
+     "identity": "前任議員（宜蘭縣第1選舉區）"
     },
     {
      "name": "黃定和",
@@ -90,7 +101,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳漢澤-宜蘭縣第1選舉區",
      "identity": null
     },
     {
@@ -117,7 +128,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-楊易林-宜蘭縣第1選舉區",
      "identity": null
     },
     {
@@ -126,7 +137,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林蒼佑-宜蘭縣第1選舉區",
      "identity": null
     },
     {
@@ -135,7 +146,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-黃奎翰-宜蘭縣第1選舉區",
      "identity": null
     },
     {
@@ -144,7 +155,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-項秀蘭-宜蘭縣第1選舉區",
      "identity": null
     }
    ]
@@ -178,7 +189,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-林瑞文-宜蘭縣第2選舉區",
      "identity": null
     }
    ]
@@ -194,7 +205,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李淑芬-宜蘭縣第3選舉區",
      "identity": null
     },
     {
@@ -212,8 +223,19 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
-     "identity": null
+     "slug": "cand-游順評-宜蘭縣第3選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "游順評從走進庄頭到正式登記 用自己的方式為家鄉做事 | 蕃新聞",
+       "url": "https://n.yam.com/Article/20260903250763",
+       "publishedOn": "2026-09-03"
+      },
+      "basis": "報導明確記載游順評在2026年選舉為首次參選；已核對選區與本人經歷，並交叉檢索歷屆候選人資料。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "吳秋玟",
@@ -221,7 +243,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-吳秋玟-宜蘭縣第3選舉區",
      "identity": null
     },
     {
@@ -230,7 +252,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-張永德-宜蘭縣第3選舉區",
      "identity": null
     }
    ]
@@ -246,7 +268,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李姿婷-宜蘭縣第4選舉區",
      "identity": null
     },
     {
@@ -264,7 +286,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-陳玉麟-宜蘭縣第4選舉區",
      "identity": null
     }
    ]
@@ -280,7 +302,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-江子言-宜蘭縣第5選舉區",
      "identity": null
     },
     {
@@ -289,7 +311,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-沈清山-宜蘭縣第5選舉區",
      "identity": null
     },
     {
@@ -341,7 +363,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-薛呈懿-宜蘭縣第6選舉區",
      "identity": null
     },
     {
@@ -359,7 +381,7 @@
      "partyCode": "15",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李中-宜蘭縣第6選舉區",
      "identity": null
     },
     {
@@ -368,7 +390,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林宜弘-宜蘭縣第6選舉區",
      "identity": null
     },
     {
@@ -386,7 +408,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-王乾明-宜蘭縣第6選舉區",
      "identity": null
     }
    ]
@@ -402,7 +424,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-黃子堯-宜蘭縣第7選舉區",
      "identity": null
     },
     {
@@ -429,7 +451,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-張明華-宜蘭縣第7選舉區",
      "identity": null
     }
    ]
@@ -472,7 +494,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-林峻輔-宜蘭縣第8選舉區",
      "identity": null
     }
    ]
@@ -488,7 +510,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-黃賢能-宜蘭縣第9選舉區",
      "identity": null
     },
     {
@@ -497,7 +519,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-游雅絢-宜蘭縣第9選舉區",
      "identity": null
     },
     {
@@ -506,7 +528,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-曾茂照-宜蘭縣第9選舉區",
      "identity": null
     },
     {
@@ -515,7 +537,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-江信賢-宜蘭縣第9選舉區",
      "identity": null
     },
     {
@@ -524,7 +546,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-郭嘉呈-宜蘭縣第9選舉區",
      "identity": null
     }
    ]
@@ -540,7 +562,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-黃士駿-宜蘭縣第10選舉區",
      "identity": null
     },
     {
@@ -549,7 +571,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李明哲-宜蘭縣第10選舉區",
      "identity": null
     },
     {
@@ -599,7 +621,7 @@
      "partyCode": "90",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-陳傑麟-宜蘭縣第12選舉區（山地原住民）",
      "identity": null
     }
    ]
@@ -615,7 +637,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-曹天民-宜蘭縣第13選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -624,7 +646,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-李勝雄-宜蘭縣第13選舉區（山地原住民）",
      "identity": null
     }
    ]

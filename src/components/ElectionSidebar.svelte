@@ -1,6 +1,7 @@
 <!-- 地圖側欄。顯示當前選取的行政區，未選取時顯示該層的彙總。
      資料深度必須看得出來：縣市長與縣市議員連得到檔案頁，鄉鎮市長以下只有中選會欄位。 -->
 <script lang="ts">
+  import FirstRunBadge from './FirstRunBadge.svelte';
   import {
     isUnassignedVillage, PARTY_VAR,
     type MapArea, type MapLayer, type PartySeat, type RaceCandidate,
@@ -116,6 +117,7 @@
       {:else}
         <span class="nm">{c.name}</span>
       {/if}
+      <FirstRunBadge evidence={c.firstRun} name={c.name} />
       <span class="cand-party">{c.partyName === '無' ? '無黨籍' : c.partyName}</span>
       {#if c.identity}<span class="cand-id">{c.identity}</span>{/if}
     </span>
@@ -191,9 +193,11 @@
         <section>
           <h3>議員候選人</h3>
           {#if candidates.county.mappingNote}<p class="note">{candidates.county.mappingNote}</p>{/if}
+          {#if candidates.county.districtSource}<p class="note"><a href={candidates.county.districtSource.pdfUrl} target="_blank" rel="noopener noreferrer">2026 正式選區公告</a>（{candidates.county.districtSource.publishedOn}）</p>{/if}
           {#each grp.regional as d (d.no)}
             <details class="district">
               <summary>{d.label}<span class="count">{d.candidates.length} 人</span></summary>
+              {#if d.scope}<p class="note">公告範圍：{d.scope}</p>{/if}
               {@render candList(d.candidates)}
             </details>
           {/each}
@@ -202,6 +206,7 @@
             {#each grp.indigenous as d (d.no)}
               <details class="district">
                 <summary>{d.label}<span class="count">{d.candidates.length} 人</span></summary>
+                {#if d.scope}<p class="note">公告範圍：{d.scope}</p>{/if}
                 {@render candList(d.candidates)}
               </details>
             {/each}

@@ -1,5 +1,5 @@
 import { normalizeNameChars } from './nameVariant';
-import { chiefTitle, type NationalCandidates, type CountyCandidates } from './candidateTypes';
+import { chiefTitle, type NationalCandidates, type CountyCandidates, type DistrictSource, type FirstRunEvidence } from './candidateTypes';
 import { countyByCode, countyPagePath } from './countyKeys';
 import { districtTowns } from './countyPage';
 
@@ -13,6 +13,7 @@ export interface ElectionCandidate {
   slug: string | null;
   countyHref: string;
   number: number | null;
+  firstRun?: FirstRunEvidence;
 }
 
 /** 保留名冊順序與未收錄個人檔案者，不依政黨或紀錄筆數排序。 */
@@ -24,6 +25,7 @@ export function electionCandidates(national: NationalCandidates, councils: Count
     const rows = (list: typeof race.candidates, office: ElectionCandidate['office'], district: string) => list.map(c => ({
       ...base, name: c.name, party: c.partyName === '無' ? '無黨籍' : c.partyName,
       office, district, slug: c.slug, number: c.number,
+      ...(c.firstRun ? { firstRun: c.firstRun } : {}),
     }));
     return [
       ...rows(race.candidates, 'chief', chiefTitle(race.countyName)),
@@ -43,13 +45,13 @@ export function filterElectionCandidates(rows: ElectionCandidate[], options: { c
 export const electionCandidateGroupKey = (row: Pick<ElectionCandidate, 'countyCode' | 'office' | 'district'>): string =>
   JSON.stringify([row.countyCode, row.office, row.district]);
 
-export interface ElectionDistrictArea { towns: string[]; note: string | null }
+export interface ElectionDistrictArea { towns: string[]; note: string | null; scope?: string; source?: DistrictSource }
 export interface ElectionFinderData {
   candidates: ElectionCandidate[];
   areas: Record<string, ElectionDistrictArea>;
 }
 
-/** 延用名冊已核對的 2022 行政區對照；未確認、跨選區、原住民選區不臆配地名。 */
+/** 正式公告優先，否則延用 2022 參照；跨選區行政區不臆配到單一選區。 */
 export function electionDistrictAreas(councils: CountyCandidates[], townNames: Map<string, string>): Record<string, ElectionDistrictArea> {
   const areas: Record<string, ElectionDistrictArea> = {};
   for (const county of councils) {
@@ -69,7 +71,9 @@ export function electionDistrictAreas(councils: CountyCandidates[], townNames: M
       if (!indigenous && county.splitTowns.length) {
         note = [note, `${splitNames.length ? splitNames.join('、') : '本縣市部分行政區'}分屬多個選區，未列入行政區對照`].filter(Boolean).join('；');
       }
-      areas[key] = { towns: names, note };
+      areas[key] = county.districtSource && district.scope
+        ? { towns: names, note: null, scope: district.scope, source: county.districtSource }
+        : { towns: names, note };
     }
   }
   return areas;

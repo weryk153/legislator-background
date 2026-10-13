@@ -36,7 +36,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-游明諺-新北市第1選舉區",
      "identity": null
     },
     {
@@ -54,7 +54,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-呂鈞鴻-新北市第1選舉區",
      "identity": null
     }
    ]
@@ -70,7 +70,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-戴翎育-新北市第2選舉區",
      "identity": null
     },
     {
@@ -79,7 +79,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-張昭隆-新北市第2選舉區",
      "identity": null
     },
     {
@@ -97,7 +97,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-鄭丞宏-新北市第2選舉區",
      "identity": null
     },
     {
@@ -115,7 +115,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-蔡佩呈-新北市第2選舉區",
      "identity": null
     },
     {
@@ -149,7 +149,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-簡麗花-新北市第3選舉區",
      "identity": null
     },
     {
@@ -185,7 +185,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-吳奕萱-新北市第3選舉區",
      "identity": null
     },
     {
@@ -194,8 +194,19 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
-     "identity": null
+     "slug": "cand-陳岱吟-新北市第3選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "「新新板土」連線完成民進黨內初選登記 林右昌陪同站台 | 時事 | 聯合影音",
+       "url": "https://video.udn.com/news/1318889",
+       "publishedOn": null
+      },
+      "basis": "2026年新莊區議員初選登記報導明確稱本人為首次參選。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "王珮宇",
@@ -203,7 +214,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-王珮宇-新北市第3選舉區",
      "identity": null
     },
     {
@@ -221,7 +232,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-甘崇緯-新北市第3選舉區",
      "identity": null
     },
     {
@@ -230,7 +241,7 @@
      "partyCode": "90",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-蕭夙玲-新北市第3選舉區",
      "identity": null
     },
     {
@@ -239,7 +250,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-陳茂嘉-新北市第3選舉區",
      "identity": null
     }
    ]
@@ -282,7 +293,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-陳彥廷-新北市第4選舉區",
      "identity": null
     },
     {
@@ -309,7 +320,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳俊維-新北市第4選舉區",
      "identity": null
     },
     {
@@ -327,7 +338,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-董俊良-新北市第4選舉區",
      "identity": null
     },
     {
@@ -354,7 +365,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳東雲-新北市第4選舉區",
      "identity": null
     },
     {
@@ -363,7 +374,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-蔡政呈-新北市第4選舉區",
      "identity": null
     },
     {
@@ -372,7 +383,7 @@
      "partyCode": "90",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-劉成謙-新北市第4選舉區",
      "identity": null
     },
     {
@@ -381,7 +392,7 @@
      "partyCode": "357",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-陳宛毓-新北市第4選舉區",
      "identity": null
     },
     {
@@ -390,7 +401,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-許宏平-新北市第4選舉區",
      "identity": null
     },
     {
@@ -399,7 +410,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-蕭告-新北市第4選舉區",
      "identity": null
     }
    ]
@@ -415,7 +426,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-李昆穎-新北市第5選舉區",
      "identity": null
     },
     {
@@ -451,7 +462,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-鄧凱勛-新北市第5選舉區",
      "identity": null
     },
     {
@@ -460,7 +471,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-陳俊諺-新北市第5選舉區",
      "identity": null
     },
     {
@@ -496,7 +507,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林子宇-新北市第5選舉區",
      "identity": null
     },
     {
@@ -505,7 +516,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-周韋翰-新北市第5選舉區",
      "identity": null
     },
     {
@@ -514,7 +525,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-黃淑珍-新北市第5選舉區",
      "identity": null
     }
    ]
@@ -539,7 +550,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-張志豪-新北市第6選舉區",
      "identity": null
     },
     {
@@ -557,7 +568,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-林達-新北市第6選舉區",
      "identity": null
     },
     {
@@ -566,7 +577,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳怡君-新北市第6選舉區",
      "identity": null
     },
     {
@@ -618,7 +629,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-羅文崇-新北市第7選舉區",
      "identity": null
     },
     {
@@ -627,7 +638,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-陳以樂-新北市第7選舉區",
      "identity": null
     },
     {
@@ -654,7 +665,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-蘇昭龍-新北市第7選舉區",
      "identity": null
     }
    ]
@@ -670,7 +681,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-高乃芸-新北市第8選舉區",
      "identity": null
     },
     {
@@ -688,7 +699,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-吳亞倫-新北市第8選舉區",
      "identity": null
     },
     {
@@ -706,8 +717,19 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
-     "identity": null
+     "slug": "cand-吳昇翰-新北市第8選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "民進黨吳昇翰過初選　土樹三鶯新人出線拚議會",
+       "url": "https://tw.news.yahoo.com/%E6%B0%91%E9%80%B2%E9%BB%A8%E5%90%B3%E6%98%87%E7%BF%B0%E9%81%8E%E5%88%9D%E9%81%B8-%E5%9C%9F%E6%A8%B9%E4%B8%89%E9%B6%AF%E6%96%B0%E4%BA%BA%E5%87%BA%E7%B7%9A%E6%8B%9A%E8%AD%B0%E6%9C%83-050930476.html",
+       "publishedOn": "2026-03-26"
+      },
+      "basis": "報導明確記載吳昇翰在2026年選舉為首次參選；已核對選區與本人經歷，並交叉檢索歷屆候選人資料。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "彭一書",
@@ -769,7 +791,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-陳膺涵-新北市第8選舉區",
      "identity": null
     }
    ]
@@ -785,7 +807,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-張柏詠-新北市第9選舉區",
      "identity": null
     },
     {
@@ -794,7 +816,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-邸聖德-新北市第9選舉區",
      "identity": null
     },
     {
@@ -803,7 +825,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-張佑輔-新北市第9選舉區",
      "identity": null
     },
     {
@@ -830,7 +852,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳韋任-新北市第9選舉區",
      "identity": null
     },
     {
@@ -839,7 +861,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-游皓麟-新北市第9選舉區",
      "identity": null
     },
     {
@@ -882,7 +904,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林正峰-新北市第10選舉區",
      "identity": null
     }
    ]
@@ -907,7 +929,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-陳語倢-新北市第11選舉區",
      "identity": null
     },
     {
@@ -916,7 +938,7 @@
      "partyCode": "15",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-陳竹音-新北市第11選舉區",
      "identity": null
     },
     {
@@ -925,7 +947,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-蔡美華-新北市第11選舉區",
      "identity": null
     },
     {
@@ -934,7 +956,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-劉財鑫-新北市第11選舉區",
      "identity": null
     },
     {
@@ -952,7 +974,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-何元楷-新北市第11選舉區",
      "identity": null
     },
     {
@@ -961,7 +983,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-黃瑞傳-新北市第11選舉區",
      "identity": null
     },
     {
@@ -970,7 +992,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-郭書成-新北市第11選舉區",
      "identity": null
     }
    ]
@@ -986,7 +1008,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-忠仁‧達祿斯-新北市第12選舉區（平地原住民）",
      "identity": null
     },
     {
@@ -995,7 +1017,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-吳國譽La‧Is‧Amid-新北市第12選舉區（平地原住民）",
      "identity": null
     },
     {
@@ -1031,7 +1053,7 @@
      "partyCode": "90",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-吳建智咖啡哥-新北市第12選舉區（平地原住民）",
      "identity": null
     },
     {
@@ -1040,7 +1062,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-連祐崧-新北市第12選舉區（平地原住民）",
      "identity": null
     }
    ]
@@ -1056,7 +1078,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-何應明-新北市第13選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -1065,7 +1087,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-布落‧馬信-新北市第13選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -1074,7 +1096,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-王珍珍-新北市第13選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -1092,7 +1114,7 @@
      "partyCode": "90",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林啟明-新北市第13選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -1101,7 +1123,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-羅美菁-新北市第13選舉區（山地原住民）",
      "identity": null
     }
    ]

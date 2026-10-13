@@ -10,7 +10,7 @@
   {
    "no": 1,
    "label": "第1選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "莊陞漢",
@@ -36,7 +36,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-謝宗樺-彰化縣第1選舉區",
      "identity": null
     },
     {
@@ -45,7 +45,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-顧勝敏-彰化縣第1選舉區",
      "identity": null
     },
     {
@@ -72,7 +72,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-林世明-彰化縣第1選舉區",
      "identity": null
     },
     {
@@ -90,7 +90,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-林世賢-彰化縣第1選舉區",
      "identity": null
     },
     {
@@ -117,7 +117,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-黃玉如-彰化縣第1選舉區",
      "identity": null
     },
     {
@@ -147,12 +147,13 @@
      "slug": "c-李成濟-民進黨-彰化縣第01選舉區",
      "identity": "現任議員（彰化縣第1選舉區）"
     }
-   ]
+   ],
+   "scope": "彰化市、花壇鄉、芬園鄉"
   },
   {
    "no": 2,
    "label": "第2選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "林英嘉",
@@ -160,7 +161,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-林英嘉-彰化縣第2選舉區",
      "identity": null
     },
     {
@@ -169,7 +170,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-蔡匡威-彰化縣第2選舉區",
      "identity": null
     },
     {
@@ -178,7 +179,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-許志宏-彰化縣第2選舉區",
      "identity": null
     },
     {
@@ -187,7 +188,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-蔣煙燈-彰化縣第2選舉區",
      "identity": null
     },
     {
@@ -223,8 +224,19 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
-     "identity": null
+     "slug": "cand-王信筌-彰化縣第2選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "url": "https://news.tvbs.com.tw/politics/4035464",
+       "title": "王惠美首場站台支持王信筌參選",
+       "publishedOn": null
+      },
+      "basis": "報導明確稱王信筌此次為首次參選，並已核對地區、姓名與本人背景；未以「非現任」或「首選議員」推定。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "郭燕陵",
@@ -235,12 +247,13 @@
      "slug": "c-郭燕陵-無黨籍及未經政黨推薦-彰化縣第02選舉區",
      "identity": "現任議員（彰化縣第2選舉區）"
     }
-   ]
+   ],
+   "scope": "鹿港鎮、福興鄉、秀水鄉"
   },
   {
    "no": 3,
    "label": "第3選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "蕭文雄",
@@ -257,7 +270,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-王國忠-彰化縣第3選舉區",
      "identity": null
     },
     {
@@ -275,7 +288,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-曾煥燁-彰化縣第3選舉區",
      "identity": null
     },
     {
@@ -302,7 +315,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-鍾雅茹-彰化縣第3選舉區",
      "identity": null
     },
     {
@@ -311,7 +324,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-林明鴻-彰化縣第3選舉區",
      "identity": null
     },
     {
@@ -320,7 +333,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-蘇智弦-彰化縣第3選舉區",
      "identity": null
     },
     {
@@ -332,12 +345,13 @@
      "slug": "c-柯振杯-國民黨-彰化縣第03選舉區",
      "identity": "現任議員（彰化縣第3選舉區）"
     }
-   ]
+   ],
+   "scope": "和美鎮、伸港鄉、線西鄉"
   },
   {
    "no": 4,
    "label": "第4選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "賴澤民",
@@ -345,7 +359,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-賴澤民-彰化縣第4選舉區",
      "identity": null
     },
     {
@@ -363,7 +377,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-詹雅婷-彰化縣第4選舉區",
      "identity": null
     },
     {
@@ -372,8 +386,19 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
-     "identity": null
+     "slug": "cand-張愉婕-彰化縣第4選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "url": "https://www.mirrormedia.mg/story/amp/20260903edi057",
+       "title": "彰化張愉婕接棒父親首次參選議員",
+       "publishedOn": "2026-09-03"
+      },
+      "basis": "報導明確稱張愉婕此次為首次參選，並已核對地區、姓名與本人背景；未以「非現任」或「首選議員」推定。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "張詠勝",
@@ -381,7 +406,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-張詠勝-彰化縣第4選舉區",
      "identity": null
     },
     {
@@ -399,7 +424,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳秋蓉-彰化縣第4選舉區",
      "identity": null
     },
     {
@@ -417,7 +442,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-游筑凱-彰化縣第4選舉區",
      "identity": null
     },
     {
@@ -426,7 +451,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-張詩怡-彰化縣第4選舉區",
      "identity": null
     },
     {
@@ -444,7 +469,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林俊毅-彰化縣第4選舉區",
      "identity": null
     },
     {
@@ -456,12 +481,13 @@
      "slug": "c-曹嘉豪-國民黨-彰化縣第04選舉區",
      "identity": "現任議員（彰化縣第4選舉區）"
     }
-   ]
+   ],
+   "scope": "員林市、大村鄉、永靖鄉"
   },
   {
    "no": 5,
    "label": "第5選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "楊仁彬",
@@ -469,7 +495,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-楊仁彬-彰化縣第5選舉區",
      "identity": null
     },
     {
@@ -505,7 +531,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-黃佳惠-彰化縣第5選舉區",
      "identity": null
     },
     {
@@ -514,15 +540,16 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-許文萍-彰化縣第5選舉區",
      "identity": null
     }
-   ]
+   ],
+   "scope": "溪湖鎮、埔鹽鄉、埔心鄉"
   },
   {
    "no": 6,
    "label": "第6選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "許書維",
@@ -548,7 +575,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-彭世和-彰化縣第6選舉區",
      "identity": null
     },
     {
@@ -557,7 +584,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-蕭岳倫-彰化縣第6選舉區",
      "identity": null
     },
     {
@@ -578,12 +605,13 @@
      "slug": "c-鄭俊雄-國民黨-彰化縣第06選舉區",
      "identity": "現任議員（彰化縣第6選舉區）"
     }
-   ]
+   ],
+   "scope": "田中鎮、社頭鄉、二水鄉"
   },
   {
    "no": 7,
    "label": "第7選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "陳世凱",
@@ -591,7 +619,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-陳世凱-彰化縣第7選舉區",
      "identity": null
     },
     {
@@ -600,7 +628,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-江熊一楓-彰化縣第7選舉區",
      "identity": null
     },
     {
@@ -609,7 +637,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-鄭朝元-彰化縣第7選舉區",
      "identity": null
     },
     {
@@ -618,7 +646,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-杜懿彩-彰化縣第7選舉區",
      "identity": null
     },
     {
@@ -657,12 +685,13 @@
      "slug": "c-謝典林-國民黨-彰化縣第07選舉區",
      "identity": "現任議員（彰化縣第7選舉區）"
     }
-   ]
+   ],
+   "scope": "北斗鎮、田尾鄉、埤頭鄉、溪州鄉"
   },
   {
    "no": 8,
    "label": "第8選舉區",
-   "type": "unknown",
+   "type": "regional",
    "candidates": [
     {
      "name": "謝淑如",
@@ -670,7 +699,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-謝淑如-彰化縣第8選舉區",
      "identity": null
     },
     {
@@ -697,7 +726,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-洪雅婷-彰化縣第8選舉區",
      "identity": null
     },
     {
@@ -715,7 +744,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-曾温泉-彰化縣第8選舉區",
      "identity": null
     },
     {
@@ -733,7 +762,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-洪健興-彰化縣第8選舉區",
      "identity": null
     },
     {
@@ -742,15 +771,16 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-黄淑儀-彰化縣第8選舉區",
      "identity": null
     }
-   ]
+   ],
+   "scope": "二林鎮、大城鄉、芳苑鄉、竹塘鄉"
   },
   {
    "no": 9,
-   "label": "第9選舉區",
-   "type": "unknown",
+   "label": "第9選舉區（平地原住民）",
+   "type": "plainIndigenous",
    "candidates": [
     {
      "name": "陳榮妹",
@@ -767,15 +797,16 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-陳明義-彰化縣第9選舉區（平地原住民）",
      "identity": null
     }
-   ]
+   ],
+   "scope": "彰化縣之平地原住民"
   },
   {
    "no": 10,
-   "label": "第10選舉區",
-   "type": "unknown",
+   "label": "第10選舉區（山地原住民）",
+   "type": "mountainIndigenous",
    "candidates": [
     {
      "name": "金凱傑Ilia．Nangavulan",
@@ -783,7 +814,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-金凱傑Ilia．Nangavulan-彰化縣第10選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -792,7 +823,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-高世鴻-彰化縣第10選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -801,7 +832,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-吳秋祿-彰化縣第10選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -810,7 +841,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-王昌智Mac Lunai-彰化縣第10選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -819,7 +850,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-張瑋婷-彰化縣第10選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -828,7 +859,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-謝秀美-彰化縣第10選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -837,7 +868,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-肯當．迪洛安-彰化縣第10選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -846,13 +877,51 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-高采翎-彰化縣第10選舉區（山地原住民）",
      "identity": null
     }
-   ]
+   ],
+   "scope": "彰化縣之山地原住民"
   }
  ],
- "townToDistrict": null,
+ "townToDistrict": {
+  "10-007-00-010-0000": 1,
+  "10-007-00-080-0000": 1,
+  "10-007-00-090-0000": 1,
+  "10-007-00-020-0000": 2,
+  "10-007-00-060-0000": 2,
+  "10-007-00-070-0000": 2,
+  "10-007-00-030-0000": 3,
+  "10-007-00-050-0000": 3,
+  "10-007-00-040-0000": 3,
+  "10-007-00-100-0000": 4,
+  "10-007-00-130-0000": 4,
+  "10-007-00-160-0000": 4,
+  "10-007-00-110-0000": 5,
+  "10-007-00-140-0000": 5,
+  "10-007-00-150-0000": 5,
+  "10-007-00-120-0000": 6,
+  "10-007-00-170-0000": 6,
+  "10-007-00-180-0000": 6,
+  "10-007-00-190-0000": 7,
+  "10-007-00-210-0000": 7,
+  "10-007-00-220-0000": 7,
+  "10-007-00-260-0000": 7,
+  "10-007-00-200-0000": 8,
+  "10-007-00-240-0000": 8,
+  "10-007-00-230-0000": 8,
+  "10-007-00-250-0000": 8
+ },
  "splitTowns": [],
- "mappingNote": "議員選區與 2022 年劃分不同（2022 有 9 個選區、2026 名冊有 10 個，選區可能已重劃），無法標示各鄉鎮市區所屬選區。"
+ "mappingNote": null,
+ "districtSource": {
+  "url": "https://www.cec.gov.tw/central/article/63625",
+  "pdfUrl": "https://www.cec.gov.tw/api/file/45d8e965-f63a-46d5-b636-7d81e47cf4d1.pdf",
+  "publishedOn": "2026-08-20",
+  "reviewedOn": "2026-10-13",
+  "documentNo": "中選務字第1153150253號",
+  "pages": [
+   8
+  ]
+ }
 }

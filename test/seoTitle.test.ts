@@ -41,3 +41,8 @@ describe('officialPageTitle', () => {
     expect(t.indexOf('政治獻金')).toBeLessThan(30);
   });
 });
+
+it('議員參選人的職稱不會變成縣市長', () => {
+  expect(officeRole('candidate', '連江縣第1選舉區')).toBe('2026 連江縣議員參選人');
+  expect(officialPageTitle({ name: '測試', party: '無黨籍', officeType: 'candidate', district: '臺北市第01選舉區' })).toContain('2026 臺北市議員參選人');
+});

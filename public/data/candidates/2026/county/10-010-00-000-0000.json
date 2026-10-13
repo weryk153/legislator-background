@@ -45,7 +45,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-戴光宗-嘉義縣第1選舉區",
      "identity": null
     },
     {
@@ -106,7 +106,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-廖昱婧-嘉義縣第2選舉區",
      "identity": null
     },
     {
@@ -124,7 +124,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-許韶珍-嘉義縣第2選舉區",
      "identity": null
     },
     {
@@ -133,7 +133,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-何秀英-嘉義縣第2選舉區",
      "identity": null
     },
     {
@@ -142,7 +142,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳慶桐-嘉義縣第2選舉區",
      "identity": null
     },
     {
@@ -187,7 +187,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-何文華-嘉義縣第2選舉區",
      "identity": null
     },
     {
@@ -196,7 +196,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-劉明宗-嘉義縣第2選舉區",
      "identity": null
     },
     {
@@ -205,7 +205,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-陳育勝-嘉義縣第2選舉區",
      "identity": null
     },
     {
@@ -214,7 +214,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-魏彰儀-嘉義縣第2選舉區",
      "identity": null
     },
     {
@@ -239,7 +239,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-孫維聰-嘉義縣第3選舉區",
      "identity": null
     },
     {
@@ -257,7 +257,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-江明赫-嘉義縣第3選舉區",
      "identity": null
     },
     {
@@ -275,7 +275,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳靖雅-嘉義縣第3選舉區",
      "identity": null
     },
     {
@@ -293,7 +293,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-簡志偉-嘉義縣第3選舉區",
      "identity": null
     }
    ]
@@ -309,8 +309,19 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
-     "identity": null
+     "slug": "cand-黃鈺惠-嘉義縣第4選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "url": "https://udn.com/news/story/124652/9597395",
+       "title": "民進黨嘉義縣議員提名22參選人 老將新人齊上陣角逐6選區",
+       "publishedOn": "2026-06-30"
+      },
+      "basis": "報導明確記載嘉義縣蔡易餘服務處助理黃鈺惠首次參選；與歷年雲林縣同名議員的地區、經歷不同。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "萬家甫",
@@ -318,7 +329,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-萬家甫-嘉義縣第4選舉區",
      "identity": null
     },
     {
@@ -327,7 +338,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李佳豪-嘉義縣第4選舉區",
      "identity": null
     },
     {
@@ -345,8 +356,19 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
-     "identity": null
+     "slug": "cand-姜鈞翔-嘉義縣第4選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "url": "https://www.kingtop.com.tw/detail.php?id=53405&keyword=2026&type=search",
+       "title": "姜梅紅議員陪同姜鈞翔完成參選登記 期盼延續服務為地方承擔 - 台灣華報",
+       "publishedOn": null
+      },
+      "basis": "報導明確稱姜鈞翔此次為首次參選，並已核對地區、姓名與本人背景；未以「非現任」或「首選議員」推定。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "呂文正",
@@ -354,7 +376,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-呂文正-嘉義縣第4選舉區",
      "identity": null
     },
     {
@@ -363,8 +385,19 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
-     "identity": null
+     "slug": "cand-潘麗惠-嘉義縣第4選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "多人交棒 嘉縣第四選區大換血",
+       "url": "https://tw.news.yahoo.com/%E5%A4%9A%E4%BA%BA%E4%BA%A4%E6%A3%92-%E5%98%89%E7%B8%A3%E7%AC%AC%E5%9B%9B%E9%81%B8%E5%8D%80%E5%A4%A7%E6%8F%9B%E8%A1%80-201000310.html",
+       "publishedOn": null
+      },
+      "basis": "報導明確記載中醫師潘麗惠接棒配偶蔡奇璋參選2026年嘉義縣第四選區議員，為初次參選。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "蔡政宜",
@@ -397,7 +430,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳鳳梅-嘉義縣第5選舉區",
      "identity": null
     },
     {
@@ -431,7 +464,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-曾亮哲-嘉義縣第6選舉區",
      "identity": null
     },
     {
@@ -467,7 +500,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-何博倫-嘉義縣第6選舉區",
      "identity": null
     },
     {
@@ -494,7 +527,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-詹志暉-嘉義縣第6選舉區",
      "identity": null
     },
     {
@@ -512,7 +545,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-張倖鈺-嘉義縣第6選舉區",
      "identity": null
     }
    ]

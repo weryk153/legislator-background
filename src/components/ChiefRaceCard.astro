@@ -3,6 +3,7 @@
 //
 // 中立原則：每位候選人同字級、同版型、同大小；排序依名冊（有號次時依號次），不依政黨或筆數。
 // 「爭取連任」是中性小標籤，筆數一律同色同字級，只列數字，判決／爭議內容請見個人頁。
+import FirstRunBadge from './FirstRunBadge.svelte';
 import type { ChiefRace } from "../lib/candidateTypes";
 import { chiefTitle } from "../lib/candidateTypes";
 import { isChiefReelect, orderCandidates, partyColorVar, partyLabel, recordCounts } from "../lib/candidateStats";
@@ -56,6 +57,7 @@ const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
               {c.slug
                 ? <a href={`/officials/${c.slug}/`} class="sq" style={squashStyle(c.name, 0.78)}>{c.name}</a>
                 : <span class="sq" style={squashStyle(c.name, 0.78)}>{c.name}</span>}
+              <FirstRunBadge evidence={c.firstRun} name={c.name} />
               {isChiefReelect(c, r) && <span class="mc-tag">爭取連任</span>}
             </p>
             <p class="mc-party"><span class="dot" style={`background: var(${partyColorVar(c)});`} aria-hidden="true"></span>{partyLabel(c)}</p>

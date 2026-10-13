@@ -146,3 +146,18 @@ describe('linkCandidate：確認檔以完整姓名比對', () => {
     expect(r).toMatchObject({ kind: 'confirmed', slug: 'A' });
   });
 });
+
+describe('議員參選專用檔案', () => {
+  const candidate = off({ officeType: 'candidate', isIncumbent: false });
+  it('同名唯一且完整選區吻合才連結，補零差異可接受', () => {
+    expect(linkCandidate(candidate.name, council('臺北市第1選舉區'), [candidate], []).kind).toBe('auto');
+    expect(linkCandidate(candidate.name, council('臺北市第2選舉區'), [candidate], []).kind).toBe('review');
+  });
+  it('不能跨職務，縣市首長檔案不能當作議員檔案', () => {
+    expect(linkCandidate(candidate.name, chief('臺北市'), [candidate], []).kind).toBe('review');
+    expect(linkCandidate(candidate.name, council('臺北市第1選舉區'), [{ ...candidate, district: '臺北市' }], []).kind).toBe('review');
+  });
+  it('仍保留同名安全限制', () => {
+    expect(linkCandidate(candidate.name, council('臺北市第1選舉區'), [candidate, { ...candidate, slug: 'other' }], []).kind).toBe('review');
+  });
+});

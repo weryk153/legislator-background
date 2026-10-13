@@ -1,6 +1,6 @@
 // scraper/lib/candidateLinks.ts
 // 候選人 ↔ 站上既有檔案。寧缺勿錯：連錯會把別人的判決、獻金掛到候選人名下，
-// 所以只有「同名唯一＋現任＋地理與職務都吻合」才自動連結，其餘一律進審核清單，
+// 所以只有「同名唯一＋現任（或專門因參選建檔）＋地理與職務都吻合」才自動連結，其餘進審核清單，
 // 人工確認後寫入 scraper/candidates-links-confirmed.json。
 import { normalizeNameChars } from '../../src/lib/nameVariant';
 import { chiefTitle } from '../../src/lib/candidateTypes';
@@ -88,6 +88,11 @@ export function linkCandidate(
       : review(`同名者在 ${c}，候選人登記於 ${race.county}`);
   }
 
+  if (o.officeType === 'candidate') {
+    return normalizeDistrict(o.district) === raceKey
+      ? { kind: 'auto', slug: o.slug, reason: '因議員參選建檔，登記選區相同' }
+      : review(`因參選建檔於 ${o.district}，但登記於 ${race.district}`);
+  }
   if (!o.isIncumbent) return review('同名者已離任');
   if (o.officeType !== 'councilor') return review(`同名者為 ${o.officeType}，非議員`);
   return normalizeDistrict(o.district) === raceKey

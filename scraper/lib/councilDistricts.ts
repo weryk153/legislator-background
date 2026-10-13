@@ -1,15 +1,62 @@
-// 2022 議員選區參照：哪些鄉鎮市區屬於哪個選區、選區是區域還是原住民。
-//
-// 2026 名冊只寫「新北市第12選舉區」，不標類型也不列涵蓋範圍，只能拿 2022 的劃分
-// 來補——但選區會重劃，故另有 reconcileCounty：2026 名冊的選區編號集合與 2022
-// 完全相同才算確認，否則整個縣市標為未確認，前端不做鄉鎮市區 → 選區的對應。
+// 2022 參照先以名冊編號檢查可否沿用；編號相同不代表已核對 2026 正式範圍。
+// 已人工核對的正式公告由 applyVerifiedDistricts 覆蓋，來源與範圍一併帶到前端。
 import { splitCsvFields } from './cecVoteData';
 import { normalizeAreaName } from './areaMatch';
-import type { DistrictType } from '../../src/lib/candidateTypes';
+import type { DistrictType, DistrictSource } from '../../src/lib/candidateTypes';
 
 type KnownType = Exclude<DistrictType, 'unknown'>;
-export interface DistrictRef { no: number; type: KnownType; townCodes: string[] }
-export interface CountyDistrictRef { countyName: string; districts: Map<number, DistrictRef>; splitTownCodes: Set<string> }
+export interface DistrictRef { no: number; type: KnownType; townCodes: string[]; scope?: string }
+export interface CountyDistrictRef { countyName: string; districts: Map<number, DistrictRef>; splitTownCodes: Set<string>; source?: DistrictSource }
+
+export interface VerifiedDistricts {
+  source: Omit<DistrictSource, 'pages'>;
+  counties: { countyName: string; pages: number[]; districts: {
+    no: number; type: string; scope: string; townNames: string[]; partialTownNames?: string[];
+  }[] }[];
+}
+
+/** 正式公告覆蓋舊參照。地名須精確命中本縣市，部分行政區一律不做整區對應。 */
+export function applyVerifiedDistricts(
+  refs: Map<string, CountyDistrictRef>, data: VerifiedDistricts,
+  townsByCounty: Map<string, { code: string; name: string }[]>,
+): Map<string, CountyDistrictRef> {
+  const result = new Map(refs);
+  const seen = new Set<string>();
+  for (const county of data.counties) {
+    if (seen.has(county.countyName)) throw new Error(`公告縣市重複：${county.countyName}`);
+    seen.add(county.countyName);
+    const towns = townsByCounty.get(county.countyName);
+    if (!towns) throw new Error(`公告縣市查無地圖：${county.countyName}`);
+    const codeOf = (name: string) => {
+      const matches = towns.filter(t => normalizeAreaName(t.name) === normalizeAreaName(name));
+      if (matches.length !== 1) throw new Error(`公告地名無法唯一對應：${county.countyName}/${name}`);
+      return matches[0].code;
+    };
+    const districts = new Map<number, DistrictRef>();
+    const splitTownCodes = new Set<string>();
+    const regional = new Map<string, number>();
+    for (const d of county.districts) {
+      if (!Number.isInteger(d.no) || d.no < 1 || districts.has(d.no) || !d.scope.trim()
+        || !['regional', 'plainIndigenous', 'mountainIndigenous'].includes(d.type)) {
+        throw new Error(`公告選區格式錯誤：${county.countyName}/${d.no}`);
+      }
+      for (const name of d.partialTownNames ?? []) {
+        if (!d.townNames.includes(name)) throw new Error(`部分行政區未列於範圍：${name}`);
+        splitTownCodes.add(codeOf(name));
+      }
+      const townCodes = d.townNames.map(codeOf);
+      if (d.type === 'regional') for (const code of townCodes) {
+        if (regional.has(code)) splitTownCodes.add(code);
+        regional.set(code, d.no);
+      }
+      districts.set(d.no, { no: d.no, type: d.type as KnownType, townCodes, scope: d.scope });
+    }
+    if (!districts.size) throw new Error(`公告選區不得為空：${county.countyName}`);
+    result.set(county.countyName, { countyName: county.countyName, districts, splitTownCodes,
+      source: { ...data.source, pages: county.pages } });
+  }
+  return result;
+}
 
 /**
  * elbase 五段代碼：縣市(2)、縣市內碼(3)、選區(2)、鄉鎮市區(3)、村里(4)。
@@ -64,6 +111,6 @@ export function reconcileCounty(
   if (a.length === b.length && a.every((n, i) => n === b[i])) return { confirmed: true, reason: null };
   return {
     confirmed: false,
-    reason: `2022 有 ${a.length} 個選區、2026 名冊有 ${b.length} 個，選區可能已重劃`,
+    reason: `${ref.source ? '2026 公告' : '2022'}有 ${a.length} 個選區、2026 名冊有 ${b.length} 個，選區編號不一致，須重新核對（可能已重劃）`,
   };
 }

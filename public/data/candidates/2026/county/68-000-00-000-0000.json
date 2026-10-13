@@ -27,7 +27,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-朱永煇-桃園市第1選舉區",
      "identity": null
     },
     {
@@ -45,7 +45,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-徐千晴-桃園市第1選舉區",
      "identity": null
     },
     {
@@ -72,7 +72,7 @@
      "partyCode": "15",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-許孟祥-桃園市第1選舉區",
      "identity": null
     },
     {
@@ -81,7 +81,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-蕭湘瀚-桃園市第1選舉區",
      "identity": null
     },
     {
@@ -126,7 +126,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李凱倫-桃園市第1選舉區",
      "identity": null
     },
     {
@@ -153,7 +153,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李柏瑟-桃園市第1選舉區",
      "identity": null
     },
     {
@@ -171,7 +171,7 @@
      "partyCode": "357",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-沈佩玲-桃園市第1選舉區",
      "identity": null
     },
     {
@@ -180,7 +180,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-佀廣洋-桃園市第1選舉區",
      "identity": null
     },
     {
@@ -189,7 +189,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-王妃天崩開局穿越整頓霸凌者佀廣洋-桃園市第1選舉區",
      "identity": null
     }
    ]
@@ -205,7 +205,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-呂學記-桃園市第2選舉區",
      "identity": null
     },
     {
@@ -223,7 +223,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-周曉芸-桃園市第2選舉區",
      "identity": null
     },
     {
@@ -241,7 +241,7 @@
      "partyCode": "90",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳泓維-桃園市第2選舉區",
      "identity": null
     },
     {
@@ -250,7 +250,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-林明義-桃園市第2選舉區",
      "identity": null
     },
     {
@@ -259,7 +259,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-江冠妤-桃園市第2選舉區",
      "identity": null
     },
     {
@@ -268,7 +268,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-高華駿-桃園市第2選舉區",
      "identity": null
     },
     {
@@ -293,7 +293,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-段林淑婷-桃園市第3選舉區",
      "identity": null
     },
     {
@@ -302,8 +302,19 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
-     "identity": null
+     "slug": "cand-林晏良-桃園市第3選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "民眾黨參選人「競選看板遮行人號誌」　林晏良急道歉：已移除 | 政治 - 太報 TaiSounds",
+       "url": "https://www.taisounds.com/news/content/70/236723",
+       "publishedOn": null
+      },
+      "basis": "本人於2026年參選報導中明言這是第一次參選。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "許家睿",
@@ -320,7 +331,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-劉茂羣-桃園市第3選舉區",
      "identity": null
     },
     {
@@ -329,7 +340,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-蔡永芳-桃園市第3選舉區",
      "identity": null
     },
     {
@@ -381,7 +392,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-胡家智-桃園市第4選舉區",
      "identity": null
     },
     {
@@ -408,7 +419,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-郭麗華-桃園市第4選舉區",
      "identity": null
     },
     {
@@ -451,7 +462,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-吳文凱-桃園市第5選舉區",
      "identity": null
     }
    ]
@@ -476,7 +487,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-劉儲禎-桃園市第6選舉區",
      "identity": null
     },
     {
@@ -485,7 +496,7 @@
      "partyCode": "90",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-徐慈檉-桃園市第6選舉區",
      "identity": null
     },
     {
@@ -503,7 +514,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-江國輝-桃園市第6選舉區",
      "identity": null
     }
    ]
@@ -528,8 +539,19 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
-     "identity": null
+     "slug": "cand-彭康傑-桃園市第7選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "藍中壢議員初選5搶4 27歲彭康傑獲劉和然力挺市場拜票 | 縣市長議員選戰 | 要聞 | 聯合新聞網",
+       "url": "https://udn.com/news/story/124652/9465031?from=udn_ch2_menu_v2_main_index",
+       "publishedOn": "2026-04-26"
+      },
+      "basis": "報導明確記載彭康傑在2026年選舉為首次參選；已核對選區與本人經歷，並交叉檢索歷屆候選人資料。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "葉明月",
@@ -546,7 +568,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-毛嘉慶-桃園市第7選舉區",
      "identity": null
     },
     {
@@ -582,7 +604,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-張兆恩-桃園市第7選舉區",
      "identity": null
     },
     {
@@ -591,7 +613,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-劉安祺-桃園市第7選舉區",
      "identity": null
     },
     {
@@ -600,7 +622,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-吳睿霖-桃園市第7選舉區",
      "identity": null
     },
     {
@@ -627,7 +649,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-張仲方-桃園市第7選舉區",
      "identity": null
     },
     {
@@ -645,7 +667,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-李欣-桃園市第7選舉區",
      "identity": null
     },
     {
@@ -663,7 +685,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-徐盛揚-桃園市第7選舉區",
      "identity": null
     }
    ]
@@ -679,7 +701,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-高宇彥-桃園市第8選舉區",
      "identity": null
     },
     {
@@ -733,7 +755,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-白丞堯-桃園市第8選舉區",
      "identity": null
     },
     {
@@ -742,7 +764,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-吳正吉-桃園市第8選舉區",
      "identity": null
     },
     {
@@ -751,7 +773,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-彭柏霖-桃園市第8選舉區",
      "identity": null
     },
     {
@@ -760,7 +782,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-羅文欽-桃園市第8選舉區",
      "identity": null
     }
    ]
@@ -776,7 +798,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-劉定唐-桃園市第9選舉區",
      "identity": null
     },
     {
@@ -785,7 +807,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-項柏翰-桃園市第9選舉區",
      "identity": null
     },
     {
@@ -812,7 +834,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-黃盈淇-桃園市第9選舉區",
      "identity": null
     },
     {
@@ -830,7 +852,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-古振豐-桃園市第9選舉區",
      "identity": null
     }
    ]
@@ -855,7 +877,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-吳平娥-桃園市第10選舉區",
      "identity": null
     },
     {
@@ -864,7 +886,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-張贊聞-桃園市第10選舉區",
      "identity": null
     },
     {
@@ -882,7 +904,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林昭賢-桃園市第10選舉區",
      "identity": null
     }
    ]
@@ -907,7 +929,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-邱文威-桃園市第11選舉區",
      "identity": null
     }
    ]
@@ -923,7 +945,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-張佩芸-桃園市第12選舉區",
      "identity": null
     },
     {
@@ -984,7 +1006,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳卉蓁-桃園市第13選舉區（平地原住民）",
      "identity": null
     },
     {
@@ -1002,7 +1024,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-李鴻志-桃園市第13選舉區（平地原住民）",
      "identity": null
     }
    ]
@@ -1027,7 +1049,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-謝卓儒-桃園市第14選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -1036,7 +1058,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-林秋霖-桃園市第14選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -1045,7 +1067,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-邱伯倫-桃園市第14選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -1054,7 +1076,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-張倉豪-桃園市第14選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -1081,7 +1103,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-曾庭筠-桃園市第14選舉區（山地原住民）",
      "identity": null
     }
    ]

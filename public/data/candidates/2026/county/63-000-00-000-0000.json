@@ -18,7 +18,7 @@
      "partyCode": "267",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-謝閔弘-臺北市第1選舉區",
      "identity": null
     },
     {
@@ -27,7 +27,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-李文-臺北市第1選舉區",
      "identity": null
     },
     {
@@ -36,7 +36,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳彥廷-臺北市第1選舉區",
      "identity": null
     },
     {
@@ -54,7 +54,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-紀建漢-臺北市第1選舉區",
      "identity": null
     },
     {
@@ -90,7 +90,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-林揚庭-臺北市第1選舉區",
      "identity": null
     },
     {
@@ -117,7 +117,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-陳怡潔-臺北市第1選舉區",
      "identity": null
     },
     {
@@ -144,8 +144,19 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
-     "identity": null
+     "slug": "cand-賴苡任-臺北市第1選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "url": "https://news.nextapple.com/politics/20260401/AEA4DE7B87150E5B70B5EBA809116B16",
+       "title": "突遭停權！賴苡任揭「一命換一命」內幕 火大點1人嫌疑",
+       "publishedOn": "2026-04-01"
+      },
+      "basis": "報導討論其2026年議員初選資格，明確記載為首次參選；已交叉檢索歷屆候選人資料。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "汪志冰",
@@ -162,7 +173,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-劉致妤-臺北市第1選舉區",
      "identity": null
     },
     {
@@ -189,7 +200,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-林聖峰-臺北市第1選舉區",
      "identity": null
     }
    ]
@@ -205,7 +216,7 @@
      "partyCode": "303",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-吳欣岱-臺北市第2選舉區",
      "identity": null
     },
     {
@@ -223,7 +234,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-陳冠安-臺北市第2選舉區",
      "identity": null
     },
     {
@@ -232,7 +243,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-高嘉瑜-臺北市第2選舉區",
      "identity": null
     },
     {
@@ -277,7 +288,7 @@
      "partyCode": "74",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-何恕懷-臺北市第2選舉區",
      "identity": null
     },
     {
@@ -295,7 +306,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-陳又新-臺北市第2選舉區",
      "identity": null
     },
     {
@@ -313,7 +324,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-黃啟彬-臺北市第2選舉區",
      "identity": null
     }
    ]
@@ -329,7 +340,7 @@
      "partyCode": "303",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-鄧樂強-臺北市第3選舉區",
      "identity": null
     },
     {
@@ -356,7 +367,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-郭凡-臺北市第3選舉區",
      "identity": null
     },
     {
@@ -365,7 +376,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李明璇-臺北市第3選舉區",
      "identity": null
     },
     {
@@ -401,8 +412,19 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
-     "identity": null
+     "slug": "cand-許甫-臺北市第3選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "url": "https://udn.com/news/amp/story/124652/9283631",
+       "title": "聯合報：許甫、吳怡萱談參選與地方服務",
+       "publishedOn": "2026-01-23"
+      },
+      "basis": "報導引述許甫表示自己第一次參選，並確認其參選臺北松山信義議員的身分。",
+      "reviewedOn": "2026-10-13"
+     }
     },
     {
      "name": "左曉明",
@@ -410,7 +432,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-左曉明-臺北市第3選舉區",
      "identity": null
     },
     {
@@ -428,7 +450,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-林柏勛-臺北市第3選舉區",
      "identity": null
     },
     {
@@ -437,7 +459,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-許原榮-臺北市第3選舉區",
      "identity": null
     }
    ]
@@ -453,7 +475,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-朱政騏-臺北市第4選舉區",
      "identity": null
     },
     {
@@ -471,7 +493,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-賴俊翰-臺北市第4選舉區",
      "identity": null
     },
     {
@@ -480,7 +502,7 @@
      "partyCode": "15",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-熊羿-臺北市第4選舉區",
      "identity": null
     },
     {
@@ -489,7 +511,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李易儒-臺北市第4選舉區",
      "identity": null
     },
     {
@@ -507,7 +529,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-林子揚-臺北市第4選舉區",
      "identity": null
     },
     {
@@ -543,7 +565,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-黃麗香-臺北市第4選舉區",
      "identity": null
     },
     {
@@ -570,7 +592,7 @@
      "partyCode": "357",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-李惠暄-臺北市第4選舉區",
      "identity": null
     }
    ]
@@ -586,7 +608,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-張銘祐-臺北市第5選舉區",
      "identity": null
     },
     {
@@ -613,8 +635,19 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
-     "identity": null
+     "slug": "cand-陳力新-臺北市第5選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "url": "https://www.lishin.taipei/",
+       "title": "陳力新｜城市需要新力量 — 2026台北市議員參選人",
+       "publishedOn": null
+      },
+      "basis": "本人參選網站自述第一次參政，並以從未參選的素人身分回答選民問題；已核對中正萬華選區及本人背景。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "王振庭",
@@ -622,7 +655,7 @@
      "partyCode": null,
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-王振庭-臺北市第5選舉區",
      "identity": null
     },
     {
@@ -640,7 +673,7 @@
      "partyCode": "350",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-吳怡萱-臺北市第5選舉區",
      "identity": null
     },
     {
@@ -649,7 +682,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-應佳妤-臺北市第5選舉區",
      "identity": null
     },
     {
@@ -667,7 +700,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-張延廷-臺北市第5選舉區",
      "identity": null
     },
     {
@@ -685,7 +718,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-馬郁雯-臺北市第5選舉區",
      "identity": null
     },
     {
@@ -703,7 +736,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-譚傳紹-臺北市第5選舉區",
      "identity": null
     }
    ]
@@ -719,7 +752,7 @@
      "partyCode": "338",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-李道翔-臺北市第6選舉區",
      "identity": null
     },
     {
@@ -728,7 +761,7 @@
      "partyCode": "267",
      "number": null,
      "registeredOn": "2026-08-31",
-     "slug": null,
+     "slug": "cand-陳峙穎-臺北市第6選舉區",
      "identity": null
     },
     {
@@ -737,7 +770,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-01",
-     "slug": null,
+     "slug": "cand-李奇峯-臺北市第6選舉區",
      "identity": null
     },
     {
@@ -764,7 +797,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-陳聖文-臺北市第6選舉區",
      "identity": null
     },
     {
@@ -773,7 +806,7 @@
      "partyCode": "74",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-游智彬-臺北市第6選舉區",
      "identity": null
     },
     {
@@ -818,8 +851,8 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
-     "identity": null
+     "slug": "c-李柏毅-國民黨-臺北市第06選舉區",
+     "identity": "現任議員（臺北市第6選舉區）"
     },
     {
      "name": "鍾沛君",
@@ -836,8 +869,19 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
-     "identity": null
+     "slug": "cand-劉品妡-臺北市第6選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "url": "https://www.bo6s.com.tw/news_detail.php?NewsID=104737",
+       "title": "大安文山新氣象：政治新秀劉品妡勤走市場",
+       "publishedOn": "2025-11-12"
+      },
+      "basis": "報導明確稱劉品妡此次為首次參選，並已核對地區、姓名與本人背景；未以「非現任」或「首選議員」推定。",
+      "reviewedOn": "2026-10-14"
+     }
     },
     {
      "name": "張志豪",
@@ -881,7 +925,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-張維學-臺北市第6選舉區",
      "identity": null
     }
    ]
@@ -906,7 +950,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-03",
-     "slug": null,
+     "slug": "cand-林筱薇Icyang Tamana-臺北市第7選舉區（平地原住民）",
      "identity": null
     }
    ]
@@ -922,7 +966,7 @@
      "partyCode": "16",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-林家豪-臺北市第8選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -931,7 +975,7 @@
      "partyCode": "1",
      "number": null,
      "registeredOn": "2026-09-02",
-     "slug": null,
+     "slug": "cand-李傅鈺婷-臺北市第8選舉區（山地原住民）",
      "identity": null
     },
     {
@@ -940,7 +984,7 @@
      "partyCode": "999",
      "number": null,
      "registeredOn": "2026-09-04",
-     "slug": null,
+     "slug": "cand-孔垂崢Haisul Islituan-臺北市第8選舉區（山地原住民）",
      "identity": null
     }
    ]

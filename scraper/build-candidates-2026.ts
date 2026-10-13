@@ -5,9 +5,11 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { join } from 'node:path';
 import { pdfToBbox, parseRegistrationBbox } from './lib/candidatePdf';
 import { mergeParties, partyCodeLookup } from './lib/cecParties';
-import { buildDistrictRefs } from './lib/councilDistricts';
+import { buildDistrictRefs, applyVerifiedDistricts, type VerifiedDistricts } from './lib/councilDistricts';
 import { linkCandidate, identityLine, type LinkConfirmation, type OfficialRef } from './lib/candidateLinks';
 import { assemble } from './lib/candidateAssemble';
+import { applyFirstRuns, type FirstRunConfirmation } from './lib/candidateFirstRun';
+import { normalizeAreaName } from './lib/areaMatch';
 import { flatten, diffCandidates, renderDiff } from './lib/candidateDiff';
 import type { CandidateStage, CountyCandidates, NationalCandidates } from '../src/lib/candidateTypes';
 import type { Officeholder } from '../src/lib/mapTypes';
@@ -33,7 +35,7 @@ const parties = mergeParties(['C1', 'T1', 'T2', 'T3'].flatMap((c) => ['city', 'p
   return { path, csv: read(path) };
 })));
 const elbase = (c: string) => ['city', 'prv'].map((s) => read(`${R22}/${c}/${s}/elbase.csv`)).join('\n');
-const districtRefs = buildDistrictRefs([
+const historicalDistrictRefs = buildDistrictRefs([
   { type: 'regional', elbaseCsv: elbase('T1') },
   { type: 'plainIndigenous', elbaseCsv: elbase('T2') },
   { type: 'mountainIndigenous', elbaseCsv: elbase('T3') },
@@ -45,6 +47,11 @@ const bySlug = new Map(officials.map((o) => [o.slug, o]));
 const confirmed = JSON.parse(read('scraper/candidates-links-confirmed.json')) as LinkConfirmation[];
 
 const nationalMap = JSON.parse(read('public/data/map/national.json')) as { areas: { code: string; name: string; chief: Officeholder | null }[] };
+const districtRefs = applyVerifiedDistricts(historicalDistrictRefs,
+  JSON.parse(read('scraper/council-districts-2026-verified.json')) as VerifiedDistricts,
+  new Map(nationalMap.areas.map(a => [normalizeAreaName(a.name),
+    (JSON.parse(read(`public/data/map/county/${a.code}.json`)) as { areas: { code: string; name: string }[] }).areas])),
+);
 
 const { national, counties, review, warnings } = assemble({
   source: { stage, url: cfg.url, tableDate: cfg.tableDate },
@@ -62,6 +69,9 @@ const { national, counties, review, warnings } = assemble({
   identity: (slug) => identityLine(bySlug.get(slug)!),
   districtRefs,
 });
+
+applyFirstRuns(national, counties,
+  JSON.parse(read('scraper/candidate-first-runs-confirmed.json')) as FirstRunConfirmation[], 2026);
 
 // 差異報告：與現有輸出比對（首次產出時沒有前一版）
 const prevNational = existsSync(`${OUT}/national.json`) ? JSON.parse(read(`${OUT}/national.json`)) as NationalCandidates : null;
