@@ -16,3 +16,4 @@ scraper/out-backup/
 scraper/out-wiki-relations/
 scraper/out-council/
 scraper/boundaries/src/
+.superdesign/tmp/

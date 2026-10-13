@@ -31,6 +31,45 @@
         }
       },
       "updatedAt": "2026-10-13T02:20:06.271637+00:00"
+    },
+    "/graph/connect/": {
+      "targetKind": "new-ui",
+      "projectId": "57d694aa-59f8-495e-9425-43df69727604",
+      "activeDraftId": "50a497e1-da6d-43dd-821d-b58e910eab98",
+      "designSystemPath": ".superdesign/design-system.md",
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        ".superdesign/connection-brief.md",
+        "src/styles/tokens.css",
+        "src/layouts/Base.astro",
+        "src/pages/graph.astro",
+        "src/components/TitleCard.astro",
+        "src/components/SectionHead.astro"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "bdf8a846cfca21d5d833ac263c0e458fa48e7fca3d1740bd4c8f23adf4123661",
+        ".superdesign/connection-brief.md": "7dbc3bffcf4d07d4bd696fe52afaeed851c33756929113d83e1c3f4c58e21206",
+        "src/styles/tokens.css": "8e1ca02c6a336c619fa3f8c0016ac96c9dee25063df0b111be0c95e32ff8f7d3",
+        "src/layouts/Base.astro": "c7b5b4f831c08849c3620e82a9aaea9680e021349ed02cc808a21fb238fb2784",
+        "src/pages/graph.astro": "3c93f59ee4d0240fde41321b92a865337846fdc5fa21c4bfd7ecbc4abb005142",
+        "src/components/TitleCard.astro": "b96301b5a373d8651f9206cdceae2c28b29674875e3c9daa57b6d73c72d10efb",
+        "src/components/SectionHead.astro": "e954ec13beb133071ed590383e2c8fa775b983095d1c8efae33671c3fa7cf4a5"
+      },
+      "components": [
+        {
+          "name": "SiteHeader",
+          "id": "53b37abe-8d06-47c9-b277-7143ac6ab5d9",
+          "sourcePath": "src/layouts/Base.astro"
+        }
+      ],
+      "drafts": {
+        "50a497e1-da6d-43dd-821d-b58e910eab98": {
+          "title": "關係路徑查詢",
+          "visualDirection": "Monochrome editorial text route, two identity-aware search fields, vermilion hop count, numbered original-source evidence",
+          "currentVersion": 1
+        }
+      },
+      "updatedAt": "2026-10-13T02:45:11.693361+00:00"
     }
   }
 }

@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { clientDataset, rosterDataset, electionsDataset } from '../src/lib/clientDatasets';
+import { clientDataset, rosterDataset, electionsDataset, connectionsDataset } from '../src/lib/clientDatasets';
 import { loadOfficials } from '../src/lib/data';
 import { toListRow } from '../src/lib/transform';
 import { filterElectionCandidates } from '../src/lib/electionFinder';
@@ -18,4 +18,12 @@ it('deferred elections lookup includes council and chief names with the same fil
   expect(new Set(data.map(c => c.countyCode)).size).toBe(22);
   expect(data.some(c => c.office === 'council')).toBe(true);
   expect(filterElectionCandidates(data, { county: '', office: 'chief', query: '蔣萬安' })).toHaveLength(1);
+});
+
+it('connection payload preserves identities and original evidence without graph images', async () => {
+  const { loadGraph } = await import('../src/lib/loadGraph');
+  const graph = loadGraph(), dataset = await connectionsDataset();
+  expect(dataset.data.nodes.map(n => n.key)).toEqual(graph.nodes.map(n => n.key));
+  expect(dataset.data.edges).toEqual(graph.edges);
+  expect(dataset.json).not.toMatch(/"photo(Url|Credit|SourceUrl)"/);
 });

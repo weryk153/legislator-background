@@ -26,3 +26,14 @@ export async function marginsDataset() {
   const { loadMarginData } = await import("./electionMarginData");
   return clientDataset("margins", loadMarginData());
 }
+
+export async function connectionsDataset() {
+  const { loadGraph } = await import('./loadGraph');
+  const graph = loadGraph();
+  // Text-only paths need identity and evidence, not photos or graph layout assets.
+  return clientDataset('connections', {
+    nodes: graph.nodes.map(({ key, name, kind, subtype, slug, party, officeType, description, wikipediaUrl }) =>
+      ({ key, name, kind, subtype, slug, party, officeType, description, wikipediaUrl })),
+    edges: graph.edges,
+  });
+}

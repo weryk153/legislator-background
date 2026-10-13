@@ -55,6 +55,8 @@ const jsonLd = [
 
   <ElectionMargin client:visible dataUrl={margins.url} year={margins.data.year} />
 
+  <a class="connection-entry" href="/graph/connect/"><span class="connection-kicker">換個角度看人物</span><strong>這兩個人，有什麼關係？</strong><span class="connection-hint">選兩個名字，循線查出處</span><span class="connection-arrow" aria-hidden="true">↗</span></a>
+
   <section class="home-schedule" aria-label="選務時程">
     <SectionHead text="選務時程" />
     <ElectionTimeline />
@@ -64,6 +66,13 @@ const jsonLd = [
   <p class="term-note">收錄對象：第11屆立法委員（2024年當選）、2022年當選之縣市首長與縣市議員（任期至2026）。任內已解職者保留並標註「已解職」。</p>
   <OfficialTable client:load rows={queryList(rows, { sort: "judgments", search: "" }).slice(0, 24)} initialCount={rows.length} initialRegions={[...new Set(rows.map(r => r.region))]} initialParties={[...new Set(rows.map(r => r.party))]} dataUrl={dataset.url} />
   <style>
+    .connection-entry { display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-top:14px;padding:18px 20px;border:1px solid var(--line-strong); }
+    .connection-entry:hover { background:var(--row-hover); }
+    .connection-kicker { font-size:11px;color:var(--accent);font-weight:700; }
+    .connection-entry strong { font:900 23px/1.4 var(--serif); }
+    .connection-hint { font-size:12px;color:var(--muted);margin-left:auto; }
+    .connection-arrow { color:var(--accent);font-size:24px; }
+    @media(max-width:640px) { .connection-entry { display:grid;grid-template-columns:1fr auto;padding:16px 20px;gap:6px 12px; }.connection-entry strong { font-size:21px; }.connection-kicker,.connection-hint { grid-column:1;margin:0; }.connection-arrow { grid-column:2;grid-row:1/4; } }
     /* EVA 字卡構圖：壓扁特粗明朝、黑白大片對比與朱紅直排章節字。 */
     .lead { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(260px, .8fr); gap: 32px; align-items: center; margin: 0; padding: 24px 28px; background: var(--block-bg); color: var(--block-fg); }
     .lead :global(.tcard) { padding: 0; justify-self: start; }

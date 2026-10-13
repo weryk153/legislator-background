@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import TitleCard from '../../components/TitleCard.astro';
+import RelationshipFinder from '../../components/RelationshipFinder.svelte';
+import { connectionsDataset } from '../../lib/clientDatasets';
+const dataset = await connectionsDataset();
+const title = '這兩個人，有什麼關係？｜政治人物關係路徑查詢';
+const description = '選擇兩位人物，查詢本站公開資料中的最短關係路徑。每段保留原始說明及出處，同名人物分別辨識，未收錄的關係不做推論。';
+---
+<Base {title} {description}>
+  <a class="back" href="/graph/">← 完整人物關係圖</a>
+  <header class="connection-hero">
+    <div class="title"><TitleCard vertical="循線查證" lines={['這兩個人', '有什麼關係？']} heading="這兩個人，有什麼關係？" fitContainer variant="feature" /></div>
+    <div class="copy"><p class="eyebrow">人物・路徑・出處</p><p class="intro">從兩個名字出發，<br />看看公開紀錄如何連接。</p><p class="note">選擇人物，逐段核對親屬、任職與政治關係。每一段都能回到原始來源。</p></div>
+  </header>
+  <RelationshipFinder client:load dataUrl={dataset.url} />
+</Base>
+<style>
+  .back { display:inline-flex;align-items:center;min-height:44px;font-size:12px;margin:-10px 0 10px;text-decoration:underline;text-underline-offset:4px; }
+  .back:hover { color:var(--accent); }
+  .connection-hero { display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center; }
+  .title { container-type:inline-size;min-width:0;--feature-first-size:min(84px,calc((100cqw - 76px)/2.48)); }
+  .eyebrow { color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.14em;margin:0 0 10px; }
+  .intro { font:700 23px/1.6 var(--serif);margin:0; }
+  .note { font-size:13px;color:var(--muted);line-height:1.8;max-width:30em;margin:10px 0 0; }
+  @media(max-width:760px) {
+    .connection-hero { grid-template-columns:1fr;gap:16px; }
+    .title { --feature-first-size:min(72px,calc((100cqw - 76px)/2.48));--feature-second-size:32px; }
+    .eyebrow,.intro { display:none; }
+    .note { margin:0;font-size:12px; }
+  }
+</style>

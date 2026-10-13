@@ -39,6 +39,7 @@ const peopleList = [...graph.nodes]
     <div class="hero-copy"><p class="eyebrow">人物・關係・出處</p><p class="lede">循著一條關係，<br />查閱人物之間的公開紀錄。</p><p class="intro">搜尋姓名可聚焦直接關係；點選人物或連線，即可查看說明與出處。</p><a href="#graph-people">圖中人物文字清單 ↓</a></div>
   </header>
   <div class="graph-stats" aria-label="收錄關係摘要"><div><span>收錄人物</span><strong class="num">{graph.nodes.length}</strong><small>位</small></div><div><span>家族關係</span><strong class="num">{familyCount}</strong><small>條</small></div><div><span>政治關係</span><strong class="num">{graph.edges.length - familyCount}</strong><small>條</small></div></div>
+  <a class="connection-entry" href="/graph/connect/"><span><strong>這兩個人，有什麼關係？</strong><small>選兩位人物，查看最短路徑與逐段出處。</small></span><b aria-hidden="true">↗</b></a>
   <GraphExplorer client:load data={graph} {positions} />
   <p class="data-note">關係資料整理自司法判決、媒體報導與公開資料，僅呈現已查證者，每條皆附出處。圖上位置僅供閱讀，不代表親疏或影響力；收錄關係不代表對當事人的評價。</p>
 
@@ -55,6 +56,11 @@ const peopleList = [...graph.nodes]
   </section>
 
   <style>
+    .connection-entry { display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 24px;margin-top:24px;border:1px solid var(--line-strong); }
+    .connection-entry:hover { background:var(--row-hover); }
+    .connection-entry strong { display:block;font:900 23px/1.4 var(--serif); }
+    .connection-entry small { display:block;font-size:12px;color:var(--muted);margin-top:6px; }
+    .connection-entry b { color:var(--accent);font-size:26px; }
     .graph-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 36px; margin: 14px 0 28px; }
     .hero-title { container-type: inline-size; min-width: 0; --feature-first-size: 84px; }
     .eyebrow { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .16em; margin: 0 0 10px; }
