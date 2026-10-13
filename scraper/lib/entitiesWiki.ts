@@ -1,7 +1,6 @@
 // 外部人物 ↔ 維基條目 ↔ 照片授權 對照表（scraper/entities-wiki.json）。
-// 這份檔案是唯一真相：import:relationships 每次重跑會把非判決來源的 entity 全部重建
-// （新 UUID），任何寫在 DB entities 上的 photo_url / wikipedia_url 重匯即消失，所以
-// 照片與條目資訊只能存在版控檔案裡、匯入時套上。
+// 照片與條目資訊的版控來源。新建 entity 時套用；entity-identities.json 固定人物 ID，
+// 2026-10 起重匯會沿用既有 entity，不再為同一人產生新 UUID。
 // 見 docs/superpowers/specs/2026-08-25-relationship-graph-wiki-expansion-design.md §2–3。
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';

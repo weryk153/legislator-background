@@ -10,11 +10,14 @@ import { entityWikiKey } from './entitiesWiki';
 export type Roster = { id: string; name: string; office_type: string }[];
 export interface EndpointRow {
   subject: string;
+  // 經人工核對的名冊 ID；議員主體必填，亦可分開同名的立委與議員。
+  subjectId?: string;
   subjectKind?: 'official' | 'entity';
   subjectDistinct?: string;
   counterpartName: string;
   counterpartKind: 'official' | 'entity';
   counterpartDistinct?: string;
+  counterpartId?: string;
 }
 export const NATIONAL: ReadonlySet<string> = new Set(['legislator', 'mayor_magistrate']);
 
@@ -30,12 +33,26 @@ export function resolveSubject(row: EndpointRow, roster: Roster, entityCache: Ma
     const id = entityCache.get(key);
     return id ? { type: 'entity', id } : { skip: `subject entity 尚未建立: ${key}` };
   }
+  if (row.subjectId) {
+    const match = roster.find((o) => o.id === row.subjectId && o.name === row.subject);
+    return match && (NATIONAL.has(match.office_type) || match.office_type === 'councilor')
+      ? { type: 'official', id: match.id }
+      : { skip: `subject ID／身分未匹配: ${row.subject} (${row.subjectId})` };
+  }
   const id = officialIdIn(roster, row.subject, true);
   return id ? { type: 'official', id } : { skip: `subject 未匹配: ${row.subject}` };
 }
 
-export type CounterpartResolution = { type: 'official'; id: string } | { type: 'entity'; fellThrough: boolean };
+export type CounterpartResolution = { type: 'official'; id: string } | { type: 'entity'; fellThrough: boolean } | { skip: string };
 export function resolveCounterpart(row: EndpointRow, roster: Roster): CounterpartResolution {
+  if (row.counterpartId) {
+    if (row.counterpartKind !== 'official' || row.counterpartDistinct) {
+      return { skip: `counterpart ID 與 entity／distinct 設定衝突: ${row.counterpartName}` };
+    }
+    const match = roster.find((o) => o.id === row.counterpartId && o.name === row.counterpartName);
+    return match ? { type: 'official', id: match.id }
+      : { skip: `counterpart ID／身分未匹配: ${row.counterpartName} (${row.counterpartId})` };
+  }
   if (row.counterpartDistinct) return { type: 'entity', fellThrough: false };
   if (row.counterpartKind !== 'official') return { type: 'entity', fellThrough: false };
   const id = officialIdIn(roster, row.counterpartName);

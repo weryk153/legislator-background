@@ -9,26 +9,12 @@ import { dirname, join } from 'node:path';
 import { loadEnv } from './lib/loadEnv';
 import { loadEntitiesWiki, indexEntitiesWiki, entityWikiKey } from './lib/entitiesWiki';
 import { resolveSubject, resolveCounterpart, officialIdIn, type Roster } from './lib/relEndpoints';
+import { validateEntityIdentities, type CuratedRelationship } from './lib/curatedRelationships';
 
 loadEnv();
 const here = dirname(fileURLToPath(import.meta.url));
 
-type Curated = {
-  subject: string; counterpartName: string; counterpartRole: string;
-  // 人工判斷的「同名不同人」註記，只有在真的是不同人時才會出現（例如李佳芬同時是
-  // 謝龍介之妻與韓國瑜之妻）。由人查證後手寫，不是從 counterpartRole 字串推論。
-  // 一旦標記，此列即：(1) 拆開 entity 去重快取鍵；(2) 絕不走名冊姓名比對（見下方
-  // counterpart 端點）；(3) 不再列入「疑為同一人重複記錄」的覆核警示。
-  // 2 度關係：subject 為既有 entity（如柯文哲）。省略＝official。subjectDistinct 對應建立該 entity
-  // 那列的 counterpartDistinct，一字不差。
-  subjectKind?: 'official' | 'entity';
-  subjectDistinct?: string;
-  counterpartDistinct?: string;
-  counterpartKind: 'official' | 'entity';
-  counterpartEntityType?: string;
-  relationType: string; parentName?: string; note: string;
-  sourceUrl: string; sourceType: 'wiki' | 'news';
-};
+type Curated = CuratedRelationship;
 
 const ENTITY_TYPES = new Set(['businessperson', 'religious', 'celebrity', 'media', 'family_member', 'organization', 'other']);
 
@@ -44,6 +30,8 @@ async function main() {
   // throw（見 lib/entitiesWiki.ts），若驗證晚於刪除才跑，一筆手改的 typo 就會先把
   // 資料庫的既有關係整批刪光，腳本才中止——資料庫等於已被清空又匯入失敗。
   const wikiIndex = indexEntitiesWiki(loadEntitiesWiki());
+  const identities = JSON.parse(readFileSync(join(here, 'entity-identities.json'), 'utf8')) as Record<string, string>;
+  validateEntityIdentities(identities);
   const wikiUsed = new Set<string>();
 
   // 名冊：name → official id。同名（多筆）者記錄為「不可唯一匹配」，counterpart 端遇到就降級為 entity。
@@ -56,6 +44,33 @@ async function main() {
   }
   const roster: Roster = officials;
   const officialId = (name: string, restrict?: boolean) => officialIdIn(roster, name, restrict);
+
+  // 固定身分 ID 取代每次重建 UUID。只依人工登記的 ID 重用 entity，不以姓名猜測。
+  const entityCache = new Map<string, string>();
+  const currentEntities: { id: string; name: string }[] = [];
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await supabase.from('entities').select('id,name').order('id').range(from, from + 999);
+    if (error) throw new Error(`entities preflight: ${error.message}`);
+    currentEntities.push(...(data ?? []));
+    if ((data?.length ?? 0) < 1000) break;
+  }
+  const byId = new Map(currentEntities.map((e) => [e.id, e]));
+  for (const [identity, id] of Object.entries(identities)) {
+    const e = byId.get(id);
+    if (!e) continue;
+    if (e.name !== identity.split('::')[0]) throw new Error(`entity ID／姓名不符: ${identity}`);
+    entityCache.set(identity, id);
+  }
+  // 任何新列的 ID、來源或端點錯誤須在清除之前阻擋。
+  const { planRelationshipBatch } = await import('./lib/relationshipBatch');
+  planRelationshipBatch(rows, roster, identities, { entities: [], sources: [], relationships: [] });
+  for (const r of rows) {
+    const cp = resolveCounterpart(r, roster);
+    if ('skip' in cp) throw new Error(cp.skip);
+    if (cp.type === 'entity' && !identities[entityWikiKey(r.counterpartName, r.counterpartDistinct)]) {
+      throw new Error(`entity 尚未登記身分 ID: ${r.counterpartName}`);
+    }
+  }
 
   // 冪等清除：刪掉先前由本匯入產生的關係（保留判決 court 來源的種子關係）。
   // 注意：sources 表有上萬筆（官員生涯/判決/公報來源），不可用 .select('id').in('type',[...])
@@ -85,18 +100,17 @@ async function main() {
   // 反而摧毀關係圖存在的意義。同名不同人是罕見例外（如李佳芬同時是謝龍介之妻與
   // 韓國瑜之妻），必須由人查證後在 curated 資料上手寫 counterpartDistinct 標記
   // 才能生效——身份判斷只能交給人，不能靠字串比對推論。
-  // 外部人物 ↔ 維基條目／照片 對照（版控檔案，wikiIndex／wikiUsed 已在檔案讀取後、
-  // 清除關係前宣告，見上方）。entity 每次重匯都重建，照片與條目 URL 只能在這裡套上；
-  // 沒有對照的 entity 兩欄維持 null。
+  // 外部人物沿用 entity-identities 的固定 ID；新建人物才套用維基與照片對照。
+  // 既有人物不改寫照片或描述，照片更新仍由專用資料整理流程負責。
 
-  const entityCache = new Map<string, string>();
   async function ensureEntity(name: string, etype: string, desc: string, distinct?: string): Promise<string> {
     const cacheKey = entityWikiKey(name, distinct);
-    if (entityCache.has(cacheKey)) return entityCache.get(cacheKey)!;
     const subtype = ENTITY_TYPES.has(etype) ? etype : 'other';
     const wiki = wikiIndex.get(cacheKey);
     if (wiki) wikiUsed.add(cacheKey);
+    if (entityCache.has(cacheKey)) return entityCache.get(cacheKey)!;
     const { data, error } = await supabase.from('entities').insert({
+      id: identities[cacheKey],
       name, entity_type: subtype, description: desc,
       wikipedia_url: wiki?.wikipediaUrl ?? null,
       photo_url: wiki?.photo?.file ?? null,
@@ -116,6 +130,7 @@ async function main() {
     // 端點解析規則見 ./lib/relEndpoints.ts
     let toType: 'official' | 'entity', toId: string;
     const cp = resolveCounterpart(r, roster);
+    if ('skip' in cp) throw new Error(cp.skip);
     if (cp.type === 'official') { toType = 'official'; toId = cp.id; }
     else {
       if (cp.fellThrough) officialFellThrough.push(`${r.counterpartName}（${r.subject} 的 ${r.relationType}）`);
@@ -139,12 +154,14 @@ async function main() {
       skipped++; skips.push(`自連略過: ${r.subject}-${r.counterpartName}（${r.relationType}）`); return;
     }
 
+    const sourceRow = { ...(r.id ? { id: r.id } : {}), url: r.sourceUrl, type: r.sourceType, title: `${r.subject}關係資料：${r.relationType}`, retrieved_at: r.reviewedAt ?? '2026-06-25' };
     const { data: src, error: se } = await supabase.from('sources')
-      .insert({ url: r.sourceUrl, type: r.sourceType, title: `${r.subject}關係資料：${r.relationType}`, retrieved_at: '2026-06-25' })
+      .upsert(sourceRow)
       .select('id').single();
     if (se) throw new Error(`source insert failed: ${se.message}`);
 
     const { error: re } = await supabase.from('relationships').insert({
+      ...(r.id ? { id: r.id } : {}),
       from_type: fromType, from_id: fromId, to_type: toType, to_id: toId,
       relation_type: r.relationType, directed, note: r.note, source_id: src.id,
     });
@@ -159,7 +176,7 @@ async function main() {
   for (const r of firstPass) await importRow(r);
   for (const r of secondPass) await importRow(r);
 
-  // 清除孤立 entity（未被任何現存關係引用者）—— 每次匯入都會新建 entity，需回收前次殘留。
+  // 清除已不被任何關係引用的 entity；仍被引用者保留原 ID。
   const referenced = new Set<string>();
   for (let from = 0; ; from += 1000) {
     const { data, error } = await supabase

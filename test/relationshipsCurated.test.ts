@@ -92,8 +92,8 @@ describe('relationships-curated.json（實際檔案）：欄位值合法性', ()
     expect(bad).toEqual([]);
   });
 
-  it('sourceType 皆為 wiki 或 news', () => {
-    const bad = rows.filter((r) => r.sourceType !== 'wiki' && r.sourceType !== 'news');
+  it('sourceType 皆為 wiki、news 或 gov', () => {
+    const bad = rows.filter((r) => !['wiki', 'news', 'gov'].includes(r.sourceType));
     expect(bad).toEqual([]);
   });
 });
