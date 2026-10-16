@@ -164,7 +164,8 @@
   input[type=checkbox] { accent-color: var(--fg); width: 15px; height: 15px; margin: 0; }
   .line { display: inline-block; width: 20px; border-top: 2px solid var(--fg); vertical-align: middle; }
   .line.pol { border-top-style: dashed; }
-  .reset { padding: 12px; font-size: 12px; flex: none; }
+  .reset { border:1px solid var(--control-border); min-height:44px;padding:8px 12px;font-size:13px;flex:none;color:var(--muted);background:var(--surface); }
+  .reset:hover { color:var(--fg);border-color:var(--control-border); }
   .suggestions { display: flex; gap: 8px; flex-wrap: wrap; padding: 12px 0 0; }
   .suggestions button { padding: 7px 10px; text-align: left; }
   .suggestions strong { font-size: 14px; }
@@ -179,7 +180,7 @@
   .canvas-tools { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; border-inline: 1px solid var(--line); background: var(--surface); }
   .canvas-tools > span { font-size: 11px; color: var(--muted); }
   .canvas-tools > div { display: flex; gap: 4px; }
-  .canvas-tools button { min-width: 34px; height: 34px; padding: 0 10px; font-size: 13px; }
+  .canvas-tools button { color:var(--muted);background:var(--surface); border:1px solid var(--control-border); min-width: 34px; height: 34px; padding: 0 10px; font-size: 13px; }
   .canvas { position: relative; min-height: var(--global-graph-height); }
   .canvas-message { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; background: var(--bg); padding: 20px; text-align: center; font-size: 13px; color: var(--muted); }
   .canvas-message strong { color: var(--fg); font-size: 18px; font-family: var(--serif); }
@@ -210,7 +211,7 @@
   .photo-credit { color: var(--faint); font-size: 10px; line-height: 1.5; }
   .photo-credit a { text-decoration: underline; }
   .person-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin: 16px 0; font-size: 12px; }
-  .person-actions button { padding: 8px; }
+  .person-actions button { color:var(--muted);background:var(--surface); border:1px solid var(--control-border); padding: 8px; }
   .person-actions a { text-decoration: underline; text-underline-offset: 3px; }
   .relations { list-style: none; margin: 0; padding: 0; }
   .relations li { padding: 14px 0; border-bottom: 1px solid var(--line); }

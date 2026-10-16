@@ -8,6 +8,8 @@ import Sources from "../../components/Sources.astro";
 import CandidateChannels from "../../components/CandidateChannels.astro";
 import { loadCandidateChannels } from "../../lib/candidateChannels";
 import CandidatePolicies from "../../components/CandidatePolicies.astro";
+import CandidateEducation from "../../components/CandidateEducation.astro";
+import { loadCandidateEducation } from "../../lib/candidateEducation";
 import { loadCandidatePolicies, loadPolicyReviews } from "../../lib/candidatePolicies";
 import { loadOfficials } from "../../lib/data";
 import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL, OFFICE_LABEL } from "../../lib/graph";
@@ -26,16 +28,18 @@ import { squashWidth } from "../../lib/squash";
 export async function getStaticPaths() {
   const officials = await loadOfficials();
   const policies = loadCandidatePolicies(officials);
+  const education = loadCandidateEducation(officials);
   const policyReviews = loadPolicyReviews(policies);
   const channels = loadCandidateChannels();
   const graph = loadGraph();
   return officials.map((o) => ({
     params: { id: o.slug },
-    props: { official: o, ego: egoSubgraph(graph, `official:${o.id}`, 2), policies: policies.get(o.slug), policyReview: policyReviews.get(o.slug), channels: channels.get(o.slug) },
+    props: { official: o, ego: egoSubgraph(graph, `official:${o.id}`, 2), policies: policies.get(o.slug), policyReview: policyReviews.get(o.slug), channels: channels.get(o.slug), education: education.get(o.slug) },
   }));
 }
 
-const { official: o, ego, policies, policyReview, channels } = Astro.props;
+const { official: o, ego, policies, policyReview, channels, education } = Astro.props;
+const educationCareerIds = new Set(education?.excludedCareerIds ?? []);
 // 本人的直接人物關係（取與本人相連的邊，找出對方節點），以文字清單呈現。
 // 經歷依性質分組。分類是字面判斷（見 src/lib/careerCategory.ts），四類以外一律落在
 // 「其他」——每一筆都仍然顯示，分組只是讓「公職以外的社會團體職務」看得出來。
@@ -53,7 +57,7 @@ const CAREER_GROUPS: { key: CareerCategory; label: string; note?: string }[] = [
 const dismissalRecord = o.careers.find((c) => c.title === "解職");
 const careersByCategory = CAREER_GROUPS.map((g) => {
   const items = o.careers.filter(
-    (c) => c.title !== "解職" && categorizeCareer(careerText(c.organization, c.title)) === g.key,
+    (c) => c.title !== "解職" && !educationCareerIds.has(c.id) && categorizeCareer(careerText(c.organization, c.title)) === g.key,
   );
   // 整組同一出處時掛在組層級，逐筆就不再重印同一行連結（見 sharedSource 的說明）。
   return { ...g, items, shared: sharedSource(items) };
@@ -100,7 +104,7 @@ const roleText = isCandidate ? (candidacy ? `2026 ${candidacy.role}參選人` : 
 const title = officialPageTitle(o);
 // 2026 候選人：描述開頭先講參選職位（搜尋「某某市長候選人」時摘要第一句就對得上），再接原本描述。
 const candidacyDesc = candidacy ? `2026 ${candidacy.role}候選人。` : "";
-const desc = `${candidacyDesc}${o.name}（${o.party}・${roleText}）的${policies ? "公開政見、" : ""}經歷、財產申報、政治獻金與相關爭議報導整理，每筆皆附公開資料出處。`;
+const desc = `${candidacyDesc}${o.name}（${o.party}・${roleText}）的${policies ? "公開政見、" : ""}${candidacy ? "學歷、" : ""}經歷、財產申報、政治獻金與相關爭議報導整理，每筆皆附公開資料出處。`;
 // 參選標記連到該縣市的 2026 選舉頁；對照表查無縣市時只顯示文字。
 const candidacyHref = candidacy?.countyKey ? countyPagePath(candidacy.countyKey) : null;
 const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
@@ -111,6 +115,7 @@ const photoCredit = candidatePhotoCredits().get(o.slug);
 const emblem = partyEmblem(o.party);
 const sections = [
   ...(candidacy ? [{ id: "policies", label: "2026 政見" }] : []),
+  ...(candidacy ? [{ id: "education", label: "學歷" }] : []),
   { id: "careers", label: "經歷" },
   { id: "judgments", label: "司法判決" },
   { id: "reports", label: "相關爭議報導" },
@@ -127,6 +132,9 @@ for (const record of policies?.records ?? []) {
   if (!dataDate || record.reviewedOn > dataDate.slice(0, 10)) dataDate = record.reviewedOn;
 }
 if (policyReview && (!dataDate || policyReview.reviewedOn > dataDate.slice(0, 10))) dataDate = policyReview.reviewedOn;
+for (const record of education?.records ?? []) {
+  if (!dataDate || record.source.retrievedAt > dataDate.slice(0, 10)) dataDate = record.source.retrievedAt;
+}
 const jsonLd = [
   {
     "@context": "https://schema.org",
@@ -216,10 +224,11 @@ const jsonLd = [
   </nav>
   <div class="profile-content">
   {candidacy && <CandidatePolicies policies={policies} review={policyReview} />}
+  {candidacy && <CandidateEducation education={education} />}
 
   <section class="sec" id="careers">
     <SectionHead text="經歷" />
-    {o.careers.length === 0 && <p class="dim none">尚無資料</p>}
+    {careersByCategory.length === 0 && <p class="dim none">尚無資料</p>}
     {careersByCategory.map((g) => (
       <div class="career-group">
         <h3 class="career-group-head">{g.label}</h3>

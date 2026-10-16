@@ -915,19 +915,18 @@
     align-items: center;
     box-sizing: border-box;
     min-width: 44px;
-    min-height: 32px;
+    min-height: 44px;
     padding: .5rem .75rem .55rem;
     font-family: var(--sans);
     font-size: var(--t-sm);
     color: var(--muted);
-    background: color-mix(in oklab, var(--surface) 82%, transparent);
-    border: none;
-    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+    border: 1px solid var(--control-border);
     cursor: pointer;
     transition: color var(--ease);
   }
-  .back-control:hover,
-  .back-control:focus-visible { color: var(--accent); }
+  .back-control:hover { color:var(--fg);background:var(--row-hover); }
+  .back-control:focus-visible { outline:2px solid var(--accent);outline-offset:2px; }
 
   @media (max-width: 900px) {
     .back-control { top: 1rem; left: 1rem; }

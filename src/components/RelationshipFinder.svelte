@@ -131,13 +131,13 @@
   .people-inputs { display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr);gap:20px;align-items:start; }
   button { min-height:44px;border:1px solid var(--line-strong);border-radius:0;background:var(--bg);color:var(--fg);font:700 13px var(--sans);cursor:pointer; }
   button:disabled { opacity:.45;cursor:not-allowed; }
-  .swap { margin-top:28px;font-size:24px; }
+  .swap { color:var(--muted);background:var(--surface); border:1px solid var(--control-border); margin-top:28px;font-size:24px; }
   .swap:not(:disabled):hover { color:var(--accent); }
   .form-actions { display:flex;align-items:center;flex-wrap:wrap;gap:12px 24px;margin-top:20px; }
   .primary { padding:0 20px;display:flex;align-items:center;gap:44px;background:var(--block-bg);color:var(--block-fg);border-color:var(--block-bg); }
   .primary span { color:var(--block-accent);font-size:20px; }
-  .random { border:0;padding:0;text-decoration:underline;text-underline-offset:4px; }
-  .random:hover { color:var(--accent); }
+  .random { border:1px solid var(--control-border); padding:8px 12px;background:var(--surface);color:var(--muted);font-weight:400; }
+  .random:hover { color:var(--fg);background:var(--row-hover); }
   .scope { font-size:11px;color:var(--muted);margin-left:auto; }
   .result-status { font-size:13px; }
   .result-status > p { margin:20px 0;color:var(--muted); }
@@ -172,7 +172,8 @@
   .path-chain.long .route-connection > span { width:1px;height:100%;top:0;left:50%; }
   .path-chain.long .route-connection b { padding:2px 10px; }
   .share-row { border-top:1px solid var(--line);margin-top:24px;padding-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;font-size:12px; }
-  .share-row button { font-size:12px;padding:0 12px; }
+  .share-row button { border:1px solid var(--control-border); font-size:13px;font-weight:400;padding:0 12px;background:var(--surface);color:var(--muted); }
+  .share-row button:hover { color:var(--fg);background:var(--row-hover); }
   .share-row > a { text-decoration:underline;text-underline-offset:3px;min-height:44px;display:flex;align-items:center; }
   .share-row > span { font-size:11px;color:var(--muted); }
   .evidence { margin-top:32px; }

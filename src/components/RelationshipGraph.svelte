@@ -351,11 +351,11 @@
     min-width: 32px; height: 32px; padding: 0 8px;
     font-family: var(--sans); font-size: 16px; line-height: 1;
     color: var(--muted); background: var(--surface);
-    border: 1px solid var(--line-strong); border-radius: var(--radius);
+    border: 1px solid var(--control-border); border-radius: var(--radius);
     cursor: pointer;
   }
   .zoom-ctl button.reset { font-size: var(--t-xs); }
-  .zoom-ctl button:hover { color: var(--fg); border-color: var(--fg); }
+  .zoom-ctl button:hover { color: var(--fg); background:var(--row-hover); }
   .zoom-ctl button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
   .graph {
     position: relative;

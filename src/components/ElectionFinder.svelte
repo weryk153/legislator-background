@@ -64,8 +64,10 @@
         <option value={group.key}>{group.district}{areas[group.key]?.towns.length ? ` · ${areas[group.key].towns.join('、')}` : ''}（{group.candidates.length} 人）</option>
       {/each}
     </select></label>
-    <label class="search">候選人姓名<input class="form-control" type="search" bind:value={query} placeholder="輸入姓名查詢" /></label>
-    <button class="reset" type="button" onclick={reset} disabled={!active}>重設</button>
+    <div class="search-controls">
+      <label class="search">候選人姓名<input class="form-control" type="search" bind:value={query} placeholder="輸入姓名查詢" /></label>
+      <button class="reset" type="button" onclick={reset} disabled={!active}>重設</button>
+    </div>
   </div>
   {#if active && loaded && groups.some(group => group.office === 'council')}<p class="scope area-scope">附公告來源的選區已核對 2026 正式範圍；其餘行政區參考沿用本站 2022 選區對照，2026 範圍以選委會公告為準。</p>{/if}
   {#if !active}
@@ -129,11 +131,14 @@
   h2 { font:900 28px var(--serif);margin:0; }
   .finder-head p,.scope { color:var(--muted);font-size:13px; }
   .finder-head p { margin:0; }
-  .controls { display:grid;grid-template-columns:1fr 1fr 1.8fr 1.2fr auto;gap:12px;align-items:end;margin-bottom:20px; }
+  .controls { display:grid;grid-template-columns:1fr 1fr 1.8fr 1.8fr;gap:12px;align-items:end;margin-bottom:20px; }
+  .search-controls { display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:end;min-width:0; }
   select:disabled { color:var(--muted);background:var(--row-hover); }
   label { display:grid;gap:6px;font-size:13px;font-weight:600;min-width:0; }
   button { cursor:pointer;color:var(--fg);background:var(--surface);border:1px solid var(--line-strong);font:inherit; }
-  .reset { height:44px;padding:0 16px; }
+  .reset { min-width:44px;height:44px;padding:0 12px;border:1px solid var(--control-border);background:var(--surface);color:var(--muted);font-size:13px;white-space:nowrap; }
+  .reset:not(:disabled):hover { color:var(--fg);background:var(--row-hover); }
+  .reset:focus-visible { outline:2px solid var(--accent);outline-offset:2px; }
   .reset:disabled { opacity:.4;cursor:default; }
   .counties { display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line); }
   .counties button { position:relative;text-align:left;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 12px;display:grid;gap:5px; }
@@ -169,15 +174,16 @@
   .profile-status { font-size:12px;line-height:1.5;color:var(--muted);margin:12px 0 0; }
   .load-more { display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px 20px;margin:24px 0; }
   .load-more p { margin:0;color:var(--muted);font-size:13px; }
-  .more { padding:12px 20px; }
+  .more { border:1px solid var(--control-border); min-height:44px;padding:8px 14px;font-size:13px;color:var(--muted); }
+  .more:hover { color:var(--fg);background:var(--row-hover); }
   .empty { padding:24px;background:var(--surface); }
   .empty button { padding:10px 16px; }
   .scope { margin:14px 0 0;line-height:1.7; }
   .area-scope { margin:-8px 0 16px;font-size:12px; }
-  @media(max-width:900px) { .controls { grid-template-columns:1fr 1fr; }.district-filter { grid-column:1/-1; }.reset { align-self:end; }.counties { grid-template-columns:repeat(4,minmax(0,1fr)); }.results { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+  @media(max-width:900px) { .controls { grid-template-columns:1fr 1fr; }.district-filter,.search-controls { grid-column:1/-1; }.counties { grid-template-columns:repeat(4,minmax(0,1fr)); }.results { grid-template-columns:repeat(3,minmax(0,1fr)); } }
   @media(max-width:600px) {
     .finder-head { display:block; }.finder-head p { margin-top:6px; }
-    .controls { grid-template-columns:1fr 1fr;gap:10px; }.search { grid-column:1/-1; }.reset { grid-column:1/-1;height:44px; }
+    .controls { grid-template-columns:1fr 1fr;gap:10px; }
     .counties { grid-template-columns:repeat(3,minmax(0,1fr)); }.counties button { padding:12px 8px; }.counties strong { font-size:18px; }.counties .arrow { display:none; }
     .result-groups { gap:28px; }.group-head { align-items:flex-start; }.group-title { align-items:flex-start;flex-direction:column;gap:8px; }h3 { font-size:20px; }
     .results { grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px; }h4 { font-size:22px; }

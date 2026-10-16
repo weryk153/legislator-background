@@ -26,6 +26,7 @@
   --faint: #767676;   /* 白底對比約 4.5:1（AA 下限） */
   --line: rgba(0, 0, 0, 0.14);
   --line-strong: #000;
+  --control-border: #888;
   --accent: #b3271e;
   --accent-wash: rgba(179, 39, 30, 0.06);
   --row-hover: rgba(0, 0, 0, 0.04);
@@ -89,6 +90,7 @@
   --faint: #827f77;  /* 深色底對比約 4.6:1（AA） */
   --line: rgba(190, 185, 175, 0.16);
   --line-strong: #ece9e2;
+  --control-border: #77736b;
   --block-bg: #ece9e2;
   --block-fg: #131312;
   --block-accent: #b3271e;

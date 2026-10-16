@@ -119,9 +119,10 @@
   .controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.35fr) auto; gap: 14px; align-items: end; margin-top: 18px; }
   .controls select { margin-top: 6px; }
   .controls label { min-width: 0; font-size: 12px; color: var(--muted); }
-  .reset { min-height: 40px; border: 1px solid var(--fg); background: transparent; color: var(--fg); padding: 8px 12px; cursor: pointer; font: inherit; font-size: 12px; }
+  .reset { min-height: 44px; border: 1px solid var(--control-border); background: var(--surface); color: var(--muted); padding: 8px 12px; cursor: pointer; font: inherit; font-size: 13px; }
   .reset:disabled { opacity: .4; cursor: default; }
-  .reset:not(:disabled):hover { background: var(--block-bg); color: var(--block-fg); }
+  .reset:not(:disabled):hover { background: var(--row-hover); color: var(--fg); }
+  .reset:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .search-help { margin: 12px 0 0; color: var(--muted); font-size: 12px; }
   .load-state { color: var(--accent); font-size: 13px; }
   .load-state button { background: none; border: 0; color: inherit; text-decoration: underline; cursor: pointer; }

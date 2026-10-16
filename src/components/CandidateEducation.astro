@@ -1,0 +1,35 @@
+---
+import SectionHead from './SectionHead.astro';
+import Sources from './Sources.astro';
+import { educationForDisplay, type CandidateEducation } from '../lib/candidateEducation';
+
+interface Props { education?: CandidateEducation }
+const { education } = Astro.props;
+const records = educationForDisplay(education);
+const hasBulletin = records.some(r => r.source.type === 'gazette' && r.sourceYear === 2026);
+---
+<section id="education" aria-labelledby="education-title">
+  <SectionHead id="education-title" text="學歷" />
+  <p class="note">{hasBulletin ? '依 2026 年選舉公報記載。' : '2026 年選舉公報公布後，資料如有矛盾，以該屆公報為準。'}保留來源所載的畢業、肄業、進修或在學狀態；僅列校名者，不推定已取得學位。</p>
+  {records.length ? records.map(record => (
+    <div class="education-record">
+      <ul>{record.items.map(item => <li>{item}</li>)}</ul>
+      {record.note && <p class="note">{record.note}</p>}
+      <Sources sources={[record.source]} />
+      <p class="meta">{record.sourceYear && <>來源年份：{record.sourceYear}・</>}來源查閱：<time datetime={record.source.retrievedAt}>{record.source.retrievedAt}</time></p>
+    </div>
+  )) : <p class="empty">本站尚未收錄可核對來源的學歷資料，待選舉公報公布後補充。</p>}
+</section>
+
+<style>
+  section { margin-bottom: 42px; scroll-margin-top: 24px; }
+  section :global(.sh) { margin-top: 0; }
+  .note, .meta, .empty { font-size: var(--t-sm); color: var(--muted); }
+  .note { margin: 8px 0; }
+  .meta { font-size: var(--t-xs); margin: 6px 0 0; }
+  .education-record { padding: 12px 0 16px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+  ul { padding-left: 1.3em; margin: 0; }
+  li { line-height: 1.8; }
+  li + li { margin-top: 4px; }
+  @media (max-width: 760px) { section { margin-bottom: 32px; } }
+</style>

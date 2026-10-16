@@ -163,7 +163,9 @@
   .count { margin: 0; font-size: 12px; color: var(--muted); }
   .count strong { margin: 0 4px; color: var(--fg); font-variant-numeric: tabular-nums; }
   .result-note { font-size: 11px; color: var(--faint); letter-spacing: .04em; }
-  .reset { padding: 6px 0; color: var(--accent); background: transparent; border: 0; text-decoration: underline; text-underline-offset: 4px; font-size: 12px; cursor: pointer; }
+  .reset { min-height:44px;padding:8px 12px;color:var(--muted);background:var(--surface);border:1px solid var(--control-border);font-size:13px;cursor:pointer; }
+  .reset:hover { color:var(--fg);background:var(--row-hover); }
+  .reset:focus-visible,.more-btn:focus-visible { outline:2px solid var(--accent);outline-offset:2px; }
   .roster-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 22px 16px; }
   .person-card { display: flex; flex-direction: column; position: relative; min-width: 0; padding: 10px 12px; border: 1px solid var(--fg); background: var(--surface); box-shadow: 3px 4px 0 var(--line); transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease); }
   .person-card::before { content: ''; position: absolute; inset: 5px; border: 1px solid var(--line); pointer-events: none; }
@@ -197,8 +199,8 @@
   .empty > span { font-size: 13px; }
   .more { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 32px 0; }
   .more[hidden] { display: none; }
-  .more-btn { font: inherit; font-size: 14px; padding: 10px 24px; border: 1px solid var(--fg); border-radius: 0; background: var(--surface); color: var(--fg); cursor: pointer; }
-  .more-btn:hover { background: var(--fg); color: var(--bg); }
+  .more-btn { min-height:44px;font:inherit;font-size:13px;padding:8px 14px;border:1px solid var(--control-border);border-radius:0;background:var(--surface);color:var(--muted);cursor:pointer; }
+  .more-btn:hover { background:var(--row-hover);color:var(--fg); }
   .more-count { font-size: 12px; color: var(--faint); font-variant-numeric: tabular-nums; }
   @media (max-width: 1180px) {
     .roster-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
