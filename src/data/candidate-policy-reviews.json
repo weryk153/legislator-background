@@ -1,0 +1,1510 @@
+{
+  "electionYear": 2026,
+  "updatedOn": "2026-10-16",
+  "rosterDate": "2026-09-07",
+  "candidates": [
+    {
+      "slug": "cand-郭璽-臺北市",
+      "name": "郭璽",
+      "role": "臺北市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"郭璽\" 2026 政見 臺北市"
+      ],
+      "sources": [
+        {
+          "title": "扯！郭璽開記者會前一刻失聯 主持人硬著頭皮唸政見撐全場",
+          "url": "https://www.nownews.com/news/6881026"
+        }
+      ]
+    },
+    {
+      "slug": "shenpao-yang",
+      "name": "沈伯洋",
+      "role": "臺北市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對本屆候選人官網或本人公開貼文，收錄部分政策主張；不代表完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：沈伯洋發布競選願景 從「心」出發推5大政見",
+          "url": "https://www.cna.com.tw/news/aloc/202608110044.aspx"
+        },
+        {
+          "title": "教育政策 — 沈伯洋台北市長競選官方網站",
+          "url": "https://puma.taipei/policies/%E6%95%99%E8%82%B2%E6%94%BF%E7%AD%96"
+        },
+        {
+          "title": "交通政策 — 沈伯洋台北市長競選官方網站",
+          "url": "https://puma.taipei/policies/%E4%BA%A4%E9%80%9A%E6%94%BF%E7%AD%96"
+        },
+        {
+          "title": "社福政策 — 沈伯洋台北市長競選官方網站",
+          "url": "https://puma.taipei/policies/%E7%A4%BE%E7%A6%8F%E6%94%BF%E7%AD%96"
+        },
+        {
+          "title": "親子同行卡 — 沈伯洋台北市長競選官方網站",
+          "url": "https://puma.taipei/policies/%E8%A6%AA%E5%AD%90%E5%90%8C%E8%A1%8C%E5%8D%A1"
+        },
+        {
+          "title": "家庭一站通 — 沈伯洋台北市長競選官方網站",
+          "url": "https://puma.taipei/policies/%E5%AE%B6%E5%BA%AD%E4%B8%80%E7%AB%99%E9%80%9A"
+        },
+        {
+          "title": "公務員政策 — 沈伯洋台北市長競選官方網站",
+          "url": "https://puma.taipei/policies/%E5%85%AC%E5%8B%99%E5%93%A1%E6%94%BF%E7%AD%96"
+        }
+      ]
+    },
+    {
+      "slug": "cand-蕭文乾-臺北市",
+      "name": "蕭文乾",
+      "role": "臺北市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對本屆候選人官網或本人公開貼文，收錄部分政策主張；不代表完整政見清單。",
+      "queries": [
+        "\"蕭文乾\" 2026 政見 臺北市"
+      ],
+      "sources": [
+        {
+          "url": "https://finance.ftvnews.com.tw/news/detail/2026904U08M1",
+          "title": "獨／兒選北市長、父選南市長！ 84歲蕭燐洪砸120萬續參選 - 民視財經網"
+        },
+        {
+          "title": "蕭文乾｜參選貼文：推廣SoR英語教育",
+          "url": "https://www.facebook.com/wen.hsiao.100/posts/pfbid06hn5E4QbA4hpqGRMsujNNhdTGJ8vZUHbuHfH2hR2BeyY6sry5UNbN9maDkYTzKHNl"
+        }
+      ]
+    },
+    {
+      "slug": "cand-唐新民-臺北市",
+      "name": "唐新民",
+      "role": "臺北市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"唐新民\" 2026 政見 臺北市"
+      ],
+      "sources": [
+        {
+          "title": "【聯合新聞稿】六都13位市長候選人跨黨派響應 永續韌性城市政策承諾發布簽署結果 - 綠色公民行動聯盟",
+          "url": "https://gcaa.org.tw/16804/"
+        }
+      ]
+    },
+    {
+      "slug": "mayor-taipei",
+      "name": "蔣萬安",
+      "role": "臺北市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "公視新聞網：蔣萬安拋松山機場遷移構想 藍營澎湖參選人批忽視離島需求",
+          "url": "https://news.pts.org.tw/article/830612"
+        }
+      ]
+    },
+    {
+      "slug": "cand-林志成-臺北市",
+      "name": "林志成",
+      "role": "臺北市長",
+      "reviewedOn": "2026-10-16",
+      "status": "pending-source",
+      "note": "已再查本屆市長參選、政策與社群線索，仍未取得可核對的2026市長具體政見；2024立委公報及其他縣市同名人物資料不移植。",
+      "queries": [
+        "\"林志成\" 2026 政見 臺北市",
+        "林志成 市長 政見 2026",
+        "林志成 市長 政見 Facebook 2026"
+      ],
+      "sources": []
+    },
+    {
+      "slug": "suchiao-hui",
+      "name": "蘇巧慧",
+      "role": "新北市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對本屆候選人官網或本人公開貼文，收錄部分政策主張；不代表完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：李四川提產業4箭打造AI廊帶 蘇巧慧推交通平權",
+          "url": "https://www.cna.com.tw/news/aloc/202607080165.aspx"
+        },
+        {
+          "title": "六大長幼福利政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+          "url": "https://chiao.tw/policies/%e5%85%ad%e5%a4%a7%e9%95%b7%e5%b9%bc%e7%a6%8f%e5%88%a9%e6%94%bf%e8%a6%8b"
+        },
+        {
+          "title": "三大家庭照顧政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+          "url": "https://chiao.tw/policies/%e4%b8%89%e5%a4%a7%e5%ae%b6%e5%ba%ad%e7%85%a7%e9%a1%a7%e6%94%bf%e8%a6%8b"
+        },
+        {
+          "title": "都更與住宅政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+          "url": "https://chiao.tw/policies/%e9%83%bd%e6%9b%b4%e8%88%87%e4%bd%8f%e5%ae%85%e6%94%bf%e8%a6%8b"
+        },
+        {
+          "title": "勞工政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+          "url": "https://chiao.tw/policies/%e5%8b%9e%e5%b7%a5%e6%94%bf%e8%a6%8b"
+        },
+        {
+          "title": "三大照顧寵物政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+          "url": "https://chiao.tw/policies/%e4%b8%89%e5%a4%a7%e7%85%a7%e9%a1%a7%e5%af%b5%e7%89%a9%e6%94%bf%e8%a6%8b"
+        },
+        {
+          "title": "四大青年支持政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+          "url": "https://chiao.tw/policies/%e5%9b%9b%e5%a4%a7%e9%9d%92%e5%b9%b4%e6%94%af%e6%8c%81%e6%94%bf%e8%a6%8b"
+        },
+        {
+          "title": "七大教育政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+          "url": "https://chiao.tw/policies/%e4%b8%83%e5%a4%a7%e6%95%99%e8%82%b2%e6%94%bf%e8%a6%8b"
+        },
+        {
+          "title": "三大原住民族政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+          "url": "https://chiao.tw/policies/%e4%b8%89%e5%a4%a7%e5%8e%9f%e4%bd%8f%e6%b0%91%e6%97%8f%e6%94%bf%e8%a6%8b"
+        },
+        {
+          "title": "四大客家政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+          "url": "https://chiao.tw/policies/%e5%9b%9b%e5%a4%a7%e5%ae%a2%e5%ae%b6%e6%94%bf%e8%a6%8b"
+        }
+      ]
+    },
+    {
+      "slug": "cand-李四川-新北市",
+      "name": "李四川",
+      "role": "新北市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：李四川提產業4箭打造AI廊帶 蘇巧慧推交通平權",
+          "url": "https://www.cna.com.tw/news/aloc/202607080165.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-蘇輝湟-新北市",
+      "name": "蘇輝湟",
+      "role": "新北市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"蘇輝湟\" 2026 政見 新北市"
+      ],
+      "sources": [
+        {
+          "title": "【聯合新聞稿】六都13位市長候選人跨黨派響應 永續韌性城市政策承諾發布簽署結果 - 綠色公民行動聯盟",
+          "url": "https://gcaa.org.tw/16804/"
+        },
+        {
+          "title": "參選新北市長還有「他」！ 力挺「一夫二妻」合法化 政見一次看個夠 - 政治 - 中時",
+          "url": "https://www.chinatimes.com/realtimenews/20261013001368-260407?chdtv"
+        }
+      ]
+    },
+    {
+      "slug": "mayor-taoyuan",
+      "name": "張善政",
+      "role": "桃園市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中時新聞網：張善政喊「絕不讓SRF進觀音」 轟前朝偷渡 黃世杰不敢面對鄉親",
+          "url": "https://www.chinatimes.com/realtimenews/20260902004953-260407"
+        }
+      ]
+    },
+    {
+      "slug": "cand-黃世杰-桃園市",
+      "name": "黃世杰",
+      "role": "桃園市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：黃世杰登記參選喊桃園動起來 張善政持續市政行程",
+          "url": "https://www.cna.com.tw/news/aloc/202609020201.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "ho-hsin-chun",
+      "name": "何欣純",
+      "role": "臺中市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對本屆候選人官網或本人公開貼文，收錄部分政策主張；不代表完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：何欣純5承諾守護清潔人員 江啟臣端教育政見",
+          "url": "https://www.cna.com.tw/news/aloc/202609240194.aspx"
+        },
+        {
+          "title": "未來政策 | 何欣純官方網站｜2026 台中市長候選人",
+          "url": "https://a-chun.tw/future"
+        }
+      ]
+    },
+    {
+      "slug": "chiang-chi-chen",
+      "name": "江啟臣",
+      "role": "臺中市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對本屆候選人官網或本人公開貼文，收錄部分政策主張；不代表完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：何欣純5承諾守護清潔人員 江啟臣端教育政見",
+          "url": "https://www.cna.com.tw/news/aloc/202609240194.aspx"
+        },
+        {
+          "title": "臺中未來 Taichung Future｜臺中市長候選人江啟臣",
+          "url": "https://taichungway.tw/future"
+        }
+      ]
+    },
+    {
+      "slug": "cand-洪麗華-臺中市",
+      "name": "洪麗華",
+      "role": "臺中市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"洪麗華\" 2026 政見 臺中市"
+      ],
+      "sources": [
+        {
+          "title": "台中市長選戰三腳督！前里長洪麗華挑戰江啟臣、何欣純提這些政見 - 政治 - 自由時報電子報",
+          "url": "https://news.ltn.com.tw/news/politics/breakingnews/5599336"
+        }
+      ]
+    },
+    {
+      "slug": "hsieh-lung-chieh",
+      "name": "謝龍介",
+      "role": "臺南市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：謝龍介趕場為台南議員參選人站台 重申當選全力查弊",
+          "url": "https://www.cna.com.tw/news/aipl/202610110181.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-蕭燐洪-臺南市",
+      "name": "蕭燐洪",
+      "role": "臺南市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"蕭燐洪\" 2026 政見 臺南市"
+      ],
+      "sources": [
+        {
+          "title": "獨／兒選北市長、父選南市長！ 84歲蕭燐洪砸120萬續參選 - 民視財經網",
+          "url": "https://finance.ftvnews.com.tw/news/detail/2026904U08M1"
+        }
+      ]
+    },
+    {
+      "slug": "cand-葉人文-臺南市",
+      "name": "葉人文",
+      "role": "臺南市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對本屆候選人官網或本人公開貼文，收錄部分政策主張；不代表完整政見清單。",
+      "queries": [
+        "\"葉人文\" 2026 政見 臺南市"
+      ],
+      "sources": [
+        {
+          "title": "【聯合新聞稿】六都13位市長候選人跨黨派響應 永續韌性城市政策承諾發布簽署結果 - 綠色公民行動聯盟",
+          "url": "https://gcaa.org.tw/16804/"
+        },
+        {
+          "title": "葉人文 － 臺南市長候選人",
+          "url": "https://tainanyesman.oen.tw/"
+        }
+      ]
+    },
+    {
+      "slug": "chen-ting-fei",
+      "name": "陳亭妃",
+      "role": "臺南市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：謝龍介登記選台南市長 陳亭妃提5大觀光軸政見",
+          "url": "https://www.cna.com.tw/news/aipl/202609010168.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-張靜-高雄市",
+      "name": "張靜",
+      "role": "高雄市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"張靜\" 2026 政見 高雄市"
+      ],
+      "sources": [
+        {
+          "title": "張靜發表高雄包公政見 主張鐵權治理",
+          "url": "https://www.cdns.com.tw/articles/1465642"
+        }
+      ]
+    },
+    {
+      "slug": "laijui-lung",
+      "name": "賴瑞隆",
+      "role": "高雄市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對本屆候選人官網或本人公開貼文，收錄部分政策主張；不代表完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：爭取青年選票 賴瑞隆、柯志恩提政見助就業安居",
+          "url": "https://www.cna.com.tw/news/aloc/202607090299.aspx"
+        },
+        {
+          "title": "傳產政策 - 南方崛起 邁向國際 ｜賴瑞隆",
+          "url": "https://www.zenolai.tw/policy/ai/7"
+        },
+        {
+          "title": "雙語政策：2030 雙語之都 - 南方崛起 邁向國際 ｜賴瑞隆",
+          "url": "https://www.zenolai.tw/policy/education/12"
+        },
+        {
+          "title": "新住民政策：新高雄一家人 5 大計畫！ - 南方崛起 邁向國際 ｜賴瑞隆",
+          "url": "https://www.zenolai.tw/policy/culture/13"
+        },
+        {
+          "title": "寵物政策：人寵共好，高雄更好 - 南方崛起 邁向國際 ｜賴瑞隆",
+          "url": "https://www.zenolai.tw/policy/youth/11"
+        }
+      ]
+    },
+    {
+      "slug": "cand-王肇民-高雄市",
+      "name": "王肇民",
+      "role": "高雄市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對本屆公開政策原文，收錄部分主張；非完整政見清單，構想及執行細節不足處另予註明。",
+      "queries": [
+        "\"王肇民\" 2026 政見 高雄市"
+      ],
+      "sources": [
+        {
+          "title": "王肇民選戰主打：高雄從治水城市走向活水城市",
+          "url": "https://www.facebook.com/photo/?fbid=122267279924255835&set=a.122113748072255835"
+        },
+        {
+          "title": "王肇民選戰主打：推行管線總登記",
+          "url": "https://www.facebook.com/photo/?fbid=122267144126255835&set=a.122113748072255835"
+        }
+      ]
+    },
+    {
+      "slug": "ko-chih-en",
+      "name": "柯志恩",
+      "role": "高雄市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：柯志恩提高雄空污政策 賴瑞隆為亞運選手加油",
+          "url": "https://www.cna.com.tw/news/aipl/202609080201.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-洪方隆-高雄市",
+      "name": "洪方隆",
+      "role": "高雄市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"洪方隆\" 2026 政見 高雄市"
+      ],
+      "sources": [
+        {
+          "title": "又多1人！洪方隆登記參選高雄市長 稱希望改變7大問題",
+          "url": "https://udn.com/vote2026/story/124652/9734850"
+        }
+      ]
+    },
+    {
+      "slug": "mayor-lienchiang",
+      "name": "王忠銘",
+      "role": "連江縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"王忠銘\" 2026 政見 連江縣"
+      ],
+      "sources": [
+        {
+          "title": "九合一選舉登記首日 連江縣長王忠銘完成登記",
+          "url": "https://www.cna.com.tw/news/aipl/202608310259.aspx"
+        },
+        {
+          "title": "曹爾元拋連江縣立醫院改制部立 王忠銘盼新設",
+          "url": "https://www.cna.com.tw/news/aloc/202610020294.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-曹爾元-連江縣",
+      "name": "曹爾元",
+      "role": "連江縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"曹爾元\" 2026 政見 連江縣"
+      ],
+      "sources": [
+        {
+          "title": "曹爾元拋連江縣立醫院改制部立 王忠銘盼新設",
+          "url": "https://www.cna.com.tw/news/aloc/202610020294.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-洪和成-金門縣",
+      "name": "洪和成",
+      "role": "金門縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"洪和成\" 2026 政見 金門縣"
+      ],
+      "sources": [
+        {
+          "title": "洪和成登記選金門縣長搶頭香 「傾聽金門、做該做的事」為核心主張 - 政治 - 自由時報電子報",
+          "url": "https://news.ltn.com.tw/news/politics/breakingnews/5558278"
+        }
+      ]
+    },
+    {
+      "slug": "cand-李文良-金門縣",
+      "name": "李文良",
+      "role": "金門縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"李文良\" 2026 政見 金門縣"
+      ],
+      "sources": [
+        {
+          "title": "競逐金門縣長 陳玉珍、李文良等人完成登記",
+          "url": "https://www.cna.com.tw/news/aipl/202609020279.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-黃世團-金門縣",
+      "name": "黃世團",
+      "role": "金門縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"黃世團\" 2026 政見 金門縣"
+      ],
+      "sources": [
+        {
+          "title": "五合一選舉登記 縣長參選人提金門發展願景",
+          "url": "https://www.kmdn.gov.tw/1117/1271/1272/589890/?cprint=pt"
+        }
+      ]
+    },
+    {
+      "slug": "chenyu-jen",
+      "name": "陳玉珍",
+      "role": "金門縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"陳玉珍\" 2026 政見 金門縣"
+      ],
+      "sources": [
+        {
+          "title": "張國威設服務處喊金門有望 李文良列白皮書、陳玉珍提教育政見",
+          "url": "https://www.cna.com.tw/news/aipl/202609280094.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-張國威-金門縣",
+      "name": "張國威",
+      "role": "金門縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"張國威\" 2026 政見 金門縣"
+      ],
+      "sources": [
+        {
+          "title": "競逐金門縣長 陳玉珍、李文良等人完成登記",
+          "url": "https://www.cna.com.tw/news/aipl/202609020279.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-梁文韜-金門縣",
+      "name": "梁文韜",
+      "role": "金門縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"梁文韜\" 2026 政見 金門縣"
+      ],
+      "sources": [
+        {
+          "title": "梁文韜提金門政策白皮書徵求意見 陳玉珍按既定規劃公布",
+          "url": "https://www.cna.com.tw/news/aipl/202610010173.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-張火木-金門縣",
+      "name": "張火木",
+      "role": "金門縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"張火木\" 2026 政見 金門縣"
+      ],
+      "sources": [
+        {
+          "title": "金門日報全球資訊網 -公職選舉7人角逐縣長 議員3個選區共35人競爭",
+          "url": "https://www.kmdn.gov.tw/1117/1271/1272/589935/"
+        }
+      ]
+    },
+    {
+      "slug": "cand-陳宏毅-宜蘭縣",
+      "name": "陳宏毅",
+      "role": "宜蘭縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對本屆公開政策原文，收錄部分主張；非完整政見清單，構想及執行細節不足處另予註明。",
+      "queries": [
+        "\"陳宏毅\" 2026 政見 宜蘭縣"
+      ],
+      "sources": [
+        {
+          "url": "https://news.ltn.com.tw/news/politics/breakingnews/5558531",
+          "title": "藍綠之外冒出「神秘第3人」 陳宏毅搶頭香登記選宜蘭縣長 - 政治 - 自由時報電子報"
+        },
+        {
+          "title": "陳宏毅名義的公開IG貼文（尚待進一步確認）",
+          "url": "https://www.instagram.com/yilan.chenhungyi.2026/p/DeftlTGDzLM/"
+        },
+        {
+          "title": "陳宏毅：交通生活網，內湖與南港直達構想",
+          "url": "https://www.threads.com/@yilan.chenhungyi.2026/post/Debys3-GCsW"
+        },
+        {
+          "title": "陳宏毅：高齡友善生活環境",
+          "url": "https://www.threads.com/@yilan.chenhungyi.2026/post/DeVvM8DmAg4"
+        },
+        {
+          "title": "陳宏毅：農業精緻品牌與從產地到餐桌",
+          "url": "https://www.threads.com/@yilan.chenhungyi.2026/post/DeTN1v2GCxc"
+        }
+      ]
+    },
+    {
+      "slug": "wutsung-hsien",
+      "name": "吳宗憲",
+      "role": "宜蘭縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"吳宗憲\" 2026 政見 宜蘭縣"
+      ],
+      "sources": [
+        {
+          "title": "吳宗憲 · 宜蘭 2026 縣長候選人",
+          "url": "https://www.yilan2026.tw/"
+        }
+      ]
+    },
+    {
+      "slug": "cand-劉燦輝-宜蘭縣",
+      "name": "劉燦輝",
+      "role": "宜蘭縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "pending-source",
+      "note": "已再查宜蘭縣長政策與地方新聞，仍未取得可核對的2026本人主張；搜尋中的2019立委初選、2022鄉長及2024議員補選內容不移植。",
+      "queries": [
+        "\"劉燦輝\" 2026 政見 宜蘭縣",
+        "劉燦輝 2026 政見",
+        "劉燦輝 縣長 主張"
+      ],
+      "sources": [
+        {
+          "url": "https://news.ltn.com.tw/news/politics/breakingnews/5559938",
+          "title": "宜蘭縣長選戰不只藍綠！無黨籍2選將突襲登記 4人角逐態勢漸明 - 政治 - 自由時報電子報"
+        }
+      ]
+    },
+    {
+      "slug": "cand-林國漳-宜蘭縣",
+      "name": "林國漳",
+      "role": "宜蘭縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對本屆候選人官網或本人公開貼文，收錄部分政策主張；不代表完整政見清單。",
+      "queries": [
+        "\"林國漳\" 2026 政見 宜蘭縣"
+      ],
+      "sources": [
+        {
+          "title": "林國漳推「青年宜蘭」四大政見～主打安居創業與交通補貼【影音新聞】",
+          "url": "https://www.kamalan-news.com/political/56/17709"
+        },
+        {
+          "title": "林國漳｜2026 宜蘭縣長參選人 - 改變宜蘭，現在就出發",
+          "url": "https://2026openchang.tw/"
+        }
+      ]
+    },
+    {
+      "slug": "cand-楊鉯婷-宜蘭縣",
+      "name": "楊鉯婷",
+      "role": "宜蘭縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "pending-source",
+      "note": "已再查宜蘭縣長政策、登記與公開承諾線索，仍未取得可核對的2026本人政策內容。搜尋結果多為名冊及其他候選人報導。",
+      "queries": [
+        "\"楊鉯婷\" 2026 政見 宜蘭縣",
+        "楊鉯婷 宜蘭 政見",
+        "楊鉯婷 2026 政策"
+      ],
+      "sources": [
+        {
+          "url": "https://news.ltn.com.tw/news/politics/breakingnews/5563381",
+          "title": "神祕女子壓線登記！宜蘭縣長選戰出現第5位參選人 - 政治 - 自由時報電子報"
+        }
+      ]
+    },
+    {
+      "slug": "cand-鄭朝方-新竹縣",
+      "name": "鄭朝方",
+      "role": "新竹縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"鄭朝方\" 2026 政見 新竹縣"
+      ],
+      "sources": [
+        {
+          "title": "鄭朝方提竹縣交通及農產政見 徐欣瑩17日競總將揭牌",
+          "url": "https://www.cna.com.tw/news/aloc/202610150297.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-朱定瑀-新竹縣",
+      "name": "朱定瑀",
+      "role": "新竹縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"朱定瑀\" 2026 政見 新竹縣"
+      ],
+      "sources": [
+        {
+          "title": "不畏藍綠夾殺！無黨籍朱定瑀競總成立 拋「土地改革」等6大政見 - 政治 - 自由時報電子報",
+          "url": "https://news.ltn.com.tw/news/politics/breakingnews/5602918"
+        }
+      ]
+    },
+    {
+      "slug": "hsu-hsin-ying",
+      "name": "徐欣瑩",
+      "role": "新竹縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"徐欣瑩\" 2026 政見 新竹縣"
+      ],
+      "sources": [
+        {
+          "title": "徐欣瑩拋新竹女力政見 首波鎖定健檢、就業與家暴支持",
+          "url": "https://udn.com/vote2026/story/124652/9776101"
+        }
+      ]
+    },
+    {
+      "slug": "c-陳品安-無黨籍及未經政黨推薦-苗栗縣第03選舉區",
+      "name": "陳品安",
+      "role": "苗栗縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"陳品安\" 2026 政見 苗栗縣"
+      ],
+      "sources": [
+        {
+          "title": "苗栗縣長參選人陳品安今提「苗栗好孕政見」升級版 補助延至孕前準備",
+          "url": "https://udn.com/vote2026/story/124652/9775495"
+        }
+      ]
+    },
+    {
+      "slug": "mayor-miaoli",
+      "name": "鍾東錦",
+      "role": "苗栗縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"鍾東錦\" 2026 政見 苗栗縣"
+      ],
+      "sources": [
+        {
+          "title": "苗栗選戰 鍾東錦拋縣政白皮書 陳品安強調國際視野",
+          "url": "https://udn.com/vote2026/story/124652/9635125"
+        }
+      ]
+    },
+    {
+      "slug": "c-陳重嘉-民眾黨-彰化縣第05選舉區",
+      "name": "陳重嘉",
+      "role": "彰化縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"陳重嘉\" 2026 政見 彰化縣"
+      ],
+      "sources": [
+        {
+          "title": "快訊／搶頭香！彰化4連霸議員陳重嘉登記參選縣長",
+          "url": "https://www.ettoday.net/news/20260831/3228728.htm"
+        }
+      ]
+    },
+    {
+      "slug": "chensu-yueh",
+      "name": "陳素月",
+      "role": "彰化縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"陳素月\" 2026 政見 彰化縣"
+      ],
+      "sources": [
+        {
+          "title": "【有影】【陳素月專訪2-2】彰化縣政10願景、3核心 找回主體性不當「台中後花園」 - 匯流新聞網",
+          "url": "https://cnews.com.tw/237261015a02/"
+        }
+      ]
+    },
+    {
+      "slug": "cand-邱建富-彰化縣",
+      "name": "邱建富",
+      "role": "彰化縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對本屆候選人官網或本人公開貼文，收錄部分政策主張；不代表完整政見清單。",
+      "queries": [
+        "\"邱建富\" 2026 政見 彰化縣"
+      ],
+      "sources": [
+        {
+          "title": "邱建富拋彰化教育政見 教師禮金千元、生育再加碼10萬",
+          "url": "https://udn.com/vote2026/story/7325/9781081"
+        },
+        {
+          "title": "首頁 ｜ 邱建富 2026 彰化縣長候選人",
+          "url": "https://chiuchienfu.tw"
+        }
+      ]
+    },
+    {
+      "slug": "cand-魏平政-彰化縣",
+      "name": "魏平政",
+      "role": "彰化縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"魏平政\" 2026 政見 彰化縣"
+      ],
+      "sources": [
+        {
+          "title": "國民黨首場分區造勢17日彰化登場 魏平政：期待王惠美出現",
+          "url": "https://www.cna.com.tw/news/aipl/202610050097.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-温世政-南投縣",
+      "name": "温世政",
+      "role": "南投縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：温世政提南投交通政見 許淑華重陽節前訪人瑞",
+          "url": "https://www.cna.com.tw/news/aloc/202610150261.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "mayor-nantou",
+      "name": "許淑華",
+      "role": "南投縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"許淑華\" 2026 政見 南投縣"
+      ],
+      "sources": [
+        {
+          "title": "許淑華鄉鎮聯合競總成立第一站近千人相挺 藍軍拚「13+1」全壘打 - 墨新聞 MORE News",
+          "url": "https://more-news.tw/718870/"
+        }
+      ]
+    },
+    {
+      "slug": "cand-吳炳輝-雲林縣",
+      "name": "吳炳輝",
+      "role": "雲林縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"吳炳輝\" 2026 政見 雲林縣"
+      ],
+      "sources": [
+        {
+          "title": "雲林縣長參選人吳炳輝戰鬥力十足 第一時間擬好政見出擊 - 政治 - 中時",
+          "url": "https://www.chinatimes.com/realtimenews/20260903003002-260407?chdtv"
+        }
+      ]
+    },
+    {
+      "slug": "chang-chia-chun",
+      "name": "張嘉郡",
+      "role": "雲林縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"張嘉郡\" 2026 政見 雲林縣"
+      ],
+      "sources": [
+        {
+          "title": "雲林縣長候選人張嘉郡崙背政見發表 拋六大行動再造地方風華 - 鑫傳國際多媒體科技股份有限公司 TDN台灣生活新聞",
+          "url": "https://news.st-media.com.tw/news/63264"
+        }
+      ]
+    },
+    {
+      "slug": "liu-chien-kuo",
+      "name": "劉建國",
+      "role": "雲林縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"劉建國\" 2026 政見 雲林縣"
+      ],
+      "sources": [
+        {
+          "title": "劉建國雲林首波政見 「一園區、七顆心」打造全齡醫療照護產業聚落",
+          "url": "https://udn.com/news/story/124652/9704017"
+        }
+      ]
+    },
+    {
+      "slug": "cand-林佳瑜-雲林縣",
+      "name": "林佳瑜",
+      "role": "雲林縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "pending-source",
+      "note": "已再查本屆登記與政策資料，部分網路彙整主張可追溯至2018選舉公報，尚未確認2026重申，因此不移植為本屆政見。",
+      "queries": [
+        "\"林佳瑜\" 2026 政見 雲林縣",
+        "林佳瑜 2026 政見 雲林",
+        "林佳瑜 長照4.0 微力軍團"
+      ],
+      "sources": [
+        {
+          "url": "https://udn.com/vote2026/story/124652/9735269",
+          "title": "雲林縣長選戰最後一刻殺出第4人 他壓線登記4度參選再戰 | 2026九合一選舉"
+        }
+      ]
+    },
+    {
+      "slug": "cand-吳品叡-嘉義縣",
+      "name": "吳品叡",
+      "role": "嘉義縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"吳品叡\" 2026 政見 嘉義縣"
+      ],
+      "sources": [
+        {
+          "title": "蔡易餘公布醫療社福政見 吳品叡推長者健保補助",
+          "url": "https://www.cna.com.tw/news/aipl/202610010197.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "tsai-yi-yu",
+      "name": "蔡易餘",
+      "role": "嘉義縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"蔡易餘\" 2026 政見 嘉義縣"
+      ],
+      "sources": [
+        {
+          "title": "綠嘉義縣長初選政見會 蔡易餘提邁向下個黃金10年",
+          "url": "https://www.cna.com.tw/news/aipl/202601040117.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "su-ching-chuan",
+      "name": "蘇清泉",
+      "role": "屏東縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"蘇清泉\" 2026 政見 屏東縣"
+      ],
+      "sources": [
+        {
+          "title": "蘇清泉政見 屏東營養午餐全面免費｜台灣民眾電子報",
+          "url": "https://www.allnews.tw/news/95604"
+        }
+      ]
+    },
+    {
+      "slug": "mayor-pingtung",
+      "name": "周春米",
+      "role": "屏東縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"周春米\" 2026 政見 屏東縣"
+      ],
+      "sources": [
+        {
+          "title": "專訪》周春米擘劃屏東三大新願景 展現政績反擊對手質疑",
+          "url": "https://www.storm.mg/article/11167556"
+        }
+      ]
+    },
+    {
+      "slug": "chen-ying",
+      "name": "陳瑩",
+      "role": "臺東縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：教師節拚教育政見 陳瑩縮小城鄉差距、吳秀華推優質文教",
+          "url": "https://www.cna.com.tw/news/aipl/202609230237.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "c-吳秀華-國民黨-臺東縣第01選舉區",
+      "name": "吳秀華",
+      "role": "臺東縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：教師節拚教育政見 陳瑩縮小城鄉差距、吳秀華推優質文教",
+          "url": "https://www.cna.com.tw/news/aipl/202609230237.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-李吳穎智-臺東縣",
+      "name": "李吳穎智",
+      "role": "臺東縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"李吳穎智\" 2026 政見 臺東縣"
+      ],
+      "sources": [
+        {
+          "title": "無黨籍2人參選台東縣長 給多一種選擇拚「萬一」當選",
+          "url": "https://www.cna.com.tw/news/aloc/202609120079.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-王志偉-臺東縣",
+      "name": "王志偉",
+      "role": "臺東縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"王志偉\" 2026 政見 臺東縣"
+      ],
+      "sources": [
+        {
+          "title": "無黨籍2人參選台東縣長 給多一種選擇拚「萬一」當選",
+          "url": "https://www.cna.com.tw/news/aloc/202609120079.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-游淑貞-花蓮縣",
+      "name": "游淑貞",
+      "role": "花蓮縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：縣長選戰拋高鐵延伸花蓮 3參選人盼中央納評估",
+          "url": "https://www.cna.com.tw/news/aipl/202609240356.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "c-張峻-無黨籍及未經政黨推薦-花蓮縣第03選舉區",
+      "name": "張峻",
+      "role": "花蓮縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：縣長選戰拋高鐵延伸花蓮 3參選人盼中央納評估",
+          "url": "https://www.cna.com.tw/news/aipl/202609240356.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "c-魏嘉賢-無黨籍及未經政黨推薦-花蓮縣第01選舉區",
+      "name": "魏嘉賢",
+      "role": "花蓮縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對本屆候選人官網或本人公開貼文，收錄部分政策主張；不代表完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：縣長選戰拋高鐵延伸花蓮 3參選人盼中央納評估",
+          "url": "https://www.cna.com.tw/news/aipl/202609240356.aspx"
+        },
+        {
+          "title": "魏嘉賢｜打開新局，花蓮向前 — 2026 花蓮縣長參選人",
+          "url": "https://lovehualien.com/"
+        }
+      ]
+    },
+    {
+      "slug": "cand-羅佩秦-花蓮縣",
+      "name": "羅佩秦",
+      "role": "花蓮縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"羅佩秦\" 2026 政見 花蓮縣"
+      ],
+      "sources": [
+        {
+          "title": "台灣工黨羅佩秦登記參選花蓮縣長 主打發放2千消費券、助災民討公道",
+          "url": "https://www.seenews.com.tw/news_data.php?news_id=2789&k_code=A&k_code_sub="
+        }
+      ]
+    },
+    {
+      "slug": "cand-吳淑瑾-澎湖縣",
+      "name": "吳淑瑾",
+      "role": "澎湖縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"吳淑瑾\" 2026 政見 澎湖縣"
+      ],
+      "sources": [
+        {
+          "title": "澎湖縣長選戰／吳淑瑾攻青年票黃捷助陣 陳振中提海事教育獲支持",
+          "url": "https://udn.com/news/story/124652/9801593"
+        }
+      ]
+    },
+    {
+      "slug": "cand-陳振中-澎湖縣",
+      "name": "陳振中",
+      "role": "澎湖縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"陳振中\" 2026 政見 澎湖縣"
+      ],
+      "sources": [
+        {
+          "title": "陳振中代表國民黨選澎湖縣長 發表十大施政方針",
+          "url": "https://www.cna.com.tw/news/aloc/202604020129.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-周倪安-澎湖縣",
+      "name": "周倪安",
+      "role": "澎湖縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"周倪安\" 2026 政見 澎湖縣"
+      ],
+      "sources": [
+        {
+          "title": "細數澎湖觀光問題 周倪安提解方 - 政治 - 自由時報電子報",
+          "url": "https://news.ltn.com.tw/news/politics/breakingnews/5547690"
+        }
+      ]
+    },
+    {
+      "slug": "cand-許智富-澎湖縣",
+      "name": "許智富",
+      "role": "澎湖縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"許智富\" 2026 政見 澎湖縣"
+      ],
+      "sources": [
+        {
+          "title": "無黨籍澎湖縣長參選人許智富 提出路平專案政見 - 政治 - 自由時報電子報",
+          "url": "https://news.ltn.com.tw/news/politics/breakingnews/5481306"
+        }
+      ]
+    },
+    {
+      "slug": "cand-陳盡川-澎湖縣",
+      "name": "陳盡川",
+      "role": "澎湖縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"陳盡川\" 2026 政見 澎湖縣"
+      ],
+      "sources": [
+        {
+          "title": "海洋、土地、道路與觀光願景",
+          "url": "https://penghudaily.blogspot.com/2026/01/blog-post_476.html"
+        }
+      ]
+    },
+    {
+      "slug": "cand-葉竹林-澎湖縣",
+      "name": "葉竹林",
+      "role": "澎湖縣長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"葉竹林\" 2026 政見 澎湖縣"
+      ],
+      "sources": [
+        {
+          "title": "葉竹林參選澎湖縣長拋六大幸福政見 從福利到青年布局 重塑澎湖治理主軸 - 波新聞",
+          "url": "https://www.bo6s.com.tw/news_detail.php?NewsID=110142"
+        }
+      ]
+    },
+    {
+      "slug": "mayor-keelung",
+      "name": "謝國樑",
+      "role": "基隆市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"謝國樑\" 2026 政見 基隆市"
+      ],
+      "sources": [
+        {
+          "title": "2026九合一選舉 基隆市選戰：謝國樑 VS. 童子瑋",
+          "url": "https://www.cna.com.tw/news/aipl/202609215009.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-魏造文-基隆市",
+      "name": "魏造文",
+      "role": "基隆市長",
+      "reviewedOn": "2026-10-16",
+      "status": "pending-source",
+      "note": "已再查基隆市長政策、登記及地方新聞，結果主要為名冊、民調與其他候選人政策，仍未取得可核對的本人主張。",
+      "queries": [
+        "\"魏造文\" 2026 政見 基隆市",
+        "魏造文 政見 基隆",
+        "魏造文 政策"
+      ],
+      "sources": []
+    },
+    {
+      "slug": "c-童子瑋-民進黨-基隆市第03選舉區",
+      "name": "童子瑋",
+      "role": "基隆市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對本屆候選人官網或本人公開貼文，收錄部分政策主張；不代表完整政見清單。",
+      "queries": [
+        "\"童子瑋\" 2026 政見 基隆市"
+      ],
+      "sources": [
+        {
+          "title": "「基隆夢想館」公布七大行政區願景政見 童子瑋：找回基隆光榮",
+          "url": "https://udn.com/vote2026/story/124652/9792536"
+        },
+        {
+          "title": "we care 教育政策 – 童子瑋",
+          "url": "https://t-ziwei.com/archives/2825"
+        },
+        {
+          "title": "基隆醫療全面升級 – 童子瑋",
+          "url": "https://t-ziwei.com/archives/2767"
+        },
+        {
+          "title": "運動基隆 健康城市 – 童子瑋",
+          "url": "https://t-ziwei.com/archives/2748"
+        },
+        {
+          "title": "毛孩顧健康，城市更友善 – 童子瑋",
+          "url": "https://t-ziwei.com/archives/2662"
+        },
+        {
+          "title": "七大社福政見，照顧2萬身障市民 – 童子瑋",
+          "url": "https://t-ziwei.com/archives/2574"
+        }
+      ]
+    },
+    {
+      "slug": "mayor-hsinchu-city",
+      "name": "高虹安",
+      "role": "新竹市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"高虹安\" 2026 政見 新竹市"
+      ],
+      "sources": [
+        {
+          "title": "高虹安成立教育後援會 喊4年投入6百億教育預算、推K-12科技雙語學校",
+          "url": "https://money.udn.com/money/story/7307/9794153"
+        }
+      ]
+    },
+    {
+      "slug": "cand-莊競程-新竹市",
+      "name": "莊競程",
+      "role": "新竹市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"莊競程\" 2026 政見 新竹市"
+      ],
+      "sources": [
+        {
+          "title": "新竹市建設一再延宕 莊競程：現任市長不做我來做，新竹不能再等四年！ / 民主進步黨 - 綠色執政品質保證",
+          "url": "https://www.dpp.org.tw/media/contents/11811"
+        }
+      ]
+    },
+    {
+      "slug": "cand-何志勇-新竹市",
+      "name": "何志勇",
+      "role": "新竹市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對本屆候選人官網或本人公開貼文，收錄部分政策主張；不代表完整政見清單。",
+      "queries": [
+        "\"何志勇\" 2026 政見 新竹市"
+      ],
+      "sources": [
+        {
+          "title": "何志勇出席新竹市青年論壇 提市民16800生活支持金政見 - 政治 - 自由時報電子報",
+          "url": "https://news.ltn.com.tw/news/politics/breakingnews/5598552"
+        },
+        {
+          "title": "何志勇 — 2026 新竹市市長參選人",
+          "url": "https://chihyungho.github.io/"
+        }
+      ]
+    },
+    {
+      "slug": "cand-黃宏成台灣阿成世界偉人財神總統-嘉義市",
+      "name": "黃宏成台灣阿成世界偉人財神總統",
+      "role": "嘉義市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對本屆公開政策原文，收錄部分主張；非完整政見清單，構想及執行細節不足處另予註明。",
+      "queries": [
+        "\"黃宏成台灣阿成世界偉人財神總統\" 2026 政見 嘉義市"
+      ],
+      "sources": [
+        {
+          "url": "https://www.cna.com.tw/news/aloc/202609263002.aspx",
+          "title": "屢敗屢戰6度參選 「財神總統」已無法再改名不遺憾 | 地方 | 中央社 CNA"
+        },
+        {
+          "title": "中評社：黃宏成名字15字 搶頭香登記選嘉義市長",
+          "url": "https://www.crntt.tw/doc/docDetailCreate.jsp?coluid=92&docid=160262585&kindid=0"
+        }
+      ]
+    },
+    {
+      "slug": "cand-陳愷璜-嘉義市",
+      "name": "陳愷璜",
+      "role": "嘉義市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [
+        "\"陳愷璜\" 2026 政見 嘉義市"
+      ],
+      "sources": [
+        {
+          "title": "嘉市長選戰倒數百日 台藝大前校長陳愷璜提十大經濟政見虛實整合策略",
+          "url": "https://udn.com/vote2026/story/124652/9703532"
+        }
+      ]
+    },
+    {
+      "slug": "張啓楷-不分區",
+      "name": "張啓楷",
+      "role": "嘉義市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：王美惠提高齡居家安全政策 張啓楷促優化敬老卡",
+          "url": "https://www.cna.com.tw/news/aloc/202610050211.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "wangmei-hui",
+      "name": "王美惠",
+      "role": "嘉義市長",
+      "reviewedOn": "2026-10-16",
+      "status": "collected",
+      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "queries": [],
+      "sources": [
+        {
+          "title": "中央社：王美惠提高齡居家安全政策 張啓楷促優化敬老卡",
+          "url": "https://www.cna.com.tw/news/aloc/202610050211.aspx"
+        },
+        {
+          "title": "中央社：張啓楷打造更宜居幸福嘉義市 王美惠建立全齡照顧體系",
+          "url": "https://www.cna.com.tw/news/aipl/202609020219.aspx"
+        }
+      ]
+    },
+    {
+      "slug": "cand-王義成-嘉義市",
+      "name": "王義成",
+      "role": "嘉義市長",
+      "reviewedOn": "2026-10-16",
+      "status": "pending-source",
+      "note": "已再查嘉義市長政策、著作與最新選情報導，仍未取得具體政策原文。9月3日登記受訪未詳談，不能據此認定目前未發表。",
+      "queries": [
+        "\"王義成\" 2026 政見 嘉義市",
+        "王義成 嘉義 政見",
+        "王義成 天下第二富裕之門 參選"
+      ],
+      "sources": [
+        {
+          "url": "https://udn.com/vote2026/story/124652/9731484",
+          "title": "神秘政治素人現身 王義成騎機車獨自登記嘉市長選戰增至5人 | 2026九合一選舉"
+        }
+      ]
+    }
+  ]
+}

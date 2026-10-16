@@ -1,0 +1,56 @@
+---
+import SectionHead from './SectionHead.astro';
+import Sources from './Sources.astro';
+import { POLICY_SOURCE_LABEL, type CandidatePolicies, type PolicyReview } from '../lib/candidatePolicies';
+
+interface Props { policies?: CandidatePolicies; review?: PolicyReview }
+const { policies, review } = Astro.props;
+---
+<section id="policies" aria-labelledby="policies-title">
+  <SectionHead id="policies-title" text="2026 政見" />
+  <p class="note">整理候選人已公開的政策主張，非完整政見清單，也不代表已實施或兌現。各筆附發表日期與來源，摘要請與原文對照。</p>
+  {policies ? policies.records.map((record) => (
+    <article class="policy-record">
+      <h3>{record.title}</h3>
+      <p class="meta">
+        {record.announcedOn ? <>發表：<time datetime={record.announcedOn}>{record.announcedOn}</time></> : '發表日期：來源未載明確日期'}
+        <span>・{POLICY_SOURCE_LABEL[record.source.type]}</span>
+      </p>
+      <ul>
+        {record.proposals.map((proposal) => (
+          <li><h4>{proposal.topic}</h4><p>{proposal.summary}</p></li>
+        ))}
+      </ul>
+      <Sources sources={[{
+        id: record.id, url: record.source.url, title: record.source.title,
+        type: record.source.type === 'news' ? 'news' : record.source.type === 'gazette' ? 'gazette' : 'website',
+        retrievedAt: record.reviewedOn,
+      }]} />
+      <p class="meta review">來源刊登：{record.source.publishedOn ? <time datetime={record.source.publishedOn}>{record.source.publishedOn}</time> : '未載日期'}・本站核對：<time datetime={record.reviewedOn}>{record.reviewedOn}</time></p>
+    </article>
+  )) : <div class="empty">
+    <p>{review ? '已查核，待補可核對來源。' : '本站尚未收錄這位候選人的 2026 政見。'}不代表尚未發表。</p>
+    {review && <>
+      <p>{review.note}</p>
+      <p class="meta">本站查核：<time datetime={review.reviewedOn}>{review.reviewedOn}</time></p>
+      {review.sources.length > 0 && <Sources sources={review.sources.map((source, i) => ({ ...source, id: `policy-review-${i}`, type: 'news', retrievedAt: review.reviewedOn }))} />}
+    </>}
+  </div>}
+</section>
+
+<style>
+  section { margin-bottom: 42px; scroll-margin-top: 24px; }
+  section :global(.sh) { margin-top: 0; }
+  .note, .meta { font-size: var(--t-sm); color: var(--muted); }
+  .note { margin: -4px 0 16px; }
+  .policy-record { padding: 18px 0; border-bottom: 1px solid var(--line); }
+  h3 { margin: 0; font-size: var(--t-md); }
+  .meta { margin: 6px 0 0; }
+  ul { margin: 16px 0; padding-left: 1.3em; }
+  li + li { margin-top: 14px; }
+  h4 { margin: 0; font-size: 0.9375rem; }
+  li p { margin: 4px 0 0; font-size: 0.9375rem; line-height: 1.8; }
+  .review { font-size: var(--t-xs); }
+  .empty { color: var(--muted); font-size: var(--t-sm); }
+  @media (max-width: 760px) { section { margin-bottom: 32px; } }
+</style>

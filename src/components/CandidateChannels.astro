@@ -1,0 +1,25 @@
+---
+import { CHANNEL_LABEL, type CandidateChannels } from '../lib/candidateChannels';
+interface Props { channels: CandidateChannels; }
+const { channels } = Astro.props;
+---
+<div class="channels" aria-label="候選人網站與社群">
+  {channels.links.length > 0 && <ul>{channels.links.map(link => <li><a href={link.url} target="_blank" rel="noopener noreferrer" title={link.title}>{CHANNEL_LABEL[link.kind]} <span aria-hidden="true">↗</span></a></li>)}</ul>}
+  <details>
+    <summary>網站與 Facebook 查核・{channels.reviewedOn}</summary>
+    <p>{channels.websiteNote}</p><p>{channels.facebookNote}</p>
+    {channels.links.length > 0 && <ul class="evidence">{channels.links.map(link => <li>{CHANNEL_LABEL[link.kind]}：{link.evidence.note} <a href={link.evidence.url} target="_blank" rel="noopener noreferrer">核對來源 ↗</a></li>)}</ul>}
+    <p>未確認不代表沒有設立；外部網站與貼文內容由候選人或平台維護。</p>
+  </details>
+</div>
+<style>
+  .channels { margin-top: 14px; font-size: var(--t-sm); }
+  .channels > ul { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0 0 8px; list-style: none; }
+  .channels > ul a { display: inline-block; padding: 5px 10px; border: 1px solid var(--line); text-decoration: none; }
+  .channels a:hover { color: var(--accent); border-color: var(--accent); }
+  details { color: var(--muted); line-height: 1.7; }
+  summary { cursor: pointer; }
+  details p { margin: 6px 0; }
+  .evidence { padding-left: 18px; }
+  .evidence a { text-decoration: underline; }
+</style>

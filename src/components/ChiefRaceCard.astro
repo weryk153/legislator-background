@@ -3,6 +3,7 @@
 //
 // 中立原則：每位候選人同字級、同版型、同大小；排序依名冊（有號次時依號次），不依政黨或筆數。
 // 「爭取連任」是中性小標籤，筆數一律同色同字級，只列數字，判決／爭議內容請見個人頁。
+import { loadCandidateChannels, CHANNEL_LABEL } from "../lib/candidateChannels";
 import FirstRunBadge from './FirstRunBadge.svelte';
 import type { ChiefRace } from "../lib/candidateTypes";
 import { chiefTitle } from "../lib/candidateTypes";
@@ -10,6 +11,7 @@ import { isChiefReelect, orderCandidates, partyColorVar, partyLabel, recordCount
 import type { Official } from "../lib/types";
 import { candidatePhotoCredits } from "../lib/candidatePhotos";
 import { squashStyle } from "../lib/squash";
+import { loadCandidatePolicies, loadPolicyReviews, policyCount } from "../lib/candidatePolicies";
 
 interface Props {
   race: ChiefRace;
@@ -23,7 +25,10 @@ interface Props {
 const { race: r, officialsBySlug, href, showHead = true } = Astro.props;
 const headId = `chief-${r.countyCode}`;
 const inc = r.incumbent2022;
+const policies = loadCandidatePolicies([...officialsBySlug.values()]);
+const policyReviews = loadPolicyReviews(policies);
 // 取自維基共享資源的參選人照片：CC BY／CC BY-SA 須署名，列在卡片底部（頭像只有 48px，放不下）。
+const channels = loadCandidateChannels();
 const credits = candidatePhotoCredits();
 const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
   const p = c.slug ? credits.get(c.slug) : undefined;
@@ -46,6 +51,7 @@ const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
       const o = c.slug ? officialsBySlug.get(c.slug) : undefined;
       const photo = o?.photoUrl ?? null;
       const n = recordCounts(o);
+      const count = policyCount(c.slug ? policies.get(c.slug) : undefined);
       return (
         <li class="mc">
           {photo
@@ -65,6 +71,8 @@ const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
             <p class="mc-recs">
               {n ? `經歷 ${n.careers}・判決 ${n.judgments}・爭議 ${n.controversies}・獻金 ${n.donations}` : "本站尚無檔案"}
             </p>
+            {c.slug && <p class="mc-policy"><a href={`/officials/${c.slug}/#policies`}>{count ? `政見摘要：已收錄 ${count} 項` : policyReviews.has(c.slug) ? '政見：已查核，待補來源' : '政見：尚未收錄'} <span aria-hidden="true">→</span></a></p>}
+            {c.slug && (channels.get(c.slug)?.links.length ?? 0) > 0 && <p class="mc-channels">{channels.get(c.slug)!.links.map((link, i) => <>{i > 0 && "・"}<a href={link.url} target="_blank" rel="noopener noreferrer">{CHANNEL_LABEL[link.kind]} ↗</a></>)}</p>}
           </div>
         </li>
       );
@@ -80,6 +88,11 @@ const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
 </article>
 
 <style>
+  .mc-channels { font-size: var(--t-sm); margin-top: 5px !important; overflow-wrap: anywhere; }
+  .mc-channels a { text-decoration: underline; text-underline-offset: 3px; }
+  .mc-policy { font-size: var(--t-sm); margin: 6px 0 0; }
+  .mc-policy a { text-decoration: underline; text-underline-offset: 3px; }
+  .mc-policy a:hover { color: var(--accent); }
   .chief-card { padding-top: 12px; min-width: 0; }
   .cc-head h3 { font-family: var(--serif); font-weight: 900; font-size: var(--t-md); margin: 0; }
   .cc-head h3 a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }

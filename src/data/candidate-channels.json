@@ -1,0 +1,1833 @@
+{
+  "electionYear": 2026,
+  "updatedOn": "2026-10-16",
+  "rosterDate": "2026-09-07",
+  "candidates": [
+    {
+      "slug": "cand-郭璽-臺北市",
+      "name": "郭璽",
+      "role": "臺北市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/p/%E9%83%AD%E7%92%BD-61550495357919/",
+          "title": "郭璽 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/p/%E9%83%AD%E7%92%BD-61550495357919/",
+            "note": "專頁列西北大學博士、國防背景，與候選人履歷相符；頁面仍保留過往選舉內容。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "郭璽 臺北市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "shenpao-yang",
+      "name": "沈伯洋",
+      "role": "臺北市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://puma.taipei/",
+          "title": "沈伯洋｜台北市長候選人",
+          "evidence": {
+            "url": "https://puma.taipei/",
+            "note": "網站列出本人姓名、參選職位與競選內容。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/puma.taipei/",
+          "title": "沈伯洋 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/puma.taipei/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "沈伯洋 臺北市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-蕭文乾-臺北市",
+      "name": "蕭文乾",
+      "role": "臺北市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-profile",
+          "url": "https://www.facebook.com/wen.hsiao.100/",
+          "title": "蕭文乾 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/wen.hsiao.100/",
+            "note": "公開帳號顯示 Wen Hsiao／蕭文乾，發表 SoR 英文教育內容，與候選人的教育專業相符。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認本人公開個人帳號，與粉絲專頁分開標示。",
+      "queries": [
+        "蕭文乾 臺北市 競選 官方網站 Facebook",
+        "蕭燐洪 蕭文乾 素人黨 官方網站"
+      ]
+    },
+    {
+      "slug": "cand-唐新民-臺北市",
+      "name": "唐新民",
+      "role": "臺北市長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "百科列有同名 Facebook 連結，但公開頁面缺少足以核對參選身分的資訊，暫不收錄。",
+      "queries": [
+        "唐新民 臺北市 競選 官方網站 Facebook",
+        "唐新民 台北市長 Facebook 粉絲專頁"
+      ]
+    },
+    {
+      "slug": "mayor-taipei",
+      "name": "蔣萬安",
+      "role": "臺北市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/chiangwanan/",
+          "title": "蔣萬安 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/chiangwanan/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "蔣萬安 臺北市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-林志成-臺北市",
+      "name": "林志成",
+      "role": "臺北市長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "本次公開搜尋尚未確認本人 Facebook；同名帳號、新聞貼文、政黨頁及後援社團不視為本人專頁。",
+      "queries": [
+        "林志成 臺北市 競選 官方網站 Facebook",
+        "林志成 拳王 台北 Facebook"
+      ]
+    },
+    {
+      "slug": "suchiao-hui",
+      "name": "蘇巧慧",
+      "role": "新北市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://chiao.tw/",
+          "title": "首頁 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+          "evidence": {
+            "url": "https://chiao.tw/",
+            "note": "網站列出本人姓名、參選職位與競選內容。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/chiaohui.su/",
+          "title": "蘇巧慧 Facebook",
+          "evidence": {
+            "url": "https://chiao.tw/",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "蘇巧慧 新北市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-李四川-新北市",
+      "name": "李四川",
+      "role": "新北市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "hub",
+          "url": "https://portaly.cc/hammerlee",
+          "title": "李四川 新北市長候選人|Facebook, Instagram, Threads, 政見內容 | Portaly",
+          "evidence": {
+            "url": "https://portaly.cc/hammerlee",
+            "note": "本人官方社群連結頁，集中列出社群與競選資訊。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/p/%E6%9D%8E%E5%9B%9B%E5%B7%9DHammer-Lee-100051818071280/",
+          "title": "李四川 Facebook",
+          "evidence": {
+            "url": "https://portaly.cc/hammerlee",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認官方連結頁；尚未確認獨立競選官網。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "李四川 新北市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-蘇輝湟-新北市",
+      "name": "蘇輝湟",
+      "role": "新北市長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "本次公開搜尋尚未確認本人 Facebook；同名帳號、新聞貼文、政黨頁及後援社團不視為本人專頁。",
+      "queries": [
+        "蘇輝湟 新北市 競選 官方網站 Facebook",
+        "蘇輝湟 Facebook"
+      ]
+    },
+    {
+      "slug": "mayor-taoyuan",
+      "name": "張善政",
+      "role": "桃園市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/SanCheng624/",
+          "title": "張善政 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/SanCheng624/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "張善政 桃園市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-黃世杰-桃園市",
+      "name": "黃世杰",
+      "role": "桃園市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "hub",
+          "url": "https://portaly.cc/schuanglawyer",
+          "title": "黃世杰 | Instagram, Facebook, YouTube | Portaly",
+          "evidence": {
+            "url": "https://portaly.cc/schuanglawyer",
+            "note": "本人官方社群連結頁，集中列出社群與競選資訊。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/SCHuangLawyer/",
+          "title": "黃世杰 Facebook",
+          "evidence": {
+            "url": "https://portaly.cc/schuanglawyer",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認官方連結頁；尚未確認獨立競選官網。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "黃世杰 桃園市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "ho-hsin-chun",
+      "name": "何欣純",
+      "role": "臺中市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://a-chun.tw/",
+          "title": "何欣純官方網站｜2026 台中市長候選人",
+          "evidence": {
+            "url": "https://a-chun.tw/",
+            "note": "網站列出本人姓名、參選職位與競選內容。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/94achun/",
+          "title": "何欣純 Facebook",
+          "evidence": {
+            "url": "https://a-chun.tw/",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "何欣純 臺中市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "chiang-chi-chen",
+      "name": "江啟臣",
+      "role": "臺中市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://taichungway.tw/",
+          "title": "臺中味 Taichung Way｜臺中市長候選人江啟臣",
+          "evidence": {
+            "url": "https://taichungway.tw/",
+            "note": "網站列出本人姓名、參選職位與競選內容。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/johnnyccchiang/",
+          "title": "江啟臣 Facebook",
+          "evidence": {
+            "url": "https://taichungway.tw/",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "江啟臣 臺中市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-洪麗華-臺中市",
+      "name": "洪麗華",
+      "role": "臺中市長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "本次公開搜尋尚未確認本人 Facebook；同名帳號、新聞貼文、政黨頁及後援社團不視為本人專頁。",
+      "queries": [
+        "洪麗華 臺中市 競選 官方網站 Facebook",
+        "洪麗華 司法正義黨 臉書"
+      ]
+    },
+    {
+      "slug": "hsieh-lung-chieh",
+      "name": "謝龍介",
+      "role": "臺南市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "hub",
+          "url": "https://linktr.ee/longuy",
+          "title": "謝龍介 Official: TikTok, Instagram, Facebook, Twitch | Linktree",
+          "evidence": {
+            "url": "https://linktr.ee/longuy",
+            "note": "本人官方社群連結頁，集中列出社群與競選資訊。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/TEL062268268/",
+          "title": "謝龍介 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/TEL062268268/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "已確認官方連結頁；尚未確認獨立競選官網。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "謝龍介 臺南市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-蕭燐洪-臺南市",
+      "name": "蕭燐洪",
+      "role": "臺南市長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "本次公開搜尋尚未確認本人 Facebook；同名帳號、新聞貼文、政黨頁及後援社團不視為本人專頁。",
+      "queries": [
+        "蕭燐洪 臺南市 競選 官方網站 Facebook",
+        "蕭燐洪 蕭文乾 素人黨 官方網站"
+      ]
+    },
+    {
+      "slug": "cand-葉人文-臺南市",
+      "name": "葉人文",
+      "role": "臺南市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "support",
+          "url": "https://tainanyesman.oen.tw/",
+          "title": "葉人文 － 臺南市長候選人",
+          "evidence": {
+            "url": "https://tainanyesman.oen.tw/",
+            "note": "競選支持頁列出本人參選資訊及競選總部／理念，頁面包含政治獻金功能。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/TainanYesMan/",
+          "title": "葉人文 Facebook",
+          "evidence": {
+            "url": "https://tainanyesman.oen.tw/",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選支持頁（含捐款功能）；與完整競選官網分開標示。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "葉人文 臺南市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "chen-ting-fei",
+      "name": "陳亭妃",
+      "role": "臺南市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/fififans/",
+          "title": "陳亭妃 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/fififans/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "陳亭妃 臺南市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-張靜-高雄市",
+      "name": "張靜",
+      "role": "高雄市長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "本次公開搜尋尚未確認本人 Facebook；同名帳號、新聞貼文、政黨頁及後援社團不視為本人專頁。",
+      "queries": [
+        "張靜 高雄市 競選 官方網站 Facebook",
+        "張靜 司法改革黨 Facebook 本人"
+      ]
+    },
+    {
+      "slug": "laijui-lung",
+      "name": "賴瑞隆",
+      "role": "高雄市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://www.zenolai.tw/",
+          "title": "南方崛起 邁向國際 ｜賴瑞隆",
+          "evidence": {
+            "url": "https://www.zenolai.tw/",
+            "note": "網站列出本人姓名、參選職位與競選內容。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/zenolai2/",
+          "title": "賴瑞隆 Facebook",
+          "evidence": {
+            "url": "https://www.zenolai.tw/",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "賴瑞隆 高雄市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-王肇民-高雄市",
+      "name": "王肇民",
+      "role": "高雄市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/p/%E7%8E%8B%E8%82%87%E6%B0%91%E9%81%B8%E6%88%B0%E4%B8%BB%E6%89%93-61593886990734/",
+          "title": "王肇民 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/p/%E7%8E%8B%E8%82%87%E6%B0%91%E9%81%B8%E6%88%B0%E4%B8%BB%E6%89%93-61593886990734/",
+            "note": "專頁自介明載 2026 第五屆高雄市長候選人王肇民。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "王肇民 高雄市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "ko-chih-en",
+      "name": "柯志恩",
+      "role": "高雄市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://kochihen2026.tw/",
+          "title": "Just a moment...",
+          "evidence": {
+            "url": "https://2026.kmtks.org.tw/news/115089898",
+            "note": "政黨網站刊登競選辦公室上線公告，且本人 Facebook 簡介連至同址；本次網站抓取遇存取檢查。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/KoChihEn/",
+          "title": "柯志恩 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/KoChihEn/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "柯志恩 高雄市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-洪方隆-高雄市",
+      "name": "洪方隆",
+      "role": "高雄市長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "本次公開搜尋尚未確認本人 Facebook；同名帳號、新聞貼文、政黨頁及後援社團不視為本人專頁。",
+      "queries": [
+        "洪方隆 高雄市 競選 官方網站 Facebook",
+        "洪方隆 常春藤電訊 臉書"
+      ]
+    },
+    {
+      "slug": "mayor-lienchiang",
+      "name": "王忠銘",
+      "role": "連江縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/p/%E7%8E%8B%E5%BF%A0%E9%8A%98-100071514671190/",
+          "title": "王忠銘 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/p/%E7%8E%8B%E5%BF%A0%E9%8A%98-100071514671190/",
+            "note": "專頁自介、連江縣服務資訊及縣政公開活動與本人相符。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "王忠銘 連江縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-曹爾元-連江縣",
+      "name": "曹爾元",
+      "role": "連江縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "搜尋到參選聲明轉貼與後援會頁面；打開轉貼帳號後姓名不符，尚未確認本人專頁。",
+      "queries": [
+        "曹爾元 連江縣 競選 官方網站 Facebook",
+        "曹爾元 臉書 本人"
+      ]
+    },
+    {
+      "slug": "cand-洪和成-金門縣",
+      "name": "洪和成",
+      "role": "金門縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-profile",
+          "url": "https://www.facebook.com/honghercheng/",
+          "title": "洪和成 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/honghercheng/",
+            "note": "公開帳號明載金門縣長候選人及「傾聽金門，做該做的事」。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認本人公開個人帳號，與粉絲專頁分開標示。",
+      "queries": [
+        "洪和成 金門縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-李文良-金門縣",
+      "name": "李文良",
+      "role": "金門縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/p/%E6%9D%8E%E6%96%87%E8%89%AF-%E8%89%AF%E6%94%BF%E5%95%9F%E8%88%AA-%E9%87%91%E9%96%80%E5%84%AA%E5%85%88-61588799889987/",
+          "title": "李文良 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/p/%E6%9D%8E%E6%96%87%E8%89%AF-%E8%89%AF%E6%94%BF%E5%95%9F%E8%88%AA-%E9%87%91%E9%96%80%E5%84%AA%E5%85%88-61588799889987/",
+            "note": "專頁列金門縣政經歷，並發布本人縣長參選登記及政策。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "李文良 金門縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-黃世團-金門縣",
+      "name": "黃世團",
+      "role": "金門縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-profile",
+          "url": "https://www.facebook.com/huang.shi.tuan/",
+          "title": "黃世團 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/huang.shi.tuan/",
+            "note": "公開帳號發布本人參選金門縣長成立大會資訊。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認本人公開個人帳號，與粉絲專頁分開標示。",
+      "queries": [
+        "黃世團 金門縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "chenyu-jen",
+      "name": "陳玉珍",
+      "role": "金門縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/KinmenMyLove/",
+          "title": "陳玉珍 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/KinmenMyLove/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "陳玉珍 金門縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-張國威-金門縣",
+      "name": "張國威",
+      "role": "金門縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-profile",
+          "url": "https://www.facebook.com/zhang.guo.wei.988133/",
+          "title": "張國威 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/zhang.guo.wei.988133/",
+            "note": "公開帳號列金門背景，發布本人縣政政策，與參選新聞及搜尋結果交叉核對。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認本人公開個人帳號，與粉絲專頁分開標示。",
+      "queries": [
+        "張國威 金門縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-梁文韜-金門縣",
+      "name": "梁文韜",
+      "role": "金門縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://to-to.win/",
+          "title": "梁文韜｜無黨籍金門縣長擬參選人・金門縣2027-2030政策白皮書",
+          "evidence": {
+            "url": "https://to-to.win/",
+            "note": "網站列出本人姓名、參選職位與競選內容。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/p/%E6%A2%81%E6%96%87%E9%9F%9C%E9%87%91%E9%96%80%E8%B5%B0%E6%96%B0%E8%B7%AF-61594179176285/",
+          "title": "梁文韜 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/p/%E6%A2%81%E6%96%87%E9%9F%9C%E9%87%91%E9%96%80%E8%B5%B0%E6%96%B0%E8%B7%AF-61594179176285/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "梁文韜 金門縣 競選 官方網站 Facebook",
+        "梁文韜 金門 官方網站 臉書"
+      ]
+    },
+    {
+      "slug": "cand-張火木-金門縣",
+      "name": "張火木",
+      "role": "金門縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "本次公開搜尋尚未確認本人 Facebook；同名帳號、新聞貼文、政黨頁及後援社團不視為本人專頁。",
+      "queries": [
+        "張火木 金門縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-陳宏毅-宜蘭縣",
+      "name": "陳宏毅",
+      "role": "宜蘭縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "本次公開搜尋尚未確認本人 Facebook；同名帳號、新聞貼文、政黨頁及後援社團不視為本人專頁。",
+      "queries": [
+        "陳宏毅 宜蘭縣 競選 官方網站 Facebook",
+        "陳宏毅 宜蘭 2026 Facebook"
+      ]
+    },
+    {
+      "slug": "wutsung-hsien",
+      "name": "吳宗憲",
+      "role": "宜蘭縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://www.yilan2026.tw/",
+          "title": "吳宗憲 · 宜蘭 2026 縣長候選人",
+          "evidence": {
+            "url": "https://www.facebook.com/jameswu88/",
+            "note": "本人 Facebook 公開公告或簡介直接列出此網站，並核對網站的候選人資訊。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/jameswu88/",
+          "title": "吳宗憲 Facebook",
+          "evidence": {
+            "url": "https://www.yilan2026.tw/",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "吳宗憲 宜蘭縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-劉燦輝-宜蘭縣",
+      "name": "劉燦輝",
+      "role": "宜蘭縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "本次公開搜尋尚未確認本人 Facebook；同名帳號、新聞貼文、政黨頁及後援社團不視為本人專頁。",
+      "queries": [
+        "劉燦輝 宜蘭縣 競選 官方網站 Facebook",
+        "劉燦輝 宜蘭 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-林國漳-宜蘭縣",
+      "name": "林國漳",
+      "role": "宜蘭縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://2026openchang.tw/",
+          "title": "林國漳｜2026 宜蘭縣長參選人 - 改變宜蘭，現在就出發",
+          "evidence": {
+            "url": "https://www.facebook.com/linkuochang.yilan/",
+            "note": "本人 Facebook 公開公告或簡介直接列出此網站，並核對網站的候選人資訊。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/linkuochang.yilan/",
+          "title": "林國漳 Facebook",
+          "evidence": {
+            "url": "https://2026openchang.tw/",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "林國漳 宜蘭縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-楊鉯婷-宜蘭縣",
+      "name": "楊鉯婷",
+      "role": "宜蘭縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "本次公開搜尋尚未確認本人 Facebook；同名帳號、新聞貼文、政黨頁及後援社團不視為本人專頁。",
+      "queries": [
+        "楊鉯婷 宜蘭縣 競選 官方網站 Facebook",
+        "楊鉯婷 宜蘭 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-鄭朝方-新竹縣",
+      "name": "鄭朝方",
+      "role": "新竹縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/newchange13/",
+          "title": "鄭朝方 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/newchange13/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "鄭朝方 新竹縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-朱定瑀-新竹縣",
+      "name": "朱定瑀",
+      "role": "新竹縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-profile",
+          "url": "https://www.facebook.com/zhu.ding.yu.2025/",
+          "title": "朱定瑀 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/zhu.ding.yu.2025/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認本人公開個人帳號，與粉絲專頁分開標示。",
+      "queries": [
+        "朱定瑀 新竹縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "hsu-hsin-ying",
+      "name": "徐欣瑩",
+      "role": "新竹縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://www.shesinging.tw/",
+          "title": "國民黨新竹縣長參選人 徐欣瑩 | 陽光政治 專業清廉",
+          "evidence": {
+            "url": "https://www.shesinging.tw/",
+            "note": "網站列出本人姓名、參選職位與競選內容。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/shesinging.tw/",
+          "title": "徐欣瑩 Facebook",
+          "evidence": {
+            "url": "https://www.shesinging.tw/",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "徐欣瑩 新竹縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "c-陳品安-無黨籍及未經政黨推薦-苗栗縣第03選舉區",
+      "name": "陳品安",
+      "role": "苗栗縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/pinanchen064/",
+          "title": "陳品安 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/pinanchen064/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本人 Facebook 有列網站連結，但本次打開只顯示簡短佔位文字，暫不收錄為競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "陳品安 苗栗縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "mayor-miaoli",
+      "name": "鍾東錦",
+      "role": "苗栗縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/DongJinZhong/",
+          "title": "鍾東錦 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/DongJinZhong/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "鍾東錦 苗栗縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "c-陳重嘉-民眾黨-彰化縣第05選舉區",
+      "name": "陳重嘉",
+      "role": "彰化縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/politicianccc/",
+          "title": "陳重嘉 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/politicianccc/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本人 Facebook 列出的舊 Google Sites 網站本次回傳 404，暫不提供失效連結。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "陳重嘉 彰化縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "chensu-yueh",
+      "name": "陳素月",
+      "role": "彰化縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/chengSayYes/",
+          "title": "陳素月 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/chengSayYes/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "陳素月 彰化縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-邱建富-彰化縣",
+      "name": "邱建富",
+      "role": "彰化縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://chiuchienfu.tw",
+          "title": "首頁 ｜ 邱建富 2026 彰化縣長候選人",
+          "evidence": {
+            "url": "https://chiuchienfu.tw",
+            "note": "網站列出本人姓名、參選職位與競選內容。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/ChenfuChanghua/",
+          "title": "邱建富 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/ChenfuChanghua/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "邱建富 彰化縣 競選 官方網站 Facebook",
+        "邱建富 2026 官方網站",
+        "邱建富 \"chiu\" \"2026\""
+      ]
+    },
+    {
+      "slug": "cand-魏平政-彰化縣",
+      "name": "魏平政",
+      "role": "彰化縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/WeiPingCheng2026/",
+          "title": "魏平政 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/WeiPingCheng2026/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "搜尋找到網站候選連結，但本次無法解析網域，且未取得本人官方背書，暫不收錄。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "魏平政 彰化縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-温世政-南投縣",
+      "name": "温世政",
+      "role": "南投縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://wen-shih-cheng.com.tw/",
+          "title": "温世政 | 温欸醫生縣長",
+          "evidence": {
+            "url": "https://wen-shih-cheng.com.tw/",
+            "note": "網站列出本人姓名、參選職位與競選內容。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/wEnShihheng/",
+          "title": "温世政 Facebook",
+          "evidence": {
+            "url": "https://wen-shih-cheng.com.tw/",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "温世政 南投縣 競選 官方網站 Facebook",
+        "温世政 官方網站"
+      ]
+    },
+    {
+      "slug": "mayor-nantou",
+      "name": "許淑華",
+      "role": "南投縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/p/%E8%A8%B1%E6%B7%91%E8%8F%AF-100044482117533/",
+          "title": "許淑華 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/p/%E8%A8%B1%E6%B7%91%E8%8F%AF-100044482117533/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "許淑華 南投縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-吳炳輝-雲林縣",
+      "name": "吳炳輝",
+      "role": "雲林縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "同名律師帳號尚未確認是本人；另找到的舊候選人專頁目前無法查看，暫不收錄。",
+      "queries": [
+        "吳炳輝 雲林縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "chang-chia-chun",
+      "name": "張嘉郡",
+      "role": "雲林縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/Sweet.Yunlin/",
+          "title": "張嘉郡 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/Sweet.Yunlin/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "張嘉郡 雲林縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "liu-chien-kuo",
+      "name": "劉建國",
+      "role": "雲林縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/liucnko.fans/",
+          "title": "劉建國 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/liucnko.fans/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "劉建國 雲林縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-林佳瑜-雲林縣",
+      "name": "林佳瑜",
+      "role": "雲林縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "本次公開搜尋尚未確認本人 Facebook；同名帳號、新聞貼文、政黨頁及後援社團不視為本人專頁。",
+      "queries": [
+        "林佳瑜 雲林縣 競選 官方網站 Facebook",
+        "林佳瑜 牙醫 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-吳品叡-嘉義縣",
+      "name": "吳品叡",
+      "role": "嘉義縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/p/Team%E5%8F%A1-%E5%90%B3%E5%93%81%E5%8F%A1-100063479239691/",
+          "title": "吳品叡 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/p/Team%E5%8F%A1-%E5%90%B3%E5%93%81%E5%8F%A1-100063479239691/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "吳品叡 嘉義縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "tsai-yi-yu",
+      "name": "蔡易餘",
+      "role": "嘉義縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/chiayionefish/",
+          "title": "蔡易餘 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/chiayionefish/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "蔡易餘 嘉義縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "su-ching-chuan",
+      "name": "蘇清泉",
+      "role": "屏東縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/ptdrsu/",
+          "title": "蘇清泉 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/ptdrsu/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "蘇清泉 屏東縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "mayor-pingtung",
+      "name": "周春米",
+      "role": "屏東縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/RiceChouChunMi/",
+          "title": "周春米 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/RiceChouChunMi/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "周春米 屏東縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "chen-ying",
+      "name": "陳瑩",
+      "role": "臺東縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "support",
+          "url": "https://asenay2026.oen.tw/",
+          "title": "陳瑩｜台東下一棒",
+          "evidence": {
+            "url": "https://asenay2026.oen.tw/",
+            "note": "競選支持頁列出本人參選資訊及競選總部／理念，頁面包含政治獻金功能。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/11YIG/",
+          "title": "陳瑩 Facebook",
+          "evidence": {
+            "url": "https://asenay2026.oen.tw/",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選支持頁（含捐款功能）；與完整競選官網分開標示。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "陳瑩 臺東縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "c-吳秀華-國民黨-臺東縣第01選舉區",
+      "name": "吳秀華",
+      "role": "臺東縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/p/%E5%90%B3%E7%A7%80%E8%8F%AF-100090624231494/",
+          "title": "吳秀華 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/p/%E5%90%B3%E7%A7%80%E8%8F%AF-100090624231494/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "吳秀華 臺東縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-李吳穎智-臺東縣",
+      "name": "李吳穎智",
+      "role": "臺東縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/people/%E6%9D%8E%E5%90%B3%E7%A9%8E%E6%99%BA-%E6%9C%8D%E5%8B%99%E4%B8%AD%E5%BF%83/61582118087400/",
+          "title": "李吳穎智 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/people/%E6%9D%8E%E5%90%B3%E7%A9%8E%E6%99%BA-%E6%9C%8D%E5%8B%99%E4%B8%AD%E5%BF%83/61582118087400/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "李吳穎智 臺東縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-王志偉-臺東縣",
+      "name": "王志偉",
+      "role": "臺東縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "本次公開搜尋尚未確認本人 Facebook；同名帳號、新聞貼文、政黨頁及後援社團不視為本人專頁。",
+      "queries": [
+        "王志偉 臺東縣 競選 官方網站 Facebook",
+        "王志偉 台東 釋迦合作社 臉書"
+      ]
+    },
+    {
+      "slug": "cand-游淑貞-花蓮縣",
+      "name": "游淑貞",
+      "role": "花蓮縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/CandyHualien/",
+          "title": "游淑貞 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/CandyHualien/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "游淑貞 花蓮縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "c-張峻-無黨籍及未經政黨推薦-花蓮縣第03選舉區",
+      "name": "張峻",
+      "role": "花蓮縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/profile.php/?id=100064292910692",
+          "title": "張峻 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/profile.php/?id=100064292910692",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "張峻 花蓮縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "c-魏嘉賢-無黨籍及未經政黨推薦-花蓮縣第01選舉區",
+      "name": "魏嘉賢",
+      "role": "花蓮縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://lovehualien.com/",
+          "title": "魏嘉賢｜打開新局，花蓮向前 — 2026 花蓮縣長參選人",
+          "evidence": {
+            "url": "https://lovehualien.com/",
+            "note": "網站列出本人姓名、參選職位與競選內容。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/sunwei038563787/",
+          "title": "魏嘉賢 Facebook",
+          "evidence": {
+            "url": "https://lovehualien.com/",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "魏嘉賢 花蓮縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-羅佩秦-花蓮縣",
+      "name": "羅佩秦",
+      "role": "花蓮縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "本次公開搜尋尚未確認本人 Facebook；同名帳號、新聞貼文、政黨頁及後援社團不視為本人專頁。",
+      "queries": [
+        "羅佩秦 花蓮縣 競選 官方網站 Facebook",
+        "羅佩秦 花蓮 工黨 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-吳淑瑾-澎湖縣",
+      "name": "吳淑瑾",
+      "role": "澎湖縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/wushuchin.penghu/",
+          "title": "吳淑瑾 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/wushuchin.penghu/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "吳淑瑾 澎湖縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-陳振中-澎湖縣",
+      "name": "陳振中",
+      "role": "澎湖縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-profile",
+          "url": "https://www.facebook.com/chen.zhen.zhong.67701/",
+          "title": "陳振中 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/chen.zhen.zhong.67701/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認本人公開個人帳號，與粉絲專頁分開標示。",
+      "queries": [
+        "陳振中 澎湖縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-周倪安-澎湖縣",
+      "name": "周倪安",
+      "role": "澎湖縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/tsu.chounian/",
+          "title": "周倪安 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/tsu.chounian/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "周倪安 澎湖縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-許智富-澎湖縣",
+      "name": "許智富",
+      "role": "澎湖縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "搜尋到同名公開帳號，但公開背景與澎湖縣長候選人未能對應，暫不收錄。",
+      "queries": [
+        "許智富 澎湖縣 競選 官方網站 Facebook",
+        "許智富 臉書 粉絲專頁"
+      ]
+    },
+    {
+      "slug": "cand-陳盡川-澎湖縣",
+      "name": "陳盡川",
+      "role": "澎湖縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-profile",
+          "url": "https://www.facebook.com/chen.jin.chuan.441889/",
+          "title": "陳盡川 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/chen.jin.chuan.441889/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認本人公開個人帳號，與粉絲專頁分開標示。",
+      "queries": [
+        "陳盡川 澎湖縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-葉竹林-澎湖縣",
+      "name": "葉竹林",
+      "role": "澎湖縣長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "support",
+          "url": "https://penghuyehchulin.oen.tw/",
+          "title": "葉竹林",
+          "evidence": {
+            "url": "https://penghuyehchulin.oen.tw/",
+            "note": "競選支持頁列出本人參選資訊及競選總部／理念，頁面包含政治獻金功能。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/YEHCHULINinPENGHU/",
+          "title": "葉竹林 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/YEHCHULINinPENGHU/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選支持頁（含捐款功能）；與完整競選官網分開標示。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "葉竹林 澎湖縣 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "mayor-keelung",
+      "name": "謝國樑",
+      "role": "基隆市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/hsieh.kuo.liang/",
+          "title": "謝國樑 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/hsieh.kuo.liang/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "謝國樑 基隆市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-魏造文-基隆市",
+      "name": "魏造文",
+      "role": "基隆市長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "本次公開搜尋尚未確認本人 Facebook；同名帳號、新聞貼文、政黨頁及後援社團不視為本人專頁。",
+      "queries": [
+        "魏造文 基隆市 競選 官方網站 Facebook",
+        "魏造文 基隆 Facebook"
+      ]
+    },
+    {
+      "slug": "c-童子瑋-民進黨-基隆市第03選舉區",
+      "name": "童子瑋",
+      "role": "基隆市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://t-ziwei.com/",
+          "title": "童子瑋｜基隆有作為 就選童子瑋｜官方網站",
+          "evidence": {
+            "url": "https://t-ziwei.com/",
+            "note": "網站列出本人姓名、參選職位與競選內容。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/wayne201817/",
+          "title": "童子瑋 Facebook",
+          "evidence": {
+            "url": "https://t-ziwei.com/",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "童子瑋 基隆市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "mayor-hsinchu-city",
+      "name": "高虹安",
+      "role": "新竹市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "support",
+          "url": "https://drann.oen.tw/",
+          "title": "高虹安",
+          "evidence": {
+            "url": "https://drann.oen.tw/",
+            "note": "競選支持頁列出本人參選資訊及競選總部／理念，頁面包含政治獻金功能。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/DrAnnKao/",
+          "title": "高虹安 Facebook",
+          "evidence": {
+            "url": "https://drann.oen.tw/",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選支持頁（含捐款功能）；與完整競選官網分開標示。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "高虹安 新竹市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-莊競程-新竹市",
+      "name": "莊競程",
+      "role": "新竹市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "website",
+          "url": "https://www.power3c.com/",
+          "title": "新竹市民許願池 ｜ 莊競程",
+          "evidence": {
+            "url": "https://today.line.me/tw/v3/article/2DqpRjP",
+            "note": "新聞報導候選人推出市民許願池並附網址，另打開網站核對本人姓名及意見徵集內容。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/Power3C/",
+          "title": "莊競程 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/Power3C/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "已確認本人市民意見網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "莊競程 新竹市 競選 官方網站 Facebook",
+        "莊競程 \"power3c.com\"",
+        "莊競程 許願池 官方網站 power3c"
+      ]
+    },
+    {
+      "slug": "cand-何志勇-新竹市",
+      "name": "何志勇",
+      "role": "新竹市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://chihyungho.github.io/",
+          "title": "何志勇 — 2026 新竹市市長參選人",
+          "evidence": {
+            "url": "https://chihyungho.github.io/",
+            "note": "網站列出本人姓名、參選職位與競選內容。"
+          }
+        },
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/HoChihyung/",
+          "title": "何志勇 Facebook",
+          "evidence": {
+            "url": "https://chihyungho.github.io/",
+            "note": "候選人網站直接連至此 Facebook，並已打開頁面核對姓名與身分。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "何志勇 新竹市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-黃宏成台灣阿成世界偉人財神總統-嘉義市",
+      "name": "黃宏成台灣阿成世界偉人財神總統",
+      "role": "嘉義市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/p/%E9%BB%83%E5%AE%8F%E6%88%90%E5%8F%B0%E7%81%A3%E9%98%BF%E6%88%90%E4%B8%96%E7%95%8C%E5%81%89%E4%BA%BA%E8%B2%A1%E7%A5%9E%E7%B8%BD%E7%B5%B1%E9%81%B82026%E5%98%89%E7%BE%A9%E5%B8%82%E9%95%B7%E4%B8%80%E5%AE%9A%E7%95%B6%E9%81%B8%E5%B7%B2%E7%B6%93%E7%95%B6%E9%81%B8%E9%9D%9E%E5%B8%B8%E6%84%9F%E6%81%A9-61590433630313/",
+          "title": "黃宏成台灣阿成世界偉人財神總統 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/p/%E9%BB%83%E5%AE%8F%E6%88%90%E5%8F%B0%E7%81%A3%E9%98%BF%E6%88%90%E4%B8%96%E7%95%8C%E5%81%89%E4%BA%BA%E8%B2%A1%E7%A5%9E%E7%B8%BD%E7%B5%B1%E9%81%B82026%E5%98%89%E7%BE%A9%E5%B8%82%E9%95%B7%E4%B8%80%E5%AE%9A%E7%95%B6%E9%81%B8%E5%B7%B2%E7%B6%93%E7%95%B6%E9%81%B8%E9%9D%9E%E5%B8%B8%E6%84%9F%E6%81%A9-61590433630313/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "黃宏成台灣阿成世界偉人財神總統 嘉義市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-陳愷璜-嘉義市",
+      "name": "陳愷璜",
+      "role": "嘉義市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "campaign",
+          "url": "https://chiayi-mayor.duckdns.org/",
+          "title": "數位孿生救嘉義 - 市長候選人 陳愷璜 校長",
+          "evidence": {
+            "url": "https://www.facebook.com/groups/1316339523125409/",
+            "note": "公開後援社團提供候選人官網連結；另打開網站核對本人身分及政策。"
+          }
+        }
+      ],
+      "websiteNote": "已確認競選網站。",
+      "facebookNote": "已找到公開後援社團，但尚未確認本人 Facebook 粉絲專頁；社團不混列為本人專頁。",
+      "queries": [
+        "陳愷璜 嘉義市 競選 官方網站 Facebook",
+        "陳愷璜 競選 官網",
+        "陳愷璜 \"官方網站\"",
+        "陳愷璜 \"競選官網\""
+      ]
+    },
+    {
+      "slug": "張啓楷-不分區",
+      "name": "張啓楷",
+      "role": "嘉義市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/qikai.zhang01/",
+          "title": "張啓楷 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/qikai.zhang01/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "張啓楷 嘉義市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "wangmei-hui",
+      "name": "王美惠",
+      "role": "嘉義市長",
+      "reviewedOn": "2026-10-16",
+      "links": [
+        {
+          "kind": "facebook-page",
+          "url": "https://www.facebook.com/ahueimoto/",
+          "title": "王美惠 Facebook",
+          "evidence": {
+            "url": "https://www.facebook.com/ahueimoto/",
+            "note": "核對公開頁面姓名、政治／參選身分與所在地，並比對本次候選人名冊及搜尋結果。"
+          }
+        }
+      ],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "已確認 Facebook 粉絲專頁。",
+      "queries": [
+        "王美惠 嘉義市 競選 官方網站 Facebook"
+      ]
+    },
+    {
+      "slug": "cand-王義成-嘉義市",
+      "name": "王義成",
+      "role": "嘉義市長",
+      "reviewedOn": "2026-10-16",
+      "links": [],
+      "websiteNote": "本次公開搜尋尚未確認可歸屬本人的競選網站。",
+      "facebookNote": "本次公開搜尋尚未確認本人 Facebook；同名帳號、新聞貼文、政黨頁及後援社團不視為本人專頁。",
+      "queries": [
+        "王義成 嘉義市 競選 官方網站 Facebook",
+        "王義成 嘉義 Facebook"
+      ]
+    }
+  ]
+}

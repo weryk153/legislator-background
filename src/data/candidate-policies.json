@@ -1,0 +1,3255 @@
+{
+  "electionYear": 2026,
+  "updatedOn": "2026-10-16",
+  "candidates": [
+    {
+      "slug": "cand-李四川-新北市",
+      "name": "李四川",
+      "role": "新北市長",
+      "records": [
+        {
+          "id": "2026-li-sichuan-industry-0708",
+          "title": "產業政策四項主張",
+          "announcedOn": "2026-07-08",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：李四川提產業4箭打造AI廊帶 蘇巧慧推交通平權",
+            "url": "https://www.cna.com.tw/news/aloc/202607080165.aspx",
+            "publishedOn": "2026-07-08"
+          },
+          "proposals": [
+            {
+              "topic": "AI 產業與交通串聯",
+              "summary": "提出興建蘆社大橋銜接北士科、整合台64線與台65線運輸，並擴大寶高智慧園區、發展大柑園產業聚落及新北國際AI+智慧園區。"
+            },
+            {
+              "topic": "產業用地",
+              "summary": "主張推進淡海新市鎮二、三期及高科技產業專區開發，增加五股交流道周邊產業用地；規劃產業專區只租不售，由政府興建廠房與廠辦供企業進駐。"
+            },
+            {
+              "topic": "無人機產業",
+              "summary": "提出串聯無人機研發、製造、測試、應用與人才培育，發展新北的無人機產業及低空經濟。"
+            },
+            {
+              "topic": "電競與數位人才",
+              "summary": "提出成立第二間電競基地，推動校園電競、AI應用教育及無人機足球等科技運動，培育數位人才。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "suchiao-hui",
+      "name": "蘇巧慧",
+      "role": "新北市長",
+      "records": [
+        {
+          "id": "2026-su-chiao-hui-transport-0708",
+          "title": "交通平權與通學安全主張",
+          "announcedOn": "2026-07-08",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：李四川提產業4箭打造AI廊帶 蘇巧慧推交通平權",
+            "url": "https://www.cna.com.tw/news/aloc/202607080165.aspx",
+            "publishedOn": "2026-07-08"
+          },
+          "proposals": [
+            {
+              "topic": "通學安全",
+              "summary": "提出加速改善學校周邊通學步道。"
+            },
+            {
+              "topic": "偏鄉公共運輸",
+              "summary": "主張增加幸福巴士班次，改善偏鄉交通服務。"
+            },
+            {
+              "topic": "預約接送",
+              "summary": "提出結合數位預約平台提供點對點接送，保障偏鄉學童與長輩的通勤需求。"
+            }
+          ]
+        },
+        {
+          "id": "suchiao-hui-direct-ebb650d451",
+          "title": "六大長幼福利",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "六大長幼福利政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+            "url": "https://chiao.tw/policies/%e5%85%ad%e5%a4%a7%e9%95%b7%e5%b9%bc%e7%a6%8f%e5%88%a9%e6%94%bf%e8%a6%8b",
+            "publishedOn": "2026-01-13"
+          },
+          "proposals": [
+            {
+              "topic": "兒童餐食與醫療",
+              "summary": "公立國中小午餐全面免費並提升品質；0至6歲免門診及住院部分負擔，6歲以下腸病毒與輪狀病毒疫苗免費，早產兒家庭照顧津貼3萬元。"
+            },
+            {
+              "topic": "假牙與敬老卡",
+              "summary": "65歲以上假牙補助最高5萬元；敬老卡每月提高至1,000點，改採年度效期，不再每月歸零。"
+            }
+          ]
+        },
+        {
+          "id": "suchiao-hui-direct-b2d71c4ff9",
+          "title": "三大家庭照顧方案",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "三大家庭照顧政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+            "url": "https://chiao.tw/policies/%e4%b8%89%e5%a4%a7%e5%ae%b6%e5%ba%ad%e7%85%a7%e9%a1%a7%e6%94%bf%e8%a6%8b",
+            "publishedOn": "2026-01-12"
+          },
+          "proposals": [
+            {
+              "topic": "照顧者支持",
+              "summary": "加發夜間、緊急與困難照顧津貼，補助進修；提供延長產假、顧老假等友善措施的企業最高獎勵100萬元。"
+            },
+            {
+              "topic": "企業托育與早療",
+              "summary": "媒合企業共同設托，前三年虧損補助50%，開辦夜托與擴大臨托；增加新生兒篩檢補助並支持醫事人員進社區早療。"
+            },
+            {
+              "topic": "長照補助",
+              "summary": "住宿式長照機構補助提高至每年24萬元，增加夜間喘息與臨時住宿量能，整合出院居家服務及輔具。"
+            }
+          ]
+        },
+        {
+          "id": "suchiao-hui-direct-30c0a96c97",
+          "title": "都更與住宅方案",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "都更與住宅政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+            "url": "https://chiao.tw/policies/%e9%83%bd%e6%9b%b4%e8%88%87%e4%bd%8f%e5%ae%85%e6%94%bf%e8%a6%8b",
+            "publishedOn": "2026-01-09"
+          },
+          "proposals": [
+            {
+              "topic": "都更行政",
+              "summary": "成立都市更新局，導入AI簡化審查、公開進度，並以軌道與轉運站周邊更新搭配社宅及公共設施。"
+            },
+            {
+              "topic": "青年育兒宅",
+              "summary": "試辦符合條件家庭可長租20年的青年育兒宅。"
+            },
+            {
+              "topic": "長者與學生租屋",
+              "summary": "透過修繕及服務費加碼鼓勵包租代管優先承租給長者，與學校合作提供學生包租代管房源。"
+            }
+          ]
+        },
+        {
+          "id": "suchiao-hui-direct-12bd39031b",
+          "title": "勞工與工會支持",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "勞工政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+            "url": "https://chiao.tw/policies/%e5%8b%9e%e5%b7%a5%e6%94%bf%e8%a6%8b",
+            "publishedOn": "2026-01-06"
+          },
+          "proposals": [
+            {
+              "topic": "職災與退休支持",
+              "summary": "調升職災慰問金、勞資爭議涉訟補助與高溫防暑設備補助；退休煤礦工慰問金提高至每年6,000元。"
+            },
+            {
+              "topic": "職訓與工會",
+              "summary": "擴大中高齡職訓及職務再設計、鼓勵資深人才擔任青創教練；改善工會空間、提高行政及會務經費並建立定期對話。"
+            }
+          ]
+        },
+        {
+          "id": "suchiao-hui-direct-589ae4b31d",
+          "title": "寵物醫療、產業與認養",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "三大照顧寵物政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+            "url": "https://chiao.tw/policies/%e4%b8%89%e5%a4%a7%e7%85%a7%e9%a1%a7%e5%af%b5%e7%89%a9%e6%94%bf%e8%a6%8b",
+            "publishedOn": "2026-01-08"
+          },
+          "proposals": [
+            {
+              "topic": "寵物醫療",
+              "summary": "擴大人畜共通傳染病疫苗及健檢補助，認養毛孩享上述終身全額補助；補貼夜間開診動物醫院並發展高齡及術後照護。"
+            },
+            {
+              "topic": "動物福利與食安",
+              "summary": "增設遮陰寵物公園與友善專車標章，設公辦寵物食品檢測實驗室；提高動物之家預算、導入行為訓練及認養媒合。"
+            }
+          ]
+        },
+        {
+          "id": "suchiao-hui-direct-0541383b26",
+          "title": "青年資金、技能與心理支持",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "四大青年支持政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+            "url": "https://chiao.tw/policies/%e5%9b%9b%e5%a4%a7%e9%9d%92%e5%b9%b4%e6%94%af%e6%8c%81%e6%94%bf%e8%a6%8b",
+            "publishedOn": "2026-01-10"
+          },
+          "proposals": [
+            {
+              "topic": "創業與證照",
+              "summary": "一般青農貸款免息額度提高至500萬元、專業青農1,000萬元；甲級技術士獎金提高至2萬元、乙級6,000元。"
+            },
+            {
+              "topic": "空間與心理支持",
+              "summary": "活化閒置及都更回饋空間為青創或數位游牧基地；銜接中央心理諮商方案，再加碼3次免費諮商。"
+            }
+          ]
+        },
+        {
+          "id": "suchiao-hui-direct-25b05717d5",
+          "title": "教育人力、專業與設備",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "七大教育政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+            "url": "https://chiao.tw/policies/%e4%b8%83%e5%a4%a7%e6%95%99%e8%82%b2%e6%94%bf%e8%a6%8b",
+            "publishedOn": "2026-01-05"
+          },
+          "proposals": [
+            {
+              "topic": "教師權益",
+              "summary": "教師節禮金提高至2,000元，非上班時間奉派出勤可選加班費或補休；增聘專輔人力並簡化行政。"
+            },
+            {
+              "topic": "校園事件處理",
+              "summary": "訂定合理管教指引，依案件性質分流、溝通先行，設中心學校專責辦公室與跨域人才庫。"
+            },
+            {
+              "topic": "技職與食安設備",
+              "summary": "升級實習工場並導入AI技職課程；補助團膳業者冷鏈、保溫配送及溫度紀錄設備。"
+            }
+          ]
+        },
+        {
+          "id": "suchiao-hui-direct-3175ce4c75",
+          "title": "原住民族生活與自治支持",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "三大原住民族政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+            "url": "https://chiao.tw/policies/%e4%b8%89%e5%a4%a7%e5%8e%9f%e4%bd%8f%e6%b0%91%e6%97%8f%e6%94%bf%e8%a6%8b",
+            "publishedOn": "2026-01-04"
+          },
+          "proposals": [
+            {
+              "topic": "生活照顧",
+              "summary": "提出原住民族人均預算加倍、無自有住宅家庭租金補貼、55歲以上假牙最高5萬元，並建置烏來公托。"
+            },
+            {
+              "topic": "文化與參與",
+              "summary": "增加族語初級及中級認證獎勵、擴大祭儀交通補助，設原住民族青年團並推動烏來部落公法人制度。"
+            }
+          ]
+        },
+        {
+          "id": "suchiao-hui-direct-5caa8c5642",
+          "title": "客家語言、創業與照顧",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "四大客家政見 - 蘇巧慧 2026 | 溫暖·創新·會做事",
+            "url": "https://chiao.tw/policies/%e5%9b%9b%e5%a4%a7%e5%ae%a2%e5%ae%b6%e6%94%bf%e8%a6%8b",
+            "publishedOn": "2026-01-03"
+          },
+          "proposals": [
+            {
+              "topic": "文化與科技",
+              "summary": "建立客家文化AI資料庫及客語教學平台，增設客家青年創業基地並媒合商展、影展等跨域合作。"
+            },
+            {
+              "topic": "照顧與客家幣",
+              "summary": "推動放寬伯公照護站設置門檻，擴大客家幣對象與店家範圍，納入客語課程師生。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "shenpao-yang",
+      "name": "沈伯洋",
+      "role": "臺北市長",
+      "records": [
+        {
+          "id": "2026-shen-pao-yang-heart-0811",
+          "title": "HEART 五大政策願景",
+          "announcedOn": "2026-08-11",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：沈伯洋發布競選願景 從「心」出發推5大政見",
+            "url": "https://www.cna.com.tw/news/aloc/202608110044.aspx",
+            "publishedOn": "2026-08-11"
+          },
+          "proposals": [
+            {
+              "topic": "空間（Habitat）",
+              "summary": "提出婚育宅與青年宅、增加樹蔭及公園綠地，並整合淡水河與基隆河清淤和親水設施、串聯山徑及城市文化路徑。"
+            },
+            {
+              "topic": "時間（Time）",
+              "summary": "提出家庭固定臨托時數等喘息服務、擴大藝文場館與設置運動驛站，並推動TPASS納入共享機車。"
+            },
+            {
+              "topic": "陪伴（Accompany）",
+              "summary": "針對高齡者居住在無電梯老公寓等問題，提出與中央合作推進老宅延壽計畫。"
+            },
+            {
+              "topic": "培力（Empower）",
+              "summary": "提出設立城市基金、擴大圓夢基金，由市府與新創團隊合作，並成立北士科都市研究院，支持青年發展與人才回流。"
+            },
+            {
+              "topic": "韌性（Resilience）",
+              "summary": "針對交通、氣候與治安等城市課題，提出設置永續長職能、設計長及夜間市長。"
+            }
+          ]
+        },
+        {
+          "id": "shenpao-yang-direct-52b91b6217",
+          "title": "教育四大支持與校園安全",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "教育政策 — 沈伯洋台北市長競選官方網站",
+            "url": "https://puma.taipei/policies/%E6%95%99%E8%82%B2%E6%94%BF%E7%AD%96",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "小班與人力",
+              "summary": "目標117學年度國小每班24人、國中25人，減生不減師；幼幼班10人、幼兒園24人，增加正式及輔導教師。"
+            },
+            {
+              "topic": "教師支持",
+              "summary": "試辦雙導師及導師行政助理，建立親師衝突第三方機制，擴大教師心理支持並檢討特教助理配置。"
+            },
+            {
+              "topic": "營養與通學",
+              "summary": "建立午餐費隨成本合理調整機制，保留討論自費加價彈性；目標8年完成約150所通學區改善。"
+            }
+          ]
+        },
+        {
+          "id": "shenpao-yang-direct-f9c6d11b58",
+          "title": "綠色通勤與公車改革",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "交通政策 — 沈伯洋台北市長競選官方網站",
+            "url": "https://puma.taipei/policies/%E4%BA%A4%E9%80%9A%E6%94%BF%E7%AD%96",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "公車改革",
+              "summary": "改善駕駛座告警配置與折返休息空間，補貼由里程導向改重服務可靠度及勞動條件，低運量路段改用需求反應運輸或小巴。"
+            },
+            {
+              "topic": "自行車通勤",
+              "summary": "興建迎風至港墘跨基隆河自行車專用橋，YouBike 2.0E尖峰前30分鐘免費，配套盥洗、置物與租借空間。"
+            },
+            {
+              "topic": "共享機車試辦",
+              "summary": "記名TPASS市民共享電動機車每日前10分鐘免費，市府先出資試辦3個月，再與中央協商常態化，並媒合路外停車。"
+            }
+          ]
+        },
+        {
+          "id": "shenpao-yang-direct-195e8156e4",
+          "title": "全齡社福支持網",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "社福政策 — 沈伯洋台北市長競選官方網站",
+            "url": "https://puma.taipei/policies/%E7%A4%BE%E7%A6%8F%E6%94%BF%E7%AD%96",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "長照與托老",
+              "summary": "推出彈性臨時托老券、擴大敬老卡用途，推動在宅醫療；以都更及退場學校增加照護空間，提出鐘點移工填補夜間人力。"
+            },
+            {
+              "topic": "心理與預防保健",
+              "summary": "提出15至65歲免費心理諮商、產後媽媽加碼，50歲以上帶狀疱疹疫苗一劑補助及0至6歲免費腸病毒疫苗。"
+            },
+            {
+              "topic": "身障與性別支持",
+              "summary": "補助罕病患者家用不斷電系統、擴大爬梯機補助，推動女性安全審計及單身女性整合服務專線。"
+            }
+          ]
+        },
+        {
+          "id": "shenpao-yang-direct-a32a2b9e7c",
+          "title": "親子同行卡",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "親子同行卡 — 沈伯洋台北市長競選官方網站",
+            "url": "https://puma.taipei/policies/%E8%A6%AA%E5%AD%90%E5%90%8C%E8%A1%8C%E5%8D%A1",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "文化運動與閱讀",
+              "summary": "設籍臺北0至18歲每人每月600點，支持家庭文化、運動及閱讀活動；0、2、5歲提供分齡閱讀袋，親子共學課程另給獎勵點數。"
+            }
+          ]
+        },
+        {
+          "id": "shenpao-yang-direct-e7dcbf3323",
+          "title": "家庭一站通與托育支持",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "家庭一站通 — 沈伯洋台北市長競選官方網站",
+            "url": "https://puma.taipei/policies/%E5%AE%B6%E5%BA%AD%E4%B8%80%E7%AB%99%E9%80%9A",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "家庭支持入口",
+              "summary": "逐步設置各區家庭支持服務站，整合育兒專線，由個案管理師訪視、轉介並提供家庭教育陪伴。"
+            },
+            {
+              "topic": "臨托與到宅支持",
+              "summary": "規劃滿6個月至6歲每週固定時數免費臨托；產後12個月家長心理諮商在中央適用方案外加碼3次，未滿2歲家庭免費到宅育兒指導擴至6次，增設夜間托育據點。"
+            }
+          ]
+        },
+        {
+          "id": "shenpao-yang-direct-091b2fff53",
+          "title": "公務員職場支持",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "公務員政策 — 沈伯洋台北市長競選官方網站",
+            "url": "https://puma.taipei/policies/%E5%85%AC%E5%8B%99%E5%93%A1%E6%94%BF%E7%AD%96",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "彈性與健康",
+              "summary": "總工時不變下擴大彈性上下班，員工協助方案改採點數自選，增加健檢補助及適用對象。"
+            },
+            {
+              "topic": "行政減負",
+              "summary": "派AI技術支援團隊協助重複行政流程自動化，並活化重大專案獎勵機制。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mayor-taipei",
+      "name": "蔣萬安",
+      "role": "臺北市長",
+      "records": [
+        {
+          "id": "2026-chiang-wan-an-airport-1008",
+          "title": "松山機場遷移與 AI 園區構想",
+          "announcedOn": "2026-10-08",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "公視新聞網：蔣萬安拋松山機場遷移構想 藍營澎湖參選人批忽視離島需求",
+            "url": "https://news.pts.org.tw/article/830612",
+            "publishedOn": "2026-10-09"
+          },
+          "proposals": [
+            {
+              "topic": "機場遷移與產業用地",
+              "summary": "提出遷移松山機場、打造台北AI園區的構想；報導中表示，離島交通需求及維安配套須再與中央、地方討論。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-黃世杰-桃園市",
+      "name": "黃世杰",
+      "role": "桃園市長",
+      "records": [
+        {
+          "id": "2026-huang-shih-chieh-industry-health-0902",
+          "title": "登記參選時提出的產業與醫療主張",
+          "announcedOn": "2026-09-02",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：黃世杰登記參選喊桃園動起來 張善政持續市政行程",
+            "url": "https://www.cna.com.tw/news/aloc/202609020201.aspx",
+            "publishedOn": "2026-09-02"
+          },
+          "proposals": [
+            {
+              "topic": "產業轉型",
+              "summary": "提出更新傳統產業與工業區、發展航太及無人機商機，並重新啟動亞洲矽谷計畫。"
+            },
+            {
+              "topic": "醫療與醫護居住",
+              "summary": "提出建立特色醫療網絡及醫護安居專案，補足急重症與婦幼醫療服務。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ho-hsin-chun",
+      "name": "何欣純",
+      "role": "臺中市長",
+      "records": [
+        {
+          "id": "2026-ho-hsin-chun-sanitation-0924",
+          "title": "清潔人員與環保志工支持措施",
+          "announcedOn": "2026-09-24",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：何欣純5承諾守護清潔人員 江啟臣端教育政見",
+            "url": "https://www.cna.com.tw/news/aloc/202609240194.aspx",
+            "publishedOn": "2026-09-24"
+          },
+          "proposals": [
+            {
+              "topic": "清潔人員夜點費",
+              "summary": "提出將清潔人員夜點費提高至每日最高220元。"
+            },
+            {
+              "topic": "人力與轉正",
+              "summary": "主張增加清潔隊編制，並加快儲備隊員轉為正式人員。"
+            },
+            {
+              "topic": "車輛更新",
+              "summary": "提出加速更新與汰換老舊清潔車輛。"
+            },
+            {
+              "topic": "工作裝備",
+              "summary": "提出改善清潔隊員的工作裝備。"
+            },
+            {
+              "topic": "環保志工經費",
+              "summary": "承諾將環保志工隊年度業務費提高至6萬元。"
+            }
+          ]
+        },
+        {
+          "id": "ho-hsin-chun-direct-edae3b68e3",
+          "title": "官網未來政策：交通、教育與全齡照顧",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "未來政策 | 何欣純官方網站｜2026 台中市長候選人",
+            "url": "https://a-chun.tw/future",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "軌道與轉運",
+              "summary": "加速捷運路網、海線鐵路高架雙軌及烏日至大慶高架化；推動4+1轉運中心並增設海區轉運中心。"
+            },
+            {
+              "topic": "公車與行人",
+              "summary": "改善公車班次與準點率，優先處理危險路口、行穿線退縮、庇護島與通學動線，制定騎樓停車管理自治條例兼顧通行。"
+            },
+            {
+              "topic": "婚育住宅",
+              "summary": "提出4年2,000戶婚育宅，供新婚與育兒家庭申請，並加速社會住宅多元興辦。"
+            },
+            {
+              "topic": "生育與托育",
+              "summary": "生育津貼第一胎4萬元、第二胎6萬元、第三胎8萬元；0至2歲公托名額倍增，擴大假日及夜間托育並提高教保人員待遇。"
+            },
+            {
+              "topic": "兒童醫療與餐食",
+              "summary": "提出0至6歲幼兒免門診負擔、疫苗免費接種與幼教津貼加碼；不分公私立學校午餐全面免費，強化食安與營養。"
+            },
+            {
+              "topic": "教師與數位教育",
+              "summary": "逐年將代理教師員額控留比例降至8%以下，加碼兼行政工作獎金；推動一師一載具、一生一平板與國中小程式教育。"
+            },
+            {
+              "topic": "特教與國際交流",
+              "summary": "增加特教助理人力及陪伴時數，結合職能訓練；每年編列1億元以上支持中小學國際交流。"
+            },
+            {
+              "topic": "女性健康與參與",
+              "summary": "免費乳癌篩檢擴及30至39歲，設置夜間安全停車區；女性局處首長比例不少於四分之一。"
+            },
+            {
+              "topic": "敬老卡與口腔健康",
+              "summary": "擴大敬老愛心卡場域、點數累積不歸零，65歲以上長者假牙補助最高5萬元。"
+            },
+            {
+              "topic": "職訓與高齡就業",
+              "summary": "設AI創新人才培訓平台與樂齡人才服務中心，提供技能培訓、轉職及就業媒合。"
+            },
+            {
+              "topic": "寵物醫療與領養",
+              "summary": "補助動物醫院夜間急診，認領養公立動物之家犬貓加碼首次疫苗500元及基礎健檢一次，並提出500元台中版寵物券。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "chiang-chi-chen",
+      "name": "江啟臣",
+      "role": "臺中市長",
+      "records": [
+        {
+          "id": "2026-chiang-chi-chen-education-0924",
+          "title": "校園更新與教師支持政見",
+          "announcedOn": "2026-09-24",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：何欣純5承諾守護清潔人員 江啟臣端教育政見",
+            "url": "https://www.cna.com.tw/news/aloc/202609240194.aspx",
+            "publishedOn": "2026-09-24"
+          },
+          "proposals": [
+            {
+              "topic": "校園設施",
+              "summary": "承諾市府每年至少編列10億元專款，改善老舊校舍、廁所、跑道及防墜設施。"
+            },
+            {
+              "topic": "行政減量",
+              "summary": "提出運用AI系統減少學校行政工作負擔。"
+            },
+            {
+              "topic": "教師與特教支持",
+              "summary": "提出補足特教助理人力、訂定具體管教標準，並建立教師心理諮商機制。"
+            }
+          ]
+        },
+        {
+          "id": "chiang-chi-chen-direct-8f1b4a9543",
+          "title": "官網百大新政：產業、交通與照顧補充",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "臺中未來 Taichung Future｜臺中市長候選人江啟臣",
+            "url": "https://taichungway.tw/future",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "機器人與勞工培力",
+              "summary": "打造臺灣機器人製造城市，設AI賦能學院、勞工諮詢委員會並擴充勞工權益基金。"
+            },
+            {
+              "topic": "軌道與低碳運輸",
+              "summary": "力拚捷運藍線完工、推動鐵路高架雙軌化與高鐵聯外道路，提出市民公車免費、快捷公車與駕駛人力補足。"
+            },
+            {
+              "topic": "育兒補助與留停",
+              "summary": "準公共托嬰及育兒津貼加碼千元，育嬰留停給付以100%為目標，設臨托預約APP並鼓勵企業共托。"
+            },
+            {
+              "topic": "孕產健康",
+              "summary": "補助卵巢AMH檢測、擴大醫療凍卵補助，補助孕婦RSV疫苗、產後心理諮商與到宅月嫂。"
+            },
+            {
+              "topic": "長照整合",
+              "summary": "衛生局下設長照處，推動智慧衛生所、社區長照據點、銀髮肌力訓練及AI居家遠距監測，擴大敬老愛心卡用途。"
+            },
+            {
+              "topic": "農業與品牌",
+              "summary": "擴大智慧農業產學合作，升級農易通APP，建立即時農災預警簡訊並推動臺中農產品牌更新。"
+            },
+            {
+              "topic": "文化與舊城",
+              "summary": "以星光計畫活化舊城，設文化產業投資平台與跨域人才庫，推動巷弄展演及文化場域認養。"
+            },
+            {
+              "topic": "韌性與環境",
+              "summary": "擴大AI水情治理、智慧噪音監測與多元廚餘處理，提出減碳存摺及共融全齡公園升級。"
+            },
+            {
+              "topic": "住宅與生活圈",
+              "summary": "擴大老屋健檢及延壽，試辦通用設計、補助住宅安全防護；推動多元社會住宅與20分鐘生活圈。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "chen-ting-fei",
+      "name": "陳亭妃",
+      "role": "臺南市長",
+      "records": [
+        {
+          "id": "2026-chen-ting-fei-tourism-0901",
+          "title": "五大區域觀光軸線",
+          "announcedOn": "2026-09-01",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：謝龍介登記選台南市長 陳亭妃提5大觀光軸政見",
+            "url": "https://www.cna.com.tw/news/aipl/202609010168.aspx",
+            "publishedOn": "2026-09-01"
+          },
+          "proposals": [
+            {
+              "topic": "區域觀光與產業串聯",
+              "summary": "提出大新營、曾文南科、濱海藍帶、大目降及府城新豐五條觀光軸，依各地特色串聯景點、移動路線與產業，吸引旅客延長停留。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "hsieh-lung-chieh",
+      "name": "謝龍介",
+      "role": "臺南市長",
+      "records": [
+        {
+          "id": "2026-hsieh-lung-chieh-governance-seniors-1011",
+          "title": "重申任期承諾與長者福利主張",
+          "announcedOn": "2026-10-11",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：謝龍介趕場為台南議員參選人站台 重申當選全力查弊",
+            "url": "https://www.cna.com.tw/news/aipl/202610110181.aspx",
+            "publishedOn": "2026-10-11"
+          },
+          "proposals": [
+            {
+              "topic": "任期與市政監督",
+              "summary": "重申若當選僅任職四年、不尋求連任，並以查弊和整頓行政管理為施政重點。"
+            },
+            {
+              "topic": "敬老卡",
+              "summary": "提出敬老卡每月補助1000元，鼓勵長者外出與參與社交活動。"
+            },
+            {
+              "topic": "重陽禮金",
+              "summary": "提出將重陽敬老禮金提高至3000元。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "laijui-lung",
+      "name": "賴瑞隆",
+      "role": "高雄市長",
+      "records": [
+        {
+          "id": "2026-lai-jui-lung-youth-0709",
+          "title": "青年五大支持方向",
+          "announcedOn": "2026-07-09",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：爭取青年選票 賴瑞隆、柯志恩提政見助就業安居",
+            "url": "https://www.cna.com.tw/news/aloc/202607090299.aspx",
+            "publishedOn": "2026-07-09"
+          },
+          "proposals": [
+            {
+              "topic": "實習與留任",
+              "summary": "提出升級大港青年實習計畫，依轉正與留任階段設計獎勵。"
+            },
+            {
+              "topic": "國際交流",
+              "summary": "提出擴大青年海外交流補助範圍，將大專院校學生納入。"
+            },
+            {
+              "topic": "創業支持",
+              "summary": "提出從不同創業階段提供持續支持的制度。"
+            },
+            {
+              "topic": "居住支持",
+              "summary": "提出持續發展社會住宅及租金補貼，支持青年居住需求。"
+            },
+            {
+              "topic": "身心健康與參與",
+              "summary": "提出青年心理健康、公共參與及職場微型運動等計畫。"
+            }
+          ]
+        },
+        {
+          "id": "laijui-lung-direct-5245424daf",
+          "title": "傳產高值化四大策略",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "傳產政策 - 南方崛起 邁向國際 ｜賴瑞隆",
+            "url": "https://www.zenolai.tw/policy/ai/7",
+            "publishedOn": "2026-09-09"
+          },
+          "proposals": [
+            {
+              "topic": "產業媒合與基金",
+              "summary": "建立產業媒合平台對接半導體、AI與國防航太需求，設產業升級基金及輔導團，支持設備改善、數位轉型與市場接單。"
+            },
+            {
+              "topic": "驗證與在地採購",
+              "summary": "成立先進材料及智慧製造驗證中心，推動重大投資在地採購，協助本地傳產加入供應鏈。"
+            }
+          ]
+        },
+        {
+          "id": "laijui-lung-direct-fd773c70e1",
+          "title": "2030雙語之都",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "雙語政策：2030 雙語之都 - 南方崛起 邁向國際 ｜賴瑞隆",
+            "url": "https://www.zenolai.tw/policy/education/12",
+            "publishedOn": "2026-09-09"
+          },
+          "proposals": [
+            {
+              "topic": "雙語教育資源",
+              "summary": "雙語教育預算逐步增至每年10億元，導入AI及AR學習平台，推動一校一國際共學夥伴。"
+            },
+            {
+              "topic": "教師與偏鄉支持",
+              "summary": "提供教師國外進修及減壓支持，增加偏鄉外籍師資、設備與住宿資源，推動雙語、母語及多語教育並進。"
+            },
+            {
+              "topic": "多語城市",
+              "summary": "輔導雙語友善店家，在交通節點及觀光景點導入中英日韓四語標示。"
+            }
+          ]
+        },
+        {
+          "id": "laijui-lung-direct-6c355bb0c3",
+          "title": "新住民五大計畫",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "新住民政策：新高雄一家人 5 大計畫！ - 南方崛起 邁向國際 ｜賴瑞隆",
+            "url": "https://www.zenolai.tw/policy/culture/13",
+            "publishedOn": "2026-09-09"
+          },
+          "proposals": [
+            {
+              "topic": "服務與公共參與",
+              "summary": "設市政專責窗口整合生活、就業、教育、通譯及家庭服務，提供職訓並鼓勵公共參與。"
+            },
+            {
+              "topic": "多語公共服務",
+              "summary": "推動1999多語服務、銀行ATM多語介面及觀光場館多語導覽；結合幸福川環境改善與南國商圈輔導。"
+            }
+          ]
+        },
+        {
+          "id": "laijui-lung-direct-aab3cc8c18",
+          "title": "寵物友善與產業人才",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "寵物政策：人寵共好，高雄更好 - 南方崛起 邁向國際 ｜賴瑞隆",
+            "url": "https://www.zenolai.tw/policy/youth/11",
+            "publishedOn": "2026-09-09"
+          },
+          "proposals": [
+            {
+              "topic": "寵物空間與產業",
+              "summary": "增設及升級寵物公園，爭取國際寵物展與論壇，輔導在地寵物醫療、美容及用品品牌，串聯高職、大學與就業人才培育。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ko-chih-en",
+      "name": "柯志恩",
+      "role": "高雄市長",
+      "records": [
+        {
+          "id": "2026-ko-chih-en-air-quality-0908",
+          "title": "空氣品質、產業減碳與健康防護",
+          "announcedOn": "2026-09-08",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：柯志恩提高雄空污政策 賴瑞隆為亞運選手加油",
+            "url": "https://www.cna.com.tw/news/aipl/202609080201.aspx",
+            "publishedOn": "2026-09-08"
+          },
+          "proposals": [
+            {
+              "topic": "老舊機組",
+              "summary": "主張已除役的燃煤機組不重啟、老舊燃氣機組不延役。"
+            },
+            {
+              "topic": "產業減碳",
+              "summary": "提出成立石化業減碳聯盟，由國營企業帶動供應鏈及中小企業減碳，並規劃淨零碳排示範專區。"
+            },
+            {
+              "topic": "健康防護",
+              "summary": "提出補助低劑量肺癌篩檢，並建立串聯空污暴露與健康狀況的資料庫，作為改善依據。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-温世政-南投縣",
+      "name": "温世政",
+      "role": "南投縣長",
+      "records": [
+        {
+          "id": "2026-wen-shih-cheng-transport-1015",
+          "title": "南投鐵路接駁與輕軌研議",
+          "announcedOn": "2026-10-15",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：温世政提南投交通政見 許淑華重陽節前訪人瑞",
+            "url": "https://www.cna.com.tw/news/aloc/202610150261.aspx",
+            "publishedOn": "2026-10-15"
+          },
+          "proposals": [
+            {
+              "topic": "鐵路接駁",
+              "summary": "提出強化台鐵及高鐵彰化站接駁，結合通勤列車與車站商圈活化。"
+            },
+            {
+              "topic": "輕軌延伸研議",
+              "summary": "提出研究以輕軌方式將台中捷運延伸至南投。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "chen-ying",
+      "name": "陳瑩",
+      "role": "臺東縣長",
+      "records": [
+        {
+          "id": "2026-chen-ying-education-0923",
+          "title": "教育資源、教師支持與學校午餐",
+          "announcedOn": "2026-09-23",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：教師節拚教育政見 陳瑩縮小城鄉差距、吳秀華推優質文教",
+            "url": "https://www.cna.com.tw/news/aipl/202609230237.aspx",
+            "publishedOn": "2026-09-23"
+          },
+          "proposals": [
+            {
+              "topic": "文化與遊學",
+              "summary": "提出跨縣市、城鄉及族群的遊學交流，支持出國學習、多元文化與母語教育。"
+            },
+            {
+              "topic": "個別化學習",
+              "summary": "提出運用AI提供配合學生學習步調的輔助，保留教師教學與學生自主思考的角色。"
+            },
+            {
+              "topic": "偏鄉教師支持",
+              "summary": "提出優先整修偏鄉教職員宿舍、補助初任教師安居及獎勵偏鄉服務滿三年者，並以跨校共聘行政人員與AI平台減輕行政負擔。"
+            },
+            {
+              "topic": "午餐品質",
+              "summary": "提出增加學校午餐使用台東在地農產品，並結合食農教育。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "c-吳秀華-國民黨-臺東縣第01選舉區",
+      "name": "吳秀華",
+      "role": "臺東縣長",
+      "records": [
+        {
+          "id": "2026-wu-hsiu-hua-education-0923",
+          "title": "教育與學校午餐主張",
+          "announcedOn": "2026-09-23",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：教師節拚教育政見 陳瑩縮小城鄉差距、吳秀華推優質文教",
+            "url": "https://www.cna.com.tw/news/aipl/202609230237.aspx",
+            "publishedOn": "2026-09-23"
+          },
+          "proposals": [
+            {
+              "topic": "語言、閱讀與數位教育",
+              "summary": "提出英語教育延伸至幼兒階段、發展AI智慧教育與數位學習平權，並深化閱讀計畫。"
+            },
+            {
+              "topic": "偏鄉師資",
+              "summary": "提出從招募、留任及培育三方面改善偏鄉師資。"
+            },
+            {
+              "topic": "技職與就業",
+              "summary": "提出加深技職教育與企業合作，串聯產學及就業機會。"
+            },
+            {
+              "topic": "在地食材與透明供餐",
+              "summary": "提出提高校園午餐在地食材比例、增加有機及友善食材供應頻次，並公開食材來源與供餐資訊。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "c-魏嘉賢-無黨籍及未經政黨推薦-花蓮縣第01選舉區",
+      "name": "魏嘉賢",
+      "role": "花蓮縣長",
+      "records": [
+        {
+          "id": "2026-wei-chia-hsien-rail-0924",
+          "title": "花蓮鐵道方案與延伸條件評估",
+          "announcedOn": "2026-09-24",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：縣長選戰拋高鐵延伸花蓮 3參選人盼中央納評估",
+            "url": "https://www.cna.com.tw/news/aipl/202609240356.aspx",
+            "publishedOn": "2026-09-24"
+          },
+          "proposals": [
+            {
+              "topic": "東部運輸評估",
+              "summary": "提出盤點地方需求，將台鐵提速、高鐵延伸等方案納入專業評估；並希望高鐵宜蘭站預留往花蓮延伸的銜接條件，非承諾立即興建。"
+            }
+          ]
+        },
+        {
+          "id": "c-魏嘉賢-無黨籍及未經政黨推薦-花蓮縣第01選舉區-direct-79bdcf3a71",
+          "title": "官網政策：防災、照顧與生活安全",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "魏嘉賢｜打開新局，花蓮向前 — 2026 花蓮縣長參選人",
+            "url": "https://lovehualien.com/",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "防災專責單位",
+              "summary": "設置跨局處統籌防災單位，整合預防、應變及復原工作；加速震後危樓補強或拆除，公開紅單、黃單建築資訊。"
+            },
+            {
+              "topic": "健康老化",
+              "summary": "在長照據點導入阻力訓練與物理治療、健身專業人力，並鼓勵長者銜接運動場館。"
+            },
+            {
+              "topic": "獨居長者支持",
+              "summary": "建立獨居長者守護系統，強化社區關懷、智慧健康照護與心理陪伴。"
+            },
+            {
+              "topic": "公共自行車與航空",
+              "summary": "加速公共自行車建置並串聯轉運站與景點；爭取與日本洽談短程國際航線，同時保留交通中斷時的緊急航空量能。"
+            },
+            {
+              "topic": "特教勞動保障",
+              "summary": "主張特教助理員改採月薪制與完整聘期，保障寒暑假收入與穩定陪伴。"
+            },
+            {
+              "topic": "小黑蚊防治",
+              "summary": "設重點防治區、訂定食源清除標準，編列專案預算建立監測資料庫及精準防治。"
+            },
+            {
+              "topic": "寵物源頭管理",
+              "summary": "透過自治條例要求外出繫繩或防護、禁止放養，落實飼主責任並強化宣導與執法。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-游淑貞-花蓮縣",
+      "name": "游淑貞",
+      "role": "花蓮縣長",
+      "records": [
+        {
+          "id": "2026-yu-shu-chen-transport-0924",
+          "title": "短中長期交通主張",
+          "announcedOn": "2026-09-24",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：縣長選戰拋高鐵延伸花蓮 3參選人盼中央納評估",
+            "url": "https://www.cna.com.tw/news/aipl/202609240356.aspx",
+            "publishedOn": "2026-09-24"
+          },
+          "proposals": [
+            {
+              "topic": "台鐵運能與安全",
+              "summary": "提出短期提升台鐵運輸能力及安全性。"
+            },
+            {
+              "topic": "鐵路提速與道路改善",
+              "summary": "提出中期加快東部鐵路提速，改善公路瓶頸路段；長期對高鐵延伸持開放立場，主張由中央納入整體路網評估。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "c-張峻-無黨籍及未經政黨推薦-花蓮縣第03選舉區",
+      "name": "張峻",
+      "role": "花蓮縣長",
+      "records": [
+        {
+          "id": "2026-chang-chun-rail-safety-0924",
+          "title": "鐵路安全與建設進度監督",
+          "announcedOn": "2026-09-24",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：縣長選戰拋高鐵延伸花蓮 3參選人盼中央納評估",
+            "url": "https://www.cna.com.tw/news/aipl/202609240356.aspx",
+            "publishedOn": "2026-09-24"
+          },
+          "proposals": [
+            {
+              "topic": "北迴線安全",
+              "summary": "主張中央優先盤點北迴線風險，補強邊坡、落石防護及預警監控。"
+            },
+            {
+              "topic": "鐵路工程與期程",
+              "summary": "提出完成花東鐵路雙軌及平交道改善，要求明列負責機關、經費和可檢驗期程；高鐵延伸則須先研究地質、環境、運量及財務條件。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "張啓楷-不分區",
+      "name": "張啓楷",
+      "role": "嘉義市長",
+      "records": [
+        {
+          "id": "2026-chang-chi-kai-senior-transport-1005",
+          "title": "敬老卡計程車補助",
+          "announcedOn": "2026-10-05",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：王美惠提高齡居家安全政策 張啓楷促優化敬老卡",
+            "url": "https://www.cna.com.tw/news/aloc/202610050211.aspx",
+            "publishedOn": "2026-10-05"
+          },
+          "proposals": [
+            {
+              "topic": "敬老交通補助",
+              "summary": "提出將愛心敬老卡搭計程車的每趟補助上限提高至100點。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "wangmei-hui",
+      "name": "王美惠",
+      "role": "嘉義市長",
+      "records": [
+        {
+          "id": "2026-wang-mei-hui-home-safety-1005",
+          "title": "擴大長者居家安全補助",
+          "announcedOn": "2026-10-05",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：王美惠提高齡居家安全政策 張啓楷促優化敬老卡",
+            "url": "https://www.cna.com.tw/news/aloc/202610050211.aspx",
+            "publishedOn": "2026-10-05"
+          },
+          "proposals": [
+            {
+              "topic": "長者居家安全",
+              "summary": "承諾當選後擴大居家安全補助對象，不再僅限身心障礙或失能等資格，讓家有長者的家庭依需求申請防滑、扶手等改善補助。"
+            }
+          ]
+        },
+        {
+          "id": "2026-wang-mei-hui-all-age-care-0902",
+          "title": "登記參選時提出的全齡照顧主張",
+          "announcedOn": "2026-09-02",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中央社：張啓楷打造更宜居幸福嘉義市 王美惠建立全齡照顧體系",
+            "url": "https://www.cna.com.tw/news/aipl/202609020219.aspx",
+            "publishedOn": "2026-09-02"
+          },
+          "proposals": [
+            {
+              "topic": "學校午餐",
+              "summary": "提出增加營養午餐經費補助。"
+            },
+            {
+              "topic": "青年國際參與",
+              "summary": "提出支持青年出國參賽、展演及交流。"
+            },
+            {
+              "topic": "閱讀與運動空間",
+              "summary": "提出建置兒童圖書館及社區運動據點。"
+            },
+            {
+              "topic": "長者補助評估",
+              "summary": "提出依市府財政狀況評估健保費與假牙補助，朝逐步放寬方向推動，並非無條件全面補助的承諾。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mayor-taoyuan",
+      "name": "張善政",
+      "role": "桃園市長",
+      "records": [
+        {
+          "id": "2026-chang-san-cheng-guanyin-0902",
+          "title": "競總成立時重申的環境立場與觀音建設規劃",
+          "announcedOn": "2026-09-02",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中時新聞網：張善政喊「絕不讓SRF進觀音」 轟前朝偷渡 黃世杰不敢面對鄉親",
+            "url": "https://www.chinatimes.com/realtimenews/20260902004953-260407",
+            "publishedOn": "2026-09-02"
+          },
+          "proposals": [
+            {
+              "topic": "SRF設廠立場",
+              "summary": "在聯合競選總部成立活動中重申，任內不允許固體再生燃料（SRF）廠進駐觀音。"
+            },
+            {
+              "topic": "草漯教育設施",
+              "summary": "表示正盤點觀音可設校用地，規劃在草漯地區興建學校。"
+            },
+            {
+              "topic": "觀音醫療設施",
+              "summary": "提出持續規劃市立醫院觀音分院，改善當地醫療服務。"
+            },
+            {
+              "topic": "AI算力產業",
+              "summary": "提出在觀音規劃AI算力中心，期望結合電力資源創造就業機會。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-唐新民-臺北市",
+      "name": "唐新民",
+      "role": "臺北市長",
+      "records": [
+        {
+          "id": "cand-唐新民-臺北市-2026-10-12-3-civic",
+          "title": "簽署永續韌性城市政策承諾",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "civic",
+            "title": "【聯合新聞稿】六都13位市長候選人跨黨派響應 永續韌性城市政策承諾發布簽署結果 - 綠色公民行動聯盟",
+            "url": "https://gcaa.org.tw/16804/",
+            "publishedOn": "2026-10-12"
+          },
+          "proposals": [
+            {
+              "topic": "再生能源與防災",
+              "summary": "據發起團體公布的結果，全數簽署18項承諾，包括訂定地方再生能源目標、整合綠電供需，並建置有備援供電的防災據點及照顧弱勢的避難系統。"
+            },
+            {
+              "topic": "高溫與水患調適",
+              "summary": "承諾建立高溫風險地圖、公平配置降溫資源，提升土地滯蓄洪能力，透過生態檢核、自然解方與社區合作減少災害風險。"
+            },
+            {
+              "topic": "永續交通",
+              "summary": "承諾推動雙零交通願景自治條例、重新分配道路空間、改善生活街道、管理運具總量，並保障不同族群的移動需求。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-蘇輝湟-新北市",
+      "name": "蘇輝湟",
+      "role": "新北市長",
+      "records": [
+        {
+          "id": "cand-蘇輝湟-新北市-2026-10-12-3-civic",
+          "title": "簽署永續韌性城市政策承諾",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "civic",
+            "title": "【聯合新聞稿】六都13位市長候選人跨黨派響應 永續韌性城市政策承諾發布簽署結果 - 綠色公民行動聯盟",
+            "url": "https://gcaa.org.tw/16804/",
+            "publishedOn": "2026-10-12"
+          },
+          "proposals": [
+            {
+              "topic": "再生能源與防災",
+              "summary": "據發起團體公布的結果，全數簽署18項承諾，包括訂定地方再生能源目標、整合綠電供需，並建置有備援供電的防災據點及照顧弱勢的避難系統。"
+            },
+            {
+              "topic": "高溫與水患調適",
+              "summary": "承諾建立高溫風險地圖、公平配置降溫資源，提升土地滯蓄洪能力，透過生態檢核、自然解方與社區合作減少災害風險。"
+            },
+            {
+              "topic": "永續交通",
+              "summary": "承諾推動雙零交通願景自治條例、重新分配道路空間、改善生活街道、管理運具總量，並保障不同族群的移動需求。"
+            }
+          ]
+        },
+        {
+          "id": "cand-蘇輝湟-新北市-2026-10-13-3-news",
+          "title": "交通、語言教育與婚姻制度主張",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "參選新北市長還有「他」！ 力挺「一夫二妻」合法化 政見一次看個夠 - 政治 - 中時",
+            "url": "https://www.chinatimes.com/realtimenews/20261013001368-260407?chdtv",
+            "publishedOn": "2026-10-13"
+          },
+          "proposals": [
+            {
+              "topic": "慢速交通",
+              "summary": "於新闢或重鋪道路規劃自行車專用道，提供自行車及長者代步車更安全的通行空間。"
+            },
+            {
+              "topic": "語言與國際交流",
+              "summary": "加強中小學英語及台語教學、提升警察英語能力，並透過國際會議與賽事增加交流。"
+            },
+            {
+              "topic": "婚姻制度",
+              "summary": "提出開放一夫二妻合法化，並主張女性在符合相關條件下也有相對應選擇；這是候選人的修制倡議，報導未載地方政府的執行途徑。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-葉人文-臺南市",
+      "name": "葉人文",
+      "role": "臺南市長",
+      "records": [
+        {
+          "id": "cand-葉人文-臺南市-2026-10-12-3-civic",
+          "title": "簽署永續韌性城市政策承諾",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "civic",
+            "title": "【聯合新聞稿】六都13位市長候選人跨黨派響應 永續韌性城市政策承諾發布簽署結果 - 綠色公民行動聯盟",
+            "url": "https://gcaa.org.tw/16804/",
+            "publishedOn": "2026-10-12"
+          },
+          "proposals": [
+            {
+              "topic": "再生能源與防災",
+              "summary": "據發起團體公布的結果，全數簽署18項承諾，包括訂定地方再生能源目標、整合綠電供需，並建置有備援供電的防災據點及照顧弱勢的避難系統。"
+            },
+            {
+              "topic": "高溫與水患調適",
+              "summary": "承諾建立高溫風險地圖、公平配置降溫資源，提升土地滯蓄洪能力，透過生態檢核、自然解方與社區合作減少災害風險。"
+            },
+            {
+              "topic": "永續交通",
+              "summary": "承諾推動雙零交通願景自治條例、重新分配道路空間、改善生活街道、管理運具總量，並保障不同族群的移動需求。"
+            }
+          ]
+        },
+        {
+          "id": "cand-葉人文-臺南市-direct-31bdd006bb",
+          "title": "競選頁面：育兒、照顧與生活政策",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "葉人文 － 臺南市長候選人",
+            "url": "https://tainanyesman.oen.tw/",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "生育與兒童資產",
+              "summary": "提高生育補助及育兒津貼；提出為每名新生兒設立ETF信託帳戶至成年，作為成年起步資金，頁面未載金額與財源細節。"
+            },
+            {
+              "topic": "長照人力",
+              "summary": "提高長照人員薪資，補足照顧及喘息服務缺口，提出長照4.0方向。"
+            },
+            {
+              "topic": "族群與身障支持",
+              "summary": "增加原住民就業機會，輔導新住民就業並保障其子女福利，擴充身心障礙者支持資源。"
+            },
+            {
+              "topic": "親子空間",
+              "summary": "各區增設有遮陰的特色公園與多間親子悠遊館，定期補助室內親子樂園門票。"
+            },
+            {
+              "topic": "熱傷害預防",
+              "summary": "提出不分行業補助市民預防熱傷害器具，至少每人一式。"
+            },
+            {
+              "topic": "交通與軌道",
+              "summary": "加速鐵路與捷運共構，改善道路事故風險與通學號誌問題。"
+            },
+            {
+              "topic": "動物保護",
+              "summary": "提出逐步達成流浪動物淨零，改善收容及共存環境；頁面未載期程與量化措施。"
+            },
+            {
+              "topic": "文化與淨零教育",
+              "summary": "改善街頭藝人展演場域管理與安全，辦理淨零及ESG教育講座。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mayor-lienchiang",
+      "name": "王忠銘",
+      "role": "連江縣長",
+      "records": [
+        {
+          "id": "mayor-lienchiang-2026-08-31-1-news",
+          "title": "登記參選時提出人才與智慧島嶼方向",
+          "announcedOn": "2026-08-31",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "九合一選舉登記首日 連江縣長王忠銘完成登記",
+            "url": "https://www.cna.com.tw/news/aipl/202608310259.aspx",
+            "publishedOn": "2026-08-31"
+          },
+          "proposals": [
+            {
+              "topic": "人才培育與智慧服務",
+              "summary": "以培育馬祖人才、推動政壇世代交替及智慧島嶼為連任方向；本篇報導未列出細部執行方案。"
+            }
+          ]
+        },
+        {
+          "id": "mayor-lienchiang-2026-10-02-1-news",
+          "title": "保留縣立醫院、另設部立與完善後送",
+          "announcedOn": "2026-10-02",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "曹爾元拋連江縣立醫院改制部立 王忠銘盼新設",
+            "url": "https://www.cna.com.tw/news/aloc/202610020294.aspx",
+            "publishedOn": "2026-10-02"
+          },
+          "proposals": [
+            {
+              "topic": "在地醫療與後送",
+              "summary": "主張保留縣立醫院，請中央利用北竿舊軍醫院等土地新建部立醫院；優先改善重大傷病後送機制，爭取台北市立聯合醫院或三軍總醫院等醫院即時接治。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-李文良-金門縣",
+      "name": "李文良",
+      "role": "金門縣長",
+      "records": [
+        {
+          "id": "cand-李文良-金門縣-2026-09-02-3-news",
+          "title": "交通、健康、教育與觀光四項優先政策",
+          "announcedOn": "2026-09-02",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "競逐金門縣長 陳玉珍、李文良等人完成登記",
+            "url": "https://www.cna.com.tw/news/aipl/202609020279.aspx",
+            "publishedOn": "2026-09-02"
+          },
+          "proposals": [
+            {
+              "topic": "台金交通",
+              "summary": "借鏡新台馬輪，提出台金輪構想，改善台灣與金門間交通。"
+            },
+            {
+              "topic": "健康與教育",
+              "summary": "提出社區健康運動角，並引進創新教育及國際化課程。"
+            },
+            {
+              "topic": "觀光",
+              "summary": "整合金門酒廠資源，規劃文化體驗園區。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-張國威-金門縣",
+      "name": "張國威",
+      "role": "金門縣長",
+      "records": [
+        {
+          "id": "cand-張國威-金門縣-2026-09-02-2-news",
+          "title": "活化營區與串聯金僑資源",
+          "announcedOn": "2026-09-02",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "競逐金門縣長 陳玉珍、李文良等人完成登記",
+            "url": "https://www.cna.com.tw/news/aipl/202609020279.aspx",
+            "publishedOn": "2026-09-02"
+          },
+          "proposals": [
+            {
+              "topic": "青年與觀光",
+              "summary": "盤點並活化閒置營區，引進青年創業；串聯金僑資源參與金門國際旅遊發展。"
+            },
+            {
+              "topic": "府會溝通",
+              "summary": "主張讓縣政府與議會等各方建立實質溝通。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "chenyu-jen",
+      "name": "陳玉珍",
+      "role": "金門縣長",
+      "records": [
+        {
+          "id": "chenyu-jen-2026-09-28-2-news",
+          "title": "教育八項主張",
+          "announcedOn": "2026-09-28",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "張國威設服務處喊金門有望 李文良列白皮書、陳玉珍提教育政見",
+            "url": "https://www.cna.com.tw/news/aipl/202609280094.aspx",
+            "publishedOn": "2026-09-28"
+          },
+          "proposals": [
+            {
+              "topic": "教師支持與幼教",
+              "summary": "提出教師減負、專業支持及安心幼教，並運用金門條件推動小班精緻教育。"
+            },
+            {
+              "topic": "學習與共融",
+              "summary": "提出在地文化、國際學習、AI素養、適性共融、永續實踐及健康樂學，逐年規劃行動與資源。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-梁文韜-金門縣",
+      "name": "梁文韜",
+      "role": "金門縣長",
+      "records": [
+        {
+          "id": "cand-梁文韜-金門縣-2026-10-01-2-news",
+          "title": "政策白皮書芻議與和平協商主張",
+          "announcedOn": "2026-10-01",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "梁文韜提金門政策白皮書徵求意見 陳玉珍按既定規劃公布",
+            "url": "https://www.cna.com.tw/news/aipl/202610010173.aspx",
+            "publishedOn": "2026-10-01"
+          },
+          "proposals": [
+            {
+              "topic": "兩岸和平協商",
+              "summary": "主張兩岸中央政府重啟協商，研議金廈撤軍與福建永久終戰，先停止金廈水域針對性軍事行動與演訓；表示縣長可運用民意授權說服中央，但無法強迫雙方談判。"
+            },
+            {
+              "topic": "政策共同討論",
+              "summary": "公開軍事、政治與經濟等領域的白皮書芻議，徵求民眾意見至10月21日，規劃11月初公布最終版。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-黃世團-金門縣",
+      "name": "黃世團",
+      "role": "金門縣長",
+      "records": [
+        {
+          "id": "cand-黃世團-金門縣-2026-09-03-2-news",
+          "title": "美學與透明治理",
+          "announcedOn": "2026-09-02",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "五合一選舉登記 縣長參選人提金門發展願景",
+            "url": "https://www.kmdn.gov.tw/1117/1271/1272/589890/?cprint=pt",
+            "publishedOn": "2026-09-03"
+          },
+          "proposals": [
+            {
+              "topic": "公共空間",
+              "summary": "將居民使用需求、功能及整體環境品質納入道路、聚落、公共空間及公共建築規劃。"
+            },
+            {
+              "topic": "資訊公開",
+              "summary": "為重大建設、預算配置和政策形成建立易理解、可查詢與檢視的公開機制，說明目的、經費、執行者及效益。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-張靜-高雄市",
+      "name": "張靜",
+      "role": "高雄市長",
+      "records": [
+        {
+          "id": "cand-張靜-高雄市-2026-09-25-4-news",
+          "title": "高雄包公系列：安全、法治與政府責任",
+          "announcedOn": "2026-09-25",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "張靜發表高雄包公政見 主張鐵權治理",
+            "url": "https://www.cdns.com.tw/articles/1465642",
+            "publishedOn": "2026-09-25"
+          },
+          "proposals": [
+            {
+              "topic": "食品與人身安全",
+              "summary": "提出跨局處食品安全委員會，整合稽查、追查不法添加物；加強查緝毒品、槍枝與幫派，並將霸凌、性暴力與歧視納入治理。"
+            },
+            {
+              "topic": "交通與水資源",
+              "summary": "主張以自治立法為部分交通違規設定合理容許範圍；提出改善水患並穩定民生、工業及農業用水。"
+            },
+            {
+              "topic": "法律協助與政府責任",
+              "summary": "研議讓市民參與國賠責任議決，於法制局招聘公職律師，並設法律基金協助犯罪被害市民諮詢與訴訟。"
+            },
+            {
+              "topic": "醫療自主與監護權",
+              "summary": "主張不得強迫市民接種mRNA疫苗，並保障父母對兒少使用跨性別相關藥物或手術依法行使監護權與表達反對意見。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-洪方隆-高雄市",
+      "name": "洪方隆",
+      "role": "高雄市長",
+      "records": [
+        {
+          "id": "cand-洪方隆-高雄市-2026-09-04-1-news",
+          "title": "政見量化與政治責任",
+          "announcedOn": "2026-09-04",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "又多1人！洪方隆登記參選高雄市長 稱希望改變7大問題",
+            "url": "https://udn.com/vote2026/story/124652/9734850",
+            "publishedOn": "2026-09-04"
+          },
+          "proposals": [
+            {
+              "topic": "承諾問責",
+              "summary": "主張候選人提出政見時設定可量化目標，未達標須接受懲罰；報導未載明罰則內容及執行機制。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-洪麗華-臺中市",
+      "name": "洪麗華",
+      "role": "臺中市長",
+      "records": [
+        {
+          "id": "cand-洪麗華-臺中市-2026-10-08-2-news",
+          "title": "經濟、就業與生活福利主張",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "台中市長選戰三腳督！前里長洪麗華挑戰江啟臣、何欣純提這些政見 - 政治 - 自由時報電子報",
+            "url": "https://news.ltn.com.tw/news/politics/breakingnews/5599336",
+            "publishedOn": "2026-10-08"
+          },
+          "proposals": [
+            {
+              "topic": "經濟與就業",
+              "summary": "主張加強國際經濟合作及投資獎勵，創造工作機會、提高青年就業率；以經濟與生活水準提升三成為目標，報導未載計算基準。"
+            },
+            {
+              "topic": "水資源與福利",
+              "summary": "提出保留及開發水資源、增加長者福利，協助農漁業提高產能。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "wutsung-hsien",
+      "name": "吳宗憲",
+      "role": "宜蘭縣長",
+      "records": [
+        {
+          "id": "wutsung-hsien-2026-09-01-2-campaign",
+          "title": "托育支持與照顧者留任",
+          "announcedOn": "2026-09-01",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "吳宗憲 · 宜蘭 2026 縣長候選人",
+            "url": "https://www.yilan2026.tw/",
+            "publishedOn": "2026-09-01"
+          },
+          "proposals": [
+            {
+              "topic": "托育與家庭支持",
+              "summary": "提出每月1,000元嬰幼兒用品消費券、一鄉鎮一公托，並增設臨托、延托、夜托及假日托服務。"
+            },
+            {
+              "topic": "托育人員與安全",
+              "summary": "托育人員任職滿一年每月增加2,000元，依年資最高增加1萬元；安心托育站採預約制，照顧比最高1比3，兩歲以下含夜托最高1比2。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-鄭朝方-新竹縣",
+      "name": "鄭朝方",
+      "role": "新竹縣長",
+      "records": [
+        {
+          "id": "cand-鄭朝方-新竹縣-2026-10-15-2-news",
+          "title": "北埔、峨眉交通觀光與農產政策",
+          "announcedOn": "2026-10-15",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "鄭朝方提竹縣交通及農產政見 徐欣瑩17日競總將揭牌",
+            "url": "https://www.cna.com.tw/news/aloc/202610150297.aspx",
+            "publishedOn": "2026-10-15"
+          },
+          "proposals": [
+            {
+              "topic": "觀光與交通",
+              "summary": "整合北埔交通、停車及社區空間，串聯老街、農村與文化據點，改善峨眉景點交通及公共設施。"
+            },
+            {
+              "topic": "農業與照顧",
+              "summary": "協助農業缺工及東方美人茶、桶柑銷售通路，補強兩鄉長者就醫交通、長照資源與兒童活動空間。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-朱定瑀-新竹縣",
+      "name": "朱定瑀",
+      "role": "新竹縣長",
+      "records": [
+        {
+          "id": "cand-朱定瑀-新竹縣-2026-10-11-3-news",
+          "title": "土地、產業與健康補助主張",
+          "announcedOn": "2026-10-11",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "不畏藍綠夾殺！無黨籍朱定瑀競總成立 拋「土地改革」等6大政見 - 政治 - 自由時報電子報",
+            "url": "https://news.ltn.com.tw/news/politics/breakingnews/5602918",
+            "publishedOn": "2026-10-11"
+          },
+          "proposals": [
+            {
+              "topic": "土地與居住",
+              "summary": "主張以徵收土地交換遭公眾占用的私有地；提供育嬰父母無地價房或免費社宅。"
+            },
+            {
+              "topic": "創業與產業",
+              "summary": "主張縣民創意計畫登記通過後可免費取得徵收地創業，並以免費土地吸引廠商及開發商設廠、造鎮。"
+            },
+            {
+              "topic": "交通與健康",
+              "summary": "提出除酒駕、毒駕與闖紅燈外，登錄違規原因及改善方式即可免罰；另主張長者助聽器、活動假牙、膝關節墊片及備品全額補助，50歲以上免費健檢。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "hsu-hsin-ying",
+      "name": "徐欣瑩",
+      "role": "新竹縣長",
+      "records": [
+        {
+          "id": "hsu-hsin-ying-2026-09-24-3-news",
+          "title": "首波2030新竹女力政策",
+          "announcedOn": "2026-09-24",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "徐欣瑩拋新竹女力政見 首波鎖定健檢、就業與家暴支持",
+            "url": "https://udn.com/vote2026/story/124652/9776101",
+            "publishedOn": "2026-09-24"
+          },
+          "proposals": [
+            {
+              "topic": "女性健康",
+              "summary": "依個人風險提供免費整合健檢、後續轉介與追蹤，結合巡迴醫療服務偏鄉。"
+            },
+            {
+              "topic": "就業與創業",
+              "summary": "提供二度就業婦女創業啟動金，整合AI與數位培訓、顧問、市場媒合及貸款資源。"
+            },
+            {
+              "topic": "家暴支持",
+              "summary": "加碼家暴被害人緊急生活津貼，加快高風險個案核發，並視需求延長扶助、整合租屋及法律心理就業服務。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "c-陳品安-無黨籍及未經政黨推薦-苗栗縣第03選舉區",
+      "name": "陳品安",
+      "role": "苗栗縣長",
+      "records": [
+        {
+          "id": "c-陳品安-無黨籍及未經政黨推薦-苗栗縣第03選舉區-2026-09-24-2-news",
+          "title": "苗栗好孕政策升級",
+          "announcedOn": "2026-09-24",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "苗栗縣長參選人陳品安今提「苗栗好孕政見」升級版 補助延至孕前準備",
+            "url": "https://udn.com/vote2026/story/124652/9775495",
+            "publishedOn": "2026-09-24"
+          },
+          "proposals": [
+            {
+              "topic": "孕前醫療補助",
+              "summary": "提出人工生殖及醫療性凍卵各最高補助8萬元，其中手術6萬元、保管2萬元；醫療性凍精最高補助1萬元。"
+            },
+            {
+              "topic": "育兒支持",
+              "summary": "重申每胎生育津貼最高10萬元、栗寶卡點數與一鄉鎮一公托，降低家庭生養負擔。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mayor-miaoli",
+      "name": "鍾東錦",
+      "role": "苗栗縣長",
+      "records": [
+        {
+          "id": "mayor-miaoli-2026-07-18-2-news",
+          "title": "縣政願景白皮書：交通建設",
+          "announcedOn": "2026-07-17",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "苗栗選戰 鍾東錦拋縣政白皮書 陳品安強調國際視野",
+            "url": "https://udn.com/vote2026/story/124652/9635125",
+            "publishedOn": "2026-07-18"
+          },
+          "proposals": [
+            {
+              "topic": "幹道銜接",
+              "summary": "規劃台61線竹南至後龍段高架化、台72線延伸銜接台61線，強化道路系統。"
+            },
+            {
+              "topic": "交流道與偏鄉交通",
+              "summary": "爭取改善國道1號頭份交流道、增設造橋交流道，並持續改善偏鄉交通。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "c-陳重嘉-民眾黨-彰化縣第05選舉區",
+      "name": "陳重嘉",
+      "role": "彰化縣長",
+      "records": [
+        {
+          "id": "c-陳重嘉-民眾黨-彰化縣第05選舉區-2026-08-31-2-news",
+          "title": "數位行政、社宅與未成年照護",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "快訊／搶頭香！彰化4連霸議員陳重嘉登記參選縣長",
+            "url": "https://www.ettoday.net/news/20260831/3228728.htm",
+            "publishedOn": "2026-08-31"
+          },
+          "proposals": [
+            {
+              "topic": "數位治理",
+              "summary": "提出電子印證證明與線上公投，減少申辦奔波並增加民眾參與。"
+            },
+            {
+              "topic": "居住與照護",
+              "summary": "媒合民間資源提供有收入者可長期居住的社會住宅，並提出未成年全面照護方向。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "chensu-yueh",
+      "name": "陳素月",
+      "role": "彰化縣長",
+      "records": [
+        {
+          "id": "chensu-yueh-2026-10-15-4-news",
+          "title": "彰化加速：交通、產業與青年",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "【有影】【陳素月專訪2-2】彰化縣政10願景、3核心 找回主體性不當「台中後花園」 - 匯流新聞網",
+            "url": "https://cnews.com.tw/237261015a02/",
+            "publishedOn": "2026-10-15"
+          },
+          "proposals": [
+            {
+              "topic": "交通與都市更新",
+              "summary": "推動捷運綠線延伸彰化、鐵路高架及周邊都市計畫，整合車站、扇形車庫與鐵道宿舍群發展。"
+            },
+            {
+              "topic": "產業轉型",
+              "summary": "設縣長直屬產業加速辦公室與招商土地單一窗口，協助傳產導入AI，提出AI應用驗證中心及無人載具產業基地。"
+            },
+            {
+              "topic": "青年成家創業",
+              "summary": "青年首購房貸及創業貸款各最高200萬元額度，前兩年利息由縣府協助全額負擔；建置創業與職涯支持、海外實習。"
+            },
+            {
+              "topic": "長照與互助",
+              "summary": "透過在地日照及社區互助，讓長者參與服務，結合青年志工，降低家庭照顧負擔。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-邱建富-彰化縣",
+      "name": "邱建富",
+      "role": "彰化縣長",
+      "records": [
+        {
+          "id": "cand-邱建富-彰化縣-2026-09-28-3-news",
+          "title": "教育支持與生育托育加碼",
+          "announcedOn": "2026-09-28",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "邱建富拋彰化教育政見 教師禮金千元、生育再加碼10萬",
+            "url": "https://udn.com/vote2026/story/7325/9781081",
+            "publishedOn": "2026-09-28"
+          },
+          "proposals": [
+            {
+              "topic": "教師支持",
+              "summary": "教師節禮金提高至1,000元，推動行政AI化、校事會議支援平台，增加心理、社工與特教人力並逐步降低班級人數。"
+            },
+            {
+              "topic": "生育托育",
+              "summary": "主張在中央生育補助之外縣府再加碼10萬元；童萌卡擴及0至6歲、提高至12,000點，友善托育每月加碼1,000元並擴充臨托與延托。"
+            },
+            {
+              "topic": "學童餐食",
+              "summary": "主張12年國教營養午餐免費，減輕家庭教育支出。"
+            }
+          ]
+        },
+        {
+          "id": "cand-邱建富-彰化縣-direct-3bab71a38e",
+          "title": "官網產業、長者與青年住宅方案",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "首頁 ｜ 邱建富 2026 彰化縣長候選人",
+            "url": "https://chiuchienfu.tw",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "產業用水與招商",
+              "summary": "提出2030臺積電進駐彰化計畫，建設沿海海水淡化廠並結合既有供水，目標每日16萬噸，搭配綠電吸引半導體、AI、無人機及軍工產業；屬招商願景。"
+            },
+            {
+              "topic": "長者福利",
+              "summary": "提出長者健保費全額補助，擴大長青幸福卡使用範圍並提高點數。"
+            },
+            {
+              "topic": "青年基金與住宅",
+              "summary": "成立3億元青年基金支持創業與青農返鄉；盤點閒置校地，經都市計畫變更興建青年社會住宅。"
+            },
+            {
+              "topic": "臨時托育",
+              "summary": "設置24小時臨托中心，提升托育服務量能。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-魏平政-彰化縣",
+      "name": "魏平政",
+      "role": "彰化縣長",
+      "records": [
+        {
+          "id": "cand-魏平政-彰化縣-2026-10-05-2-news",
+          "title": "教育四加一",
+          "announcedOn": "2026-10-05",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "國民黨首場分區造勢17日彰化登場 魏平政：期待王惠美出現",
+            "url": "https://www.cna.com.tw/news/aipl/202610050097.aspx",
+            "publishedOn": "2026-10-05"
+          },
+          "proposals": [
+            {
+              "topic": "教育支出",
+              "summary": "提出代收代辦費全額補助，朝註冊單實質零元推進。"
+            },
+            {
+              "topic": "學習與教師支持",
+              "summary": "強化校園安全、學生心理支持、雙語與AI學習、技職產學合作及跨校資源共享，減輕教師行政負擔。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-吳炳輝-雲林縣",
+      "name": "吳炳輝",
+      "role": "雲林縣長",
+      "records": [
+        {
+          "id": "cand-吳炳輝-雲林縣-2026-09-03-3-news",
+          "title": "農業、產業、醫療與財政四項改革",
+          "announcedOn": "2026-09-03",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "雲林縣長參選人吳炳輝戰鬥力十足 第一時間擬好政見出擊 - 政治 - 中時",
+            "url": "https://www.chinatimes.com/realtimenews/20260903003002-260407?chdtv",
+            "publishedOn": "2026-09-03"
+          },
+          "proposals": [
+            {
+              "topic": "農地與財政",
+              "summary": "倡議國土計畫及財劃法改革，要求中央就農地開發限制提供農業權補償，增加縣自有財源並運用促參減輕負擔。"
+            },
+            {
+              "topic": "產業與留才",
+              "summary": "配合城鄉規劃加速產業園區及招商，增加高薪工作。"
+            },
+            {
+              "topic": "偏鄉照護",
+              "summary": "擴大山區與沿海遠距醫療、醫消聯防及長青食堂，補足長照與醫療資源落差。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "chang-chia-chun",
+      "name": "張嘉郡",
+      "role": "雲林縣長",
+      "records": [
+        {
+          "id": "chang-chia-chun-2026-10-05-2-news",
+          "title": "崙背六大行動",
+          "announcedOn": "2026-10-05",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "雲林縣長候選人張嘉郡崙背政見發表 拋六大行動再造地方風華 - 鑫傳國際多媒體科技股份有限公司 TDN台灣生活新聞",
+            "url": "https://news.st-media.com.tw/news/63264",
+            "publishedOn": "2026-10-05"
+          },
+          "proposals": [
+            {
+              "topic": "親子與運動",
+              "summary": "提出興建親子館及恢復游泳池。"
+            },
+            {
+              "topic": "地方發展",
+              "summary": "提出智慧崙背、多元語言、休閒農業區規劃及改善地方交通。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "liu-chien-kuo",
+      "name": "劉建國",
+      "role": "雲林縣長",
+      "records": [
+        {
+          "id": "liu-chien-kuo-2026-08-20-3-news",
+          "title": "醫療照護產業園區與全齡支持",
+          "announcedOn": "2026-08-20",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "劉建國雲林首波政見 「一園區、七顆心」打造全齡醫療照護產業聚落",
+            "url": "https://udn.com/news/story/124652/9704017",
+            "publishedOn": "2026-08-20"
+          },
+          "proposals": [
+            {
+              "topic": "醫療產業",
+              "summary": "串聯斗六與虎尾長照設施，建立醫療照護產業園區，引進醫材、智慧照護及長照科技，設安老托幼幸福中心。"
+            },
+            {
+              "topic": "兒童照護",
+              "summary": "營養午餐升級由政府負擔增加餐費，增聘營養師，每週兩天供應鮮乳或豆奶；0至6歲門診與住院部分負擔及腸病毒A71型疫苗免費。"
+            },
+            {
+              "topic": "長者福利",
+              "summary": "提出65歲以上健保費補助、敬老愛心卡每年加碼12,000點、重陽金3,000至18,000元，並提供長者鮮乳或豆奶、假牙與帶狀疱疹疫苗福利。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "tsai-yi-yu",
+      "name": "蔡易餘",
+      "role": "嘉義縣長",
+      "records": [
+        {
+          "id": "tsai-yi-yu-2026-01-04-4-news",
+          "title": "農業、工業、科技與觀光升級",
+          "announcedOn": "2026-01-04",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "綠嘉義縣長初選政見會 蔡易餘提邁向下個黃金10年",
+            "url": "https://www.cna.com.tw/news/aipl/202601040117.aspx",
+            "publishedOn": "2026-01-04"
+          },
+          "proposals": [
+            {
+              "topic": "智慧農業",
+              "summary": "導入AI與農噴無人機，發展高值作物、加工及品牌，推展農業生技園區與智慧農業。"
+            },
+            {
+              "topic": "工業與居住",
+              "summary": "加速產業園區、航太無人機及國防產業，串聯交通網並於工業區周邊建社宅。"
+            },
+            {
+              "topic": "科技基礎設施",
+              "summary": "提出再生水、海淡與變電設施，爭取台37延伸新營，協助中正大學籌設矽光子學院。"
+            },
+            {
+              "topic": "觀光",
+              "summary": "串聯山海與林鐵文化，發展漁港特色旅遊、中埔溫泉及梅山至太平雲梯纜車等路線。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "su-ching-chuan",
+      "name": "蘇清泉",
+      "role": "屏東縣長",
+      "records": [
+        {
+          "id": "su-ching-chuan-2026-10-13-1-news",
+          "title": "擴大營養午餐免費範圍",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "蘇清泉政見 屏東營養午餐全面免費｜台灣民眾電子報",
+            "url": "https://www.allnews.tw/news/95604",
+            "publishedOn": "2026-10-13"
+          },
+          "proposals": [
+            {
+              "topic": "學童餐食",
+              "summary": "主張免費營養午餐從幼兒園涵蓋至高中，國立、縣立及私立學校均適用。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mayor-pingtung",
+      "name": "周春米",
+      "role": "屏東縣長",
+      "records": [
+        {
+          "id": "mayor-pingtung-2026-09-24-2-news",
+          "title": "專訪中的未來照護與產業方向",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "專訪》周春米擘劃屏東三大新願景 展現政績反擊對手質疑",
+            "url": "https://www.storm.mg/article/11167556",
+            "publishedOn": "2026-09-24"
+          },
+          "proposals": [
+            {
+              "topic": "長者健保",
+              "summary": "表示自2027年1月1日起將加碼補助長者健保費。"
+            },
+            {
+              "topic": "產業延伸",
+              "summary": "在科學園區與科技園區發展基礎上，規劃進一步延伸至國家級太空科技產業供應鏈。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-王志偉-臺東縣",
+      "name": "王志偉",
+      "role": "臺東縣長",
+      "records": [
+        {
+          "id": "cand-王志偉-臺東縣-2026-09-12-3-news",
+          "title": "教育、農業與家庭支持",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "無黨籍2人參選台東縣長 給多一種選擇拚「萬一」當選",
+            "url": "https://www.cna.com.tw/news/aloc/202609120079.aspx",
+            "publishedOn": "2026-09-12"
+          },
+          "proposals": [
+            {
+              "topic": "教育獎助",
+              "summary": "提出縣府注資5,000萬元勵學基金，學生總分進步每分獎勵100元、無上限，考取報導所列台大等大學給10萬元獎學金。"
+            },
+            {
+              "topic": "農業",
+              "summary": "訂定農漁產品頂級規格、保價收購與台東品牌行銷，以無人機隊同步施肥噴藥。"
+            },
+            {
+              "topic": "家庭支持",
+              "summary": "提出結婚、生育及送終每案由縣府給付2萬元。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-李吳穎智-臺東縣",
+      "name": "李吳穎智",
+      "role": "臺東縣長",
+      "records": [
+        {
+          "id": "cand-李吳穎智-臺東縣-2026-09-12-3-news",
+          "title": "廉政、安居與產業方向",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "無黨籍2人參選台東縣長 給多一種選擇拚「萬一」當選",
+            "url": "https://www.cna.com.tw/news/aloc/202609120079.aspx",
+            "publishedOn": "2026-09-12"
+          },
+          "proposals": [
+            {
+              "topic": "透明治理",
+              "summary": "提出廉政契約，重大工程、會議與公共資產資訊公開，家人及關係人利益迴避。"
+            },
+            {
+              "topic": "安居交通",
+              "summary": "提出縣地自建、長者假牙、學童鮮乳與偏鄉就醫交通補助；倡議台9線拓寬、快速道路、高速公路延伸及宜花東屏高鐵等長期建設。"
+            },
+            {
+              "topic": "產業與職訓",
+              "summary": "發展農漁加值、運動休閒、影視文化基地與觀光特區，以需求導向職訓結合救助、創業支持。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-羅佩秦-花蓮縣",
+      "name": "羅佩秦",
+      "role": "花蓮縣長",
+      "records": [
+        {
+          "id": "cand-羅佩秦-花蓮縣-2026-09-03-2-news",
+          "title": "消費券與災民法律協助",
+          "announcedOn": "2026-09-03",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "台灣工黨羅佩秦登記參選花蓮縣長 主打發放2千消費券、助災民討公道",
+            "url": "https://www.seenews.com.tw/news_data.php?news_id=2789&k_code=A&k_code_sub=",
+            "publishedOn": "2026-09-03"
+          },
+          "proposals": [
+            {
+              "topic": "經濟振興",
+              "summary": "提出每人發放2,000元消費券，刺激地方消費。"
+            },
+            {
+              "topic": "災民權益",
+              "summary": "承諾協助光復鄉堰塞湖災民向政府提起訴訟，爭取權益。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-吳淑瑾-澎湖縣",
+      "name": "吳淑瑾",
+      "role": "澎湖縣長",
+      "records": [
+        {
+          "id": "cand-吳淑瑾-澎湖縣-2026-10-08-1-news",
+          "title": "動漫文化與青年觀光",
+          "announcedOn": "2026-10-07",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "澎湖縣長選戰／吳淑瑾攻青年票黃捷助陣 陳振中提海事教育獲支持",
+            "url": "https://udn.com/news/story/124652/9801593",
+            "publishedOn": "2026-10-08"
+          },
+          "proposals": [
+            {
+              "topic": "文化活動",
+              "summary": "提出結合動漫、Cosplay與澎湖在地文化舉辦青年活動，將花火節聯名IP模式延伸至觀光，若當選將辦動漫祭。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-周倪安-澎湖縣",
+      "name": "周倪安",
+      "role": "澎湖縣長",
+      "records": [
+        {
+          "id": "cand-周倪安-澎湖縣-2026-08-21-2-news",
+          "title": "自然與文化觀光方案",
+          "announcedOn": "2026-08-21",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "細數澎湖觀光問題 周倪安提解方 - 政治 - 自由時報電子報",
+            "url": "https://news.ltn.com.tw/news/politics/breakingnews/5547690",
+            "publishedOn": "2026-08-21"
+          },
+          "proposals": [
+            {
+              "topic": "自然與文化",
+              "summary": "擴大珊瑚礁復育、發展潛水觀光，以天后宮、觀音亭等景點規劃文化走讀，重建蛇頭山紅毛城並活化砲台與坑道。"
+            },
+            {
+              "topic": "淡季觀光",
+              "summary": "辦理秋冬文史講座、傳統飲食與海鮮慢食活動，搭配淡季機票及旅宿折扣。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-許智富-澎湖縣",
+      "name": "許智富",
+      "role": "澎湖縣長",
+      "records": [
+        {
+          "id": "cand-許智富-澎湖縣-2026-06-23-1-news",
+          "title": "路平專案",
+          "announcedOn": "2026-06-23",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "無黨籍澎湖縣長參選人許智富 提出路平專案政見 - 政治 - 自由時報電子報",
+            "url": "https://news.ltn.com.tw/news/politics/breakingnews/5481306",
+            "publishedOn": "2026-06-23"
+          },
+          "proposals": [
+            {
+              "topic": "工程統整與驗收",
+              "summary": "縣長親自主持道路專案，提早整合各管線工程並公開排程、避開觀光尖峰；施工完成一週內初驗，檢查平整度、人手孔、標線與工程文件。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-葉竹林-澎湖縣",
+      "name": "葉竹林",
+      "role": "澎湖縣長",
+      "records": [
+        {
+          "id": "cand-葉竹林-澎湖縣-2026-04-02-3-news",
+          "title": "六大幸福政見",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "葉竹林參選澎湖縣長拋六大幸福政見 從福利到青年布局 重塑澎湖治理主軸 - 波新聞",
+            "url": "https://www.bo6s.com.tw/news_detail.php?NewsID=110142",
+            "publishedOn": "2026-04-02"
+          },
+          "proposals": [
+            {
+              "topic": "福利與救護",
+              "summary": "加發中秋敬老禮金5,000元、身心障礙者慰問金提高至2萬元，並在西嶼外垵設置救護站。"
+            },
+            {
+              "topic": "離島交通",
+              "summary": "增加七美往返馬公船班，規劃西嶼至馬公藍色公路，結合交通與觀光。"
+            },
+            {
+              "topic": "青年成家",
+              "summary": "透過育兒補助、返鄉就業與創業支持，協助青年安心成家。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mayor-keelung",
+      "name": "謝國樑",
+      "role": "基隆市長",
+      "records": [
+        {
+          "id": "mayor-keelung-2026-09-21-1-news",
+          "title": "基隆捷運周邊發展",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "2026九合一選舉 基隆市選戰：謝國樑 VS. 童子瑋",
+            "url": "https://www.cna.com.tw/news/aipl/202609215009.aspx",
+            "publishedOn": "2026-09-21"
+          },
+          "proposals": [
+            {
+              "topic": "都市計畫",
+              "summary": "針對基隆捷運，提出五堵站周邊30公頃都市計畫變更構想。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "c-童子瑋-民進黨-基隆市第03選舉區",
+      "name": "童子瑋",
+      "role": "基隆市長",
+      "records": [
+        {
+          "id": "c-童子瑋-民進黨-基隆市第03選舉區-2026-10-03-3-news",
+          "title": "七大行政區願景",
+          "announcedOn": "2026-10-03",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "「基隆夢想館」公布七大行政區願景政見 童子瑋：找回基隆光榮",
+            "url": "https://udn.com/vote2026/story/124652/9792536",
+            "publishedOn": "2026-10-03"
+          },
+          "proposals": [
+            {
+              "topic": "居住與休閒",
+              "summary": "暖暖增加青年住宅、公托及共享空間；七堵推運動中心、河岸及人寵共融空間，安樂增加運動與停車設施、串聯情人湖。"
+            },
+            {
+              "topic": "文化與交通",
+              "summary": "中正結合漁港、和平島及歷史聚落發展影視文化觀光；中山改善交通並串聯海洋生態館與休閒廊帶。"
+            },
+            {
+              "topic": "市政與水岸",
+              "summary": "仁愛規劃新市政大樓與一站式智慧服務，帶動老城區更新；信義整治田寮河並規劃夜間光影。"
+            }
+          ]
+        },
+        {
+          "id": "c-童子瑋-民進黨-基隆市第03選舉區-direct-1d484c6c34",
+          "title": "WE CARE教育政策",
+          "announcedOn": "2026-09-24",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "we care 教育政策 – 童子瑋",
+            "url": "https://t-ziwei.com/archives/2825",
+            "publishedOn": "2026-09-24"
+          },
+          "proposals": [
+            {
+              "topic": "小班與教師支持",
+              "summary": "以每班25人為目標；各校配置教學助理，校園工程由市府專責處理，每年提供9天備課假與3天身心調適假，教師節禮金提高至2,000元。"
+            },
+            {
+              "topic": "專業保障與學習",
+              "summary": "訂定輔導管教指引，設教師支持辦公室與名譽修復機制，並推動基隆學、AI教育及國際交流。"
+            }
+          ]
+        },
+        {
+          "id": "c-童子瑋-民進黨-基隆市第03選舉區-direct-b7a342d7d8",
+          "title": "全齡醫療照顧網",
+          "announcedOn": "2026-09-17",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "基隆醫療全面升級 – 童子瑋",
+            "url": "https://t-ziwei.com/archives/2767",
+            "publishedOn": "2026-09-17"
+          },
+          "proposals": [
+            {
+              "topic": "醫療量能",
+              "summary": "推動部立基隆醫院擴建及衛生局遷移，整合光隆家商用地規劃醫療、復健與長照，擴充急診、ICU及兒童次專科。"
+            },
+            {
+              "topic": "就醫接駁",
+              "summary": "規劃醫療公車尖峰巡迴接送，升級復康巴士與無障礙計程車，補助爬梯機。"
+            },
+            {
+              "topic": "疫苗與篩檢",
+              "summary": "0至3歲幼兒免費輪狀病毒疫苗，30至39歲女性免費乳癌篩檢，50歲以上市民接種帶狀疱疹疫苗補助。"
+            }
+          ]
+        },
+        {
+          "id": "c-童子瑋-民進黨-基隆市第03選舉區-direct-2029db7919",
+          "title": "運動基隆與場館治理",
+          "announcedOn": "2026-09-11",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "運動基隆 健康城市 – 童子瑋",
+            "url": "https://t-ziwei.com/archives/2748",
+            "publishedOn": "2026-09-11"
+          },
+          "proposals": [
+            {
+              "topic": "全天候運動",
+              "summary": "推動一區一風雨球場，改善遮雨、照明與地坪，擴大社區運動補助並分年改善山海步道。"
+            },
+            {
+              "topic": "運動行政",
+              "summary": "設專責運動處整合資源與基層培育，爭取城市賽事並建立亞洲港市運動交流。"
+            }
+          ]
+        },
+        {
+          "id": "c-童子瑋-民進黨-基隆市第03選舉區-direct-787a63e933",
+          "title": "寵物照顧四項政策",
+          "announcedOn": "2026-08-19",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "毛孩顧健康，城市更友善 – 童子瑋",
+            "url": "https://t-ziwei.com/archives/2662",
+            "publishedOn": "2026-08-19"
+          },
+          "proposals": [
+            {
+              "topic": "寵物醫療與絕育",
+              "summary": "看診每年補助3次、每次200元；公犬貓絕育補助提高至1,000元、母犬貓2,000元，總預算提高至100萬元。"
+            },
+            {
+              "topic": "友善空間與夜診",
+              "summary": "推動每區一座寵物友善公園，改善既有設施並推動動物醫院夜間門診。"
+            }
+          ]
+        },
+        {
+          "id": "c-童子瑋-民進黨-基隆市第03選舉區-direct-ba067c0118",
+          "title": "身障平權七大社福政見",
+          "announcedOn": "2026-06-24",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "七大社福政見，照顧2萬身障市民 – 童子瑋",
+            "url": "https://t-ziwei.com/archives/2574",
+            "publishedOn": "2026-06-24"
+          },
+          "proposals": [
+            {
+              "topic": "慰問金與就業",
+              "summary": "身障三節慰問金每節提高至3,000元、全年9,000元，簡化團體申辦核銷，擴大就業媒合及庇護工場採購。"
+            },
+            {
+              "topic": "無障礙與智慧支持",
+              "summary": "無障礙旅遊擴及全體身障市民與照顧者，增加照護床位與據點；導入復康巴士AI派車、手譯服務及生活輔具耗材補助。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-莊競程-新竹市",
+      "name": "莊競程",
+      "role": "新竹市長",
+      "records": [
+        {
+          "id": "cand-莊競程-新竹市-2026-10-15-1-campaign",
+          "title": "重大建設監督與營運責任",
+          "announcedOn": "2026-10-15",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "新竹市建設一再延宕 莊競程：現任市長不做我來做，新竹不能再等四年！ / 民主進步黨 - 綠色執政品質保證",
+            "url": "https://www.dpp.org.tw/media/contents/11811",
+            "publishedOn": "2026-10-15"
+          },
+          "proposals": [
+            {
+              "topic": "建設管理",
+              "summary": "設市長重大建設監督平台，由市長掌握進度；每案配置專責團隊與營運計畫，從規劃、施工至營運由專人負責。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-何志勇-新竹市",
+      "name": "何志勇",
+      "role": "新竹市長",
+      "records": [
+        {
+          "id": "cand-何志勇-新竹市-2026-10-07-2-news",
+          "title": "青年論壇：交通與生活支持金",
+          "announcedOn": "2026-10-06",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "何志勇出席新竹市青年論壇 提市民16800生活支持金政見 - 政治 - 自由時報電子報",
+            "url": "https://news.ltn.com.tw/news/politics/breakingnews/5598552",
+            "publishedOn": "2026-10-07"
+          },
+          "proposals": [
+            {
+              "topic": "公共運輸與路權",
+              "summary": "推BRT雙節公車專用或優先道、9人小巴接駁，主張縮減車道寬度、增加人行與自行車空間。"
+            },
+            {
+              "topic": "生活支持金",
+              "summary": "提出每人每年16,800元生活支持金，以卡片在新竹市內消費；外縣市戶籍但在新竹就學就業的青年，可依居住期間認定資格。"
+            }
+          ]
+        },
+        {
+          "id": "cand-何志勇-新竹市-direct-76a984e840",
+          "title": "官網九大政見：照顧、產業與文化補充",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "何志勇 — 2026 新竹市市長參選人",
+            "url": "https://chihyungho.github.io/",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "托育與安老",
+              "summary": "公托、公幼延時至19時且寒暑假不中斷；活化閒置校舍與社宅推動青銀共居，讓青年減租、長者獲得陪伴。"
+            },
+            {
+              "topic": "生活工資與租屋",
+              "summary": "推動自願性生活工資認證，以標案加分與租金減免鼓勵企業；青年租屋補助放寬為在新竹就學就業即可申請並加碼。"
+            },
+            {
+              "topic": "防詐與兒少安全",
+              "summary": "成立跨局處治安辦公室，結合產學建立AI防詐預警系統，培訓社區防詐人員並整合學校社工支援兒少網路安全。"
+            },
+            {
+              "topic": "國際化與產業",
+              "summary": "推動香山工業區轉型為台商回流特區，提供土地媒合與綠色轉型補助；設國際人才一站式服務。"
+            },
+            {
+              "topic": "創業空間與產學合作",
+              "summary": "活化公有房舍為新創及共享工作空間，推動大學社會責任計畫對接市政，辦理創投媒合並協助傳產導入AI與綠色製程。"
+            },
+            {
+              "topic": "文化參與",
+              "summary": "以循環巴士串聯舊城文化景點、擴大夜間展演，發放兒童文化券；提出1,000萬元參與式預算，由市民投票決定活動。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-陳愷璜-嘉義市",
+      "name": "陳愷璜",
+      "role": "嘉義市長",
+      "records": [
+        {
+          "id": "cand-陳愷璜-嘉義市-2026-08-20-2-news",
+          "title": "美學、科技與十大經濟方向",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "嘉市長選戰倒數百日 台藝大前校長陳愷璜提十大經濟政見虛實整合策略",
+            "url": "https://udn.com/vote2026/story/124652/9703532",
+            "publishedOn": "2026-08-20"
+          },
+          "proposals": [
+            {
+              "topic": "數位治理與文化",
+              "summary": "提出數位孿生城市，結合藝術、科技與建築，並以木都、宗教、城市歷史及藝術圓夢中心發展地方經濟。"
+            },
+            {
+              "topic": "生活空間與運輸",
+              "summary": "提出步行、公園、十字廊帶、超低底盤運輸及垃圾資源等政策方向；本篇未提供細部執行及經費規劃。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-陳振中-澎湖縣",
+      "name": "陳振中",
+      "role": "澎湖縣長",
+      "records": [
+        {
+          "id": "cand-陳振中-澎湖縣-2026-04-02-2-news",
+          "title": "十大施政方向",
+          "announcedOn": "2026-04-02",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "陳振中代表國民黨選澎湖縣長 發表十大施政方針",
+            "url": "https://www.cna.com.tw/news/aloc/202604020129.aspx",
+            "publishedOn": "2026-04-02"
+          },
+          "proposals": [
+            {
+              "topic": "環境與產業",
+              "summary": "以垃圾淨零、海洋資源永續、四季觀光及農漁產業振興為方向。"
+            },
+            {
+              "topic": "民生與照護",
+              "summary": "提出改善醫療救護、交通運輸、全齡養育補助、青年返鄉、文化傳承與安居等方向；報導未列出細部方案。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-張火木-金門縣",
+      "name": "張火木",
+      "role": "金門縣長",
+      "records": [
+        {
+          "id": "cand-張火木-金門縣-2026-09-05-1-news",
+          "title": "觀光文化與縣政智庫",
+          "announcedOn": "2026-09-04",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "金門日報全球資訊網 -公職選舉7人角逐縣長 議員3個選區共35人競爭",
+            "url": "https://www.kmdn.gov.tw/1117/1271/1272/589935/",
+            "publishedOn": "2026-09-05"
+          },
+          "proposals": [
+            {
+              "topic": "發展與治理承諾",
+              "summary": "以觀光、文化為發展方向，承諾四年任滿不競選連任；縣長薪資及依法得自行處分的相關所得，全數捐作縣政智庫專款。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-郭璽-臺北市",
+      "name": "郭璽",
+      "role": "臺北市長",
+      "records": [
+        {
+          "id": "cand-郭璽-臺北市-2026-10-06-1-news",
+          "title": "淡水河水岸與防洪構想",
+          "announcedOn": "2026-10-06",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "扯！郭璽開記者會前一刻失聯 主持人硬著頭皮唸政見撐全場",
+            "url": "https://www.nownews.com/news/6881026",
+            "publishedOn": "2026-10-06"
+          },
+          "proposals": [
+            {
+              "topic": "水岸與防洪",
+              "summary": "競選記者會簡報提出升降式防洪設施，搭配分段控制、水情監測及AI預警，減少堤防對水岸與風廊的阻隔。當天由主持人代為宣讀，郭璽本人未到場；報導未提供工程與經費細節。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-蕭燐洪-臺南市",
+      "name": "蕭燐洪",
+      "role": "臺南市長",
+      "records": [
+        {
+          "id": "cand-蕭燐洪-臺南市-2026-09-04-1-news",
+          "title": "以雙語教育為參選訴求",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "獨／兒選北市長、父選南市長！ 84歲蕭燐洪砸120萬續參選 - 民視財經網",
+            "url": "https://finance.ftvnews.com.tw/news/detail/2026904U08M1",
+            "publishedOn": "2026-09-04"
+          },
+          "proposals": [
+            {
+              "topic": "雙語教育",
+              "summary": "在本屆市長選舉受訪時，將推廣雙語教育作為參選目的；本篇未提出課程、師資或預算等細部方案。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-曹爾元-連江縣",
+      "name": "曹爾元",
+      "role": "連江縣長",
+      "records": [
+        {
+          "id": "cand-曹爾元-連江縣-2026-10-02-1-news",
+          "title": "縣立醫院改制部立",
+          "announcedOn": "2026-10-02",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "曹爾元拋連江縣立醫院改制部立 王忠銘盼新設",
+            "url": "https://www.cna.com.tw/news/aloc/202610020294.aspx",
+            "publishedOn": "2026-10-02"
+          },
+          "proposals": [
+            {
+              "topic": "醫療制度",
+              "summary": "主張將連江縣立醫院改制為部立醫院，以提升待遇、人才流動與醫療品質，爭取內外婦兒科進駐，並與中央協商醫事保送生及衛生所支援制度。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-吳品叡-嘉義縣",
+      "name": "吳品叡",
+      "role": "嘉義縣長",
+      "records": [
+        {
+          "id": "cand-吳品叡-嘉義縣-2026-10-01-1-news",
+          "title": "長者健保費補助",
+          "announcedOn": "2026-10-01",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "蔡易餘公布醫療社福政見 吳品叡推長者健保補助",
+            "url": "https://www.cna.com.tw/news/aipl/202610010197.aspx",
+            "publishedOn": "2026-10-01"
+          },
+          "proposals": [
+            {
+              "topic": "長者與家庭支持",
+              "summary": "承諾當選後推動65歲以上長者健保費補助，透過新增財源、預算排序及財政管理支應，減輕家庭照顧負擔。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-林國漳-宜蘭縣",
+      "name": "林國漳",
+      "role": "宜蘭縣長",
+      "records": [
+        {
+          "id": "cand-林國漳-宜蘭縣-2026-03-18-3-news",
+          "title": "青年宜蘭：居住、交通與參與",
+          "announcedOn": "2026-03-18",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "林國漳推「青年宜蘭」四大政見～主打安居創業與交通補貼【影音新聞】",
+            "url": "https://www.kamalan-news.com/political/56/17709",
+            "publishedOn": "2026-03-18"
+          },
+          "proposals": [
+            {
+              "topic": "住宅與通勤",
+              "summary": "提出在縣政中心興建400戶青年及婚育住宅、推動青年宅自治條例；TPASS城際月票補貼300元、縣內月票補貼250元，交通補貼也適用其他通勤族。"
+            },
+            {
+              "topic": "青年參與與創業",
+              "summary": "提出運動暨青年發展處、提高青年事務委員會決策權及青年提案預算；成立宜蘭共創學院，活化閒置空間並爭取頭城數位衝浪者中心。"
+            },
+            {
+              "topic": "數位安全",
+              "summary": "提出青年數位安全網，為詐騙、網路霸凌或深偽影像受害者提供心理、法律與數位支援。"
+            }
+          ]
+        },
+        {
+          "id": "cand-林國漳-宜蘭縣-direct-89387de37e",
+          "title": "官網宜蘭藍圖：社福、農業與綠化",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "林國漳｜2026 宜蘭縣長參選人 - 改變宜蘭，現在就出發",
+            "url": "https://2026openchang.tw/",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "幼童與家庭支持",
+              "summary": "提出幼童掛號費補助、提高生育津貼、精進營養午餐，並提供疫苗與健保補助。"
+            },
+            {
+              "topic": "性別平等",
+              "summary": "提出生育自主、健康篩檢、平權內閣與育兒倍增四個方向；官網未逐項載明補助額度。"
+            },
+            {
+              "topic": "農業風險與轉型",
+              "summary": "提出農業保險與天然災害救助雙軌並行、最高補助95%；官網未細列各項適用條件。另推動農藥減半、有機耕作與在地品牌。"
+            },
+            {
+              "topic": "都市綠化",
+              "summary": "提出300座微型森林，設置綠政小組、訂定綠化規範，並推動森林認同卡。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mayor-hsinchu-city",
+      "name": "高虹安",
+      "role": "新竹市長",
+      "records": [
+        {
+          "id": "mayor-hsinchu-city-2026-10-04-2-news",
+          "title": "新竹好學2.0",
+          "announcedOn": "2026-10-04",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "高虹安成立教育後援會 喊4年投入6百億教育預算、推K-12科技雙語學校",
+            "url": "https://money.udn.com/money/story/7307/9794153",
+            "publishedOn": "2026-10-04"
+          },
+          "proposals": [
+            {
+              "topic": "教育預算與科技學校",
+              "summary": "提出未來4年投入600億元教育預算，推動K-12科技雙語學校，串聯幼兒園至高中數位教育。"
+            },
+            {
+              "topic": "智慧學習",
+              "summary": "逐步推動一人一機，從國小導入AI適性學習、國中引進VR及AR、高中推沉浸式學習，並推動半導體科普與無人機課程。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-陳盡川-澎湖縣",
+      "name": "陳盡川",
+      "role": "澎湖縣長",
+      "records": [
+        {
+          "id": "cand-陳盡川-澎湖縣-2026-01-04-2-news",
+          "title": "海洋、土地、道路與觀光願景",
+          "announcedOn": "2026-01-03",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "海洋、土地、道路與觀光願景",
+            "url": "https://penghudaily.blogspot.com/2026/01/blog-post_476.html",
+            "publishedOn": "2026-01-04"
+          },
+          "proposals": [
+            {
+              "topic": "生態與產業",
+              "summary": "推動海洋及漁業資源復育、土地與農業活化、田園綠美化及銀合歡資源利用，結合地方產業與海洋運動發展四季觀光。"
+            },
+            {
+              "topic": "道路與共同治理",
+              "summary": "全面檢視縣道及產業道路品質；提出邀集各界成立治縣委員會，並將縣長薪資與津貼捐作運作基金。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mayor-nantou",
+      "name": "許淑華",
+      "role": "南投縣長",
+      "records": [
+        {
+          "id": "mayor-nantou-2026-09-13-1-news",
+          "title": "支持水里建設與地方協作",
+          "announcedOn": "2026-09-13",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "許淑華鄉鎮聯合競總成立第一站近千人相挺 藍軍拚「13+1」全壘打 - 墨新聞 MORE News",
+            "url": "https://more-news.tw/718870/",
+            "publishedOn": "2026-09-13"
+          },
+          "proposals": [
+            {
+              "topic": "地方建設支持",
+              "summary": "在聯合競總成立時承諾協助水里重大建設經費，支持鄉長候選人詹淵州提出的站前分駐所活化與道路拓寬計畫。這是縣府協力承諾，非縣長獨立提出的全縣方案。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-洪和成-金門縣",
+      "name": "洪和成",
+      "role": "金門縣長",
+      "records": [
+        {
+          "id": "cand-洪和成-金門縣-2026-08-31-1-news",
+          "title": "民生課題與傾聽回應機制",
+          "announcedOn": "2026-08-31",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "洪和成登記選金門縣長搶頭香 「傾聽金門、做該做的事」為核心主張 - 政治 - 自由時報電子報",
+            "url": "https://news.ltn.com.tw/news/politics/breakingnews/5558278",
+            "publishedOn": "2026-08-31"
+          },
+          "proposals": [
+            {
+              "topic": "民生與治理",
+              "summary": "以青年就業、交通運能、重症醫療及財源過度依賴金酒為施政關切，提出建立民眾個案與公共議題的傾聽、回應及解決機制；報導未提供四項課題的細部方案。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "蕭文乾",
+      "slug": "cand-蕭文乾-臺北市",
+      "role": "臺北市長",
+      "records": [
+        {
+          "id": "cand-蕭文乾-臺北市-direct-78c360581f",
+          "title": "參選貼文：推廣SoR英語教育",
+          "announcedOn": "2026-08-31",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "蕭文乾｜參選貼文：推廣SoR英語教育",
+            "url": "https://www.facebook.com/wen.hsiao.100/posts/pfbid06hn5E4QbA4hpqGRMsujNNhdTGJ8vZUHbuHfH2hR2BeyY6sry5UNbN9maDkYTzKHNl",
+            "publishedOn": "2026-08-31"
+          },
+          "proposals": [
+            {
+              "topic": "英語教育倡議",
+              "summary": "在宣布參選臺北市長的貼文中，將推廣SoR（閱讀科學）作為參選訴求，希望降低小學生英語學習的焦慮與挫折、增加自信。貼文未提出市級課程、人力、預算或實施期程。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-黃宏成台灣阿成世界偉人財神總統-嘉義市",
+      "name": "黃宏成台灣阿成世界偉人財神總統",
+      "role": "嘉義市長",
+      "records": [
+        {
+          "id": "cand-黃宏成台灣阿成世界偉人財神總統-嘉義市-verified-bfdec7b37e",
+          "title": "中評社：黃宏成名字15字 搶頭香登記選嘉義市長",
+          "announcedOn": "2026-08-31",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "news",
+            "title": "中評社：黃宏成名字15字 搶頭香登記選嘉義市長",
+            "url": "https://www.crntt.tw/doc/docDetailCreate.jsp?coluid=92&docid=160262585&kindid=0",
+            "publishedOn": "2026-08-31"
+          },
+          "proposals": [
+            {
+              "topic": "長者健保",
+              "summary": "提出65歲以上長者免費健保；報導未詳列設籍、所得或其他適用條件。"
+            },
+            {
+              "topic": "運動與健康",
+              "summary": "提出健身房運動免費，報導未說明適用場館、對象與經費安排。"
+            },
+            {
+              "topic": "行人環境",
+              "summary": "提出將嘉義市打造為「行人天堂」的方向；報導未載具體工程或實施期程。"
+            },
+            {
+              "topic": "薪資與補助款捐贈",
+              "summary": "承諾當選後薪資僅保留當時最低工資2萬9,500元，其餘及選舉補助款全數捐出，並規劃請翁壽良醫師協助款項運用；此為個人捐贈承諾。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-王肇民-高雄市",
+      "name": "王肇民",
+      "role": "高雄市長",
+      "records": [
+        {
+          "id": "cand-王肇民-高雄市-verified-9b50157f34",
+          "title": "王肇民選戰主打：高雄從治水城市走向活水城市",
+          "announcedOn": "2026-08-22",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "王肇民選戰主打：高雄從治水城市走向活水城市",
+            "url": "https://www.facebook.com/photo/?fbid=122267279924255835&set=a.122113748072255835",
+            "publishedOn": "2026-08-24"
+          },
+          "proposals": [
+            {
+              "topic": "排水設施盤點",
+              "summary": "全面普查雨水下水道、側溝、滯洪池、抽水站、河川與易淹水點，建立GIS水情地圖，登錄設施位置、尺寸坡度、集水區、歷史淹水及即時水位雨量。"
+            },
+            {
+              "topic": "分階段治水",
+              "summary": "先找出瓶頸、低窪及易淹區並完善基本排水與抽排能力，再優化分流、沉砂、滯蓄與河川整治，最後導入透水鋪面、綠地、雨水花園及雨水回收。"
+            },
+            {
+              "topic": "水資源分級利用",
+              "summary": "依用途區分飲用水、生活淨水、再生水及原水雨水，讓再生水用於工業、沖洗、消防與冷卻，雨水等用於農用、灌溉及綠地澆灌。"
+            }
+          ]
+        },
+        {
+          "id": "cand-王肇民-高雄市-verified-a0fa5a27d6",
+          "title": "王肇民選戰主打：推行管線總登記",
+          "announcedOn": "2026-08-21",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "王肇民選戰主打：推行管線總登記",
+            "url": "https://www.facebook.com/photo/?fbid=122267144126255835&set=a.122113748072255835",
+            "publishedOn": "2026-08-23"
+          },
+          "proposals": [
+            {
+              "topic": "管線登記與施工追蹤",
+              "summary": "將電力、電信、自來水、瓦斯、石化及其他高風險管線納管，採先申請、核准、施工、量測、驗收、登錄及長期列管流程，建立每管一證、一線一碼的追蹤制度。"
+            },
+            {
+              "topic": "地下管線數位平台",
+              "summary": "建立3D地下管線資料與AI數位平台，整合位置深度、施工前衝突檢測、危險等級、維修紀錄及異常預警；推進電線電纜地下化。"
+            },
+            {
+              "topic": "共同管溝管理",
+              "summary": "道路新建、拓寬及重大維修時同步設置公共預埋管道，供管線業者申請使用；禁止任意占用路邊水溝及暗管空間，對違者要求限期改善、拆除或依法處理。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-陳宏毅-宜蘭縣",
+      "name": "陳宏毅",
+      "role": "宜蘭縣長",
+      "records": [
+        {
+          "id": "cand-陳宏毅-宜蘭縣-verified-8ecb992993",
+          "title": "陳宏毅：交通生活網，內湖與南港直達構想",
+          "announcedOn": "2026-10-13",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "陳宏毅：交通生活網，內湖與南港直達構想",
+            "url": "https://www.threads.com/@yilan.chenhungyi.2026/post/Debys3-GCsW",
+            "publishedOn": "2026-10-13"
+          },
+          "proposals": [
+            {
+              "topic": "國道客運路線評估",
+              "summary": "在保留圓山既有路線下，評估從內湖石潭公園分別開往宜蘭、羅東的直達客運，保留南港轉運站與南港展覽館停靠，銜接高鐵、臺鐵與捷運；本人明示路線、站點、行車時間及營運條件仍須評估。"
+            }
+          ]
+        },
+        {
+          "id": "cand-陳宏毅-宜蘭縣-verified-d055fbdef3",
+          "title": "陳宏毅：高齡友善生活環境",
+          "announcedOn": "2026-10-11",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "陳宏毅：高齡友善生活環境",
+            "url": "https://www.threads.com/@yilan.chenhungyi.2026/post/DeVvM8DmAg4",
+            "publishedOn": "2026-10-11"
+          },
+          "proposals": [
+            {
+              "topic": "樂齡空間",
+              "summary": "將步道規劃與休憩空間改善列為未來縣政方向，讓長者安心出門、自在生活；貼文未載據點、預算與期程。"
+            }
+          ]
+        },
+        {
+          "id": "cand-陳宏毅-宜蘭縣-verified-9bb8dc55fd",
+          "title": "陳宏毅：農業精緻品牌與從產地到餐桌",
+          "announcedOn": "2026-10-10",
+          "reviewedOn": "2026-10-16",
+          "source": {
+            "type": "campaign",
+            "title": "陳宏毅：農業精緻品牌與從產地到餐桌",
+            "url": "https://www.threads.com/@yilan.chenhungyi.2026/post/DeTN1v2GCxc",
+            "publishedOn": "2026-10-10"
+          },
+          "proposals": [
+            {
+              "topic": "農業品牌與觀光",
+              "summary": "提出宜蘭農業朝精緻品牌發展，串聯種植、生產、料理及餐飲體驗，希望拓展市場、增加遊客停留與再訪；貼文未載補助額度或執行期程。"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

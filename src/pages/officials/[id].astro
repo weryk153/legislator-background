@@ -5,6 +5,10 @@ import Base from "../../layouts/Base.astro";
 import TitleCard from "../../components/TitleCard.astro";
 import SectionHead from "../../components/SectionHead.astro";
 import Sources from "../../components/Sources.astro";
+import CandidateChannels from "../../components/CandidateChannels.astro";
+import { loadCandidateChannels } from "../../lib/candidateChannels";
+import CandidatePolicies from "../../components/CandidatePolicies.astro";
+import { loadCandidatePolicies, loadPolicyReviews } from "../../lib/candidatePolicies";
 import { loadOfficials } from "../../lib/data";
 import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL, OFFICE_LABEL } from "../../lib/graph";
 import { loadGraph } from "../../lib/loadGraph";
@@ -21,14 +25,17 @@ import { squashWidth } from "../../lib/squash";
 
 export async function getStaticPaths() {
   const officials = await loadOfficials();
+  const policies = loadCandidatePolicies(officials);
+  const policyReviews = loadPolicyReviews(policies);
+  const channels = loadCandidateChannels();
   const graph = loadGraph();
   return officials.map((o) => ({
     params: { id: o.slug },
-    props: { official: o, ego: egoSubgraph(graph, `official:${o.id}`, 2) },
+    props: { official: o, ego: egoSubgraph(graph, `official:${o.id}`, 2), policies: policies.get(o.slug), policyReview: policyReviews.get(o.slug), channels: channels.get(o.slug) },
   }));
 }
 
-const { official: o, ego } = Astro.props;
+const { official: o, ego, policies, policyReview, channels } = Astro.props;
 // 本人的直接人物關係（取與本人相連的邊，找出對方節點），以文字清單呈現。
 // 經歷依性質分組。分類是字面判斷（見 src/lib/careerCategory.ts），四類以外一律落在
 // 「其他」——每一筆都仍然顯示，分組只是讓「公職以外的社會團體職務」看得出來。
@@ -93,7 +100,7 @@ const roleText = isCandidate ? (candidacy ? `2026 ${candidacy.role}參選人` : 
 const title = officialPageTitle(o);
 // 2026 候選人：描述開頭先講參選職位（搜尋「某某市長候選人」時摘要第一句就對得上），再接原本描述。
 const candidacyDesc = candidacy ? `2026 ${candidacy.role}候選人。` : "";
-const desc = `${candidacyDesc}${o.name}（${o.party}・${roleText}）的經歷、財產申報、政治獻金與相關爭議報導整理，每筆皆附公開資料出處。`;
+const desc = `${candidacyDesc}${o.name}（${o.party}・${roleText}）的${policies ? "公開政見、" : ""}經歷、財產申報、政治獻金與相關爭議報導整理，每筆皆附公開資料出處。`;
 // 參選標記連到該縣市的 2026 選舉頁；對照表查無縣市時只顯示文字。
 const candidacyHref = candidacy?.countyKey ? countyPagePath(candidacy.countyKey) : null;
 const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
@@ -103,6 +110,7 @@ const photoUrl = o.photoUrl && Astro.site ? new URL(o.photoUrl, Astro.site).href
 const photoCredit = candidatePhotoCredits().get(o.slug);
 const emblem = partyEmblem(o.party);
 const sections = [
+  ...(candidacy ? [{ id: "policies", label: "2026 政見" }] : []),
   { id: "careers", label: "經歷" },
   { id: "judgments", label: "司法判決" },
   { id: "reports", label: "相關爭議報導" },
@@ -110,11 +118,15 @@ const sections = [
   { id: "donations", label: "政治獻金" },
   ...(relations.length ? [{ id: "relations", label: "人物關係" }] : []),
 ];
-// 所有檔案頁共用同一份資料快照，以其匯出日作為頁面的 dateModified（與 sitemap lastmod 同源）。
+// 以人物快照匯出日為基準；獨立收錄的政見較新時，使用其核對日。
 let dataDate: string | undefined;
 try {
   dataDate = JSON.parse(readFileSync(join(process.cwd(), "src", "data", "meta.json"), "utf8")).generatedAt;
 } catch { /* meta.json optional */ }
+for (const record of policies?.records ?? []) {
+  if (!dataDate || record.reviewedOn > dataDate.slice(0, 10)) dataDate = record.reviewedOn;
+}
+if (policyReview && (!dataDate || policyReview.reviewedOn > dataDate.slice(0, 10))) dataDate = policyReview.reviewedOn;
 const jsonLd = [
   {
     "@context": "https://schema.org",
@@ -180,6 +192,7 @@ const jsonLd = [
         : <span class="pill candidacy">{candidacy.label}</span>)}
     </div>
     {o.bio && <p class="lede">{o.bio}</p>}
+    {channels && <CandidateChannels channels={channels} />}
     {o.departedReason && (
       <p class="departed-note">
         本人已非現任：{o.departedReason}。以下為其任內（第{o.term}屆當選時）之公開資料。
@@ -196,6 +209,8 @@ const jsonLd = [
     <p class="nav-note">各筆資料皆附公開出處<br />請點選連結核對原文</p>
   </nav>
   <div class="profile-content">
+  {candidacy && <CandidatePolicies policies={policies} review={policyReview} />}
+
   <section class="sec" id="careers">
     <SectionHead text="經歷" />
     {o.careers.length === 0 && <p class="dim none">尚無資料</p>}
