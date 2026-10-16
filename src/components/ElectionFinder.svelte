@@ -1,9 +1,11 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import FirstRunBadge from './FirstRunBadge.svelte';
   import { fetchElectionJson } from '../lib/fetchElectionJson';
   import { COUNTY_KEYS } from '../lib/countyKeys';
   import { filterElectionCandidates, groupElectionCandidates, visibleElectionGroups, type ElectionCandidate, type ElectionFinderData } from '../lib/electionFinder';
   import { partyEmblem } from '../lib/partyEmblems';
+  import { readFinderLocation, finderLocationHref } from '../lib/electionFinderLocation';
   let { countyCounts, dataUrl }: { countyCounts: Record<string, { chief: number; council: number }>; dataUrl: string } = $props();
   let candidates = $state<ElectionCandidate[]>([]);
   let areas = $state<ElectionFinderData['areas']>({});
@@ -26,6 +28,7 @@
   let districtKey = $state('');
   let query = $state('');
   let limit = $state(24);
+  let locationReady = $state(false);
   const active = $derived(!!county || !!office || !!query.trim());
   const districtOptions = $derived(county ? groupElectionCandidates(filterElectionCandidates(candidates, { county, office, query: '' })) : []);
   const results = $derived(filterElectionCandidates(candidates, { county, office, query, districtKey }));
@@ -34,13 +37,25 @@
   const shownCount = $derived(visibleGroups.reduce((count, group) => count + group.candidates.length, 0));
   const selectedCounty = $derived(COUNTY_KEYS.find(c => c.code === county));
   $effect(() => { if (active) void ensureData(); });
-  $effect(() => { county; office; query; districtKey; limit = 24; });
-  function reset() { county = ''; office = ''; districtKey = ''; query = ''; }
+  onMount(() => {
+    const saved = readFinderLocation(new URL(window.location.href));
+    county = saved.county; office = saved.office; districtKey = saved.districtKey;
+    query = saved.query; limit = saved.limit; locationReady = true;
+  });
+  $effect(() => {
+    if (loaded && districtKey && !districtOptions.some(group => group.key === districtKey)) districtKey = '';
+  });
+  $effect(() => {
+    if (!locationReady) return;
+    const href = finderLocationHref(new URL(window.location.href), { county, office, districtKey, query, limit });
+    window.history.replaceState(window.history.state, '', href);
+  });
+  function reset() { county = ''; office = ''; districtKey = ''; query = ''; limit = 24; }
 </script>
 
 <section class="finder" aria-labelledby="finder-title">
   <div class="finder-head"><h2 id="finder-title">找候選人</h2><p>選擇縣市，或直接輸入姓名</p></div>
-  <div class="controls" onfocusin={ensureData}>
+  <div class="controls" onfocusin={ensureData} oninput={() => { limit = 24; }}>
     <label>縣市<select class="form-control" bind:value={county} onchange={() => { districtKey = ''; }}><option value="">全部縣市</option>{#each COUNTY_KEYS as c}<option value={c.code}>{c.name}</option>{/each}</select></label>
     <label>選舉類別<select class="form-control" bind:value={office} onchange={() => { districtKey = ''; }}><option value="">縣市長與議員</option><option value="chief">縣市長</option><option value="council">縣市議員</option></select></label>
     <label class="district-filter">選區<select class="form-control" bind:value={districtKey} disabled={!county || !loaded}>
@@ -57,7 +72,7 @@
     <nav class="counties" aria-label="選擇縣市查看候選人">
       {#each COUNTY_KEYS as c}
         {@const counts = countyCounts[c.code]}
-        <button type="button" onclick={() => { county = c.code; districtKey = ''; }}><strong>{c.name}</strong><span>首長 {counts?.chief ?? 0}・議員 {counts?.council ?? 0}</span><span class="arrow" aria-hidden="true">↗</span></button>
+        <button type="button" onclick={() => { county = c.code; districtKey = ''; limit = 24; }}><strong>{c.name}</strong><span>首長 {counts?.chief ?? 0}・議員 {counts?.council ?? 0}</span><span class="arrow" aria-hidden="true">↗</span></button>
       {/each}
     </nav>
   {:else if failed}
@@ -89,10 +104,10 @@
             <ul class="results">
               {#each group.candidates as c}
                 {@const emblem = partyEmblem(c.party)}
-                <li>
+                <li class:has-profile={!!c.slug}>
                   <h4>{#if c.number !== null}<small>{c.number} 號</small>{/if}{#if c.slug}<a href={`/officials/${c.slug}/`}>{c.name}</a>{:else}{c.name}{/if}<FirstRunBadge evidence={c.firstRun} name={c.name} /></h4>
                   <p class="party">{#if emblem}<img src={emblem} alt="" width="18" height="18" loading="lazy" />{/if}<span>{c.party}</span></p>
-                  <p class="profile-status">{#if c.slug}<a href={`/officials/${c.slug}/`} aria-label={`查看${c.name}的個人檔案`}>個人檔案 <span aria-hidden="true">↗</span></a>{:else}<span>尚未收錄個人檔案</span>{/if}</p>
+                  {#if !c.slug}<p class="profile-status">尚未收錄個人檔案</p>{/if}
                 </li>
               {/each}
             </ul>
@@ -104,7 +119,7 @@
       <div class="empty"><p>沒有符合條件的候選人，試試其他姓名或放寬縣市、選舉類別。</p><button type="button" onclick={reset}>清除查詢條件</button></div>
     {/if}
   {/if}
-  <p class="scope">依縣市、選舉類別與選區分組，組內保留名冊順序。「首次參選」僅標示有公開來源確認者，可點標記查看；未標示不代表曾參選。名單階段與製表日期見頁首；有個人檔案者可點姓名查看背景。</p>
+  <p class="scope">依縣市、選舉類別與選區分組，組內保留名冊順序。「首次參選」僅標示有公開來源確認者，可點標記查看；未標示不代表曾參選。名單階段與製表日期見頁首；有個人檔案者可點整張卡片查看背景。</p>
   <noscript>姓名搜尋需啟用 JavaScript，亦可使用下方完整名冊與縣市頁連結。</noscript>
 </section>
 
@@ -139,17 +154,19 @@
   .group-count { flex:none;margin:0;font-size:13px;color:var(--muted); }
   .group-count strong { color:var(--fg);font-size:18px;font-variant-numeric:tabular-nums; }
   .results { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:24px;list-style:none;padding:0;margin:0; }
-  .results li { display:flex;flex-direction:column;align-items:flex-start;padding:18px 0;min-width:0;border-bottom:1px solid var(--line); }
+  .results li { position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:flex-start;padding:18px 0;min-width:0;border-bottom:1px solid var(--line); }
+  .results li.has-profile:hover { background:var(--row-hover); }
+  .results :global(.first-run) { position:relative;z-index:2; }
   h4 { font:900 24px/1.5 var(--serif);margin:0;overflow-wrap:anywhere; }
-  h4 a { text-decoration:none; }
-  h4 a:hover { text-decoration:underline;text-underline-offset:4px; }
+  h4 a { text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px; }
+  h4 a::after { content:'';position:absolute;inset:0;z-index:1; }
+  h4 a:focus-visible { outline:none; }
+  h4 a:focus-visible::after { outline:2px solid var(--accent);outline-offset:3px; }
+  h4 a:hover { text-decoration-thickness:2px; }
   h4 small { font:500 12px var(--sans);margin-right:6px; }
-  .party { display:flex;align-items:flex-start;gap:6px;font-size:13px;line-height:1.5;margin:6px 0 12px;overflow-wrap:anywhere; }
+  .party { display:flex;align-items:flex-start;gap:6px;font-size:13px;line-height:1.5;margin:6px 0 0;overflow-wrap:anywhere; }
   .party img { object-fit:contain;flex:none;margin-top:1px; }
-  .profile-status { font-size:12px;line-height:1.5;color:var(--muted);margin:auto 0 0; }
-  .profile-status a { display:inline-flex;align-items:center;gap:8px;color:var(--fg);text-decoration:none;padding:4px 0; }
-  .profile-status > span { display:inline-block;padding:4px 0; }
-  .profile-status a:hover { text-decoration:underline;text-underline-offset:3px; }
+  .profile-status { font-size:12px;line-height:1.5;color:var(--muted);margin:12px 0 0; }
   .load-more { display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px 20px;margin:24px 0; }
   .load-more p { margin:0;color:var(--muted);font-size:13px; }
   .more { padding:12px 20px; }
@@ -160,7 +177,7 @@
   @media(max-width:900px) { .controls { grid-template-columns:1fr 1fr; }.district-filter { grid-column:1/-1; }.reset { align-self:end; }.counties { grid-template-columns:repeat(4,minmax(0,1fr)); }.results { grid-template-columns:repeat(3,minmax(0,1fr)); } }
   @media(max-width:600px) {
     .finder-head { display:block; }.finder-head p { margin-top:6px; }
-    .controls { grid-template-columns:1fr 1fr;gap:10px; }.search { grid-column:1/-1; }.reset { grid-column:1/-1;height:36px; }
+    .controls { grid-template-columns:1fr 1fr;gap:10px; }.search { grid-column:1/-1; }.reset { grid-column:1/-1;height:44px; }
     .counties { grid-template-columns:repeat(3,minmax(0,1fr)); }.counties button { padding:12px 8px; }.counties strong { font-size:18px; }.counties .arrow { display:none; }
     .result-groups { gap:28px; }.group-head { align-items:flex-start; }.group-title { align-items:flex-start;flex-direction:column;gap:8px; }h3 { font-size:20px; }
     .results { grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px; }h4 { font-size:22px; }

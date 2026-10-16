@@ -165,7 +165,13 @@ const jsonLd = [
   ogImageAlt={photoUrl ? o.name : undefined}
 >
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <a href={isCandidate ? "/elections/" : "/"} class="back">{isCandidate ? "← 返回 2026 選舉" : "← 返回總覽"}</a>
+  <a href={candidacy ? "/elections/" : "/"} class="back" data-profile-return>{candidacy ? "← 返回 2026 選舉" : "← 返回總覽"}</a>
+  <script>
+    import { profileReturn } from '../../lib/profileReturn';
+    const back = document.querySelector<HTMLAnchorElement>('[data-profile-return]');
+    const target = profileReturn(document.referrer, window.location.origin);
+    if (back && target) { back.href = target.href; back.textContent = target.label; }
+  </script>
 
   <header class:list={["head", { "long-name": squashWidth(o.name) > 9 }]}>
     <figure class="portrait">

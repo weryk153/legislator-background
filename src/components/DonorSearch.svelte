@@ -71,6 +71,7 @@
   {:else if requested && !data}<p>正在載入完整查詢資料…</p>{/if}
 </div>
 
+{#if data || (!active && mode === 'donors')}
 {#if mode === 'recipients'}
   <div class="result-head"><h2><span>受贈者排行</span></h2><p aria-live="polite">{data ? `${recipientRanking.length} 筆` : '載入中'}</p></div>
   <p class="result-note">依{sort === 'total' ? '企業受贈總額' : '捐贈企業家數'}由多到少排序，最多顯示 50 筆。同一人在不同選舉分列；金額僅包含本頁收錄的營利事業捐贈，並非含個人捐贈的專戶總收入。展開可查看捐贈企業。</p>
@@ -102,6 +103,7 @@
     <div class="donor-list">{#each donorHits as entry, index (entry.donor.uid)}<DonorCard {entry} rank={index + 1} />{/each}</div>
   {/if}
   {#if officialHits.length === 0 && donorHits.length === 0}<div class="empty"><strong>沒有符合「{q}」的資料</strong><p>請試試姓名、公司名稱的一部分或統一編號，也可以重設篩選條件。</p><button class="reset" on:click={reset}>重設條件 ↺</button></div>{/if}
+{/if}
 {/if}
 
 <style>

@@ -146,6 +146,8 @@ const mastStyle = fitStyle(SITE_NAME, 0.62, 64, 94);
         /* 窄螢幕報頭放不下日期欄；資料更新日另在頁尾顯示，讀者仍看得到資料新舊。 */
         .mast-date { display: none; }
         .nav { gap: 4px 6px; font-size: 12px; }
+        .nav a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; }
+        .toggle { width: 44px; height: 44px; }
       }
       .ic-moon { display: none; }
       :root[data-theme="dark"] .ic-sun { display: none; }

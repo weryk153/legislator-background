@@ -159,6 +159,10 @@ input.form-control::placeholder { color: var(--muted); opacity: 1; }
 }
 .control-with-icon > input.form-control { padding-left: 42px; }
 
+@media (max-width: 760px) {
+  input.form-control, select.form-control { font-size: 16px; }
+}
+
 
 /* keyboard focus — visible everywhere */
 :focus-visible {
