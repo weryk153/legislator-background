@@ -101,7 +101,7 @@
   <div class="toolbar">
     <div class="search"><label for="graph-search">從姓名查關係</label><input class="form-control" id="graph-search" type="search" placeholder="輸入姓名，查看直接相連的人物" bind:value={query} on:input={searchChanged} /></div>
     <fieldset><legend>顯示關係</legend><label><input type="checkbox" bind:checked={family} /><span class="line fam"></span>家族</label><label><input type="checkbox" bind:checked={political} /><span class="line pol"></span>政治</label></fieldset>
-    <button class="reset" on:click={reset}>重設全部 ↺</button>
+    <button class="reset" on:click={reset}>重設全部</button>
   </div>
   {#if suggestions.length}<div class="suggestions" aria-label="姓名搜尋結果">{#each suggestions as node}<button on:click={() => focusPerson(node.key)}><strong>{node.name}</strong><span>{role(node)}</span></button>{/each}</div>{/if}
   <div class="view-status"><p aria-live="polite">{#if focusKey}<strong>{byKey.get(focusKey)?.name} 的直接關係</strong><span>／</span>{/if}目前顯示 <b>{view.nodes.length}</b> 位人物・<b>{view.edges.length}</b> 條關係</p><a href="#graph-detail">查看人物與出處 ↓</a></div>
@@ -122,11 +122,11 @@
       {#if selectedNode}
         <div class="person-head">{#if selectedNode.photoUrl}<img src={selectedNode.photoUrl} alt={selectedNode.name} width="72" height="90" />{:else}<span class="no-photo" aria-hidden="true">{[...selectedNode.name][0]}</span>{/if}<div><h3>{selectedNode.name}</h3><p>{role(selectedNode)}</p></div></div>
         {#if selectedNode.photoCredit}<p class="photo-credit">照片：{#if selectedNode.photoSourceUrl}<a href={selectedNode.photoSourceUrl} target="_blank" rel="noopener">{selectedNode.photoCredit}</a>{:else}{selectedNode.photoCredit}{/if}（本站縮圖）</p>{/if}
-        <div class="person-actions"><button on:click={() => focusPerson(selectedNode!.key)}>以此人為中心</button>{#if selectedNode.slug}<a href={`/officials/${selectedNode.slug}/`}>個人檔案 ↗</a>{:else if selectedNode.wikipediaUrl}<a href={selectedNode.wikipediaUrl} target="_blank" rel="noopener">維基百科 ↗</a>{/if}</div>
+        <div class="person-actions"><button on:click={() => focusPerson(selectedNode!.key)}>以此人為中心</button>{#if selectedNode.slug}<a href={`/officials/${selectedNode.slug}/`}>個人檔案 →</a>{:else if selectedNode.wikipediaUrl}<a href={selectedNode.wikipediaUrl} target="_blank" rel="noopener">維基百科 ↗</a>{/if}</div>
         <p class="section-label">目前圖中的直接關係 <b>{relations.length}</b></p>
         <ul class="relations">{#each relations as edge}
           {@const other = byKey.get(edge.source === selectedKey ? edge.target : edge.source)!}
-          <li><span class="relation-kind">{RELATION_LABEL[edge.type]}</span><button class="person-link" on:click={() => focusPerson(other.key)}>{other.name} ↗</button>
+          <li><span class="relation-kind">{RELATION_LABEL[edge.type]}</span><button class="person-link" on:click={() => focusPerson(other.key)}>{other.name}</button>
             {#if edge.directed}<p class="direction">{byKey.get(edge.source)?.name} → {byKey.get(edge.target)?.name}</p>{/if}
             {#if edge.note}<p>{edge.note}</p>{/if}
             {#if edge.sourceUrl}<a class="source" href={edge.sourceUrl} target="_blank" rel="noopener">查看出處 ↗</a>{/if}
@@ -139,7 +139,7 @@
         {#if selectedEdge.sourceUrl}<a class="source" href={selectedEdge.sourceUrl} target="_blank" rel="noopener">查看公開資料出處 ↗</a>{/if}
       {:else}
         <p class="empty-title">從一個人，開始查閱。</p><p class="hint">搜尋姓名，或點選圖中的人物與連線，這裡會顯示關係說明及公開出處。</p>
-        <p class="section-label">從人物開始</p><div class="starters">{#each starters as { node, count }}<button on:click={() => focusPerson(node.key)}><span>{node.name}</span><small>{count} 條關係 →</small></button>{/each}</div>
+        <p class="section-label">從人物開始</p><div class="starters">{#each starters as { node, count }}<button on:click={() => focusPerson(node.key)}><span>{node.name}</span><small>{count} 條關係</small></button>{/each}</div>
         <p class="hint small">以上依收錄關係筆數排序。圖上距離與關係筆數不代表影響力或關係強弱。</p>
       {/if}
       </div>

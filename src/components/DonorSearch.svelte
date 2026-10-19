@@ -61,7 +61,7 @@
     <label>受贈者政黨<select class="form-control" aria-label="篩選政黨" bind:value={party}><option value="">全部政黨</option>{#each parties as p}<option value={p}>{p}</option>{/each}</select></label>
     <label>受贈者職務<select class="form-control" aria-label="篩選職務" bind:value={officeType}><option value="">全部職務</option><option value="legislator">立委</option><option value="councilor">議員</option><option value="mayor_magistrate">縣市長</option></select></label>
     <label>選舉範圍<select class="form-control" aria-label="篩選選舉" bind:value={election}><option value="">全部選舉</option>{#each elections as e}<option value={e}>{ELECTION_GROUP_LABEL[e] ?? e}</option>{/each}</select></label>
-    <button class="reset" on:click={reset} disabled={!active}>重設條件 ↺</button>
+    <button class="reset" on:click={reset} disabled={!active}>重設條件</button>
   </div>
   <p class="search-help" id="search-help">{q.length === 1 ? '再輸入 1 個字或數字即可搜尋。' : mode === 'recipients' ? '依企業捐贈紀錄彙總，包含未連結本站現任者資料的受贈者；政黨與職務篩選僅適用已連結者。' : '依受贈者條件篩選，企業金額與人數會一併重新計算。'}</p>
 </section>
@@ -94,7 +94,7 @@
     <div class="official-list">{#each officialHits as official (official.slug)}
       <a class="offrow" href={`/officials/${official.slug}/`}>
         <span><strong>{official.name}</strong><span class="tag">{official.party}・{officeName[official.officeType] ?? ''}・{official.district}</span></span>
-        <span class="off-amount"><span class="tag">獻金總收入</span><span class="num">NT$ {fmt(official.totalIncome)}</span></span><span class="arrow" aria-hidden="true">↗</span>
+        <span class="off-amount"><span class="tag">獻金總收入</span><span class="num">NT$ {fmt(official.totalIncome)}</span></span><span class="arrow" aria-hidden="true">→</span>
       </a>
     {/each}</div>
   {/if}
@@ -102,7 +102,7 @@
     <div class="result-head"><h2><span>營利事業</span></h2><p>{donorHits.length} 家</p></div>
     <div class="donor-list">{#each donorHits as entry, index (entry.donor.uid)}<DonorCard {entry} rank={index + 1} />{/each}</div>
   {/if}
-  {#if officialHits.length === 0 && donorHits.length === 0}<div class="empty"><strong>沒有符合「{q}」的資料</strong><p>請試試姓名、公司名稱的一部分或統一編號，也可以重設篩選條件。</p><button class="reset" on:click={reset}>重設條件 ↺</button></div>{/if}
+  {#if officialHits.length === 0 && donorHits.length === 0}<div class="empty"><strong>沒有符合「{q}」的資料</strong><p>請試試姓名、公司名稱的一部分或統一編號，也可以重設篩選條件。</p><button class="reset" on:click={reset}>重設條件</button></div>{/if}
 {/if}
 {/if}
 

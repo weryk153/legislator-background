@@ -104,7 +104,7 @@
   {#if search || region || party || officeType}
     <button class="reset" type="button" on:click={() => { search = ''; region = ''; party = ''; officeType = ''; }}>清除篩選 ×</button>
   {:else}
-    <span class="result-note">點選卡片，查看完整背景與資料出處 ↗</span>
+    <span class="result-note">點選卡片，查看完整背景與資料出處</span>
   {/if}
 </div>
 

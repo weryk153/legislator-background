@@ -69,7 +69,7 @@
       <button class="swap" type="button" onclick={swap} disabled={!from && !to} aria-label="交換兩位人物">⇄</button>
       <RelationshipPersonPicker id="connection-to" label="第二位人物" nodes={people} bind:value={to} disabled={!data} onchange={selectionChanged} />
     </div>
-    <div class="form-actions"><button class="primary" type="submit" disabled={!data || !from || !to}>查詢關係 <span aria-hidden="true">→</span></button><button class="random" type="button" onclick={randomize} disabled={!canRandomize}>換一組看看 <span aria-hidden="true">↗</span></button><span class="scope">只查詢本站已收錄、附來源的關係。</span></div>
+    <div class="form-actions"><button class="primary" type="submit" disabled={!data || !from || !to}>查詢關係</button><button class="random" type="button" onclick={randomize} disabled={!canRandomize}>換一組看看</button><span class="scope">只查詢本站已收錄、附來源的關係。</span></div>
   </form>
   {#if failed}<p class="load-error" role="alert">關係資料暫時無法載入。<button type="button" onclick={load}>重新載入</button></p>{/if}
   <noscript><p>此查詢需要 JavaScript。可前往<a href="/graph/#graph-people">圖中人物文字清單</a>瀏覽。</p></noscript>
@@ -92,7 +92,7 @@
           <li>
             <div class="route-person"><span class="node-position">{i === 0 ? '起點' : i === result.nodes.length - 1 ? '終點' : node.subtype === 'organization' ? '中間組織' : '中間人物'}</span>
               <strong>{node.name}</strong><small>{relationshipIdentity(node)}</small>
-              {#if personLink(node)}<a href={personLink(node)!} target={node.slug ? undefined : '_blank'} rel={node.slug ? undefined : 'noopener noreferrer'}>{node.slug ? '人物檔案' : '公開介紹'} ↗</a>{/if}
+              {#if personLink(node)}<a href={personLink(node)!} target={node.slug ? undefined : '_blank'} rel={node.slug ? undefined : 'noopener noreferrer'}>{node.slug ? '人物檔案' : '公開介紹'} <span aria-hidden="true">{node.slug ? '→' : '↗'}</span></a>{/if}
             </div>
             {#if i < result.edges.length}
               <a class="route-connection" href={`#connection-evidence-${i + 1}`} aria-label={`第 ${i + 1} 段：${RELATION_LABEL[result.edges[i].type]}，查看出處`}><span aria-hidden="true"></span><b>{RELATION_LABEL[result.edges[i].type]}</b><small>出處 {i + 1} ↓</small></a>
@@ -100,7 +100,7 @@
           </li>
         {/each}
       </ol>
-      <div class="share-row"><button type="button" onclick={copyLink}>複製這組連結</button><a href={shareHref}>這組查詢連結 ↗</a><span role="status">{copyMessage}</span></div>
+      <div class="share-row"><button type="button" onclick={copyLink}>複製這組連結</button><a href={shareHref}>這組查詢連結 →</a><span role="status">{copyMessage}</span></div>
     </section>
     <section class="evidence" aria-labelledby="evidence-title">
       <header><h2 id="evidence-title">每一段，都有出處。</h2><p>逐段核對原始說明；親屬、任職與政治關係可能記錄不同時期。</p></header>
@@ -134,8 +134,7 @@
   .swap { color:var(--muted);background:var(--surface); border:1px solid var(--control-border); margin-top:28px;font-size:24px; }
   .swap:not(:disabled):hover { color:var(--accent); }
   .form-actions { display:flex;align-items:center;flex-wrap:wrap;gap:12px 24px;margin-top:20px; }
-  .primary { padding:0 20px;display:flex;align-items:center;gap:44px;background:var(--block-bg);color:var(--block-fg);border-color:var(--block-bg); }
-  .primary span { color:var(--block-accent);font-size:20px; }
+  .primary { padding:0 20px;display:flex;align-items:center;justify-content:center;background:var(--block-bg);color:var(--block-fg);border-color:var(--block-bg); }
   .random { border:1px solid var(--control-border); padding:8px 12px;background:var(--surface);color:var(--muted);font-weight:400; }
   .random:hover { color:var(--fg);background:var(--row-hover); }
   .scope { font-size:11px;color:var(--muted);margin-left:auto; }

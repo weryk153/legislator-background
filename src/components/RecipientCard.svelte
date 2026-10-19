@@ -16,7 +16,7 @@
     <span class="expand" aria-hidden="true"></span>
   </summary>
   <div class="details-body">
-    <div class="detail-head"><p>捐贈企業依金額排序，同統編合併計算。</p>{#if entry.slug}<a href={`/officials/${entry.slug}/`}>查看 {entry.name} 個人資料 ↗</a>{/if}</div>
+    <div class="detail-head"><p>捐贈企業依金額排序，同統編合併計算。</p>{#if entry.slug}<a href={`/officials/${entry.slug}/`}>查看 {entry.name} 個人資料 →</a>{/if}</div>
     <ul>{#each entry.donors as donor}
       <li><span><strong>{donor.name}</strong><span class="uid">{donor.uid.startsWith('name:') ? '統一編號未收錄' : `統編 ${donor.uid}`}</span></span><span class="donation num">NT$ {fmt(donor.amount)}</span></li>
     {/each}</ul>

@@ -39,7 +39,7 @@ const peopleList = [...graph.nodes]
     <div class="hero-copy"><p class="eyebrow">人物・關係・出處</p><p class="lede">循著一條關係，<br />查閱人物之間的公開紀錄。</p><p class="intro">搜尋姓名可聚焦直接關係；點選人物或連線，即可查看說明與出處。</p><a href="#graph-people">圖中人物文字清單 ↓</a></div>
   </header>
   <div class="graph-stats" aria-label="收錄關係摘要"><div><span>收錄人物</span><strong class="num">{graph.nodes.length}</strong><small>位</small></div><div><span>家族關係</span><strong class="num">{familyCount}</strong><small>條</small></div><div><span>政治關係</span><strong class="num">{graph.edges.length - familyCount}</strong><small>條</small></div></div>
-  <a class="connection-entry" href="/graph/connect/"><span><strong>這兩個人，有什麼關係？</strong><small>選兩位人物，查看最短路徑與逐段出處。</small></span><b aria-hidden="true">↗</b></a>
+  <a class="connection-entry" href="/graph/connect/"><span><strong>這兩個人，有什麼關係？</strong><small>選兩位人物，查看最短路徑與逐段出處。</small></span><b aria-hidden="true">→</b></a>
   <GraphExplorer client:load data={graph} {positions} />
   <p class="data-note">關係資料整理自司法判決、媒體報導與公開資料，僅呈現已查證者，每條皆附出處。圖上位置僅供閱讀，不代表親疏或影響力；收錄關係不代表對當事人的評價。</p>
 
@@ -49,7 +49,7 @@ const peopleList = [...graph.nodes]
     <details class="people-directory"><summary><strong>展開全部人物</strong><span>{peopleList.length} 位・依姓名排序</span></summary>
     <ul class="people-list">
       {peopleList.map((p) => (
-        <li>{p.slug ? <a class="rel-name" href={`/officials/${p.slug}/`}>{p.name} ↗</a> : <span class="rel-name plain">{p.name}</span>}<span class="rel-ext">{p.role}</span></li>
+        <li>{p.slug ? <a class="rel-name" href={`/officials/${p.slug}/`}>{p.name} →</a> : <span class="rel-name plain">{p.name}</span>}<span class="rel-ext">{p.role}</span></li>
       ))}
     </ul>
     </details>

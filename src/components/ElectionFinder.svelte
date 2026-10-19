@@ -74,7 +74,7 @@
     <nav class="counties" aria-label="選擇縣市查看候選人">
       {#each COUNTY_KEYS as c}
         {@const counts = countyCounts[c.code]}
-        <button type="button" onclick={() => { county = c.code; districtKey = ''; limit = 24; }}><strong>{c.name}</strong><span>首長 {counts?.chief ?? 0}・議員 {counts?.council ?? 0}</span><span class="arrow" aria-hidden="true">↗</span></button>
+        <button type="button" onclick={() => { county = c.code; districtKey = ''; limit = 24; }}><strong>{c.name}</strong><span>首長 {counts?.chief ?? 0}・議員 {counts?.council ?? 0}</span></button>
       {/each}
     </nav>
   {:else if failed}
@@ -116,7 +116,7 @@
           </section>
         {/each}
       </div>
-      {#if results.length > shownCount}<div class="load-more"><p>已顯示 {shownCount}／{results.length} 人，每次顯示完整分組。</p><button class="more" type="button" onclick={() => { limit = shownCount + 24; }}>載入更多分組 <span aria-hidden="true">↓</span></button></div>{/if}
+      {#if results.length > shownCount}<div class="load-more"><p>已顯示 {shownCount}／{results.length} 人，每次顯示完整分組。</p><button class="more" type="button" onclick={() => { limit = shownCount + 24; }}>載入更多分組</button></div>{/if}
     {:else}
       <div class="empty"><p>沒有符合條件的候選人，試試其他姓名或放寬縣市、選舉類別。</p><button type="button" onclick={reset}>清除查詢條件</button></div>
     {/if}
@@ -144,7 +144,6 @@
   .counties button { position:relative;text-align:left;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 12px;display:grid;gap:5px; }
   .counties strong { font:900 20px var(--serif); }
   .counties span { color:var(--muted);font-size:11px; }
-  .counties .arrow { position:absolute;right:12px;top:15px;color:var(--accent);font-size:16px; }
   .counties button:hover,.counties button:focus-visible { background:var(--row-hover); }
   .result-head { display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:18px 0;font-size:14px; }
   .result-head p { margin:0; }
@@ -184,7 +183,7 @@
   @media(max-width:600px) {
     .finder-head { display:block; }.finder-head p { margin-top:6px; }
     .controls { grid-template-columns:1fr 1fr;gap:10px; }
-    .counties { grid-template-columns:repeat(3,minmax(0,1fr)); }.counties button { padding:12px 8px; }.counties strong { font-size:18px; }.counties .arrow { display:none; }
+    .counties { grid-template-columns:repeat(3,minmax(0,1fr)); }.counties button { padding:12px 8px; }.counties strong { font-size:18px; }
     .result-groups { gap:28px; }.group-head { align-items:flex-start; }.group-title { align-items:flex-start;flex-direction:column;gap:8px; }h3 { font-size:20px; }
     .results { grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px; }h4 { font-size:22px; }
   }

@@ -72,8 +72,8 @@
         </label>
       </div>
       <div class="actions">
-        <button class="reveal" type="submit" disabled={!county}>揭曉票差 <span aria-hidden="true">→</span></button>
-        <button class="random" type="button" disabled={!data} onclick={surprise}>隨機看一區 <span aria-hidden="true">↗</span></button>
+        <button class="reveal" type="submit" disabled={!county}>揭曉票差</button>
+        <button class="random" type="button" disabled={!data} onclick={surprise}>隨機看一區</button>
       </div>
     </form>
     {#if failed}
@@ -148,9 +148,8 @@
   .actions { display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-top:14px; }
   button { min-height:44px;cursor:pointer;border-radius:0;font-size:13px;font-weight:700; }
   button:disabled,select:disabled { opacity:.5;cursor:not-allowed; }
-  .reveal { display:inline-flex;align-items:center;justify-content:space-between;gap:28px;padding:0 18px;border:1px solid var(--block-bg);background:var(--block-bg);color:var(--block-fg); }
+  .reveal { display:inline-flex;align-items:center;justify-content:center;padding:0 18px;border:1px solid var(--block-bg);background:var(--block-bg);color:var(--block-fg); }
   .reveal:not(:disabled):hover { border-color:var(--accent); }
-  .reveal span { color:var(--block-accent);font-size:20px; }
   .random { padding:0;background:transparent;color:var(--fg);border:0;text-decoration:underline;text-underline-offset:4px; }
   .random:hover,.map-link:hover { color:var(--accent); }
   .scope,.method,.data-note { color:var(--muted);font-size:11px;line-height:1.7; }
