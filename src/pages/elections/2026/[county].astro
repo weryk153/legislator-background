@@ -3,12 +3,18 @@
 //
 // /elections 的側欄是 client-side 元件，搜尋引擎讀不到；那頁的伺服器端表格又把 22 縣市
 // 擠在同一頁。搜尋「新北市議員候選人」「臺東縣長候選人」的人需要一個以縣市為單位、
-// 全部伺服器端渲染的落地頁——本頁就是。內容全部建置期產出，不靠 client JS。
+// 全部伺服器端渲染的落地頁——本頁就是。名冊在建置期產出，政見比較使用 client JS。
 //
 // 中立原則同 /elections：候選人同版型、依名冊順序，筆數只列數字，內容請見個人頁。
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import FirstRunBadge from '../../../components/FirstRunBadge.svelte';
+import ShareActions from '../../../components/ShareActions.svelte';
+import ChiefPolicyComparison from '../../../components/ChiefPolicyComparison.svelte';
+import { buildChiefPolicyCounties } from '../../../lib/chiefPolicyComparisonData';
+import { loadCandidatePolicies } from '../../../lib/candidatePolicies';
+import type { ChiefPolicyCounty } from '../../../lib/chiefPolicyComparison';
+import { districtPagePath } from '../../../lib/districtPage';
 import Base from "../../../layouts/Base.astro";
 import ChiefRaceCard from "../../../components/ChiefRaceCard.astro";
 import TitleCard from "../../../components/TitleCard.astro";
@@ -31,6 +37,7 @@ interface Props {
   elected2022: MapCandidate | null;
   townNames: Map<string, string>;
   officialsBySlug: Map<string, Official>;
+  policyCounty: ChiefPolicyCounty;
 }
 
 export async function getStaticPaths() {
@@ -43,6 +50,7 @@ export async function getStaticPaths() {
   // 2022 當選對照：地圖檔各縣市的 race.candidates 中 elected 者（得票數、得票率）。
   const mapAreas = readJson<{ areas: MapArea[] }>("map", "national.json")?.areas ?? [];
   const officialsBySlug = new Map((await loadOfficials()).map((o) => [o.slug, o]));
+  const policyCounties = buildChiefPolicyCounties(national, loadCandidatePolicies([...officialsBySlug.values()]));
   return national.races.flatMap((race) => {
     const county = countyByCode(race.countyCode);
     if (!county) {
@@ -55,6 +63,7 @@ export async function getStaticPaths() {
       params: { county: county.key },
       props: {
         county, race, source: national.source, officialsBySlug,
+        policyCounty: policyCounties.find(c => c.key === county.key)!,
         council: readJson<CountyCandidates>("candidates", "2026", "county", `${race.countyCode}.json`),
         elected2022: mapAreas.find((a) => a.code === race.countyCode)?.race?.candidates.find((c) => c.elected) ?? null,
         townNames: new Map(townAreas.map((a) => [a.code, a.name])),
@@ -63,7 +72,7 @@ export async function getStaticPaths() {
   });
 }
 
-const { county, race, council, source, elected2022, townNames, officialsBySlug } = Astro.props;
+const { county, race, council, source, elected2022, townNames, officialsBySlug, policyCounty } = Astro.props;
 const name = county.name;
 const chief = chiefTitle(name);
 const chiefCands = orderCandidates(race.candidates);
@@ -152,6 +161,8 @@ const jsonLd = [
     </p>
   </header>
 
+  <ShareActions client:load title={countyPageHeading(name)} url={pageUrl ?? Astro.url.href} imageUrl={`/og/elections-2026-${county.key}.png`} imageName={`2026-${name}-候選人.png`} currentState />
+
   <section class="sec" aria-labelledby="chief-title">
     <SectionHead id="chief-title" text={`${chief}候選人`} />
     {elected2022 && (
@@ -159,10 +170,12 @@ const jsonLd = [
         2022 當選：{elected2022.name}（{elected2022.partyName}），{fmtInt(elected2022.votes)} 票（{elected2022.share}%）{termText && `・${termText}`}
       </p>
     )}
-    <ChiefRaceCard race={race} officialsBySlug={officialsBySlug} showHead={false} />
+    <ChiefRaceCard race={race} officialsBySlug={officialsBySlug} showHead={false} compareCounty={county.key} />
     <p class="note">
       共 {chiefCands.length} 人，依{chiefCands.every((c) => c.number !== null) ? "號次" : "中選會名冊順序"}排列。筆數為本站收錄之公開紀錄，非完整紀錄；內容與出處請見個人頁。
     </p>
+    <ChiefPolicyComparison client:load county={policyCounty} canonical={pageUrl ?? Astro.url.href} />
+    <p class="note">比較保留已收錄政見的摘要與來源，未收錄不代表尚未發表；主張不等於已實施，收錄篇數不代表政策完整度或優劣。</p>
   </section>
 
   {council && (
@@ -188,7 +201,7 @@ const jsonLd = [
             return (
               <section class="district" aria-labelledby={`d-${d.no}`}>
                 <DistrictHeading class="d-head" id={`d-${d.no}`}>
-                  <span class="d-label">{d.label}</span>
+                  <a class="d-label" href={districtPagePath(county.key, d.no)}>{d.label} →</a>
                   {t && t.length > 0 && <span class="d-towns">{t.join("、")}</span>}
                   <span class="d-count">{d.candidates.length} 人</span>
                 </DistrictHeading>
@@ -248,7 +261,7 @@ const jsonLd = [
     display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px;
     margin: 0 0 8px; font-size: 1rem; line-height: 1.5;
   }
-  .d-label { font-family: var(--serif); font-weight: 900; }
+  .d-label { font-family: var(--serif); font-weight: 900; text-decoration:underline;text-underline-offset:3px; }
   .d-towns { font-family: var(--sans); font-weight: 400; font-size: 0.875rem; color: var(--muted); }
   .d-count { font-family: var(--sans); font-weight: 400; font-size: var(--t-sm); color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
   .clist {

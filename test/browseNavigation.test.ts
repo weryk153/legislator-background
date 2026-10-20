@@ -48,4 +48,14 @@ describe('個人頁返回路徑', () => {
       expect(profileReturn(referrer, origin)).toBeNull();
     }
   });
+  it('閱讀個人資料後返回原政見比較，保留兩人、關鍵字並定位結果', () => {
+    for (const path of ['/elections/2026/new-taipei/', '/elections/2026/policies/']) {
+      expect(profileReturn(`${origin}${path}?county=new-taipei&left=person-a&right=person-b&q=教育`, origin)).toEqual({
+        href: `${path}?county=new-taipei&left=person-a&right=person-b&q=%E6%95%99%E8%82%B2#policy-comparison`,
+        label: '← 返回政見比較',
+      });
+    }
+    expect(profileReturn(`${origin}/elections/2026/policies/`, origin)?.label).toBe('← 返回政見比較');
+    expect(profileReturn(`${origin}/elections/2026/unknown/`, origin)).toBeNull();
+  });
 });

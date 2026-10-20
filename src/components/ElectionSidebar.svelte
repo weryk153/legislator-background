@@ -9,6 +9,7 @@
 
   import { STAGE_LABEL, chiefTitle, type CandidateEntry, type CandidateSource, type ChiefRace } from '../lib/candidateTypes';
   import { groupDistricts, type SidebarCandidates } from '../lib/candidateView';
+  import { countyByCode, countyPagePath } from '../lib/countyKeys';
 
   /** 政黨色，與地圖共用 mapTypes.ts 的同一份對照，不在此另立一套。 */
   const partyColor = (code: string) => `var(${PARTY_VAR[code] ?? '--party-other'})`;
@@ -142,6 +143,11 @@
   {/if}
 {/snippet}
 
+{#snippet countyLink(race: ChiefRace)}
+  {@const county = countyByCode(race.countyCode)}
+  {#if county}<a class="county-link" href={`${countyPagePath(county.key)}#chief-title`}>查看候選人・勾選政見比較 →</a>{/if}
+{/snippet}
+
 <aside class="side">
   {#if upcoming}
     <!-- 尚未舉行：沒有候選人資料時，一律不揭露沿用資料裡的當選人／政黨，只說明「尚無結果」。 -->
@@ -170,11 +176,13 @@
       <p class="hint">點選地圖上的縣市可查看完整名單與議員候選人。</p>
     {:else if candidates.mode === 'chief'}
       <h2>{chiefTitle(candidates.countyName)}候選人</h2>
+      {#if candidates.race}{@render countyLink(candidates.race)}{/if}
       {#if candidates.race}{@render candList(candidates.race.candidates)}{@render compare(candidates.race)}
       {:else}<p class="note">此縣市無首長候選人資料。</p>{/if}
       <p class="hint">點進此縣市查看議員候選人。</p>
     {:else if candidates.mode === 'county'}
       <h2>{layer?.parentName}</h2>
+      {#if candidates.race}{@render countyLink(candidates.race)}{/if}
       {#if candidates.race}
         <section><h3>{chiefTitle(candidates.race.countyName)}候選人</h3>{@render candList(candidates.race.candidates)}{@render compare(candidates.race)}</section>
       {/if}
@@ -346,6 +354,7 @@
 
 <style>
   .side { font-family: var(--sans); }
+  .county-link { display:inline-flex;align-items:center;min-height:44px;font-size:13px;line-height:1.7;text-decoration:underline;text-underline-offset:3px; }
   /* 區域名：報紙的語言，襯線體。 */
   h2 { font-family: var(--serif); margin: 0 0 .6rem; }
   h3 { font-size: .85rem; color: var(--muted); margin: 1rem 0 .35rem; font-weight: 600; }

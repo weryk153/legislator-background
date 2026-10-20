@@ -25,7 +25,7 @@ export const DESCRIPTION_MAX = 160;
 export function countyPageDescription(
   county: string, chiefNames: string[], districtCount: number, councilCount: number, max = DESCRIPTION_MAX,
 ): string {
-  const tail = `；${county}議員 ${districtCount} 個選區、${councilCount} 位候選人名單，附候選人經歷、判決、爭議與政治獻金。`;
+  const tail = `；可勾選兩位首長候選人比較已收錄政見。另有${county}議員 ${districtCount} 個選區、${councilCount} 位候選人名單，附經歷、判決與政治獻金來源。`;
   const build = (names: string) => `2026 ${chiefTitle(county)}候選人：${names}${tail}`;
   const full = build(chiefNames.join('、'));
   if (full.length <= max || chiefNames.length <= 1) return full;

@@ -6,7 +6,8 @@
   import { connectionHref, connectionPairs, indexRelationships, pickConnectionPair, publicSourceUrl, shortestRelationshipPath, type RelationshipPath } from '../lib/relationshipPath';
   import { fetchElectionJson } from '../lib/fetchElectionJson';
   import RelationshipPersonPicker from './RelationshipPersonPicker.svelte';
-  let { dataUrl }: { dataUrl: string } = $props();
+  import ShareActions from './ShareActions.svelte';
+  let { dataUrl, siteUrl }: { dataUrl: string; siteUrl: string } = $props();
   let data = $state<GraphData | null>(null);
   let loading = $state(true);
   let failed = $state(false);
@@ -14,7 +15,6 @@
   let to = $state('');
   let result = $state<RelationshipPath | null>(null);
   let shareHref = $state('');
-  let copyMessage = $state('');
   const index = $derived(data ? indexRelationships(data) : null);
   const pairs = $derived(index ? connectionPairs(index) : []);
   const canRandomize = $derived(pairs.some(p => !((p.from === from && p.to === to) || (p.from === to && p.to === from))));
@@ -24,7 +24,7 @@
 
   function setLocation(href: string) { window.history.replaceState(null, '', href); }
   function selectionChanged() {
-    result = null; shareHref = ''; copyMessage = '';
+    result = null; shareHref = '';
     setLocation('/graph/connect/');
   }
   function search(event?: SubmitEvent) {
@@ -34,7 +34,6 @@
     result = index.nodes.get(from)?.subtype === 'organization' || index.nodes.get(to)?.subtype === 'organization'
       ? { kind: 'invalid' } : shortestRelationshipPath(index, from, to);
     shareHref = result.kind === 'invalid' ? '' : connectionHref(from, to);
-    copyMessage = '';
     if (shareHref) setLocation(shareHref);
   }
   function randomize() {
@@ -45,10 +44,6 @@
   function swap() {
     const previous = from; from = to; to = previous;
     if (from && to) search(); else selectionChanged();
-  }
-  async function copyLink() {
-    try { await navigator.clipboard.writeText(new URL(shareHref, window.location.origin).href); copyMessage = '已複製這組查詢連結'; }
-    catch { copyMessage = '無法自動複製，可使用旁邊的「這組查詢連結」。'; }
   }
   async function load() {
     loading = true; failed = false;
@@ -100,7 +95,7 @@
           </li>
         {/each}
       </ol>
-      <div class="share-row"><button type="button" onclick={copyLink}>複製這組連結</button><a href={shareHref}>這組查詢連結 →</a><span role="status">{copyMessage}</span></div>
+      <div class="share-row"><ShareActions title="人物公開關係查詢｜政治人物背景資料庫" url={new URL(shareHref, siteUrl).href} /><a href={shareHref}>這組查詢連結 →</a></div>
     </section>
     <section class="evidence" aria-labelledby="evidence-title">
       <header><h2 id="evidence-title">每一段，都有出處。</h2><p>逐段核對原始說明；親屬、任職與政治關係可能記錄不同時期。</p></header>
@@ -171,10 +166,7 @@
   .path-chain.long .route-connection > span { width:1px;height:100%;top:0;left:50%; }
   .path-chain.long .route-connection b { padding:2px 10px; }
   .share-row { border-top:1px solid var(--line);margin-top:24px;padding-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;font-size:12px; }
-  .share-row button { border:1px solid var(--control-border); font-size:13px;font-weight:400;padding:0 12px;background:var(--surface);color:var(--muted); }
-  .share-row button:hover { color:var(--fg);background:var(--row-hover); }
   .share-row > a { text-decoration:underline;text-underline-offset:3px;min-height:44px;display:flex;align-items:center; }
-  .share-row > span { font-size:11px;color:var(--muted); }
   .evidence { margin-top:32px; }
   .evidence header h2 { font-size:26px;margin:0; }
   .evidence header p { font-size:12px;color:var(--muted);margin:10px 0 20px; }

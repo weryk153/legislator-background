@@ -38,7 +38,7 @@ const jsonLd = [
     description: desc,
     url: siteUrl || undefined,
     creator: { "@type": "Organization", name: "政治人物背景資料庫（本站）" },
-    license: "資料彙整自公開來源（立法院開放資料、中央選舉委員會、司法院裁判書系統、監察院公職人員財產申報、維基百科），非官方資料，請以原始出處為準。",
+    citation: "資料彙整自公開來源（立法院開放資料、中央選舉委員會、司法院裁判書系統、監察院公職人員財產申報、維基百科），非官方資料，請以原始出處為準。",
   },
 ];
 ---
@@ -53,7 +53,7 @@ const jsonLd = [
     </div>
   </section>
 
-  <ElectionMargin client:visible dataUrl={margins.url} year={margins.data.year} />
+  <ElectionMargin client:visible dataUrl={margins.url} year={margins.data.year} siteUrl={Astro.site?.href ?? Astro.url.origin} />
 
   <a class="connection-entry" href="/graph/connect/"><span class="connection-kicker">換個角度看人物</span><strong>這兩個人，有什麼關係？</strong><span class="connection-hint">選兩個名字，循線查出處</span><span class="connection-arrow" aria-hidden="true">→</span></a>
 

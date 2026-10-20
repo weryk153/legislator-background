@@ -6,6 +6,7 @@ const sections = [
   { id: "scope", label: "收錄範圍與屆別" },
   { id: "sources", label: "資料來源" },
   { id: "principles", label: "方法論與原則" },
+  { id: "reactions", label: "訪客表態與隱私" },
   { id: "presumption", label: "無罪推定" },
   { id: "judgments", label: "判決收錄與限制" },
   { id: "correction", label: "更正與權利" },
@@ -92,6 +93,13 @@ const sections = [
         <li>本站不使用「前科」概念；個人刑事紀錄屬受個資法保護資料，本站僅引用公開判決。</li>
         <li>本站僅陳述事實與出處，不對個人作價值判斷或評分。</li>
       </ul>
+    </section>
+
+    <section class="sec" id="reactions" aria-labelledby="reactions-title">
+      <SectionHead id="reactions-title" text="訪客表態與隱私" />
+      <p>候選人旁的 ↑ 表示支持，↓ 表示不支持。這是本站訪客自願參與的累計表態，<strong>不是民調、不是正式選舉票數，也不代表全體選民意見</strong>；不據此調整名冊順序或替候選人評分。</p>
+      <p>同一瀏覽器對同一候選人只保留一個選擇；可改選，或再次點選已選按鈕取消。沒有登入或身分驗證，因此不保證一人一票，清除 Cookie、換瀏覽器或裝置可能再次表態。</p>
+      <p>功能使用有效期 180 天的隨機 Cookie 辨認瀏覽器，伺服器按候選人分別轉成不可直接還原的識別碼，只儲存該識別碼與目前選擇；公開頁面只顯示累計，不公開個別選擇。取消會刪除該筆表態。應用程式不儲存姓名、電子郵件或原始 IP；IP 只在短期限速時轉成雜湊值，過期後清除。清除 Cookie 會失去原表態的管理識別碼，若要移除表態請先在原瀏覽器取消。</p>
     </section>
 
     <section class="sec" id="presumption" aria-labelledby="presumption-title">

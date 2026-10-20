@@ -5,12 +5,13 @@
 // 「爭取連任」是中性小標籤，筆數一律同色同字級，只列數字，判決／爭議內容請見個人頁。
 import { loadCandidateChannels, CHANNEL_LABEL } from "../lib/candidateChannels";
 import FirstRunBadge from './FirstRunBadge.svelte';
+import CandidateReactions from './CandidateReactions.svelte';
 import type { ChiefRace } from "../lib/candidateTypes";
 import { chiefTitle } from "../lib/candidateTypes";
 import { isChiefReelect, orderCandidates, partyColorVar, partyLabel, recordCounts } from "../lib/candidateStats";
 import type { Official } from "../lib/types";
 import { candidatePhotoCredits } from "../lib/candidatePhotos";
-import { squashStyle } from "../lib/squash";
+import { squashStyle, squashWidth } from "../lib/squash";
 import { loadCandidatePolicies, loadPolicyReviews, policyCount } from "../lib/candidatePolicies";
 
 interface Props {
@@ -21,8 +22,10 @@ interface Props {
   href?: string;
   /** false：不畫卡片標題與 2022 當選列（縣市頁由頁面自己出標題與更詳細的 2022 對照）。 */
   showHead?: boolean;
+  /** 縣市頁在卡片上直接選擇政見比較人選。 */
+  compareCounty?: string;
 }
-const { race: r, officialsBySlug, href, showHead = true } = Astro.props;
+const { race: r, officialsBySlug, href, showHead = true, compareCounty } = Astro.props;
 const headId = `chief-${r.countyCode}`;
 const inc = r.incumbent2022;
 const policies = loadCandidatePolicies([...officialsBySlug.values()]);
@@ -35,7 +38,7 @@ const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
   return p ? [{ name: c.name, ...p }] : [];
 });
 ---
-<article class="chief-card" aria-labelledby={showHead ? headId : undefined} aria-label={showHead ? undefined : `${chiefTitle(r.countyName)}候選人`}>
+<article class="chief-card" data-policy-county={compareCounty} aria-labelledby={showHead ? headId : undefined} aria-label={showHead ? undefined : `${chiefTitle(r.countyName)}候選人`}>
   {showHead && (
     <header class="cc-head">
       <h3 id={headId}>{href ? <a href={href}>{chiefTitle(r.countyName)}</a> : chiefTitle(r.countyName)}</h3>
@@ -46,6 +49,7 @@ const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
       )}
     </header>
   )}
+  {compareCounty && <p class="compare-help" data-policy-choice-status role="status">勾選兩位候選人，即可比較政見。</p>}
   <ul class="cc-cands">
     {orderCandidates(r.candidates).map((c) => {
       const o = c.slug ? officialsBySlug.get(c.slug) : undefined;
@@ -58,7 +62,7 @@ const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
             ? <img class="ph-box mc-photo" src={photo} alt="" width="56" height="70" loading="lazy" />
             : <span class="ph-box ph mc-photo" aria-hidden="true">{c.name[0]}</span>}
           <div class="mc-body">
-            <p class="mc-name">
+            <p class:list={["mc-name", { "long-name": squashWidth(c.name) > 9 }]}>
               {c.number !== null && <span class="mc-no">{c.number} 號</span>}
               {c.slug
                 ? <a href={`/officials/${c.slug}/`} class="sq" style={squashStyle(c.name, 0.78)}>{c.name}</a>
@@ -73,11 +77,14 @@ const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
             </p>
             {c.slug && <p class="mc-policy"><a href={`/officials/${c.slug}/#policies`}>{count ? `政見摘要：已收錄 ${count} 項` : policyReviews.has(c.slug) ? '政見：已查核，待補來源' : '政見：尚未收錄'} <span aria-hidden="true">→</span></a></p>}
             {c.slug && (channels.get(c.slug)?.links.length ?? 0) > 0 && <p class="mc-channels">{channels.get(c.slug)!.links.map((link, i) => <>{i > 0 && "・"}<a href={link.url} target="_blank" rel="noopener noreferrer">{CHANNEL_LABEL[link.kind]} ↗</a></>)}</p>}
+            {compareCounty && <label class="compare-choice"><input type="checkbox" data-chief-policy-choice value={c.slug ?? `unlinked:${c.name}`} aria-label={`將${c.name}加入政見比較`} aria-controls="policy-comparison" disabled /><span data-policy-choice-label>加入比較</span></label>}
+            {c.slug && <CandidateReactions client:visible candidate={c.slug} name={c.name} />}
           </div>
         </li>
       );
     })}
   </ul>
+  {compareCounty && <noscript><p class="compare-help">啟用 JavaScript 後即可勾選比較；也可點候選人姓名閱讀個別政見。</p></noscript>}
   {photoCredits.length > 0 && (
     <p class="cc-credit">
       照片：{photoCredits.map((p, i) => (
@@ -88,6 +95,12 @@ const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
 </article>
 
 <style>
+  .compare-help { color:var(--muted);font-size:13px;line-height:1.7;margin:8px 0; }
+  .compare-choice { display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:6px;font-size:13px;cursor:pointer; }
+  .compare-choice input { width:18px;height:18px;margin:0;accent-color:var(--accent); }
+  .compare-choice:has(input:disabled) { color:var(--faint);cursor:default; }
+  .compare-choice:has(input:checked) { color:var(--accent);font-weight:700; }
+  .mc:has(input:checked) { background:var(--row-hover); }
   .mc-channels { font-size: var(--t-sm); margin-top: 5px !important; overflow-wrap: anywhere; }
   .mc-channels a { text-decoration: underline; text-underline-offset: 3px; }
   .mc-policy { font-size: var(--t-sm); margin: 6px 0 0; }
@@ -106,6 +119,7 @@ const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
   .mc-body { min-width: 0; }
   .mc-body p { margin: 0; line-height: 1.6; }
   .mc-name { font-size: 22px; line-height: 1.1 !important; margin-bottom: 4px !important; }
+  .mc-name.long-name .sq { max-width:100%;white-space:normal;overflow-wrap:anywhere;transform:none;margin-right:0;line-height:1.5; }
   /* 有站上檔案的候選人要看得出是連結（觸控螢幕沒有 hover），與議員名單一致加細底線。 */
   .mc-name a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   .mc-name a:hover { text-decoration-thickness: 2px; }

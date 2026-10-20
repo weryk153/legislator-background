@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "tsx scraper/scripts/build-reaction-targets.ts && astro build",
+    "dev:reactions": "wrangler pages dev dist --d1 REACTIONS_DB=00000000-0000-0000-0000-000000000026 --compatibility-date 2026-10-20 --port 4325",
+    "db:reactions:local": "wrangler d1 execute REACTIONS_DB --config wrangler.local.jsonc --local --file migrations/reactions/0001_reactions.sql",
+    "audit:seo": "tsx scraper/scripts/seo-audit.ts",
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest run",
@@ -61,18 +64,23 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "@cloudflare/workers-types": "^5.20261019.1",
+    "@resvg/resvg-js": "^2.6.2",
     "@types/adm-zip": "^0.5.8",
     "@types/cytoscape": "^3.31.0",
     "@types/d3-geo": "^3.1.1",
     "@types/node": "^25.9.3",
+    "@types/qrcode": "^1.5.6",
     "@types/topojson-client": "^3.1.5",
     "adm-zip": "^0.6.0",
     "mapshaper": "^0.7.55",
     "playwright": "^1.61.0",
+    "qrcode": "^1.5.4",
     "sharp": "^0.33.0",
     "tsx": "^4.22.4",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.0"
+    "vitest": "^3.2.0",
+    "wrangler": "^4.151.2"
   },
   "packageManager": "pnpm@10.16.1",
   "engines": {

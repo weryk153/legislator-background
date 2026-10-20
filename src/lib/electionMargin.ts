@@ -30,3 +30,18 @@ export function selectMarginRace(county: MarginCounty, townCode: string) {
     result: electionMargin(area.chiefOffice === 'elected' ? area.race : undefined),
   };
 }
+
+/** 無效鄉鎮不悄悄改成全縣市結果。 */
+export function readMarginLocation(url: URL, data: MarginDataset): { county: string; town: string } | null {
+  const county = data.counties.find(c => c.code === url.searchParams.get('marginCounty'));
+  if (!county) return null;
+  const town = url.searchParams.get('marginTown') ?? '';
+  if (town && !county.towns.some(t => t.code === town)) return null;
+  return { county: county.code, town };
+}
+
+export function marginSharePath(county: string, town: string): string {
+  const query = new URLSearchParams({ marginCounty: county });
+  if (town) query.set('marginTown', town);
+  return `/?${query}#margin-heading`;
+}

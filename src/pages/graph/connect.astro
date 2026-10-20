@@ -13,7 +13,7 @@ const description = '選擇兩位人物，查詢本站公開資料中的最短�
     <div class="title"><TitleCard vertical="循線查證" lines={['這兩個人', '有什麼關係？']} heading="這兩個人，有什麼關係？" fitContainer variant="feature" /></div>
     <div class="copy"><p class="eyebrow">人物・路徑・出處</p><p class="intro">從兩個名字出發，<br />看看公開紀錄如何連接。</p><p class="note">選擇人物，逐段核對親屬、任職與政治關係。每一段都能回到原始來源。</p></div>
   </header>
-  <RelationshipFinder client:load dataUrl={dataset.url} />
+  <RelationshipFinder client:load dataUrl={dataset.url} siteUrl={Astro.site?.href ?? Astro.url.origin} />
 </Base>
 <style>
   .back { display:inline-flex;align-items:center;min-height:44px;font-size:12px;margin:-10px 0 10px;text-decoration:underline;text-underline-offset:4px; }

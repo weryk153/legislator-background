@@ -103,6 +103,33 @@
         }
       },
       "updatedAt": "2026-10-13T04:42:17.276Z"
+    },
+    "candidate-reactions": {
+      "targetKind": "new-ui",
+      "projectId": "57d694aa-59f8-495e-9425-43df69727604",
+      "activeDraftId": "72ffdddb-76c3-499e-849d-277c7632673a",
+      "designSystemPath": ".superdesign/design-system.md",
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        "src/styles/tokens.css",
+        "src/components/ChiefRaceCard.astro",
+        "src/components/CandidateReactions.svelte"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "bdf8a846cfca21d5d833ac263c0e458fa48e7fca3d1740bd4c8f23adf4123661",
+        "src/styles/tokens.css": "9db1f5720f606ff4f8514a74abcce8dd582005f69f153007b950dabcbb246084",
+        "src/components/ChiefRaceCard.astro": "161dfbe5a38d0ee5d0dd983a4d71935011ff3da05fe49eb1997c9ac3b02081ce",
+        "src/components/CandidateReactions.svelte": "3beaa478be1b2cc3e2ccf9e681c509ae698dce4b7f58c1331f834fccd0949cd2"
+      },
+      "components": [],
+      "drafts": {
+        "72ffdddb-76c3-499e-849d-277c7632673a": {
+          "title": "候選人支持與不支持按鈕",
+          "visualDirection": "Two independent monochrome outline pills with compact rounded up/down chevrons and counts only; selected reverse fill; 44px touch targets; visitor tally disclaimer.",
+          "currentVersion": 6
+        }
+      },
+      "updatedAt": "2026-10-20T12:14:25.353Z"
     }
   }
 }

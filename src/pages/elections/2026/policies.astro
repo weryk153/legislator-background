@@ -1,0 +1,24 @@
+---
+const canonical = new URL('/elections/', Astro.site ?? Astro.url.origin).href;
+---
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex,follow" />
+    <link rel="canonical" href={canonical} />
+    <title>前往候選人政見比較</title>
+  </head>
+  <body>
+    <p>政見比較已整合至各縣市的候選人卡片。</p>
+    <a id="destination" href="/elections/#finder-title">前往候選人名單 →</a>
+    <script>
+      import { legacyChiefPolicyPath } from '../../../lib/chiefPolicyComparison';
+      const destination = legacyChiefPolicyPath(location.search);
+      const link = document.querySelector<HTMLAnchorElement>('#destination');
+      if (link) link.href = destination;
+      location.replace(destination);
+    </script>
+  </body>
+</html>

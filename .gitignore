@@ -17,3 +17,7 @@ scraper/out-wiki-relations/
 scraper/out-council/
 scraper/boundaries/src/
 .superdesign/tmp/
+.wrangler/
+.dev.vars
+.dev.vars.*
+functions/_data/

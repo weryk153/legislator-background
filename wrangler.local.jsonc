@@ -1,0 +1,13 @@
+// 僅供本機；正式站沿用 Cloudflare Pages 後台的 binding，勿用此設定發布。
+{
+  "name": "legislator-background-local",
+  "pages_build_output_dir": "./dist",
+  "compatibility_date": "2026-10-20",
+  "d1_databases": [
+    {
+      "binding": "REACTIONS_DB",
+      "database_name": "candidate-reactions-local",
+      "database_id": "00000000-0000-0000-0000-000000000026"
+    }
+  ]
+}

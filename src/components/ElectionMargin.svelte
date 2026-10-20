@@ -1,9 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { electionMargin, selectMarginRace, type MarginDataset } from '../lib/electionMargin';
+  import { electionMargin, selectMarginRace, readMarginLocation, marginSharePath, type MarginDataset } from '../lib/electionMargin';
   import { fetchElectionJson } from '../lib/fetchElectionJson';
+  import ShareActions from './ShareActions.svelte';
 
-  let { dataUrl, year }: { dataUrl: string; year: number } = $props();
+  let { dataUrl, year, siteUrl }: { dataUrl: string; year: number; siteUrl: string } = $props();
   let data = $state<MarginDataset | null>(null);
   let loading = $state(true);
   let failed = $state(false);
@@ -23,7 +24,11 @@
     // Astro's development server applies trailingSlash: always to generated endpoints;
     // the production build emits a regular .json file.
     const url = import.meta.env.DEV ? `${dataUrl}/` : dataUrl;
-    try { data = await fetchElectionJson<MarginDataset>(url); }
+    try {
+      data = await fetchElectionJson<MarginDataset>(url);
+      const saved = readMarginLocation(new URL(window.location.href), data);
+      if (saved) { countyCode = saved.county; townCode = saved.town; revealed = true; }
+    }
     catch { failed = true; }
     finally { loading = false; }
   }
@@ -123,6 +128,7 @@
               <a class="map-link" href="/elections/2022/#election-map">探索 2022 選舉地圖 →</a>
             </details>
           {/if}
+          <ShareActions title={`${year} ${selected.place}長選舉結果｜政治人物背景資料庫`} url={new URL(marginSharePath(countyCode, townCode), siteUrl).href} />
         </div>
       {:else}
         <div class="unrevealed">

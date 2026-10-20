@@ -2,6 +2,7 @@ import { normalizeNameChars } from './nameVariant';
 import { chiefTitle, type NationalCandidates, type CountyCandidates, type DistrictSource, type FirstRunEvidence } from './candidateTypes';
 import { countyByCode, countyPagePath } from './countyKeys';
 import { districtTowns } from './countyPage';
+import { districtPagePath } from './districtPage';
 
 export interface ElectionCandidate {
   name: string;
@@ -12,6 +13,7 @@ export interface ElectionCandidate {
   district: string;
   slug: string | null;
   countyHref: string;
+  districtHref?: string;
   number: number | null;
   firstRun?: FirstRunEvidence;
 }
@@ -22,14 +24,15 @@ export function electionCandidates(national: NationalCandidates, councils: Count
     const county = countyByCode(race.countyCode);
     if (!county) return [];
     const base = { county: race.countyName, countyCode: race.countyCode, countyHref: countyPagePath(county.key) };
-    const rows = (list: typeof race.candidates, office: ElectionCandidate['office'], district: string) => list.map(c => ({
+    const rows = (list: typeof race.candidates, office: ElectionCandidate['office'], district: string, districtHref?: string) => list.map(c => ({
       ...base, name: c.name, party: c.partyName === '無' ? '無黨籍' : c.partyName,
       office, district, slug: c.slug, number: c.number,
       ...(c.firstRun ? { firstRun: c.firstRun } : {}),
+      ...(districtHref ? { districtHref } : {}),
     }));
     return [
       ...rows(race.candidates, 'chief', chiefTitle(race.countyName)),
-      ...(councils.find(c => c.countyCode === race.countyCode)?.districts.flatMap(d => rows(d.candidates, 'council', d.label)) ?? []),
+      ...(councils.find(c => c.countyCode === race.countyCode)?.districts.flatMap(d => rows(d.candidates, 'council', d.label, districtPagePath(county.key, d.no))) ?? []),
     ];
   });
 }

@@ -9,6 +9,10 @@ import CandidateChannels from "../../components/CandidateChannels.astro";
 import { loadCandidateChannels } from "../../lib/candidateChannels";
 import CandidatePolicies from "../../components/CandidatePolicies.astro";
 import CandidateEducation from "../../components/CandidateEducation.astro";
+import ShareActions from "../../components/ShareActions.svelte";
+import CandidateReactions from "../../components/CandidateReactions.svelte";
+import { hasPortraitContent, loadShareCards, personCardId, shareCardPath, portraitCardPath } from "../../lib/shareCardData";
+import { candidateDistrictPaths } from "../../lib/districtPageData";
 import { loadCandidateEducation } from "../../lib/candidateEducation";
 import { loadCandidatePolicies, loadPolicyReviews } from "../../lib/candidatePolicies";
 import { loadOfficials } from "../../lib/data";
@@ -106,11 +110,15 @@ const title = officialPageTitle(o);
 const candidacyDesc = candidacy ? `2026 ${candidacy.role}候選人。` : "";
 const desc = `${candidacyDesc}${o.name}（${o.party}・${roleText}）的${policies ? "公開政見、" : ""}${candidacy ? "學歷、" : ""}經歷、財產申報、政治獻金與相關爭議報導整理，每筆皆附公開資料出處。`;
 // 參選標記連到該縣市的 2026 選舉頁；對照表查無縣市時只顯示文字。
-const candidacyHref = candidacy?.countyKey ? countyPagePath(candidacy.countyKey) : null;
+const candidacyHref = candidateDistrictPaths().get(o.slug) ?? (candidacy?.countyKey ? countyPagePath(candidacy.countyKey) : null);
 const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const homeUrl = Astro.site ? Astro.site.href : undefined;
 // 大頭照為站內收錄之直式照片（非標準 1200x630），供 og:image 與 JSON-LD image 使用。
 const photoUrl = o.photoUrl && Astro.site ? new URL(o.photoUrl, Astro.site).href : undefined;
+const cardPath = shareCardPath(personCardId(o.slug));
+const cardUrl = new URL(cardPath, Astro.site ?? Astro.url.origin).href;
+const summaryCard = (await loadShareCards()).get(personCardId(o.slug));
+const hasSummary = hasPortraitContent(summaryCard);
 const photoCredit = candidatePhotoCredits().get(o.slug);
 const emblem = partyEmblem(o.party);
 const sections = [
@@ -168,9 +176,8 @@ const jsonLd = [
   title={title}
   description={desc}
   ogType="profile"
-  ogImage={photoUrl}
-  ogImagePortrait={Boolean(photoUrl)}
-  ogImageAlt={photoUrl ? o.name : undefined}
+  ogImage={`${cardUrl}?v=${dataDate ?? '1'}`}
+  ogImageAlt={`${o.name}・${candidacy ? `2026 ${candidacy.role}候選人` : roleText}`}
 >
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <a href={candidacy ? "/elections/" : "/"} class="back" data-profile-return>{candidacy ? "← 返回 2026 選舉" : "← 返回總覽"}</a>
@@ -179,6 +186,14 @@ const jsonLd = [
     const back = document.querySelector<HTMLAnchorElement>('[data-profile-return]');
     const target = profileReturn(document.referrer, window.location.origin);
     if (back && target) { back.href = target.href; back.textContent = target.label; }
+    const candidateList = document.querySelector<HTMLAnchorElement>('[data-candidate-list]');
+    if (candidateList && target) {
+      const returnUrl = new URL(target.href, window.location.origin);
+      if (returnUrl.pathname === new URL(candidateList.href).pathname || returnUrl.pathname === '/elections/2026/policies/') {
+        candidateList.href = target.href;
+        candidateList.textContent = target.label;
+      }
+    }
   </script>
 
   <header class:list={["head", { "long-name": squashWidth(o.name) > 9 }]}>
@@ -207,6 +222,7 @@ const jsonLd = [
     </div>
     {o.bio && <p class="lede">{o.bio}</p>}
     {channels && <CandidateChannels channels={channels} />}
+    {candidacy && <CandidateReactions client:load candidate={o.slug} name={o.name} />}
     {o.departedReason && (
       <p class="departed-note">
         本人已非現任：{o.departedReason}。以下為其任內（第{o.term}屆當選時）之公開資料。
@@ -215,6 +231,9 @@ const jsonLd = [
     )}
     </div>
   </header>
+
+  <ShareActions client:load title={`${o.name}｜政治人物背景資料庫`} url={pageUrl ?? Astro.url.href} imageUrl={hasSummary ? portraitCardPath(personCardId(o.slug)) : undefined} imageName={`${o.name}-人物資料.png`} />
+  {candidacyHref && <p class="back"><a href={candidacyHref} data-candidate-list>查看{candidateDistrictPaths().has(o.slug) ? '同選區候選人' : '本縣市候選人'} →</a></p>}
 
   <div class="profile-body">
   <nav class="profile-nav" aria-label="個人資料目錄">

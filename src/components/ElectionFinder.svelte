@@ -93,6 +93,8 @@
                 <span class="office-label">{group.office === 'chief' ? '縣市長' : '縣市議員'}</span>
                 <div class="group-heading">
                   <h3 id={`candidate-group-${i}`}>{group.office === 'chief' ? group.district : `${group.county}・${group.district}`}</h3>
+                  {#if group.office === 'chief' && group.candidates[0]?.countyHref}<a class="district-link" href={`${group.candidates[0].countyHref}#chief-title`}>查看候選人・勾選政見比較 →</a>{/if}
+                  {#if group.candidates[0]?.districtHref}<a class="district-link" href={group.candidates[0].districtHref}>選區完整介紹 →</a>{/if}
                   {#if area?.scope}
                     {#if area.scope.length > 60}<details class="group-area"><summary>公告選區範圍（展開里名）</summary><p>{area.scope}</p></details>
                     {:else}<p class="group-area">公告範圍：{area.scope}</p>{/if}
@@ -153,6 +155,7 @@
   .group-title { display:flex;align-items:center;gap:12px;min-width:0; }
   .group-heading { min-width:0; }
   .group-area { font-size:13px;line-height:1.6;color:var(--muted);margin:4px 0 0;overflow-wrap:anywhere; }
+  .district-link { display:inline-flex;align-items:center;min-height:36px;font-size:13px;text-decoration:underline;text-underline-offset:3px; }
   .office-label { flex:none;background:var(--block-bg);color:var(--block-fg);padding:4px 8px;font-size:12px;font-weight:700; }
   h3 { font:900 21px/1.5 var(--serif);margin:0;overflow-wrap:anywhere; }
   .group-count { flex:none;margin:0;font-size:13px;color:var(--muted); }
