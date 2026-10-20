@@ -115,7 +115,8 @@ export function renderCardSvg(svg: string, extraFonts: string[] = []): Buffer {
   const fonts = ['NotoSerifTC-Regular.ttf', 'civic-rare-bmp.ttf', 'civic-rare-ext.ttf', 'CivicShareFallback.otf', 'CivicShareLatin.ttf', ...extraFonts]
     .map(file => join(process.cwd(), 'src/assets/fonts', file));
   const hash = createHash('sha256').update(svg).update(fontSignature(fonts)).digest('hex');
-  const dir = join(process.cwd(), '.astro/share-card-cache');
+  // Cloudflare Pages preserves node_modules/.astro when build caching is enabled.
+  const dir = join(process.cwd(), 'node_modules/.astro/share-card-cache');
   const file = join(dir, `${hash}.png`);
   if (existsSync(file)) return readFileSync(file);
   const png = new Resvg(svg, {

@@ -11,4 +11,6 @@
 
 2026-10-20 已以 fontTools 的 Unicode cmap 檢查全部 2,115 張圖卡文字，沒有缺字。新增人物或變更圖卡內容後，應重新檢查字元覆蓋，並抽驗長姓名及原住民姓名的實際 PNG。
 
-圖卡生成器將 SVG 與全部字型內容的雜湊作為快取鍵，快取位於 `.astro/share-card-cache/`。資料、排版或字型變更會自動重新生成圖片。
+圖卡生成器將 SVG 與全部字型內容的雜湊作為快取鍵，快取位於 `node_modules/.astro/share-card-cache/`。資料、排版或字型變更會自動重新生成圖片；只改網頁按鈕或樣式可沿用圖片。
+
+Cloudflare Pages 專案須開啟 Settings → Build → Build cache，才能在部署間保留這個目錄。首次啟用後仍須完整建置以建立快取；快取被清除或逾期後也會重新產圖。Cloudflare 目前保留最後讀取後七天內的快取，每個專案上限 10 GB，見[官方建置快取文件](https://developers.cloudflare.com/pages/configuration/build-caching/)。
