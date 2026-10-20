@@ -197,6 +197,7 @@ const jsonLd = [
   </script>
 
   <header class:list={["head", { "long-name": squashWidth(o.name) > 9 }]}>
+    <div class="profile-portrait">
     <figure class="portrait">
       <div class="portrait-frame">
         {o.photoUrl
@@ -206,6 +207,8 @@ const jsonLd = [
       </div>
       {o.photoUrl && photoCredit && <figcaption>攝影：{photoCredit.author}・<a href={photoCredit.commonsUrl} target="_blank" rel="noopener">{photoCredit.license} ↗</a></figcaption>}
     </figure>
+    {candidacy && <div class="portrait-actions"><CandidateReactions client:load candidate={o.slug} name={o.name} /></div>}
+    </div>
     <div class="profile-info">
     <TitleCard vertical={shortParty(o.party)} lines={[o.name, roleText]} heading={o.name} fitContainer />
     <div class="party-line">
@@ -222,7 +225,6 @@ const jsonLd = [
     </div>
     {o.bio && <p class="lede">{o.bio}</p>}
     {channels && <CandidateChannels channels={channels} />}
-    {candidacy && <CandidateReactions client:load candidate={o.slug} name={o.name} />}
     {o.departedReason && (
       <p class="departed-note">
         本人已非現任：{o.departedReason}。以下為其任內（第{o.term}屆當選時）之公開資料。
@@ -398,6 +400,11 @@ const jsonLd = [
     .back { font-size: 0.8125rem; color: var(--muted); }
     .back:hover { color: var(--accent); }
     .head { display: grid; grid-template-columns: 216px minmax(0, 1fr); gap: 32px; align-items: start; margin: 18px 0 38px; padding-bottom: 32px; border-bottom: 3px solid var(--fg); }
+    .profile-portrait { min-width: 0; }
+    .portrait-actions { margin-top: 12px; }
+    .portrait-actions :global(.reactions) { justify-content: center; }
+    .portrait-actions :global(.buttons) { flex-wrap: wrap; justify-content: center; max-width: 100%; }
+    .portrait-actions :global(.buttons button) { min-width: 52px; padding-inline: 8px; }
     .portrait { margin: 0; min-width: 0; }
     .portrait-frame { position: relative; background: var(--surface); border: 1px solid var(--line); }
     .portrait-photo { display: block; width: 100%; height: 260px; object-fit: contain; }
@@ -477,7 +484,7 @@ const jsonLd = [
       .head { grid-template-columns: 112px minmax(0, 1fr); gap: 16px; }
       .portrait-photo, .portrait-empty { height: 150px; }
       .head.long-name { grid-template-columns: minmax(0, 1fr); }
-      .long-name .portrait { width: 152px; }
+      .long-name .profile-portrait { width: 152px; }
       .long-name .portrait-photo, .long-name .portrait-empty { height: 190px; }
       .party-line { margin-top: 14px; }
       .profile-nav ol { gap: 0 16px; }
