@@ -36,7 +36,7 @@
       title={$store.data?.choice === 1 ? '已支持，再按一次取消' : '支持'}
       disabled={!$store.data || $store.pending} onclick={() => choose(1)}
     >
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 14 6-6 6 6" /></svg>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3.5 11.5h5V21h7v-9.5h5Z" /></svg>
       <span class="count">{fmt($store.data?.support)}</span>
     </button>
     <button
@@ -46,7 +46,7 @@
       title={$store.data?.choice === -1 ? '已選擇不支持，再按一次取消' : '不支持'}
       disabled={!$store.data || $store.pending} onclick={() => choose(-1)}
     >
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 10 6 6 6-6" /></svg>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21 3.5 12.5h5V3h7v9.5h5Z" /></svg>
       <span class="count">{fmt($store.data?.oppose)}</span>
     </button>
   </div>
@@ -61,12 +61,13 @@
 <style>
   .reactions { margin:8px 0 4px;position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;gap:0 12px; }
   .buttons { display:flex;align-items:center;gap:8px; }
-  .buttons button { display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:72px;min-height:44px;padding:9px 14px;border:1.5px solid var(--fg);border-radius:999px;background:transparent;color:var(--fg);font:600 14px/1.2 var(--sans);cursor:pointer;transition:background var(--ease),color var(--ease); }
+  .buttons button { display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:56px;min-height:60px;padding:7px 12px;border:1.5px solid var(--fg);border-radius:10px;background:transparent;color:var(--fg);font:600 14px/1.2 var(--sans);cursor:pointer;transition:background var(--ease),color var(--ease); }
   .buttons button:not(:disabled):hover { background:var(--row-hover); }
   .buttons button.chosen, .buttons button.chosen:not(:disabled):hover { background:var(--fg);color:var(--bg); }
+  .buttons button:focus-visible { outline:2px solid var(--fg);outline-offset:3px; }
   .buttons button:disabled { cursor:default;opacity:.55; }
   .buttons svg { flex:none; }
-  .count { font-variant-numeric:tabular-nums;min-width:1ch; }
+  .count { font-variant-numeric:tabular-nums;min-width:1ch;white-space:nowrap; }
   .notice { display:inline-block;color:var(--faint);font-size:10px;line-height:1.6;text-underline-offset:3px; }
   a.notice:hover { color:var(--muted);text-decoration:underline; }
   .error { flex-basis:100%;color:var(--muted);font-size:12px;line-height:1.7;margin:5px 0;max-width:32em; }
