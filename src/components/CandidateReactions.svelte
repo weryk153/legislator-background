@@ -36,7 +36,7 @@
       title={$store.data?.choice === 1 ? '已支持，再按一次取消' : '支持'}
       disabled={!$store.data || $store.pending} onclick={() => choose(1)}
     >
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3.5 11.5h5V21h7v-9.5h5Z" /></svg>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.25 3.75Q12 3 12.75 3.75L20 11Q21 12 19.5 12H17Q16 12 16 13V19.5Q16 21 14.5 21H9.5Q8 21 8 19.5V13Q8 12 7 12H4.5Q3 12 4 11Z" /></svg>
       <span class="count">{fmt($store.data?.support)}</span>
     </button>
     <button
@@ -46,7 +46,7 @@
       title={$store.data?.choice === -1 ? '已選擇不支持，再按一次取消' : '不支持'}
       disabled={!$store.data || $store.pending} onclick={() => choose(-1)}
     >
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21 3.5 12.5h5V3h7v9.5h5Z" /></svg>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path transform="rotate(180 12 12)" d="M11.25 3.75Q12 3 12.75 3.75L20 11Q21 12 19.5 12H17Q16 12 16 13V19.5Q16 21 14.5 21H9.5Q8 21 8 19.5V13Q8 12 7 12H4.5Q3 12 4 11Z" /></svg>
       <span class="count">{fmt($store.data?.oppose)}</span>
     </button>
   </div>
