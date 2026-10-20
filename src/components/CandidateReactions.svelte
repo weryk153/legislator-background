@@ -50,7 +50,6 @@
       <span class="count">{fmt($store.data?.oppose)}</span>
     </button>
   </div>
-  <a class="notice" href="/about/#reactions">訪客表態・非民調</a>
   {#if $store.error}
     <p class="error" role="status">{$store.error} <button type="button" class="retry" disabled={$store.pending} onclick={() => store.refresh(true)}>重試</button></p>
   {/if}
@@ -69,7 +68,6 @@
   .buttons svg { flex:none; }
   .count { font-variant-numeric:tabular-nums;min-width:1ch;white-space:nowrap; }
   .notice { display:inline-block;color:var(--faint);font-size:10px;line-height:1.6;text-underline-offset:3px; }
-  a.notice:hover { color:var(--muted);text-decoration:underline; }
   .error { flex-basis:100%;color:var(--muted);font-size:12px;line-height:1.7;margin:5px 0;max-width:32em; }
   .retry { border:0;background:none;color:var(--fg);text-decoration:underline;text-underline-offset:3px;padding:4px;font:inherit;cursor:pointer; }
 </style>
