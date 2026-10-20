@@ -61,8 +61,6 @@
   .reactions { margin:8px 0 4px;position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;gap:0 12px; }
   .buttons { display:flex;align-items:center;gap:8px; }
   .buttons button { display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:44px;min-height:48px;padding:5px 8px;border:0;border-radius:6px;background:transparent;color:var(--fg);font:600 13px/1.2 var(--sans);cursor:pointer;transition:background var(--ease),color var(--ease); }
-  .buttons button:not(:disabled):hover { background:var(--row-hover); }
-  .buttons button.chosen, .buttons button.chosen:not(:disabled):hover { background:var(--row-hover); }
   .buttons button.chosen svg { fill:currentColor; }
   .buttons button:focus-visible { outline:2px solid var(--fg);outline-offset:3px; }
   .buttons button:disabled { cursor:default;opacity:.55; }
