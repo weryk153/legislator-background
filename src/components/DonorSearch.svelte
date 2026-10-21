@@ -3,6 +3,7 @@
   import DonorCard from './DonorCard.svelte';
   import RecipientCard from './RecipientCard.svelte';
   import { rankRecipients } from '../lib/donorFilter';
+  import { orderPartyOptions, normalizeParty } from '../lib/filterOptions';
 
   export let initialRanking: DonorCardEntry[] = [];
   export let initialParties: string[] = [];
@@ -38,7 +39,7 @@
   $: q = search.trim();
   $: active = Boolean(q || party || officeType || election || sort !== (mode === 'recipients' ? 'total' : 'count'));
   $: filterQuery = { party: party || undefined, officeType: officeType || undefined, election: election || undefined, sort };
-  $: parties = data ? collectParties(data.donors) : initialParties;
+  $: parties = data ? orderPartyOptions(collectParties(data.donors), initialParties) : initialParties;
   $: elections = data ? collectElectionGroups(data.donors) : initialElections;
   $: officialHits = data && q.length >= 2 ? filterOfficials(filterOfficialsByName(data.officials, q), filterQuery) : [];
   $: donorHits = data && q.length >= 2 ? rankDonors(filterDonorsByName(data.donors, q), filterQuery, { limit: 50 }) : [];
@@ -59,7 +60,7 @@
   <div class="controls">
     <label>排序方式<select class="form-control" aria-label="排序方式" bind:value={sort}><option value="count">{mode === 'recipients' ? '捐贈企業家數' : '現任受贈人數'}</option><option value="total">{mode === 'recipients' ? '企業受贈總額' : '捐贈總額'}</option></select></label>
     <label>受贈者政黨<select class="form-control" aria-label="篩選政黨" bind:value={party}><option value="">全部政黨</option>{#each parties as p}<option value={p}>{p}</option>{/each}</select></label>
-    <label>受贈者職務<select class="form-control" aria-label="篩選職務" bind:value={officeType}><option value="">全部職務</option><option value="legislator">立委</option><option value="councilor">議員</option><option value="mayor_magistrate">縣市長</option></select></label>
+    <label>受贈者職務<select class="form-control" aria-label="篩選職務" bind:value={officeType}><option value="">全部職務</option><option value="legislator">立委</option><option value="mayor_magistrate">縣市長</option><option value="councilor">議員</option></select></label>
     <label>選舉範圍<select class="form-control" aria-label="篩選選舉" bind:value={election}><option value="">全部選舉</option>{#each elections as e}<option value={e}>{ELECTION_GROUP_LABEL[e] ?? e}</option>{/each}</select></label>
     <button class="reset" on:click={reset} disabled={!active}>重設條件</button>
   </div>
@@ -93,7 +94,7 @@
     <p class="result-note">獻金總收入為個人專戶彙總，包含各類捐贈；此區依政黨、職務篩選，不套用選舉範圍。</p>
     <div class="official-list">{#each officialHits as official (official.slug)}
       <a class="offrow" href={`/officials/${official.slug}/`}>
-        <span><strong>{official.name}</strong><span class="tag">{official.party}・{officeName[official.officeType] ?? ''}・{official.district}</span></span>
+        <span><strong>{official.name}</strong><span class="tag">{normalizeParty(official.party)}・{officeName[official.officeType] ?? ''}・{official.district}</span></span>
         <span class="off-amount"><span class="tag">獻金總收入</span><span class="num">NT$ {fmt(official.totalIncome)}</span></span><span class="arrow" aria-hidden="true">→</span>
       </a>
     {/each}</div>

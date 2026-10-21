@@ -24,6 +24,7 @@
 
 - **[2026 九合一選舉](https://legislator-background.pages.dev/elections)**：各縣市長與縣市議員候選人名單、六都對決一覽、選務時程，可以從地圖逐層點進縣市、鄉鎮與選區。
 - **[政治獻金查詢](https://legislator-background.pages.dev/donors)**：用公司名稱查它捐給了哪些政治人物。
+- **數據排行**（`/rankings/`）：14 項指標，涵蓋財產申報、政治獻金、收錄判決與爭議、直接關係數；可依年度或選舉場次、職位、縣市、政黨篩選，並分享目前查詢連結。同值並列、缺資料不視為零，數字可連回人物頁核對出處。
 - **[人物關係圖](https://legislator-background.pages.dev/graph)**：全站人物之間的關係網。
 
 ## 資料從哪裡來、怎麼查證

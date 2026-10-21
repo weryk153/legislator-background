@@ -27,10 +27,13 @@ describe('officeRole', () => {
 });
 
 describe('shortParty', () => {
-  it('縮短無黨籍，其他黨名不動', () => {
+  it('與介面共用政黨名稱，不把無黨團結聯盟當成無黨籍', () => {
     expect(shortParty('無黨籍及未經政黨推薦')).toBe('無黨籍');
     expect(shortParty('無黨團結聯盟')).toBe('無黨團結聯盟');
     expect(shortParty('民進黨')).toBe('民進黨');
+    expect(shortParty('民主進步黨')).toBe('民進黨');
+    expect(shortParty('中國國民黨')).toBe('國民黨');
+    expect(shortParty('臺灣民眾黨')).toBe('民眾黨');
   });
 });
 

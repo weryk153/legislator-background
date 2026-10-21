@@ -3,6 +3,8 @@
   import { electionMargin, selectMarginRace, readMarginLocation, marginSharePath, type MarginDataset } from '../lib/electionMargin';
   import { fetchElectionJson } from '../lib/fetchElectionJson';
   import ShareActions from './ShareActions.svelte';
+  import { compareRegions } from '../lib/filterOptions';
+  import { normalizeParty } from '../lib/partyNames';
 
   let { dataUrl, year, siteUrl }: { dataUrl: string; year: number; siteUrl: string } = $props();
   let data = $state<MarginDataset | null>(null);
@@ -13,6 +15,7 @@
   let revealed = $state(false);
   let round = $state(0);
   const county = $derived(data?.counties.find(c => c.code === countyCode));
+  const countyOptions = $derived([...(data?.counties ?? [])].sort((a, b) => compareRegions(a.name, b.name)));
   const selected = $derived(county ? selectMarginRace(county, townCode) : null);
   const result = $derived(revealed ? selected?.result : null);
   const fmt = (n: number) => n.toLocaleString('zh-TW');
@@ -65,7 +68,7 @@
           <select class="form-control" id="margin-county" bind:value={countyCode} disabled={!data} required
             onchange={() => { townCode = ''; revealed = false; }}>
             <option value="">{loading ? '載入地區中…' : '選擇縣市'}</option>
-            {#each data?.counties ?? [] as c}<option value={c.code}>{c.name}</option>{/each}
+            {#each countyOptions as c}<option value={c.code}>{c.name}</option>{/each}
           </select>
         </label>
         <label for="margin-town">鄉鎮市區
@@ -110,7 +113,7 @@
             <ol class="contenders" aria-label="得票最高的候選人">
               {#each result.candidates.slice(0, 2) as c}
                 <li>
-                  <div class="candidate-line"><span><strong>{c.name}</strong><small>{c.partyName}</small></span><span class="vote-count">{fmt(c.votes)} <small>票</small></span></div>
+                  <div class="candidate-line"><span><strong>{c.name}</strong><small>{normalizeParty(c.partyName)}</small></span><span class="vote-count">{fmt(c.votes)} <small>票</small></span></div>
                   <div class="vote-track" aria-hidden="true"><span style:width={`${c.votes / result.validVotes * 100}%`}></span></div>
                 </li>
               {/each}

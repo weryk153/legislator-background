@@ -39,8 +39,8 @@ describe('選區下載圖卡', () => {
   it('臺北第六區列出政黨人數、範圍年份與登記階段，不捏造席次或號次', () => {
     const page = loadDistrictPages().find(p => p.county.key === 'taipei' && p.district.no === 6)!;
     const svg = districtCardSvg(page, profiles);
-    expect(svg).toContain('中國國民黨 8 人');
-    expect(svg).toContain('民主進步黨 4 人');
+    expect(svg).toContain('國民黨 8 人');
+    expect(svg).toContain('民進黨 4 人');
     expect(svg).toContain('行政區參考（2022 對照）');
     expect(svg).toContain('中選會登記名冊（未經審定）');
     expect(svg).toContain('2026 應選席次尚待本站核對');

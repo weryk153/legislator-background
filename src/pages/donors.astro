@@ -5,6 +5,8 @@ import Base from "../layouts/Base.astro";
 import TitleCard from "../components/TitleCard.astro";
 import DonorSearch from "../components/DonorSearch.svelte";
 import { rankDonors, collectParties, collectElectionGroups, type Donor } from "../lib/donorFilter";
+import { rosterDataset } from "../lib/clientDatasets";
+import { orderPartyOptions, partiesBySeats } from "../lib/filterOptions";
 const desc = "查詢政治人物的政治獻金，或以公司名稱／統一編號反查營利事業捐贈給哪些候選人。資料來源：監察院政治獻金公開查閱平臺整批電子檔。";
 
 // 在建置時提供初始排行與摘要，Svelte 直接 SSR 相同清單；無 JS 也能展開與閱讀。
@@ -17,7 +19,8 @@ try {
   console.warn(`donors.json 讀取失敗，/donors 初始排行略過：${(e as Error).message}`);
 }
 const initialRanking = donorsFile ? rankDonors(donorsFile.donors, { sort: "count" }, { minCount: 2, limit: 50 }).map(({ donor, view }) => ({ donor: { uid: donor.uid, name: donor.name }, view })) : [];
-const initialParties = donorsFile ? collectParties(donorsFile.donors) : [];
+const seatOrder = partiesBySeats((await rosterDataset()).data);
+const initialParties = donorsFile ? orderPartyOptions(collectParties(donorsFile.donors), seatOrder) : [];
 const initialElections = donorsFile ? collectElectionGroups(donorsFile.donors) : [];
 const totalAmount = donorsFile?.donors.reduce((sum, donor) => sum + donor.total, 0) ?? 0;
 const fmt = (n: number) => new Intl.NumberFormat("zh-Hant").format(n);

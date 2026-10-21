@@ -15,6 +15,7 @@
 <script lang="ts">
   import { untrack } from 'svelte';
   import { fetchElectionJson } from '../lib/fetchElectionJson';
+  import { normalizeParty } from '../lib/partyNames';
   import ElectionMap from './ElectionMap.svelte';
   import ElectionSidebar from './ElectionSidebar.svelte';
   import { PARTY_VAR, isUnassignedVillage, type MapArea, type MapLayer } from '../lib/mapTypes';
@@ -103,7 +104,7 @@
       nodata = true;
     }
     const entries: LegendEntry[] = [...parties.entries()].map(([code, name]) => ({
-      key: `party-${code}`, label: name, kind: 'party', cssVar: PARTY_VAR[code] ?? '--party-other',
+      key: `party-${code}`, label: normalizeParty(name), kind: 'party', cssVar: PARTY_VAR[code] ?? '--party-other',
     }));
     if (appointed) entries.push({ key: 'appointed', label: '官派（無選舉）', kind: 'appointed' });
     if (pending) entries.push({ key: 'pending', label: '得票相同待抽籤', kind: 'pending' });

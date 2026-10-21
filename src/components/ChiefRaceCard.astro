@@ -44,7 +44,7 @@ const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
       <h3 id={headId}>{href ? <a href={href}>{chiefTitle(r.countyName)}</a> : chiefTitle(r.countyName)}</h3>
       {inc && (
         <p class="cc-inc">
-          2022 當選：{inc.name}（{inc.partyName}）{inc.termLimitStatus === "limited" ? "・不得連任" : inc.termLimitStatus === "unknown" ? "・連任狀態待查" : ""}
+          2022 當選：{inc.name}（{partyLabel(inc)}）{inc.termLimitStatus === "limited" ? "・不得連任" : inc.termLimitStatus === "unknown" ? "・連任狀態待查" : ""}
         </p>
       )}
     </header>

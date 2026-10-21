@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { DonorCardEntry } from '../lib/donorFilter';
+  import { normalizeParty } from '../lib/partyNames';
   export let entry: DonorCardEntry;
   export let rank: number | undefined = undefined;
   const fmt = (n: number) => new Intl.NumberFormat('zh-Hant').format(n);
@@ -25,7 +26,7 @@
           <div class="recipient">
             {#if recipient.slug}<a href={`/officials/${recipient.slug}/`}>{recipient.name}</a>
             {:else}<span class="plain">{recipient.name}</span>{/if}
-            <span class="tag">{recipient.slug ? `${recipient.party ?? ''}${recipient.officeType ? `・${officeName[recipient.officeType] ?? ''}` : ''}` : '非本站收錄之現任者'}</span>
+            <span class="tag">{recipient.slug ? `${normalizeParty(recipient.party ?? '')}${recipient.officeType ? `・${officeName[recipient.officeType] ?? ''}` : ''}` : '非本站收錄之現任者'}</span>
           </div>
           <span class="election">{recipient.election}</span>
           <span class="recipient-amount num">NT$ {fmt(recipient.amount)}</span>

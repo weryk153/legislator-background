@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import TitleCard from '../components/TitleCard.astro';
+import Rankings from '../components/Rankings.svelte';
+import { rankingsDataset } from '../lib/clientDatasets';
+import { DEFAULT_RANKING_QUERY, queryRankings, rankingPeriods, rankingParties } from '../lib/rankings';
+import { compareRegions } from '../lib/filterOptions';
+const dataset = await rankingsDataset();
+const result = queryRankings(dataset.data, DEFAULT_RANKING_QUERY);
+const initialResult = { ...result, rows: result.rows.slice(0, 20) };
+const options = {
+  regions: [...new Set(dataset.data.map(p=>p.region))].sort(compareRegions),
+  parties: rankingParties(dataset.data),
+  years: rankingPeriods(dataset.data,'deposit'),
+};
+---
+<Base title="數據排行｜政治人物背景資料庫" description="比較政治人物的申報存款、證券、投資、債務、土地建物筆數、政治獻金與本站收錄紀錄。可依職位、縣市、政黨與年度篩選，每筆連回資料出處。">
+  <div class="intro">
+    <TitleCard vertical="公開資料" lines={["數據排行", "換個角度看人物"]} />
+    <div class="intro-copy">
+      <p class="kicker">14 項指標 · 4 類資料</p>
+      <p class="lede">選一項數據，看看誰排在前面。<br />從申報金額到收錄紀錄，每個數字都能追溯出處。</p>
+      <p class="scope">收錄第 11 屆立委、2022 年當選首長與議員，以及本站建檔的參選人；離任、解職者保留標註。</p>
+    </div>
+  </div>
+  <Rankings client:load dataUrl={dataset.url} {initialResult} {options} />
+  <noscript><p class="lede">目前顯示各人最新申報存款前 20 筆。啟用 JavaScript 後可切換指標與篩選條件。</p></noscript>
+</Base>
+<style>
+  .intro { display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;margin-bottom:32px; }
+  .intro-copy { max-width:40em; }
+  .kicker { color:var(--accent);font-weight:700; }
+  .lede { margin:8px 0; }
+  .scope { font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:0; }
+  @media(max-width:760px) { .intro { grid-template-columns:1fr;gap:16px;margin-bottom:24px; }.intro :global(.tcard) { justify-self:start; }.intro-copy { max-width:none; } }
+</style>

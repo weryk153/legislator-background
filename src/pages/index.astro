@@ -7,6 +7,7 @@ import ElectionTimeline from "../components/ElectionTimeline.astro";
 import ElectionMargin from "../components/ElectionMargin.svelte";
 import { rosterDataset, marginsDataset } from "../lib/clientDatasets";
 import { queryList } from "../lib/filterSort";
+import { partiesBySeats } from "../lib/filterOptions";
 
 // 參選人檔案由選舉頁進入，不列入總覽（總覽收錄對象為現任公職）。
 const dataset = await rosterDataset();
@@ -57,6 +58,8 @@ const jsonLd = [
 
   <a class="connection-entry" href="/graph/connect/"><span class="connection-kicker">換個角度看人物</span><strong>這兩個人，有什麼關係？</strong><span class="connection-hint">選兩個名字，循線查出處</span><span class="connection-arrow" aria-hidden="true">→</span></a>
 
+  <a class="connection-entry" href="/rankings/"><span class="connection-kicker">公開資料比較</span><strong>各項數據，怎麼排？</strong><span class="connection-hint">財產、獻金、收錄紀錄，切換指標看排行</span><span class="connection-arrow" aria-hidden="true">→</span></a>
+
   <section class="home-schedule" aria-label="選務時程">
     <SectionHead text="選務時程" />
     <ElectionTimeline />
@@ -64,7 +67,7 @@ const jsonLd = [
 
   <div class="roster-heading"><SectionHead text="名冊" /></div>
   <p class="term-note">收錄對象：第11屆立法委員（2024年當選）、2022年當選之縣市首長與縣市議員（任期至2026）。任內已解職者保留並標註「已解職」。</p>
-  <OfficialTable client:load rows={queryList(rows, { sort: "judgments", search: "" }).slice(0, 24)} initialCount={rows.length} initialRegions={[...new Set(rows.map(r => r.region))]} initialParties={[...new Set(rows.map(r => r.party))]} dataUrl={dataset.url} />
+  <OfficialTable client:load rows={queryList(rows, { sort: "judgments", search: "" }).slice(0, 24)} initialCount={rows.length} initialRegions={[...new Set(rows.map(r => r.region))]} initialParties={partiesBySeats(rows)} dataUrl={dataset.url} />
   <style>
     .connection-entry { display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-top:14px;padding:18px 20px;border:1px solid var(--line-strong); }
     .connection-entry:hover { background:var(--row-hover); }

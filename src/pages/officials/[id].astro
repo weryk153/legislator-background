@@ -108,7 +108,7 @@ const roleText = isCandidate ? (candidacy ? `2026 ${candidacy.role}參選人` : 
 const title = officialPageTitle(o);
 // 2026 候選人：描述開頭先講參選職位（搜尋「某某市長候選人」時摘要第一句就對得上），再接原本描述。
 const candidacyDesc = candidacy ? `2026 ${candidacy.role}候選人。` : "";
-const desc = `${candidacyDesc}${o.name}（${o.party}・${roleText}）的${policies ? "公開政見、" : ""}${candidacy ? "學歷、" : ""}經歷、財產申報、政治獻金與相關爭議報導整理，每筆皆附公開資料出處。`;
+const desc = `${candidacyDesc}${o.name}（${shortParty(o.party)}・${roleText}）的${policies ? "公開政見、" : ""}${candidacy ? "學歷、" : ""}經歷、財產申報、政治獻金與相關爭議報導整理，每筆皆附公開資料出處。`;
 // 參選標記連到該縣市的 2026 選舉頁；對照表查無縣市時只顯示文字。
 const candidacyHref = candidateDistrictPaths().get(o.slug) ?? (candidacy?.countyKey ? countyPagePath(candidacy.countyKey) : null);
 const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
@@ -156,7 +156,7 @@ const jsonLd = [
       "@type": "Person",
       name: o.name,
       jobTitle: officeRole(o.officeType, o.district),
-      affiliation: { "@type": "Organization", name: o.party },
+      affiliation: { "@type": "Organization", name: shortParty(o.party) },
       ...(candidacy && { description: `2026 年${candidacy.role}選舉候選人` }),
       url: pageUrl,
       ...(photoUrl && { image: photoUrl }),
@@ -213,7 +213,7 @@ const jsonLd = [
     <TitleCard vertical={shortParty(o.party)} lines={[o.name, roleText]} heading={o.name} fitContainer />
     <div class="party-line">
       {emblem && <img src={emblem} alt="" width="24" height="24" />}
-      <span>{o.party}</span>
+      <span>{shortParty(o.party)}</span>
       {!isCandidate && <span class="term">第{o.term}屆</span>}
     </div>
     <div class="pills">

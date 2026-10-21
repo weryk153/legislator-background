@@ -1,4 +1,5 @@
 import { normalizeNameChars } from './nameVariant';
+import { normalizeParty } from './filterOptions';
 
 export type Recipient = {
   name: string;
@@ -115,7 +116,7 @@ export function matchRecipient(r: Recipient, q: FilterFields): boolean {
   if (q.election && electionGroup(r.election) !== q.election) return false;
   if (hasIdentityFilter(q)) {
     if (!r.slug) return false;
-    if (q.party && r.party !== q.party) return false;
+    if (q.party && normalizeParty(r.party ?? '') !== normalizeParty(q.party)) return false;
     if (q.officeType && r.officeType !== q.officeType) return false;
   }
   return true;
@@ -165,26 +166,24 @@ export function filterOfficials(
 ): Official[] {
   const { limit = 30 } = opts;
   return officials
-    .filter((o) => (!q.party || o.party === q.party) && (!q.officeType || o.officeType === q.officeType))
+    .filter((o) => (!q.party || normalizeParty(o.party) === normalizeParty(q.party)) && (!q.officeType || o.officeType === q.officeType))
     .sort((a, b) => b.totalIncome - a.totalIncome)
     .slice(0, limit);
 }
 
-/** 從有連結受贈者（slug 非 null）動態收集 distinct 政黨，依出現次數降冪排序。 */
+/** 收集有連結受贈者的政黨；選單順序由頁面套用完整現任名冊的席次。 */
 export function collectParties(donors: Donor[]): string[] {
-  const counts = new Map<string, number>();
+  const parties = new Set<string>();
   for (const d of donors) {
     for (const r of d.recipients) {
-      if (r.slug && r.party) counts.set(r.party, (counts.get(r.party) ?? 0) + 1);
+      if (r.slug && r.party) parties.add(normalizeParty(r.party));
     }
   }
-  return Array.from(counts.entries())
-    .sort((a, b) => b[1] - a[1])
-    .map(([party]) => party);
+  return [...parties].sort((a, b) => a.localeCompare(b, 'zh-Hant'));
 }
 
 /** 選舉粗分類固定順序（select 選項與 collectElectionGroups 皆依此排序）。 */
-export const ELECTION_GROUP_ORDER = ['立委選舉', '議員選舉', '縣市長選舉', '其他'] as const;
+export const ELECTION_GROUP_ORDER = ['立委選舉', '縣市長選舉', '議員選舉', '其他'] as const;
 
 /**
  * 選舉粗分類 UI 顯示標籤（僅畫面文字，內部分類 key／篩選比對值不變）。

@@ -57,8 +57,8 @@ describe('各黨提名人數', () => {
     ]);
     expect(bars.map((b) => [b.label, b.count, b.cssVar])).toEqual([
       ['無黨籍', 3, '--party-none'],
-      ['中國國民黨', 2, '--party-kmt'],
-      ['民主進步黨', 1, '--party-dpp'],
+      ['國民黨', 2, '--party-kmt'],
+      ['民進黨', 1, '--party-dpp'],
       ['其他政黨', 4, '--party-other'],
     ]);
     expect(bars[3].parties).toEqual([{ name: '新黨乙', count: 2 }, { name: '勞動黨', count: 1 }, { name: '新黨甲', count: 1 }]);
@@ -85,7 +85,10 @@ describe('排序與筆數', () => {
 describe('partyLabel / partyColorVar', () => {
   it('名冊「無」顯示為無黨籍', () => {
     expect(partyLabel(c('甲'))).toBe('無黨籍');
-    expect(partyLabel(c('乙', KMT))).toBe('中國國民黨');
+    expect(partyLabel(c('乙', KMT))).toBe('國民黨');
+    const candidate = c('丙', DPP);
+    expect(partyLabel(candidate)).toBe('民進黨');
+    expect(candidate.partyName).toBe('民主進步黨');
   });
   it('色點與 partyTally 同規則', () => {
     expect(partyColorVar(c('甲'))).toBe('--party-none');

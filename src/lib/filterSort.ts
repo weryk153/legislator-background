@@ -1,5 +1,6 @@
 import type { OfficeType, OfficialListRow } from './types';
 import { normalizeNameChars } from './nameVariant';
+import { normalizeParty } from './filterOptions';
 
 export type SortKey = 'judgments' | 'controversies' | 'assets' | 'name';
 export interface ListQuery {
@@ -14,7 +15,7 @@ export function queryList(rows: OfficialListRow[], q: ListQuery): OfficialListRo
   let out = rows.slice();
 
   if (q.region) out = out.filter((r) => r.region === q.region);
-  if (q.party) out = out.filter((r) => r.party === q.party);
+  if (q.party) out = out.filter((r) => normalizeParty(r.party) === normalizeParty(q.party!));
   if (q.officeType) out = out.filter((r) => r.officeType === q.officeType);
   if (q.search?.trim()) {
     // 異體字不敏感搜尋：查詢與姓名皆正規化後比對（如使用者輸入「戴瑋姗」仍可找到「戴瑋姍」）。

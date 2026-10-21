@@ -47,3 +47,9 @@ export async function connectionsDataset() {
     edges: graph.edges,
   });
 }
+
+export async function rankingsDataset() {
+  const { buildRankingPeople } = await import('./rankings');
+  const { loadGraph } = await import('./loadGraph');
+  return clientDataset('rankings', buildRankingPeople(await loadOfficials(), loadGraph()));
+}

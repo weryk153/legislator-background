@@ -1,4 +1,5 @@
 import type { OfficeType } from './types';
+import { normalizeParty } from './partyNames';
 
 // 人物頁 <title> 用的精簡職稱：搜尋結果約只顯示前 30 個中文字，原本「（黨籍・議員・
 // 新竹縣第08選舉區）」一段就佔掉近 20 字，把「經歷、判決、財產」這些關鍵字擠到截斷處之後。
@@ -18,9 +19,9 @@ export function officeRole(officeType: OfficeType, district: string): string {
   return county ? `${county}立委` : '立委';
 }
 
-// 中選會的「無黨籍及未經政黨推薦」在標題裡太長，搜尋者也不會這樣打。
+// 標題、圖卡與介面共用同一套政黨名稱。
 export function shortParty(party: string): string {
-  return party.startsWith('無黨籍') ? '無黨籍' : party;
+  return normalizeParty(party);
 }
 
 export function officialPageTitle(o: { name: string; party: string; officeType: OfficeType; district: string }): string {

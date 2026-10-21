@@ -167,7 +167,7 @@ const jsonLd = [
     <SectionHead id="chief-title" text={`${chief}候選人`} />
     {elected2022 && (
       <p class="inc2022">
-        2022 當選：{elected2022.name}（{elected2022.partyName}），{fmtInt(elected2022.votes)} 票（{elected2022.share}%）{termText && `・${termText}`}
+        2022 當選：{elected2022.name}（{partyLabel(elected2022)}），{fmtInt(elected2022.votes)} 票（{elected2022.share}%）{termText && `・${termText}`}
       </p>
     )}
     <ChiefRaceCard race={race} officialsBySlug={officialsBySlug} showHead={false} compareCounty={county.key} />

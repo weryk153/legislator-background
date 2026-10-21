@@ -2,6 +2,7 @@
   import type { OfficialListRow } from '../lib/types';
   import { queryList, type ListQuery, type SortKey } from '../lib/filterSort';
   import { partyEmblem } from '../lib/partyEmblems';
+  import { compareRegions, partiesBySeats, normalizeParty } from '../lib/filterOptions';
   import { fetchElectionJson } from '../lib/fetchElectionJson';
   import { onMount, tick } from 'svelte';
 
@@ -28,15 +29,9 @@
   let officeType = '';
   let sort: SortKey = 'judgments';
 
-  // North-to-south + outlying islands, so the 縣市 dropdown reads geographically.
-  const REGION_ORDER = [
-    '基隆市', '臺北市', '新北市', '桃園市', '新竹市', '新竹縣', '苗栗縣', '臺中市', '彰化縣',
-    '南投縣', '雲林縣', '嘉義市', '嘉義縣', '臺南市', '高雄市', '屏東縣', '宜蘭縣', '花蓮縣',
-    '臺東縣', '澎湖縣', '金門縣', '連江縣', '其他',
-  ];
   $: regions = Array.from(new Set([...initialRegions, ...rows.map((r) => r.region)]))
-    .sort((a, b) => (REGION_ORDER.indexOf(a) + 1 || 99) - (REGION_ORDER.indexOf(b) + 1 || 99));
-  $: parties = Array.from(new Set([...initialParties, ...rows.map((r) => r.party)]));
+    .sort(compareRegions);
+  $: parties = initialParties.length ? initialParties : partiesBySeats(rows);
   $: q = { search, region: region || undefined, party: party || undefined, officeType: (officeType || undefined) as ListQuery['officeType'], sort } as ListQuery;
   $: active = !!(search || region || party || officeType || sort !== 'judgments');
   $: if (active) void ensureData();
@@ -139,7 +134,7 @@
           {#if emblem}
             <img class="party-emblem" src={emblem} alt="" width="22" height="22" loading="lazy" />
           {/if}
-          <span>{r.party}</span>
+          <span>{normalizeParty(r.party)}</span>
         </p>
         <p class="district">{r.district}</p>
       </div>

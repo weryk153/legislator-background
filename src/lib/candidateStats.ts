@@ -5,6 +5,7 @@
 // 排序一律依中選會名冊（有號次時依號次），不依政黨或筆數。
 import type { Official } from './types';
 import { PARTY_VAR } from './mapTypes';
+import { normalizeParty } from './partyNames';
 import type { CandidateEntry, ChiefRace, CountyCandidates, NationalCandidates } from './candidateTypes';
 
 /** 現任縣市長爭取連任：候選人連到的檔案即 2022 當選、目前在任的首長。 */
@@ -68,10 +69,11 @@ export function partyTally(cands: CandidateEntry[]): PartyBar[] {
       b.count++; bars.set('none', b);
     } else if (c.partyCode !== null && PARTY_VAR[c.partyCode]) {
       const b = bars.get(c.partyCode)
-        ?? { key: c.partyCode, label: c.partyName, cssVar: PARTY_VAR[c.partyCode], count: 0 };
+        ?? { key: c.partyCode, label: partyLabel(c), cssVar: PARTY_VAR[c.partyCode], count: 0 };
       b.count++; bars.set(c.partyCode, b);
     } else {
-      others.set(c.partyName, (others.get(c.partyName) ?? 0) + 1);
+      const label = partyLabel(c);
+      others.set(label, (others.get(label) ?? 0) + 1);
     }
   }
   const main = [...bars.values()].sort(byCountThenName((b) => b.label));
@@ -103,9 +105,9 @@ export function recordCounts(
   };
 }
 
-/** 名冊的「無」顯示為「無黨籍」。 */
+/** 名冊、比較表與圖卡共用政黨名稱，原始名冊不改寫。 */
 export function partyLabel(c: Pick<CandidateEntry, 'partyName'>): string {
-  return c.partyName === '無' ? '無黨籍' : c.partyName;
+  return normalizeParty(c.partyName);
 }
 
 /** 候選人政黨色點的 CSS 變數名，與 partyTally 同規則：無黨籍用 --party-none；新政黨（代碼 null）與未列代碼用 --party-other。 */

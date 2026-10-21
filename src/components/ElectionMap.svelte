@@ -6,6 +6,7 @@
      繪製與互動，不動資料管線。 -->
 <script lang="ts">
   import { fetchElectionJson } from '../lib/fetchElectionJson';
+  import { normalizeParty } from '../lib/partyNames';
   import { onDestroy, onMount, tick } from 'svelte';
   import { geoArea, geoCentroid, geoMercator, geoPath } from 'd3-geo';
   import { feature } from 'topojson-client';
@@ -289,7 +290,7 @@
     }
     if (area.chief) {
       const quota = area.chief.electedBy === 'quota' ? '，婦女保障名額當選' : '';
-      return `${area.name}，${area.chief.name}，${area.chief.partyName}${quota}`;
+      return `${area.name}，${area.chief.name}，${normalizeParty(area.chief.partyName)}${quota}`;
     }
     if (area.chiefOffice === 'appointed') return `${area.name}，區長為官派，非民選職務`;
     if (area.chiefPendingDraw) return `${area.name}，得票相同待抽籤，本資料未載結果`;

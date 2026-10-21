@@ -15,7 +15,7 @@ import {
   STAGE_LABEL, chiefTitle,
   type CandidateEntry, type CountyCandidates, type NationalCandidates,
 } from "../lib/candidateTypes";
-import { candidateOverview, isCouncilReelect, partyTally, recordCounts, type PartyBar } from "../lib/candidateStats";
+import { candidateOverview, isCouncilReelect, partyTally, partyLabel, recordCounts, type PartyBar } from "../lib/candidateStats";
 import { loadOfficials } from "../lib/data";
 import { COUNTY_KEYS, countyByCode, countyPagePath } from "../lib/countyKeys";
 import { countyRaceName } from "../lib/countyPage";
@@ -220,7 +220,7 @@ const jsonLd = [
                   {r.candidates.map((c, i) => (
                     <>
                       {i > 0 && "、"}
-                      <span class={c.slug && c.slug === r.incumbent2022?.slug ? "cand reelect" : "cand"}><span class="nm">{c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}<FirstRunBadge evidence={c.firstRun} name={c.name} /></span>（{c.partyName === "無" ? "無黨籍" : c.partyName}）</span>
+                      <span class={c.slug && c.slug === r.incumbent2022?.slug ? "cand reelect" : "cand"}><span class="nm">{c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}<FirstRunBadge evidence={c.firstRun} name={c.name} /></span>（{partyLabel(c)}）</span>
                     </>
                   ))}
                 </td>
@@ -264,7 +264,7 @@ const jsonLd = [
                   {d.candidates.map((c, i) => (
                     <>
                       {i > 0 && "、"}
-                      <span class={councilReelect(c) ? "cand reelect" : "cand"}><span class="nm">{c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}<FirstRunBadge evidence={c.firstRun} name={c.name} /></span>（{c.partyName === "無" ? "無黨籍" : c.partyName}）</span>
+                      <span class={councilReelect(c) ? "cand reelect" : "cand"}><span class="nm">{c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}<FirstRunBadge evidence={c.firstRun} name={c.name} /></span>（{partyLabel(c)}）</span>
                     </>
                   ))}
                 </dd>

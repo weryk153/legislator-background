@@ -6,6 +6,7 @@
   import { FAMILY_RELATIONS, RELATION_LABEL, OFFICE_LABEL } from '../lib/graph';
   import { entityRole } from '../lib/graphView';
   import { normalizeNameChars } from '../lib/nameVariant';
+  import { normalizeParty } from '../lib/partyNames';
   import { onMount } from 'svelte';
   import { packGraphComponents } from '../lib/graphPacking';
 
@@ -65,7 +66,7 @@
   function searchChanged() { focusKey = null; selectedKey = null; selectedEdgeId = null; }
   function reset() { query = ''; family = true; political = true; focusKey = null; selectedKey = null; selectedEdgeId = null; if (cy) fit(cy); }
   function zoom(factor: number) { if (cy) cy.zoom({ level: cy.zoom() * factor, renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } }); }
-  const role = (node: GraphNode) => node.kind === 'official' ? `${node.party ?? ''}・${OFFICE_LABEL[node.officeType!] ?? ''}` : entityRole(node.description, node.subtype);
+  const role = (node: GraphNode) => node.kind === 'official' ? `${normalizeParty(node.party ?? '')}・${OFFICE_LABEL[node.officeType!] ?? ''}` : entityRole(node.description, node.subtype);
 
   onMount(() => {
     let observer: ResizeObserver | null = null;

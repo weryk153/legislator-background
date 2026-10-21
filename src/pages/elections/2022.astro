@@ -4,6 +4,7 @@
 import Base from "../../layouts/Base.astro";
 import TitleCard from "../../components/TitleCard.astro";
 import { partyEmblem } from "../../lib/partyEmblems";
+import { normalizeParty } from "../../lib/partyNames";
 import SectionHead from "../../components/SectionHead.astro";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -50,9 +51,9 @@ const overviewRows: OverviewRow[] = national.areas.map((a): OverviewRow => {
     name: a.name,
     chiefName: a.chief?.name ?? null,
     chiefSlug: a.chief?.slug ?? null,
-    chiefParty: a.chief?.partyName ?? null,
+    chiefParty: a.chief ? normalizeParty(a.chief.partyName) : null,
     seatsTotal,
-    largestParty: largest ? { name: largest.partyName, seats: largest.seats } : null,
+    largestParty: largest ? { name: normalizeParty(largest.partyName), seats: largest.seats } : null,
     // 得票率／投票率若查無 race 資料（本輪任務前，只有嘉義市會落入這個分支）
     // 就留 null、表格顯示「—」，不拿 0 湊數——見 fmtPercent。
     electedVotes: elected?.votes ?? null,

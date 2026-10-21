@@ -27,10 +27,11 @@ try {
 const SITE_NAME = "政治人物背景資料庫";
 const path = Astro.url.pathname;
 const isHome = path === "/";
-// 導覽順序依改版 spec：總覽／九合一選舉／政治獻金／關係圖／關於。
+// 主選單包含獨立數據排行入口。
 const NAV = [
   { href: "/", label: "總覽", match: (p: string) => p === "/" },
   { href: "/elections/", label: "九合一選舉", match: (p: string) => p.startsWith("/elections") },
+  { href: "/rankings/", label: "數據排行", match: (p: string) => p.startsWith("/rankings") },
   { href: "/donors/", label: "政治獻金", match: (p: string) => p.startsWith("/donors") },
   { href: "/graph/", label: "關係圖", match: (p: string) => p.startsWith("/graph") },
   { href: "/about/", label: "關於", match: (p: string) => p.startsWith("/about") },

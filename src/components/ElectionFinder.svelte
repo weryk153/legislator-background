@@ -3,6 +3,8 @@
   import FirstRunBadge from './FirstRunBadge.svelte';
   import { fetchElectionJson } from '../lib/fetchElectionJson';
   import { COUNTY_KEYS } from '../lib/countyKeys';
+  import { compareRegions } from '../lib/filterOptions';
+  const countyOptions = [...COUNTY_KEYS].sort((a, b) => compareRegions(a.name, b.name));
   import { filterElectionCandidates, groupElectionCandidates, visibleElectionGroups, type ElectionCandidate, type ElectionFinderData } from '../lib/electionFinder';
   import { partyEmblem } from '../lib/partyEmblems';
   import { readFinderLocation, finderLocationHref } from '../lib/electionFinderLocation';
@@ -56,7 +58,7 @@
 <section class="finder" aria-labelledby="finder-title">
   <div class="finder-head"><h2 id="finder-title">找候選人</h2><p>選擇縣市，或直接輸入姓名</p></div>
   <div class="controls" onfocusin={ensureData} oninput={() => { limit = 24; }}>
-    <label>縣市<select class="form-control" bind:value={county} onchange={() => { districtKey = ''; }}><option value="">全部縣市</option>{#each COUNTY_KEYS as c}<option value={c.code}>{c.name}</option>{/each}</select></label>
+    <label>縣市<select class="form-control" bind:value={county} onchange={() => { districtKey = ''; }}><option value="">全部縣市</option>{#each countyOptions as c}<option value={c.code}>{c.name}</option>{/each}</select></label>
     <label>選舉類別<select class="form-control" bind:value={office} onchange={() => { districtKey = ''; }}><option value="">縣市長與議員</option><option value="chief">縣市長</option><option value="council">縣市議員</option></select></label>
     <label class="district-filter">選區<select class="form-control" bind:value={districtKey} disabled={!county || !loaded}>
       <option value="">{!county ? '先選擇縣市' : !loaded ? '名冊載入後可選' : '全部選區'}</option>

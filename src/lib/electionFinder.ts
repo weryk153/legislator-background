@@ -1,4 +1,5 @@
 import { normalizeNameChars } from './nameVariant';
+import { normalizeParty } from './partyNames';
 import { chiefTitle, type NationalCandidates, type CountyCandidates, type DistrictSource, type FirstRunEvidence } from './candidateTypes';
 import { countyByCode, countyPagePath } from './countyKeys';
 import { districtTowns } from './countyPage';
@@ -25,7 +26,7 @@ export function electionCandidates(national: NationalCandidates, councils: Count
     if (!county) return [];
     const base = { county: race.countyName, countyCode: race.countyCode, countyHref: countyPagePath(county.key) };
     const rows = (list: typeof race.candidates, office: ElectionCandidate['office'], district: string, districtHref?: string) => list.map(c => ({
-      ...base, name: c.name, party: c.partyName === '無' ? '無黨籍' : c.partyName,
+      ...base, name: c.name, party: normalizeParty(c.partyName),
       office, district, slug: c.slug, number: c.number,
       ...(c.firstRun ? { firstRun: c.firstRun } : {}),
       ...(districtHref ? { districtHref } : {}),

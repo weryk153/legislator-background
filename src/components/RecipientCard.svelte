@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { RankedRecipient } from '../lib/donorFilter';
   import { partyEmblem } from '../lib/partyEmblems';
+  import { normalizeParty } from '../lib/partyNames';
   export let entry: RankedRecipient;
   export let rank: number;
   const fmt = (n: number) => new Intl.NumberFormat('zh-Hant').format(n);
@@ -10,7 +11,7 @@
 <details class="recipient-card">
   <summary>
     <span class="rank num">{String(rank).padStart(2, '0')}</span>
-    <span class="identity"><strong>{entry.name}</strong><span class="party">{#if emblem}<img src={emblem} alt="" width="16" height="16" />{/if}{entry.party ?? '此筆受贈紀錄未連結現任者資料'}</span><span class="election">{entry.election}</span></span>
+    <span class="identity"><strong>{entry.name}</strong><span class="party">{#if emblem}<img src={emblem} alt="" width="16" height="16" />{/if}{entry.party === null ? '此筆受贈紀錄未連結現任者資料' : normalizeParty(entry.party)}</span><span class="election">{entry.election}</span></span>
     <span class="metric count"><span class="label">捐贈企業</span><span><b class="num">{entry.count}</b> 家</span></span>
     <span class="metric amount"><span class="label">企業受贈總額</span><span class="num"><small>NT$</small> <b>{fmt(entry.total)}</b></span></span>
     <span class="expand" aria-hidden="true"></span>

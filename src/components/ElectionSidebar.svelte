@@ -2,6 +2,7 @@
      資料深度必須看得出來：縣市長與縣市議員連得到檔案頁，鄉鎮市長以下只有中選會欄位。 -->
 <script lang="ts">
   import FirstRunBadge from './FirstRunBadge.svelte';
+  import { normalizeParty } from '../lib/partyNames';
   import {
     isUnassignedVillage, PARTY_VAR,
     type MapArea, type MapLayer, type PartySeat, type RaceCandidate,
@@ -19,7 +20,7 @@
 
   /** 席次組成長條的語音描述：長條本身是圖形，讀屏要有等價的文字。 */
   function compositionLabel(rows: PartySeat[], total: number): string {
-    return `席次組成，共 ${total} 席：` + rows.map((s) => `${s.partyName} ${s.seats} 席`).join('、');
+    return `席次組成，共 ${total} 席：` + rows.map((s) => `${normalizeParty(s.partyName)} ${s.seats} 席`).join('、');
   }
 
   // upcoming：目前檢視的年份尚未舉行選舉（見 src/lib/electionYears.ts）。這時
@@ -83,7 +84,7 @@
     {#each rows as s (s.partyCode)}
       <li>
         <span class="swatch" aria-hidden="true" style={`--c:${partyColor(s.partyCode)}`}></span>
-        <span class="nm">{s.partyName}</span>
+        <span class="nm">{normalizeParty(s.partyName)}</span>
         <span class="num">{s.seats}</span>
       </li>
     {/each}
@@ -119,7 +120,7 @@
         <span class="nm">{c.name}</span>
       {/if}
       <FirstRunBadge evidence={c.firstRun} name={c.name} />
-      <span class="cand-party">{c.partyName === '無' ? '無黨籍' : c.partyName}</span>
+      <span class="cand-party">{normalizeParty(c.partyName)}</span>
       {#if c.identity}<span class="cand-id">{c.identity}</span>{/if}
     </span>
   </li>
@@ -138,7 +139,7 @@
   {#if r.incumbent2022}
     {@const inc = r.incumbent2022}
     <p class="compare">
-      2022 當選：{#if inc.slug}<a href={`/officials/${inc.slug}/`}>{inc.name}</a>{:else}{inc.name}{/if}（{inc.partyName}）{#if inc.termLimitStatus === 'limited'}・{inc.termLimitReason || '任期屆滿，不得連任'}{:else if inc.termLimitStatus === 'unknown'}・連任狀態待查{/if}
+      2022 當選：{#if inc.slug}<a href={`/officials/${inc.slug}/`}>{inc.name}</a>{:else}{inc.name}{/if}（{normalizeParty(inc.partyName)}）{#if inc.termLimitStatus === 'limited'}・{inc.termLimitReason || '任期屆滿，不得連任'}{:else if inc.termLimitStatus === 'unknown'}・連任狀態待查{/if}
     </p>
   {/if}
 {/snippet}
@@ -261,7 +262,7 @@
           <p class="note">本站尚無此人背景資料</p>
         {/if}
         <p class="party">
-          {area.chief.partyName}
+          {normalizeParty(area.chief.partyName)}
           {#if area.chief.electedBy === 'quota'}<span class="tag">婦女保障名額當選</span>{/if}
         </p>
         {#if area.chief.termLimitStatus === 'limited'}
