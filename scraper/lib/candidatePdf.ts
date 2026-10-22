@@ -6,7 +6,8 @@
 // 只抓到 1,577 列）。改用 -bbox 取每個字詞的座標：以表頭字詞的 x 中心切欄，以
 // 「登記日期」字詞為列錨點；同欄內行距小於門檻的字詞先垂直成群（同一儲存格），
 // 整群再歸給跨越或最近的錨點（不逐字詞找最近錨點，長姓名會被切到鄰列）。
-import { execFileSync, execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
+import { resolvePdfToText } from './pdftotext';
 import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -178,13 +179,11 @@ export function parseRegistrationBbox(html: string): RegistrationRow[] {
   return rows;
 }
 
-const PDFTOTEXT = () => execSync('brew --prefix').toString().trim() + '/bin/pdftotext';
-
 export function pdfToBbox(pdfPath: string): string {
   const dir = mkdtempSync(join(tmpdir(), 'cand-bbox-'));
   try {
     const out = join(dir, 'out.html');
-    execFileSync(PDFTOTEXT(), ['-bbox', pdfPath, out]);
+    execFileSync(resolvePdfToText(), ['-bbox', pdfPath, out]);
     return readFileSync(out, 'utf8');
   } finally {
     rmSync(dir, { recursive: true, force: true });

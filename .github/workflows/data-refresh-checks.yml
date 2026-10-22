@@ -1,0 +1,71 @@
+name: Data refresh checks
+
+on:
+  pull_request:
+    branches: [master]
+
+# These jobs never import data, commit, push, use secrets, or deploy.
+permissions:
+  contents: read
+
+concurrency:
+  group: data-refresh-checks-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  tests-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Install Poppler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+          pdftotext -v
+      - name: Scraper and PDF regression tests
+        # Other historical election suites require gitignored local datasets.
+        run: pnpm exec vitest run scraper/test test/candidatePdf.test.ts --maxWorkers=4
+      - name: Build committed site snapshot
+        run: pnpm build
+      - name: Confirm tracked data was not changed
+        run: git diff --exit-code
+
+  public-source-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Install Poppler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+      - name: Download and parse one public declaration
+        env:
+          SMOKE_REPORT_PATH: ${{ runner.temp }}/public-data-live-smoke.json
+        run: pnpm exec tsx scraper/scripts/smoke-public-assets.ts
+      - name: Upload live-source evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-data-live-smoke
+          path: ${{ runner.temp }}/public-data-live-smoke.json
+          if-no-files-found: ignore
