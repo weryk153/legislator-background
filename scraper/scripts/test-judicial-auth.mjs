@@ -39,29 +39,35 @@ async function main() {
       method: 'POST',
       headers: { 'content-type': 'application/json', 'user-agent': 'legislator-background-bot/1.0' },
       body: JSON.stringify({ user, password }),
+      signal: AbortSignal.timeout(30000),
     });
   } catch (e) {
-    console.error('NETWORK ERROR (host unreachable?):', String(e));
+    console.error('NETWORK ERROR: Auth request failed or timed out');
     process.exit(2);
   }
   const text = await res.text();
   console.log('HTTP', res.status);
-  console.log('body:', text.slice(0, 400));
+  // Never print raw API bodies: a successful Auth body contains a credential.
+  if (!res.ok) { process.exitCode = 1; return; }
 
   try {
     const json = JSON.parse(text);
-    if (json.Token) {
-      console.log('✅ AUTH OK — token length', json.Token.length);
+    const token = json?.Token ?? json?.token;
+    if (typeof token === 'string' && token.trim()) {
+      console.log('✅ AUTH OK');
       // Optional: immediately try JList to confirm the change-feed responds.
       const jl = await fetch('https://data.judicial.gov.tw/jdg/api/JList', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ token: json.Token }),
+        body: JSON.stringify({ token }),
+        signal: AbortSignal.timeout(30000),
       });
       const jlText = await jl.text();
       console.log('JList HTTP', jl.status);
+      if (!jl.ok) { process.exitCode = 1; return; }
       try {
         const days = JSON.parse(jlText);
+        if (!Array.isArray(days)) throw new Error('Invalid JList response');
         let total = 0;
         for (const d of days) {
           const n = Array.isArray(d.list) ? d.list.length : 0;
@@ -71,14 +77,19 @@ async function main() {
         console.log(`📊 當日異動裁判書總數: ${total}（要逐筆抓全文比對姓名的量）`);
         console.log('  sample jids:', (days[0]?.list ?? []).slice(0, 3));
       } catch {
-        console.log('JList non-JSON sample:', jlText.slice(0, 200));
+        console.error('JList failed: unexpected response (body withheld)');
+        process.exitCode = 1;
       }
     } else {
-      console.log('❌ no token:', json.error ?? text.slice(0, 200));
+      console.error(json?.error === '驗證失敗'
+        ? '❌ Auth: 驗證失敗 — check account status / configured credentials; the API does not specify why.'
+        : '❌ Auth failed: no valid token (body withheld)');
+      process.exitCode = 1;
     }
   } catch {
-    console.log('(non-JSON response)');
+    console.error('Auth/JList failed: unexpected response or network error (body withheld)');
+    process.exitCode = 1;
   }
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+main().catch(() => { console.error('Auth check failed (details withheld)'); process.exit(1); });

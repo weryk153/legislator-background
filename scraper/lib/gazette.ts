@@ -24,11 +24,12 @@
 // This is expected and acceptable; the mapping is real, just bounded to modern issues.
 // =============================================================================
 
-import { execFileSync, execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { mkdtempSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fetchPolite } from './fetchPolite';
+import { resolvePdfToText } from './pdftotext';
 import type { AssetCategory, AssetItem } from './types';
 
 // The 廉政專刊電子書 listing endpoint. A large PageSize pulls the full catalogue in
@@ -83,8 +84,6 @@ function periodFromBase64Name(encoded: string): string | null {
   }
 }
 
-const PDFTOTEXT = execSync('brew --prefix').toString().trim() + '/bin/pdftotext';
-
 // Fetch a 監察院 declaration PDF by its encrypted file Id and return its text.
 // The priso getFile endpoint returns the person's own declaration PDF (not WAF-blocked —
 // the parameter key is `FileId`). Throws on failure (the cy adapter swallows it).
@@ -104,7 +103,7 @@ export async function getDeclarationText(fileId: string): Promise<string> {
   const txt = join(dir, 'd.txt');
   try {
     writeFileSync(pdf, buf);
-    execFileSync(PDFTOTEXT, ['-layout', pdf, txt]);
+    execFileSync(resolvePdfToText(), ['-layout', pdf, txt]);
     return readFileSync(txt, 'utf8');
   } finally {
     rmSync(dir, { recursive: true, force: true });
@@ -126,7 +125,7 @@ export async function pdfPageText(url: string, page: number, span = 1): Promise<
     // physical page index by a small front-matter offset; pdftotext occasionally rejects
     // a range that runs past the document end. That's expected and handled by the caller
     // (items stay empty), so swallow pdftotext's stderr to avoid noisy CLI output.
-    execFileSync(PDFTOTEXT, ['-f', String(page), '-l', String(page + span), pdf, txt], {
+    execFileSync(resolvePdfToText(), ['-f', String(page), '-l', String(page + span), pdf, txt], {
       stdio: ['ignore', 'ignore', 'ignore'],
     });
     return readFileSync(txt, 'utf8');

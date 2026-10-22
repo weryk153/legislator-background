@@ -49,29 +49,50 @@ jobs:
       # Persist the accumulating state (processed jids + candidates) across runs. The feed is
       # forward-only, so without this every run would refetch the same change list.
       - name: Restore judicial state
-        uses: actions/cache@v4
+        id: state
+        uses: actions/cache/restore@v4
         with:
           path: scraper/out-judicial
-          key: judicial-state-${{ github.run_id }}
+          key: judicial-state-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: judicial-state-
 
       - name: Auth check / measure
+        id: measure
         env:
           JUDICIAL_API_USER: ${{ secrets.JUDICIAL_API_USER }}
           JUDICIAL_API_PASSWORD: ${{ secrets.JUDICIAL_API_PASSWORD }}
         run: pnpm run judicial:measure
 
       - name: Feed (fetch + match + accumulate candidates)
+        id: feed
         if: ${{ github.event.inputs.measure_only != 'true' }}
         env:
           JUDICIAL_API_USER: ${{ secrets.JUDICIAL_API_USER }}
           JUDICIAL_API_PASSWORD: ${{ secrets.JUDICIAL_API_PASSWORD }}
         run: pnpm run judicial:feed -- --max=${{ env.MAX_FETCH }}
 
-      - name: Upload candidates for review
+      - name: Record candidate freshness
+        if: ${{ always() }}
+        env:
+          MEASURE_OUTCOME: ${{ steps.measure.outcome }}
+          FEED_OUTCOME: ${{ steps.feed.outcome }}
+          RESTORED_CACHE_KEY: ${{ steps.state.outputs.cache-matched-key }}
+        run: node scraper/scripts/judicial-artifact-status.mjs
+
+      # Only a completed feed advances persistent freshness; measure-only must not.
+      - name: Save successful judicial state
+        if: ${{ success() && steps.feed.outcome == 'success' }}
+        uses: actions/cache/save@v4
+        with:
+          path: scraper/out-judicial
+          key: ${{ steps.state.outputs.cache-primary-key }}
+
+      - name: Upload candidates and freshness for review
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: judicial-candidates
-          path: scraper/out-judicial/candidates.json
+          name: judicial-candidates${{ steps.feed.outcome != 'success' && '-stale' || '' }}
+          path: |
+            scraper/out-judicial/candidates.json
+            scraper/out-judicial/status.json
           if-no-files-found: ignore

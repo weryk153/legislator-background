@@ -1,6 +1,44 @@
-import { describe, it, expect } from 'vitest';
-import { flattenJList, judgmentFromJDoc, matchJudgment, defendantZones, type JDoc } from '../lib/judicial-feed';
+import { afterEach, describe, it, expect, vi } from 'vitest';
+import { authJudicial, fetchJList, flattenJList, judgmentFromJDoc, matchJudgment, defendantZones, type JDoc } from '../lib/judicial-feed';
 import type { Target } from '../lib/types';
+
+afterEach(() => { vi.unstubAllGlobals(); vi.useRealTimers(); });
+
+describe('judicial API responses', () => {
+  it('uses the documented Auth request and capitalized Token response', async () => {
+    const fetch = vi.fn().mockResolvedValue(new Response(JSON.stringify({ Token: 'test-token' })));
+    vi.stubGlobal('fetch', fetch);
+    await expect(authJudicial('test-user', 'test-password')).resolves.toBe('test-token');
+    expect(fetch).toHaveBeenCalledWith('https://data.judicial.gov.tw/jdg/api/Auth', expect.objectContaining({
+      method: 'POST', body: JSON.stringify({ user: 'test-user', password: 'test-password' }),
+    }));
+  });
+  it('fails immediately on application-level Auth rejection without retrying credentials', async () => {
+    const fetch = vi.fn().mockResolvedValue(new Response(JSON.stringify({ error: '驗證失敗' })));
+    vi.stubGlobal('fetch', fetch);
+    await expect(authJudicial('test-user', 'test-password')).rejects.toThrow('Auth: 驗證失敗');
+    expect(fetch).toHaveBeenCalledTimes(1);
+  });
+  it('rejects malformed tokens and withholds arbitrary error text', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(JSON.stringify({ Token: {}, error: 'test-password' }))));
+    await expect(authJudicial('test-user', 'test-password')).rejects.toThrow('response withheld');
+  });
+  it('withholds invalid JSON even after network-response retries', async () => {
+    vi.useFakeTimers();
+    vi.stubGlobal('fetch', vi.fn().mockImplementation(async () => new Response('{test-password')));
+    const failure = expect(authJudicial('test-user', 'test-password')).rejects.toThrow('Auth returned invalid JSON (response withheld)');
+    await vi.runAllTimersAsync();
+    await failure;
+  });
+  it.each([{ error: '驗證失敗' }, { error: '目前非本 API 服務時間。' }, {}, null])('does not turn a failed JList into a successful empty feed', async body => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(JSON.stringify(body))));
+    await expect(fetchJList('test-token')).rejects.toThrow('JList failed');
+  });
+  it('accepts a genuine empty day', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response('[]')));
+    await expect(fetchJList('test-token')).resolves.toEqual([]);
+  });
+});
 
 describe('flattenJList', () => {
   it('handles the [{DATE,LIST}] shape and de-dupes', () => {

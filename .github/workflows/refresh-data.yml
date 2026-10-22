@@ -60,6 +60,12 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Install PDF text extractor
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+          pdftotext -v
+
       # Local Supabase stack inside the runner (Docker is available on ubuntu-latest).
       - uses: supabase/setup-cli@v1
         with:

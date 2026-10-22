@@ -30,7 +30,12 @@ async function postJson(path: string, body: unknown, retries = 4): Promise<any> 
         signal: AbortSignal.timeout(30000),
       });
       if (!res.ok) throw new Error(`${path} HTTP ${res.status}`);
-      return await res.json();
+      try {
+        return await res.json();
+      } catch {
+        // JSON parser errors can quote raw response text (including credentials).
+        throw new Error(`${path} returned invalid JSON (response withheld)`);
+      }
     } catch (e) {
       lastErr = e;
     }
@@ -38,13 +43,17 @@ async function postJson(path: string, body: unknown, retries = 4): Promise<any> 
   throw lastErr instanceof Error ? lastErr : new Error(String(lastErr));
 }
 
-// Returns a token, or throws with the API's message (e.g. "目前非本 API 服務時間。").
+// Returns a token or a safe error; never echo arbitrary response bodies / credentials.
 // The Auth response returns the token as `Token` (capitalised); request params are lowercase.
 export async function authJudicial(user: string, password: string): Promise<string> {
   const j = await postJson('Auth', { user, password });
   const token = j?.Token ?? j?.token;
-  if (token) return token as string;
-  throw new Error(j?.error ? String(j.error) : 'auth failed: no token returned');
+  if (typeof token === 'string' && token.trim()) return token;
+  const message = j?.error;
+  if (message === '驗證失敗' || message === '目前非本 API 服務時間。') {
+    throw new Error(`Auth: ${message}`);
+  }
+  throw new Error('Auth failed: no valid token returned (response withheld)');
 }
 
 // JList returns the change list (one or more days). Flatten to a unique jid array.
@@ -62,7 +71,12 @@ export function flattenJList(j: any): string[] {
 }
 
 export async function fetchJList(token: string): Promise<string[]> {
-  return flattenJList(await postJson('JList', { token }));
+  const j = await postJson('JList', { token });
+  // An API error is not an empty day's feed, and must not mark the run successful.
+  if (!j || j.error || !(Array.isArray(j) || Array.isArray(j.LIST) || Array.isArray(j.DATA))) {
+    throw new Error('JList failed: API error or unexpected response');
+  }
+  return flattenJList(j);
 }
 
 export interface JDoc {

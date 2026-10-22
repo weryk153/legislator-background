@@ -73,6 +73,31 @@ SEO：選舉總覽標題與縣市摘要包含候選人查詢及已收錄政見�
 
 排程刷新與司法院判決開放資料 feed 見 `.github/workflows/`。
 
+PDF 文字擷取需 Poppler：Ubuntu 使用 `sudo apt-get install poppler-utils`，macOS 使用
+`brew install poppler`。程式在轉換時依序找 `PDFTOTEXT_PATH`（完整執行檔路徑）、
+`PATH`；macOS 也會找 `HOMEBREW_PREFIX/bin`、`/opt/homebrew/bin`、`/usr/local/bin`。
+解析純文字或建置網站不需要安裝 Poppler。Refresh data workflow 會先安裝並檢查它。
+
+司法 API 依[官方規格](https://opendata.judicial.gov.tw/api/Newses/42/file)，僅於台北時間
+00:00–06:00 提供服務。`pnpm judicial:auth` 可用既有環境變數或本機 `.env` 驗證
+`JUDICIAL_API_USER`、`JUDICIAL_API_PASSWORD`，並檢查 JList；不輸出密碼、token 或原始
+回應，失敗回傳非零結束碼。「驗證失敗」只表示帳號驗證未通過，不能據此判定密碼過期。
+請由帳號持有人確認平台帳號狀態及設定的憑證；不要把憑證貼在 issue、log 或聊天室。
+
+Judicial feed artifact 包含 `candidates.json`（若有）與 `status.json`。失敗、取消或僅量測
+的執行使用 `judicial-candidates-stale` 名稱，並在 job summary 標示 STALE。
+`status.json` 記錄本次步驟結果、來源快取 key、最後成功 feed 時間／run ID；舊快取沒有
+成功紀錄時為 `null`（未知），不可拿 artifact 上傳時間代替。只有成功完成 feed 才儲存
+新快取；量測成功不更新資料新鮮度。候選資料是跨次累積且仍需人工審核；成功完成不代表
+完整涵蓋所有判決（每次最多 3,000 筆，也可能有單筆抓取失敗），中斷的日更資料不會自動補齊。
+
+PR 的 `Data refresh checks` 會在 Ubuntu 測試 scraper、建置已提交快照，並另行從監察院
+下載一筆公開申報 PDF，經 `pdftotext` 與財產解析器檢查非空結果。可用
+`pnpm exec tsx scraper/scripts/smoke-public-assets.ts` 在本機重現；設定 `SMOKE_REPORT_PATH`
+可另存來源、HTTP 狀態、檔案雜湊與解析摘要。這個檢查不需要憑證、不更新資料庫或網站
+資料，也不部署。Git 忽略的歷史選舉資料測試仍需本機快取，因此 CI 僅執行 scraper 與
+PDF 回歸測試；公開來源可用性由獨立 job 回報，不等同司法 API 已恢復。
+
 ### 新增人物關係
 
 逐筆查核公開來源後，將關係加入 `scraper/relationships-curated.json`。新增列須有固定 UUID `id`、查核日 `reviewedAt`、名冊 `subjectId`，對象為公職人物時另填 `counterpartId`；議員與同名立委不能只靠姓名匹配。維基來源另記錄 `sourceRevision`，方便回查當時版本。歷史任職用「曾任」描述，不推定目前仍有幕僚或政治關係。
