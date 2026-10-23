@@ -54,9 +54,10 @@ const SR_STATE = { done: "（已過）", current: "（進行中）", upcoming: "
   })}
 </ol>
 </details>
+<p class="tl-date">抽籤時程因颱風調整：<a href="https://news.pts.org.tw/article/832629" target="_blank" rel="noopener noreferrer">金門 10/23，其餘縣市 10/27</a>。</p>
 <script is:inline>
   // 首次繪製就收合手機時程；未啟用 JS 時保留完整、可原生操作的 details。
-  document.currentScript.previousElementSibling.open = !window.matchMedia('(max-width: 640px)').matches;
+  document.currentScript.previousElementSibling.previousElementSibling.open = !window.matchMedia('(max-width: 640px)').matches;
 </script>
 
 <script>

@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-10-16",
+  "updatedOn": "2026-10-24",
   "candidates": [
     {
       "slug": "cand-郭璽-臺北市",
@@ -6238,31 +6238,6 @@
         }
       ],
       "excludedCareerIds": []
-    },
-    {
-      "slug": "cand-鍾任明-雲林縣第4選舉區",
-      "name": "鍾任明",
-      "role": "雲林縣第4選舉區議員",
-      "records": [
-        {
-          "items": [
-            "國立虎尾科技大學・工業工程與管理研究所畢業（2022年公報自填）"
-          ],
-          "source": {
-            "url": "https://eebulletin.cec.gov.tw/111/12%E9%9B%B2%E6%9E%97%E7%B8%A3/03%E9%84%89%E9%8E%AE%E5%B8%82%E9%95%B7/%E8%A5%BF%E8%9E%BA%E9%8E%AE%E9%95%B7%E9%81%B8%E8%88%89%E5%85%AC%E5%A0%B1.pdf#page=1",
-            "title": "111年雲林選舉公報：西螺鎮長選舉公報第1頁學經歷（候選人自填）",
-            "type": "gazette",
-            "retrievedAt": "2026-10-13",
-            "id": "edu-source-8d644d4e51bb855f"
-          },
-          "note": "",
-          "sourceYear": 2022,
-          "id": "edu-8d644d4e51bb855f"
-        }
-      ],
-      "excludedCareerIds": [
-        "f2d203d2-8813-49e0-9358-e6461a018504"
-      ]
     },
     {
       "slug": "cand-廖庭輝-雲林縣第4選舉區",
@@ -12652,13 +12627,6 @@
       "excludedCareerIds": []
     },
     {
-      "slug": "cand-林正峰-新北市第10選舉區",
-      "name": "林正峰",
-      "role": "新北市第10選舉區議員",
-      "records": [],
-      "excludedCareerIds": []
-    },
-    {
       "slug": "c-張錦豪-民進黨-新北市第11選舉區",
       "name": "張錦豪",
       "role": "新北市第11選舉區議員",
@@ -14294,29 +14262,6 @@
       "name": "曾維祥",
       "role": "基隆市第3選舉區議員",
       "records": [],
-      "excludedCareerIds": []
-    },
-    {
-      "slug": "c-張芳麗-國民黨-基隆市第03選舉區",
-      "name": "張芳麗",
-      "role": "基隆市第3選舉區議員",
-      "records": [
-        {
-          "items": [
-            "碩士"
-          ],
-          "source": {
-            "url": "https://data.cec.gov.tw/選舉資料庫/votedata.zip",
-            "title": "中選會選舉資料庫：2022 年候選人學歷欄",
-            "type": "gov",
-            "retrievedAt": "2026-10-16",
-            "id": "edu-source-6b04343046c69080"
-          },
-          "note": "2022 年選舉登記的學歷程度；來源未載校名，不代表目前最高學歷。",
-          "sourceYear": 2022,
-          "id": "edu-6b04343046c69080"
-        }
-      ],
       "excludedCareerIds": []
     },
     {
@@ -17794,29 +17739,6 @@
       "excludedCareerIds": []
     },
     {
-      "slug": "c-石永城-無黨籍及未經政黨推薦-金門縣第01選舉區",
-      "name": "石永城",
-      "role": "金門縣第1選舉區議員",
-      "records": [
-        {
-          "items": [
-            "金門高職肄業"
-          ],
-          "source": {
-            "url": "https://www.kmcc.gov.tw/8844/54357/55476/55498/",
-            "title": "政府公開人物介紹：石永城學歷",
-            "type": "gov",
-            "retrievedAt": "2026-10-16",
-            "id": "edu-source-0c7d991ff677c4b6"
-          },
-          "note": "依議會／政府公開介紹記載；未載畢業狀態者，不另行推定。",
-          "sourceYear": null,
-          "id": "edu-0c7d991ff677c4b6"
-        }
-      ],
-      "excludedCareerIds": []
-    },
-    {
       "slug": "cand-許玉仙-金門縣第1選舉區",
       "name": "許玉仙",
       "role": "金門縣第1選舉區議員",
@@ -19107,13 +19029,6 @@
           "id": "edu-43a1bf5b2a5eea0d"
         }
       ],
-      "excludedCareerIds": []
-    },
-    {
-      "slug": "cand-何博倫-嘉義縣第6選舉區",
-      "name": "何博倫",
-      "role": "嘉義縣第6選舉區議員",
-      "records": [],
       "excludedCareerIds": []
     },
     {
@@ -21066,33 +20981,6 @@
         }
       ],
       "excludedCareerIds": []
-    },
-    {
-      "slug": "cand-鄭伯其-臺中市第13選舉區",
-      "name": "鄭伯其",
-      "role": "臺中市第13選舉區議員",
-      "records": [
-        {
-          "items": [
-            "國立中興大學・國家政策與公共事務研究所碩士（2022年公報自填）",
-            "國立勤益科技大學・碩士，未載系所（2022年公報自填）"
-          ],
-          "source": {
-            "url": "https://eebulletin.cec.gov.tw/111/05%E8%87%BA%E4%B8%AD%E5%B8%82/02%E5%B8%82%E8%AD%B0%E5%93%A1/%E8%87%BA%E4%B8%AD%E5%B8%82%E7%AC%AC13%E9%81%B8%E5%8D%80.pdf#page=3",
-            "title": "111年選舉公報：鄒明諺、鄭伯其學經歷（候選人自填）",
-            "type": "gazette",
-            "retrievedAt": "2026-10-13",
-            "id": "edu-source-77ea623b52d490fa"
-          },
-          "note": "",
-          "sourceYear": 2022,
-          "id": "edu-77ea623b52d490fa"
-        }
-      ],
-      "excludedCareerIds": [
-        "c6fd0da7-ba6d-4f08-9645-b07cee613a69",
-        "79602aa2-985c-4ae6-9001-8c6255092cc0"
-      ]
     },
     {
       "slug": "cand-鄒明諺-臺中市第13選舉區",
@@ -23964,33 +23852,6 @@
       ]
     },
     {
-      "slug": "cand-游智彬-臺北市第6選舉區",
-      "name": "游智彬",
-      "role": "臺北市第6選舉區議員",
-      "records": [
-        {
-          "items": [
-            "淡江大學・商學碩士（2024年公報自填）",
-            "國立政治大學・財政學學士（2024年公報自填）"
-          ],
-          "source": {
-            "url": "https://bulletin.cec.gov.tw/01選舉公報/02立法委員/113年第11屆/02區域立法委員/04桃園市/第3選舉區/桃園市立委第3選區.pdf#page=1",
-            "title": "2024年桃園市第3選區立委選舉公報：游智彬學經歷（候選人自填）",
-            "type": "gazette",
-            "retrievedAt": "2026-10-13",
-            "id": "edu-source-079c7110f27fd4d5"
-          },
-          "note": "",
-          "sourceYear": 2024,
-          "id": "edu-079c7110f27fd4d5"
-        }
-      ],
-      "excludedCareerIds": [
-        "9819e3c6-0294-4ac7-944d-851dd876942a",
-        "347b4da5-424e-4789-a461-fbb779b585fa"
-      ]
-    },
-    {
       "slug": "c-耿葳-國民黨-臺北市第06選舉區",
       "name": "耿葳",
       "role": "臺北市第6選舉區議員",
@@ -26210,29 +26071,6 @@
       "excludedCareerIds": []
     },
     {
-      "slug": "c-周駿宥-國民黨-花蓮縣第05選舉區",
-      "name": "周駿宥",
-      "role": "花蓮縣第5選舉區（平地原住民）議員",
-      "records": [
-        {
-          "items": [
-            "碩士"
-          ],
-          "source": {
-            "url": "https://data.cec.gov.tw/選舉資料庫/votedata.zip",
-            "title": "中選會選舉資料庫：2022 年候選人學歷欄",
-            "type": "gov",
-            "retrievedAt": "2026-10-16",
-            "id": "edu-source-df5ba1148f09aa78"
-          },
-          "note": "2022 年選舉登記的學歷程度；來源未載校名，不代表目前最高學歷。",
-          "sourceYear": 2022,
-          "id": "edu-df5ba1148f09aa78"
-        }
-      ],
-      "excludedCareerIds": []
-    },
-    {
       "slug": "cand-邱福順Kacaw．Folaw-花蓮縣第6選舉區（平地原住民）",
       "name": "邱福順Kacaw．Folaw",
       "role": "花蓮縣第6選舉區（平地原住民）議員",
@@ -26561,13 +26399,6 @@
     {
       "slug": "cand-許孟祥-桃園市第1選舉區",
       "name": "許孟祥",
-      "role": "桃園市第1選舉區議員",
-      "records": [],
-      "excludedCareerIds": []
-    },
-    {
-      "slug": "cand-蕭湘瀚-桃園市第1選舉區",
-      "name": "蕭湘瀚",
       "role": "桃園市第1選舉區議員",
       "records": [],
       "excludedCareerIds": []
@@ -29489,13 +29320,6 @@
       "excludedCareerIds": [
         "2e9d7c98-eb38-40b4-9489-19c064393156"
       ]
-    },
-    {
-      "slug": "cand-曹暐國-臺南市第7選舉區",
-      "name": "曹暐國",
-      "role": "臺南市第7選舉區議員",
-      "records": [],
-      "excludedCareerIds": []
     },
     {
       "slug": "c-楊中成-台灣團結聯盟-臺南市第07選舉區",

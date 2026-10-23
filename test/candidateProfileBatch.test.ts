@@ -6,13 +6,23 @@ const fullBatch = JSON.parse(readFileSync('scraper/candidate-profiles-confirmed.
 const profiles = fullBatch.profiles.filter(p => p.official.district.startsWith('連江縣'));
 const sourceIds = new Set(profiles.flatMap(p => p.careers.map(c => c.source_id)));
 const batch: CandidateProfileBatch = { profiles, sources: fullBatch.sources.filter(s => sourceIds.has(s.id)) };
-const county = JSON.parse(readFileSync('public/data/candidates/2026/county/09-007-00-000-0000.json', 'utf8')) as CountyCandidates;
+const registrationArchive = JSON.parse(readFileSync('scraper/candidate-registrations-2026-excluded.json', 'utf8'));
+// 此組測試驗證 9 月已執行的歷史建檔批次，使用當時登記名冊（包含後續未通過審定者）。
+function registrationCounty(path: string): CountyCandidates {
+  const c = JSON.parse(readFileSync(path, 'utf8')) as CountyCandidates;
+  c.source = registrationArchive.registrationSource;
+  for (const r of registrationArchive.records) if (r.countyCode === c.countyCode) {
+    c.districts.find(d => d.no === r.districtNo)!.candidates.push(r.candidate);
+  }
+  return c;
+}
+const county = registrationCounty('public/data/candidates/2026/county/09-007-00-000-0000.json') as CountyCandidates;
 const empty = (): ProfileState => ({ officials: [], sources: [], careers: [] });
 const plan = (b = batch, state = empty(), counties = [county]) => planCandidateProfiles(b, counties, state);
 describe('已查證參選人增量建檔', () => {
   it('跨縣市批次保留嘉義市自述出處，兩位僅有登記資料者不填推測經歷', () => {
     const dir = 'public/data/candidates/2026/county';
-    const counties = readdirSync(dir).filter(f => f.endsWith('.json')).map(f => JSON.parse(readFileSync(`${dir}/${f}`, 'utf8')));
+    const counties = readdirSync(dir).filter(f => f.endsWith('.json')).map(f => registrationCounty(`${dir}/${f}`));
     const p = planCandidateProfiles(fullBatch, counties, empty());
     const chiayi = fullBatch.profiles.filter(p => p.official.district.startsWith('嘉義市'));
     expect(chiayi).toHaveLength(19);
@@ -41,7 +51,7 @@ describe('已查證參選人增量建檔', () => {
     expect(p.careers.every(c => p.sources.some(s => s.id === c.source_id))).toBe(true);
   });
   it('原住民選區須保留完整平地／山地標籤，不接受互換或省略', () => {
-    const county = JSON.parse(readFileSync('public/data/candidates/2026/county/10-005-00-000-0000.json', 'utf8')) as CountyCandidates;
+    const county = registrationCounty('public/data/candidates/2026/county/10-005-00-000-0000.json') as CountyCandidates;
     const profile = fullBatch.profiles.find(p => p.official.name === '朱仲一Kalih．Tahes．Didiyun')!;
     const b = { sources: fullBatch.sources, profiles: [profile] };
     expect(planCandidateProfiles(b, [county], empty()).officials).toHaveLength(1);
@@ -94,7 +104,7 @@ describe('已查證參選人增量建檔', () => {
   });
   it('同批次同名人物須雙向逐一判別，允許分開匯入及中斷後接續', () => {
     const dir = 'public/data/candidates/2026/county';
-    const counties = readdirSync(dir).filter(f => f.endsWith('.json')).map(f => JSON.parse(readFileSync(`${dir}/${f}`, 'utf8')));
+    const counties = readdirSync(dir).filter(f => f.endsWith('.json')).map(f => registrationCounty(`${dir}/${f}`));
     const b = structuredClone({ sources: fullBatch.sources, profiles: fullBatch.profiles.filter(p => p.official.name === '張耀中') });
     expect(b.profiles).toHaveLength(2);
     const result = planCandidateProfiles(b, counties, empty());

@@ -1,0 +1,11 @@
+import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { applyVerifiedBallots, type VerifiedBallots } from '../lib/candidateBallots';
+import type { NationalCandidates, CountyCandidates } from '../../src/lib/candidateTypes';
+const root = 'public/data/candidates/2026';
+const read = (path: string) => JSON.parse(readFileSync(path, 'utf8'));
+const national = read(`${root}/national.json`) as NationalCandidates;
+const counties = readdirSync(`${root}/county`).filter(f => f.endsWith('.json')).map(f => read(`${root}/county/${f}`)) as CountyCandidates[];
+applyVerifiedBallots(national, counties, read('scraper/candidate-ballots-2026-verified.json') as VerifiedBallots);
+writeFileSync(`${root}/national.json`, JSON.stringify(national, null, 1));
+for (const county of counties) writeFileSync(`${root}/county/${county.countyCode}.json`, JSON.stringify(county, null, 1));
+console.log('已套用審定結果與查證號次。');

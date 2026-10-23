@@ -13,25 +13,26 @@ export interface Candidacy {
   /** 縣市選舉頁的 key（/elections/2026/<key>/）；對照表查無時為 null，標記就不加連結。 */
   countyKey: string | null;
   firstRun?: FirstRunEvidence;
+  number?: number;
 }
 
 // 以代碼為準、縣市名備援：單元測試與舊版輸出的代碼可能是簡寫。
 const keyOf = (code: string, name: string): string | null =>
   (countyByCode(code) ?? countyByName(name))?.key ?? null;
 
-const entry = (role: string, countyKey: string | null, firstRun?: FirstRunEvidence): Candidacy =>
-  ({ role, label: `2026 參選：${role}`, countyKey, ...(firstRun ? { firstRun } : {}) });
+const entry = (role: string, countyKey: string | null, firstRun?: FirstRunEvidence, number: number | null = null): Candidacy =>
+  ({ role, label: `2026 參選：${role}`, countyKey, ...(firstRun ? { firstRun } : {}), ...(number !== null ? { number } : {}) });
 
 export function candidacyIndex(national: NationalCandidates | null, counties: CountyCandidates[]): Map<string, Candidacy> {
   const m = new Map<string, Candidacy>();
   for (const r of national?.races ?? []) {
     const key = keyOf(r.countyCode, r.countyName);
-    for (const c of r.candidates) if (c.slug) m.set(c.slug, entry(chiefTitle(r.countyName), key, c.firstRun));
+    for (const c of r.candidates) if (c.slug) m.set(c.slug, entry(chiefTitle(r.countyName), key, c.firstRun, c.number));
   }
   for (const co of counties) {
     const key = keyOf(co.countyCode, co.countyName);
     for (const d of co.districts) {
-      for (const c of d.candidates) if (c.slug) m.set(c.slug, entry(`${co.countyName}${d.label}議員`, key, c.firstRun));
+      for (const c of d.candidates) if (c.slug) m.set(c.slug, entry(`${co.countyName}${d.label}議員`, key, c.firstRun, c.number));
     }
   }
   return m;
@@ -50,4 +51,14 @@ export function loadCandidacies(): Map<string, Candidacy> {
     : [];
   cache = candidacyIndex(national, counties);
   return cache;
+}
+
+/** 保留未通過審定者的登記歷史，供人物頁明確標示；不再加入現行候選人索引。 */
+let excludedCache: Map<string, { name: string; sourceUrl: string }> | undefined;
+export function excludedCandidacies(): Map<string, { name: string; sourceUrl: string }> {
+  if (excludedCache) return excludedCache;
+  const archive = JSON.parse(readFileSync(join(process.cwd(), 'scraper/candidate-registrations-2026-excluded.json'), 'utf8')) as {
+    source: { url: string }; records: { candidate: { slug: string | null; name: string } }[];
+  };
+  return excludedCache = new Map(archive.records.filter(r => r.candidate.slug).map(r => [r.candidate.slug!, { name: r.candidate.name, sourceUrl: archive.source.url }]));
 }

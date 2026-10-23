@@ -12,7 +12,7 @@
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import sharp from 'sharp';
-import { STAGE_LABEL, chiefTitle, type CountyCandidates, type NationalCandidates } from '../../src/lib/candidateTypes';
+import { candidateSourceLabel, chiefTitle, type CountyCandidates, type NationalCandidates } from '../../src/lib/candidateTypes';
 import { orderCandidates } from '../../src/lib/candidateStats';
 import { countyByCode } from '../../src/lib/countyKeys';
 
@@ -79,7 +79,7 @@ async function main(): Promise<void> {
     .filter((r) => existsSync(councilFile(r.countyCode)))
     .map((r) => [r.countyCode, readJson<CountyCandidates>('candidates', '2026', 'county', `${r.countyCode}.json`)]));
   const councilCount = (co: CountyCandidates | undefined) => co?.districts.reduce((n, d) => n + d.candidates.length, 0) ?? 0;
-  const footer = `資料：${STAGE_LABEL[national.source.stage]}，製表 ${national.source.tableDate}`;
+  const footer = `資料：${candidateSourceLabel(national.source)}，製表 ${national.source.tableDate}`;
 
   mkdirSync(OUT, { recursive: true });
   console.log(`輸出到 ${OUT}`);
@@ -102,7 +102,7 @@ async function main(): Promise<void> {
     const key = countyByCode(r.countyCode)?.key;
     if (!key) { console.warn(`  略過 ${r.countyName}：不在 countyKeys 對照表`); continue; }
     const co = councils.get(r.countyCode);
-    const names = orderCandidates(r.candidates).map((c) => c.name);
+    const names = orderCandidates(r.candidates).map((c) => c.number !== null ? `${c.number} 號 ${c.name}` : c.name);
     // 姓名字級隨行數縮小，最多約 3 行仍放得下。
     let size = 48;
     let lines = wrapNames(names, size, CONTENT_W);
@@ -113,7 +113,7 @@ async function main(): Promise<void> {
     await render(frame(`
   ${text(X, 212, 64, `2026 ${chiefTitle(r.countyName)}候選人`, { weight: 900 })}
   ${nameSvg}
-  ${councilLine ? text(X, H - 124, 30, councilLine, { fill: MUTED, weight: 700 }) : ''}`, footer), `elections-2026-${key}.png`);
+  ${councilLine ? text(X, H - 124, 30, councilLine, { fill: MUTED, weight: 700 }) : ''}`, `資料：${candidateSourceLabel(r.source ?? national.source)}，更新 ${(r.source ?? national.source).tableDate}`), `elections-2026-${key}.png`);
   }
 }
 

@@ -20,7 +20,7 @@ import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL, OFFICE_LAB
 import { loadGraph } from "../../lib/loadGraph";
 import { categorizeCareer, careerText, careerPeriod, sharedSource, type CareerCategory } from "../../lib/careerCategory";
 import FirstRunBadge from '../../components/FirstRunBadge.svelte';
-import { loadCandidacies } from "../../lib/candidacy";
+import { loadCandidacies, excludedCandidacies } from "../../lib/candidacy";
 import { countyPagePath } from "../../lib/countyKeys";
 import RelationshipGraph from "../../components/RelationshipGraph.svelte";
 import { officeRole, officialPageTitle, shortParty } from "../../lib/seoTitle";
@@ -104,8 +104,9 @@ const assetCategoryName: Record<string, string> = {
 // 參選人以「2026 某市長參選人」表述其身分，不沿用「公職・選區・第N屆」。
 const isCandidate = o.officeType === "candidate";
 const candidacy = loadCandidacies().get(o.slug) ?? null;
-const roleText = isCandidate ? (candidacy ? `2026 ${candidacy.role}參選人` : officeRole(o.officeType, o.district)) : `${OFFICE_LABEL[o.officeType]}・${o.district}`;
-const title = officialPageTitle(o);
+const excludedCandidacy = excludedCandidacies().get(o.slug);
+const roleText = isCandidate && excludedCandidacy ? "2026 登記參選（未通過資格審查）" : isCandidate ? (candidacy ? `2026 ${candidacy.role}參選人` : officeRole(o.officeType, o.district)) : `${OFFICE_LABEL[o.officeType]}・${o.district}`;
+const title = excludedCandidacy && isCandidate ? `${o.name}（2026 登記參選・未通過資格審查）經歷與公開資料｜政治人物背景` : officialPageTitle(o);
 // 2026 候選人：描述開頭先講參選職位（搜尋「某某市長候選人」時摘要第一句就對得上），再接原本描述。
 const candidacyDesc = candidacy ? `2026 ${candidacy.role}候選人。` : "";
 const desc = `${candidacyDesc}${o.name}（${shortParty(o.party)}・${roleText}）的${policies ? "公開政見、" : ""}${candidacy ? "學歷、" : ""}經歷、財產申報、政治獻金與相關爭議報導整理，每筆皆附公開資料出處。`;
@@ -217,7 +218,9 @@ const jsonLd = [
       {!isCandidate && <span class="term">第{o.term}屆</span>}
     </div>
     <div class="pills">
-      <span class="pill">{OFFICE_LABEL[o.officeType]}</span>
+      <span class="pill">{isCandidate && excludedCandidacy ? "登記參選紀錄" : OFFICE_LABEL[o.officeType]}</span>
+      {excludedCandidacy && <a class="pill candidacy" href={excludedCandidacy.sourceUrl} target="_blank" rel="noopener noreferrer">2026 未通過候選人資格審查 ↗</a>}
+      {candidacy?.number != null && <span class="pill candidacy">2026 候選人・{candidacy.number} 號</span>}
       <FirstRunBadge evidence={candidacy?.firstRun} name={o.name} showYear variant="pill" />
       {candidacy && !isCandidate && (candidacyHref
         ? <a class="pill candidacy" href={candidacyHref}>{candidacy.label}</a>

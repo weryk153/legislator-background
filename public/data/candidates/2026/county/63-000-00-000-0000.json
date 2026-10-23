@@ -1,8 +1,9 @@
 {
  "source": {
-  "stage": "registration",
-  "url": "https://web.cec.gov.tw/central/article/64709",
-  "tableDate": "2026-09-07"
+  "stage": "certified",
+  "url": "https://web.cec.gov.tw/central/article/65212",
+  "tableDate": "2026-10-16",
+  "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
  },
  "countyCode": "63-000-00-000-0000",
  "countyName": "臺北市",
@@ -798,15 +799,6 @@
      "number": null,
      "registeredOn": "2026-09-02",
      "slug": "cand-陳聖文-臺北市第6選舉區",
-     "identity": null
-    },
-    {
-     "name": "游智彬",
-     "partyName": "新黨",
-     "partyCode": "74",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-游智彬-臺北市第6選舉區",
      "identity": null
     },
     {

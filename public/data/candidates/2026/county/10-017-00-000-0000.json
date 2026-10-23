@@ -1,8 +1,9 @@
 {
  "source": {
-  "stage": "registration",
-  "url": "https://web.cec.gov.tw/central/article/64709",
-  "tableDate": "2026-09-07"
+  "stage": "certified",
+  "url": "https://web.cec.gov.tw/central/article/65212",
+  "tableDate": "2026-10-16",
+  "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
  },
  "countyCode": "10-017-00-000-0000",
  "countyName": "基隆市",
@@ -198,15 +199,6 @@
      "registeredOn": "2026-09-02",
      "slug": "cand-曾維祥-基隆市第3選舉區",
      "identity": null
-    },
-    {
-     "name": "張芳麗",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-張芳麗-國民黨-基隆市第03選舉區",
-     "identity": "現任議員（基隆市第3選舉區）"
     },
     {
      "name": "鄭文婷",

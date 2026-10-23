@@ -19,7 +19,7 @@ import Base from "../../../layouts/Base.astro";
 import ChiefRaceCard from "../../../components/ChiefRaceCard.astro";
 import TitleCard from "../../../components/TitleCard.astro";
 import SectionHead from "../../../components/SectionHead.astro";
-import { STAGE_LABEL, chiefTitle, type ChiefRace, type CountyCandidates, type NationalCandidates } from "../../../lib/candidateTypes";
+import { candidateSourceLabel, chiefTitle, type ChiefRace, type CountyCandidates, type NationalCandidates } from "../../../lib/candidateTypes";
 import { isChiefReelect, isCouncilReelect, orderCandidates, partyLabel } from "../../../lib/candidateStats";
 import { COUNTY_KEYS, countyByCode, countyPagePath, type CountyKey } from "../../../lib/countyKeys";
 import { countyPageDescription, countyPageHeading, countyPageTitle, districtTowns, groupDistricts } from "../../../lib/countyPage";
@@ -86,7 +86,7 @@ const DistrictHeading = grouped ? "h4" : "h3";
 // 選區對應未確認（townToDistrict 為 null）的縣市：只寫選區號，附上原因說明。
 const mappingKnown = !!council?.townToDistrict;
 // 資料狀態以議員檔為準（議員名冊與縣市長名冊同步換版；議員檔缺時退回全國檔）。
-const dataSource = council?.source ?? source;
+const dataSource = council?.source ?? race.source ?? source;
 
 const title = countyPageTitle(name);
 const description = countyPageDescription(name, chiefCands.map((c) => c.name), districts.length, councilCount);
@@ -157,7 +157,7 @@ const jsonLd = [
   <header class="head">
     <TitleCard vertical="二〇二六" lines={[name, `${name.endsWith("市") ? "市" : "縣"}長・議員選舉`]} heading={countyPageHeading(name)} />
     <p class="status">
-      本站名單目前為：<a href={dataSource.url} rel="noopener">{STAGE_LABEL[dataSource.stage]}</a>（製表 {dataSource.tableDate}），名單會隨選務進度更新。<br />「首次參選」指首次參選公職，僅標示有公開來源確認者；點標記可查看來源。未標示不代表曾參選。
+      本站名單目前為：<a href={dataSource.url} rel="noopener">{candidateSourceLabel(dataSource)}</a>（更新 {dataSource.tableDate}）。{dataSource.note}<br />「首次參選」指首次參選公職，僅標示有公開來源確認者；點標記可查看來源。未標示不代表曾參選。
     </p>
   </header>
 

@@ -8,7 +8,7 @@
     type MapArea, type MapLayer, type PartySeat, type RaceCandidate,
   } from '../lib/mapTypes';
 
-  import { STAGE_LABEL, chiefTitle, type CandidateEntry, type CandidateSource, type ChiefRace } from '../lib/candidateTypes';
+  import { candidateSourceLabel, chiefTitle, type CandidateEntry, type CandidateSource, type ChiefRace } from '../lib/candidateTypes';
   import { groupDistricts, type SidebarCandidates } from '../lib/candidateView';
   import { countyByCode, countyPagePath } from '../lib/countyKeys';
 
@@ -236,8 +236,8 @@
     {/if}
     {#if candidateSource}
       <p class="cand-source">
-        資料：<a href={candidateSource.url} rel="noopener" target="_blank">{STAGE_LABEL[candidateSource.stage]}</a>，
-        製表 {candidateSource.tableDate}。{candidateSource.stage === 'registration' || candidateSource.stage === 'certified' ? '號次待 10/23 抽籤。' : ''}
+        資料：<a href={candidateSource.url} rel="noopener" target="_blank">{candidateSourceLabel(candidateSource)}</a>，
+        製表 {candidateSource.tableDate}。{candidateSource.note ?? ''}
       </p>
     {/if}
   {:else if area}

@@ -7,7 +7,7 @@ import { loadCandidateChannels, CHANNEL_LABEL } from "../lib/candidateChannels";
 import FirstRunBadge from './FirstRunBadge.svelte';
 import CandidateReactions from './CandidateReactions.svelte';
 import type { ChiefRace } from "../lib/candidateTypes";
-import { chiefTitle } from "../lib/candidateTypes";
+import { chiefTitle, candidateSourceLabel } from "../lib/candidateTypes";
 import { isChiefReelect, orderCandidates, partyColorVar, partyLabel, recordCounts } from "../lib/candidateStats";
 import type { Official } from "../lib/types";
 import { candidatePhotoCredits } from "../lib/candidatePhotos";
@@ -85,6 +85,7 @@ const photoCredits = orderCandidates(r.candidates).flatMap((c) => {
     })}
   </ul>
   {compareCounty && <noscript><p class="compare-help">啟用 JavaScript 後即可勾選比較；也可點候選人姓名閱讀個別政見。</p></noscript>}
+  {r.source && <p class="cc-credit">資料：<a href={r.source.url} target="_blank" rel="noopener noreferrer">{candidateSourceLabel(r.source)}</a>・更新 {r.source.tableDate}。{r.source.note}</p>}
   {photoCredits.length > 0 && (
     <p class="cc-credit">
       照片：{photoCredits.map((p, i) => (

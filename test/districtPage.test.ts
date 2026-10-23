@@ -8,7 +8,7 @@ describe('議員選區頁', () => {
   it('每個名冊選區都有唯一穩定網址，候選人不漏列或跨區', () => {
     expect(pages).toHaveLength(221);
     expect(new Set(pages.map(p => p.path)).size).toBe(pages.length);
-    expect(pages.reduce((n, p) => n + p.district.candidates.length, 0)).toBe(1502);
+    expect(pages.reduce((n, p) => n + p.district.candidates.length, 0)).toBe(1492);
     for (const p of pages) {
       for (const candidate of p.district.candidates) {
         if (candidate.slug) expect(candidateDistrictPaths().get(candidate.slug)).toBe(p.path);

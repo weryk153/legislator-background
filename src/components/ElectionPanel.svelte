@@ -113,7 +113,7 @@
   });
 
   import { selectCandidates, focusCountyCode } from '../lib/candidateView';
-  import { STAGE_LABEL, type CountyCandidates, type NationalCandidates } from '../lib/candidateTypes';
+  import { candidateSourceLabel, type CountyCandidates, type NationalCandidates } from '../lib/candidateTypes';
 
   // 2026 候選人：只在 upcoming 時載入。全國檔一次；縣市檔依目前聚焦的縣市按需載入並快取。
   // 載入失敗時顯示獨立錯誤與重試，不將網路失敗誤當成尚無選舉結果。
@@ -171,6 +171,13 @@
     const code = focusCountyCode(layer.level, area, layer);
     const cc = candCounty && candCounty.countyCode === code ? candCounty : null;
     return selectCandidates(layer.level, area, layer, candNational, cc);
+  });
+  const sidebarSource = $derived.by(() => {
+    if (!sidebarCandidates || !candNational) return null;
+    if (sidebarCandidates.mode === 'chief') return sidebarCandidates.race?.source ?? candNational.source;
+    if (sidebarCandidates.mode === 'county') return sidebarCandidates.county?.source ?? sidebarCandidates.race?.source ?? candNational.source;
+    if (sidebarCandidates.mode === 'town' && layer && candCounty?.countyCode === focusCountyCode(layer.level, area, layer)) return candCounty.source;
+    return candNational.source;
   });
   const countyLoadFailed = $derived(
     !!layer && candFailed.has(focusCountyCode(layer.level, area, layer) ?? ''));
@@ -281,7 +288,7 @@
            的 dateline 出現過一次，不必在這裡重複放大。 -->
       <p class="lede">
         {#if candNational}
-          候選人名單已出爐：{STAGE_LABEL[candNational.source.stage]}。開票後本頁將更新為 2026 年結果。
+          候選人名單已出爐：{candidateSourceLabel(candNational.source)}。開票後本頁將更新為 2026 年結果。
           點選地圖上的縣市可查看首長與議員候選人。
         {:else}
           開票日起本頁將更新為 2026 年結果。地圖上的行政區界線仍是既有資料，可照常
@@ -330,7 +337,7 @@
         {:else}<p role="status">候選人資料載入中…</p>{/if}
       {:else}
       <ElectionSidebar {area} {layer} {upcoming}
-        candidates={sidebarCandidates} candidateSource={candNational?.source ?? null} {countyLoadFailed} onRetryCounty={retryCounty} />
+        candidates={sidebarCandidates} candidateSource={sidebarSource} {countyLoadFailed} onRetryCounty={retryCounty} />
       {/if}
     </div>
 

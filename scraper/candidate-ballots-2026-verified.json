@@ -1,0 +1,160 @@
+{
+  "reviewedOn": "2026-10-24",
+  "certification": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16"
+  },
+  "excluded": [
+    {
+      "countyName": "臺北市",
+      "districtNo": 6,
+      "name": "游智彬"
+    },
+    {
+      "countyName": "新北市",
+      "districtNo": 10,
+      "name": "林正峰"
+    },
+    {
+      "countyName": "桃園市",
+      "districtNo": 1,
+      "name": "蕭湘瀚"
+    },
+    {
+      "countyName": "臺中市",
+      "districtNo": 13,
+      "name": "鄭伯其"
+    },
+    {
+      "countyName": "臺南市",
+      "districtNo": 7,
+      "name": "曹暐國"
+    },
+    {
+      "countyName": "雲林縣",
+      "districtNo": 4,
+      "name": "鍾任明"
+    },
+    {
+      "countyName": "嘉義縣",
+      "districtNo": 6,
+      "name": "何博倫"
+    },
+    {
+      "countyName": "花蓮縣",
+      "districtNo": 5,
+      "name": "周駿宥"
+    },
+    {
+      "countyName": "金門縣",
+      "districtNo": 1,
+      "name": "石永城"
+    },
+    {
+      "countyName": "基隆市",
+      "districtNo": 3,
+      "name": "張芳麗"
+    }
+  ],
+  "postponement": {
+    "date": "2026-10-27",
+    "url": "https://news.pts.org.tw/article/832629",
+    "label": "公視：除金門外，其餘縣市延期至 10/27 抽籤"
+  },
+  "ballots": [
+    {
+      "countyName": "金門縣",
+      "districtNo": null,
+      "source": {
+        "stage": "numbered",
+        "url": "https://www.kmdn.gov.tw/1117/1271/1272/591193/",
+        "tableDate": "2026-10-24",
+        "label": "金門日報：10/23 抽籤號次",
+        "note": "縣長及議員號次已核對；抽籤日期 2026-10-23。"
+      },
+      "namesByNumber": [
+        "張國威",
+        "李文良",
+        "洪和成",
+        "張火木",
+        "陳玉珍",
+        "梁文韜",
+        "黃世團"
+      ]
+    },
+    {
+      "countyName": "金門縣",
+      "districtNo": 1,
+      "source": {
+        "stage": "numbered",
+        "url": "https://www.kmdn.gov.tw/1117/1271/1272/591193/",
+        "tableDate": "2026-10-24",
+        "label": "金門日報：10/23 抽籤號次",
+        "note": "縣長及議員號次已核對；抽籤日期 2026-10-23。"
+      },
+      "namesByNumber": [
+        "唐麗輝",
+        "許玉仙",
+        "許大鴻",
+        "蔡其雍",
+        "尚文凱",
+        "傅蒼松",
+        "黃世丞",
+        "楊霈璿",
+        "洪允典",
+        "林鑫一",
+        "倪于媃",
+        "董森堡",
+        "董家瑋",
+        "陳子芸",
+        "莊勝騏",
+        "李慧艷",
+        "陳泱瑚",
+        "戴德滿",
+        "楊忠俊"
+      ]
+    },
+    {
+      "countyName": "金門縣",
+      "districtNo": 2,
+      "source": {
+        "stage": "numbered",
+        "url": "https://www.kmdn.gov.tw/1117/1271/1272/591193/",
+        "tableDate": "2026-10-24",
+        "label": "金門日報：10/23 抽籤號次",
+        "note": "縣長及議員號次已核對；抽籤日期 2026-10-23。"
+      },
+      "namesByNumber": [
+        "蔡水游",
+        "李文益",
+        "周子傑",
+        "黃萱萱",
+        "吳佩雯",
+        "王秀玉",
+        "陳錦偉",
+        "陳麒翔",
+        "李應文",
+        "王國代",
+        "楊育菡"
+      ]
+    },
+    {
+      "countyName": "金門縣",
+      "districtNo": 3,
+      "source": {
+        "stage": "numbered",
+        "url": "https://www.kmdn.gov.tw/1117/1271/1272/591193/",
+        "tableDate": "2026-10-24",
+        "label": "金門日報：10/23 抽籤號次",
+        "note": "縣長及議員號次已核對；抽籤日期 2026-10-23。"
+      },
+      "namesByNumber": [
+        "洪和興",
+        "洪長享",
+        "洪若珊",
+        "洪毓壕"
+      ]
+    }
+  ]
+}

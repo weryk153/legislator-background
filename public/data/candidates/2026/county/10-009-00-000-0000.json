@@ -1,8 +1,9 @@
 {
  "source": {
-  "stage": "registration",
-  "url": "https://web.cec.gov.tw/central/article/64709",
-  "tableDate": "2026-09-07"
+  "stage": "certified",
+  "url": "https://web.cec.gov.tw/central/article/65212",
+  "tableDate": "2026-10-16",
+  "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
  },
  "countyCode": "10-009-00-000-0000",
  "countyName": "雲林縣",
@@ -395,15 +396,6 @@
      "registeredOn": "2026-09-02",
      "slug": "c-廖偉晴-國民黨-雲林縣第04選舉區",
      "identity": "現任議員（雲林縣第4選舉區）"
-    },
-    {
-     "name": "鍾任明",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-鍾任明-雲林縣第4選舉區",
-     "identity": null
     },
     {
      "name": "廖庭輝",

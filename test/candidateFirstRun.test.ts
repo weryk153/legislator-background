@@ -69,7 +69,9 @@ describe('有來源的首次參選標記', () => {
     const audit = read('scraper/candidate-first-run-audit.json').records as Array<{ slug: string; status: string; reviewedOn: string; evidence: Array<{ url: string; title: string; basis: string }>; searches: unknown[]; reason?: string }>;
     const confirmed = read('scraper/candidate-first-runs-confirmed.json') as FirstRunConfirmation[];
     expect(new Set(audit.map(r => r.slug)).size).toBe(audit.length);
-    expect(audit.map(r => r.slug).sort()).toEqual(entries.map(r => r.slug).sort());
+    const excluded = new Set(read('scraper/candidate-registrations-2026-excluded.json').records.map((r: { candidate: { slug: string } }) => r.candidate.slug));
+    expect(audit.filter(r => !excluded.has(r.slug)).map(r => r.slug).sort()).toEqual(entries.map(r => r.slug).sort());
+    expect(audit.filter(r => excluded.has(r.slug))).toHaveLength(10);
     for (const r of audit) {
       expect(['first-run', 'previously-ran', 'unresolved']).toContain(r.status);
       expect(r.reviewedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);

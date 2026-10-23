@@ -21,9 +21,11 @@ describe('選務時程軸', () => {
     expect(p.todayAfter).toBeNull();
   });
 
-  it('單日節點當天為 current，隔天才算已過', () => {
+  it('抽籤延至 10/27，10/24 不誤標全部完成', () => {
     expect(timelineProgress(ELECTION_MILESTONES, '2026-10-23').states[2]).toBe('current');
-    const next = timelineProgress(ELECTION_MILESTONES, '2026-10-24');
+    expect(timelineProgress(ELECTION_MILESTONES, '2026-10-24').states[2]).toBe('current');
+    expect(timelineProgress(ELECTION_MILESTONES, '2026-10-27').states[2]).toBe('current');
+    const next = timelineProgress(ELECTION_MILESTONES, '2026-10-28');
     expect(next.states.slice(0, 3)).toEqual(['done', 'done', 'done']);
     expect(next.todayAfter).toBe(2);
   });

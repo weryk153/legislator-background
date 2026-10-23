@@ -14,7 +14,7 @@ export type CandidateStage = 'registration' | 'certified' | 'numbered' | 'announ
 /** 側欄底部的資料狀態列。名單會隨選務進度換版，讀者要知道眼前是哪一版。 */
 export const STAGE_LABEL: Record<CandidateStage, string> = {
   registration: '中選會登記名冊（未經審定）',
-  certified: '中選會審定名單（號次待抽籤）',
+  certified: '中選會審定候選人名單',
   numbered: '中選會審定名單（已抽籤定號次）',
   announced: '中選會公告候選人名單',
 };
@@ -22,7 +22,8 @@ export const STAGE_LABEL: Record<CandidateStage, string> = {
 /** 六都，固定順序。版面上的「六都優先」只靠這個順序，不靠視覺加權。 */
 export const MUNICIPALITIES = ['臺北市', '新北市', '桃園市', '臺中市', '臺南市', '高雄市'] as const;
 
-export interface CandidateSource { stage: CandidateStage; url: string; tableDate: string }
+export interface CandidateSource { stage: CandidateStage; url: string; tableDate: string; label?: string; note?: string }
+export const candidateSourceLabel = (source: CandidateSource): string => source.label ?? STAGE_LABEL[source.stage];
 
 /** 有公開來源確認的首次公職參選；缺值代表未確認，不能解讀為曾參選。 */
 export interface FirstRunEvidence {
@@ -53,6 +54,7 @@ export type Incumbent2022 = Pick<Officeholder, 'name' | 'partyName' | 'partyCode
 };
 
 export interface ChiefRace {
+  source?: CandidateSource; // 個別縣市先完成抽籤時，保留其號次來源。
   countyCode: string; countyName: string; isMunicipality: boolean; candidates: CandidateEntry[];
   incumbent2022: Incumbent2022 | null;   // 地圖檔查無首長（如尚未補選）時為 null
 }
@@ -94,7 +96,7 @@ export interface ElectionMilestone {
 export const ELECTION_MILESTONES: readonly ElectionMilestone[] = [
   { key: 'registration', label: '候選人登記', start: '2026-08-31', end: '2026-09-04', dateText: '8/31～9/4' },
   { key: 'certified', label: '審定候選人名單', start: '2026-10-16', end: '2026-10-16', dateText: '10/16 前' },
-  { key: 'numbered', label: '抽籤定號次', start: '2026-10-23', end: '2026-10-23', dateText: '10/23' },
+  { key: 'numbered', label: '抽籤定號次', start: '2026-10-23', end: '2026-10-27', dateText: '10/23（金門）・10/27（其餘縣市）' },
   { key: 'announced', label: '公告候選人名單', start: '2026-11-12', end: '2026-11-17', dateText: '11/12（直轄市長）・11/17（其餘）' },
   { key: 'vote', label: '投票', start: '2026-11-28', end: '2026-11-28', dateText: '11/28' },
 ];

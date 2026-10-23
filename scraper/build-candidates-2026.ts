@@ -7,6 +7,7 @@ import { pdfToBbox, parseRegistrationBbox } from './lib/candidatePdf';
 import { mergeParties, partyCodeLookup } from './lib/cecParties';
 import { buildDistrictRefs, applyVerifiedDistricts, type VerifiedDistricts } from './lib/councilDistricts';
 import { linkCandidate, identityLine, type LinkConfirmation, type OfficialRef } from './lib/candidateLinks';
+import { applyVerifiedBallots, type VerifiedBallots } from './lib/candidateBallots';
 import { assemble } from './lib/candidateAssemble';
 import { applyFirstRuns, type FirstRunConfirmation } from './lib/candidateFirstRun';
 import { normalizeAreaName } from './lib/areaMatch';
@@ -72,6 +73,9 @@ const { national, counties, review, warnings } = assemble({
 
 applyFirstRuns(national, counties,
   JSON.parse(read('scraper/candidate-first-runs-confirmed.json')) as FirstRunConfirmation[], 2026);
+
+applyVerifiedBallots(national, counties,
+  JSON.parse(read('scraper/candidate-ballots-2026-verified.json')) as VerifiedBallots);
 
 // 差異報告：與現有輸出比對（首次產出時沒有前一版）
 const prevNational = existsSync(`${OUT}/national.json`) ? JSON.parse(read(`${OUT}/national.json`)) as NationalCandidates : null;

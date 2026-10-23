@@ -2,13 +2,13 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadOfficials } from './data';
-import { loadCandidacies } from './candidacy';
+import { excludedCandidacies, loadCandidacies } from './candidacy';
 import { educationForDisplay, loadCandidateEducation } from './candidateEducation';
 import { careerText } from './careerCategory';
 import { loadCandidatePolicies } from './candidatePolicies';
 import { officeRole, shortParty } from './seoTitle';
 import { loadDistrictPages } from './districtPageData';
-import { STAGE_LABEL } from './candidateTypes';
+import { candidateSourceLabel } from './candidateTypes';
 import { districtAreaSummary } from './districtPage';
 import { candidatePhotoCredits } from './candidatePhotos';
 
@@ -105,7 +105,7 @@ async function buildCards(): Promise<Map<string, ShareCardData>> {
     const origin = (process.env.SITE_URL || 'https://legislator-background.pages.dev').replace(/\/$/, '');
     cards.set(id, {
       id, kind: 'person', heading: o.name,
-      subtitle: candidacy ? `2026 ${candidacy.role}候選人` : officeRole(o.officeType, o.district),
+      subtitle: candidacy ? `2026 ${candidacy.role}候選人${candidacy.number != null ? `・${candidacy.number} 號` : ''}` : excludedCandidacies().has(o.slug) && o.officeType === 'candidate' ? '2026 登記參選・未通過資格審查' : officeRole(o.officeType, o.district),
       detail: `${shortParty(o.party)}${candidacy ? '' : `・${o.district}`}`,
       note: o.departedReason ? '已非現任・任內公開資料與來源' : '學經歷與公開紀錄・逐筆附出處',
       date: dates.sort().at(-1)!,
@@ -137,7 +137,7 @@ async function buildCards(): Promise<Map<string, ShareCardData>> {
       id, kind: 'district', heading: `${page.county.name}${page.district.label}`,
       subtitle: `2026 議員候選人・共 ${page.district.candidates.length} 人`,
       detail: districtAreaSummary(page.area),
-      note: STAGE_LABEL[page.council.source.stage],
+      note: candidateSourceLabel(page.council.source),
       date: page.council.source.tableDate,
     });
   }

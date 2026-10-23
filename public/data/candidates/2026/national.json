@@ -1,8 +1,9 @@
 {
  "source": {
-  "stage": "registration",
-  "url": "https://web.cec.gov.tw/central/article/64709",
-  "tableDate": "2026-09-07"
+  "stage": "certified",
+  "url": "https://web.cec.gov.tw/central/article/65212",
+  "tableDate": "2026-10-16",
+  "note": "金門已補號次；其餘縣市因颱風延期至 2026-10-27 抽籤。"
  },
  "races": [
   {
@@ -72,6 +73,12 @@
     "slug": "mayor-taipei",
     "termLimitStatus": "notLimited",
     "termLimitReason": ""
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -125,6 +132,12 @@
     "slug": "mayor-new-taipei",
     "termLimitStatus": "limited",
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -158,6 +171,12 @@
     "slug": "mayor-taoyuan",
     "termLimitStatus": "notLimited",
     "termLimitReason": ""
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -200,6 +219,12 @@
     "slug": "mayor-taichung",
     "termLimitStatus": "limited",
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -251,6 +276,12 @@
     "slug": "mayor-tainan",
     "termLimitStatus": "limited",
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -311,6 +342,12 @@
     "slug": "mayor-kaohsiung",
     "termLimitStatus": "limited",
     "termLimitReason": "已連任一次（2020 年高雄市長補選當選、2022 年連任），依地方制度法不得再選"
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -344,6 +381,12 @@
     "slug": "mayor-lienchiang",
     "termLimitStatus": "notLimited",
     "termLimitReason": ""
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -352,66 +395,66 @@
    "isMunicipality": false,
    "candidates": [
     {
-     "name": "洪和成",
+     "name": "張國威",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-洪和成-金門縣",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-張國威-金門縣",
      "identity": null
     },
     {
      "name": "李文良",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "cand-李文良-金門縣",
      "identity": null
     },
     {
-     "name": "黃世團",
+     "name": "洪和成",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-黃世團-金門縣",
-     "identity": null
-    },
-    {
-     "name": "陳玉珍",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "chenyu-jen",
-     "identity": "現任立委（金門縣選舉區）"
-    },
-    {
-     "name": "張國威",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-張國威-金門縣",
-     "identity": null
-    },
-    {
-     "name": "梁文韜",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-梁文韜-金門縣",
+     "number": 3,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-洪和成-金門縣",
      "identity": null
     },
     {
      "name": "張火木",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-04",
      "slug": "cand-張火木-金門縣",
+     "identity": null
+    },
+    {
+     "name": "陳玉珍",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 5,
+     "registeredOn": "2026-09-02",
+     "slug": "chenyu-jen",
+     "identity": "現任立委（金門縣選舉區）"
+    },
+    {
+     "name": "梁文韜",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 6,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-梁文韜-金門縣",
+     "identity": null
+    },
+    {
+     "name": "黃世團",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 7,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-黃世團-金門縣",
      "identity": null
     }
    ],
@@ -422,6 +465,13 @@
     "slug": "mayor-kinmen",
     "termLimitStatus": "notLimited",
     "termLimitReason": ""
+   },
+   "source": {
+    "stage": "numbered",
+    "url": "https://www.kmdn.gov.tw/1117/1271/1272/591193/",
+    "tableDate": "2026-10-24",
+    "label": "金門日報：10/23 抽籤號次",
+    "note": "縣長及議員號次已核對；抽籤日期 2026-10-23。"
    }
   },
   {
@@ -493,6 +543,12 @@
     "slug": "mayor-yilan",
     "termLimitStatus": "limited",
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -535,6 +591,12 @@
     "slug": "mayor-hsinchu-county",
     "termLimitStatus": "limited",
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -568,6 +630,12 @@
     "slug": "mayor-miaoli",
     "termLimitStatus": "notLimited",
     "termLimitReason": ""
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -619,6 +687,12 @@
     "slug": "mayor-changhua",
     "termLimitStatus": "limited",
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -652,6 +726,12 @@
     "slug": "mayor-nantou",
     "termLimitStatus": "notLimited",
     "termLimitReason": ""
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -703,6 +783,12 @@
     "slug": "mayor-yunlin",
     "termLimitStatus": "limited",
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -736,6 +822,12 @@
     "slug": "mayor-chiayi-county",
     "termLimitStatus": "limited",
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -769,6 +861,12 @@
     "slug": "mayor-pingtung",
     "termLimitStatus": "notLimited",
     "termLimitReason": ""
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -831,6 +929,12 @@
     "slug": "mayor-taitung",
     "termLimitStatus": "limited",
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -882,6 +986,12 @@
     "slug": "mayor-hualien",
     "termLimitStatus": "limited",
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -951,6 +1061,12 @@
     "slug": "mayor-penghu",
     "termLimitStatus": "notLimited",
     "termLimitReason": ""
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -993,6 +1109,12 @@
     "slug": "mayor-keelung",
     "termLimitStatus": "notLimited",
     "termLimitReason": ""
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -1035,6 +1157,12 @@
     "slug": "mayor-hsinchu-city",
     "termLimitStatus": "notLimited",
     "termLimitReason": ""
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   },
   {
@@ -1095,6 +1223,12 @@
     "slug": "mayor-chiayi-city",
     "termLimitStatus": "limited",
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選（2022 為重行選舉，當選人出生日期由 2018 年原始檔以「同縣市同職務同姓名同政黨相符」回填認定）"
+   },
+   "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16",
+    "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
    }
   }
  ]

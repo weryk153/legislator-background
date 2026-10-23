@@ -1,0 +1,154 @@
+{
+  "source": {
+    "stage": "certified",
+    "url": "https://web.cec.gov.tw/central/article/65212",
+    "tableDate": "2026-10-16"
+  },
+  "registrationSource": {
+    "stage": "registration",
+    "url": "https://web.cec.gov.tw/central/article/64709",
+    "tableDate": "2026-09-07"
+  },
+  "records": [
+    {
+      "countyCode": "10-009-00-000-0000",
+      "countyName": "雲林縣",
+      "districtNo": 4,
+      "candidate": {
+        "name": "鍾任明",
+        "partyName": "中國國民黨",
+        "partyCode": "1",
+        "number": null,
+        "registeredOn": "2026-09-02",
+        "slug": "cand-鍾任明-雲林縣第4選舉區",
+        "identity": null
+      }
+    },
+    {
+      "countyCode": "65-000-00-000-0000",
+      "countyName": "新北市",
+      "districtNo": 10,
+      "candidate": {
+        "name": "林正峰",
+        "partyName": "中國國民黨",
+        "partyCode": "1",
+        "number": null,
+        "registeredOn": "2026-09-03",
+        "slug": "cand-林正峰-新北市第10選舉區",
+        "identity": null
+      }
+    },
+    {
+      "countyCode": "10-017-00-000-0000",
+      "countyName": "基隆市",
+      "districtNo": 3,
+      "candidate": {
+        "name": "張芳麗",
+        "partyName": "無",
+        "partyCode": "999",
+        "number": null,
+        "registeredOn": "2026-09-02",
+        "slug": "c-張芳麗-國民黨-基隆市第03選舉區",
+        "identity": "現任議員（基隆市第3選舉區）"
+      }
+    },
+    {
+      "countyCode": "09-020-00-000-0000",
+      "countyName": "金門縣",
+      "districtNo": 1,
+      "candidate": {
+        "name": "石永城",
+        "partyName": "無",
+        "partyCode": "999",
+        "number": null,
+        "registeredOn": "2026-09-02",
+        "slug": "c-石永城-無黨籍及未經政黨推薦-金門縣第01選舉區",
+        "identity": "現任議員（金門縣第1選舉區）"
+      }
+    },
+    {
+      "countyCode": "10-010-00-000-0000",
+      "countyName": "嘉義縣",
+      "districtNo": 6,
+      "candidate": {
+        "name": "何博倫",
+        "partyName": "無",
+        "partyCode": "999",
+        "number": null,
+        "registeredOn": "2026-09-02",
+        "slug": "cand-何博倫-嘉義縣第6選舉區",
+        "identity": null
+      }
+    },
+    {
+      "countyCode": "66-000-00-000-0000",
+      "countyName": "臺中市",
+      "districtNo": 13,
+      "candidate": {
+        "name": "鄭伯其",
+        "partyName": "無",
+        "partyCode": "999",
+        "number": null,
+        "registeredOn": "2026-09-02",
+        "slug": "cand-鄭伯其-臺中市第13選舉區",
+        "identity": null
+      }
+    },
+    {
+      "countyCode": "63-000-00-000-0000",
+      "countyName": "臺北市",
+      "districtNo": 6,
+      "candidate": {
+        "name": "游智彬",
+        "partyName": "新黨",
+        "partyCode": "74",
+        "number": null,
+        "registeredOn": "2026-09-02",
+        "slug": "cand-游智彬-臺北市第6選舉區",
+        "identity": null
+      }
+    },
+    {
+      "countyCode": "10-015-00-000-0000",
+      "countyName": "花蓮縣",
+      "districtNo": 5,
+      "candidate": {
+        "name": "周駿宥",
+        "partyName": "無",
+        "partyCode": "999",
+        "number": null,
+        "registeredOn": "2026-09-04",
+        "slug": "c-周駿宥-國民黨-花蓮縣第05選舉區",
+        "identity": "現任議員（花蓮縣第5選舉區）"
+      }
+    },
+    {
+      "countyCode": "68-000-00-000-0000",
+      "countyName": "桃園市",
+      "districtNo": 1,
+      "candidate": {
+        "name": "蕭湘瀚",
+        "partyName": "無",
+        "partyCode": "999",
+        "number": null,
+        "registeredOn": "2026-09-01",
+        "slug": "cand-蕭湘瀚-桃園市第1選舉區",
+        "identity": null
+      }
+    },
+    {
+      "countyCode": "67-000-00-000-0000",
+      "countyName": "臺南市",
+      "districtNo": 7,
+      "candidate": {
+        "name": "曹暐國",
+        "partyName": "無",
+        "partyCode": "999",
+        "number": null,
+        "registeredOn": "2026-08-31",
+        "slug": "cand-曹暐國-臺南市第7選舉區",
+        "identity": null
+      }
+    }
+  ]
+}

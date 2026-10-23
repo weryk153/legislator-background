@@ -1,8 +1,10 @@
 {
  "source": {
-  "stage": "registration",
-  "url": "https://web.cec.gov.tw/central/article/64709",
-  "tableDate": "2026-09-07"
+  "stage": "numbered",
+  "url": "https://www.kmdn.gov.tw/1117/1271/1272/591193/",
+  "tableDate": "2026-10-24",
+  "label": "金門日報：10/23 抽籤號次",
+  "note": "縣長及議員號次已核對；抽籤日期 2026-10-23。"
  },
  "countyCode": "09-020-00-000-0000",
  "countyName": "金門縣",
@@ -13,100 +15,73 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "尚文凱",
-     "partyName": "台灣民眾黨",
-     "partyCode": "350",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-尚文凱-金門縣第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "戴德滿",
-     "partyName": "新黨",
-     "partyCode": "74",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-戴德滿-金門縣第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "許大鴻",
+     "name": "唐麗輝",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-許大鴻-無黨籍及未經政黨推薦-金門縣第01選舉區",
-     "identity": "現任議員（金門縣第1選舉區）"
-    },
-    {
-     "name": "董森堡",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "c-董森堡-無黨籍及未經政黨推薦-金門縣第01選舉區",
-     "identity": "現任議員（金門縣第1選舉區）"
-    },
-    {
-     "name": "林鑫一",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-林鑫一-金門縣第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "蔡其雍",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "c-蔡其雍-民進黨-金門縣第01選舉區",
-     "identity": "現任議員（金門縣第1選舉區）"
-    },
-    {
-     "name": "倪于媃",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-倪于媃-金門縣第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "董家瑋",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-董家瑋-金門縣第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "石永城",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-石永城-無黨籍及未經政黨推薦-金門縣第01選舉區",
+     "number": 1,
+     "registeredOn": "2026-09-03",
+     "slug": "c-唐麗輝-無黨籍及未經政黨推薦-金門縣第01選舉區",
      "identity": "現任議員（金門縣第1選舉區）"
     },
     {
      "name": "許玉仙",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "cand-許玉仙-金門縣第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "許大鴻",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 3,
+     "registeredOn": "2026-08-31",
+     "slug": "c-許大鴻-無黨籍及未經政黨推薦-金門縣第01選舉區",
+     "identity": "現任議員（金門縣第1選舉區）"
+    },
+    {
+     "name": "蔡其雍",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 4,
+     "registeredOn": "2026-09-01",
+     "slug": "c-蔡其雍-民進黨-金門縣第01選舉區",
+     "identity": "現任議員（金門縣第1選舉區）"
+    },
+    {
+     "name": "尚文凱",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": 5,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-尚文凱-金門縣第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "傅蒼松",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 6,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-傅蒼松-金門縣第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "黃世丞",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 7,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-黃世丞-金門縣第1選舉區",
      "identity": null
     },
     {
      "name": "楊霈璿",
      "partyName": "台灣民眾黨",
      "partyCode": "350",
-     "number": null,
+     "number": 8,
      "registeredOn": "2026-09-02",
      "slug": "cand-楊霈璿-金門縣第1選舉區",
      "identity": null
@@ -115,16 +90,61 @@
      "name": "洪允典",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 9,
      "registeredOn": "2026-09-02",
      "slug": "c-洪允典-國民黨-金門縣第01選舉區",
      "identity": "現任議員（金門縣第1選舉區）"
     },
     {
+     "name": "林鑫一",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 10,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-林鑫一-金門縣第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "倪于媃",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 11,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-倪于媃-金門縣第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "董森堡",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 12,
+     "registeredOn": "2026-09-01",
+     "slug": "c-董森堡-無黨籍及未經政黨推薦-金門縣第01選舉區",
+     "identity": "現任議員（金門縣第1選舉區）"
+    },
+    {
+     "name": "董家瑋",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 13,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-董家瑋-金門縣第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "陳子芸",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 14,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-陳子芸-金門縣第1選舉區",
+     "identity": null
+    },
+    {
      "name": "莊勝騏",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 15,
      "registeredOn": "2026-09-02",
      "slug": "cand-莊勝騏-金門縣第1選舉區",
      "identity": null
@@ -133,63 +153,36 @@
      "name": "李慧艷",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 16,
      "registeredOn": "2026-09-03",
      "slug": "cand-李慧艷-金門縣第1選舉區",
      "identity": null
     },
     {
-     "name": "黃世丞",
+     "name": "陳泱瑚",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 17,
      "registeredOn": "2026-09-03",
-     "slug": "cand-黃世丞-金門縣第1選舉區",
+     "slug": "c-陳泱瑚-無黨籍及未經政黨推薦-金門縣第01選舉區",
+     "identity": "現任議員（金門縣第1選舉區）"
+    },
+    {
+     "name": "戴德滿",
+     "partyName": "新黨",
+     "partyCode": "74",
+     "number": 18,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-戴德滿-金門縣第1選舉區",
      "identity": null
     },
     {
      "name": "楊忠俊",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 19,
      "registeredOn": "2026-09-03",
      "slug": "cand-楊忠俊-金門縣第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "唐麗輝",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-唐麗輝-無黨籍及未經政黨推薦-金門縣第01選舉區",
-     "identity": "現任議員（金門縣第1選舉區）"
-    },
-    {
-     "name": "陳泱瑚",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-陳泱瑚-無黨籍及未經政黨推薦-金門縣第01選舉區",
-     "identity": "現任議員（金門縣第1選舉區）"
-    },
-    {
-     "name": "陳子芸",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-陳子芸-金門縣第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "傅蒼松",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-04",
-     "slug": "cand-傅蒼松-金門縣第1選舉區",
      "identity": null
     }
    ]
@@ -200,55 +193,73 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "周子傑",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-周子傑-國民黨-金門縣第02選舉區",
-     "identity": "現任議員（金門縣第2選舉區）"
-    },
-    {
-     "name": "李應文",
+     "name": "蔡水游",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-李應文-金門縣第2選舉區",
-     "identity": null
-    },
-    {
-     "name": "王秀玉",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-王秀玉-國民黨-金門縣第02選舉區",
-     "identity": "現任議員（金門縣第2選舉區）"
-    },
-    {
-     "name": "王國代",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-王國代-國民黨-金門縣第02選舉區",
+     "number": 1,
+     "registeredOn": "2026-09-03",
+     "slug": "c-蔡水游-無黨籍及未經政黨推薦-金門縣第02選舉區",
      "identity": "現任議員（金門縣第2選舉區）"
     },
     {
      "name": "李文益",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "cand-李文益-金門縣第2選舉區",
      "identity": null
     },
     {
+     "name": "周子傑",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 3,
+     "registeredOn": "2026-09-02",
+     "slug": "c-周子傑-國民黨-金門縣第02選舉區",
+     "identity": "現任議員（金門縣第2選舉區）"
+    },
+    {
+     "name": "黃萱萱",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 4,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-黃萱萱-金門縣第2選舉區",
+     "identity": null
+    },
+    {
+     "name": "吳佩雯",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 5,
+     "registeredOn": "2026-09-02",
+     "slug": "c-吳佩雯-無黨籍及未經政黨推薦-金門縣第02選舉區",
+     "identity": "現任議員（金門縣第2選舉區）"
+    },
+    {
+     "name": "王秀玉",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 6,
+     "registeredOn": "2026-09-02",
+     "slug": "c-王秀玉-國民黨-金門縣第02選舉區",
+     "identity": "現任議員（金門縣第2選舉區）"
+    },
+    {
+     "name": "陳錦偉",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 7,
+     "registeredOn": "2026-09-04",
+     "slug": "c-陳錦偉-無黨籍及未經政黨推薦-金門縣第02選舉區",
+     "identity": "現任議員（金門縣第2選舉區）"
+    },
+    {
      "name": "陳麒翔",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 8,
      "registeredOn": "2026-09-02",
      "slug": "cand-陳麒翔-金門縣第2選舉區",
      "identity": null,
@@ -265,49 +276,31 @@
      }
     },
     {
-     "name": "吳佩雯",
+     "name": "李應文",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 9,
      "registeredOn": "2026-09-02",
-     "slug": "c-吳佩雯-無黨籍及未經政黨推薦-金門縣第02選舉區",
-     "identity": "現任議員（金門縣第2選舉區）"
-    },
-    {
-     "name": "蔡水游",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-蔡水游-無黨籍及未經政黨推薦-金門縣第02選舉區",
-     "identity": "現任議員（金門縣第2選舉區）"
-    },
-    {
-     "name": "黃萱萱",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-黃萱萱-金門縣第2選舉區",
+     "slug": "cand-李應文-金門縣第2選舉區",
      "identity": null
+    },
+    {
+     "name": "王國代",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 10,
+     "registeredOn": "2026-09-02",
+     "slug": "c-王國代-國民黨-金門縣第02選舉區",
+     "identity": "現任議員（金門縣第2選舉區）"
     },
     {
      "name": "楊育菡",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 11,
      "registeredOn": "2026-09-04",
      "slug": "c-楊育菡-無黨籍及未經政黨推薦-金門縣第02選舉區",
      "identity": "前任議員（金門縣第2選舉區）"
-    },
-    {
-     "name": "陳錦偉",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-04",
-     "slug": "c-陳錦偉-無黨籍及未經政黨推薦-金門縣第02選舉區",
-     "identity": "現任議員（金門縣第2選舉區）"
     }
    ]
   },
@@ -317,39 +310,39 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "洪長享",
+     "name": "洪和興",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-洪長享-金門縣第3選舉區",
+     "number": 1,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-洪和興-金門縣第3選舉區",
      "identity": null
     },
     {
-     "name": "洪毓壕",
+     "name": "洪長享",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-洪毓壕-金門縣第3選舉區",
+     "number": 2,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-洪長享-金門縣第3選舉區",
      "identity": null
     },
     {
      "name": "洪若珊",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-03",
      "slug": "cand-洪若珊-金門縣第3選舉區",
      "identity": null
     },
     {
-     "name": "洪和興",
+     "name": "洪毓壕",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-03",
-     "slug": "cand-洪和興-金門縣第3選舉區",
+     "slug": "cand-洪毓壕-金門縣第3選舉區",
      "identity": null
     }
    ]

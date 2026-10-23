@@ -12,7 +12,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { buildYears } from "../lib/electionYears";
 import {
-  STAGE_LABEL, chiefTitle,
+  candidateSourceLabel, chiefTitle,
   type CandidateEntry, type CountyCandidates, type NationalCandidates,
 } from "../lib/candidateTypes";
 import { candidateOverview, isCouncilReelect, partyTally, partyLabel, recordCounts, type PartyBar } from "../lib/candidateStats";
@@ -90,7 +90,7 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": "Dataset",
     name: "2026 年九合一選舉縣市長候選人",
-    description: `2026 年九合一選舉縣市長候選人名單，資料來源為中央選舉委員會公布之名冊（${STAGE_LABEL[candidates2026.source.stage]}，製表 ${candidates2026.source.tableDate}），名單會隨選務進度更新。`,
+    description: `2026 年九合一選舉縣市長候選人名單，資料來源為中央選舉委員會公布之名冊（${candidateSourceLabel(candidates2026.source)}，製表 ${candidates2026.source.tableDate}），名單會隨選務進度更新。`,
     url: pageUrl,
     inLanguage: "zh-Hant",
     temporalCoverage: "2026",
@@ -127,7 +127,7 @@ const jsonLd = [
   <header class="election-hero">
     <div class="hero-title"><TitleCard vertical="選舉特輯" lines={["九合一選舉", "找出你的候選人"]} heading="2026 九合一選舉候選人" variant="feature" fitContainer /></div>
     <div class="hero-meta"><p class="year">2026</p><p class="vote-date">投票日 11 月 28 日</p>
-      {candidates2026 && <p class="data-stage"><a href={candidates2026.source.url}>{STAGE_LABEL[candidates2026.source.stage]}</a><br />製表 {candidates2026.source.tableDate}・名單隨選務進度更新</p>}
+      {candidates2026 && <p class="data-stage"><a href={candidates2026.source.url}>{candidateSourceLabel(candidates2026.source)}</a><br />製表 {candidates2026.source.tableDate}・{candidates2026.source.note}</p>}
       <nav aria-label="選舉年份"><span aria-current="page">2026 候選人</span><a href="/elections/2022/">2022 選舉結果 →</a></nav>
     </div>
   </header>
@@ -150,7 +150,7 @@ const jsonLd = [
     <ElectionTimeline />
     {candidates2026 && (
       <p class="overview-note">
-        本站名單目前為：{STAGE_LABEL[candidates2026.source.stage]}（製表 {candidates2026.source.tableDate}）
+        本站名單目前為：{candidateSourceLabel(candidates2026.source)}（製表 {candidates2026.source.tableDate}）。{candidates2026.source.note}
       </p>
     )}
   </section>
@@ -203,8 +203,8 @@ const jsonLd = [
     <section class="overview" aria-labelledby="cand-title">
       <SectionHead id="cand-title" text="2026 縣市長候選人" />
       <p class="overview-note">
-        資料：<a href={candidates2026.source.url} rel="noopener">{STAGE_LABEL[candidates2026.source.stage]}</a>，
-        製表 {candidates2026.source.tableDate}。六都在前，其餘依縣市代碼順序；同一縣市內依{candidates2026.races.every((r) => r.candidates.every((c) => c.number !== null)) ? "號次" : "中選會名冊順序"}排列。<strong>粗體</strong>為爭取連任的現任縣市長。
+        資料：<a href={candidates2026.source.url} rel="noopener">{candidateSourceLabel(candidates2026.source)}</a>，
+        製表 {candidates2026.source.tableDate}。六都在前，其餘依縣市代碼順序；已公布號次的縣市依號次排列，其餘依中選會名冊順序。<strong>粗體</strong>為爭取連任的現任縣市長。
       </p>
       <div class="table-scroll">
         <table class="cand-table">
@@ -220,7 +220,7 @@ const jsonLd = [
                   {r.candidates.map((c, i) => (
                     <>
                       {i > 0 && "、"}
-                      <span class={c.slug && c.slug === r.incumbent2022?.slug ? "cand reelect" : "cand"}><span class="nm">{c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}<FirstRunBadge evidence={c.firstRun} name={c.name} /></span>（{partyLabel(c)}）</span>
+                      <span class={c.slug && c.slug === r.incumbent2022?.slug ? "cand reelect" : "cand"}><span class="nm">{c.number !== null && <small>{c.number} 號 </small>}{c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}<FirstRunBadge evidence={c.firstRun} name={c.name} /></span>（{partyLabel(c)}）</span>
                     </>
                   ))}
                 </td>
@@ -264,7 +264,7 @@ const jsonLd = [
                   {d.candidates.map((c, i) => (
                     <>
                       {i > 0 && "、"}
-                      <span class={councilReelect(c) ? "cand reelect" : "cand"}><span class="nm">{c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}<FirstRunBadge evidence={c.firstRun} name={c.name} /></span>（{partyLabel(c)}）</span>
+                      <span class={councilReelect(c) ? "cand reelect" : "cand"}><span class="nm">{c.number !== null && <small>{c.number} 號 </small>}{c.slug ? <a href={`/officials/${c.slug}/`}>{c.name}</a> : c.name}<FirstRunBadge evidence={c.firstRun} name={c.name} /></span>（{partyLabel(c)}）</span>
                     </>
                   ))}
                 </dd>
