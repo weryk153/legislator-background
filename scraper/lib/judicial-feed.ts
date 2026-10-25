@@ -17,6 +17,13 @@ import { scoreMatch } from '../match/score';
 const BASE = 'https://data.judicial.gov.tw/jdg/api';
 const UA = 'legislator-background-bot/1.0 (public-data; +https://github.com/weryk153/legislator-background)';
 
+// Keep incomplete documents after the daily feed rotates. Legacy coverage files
+// recorded only failedJids; newer ones also retain unattempted capped entries.
+export function judicialQueue(current: string[], coverage?: { pendingJids?: unknown; failedJids?: unknown }): string[] {
+  const old = Array.isArray(coverage?.pendingJids) ? coverage.pendingJids : Array.isArray(coverage?.failedJids) ? coverage.failedJids : [];
+  return [...new Set([...current, ...old.filter((x): x is string => typeof x === 'string' && x.length > 0)])];
+}
+
 async function postJson(path: string, body: unknown, retries = 4): Promise<any> {
   let lastErr: unknown;
   for (let attempt = 0; attempt <= retries; attempt += 1) {

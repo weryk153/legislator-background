@@ -117,6 +117,12 @@ PDF 文字擷取需 Poppler：Ubuntu 使用 `sudo apt-get install poppler-utils`
 排程使用 repository variable `JUDICIAL_RUNNER`，未設定時維持 Ubuntu。只有在實測
 確認特定 runner 能連線後才切換，不能以修改排程或測試通過代替 API 實際成功。
 
+2026-10-26 實測 Ubuntu、macOS hosted runner 均在 Auth 前連線逾時；同時段本機
+Auth/JList 成功。因此目前由本機 Codex 排程每日 00:25 執行，repository variable
+`JUDICIAL_FEED_MODE=local` 讓 GitHub 略過定時執行，仍可手動診斷。這是執行位置的
+替代方案，並不表示雲端連線已恢復。本機排程須保持電腦與 App 開啟；若日後有已驗證
+可連線的雲端 runner，再停用本機排程並移除該 variable。
+
 Judicial feed artifact 包含 `candidates.json`（若有）、`status.json`，以及實際抓取後的
 `coverage.json`（清單數、成功／失敗數、未完成數及失敗 jid）。失敗、取消或僅量測
 的執行使用 `judicial-candidates-stale` 名稱，並在 job summary 標示 STALE。
@@ -124,8 +130,9 @@ Judicial feed artifact 包含 `candidates.json`（若有）、`status.json`，�
 成功紀錄時為 `null`（未知），不可拿 artifact 上傳時間代替。只有當次清單全部完成才
 更新成功時間；部分抓取進度也會保留，但狀態仍為 stale，量測成功不更新資料新鮮度。
 同日重跑可接續；同一 jid 出現在另一天的異動清單會重新讀取並更新待查核紀錄，官方
-明確撤回者從待查核佇列移除。驗證失敗不能當作撤回。候選資料仍需人工審核；完成
-當日清單不代表完整歷史涵蓋，中斷的過去日更資料不會自動補齊。
+明確撤回者從待查核佇列移除。驗證失敗不能當作撤回。未成功及因上限尚未處理的 jid
+寫入 `pendingJids`，隔日清單輪替後仍會重試（舊 coverage 的 `failedJids` 也會接續）。
+候選資料仍需人工審核；完成清單不代表完整歷史涵蓋，未曾保存的過去日更資料不會自動補齊。
 
 PR 的 `Data refresh checks` 會在 Ubuntu 測試 scraper、建置已提交快照，並另行從監察院
 下載一筆公開申報 PDF，經 `pdftotext` 與財產解析器檢查非空結果。可用

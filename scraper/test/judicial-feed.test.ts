@@ -1,8 +1,20 @@
 import { afterEach, describe, it, expect, vi } from 'vitest';
-import { authJudicial, fetchJList, fetchJDoc, flattenJList, judgmentFromJDoc, matchJudgment, defendantZones, type JDoc } from '../lib/judicial-feed';
+import { authJudicial, fetchJList, fetchJDoc, flattenJList, judgmentFromJDoc, matchJudgment, defendantZones, judicialQueue, type JDoc } from '../lib/judicial-feed';
 import type { Target } from '../lib/types';
 
 afterEach(() => { vi.unstubAllGlobals(); vi.useRealTimers(); });
+
+describe('unfinished judicial queue', () => {
+  it('retains failed and capped documents after the daily change list rotates', () => {
+    expect(judicialQueue(['new', 'retry'], { pendingJids: ['retry', 'old-failure', 'capped'] })).toEqual(['new', 'retry', 'old-failure', 'capped']);
+  });
+  it('migrates legacy failures while ignoring invalid entries', () => {
+    expect(judicialQueue(['new'], { failedJids: ['old', null, '', 1, 'old'] })).toEqual(['new', 'old']);
+  });
+  it('does not revive completed backlog from an empty pending list', () => {
+    expect(judicialQueue(['today'], { pendingJids: [], failedJids: ['previous'] })).toEqual(['today']);
+  });
+});
 
 describe('judicial API responses', () => {
   it('uses the documented Auth request and capitalized Token response', async () => {

@@ -42,6 +42,9 @@ env:
 
 jobs:
   feed:
+    # A verified local schedule can own daily runs when both hosted OSes cannot connect.
+    # Manual workflow_dispatch remains available for later connectivity checks.
+    if: ${{ github.event_name != 'schedule' || vars.JUDICIAL_FEED_MODE != 'local' }}
     runs-on: ${{ inputs.runner || vars.JUDICIAL_RUNNER || 'ubuntu-latest' }}
     timeout-minutes: 330   # under GitHub's 6h job limit; the API window is also ~6h
     steps:

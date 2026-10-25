@@ -11,7 +11,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadTargets } from './lib/targets';
 import { loadEnv } from './lib/loadEnv';
-import { authJudicial, fetchJList, fetchJDoc, judgmentFromJDoc, matchJudgment, judgmentUrl } from './lib/judicial-feed';
+import { authJudicial, fetchJList, fetchJDoc, judgmentFromJDoc, matchJudgment, judgmentUrl, judicialQueue } from './lib/judicial-feed';
 
 loadEnv();
 
@@ -24,6 +24,7 @@ const hasFlag = (name: string): boolean => process.argv.includes(`--${name}`);
 const OUT_DIR = join(process.cwd(), 'scraper', 'out-judicial');
 const SEEN_FILE = join(OUT_DIR, '.seen.json');
 const CAND_FILE = join(OUT_DIR, 'candidates.json');
+const COVERAGE_FILE = join(OUT_DIR, 'coverage.json');
 
 async function main() {
   const user = process.env.JUDICIAL_API_USER;
@@ -34,9 +35,12 @@ async function main() {
   if (hour >= 6) throw new Error('Outside judicial API service hours (00:00–06:00 Asia/Taipei); no freshness update. Retry during the next service window.');
 
   const token = await authJudicial(user, password);
-  const jids = await fetchJList(token);
-  console.log(`JList: ${jids.length} changed judgments in the feed`);
+  const currentJids = await fetchJList(token);
+  console.log(`JList: ${currentJids.length} changed judgments in the feed`);
   if (hasFlag('measure')) return;
+
+  const previousCoverage = existsSync(COVERAGE_FILE) ? JSON.parse(readFileSync(COVERAGE_FILE, 'utf8')) : undefined;
+  const jids = judicialQueue(currentJids, previousCoverage);
 
   mkdirSync(OUT_DIR, { recursive: true });
   const seen: Record<string, string | 1> = existsSync(SEEN_FILE) ? JSON.parse(readFileSync(SEEN_FILE, 'utf8')) : {};
@@ -77,11 +81,12 @@ async function main() {
     await new Promise((r) => setTimeout(r, 200)); // politeness between JDoc calls
   }
   save();
-  const remaining = jids.filter(jid => seen[jid] !== retrievedAt).length;
-  writeFileSync(join(OUT_DIR, 'coverage.json'), JSON.stringify({
+  const pendingJids = jids.filter(jid => seen[jid] !== retrievedAt);
+  const remaining = pendingJids.length;
+  writeFileSync(COVERAGE_FILE, JSON.stringify({
     checkedAt: new Date().toISOString(), feedDate: retrievedAt,
-    runId: process.env.GITHUB_RUN_ID ?? null, listed: jids.length, fetched, matched,
-    failed, remaining, failedJids,
+    runId: process.env.GITHUB_RUN_ID ?? null, listed: currentJids.length, queued: jids.length, fetched, matched,
+    failed, remaining, failedJids, pendingJids,
   }, null, 2) + '\n');
   console.log(`Feed done. fetched:${fetched} matched:${matched} total-candidates:${cands.length} failed:${failed} remaining:${remaining}`);
   if (failed || remaining) throw new Error(`Feed incomplete: ${failed} failed, ${remaining} still pending. Progress saved locally; data remains stale.`);
