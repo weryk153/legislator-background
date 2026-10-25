@@ -1,44 +1,14 @@
-# Phase 2b — scheduled data refresh.
-#
-# Re-runs the scraper pipeline in CI, regenerates src/data/officials.json, and commits it.
-# Pushing the updated JSON triggers the static host (Cloudflare Pages / Netlify) to rebuild
-# and redeploy — so this is the whole "keep the site fresh" loop, with NO backend server.
-#
-# ───────────────────────────────────────────────────────────────────────────────────────
-# IMPORTANT DESIGN NOTE — preserving human-curated data (READ BEFORE ENABLING THE SCHEDULE)
-# ───────────────────────────────────────────────────────────────────────────────────────
-# The pipeline auto-approves only careers + assets (factual, citable). Judgments and
-# controversies require human approval (approved:false by default). The 225 controversies
-# currently published were approved by a manual DB step — they exist ONLY in the committed
-# src/data/officials.json, NOT in any scraper output.
-#
-# Therefore a naive "fresh DB → scrape → import → export" would DROP all curated
-# controversies/judgments. This job restores them with `pnpm run seed:from-json`
-# (scraper/seed-from-json.ts), which re-inserts each official's controversies + judgments
-# from the committed snapshot AFTER import. Validated locally (225 controversies survive a
-# delete + reseed round-trip). The post-export guard below is a second line of defence.
-#
-# Stable URLs: RESOLVED. Profile pages live at /officials/<slug>/ where slug is deterministic
-# from name+office+district (set by import from targets.json), so a fresh CI rebuild yields
-# the SAME URLs. The official UUID still churns but is no longer used in any URL.
-#
-# The judicial open-data feed (00–06 Taipei window, no CAPTCHA, reachable from CI) is a
-# SEPARATE job — see judicial-feed.yml (pending the feed adapter). It only accumulates
-# candidates for human review; it never auto-publishes judgments.
-# ───────────────────────────────────────────────────────────────────────────────────────
-
+# Refresh factual records on the committed snapshot. Preserve every existing profile,
+# relationship identity, photo, donation, judgment and manually curated controversy.
 name: Refresh data
 
 on:
   workflow_dispatch:
   schedule:
-    # Weekly, Sunday 17:00 UTC = Mon 01:00 Taipei. Assets/careers change infrequently
-    # (declarations are published periodically), so weekly is plenty — nightly would just
-    # re-download ~1000 PDFs for nothing. Daily judicial work lives in judicial-feed.yml.
-    - cron: "0 17 * * 0"
+    - cron: "17 17 * * 0" # Monday 01:17 Taipei; avoid the busy top of the hour.
 
 permissions:
-  contents: write   # commit + push the regenerated src/data/officials.json
+  contents: write
 
 concurrency:
   group: refresh-data
@@ -47,78 +17,44 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 90   # the cy getFile pass fetches ~1000 PDFs
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
-
       - uses: pnpm/action-setup@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: pnpm
-
       - run: pnpm install --frozen-lockfile
-
       - name: Install PDF text extractor
         run: |
           sudo apt-get update
           sudo apt-get install -y poppler-utils
           pdftotext -v
-
-      # Local Supabase stack inside the runner (Docker is available on ubuntu-latest).
-      - uses: supabase/setup-cli@v1
+      - name: Fetch and merge verified factual records
+        run: pnpm exec tsx scraper/scripts/refresh-snapshot.ts
+      - name: Validate snapshot and build
+        run: |
+          pnpm exec vitest run scraper/test/refreshSnapshot.test.ts
+          pnpm build
+      - name: Upload refresh evidence
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
-          version: latest
-      - name: Start local Supabase + apply migrations
+          name: factual-refresh-evidence
+          path: |
+            scraper/out-refresh/status.json
+            scraper/out-refresh/failure.json
+          if-no-files-found: ignore
+      - name: Commit snapshot and its date together
         run: |
-          supabase start
-          # Export the local stack's URL + service-role key for the scraper/import/export.
-          {
-            echo "PUBLIC_SUPABASE_URL=$(supabase status -o env | sed -n 's/^API_URL=//p' | tr -d '\"')"
-            echo "SUPABASE_SERVICE_ROLE_KEY=$(supabase status -o env | sed -n 's/^SERVICE_ROLE_KEY=//p' | tr -d '\"')"
-          } >> "$GITHUB_ENV"
-
-      # ── Refresh auto-approved data (careers + assets) ───────────────────────────────
-      # One pass over all adapters (run.ts writes ONE combined review file per target, so a
-      # single run is required — running per-source would overwrite the file each time).
-      # Only careers + assets auto-approve; wiki controversies stay approved:false (not
-      # imported) and the judgments adapter fails gracefully in CI.
-      - name: Scrape (all sources, single pass)
-        run: pnpm run scrape
-
-      - name: Import
-        run: pnpm run scrape:import   # idempotent upsert by natural keys; never deletes
-
-      # ── Restore curated data (controversies + judgments) the scrape can't reproduce ──
-      - name: Seed curated data from committed snapshot
-        run: pnpm run seed:from-json
-
-      # ── Regenerate the committed snapshot ───────────────────────────────────────────
-      # NOTE: export reads ONLY what's in the DB. For scope=assets-careers-only the fresh DB
-      # lacks the curated controversies, so guard the export so we never overwrite the
-      # committed JSON with a controversy-stripped one. The seed-curated step (above) is what
-      # makes a faithful full export safe.
-      - name: Export + verify nothing curated is lost
-        run: |
-          pnpm run export:data
-          NEW=$(node -e "const o=require('./src/data/officials.json');console.log(o.reduce((n,x)=>n+(x.controversies?.length||0),0))")
-          OLD=$(git show HEAD:src/data/officials.json | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const o=JSON.parse(s);console.log(o.reduce((n,x)=>n+(x.controversies?.length||0),0))})")
-          echo "controversies — committed:$OLD  regenerated:$NEW"
-          if [ "$NEW" -lt "$OLD" ]; then
-            echo "::error::Refresh would drop curated controversies ($OLD → $NEW). Implement seed-curated. Discarding export."
-            git checkout -- src/data/officials.json
-            exit 1
-          fi
-
-      - name: Commit + push if changed
-        run: |
-          if git diff --quiet -- src/data/officials.json; then
-            echo "No data changes."
+          if git diff --quiet -- src/data/officials.json src/data/meta.json; then
+            echo "No data changes; snapshot date remains unchanged."
           else
-            git config user.name  "github-actions[bot]"
+            git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add src/data/officials.json
-            git commit -m "chore(data): scheduled refresh $(date -u +%Y-%m-%d)"
+            git add src/data/officials.json src/data/meta.json
+            git commit -m "chore(data): refresh factual records $(date -u +%Y-%m-%d)"
+            # A concurrent push rejects this publication instead of overwriting newer work.
             git push
           fi

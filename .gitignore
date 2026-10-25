@@ -5,6 +5,7 @@ dist/
 .env
 .DS_Store
 scraper/out/*.json
+scraper/out-refresh/
 scraper/out-wiki-backup/
 scraper/out-judicial/
 scraper/out-judgments/

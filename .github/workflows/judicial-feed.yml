@@ -3,7 +3,7 @@
 # The 司法院 open-data API (data.judicial.gov.tw) is the legal, CAPTCHA-free path to
 # judgments, BUT: (1) it only serves 00:00–06:00 Taipei, (2) it has no name search — it is a
 # daily change feed, so we fetch each changed judgment and match the roster by 被告 name.
-# GitHub's cloud runners CAN reach it (unlike the sandbox), so this is exactly where it runs.
+# Runner reachability varies; use the manual runner option to verify connectivity.
 #
 # LEGAL SENSITIVITY: this job NEVER publishes. It writes scraper/out-judicial/candidates.json
 # (matched judgments, approved:false). A human reviews each candidate, confirms identity, and
@@ -22,9 +22,16 @@ on:
         description: "Only count the day's changed judgments (no JDoc fetch / matching)"
         type: boolean
         default: false
+      runner:
+        description: "Runner for connectivity verification (scheduled runs use JUDICIAL_RUNNER variable)"
+        type: choice
+        options:
+          - ubuntu-latest
+          - macos-latest
+        default: ubuntu-latest
   schedule:
-    # 18:00 UTC = 02:00 Taipei — inside the API's 00:00–06:00 service window.
-    - cron: "0 18 * * *"
+    # 16:17 UTC = 00:17 Taipei. Leave room for observed multi-hour queue delays.
+    - cron: "17 16 * * *"
 
 concurrency:
   group: judicial-feed
@@ -35,7 +42,7 @@ env:
 
 jobs:
   feed:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runner || vars.JUDICIAL_RUNNER || 'ubuntu-latest' }}
     timeout-minutes: 330   # under GitHub's 6h job limit; the API window is also ~6h
     steps:
       - uses: actions/checkout@v4
@@ -79,9 +86,10 @@ jobs:
           RESTORED_CACHE_KEY: ${{ steps.state.outputs.cache-matched-key }}
         run: node scraper/scripts/judicial-artifact-status.mjs
 
-      # Only a completed feed advances persistent freshness; measure-only must not.
-      - name: Save successful judicial state
-        if: ${{ success() && steps.feed.outcome == 'success' }}
+      # Partial progress can be resumed, but status.json stays stale until complete.
+      # Measure-only or auth failures before the feed do not create a progress cache.
+      - name: Save judicial progress and its freshness status
+        if: ${{ always() && (steps.feed.outcome == 'success' || steps.feed.outcome == 'failure') && hashFiles('scraper/out-judicial/.seen.json') != '' }}
         uses: actions/cache/save@v4
         with:
           path: scraper/out-judicial
@@ -95,4 +103,5 @@ jobs:
           path: |
             scraper/out-judicial/candidates.json
             scraper/out-judicial/status.json
+            scraper/out-judicial/coverage.json
           if-no-files-found: ignore

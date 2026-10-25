@@ -36,11 +36,16 @@
 // source.type is 'gazette' (the underlying authoritative form is the 監察院公報/廉政專刊).
 import type { AdapterResult, CandidateAsset, EvidenceSource, SourceAdapter, Target } from '../lib/types';
 import { getDeclarationText, parseDeclaration } from '../lib/gazette';
+import { normalizeNameChars } from '../../src/lib/nameVariant';
 
 const UA = 'legislator-background-bot/1.0 (public-data; +https://github.com/weryk153/legislator-background)';
 const PRISO_BASE = 'https://priso.cy.gov.tw';
 const QUERY_DATA_URL = `${PRISO_BASE}/api/Query/QueryData`;
 const PUBLIC_PAGE = `${PRISO_BASE}/layout/baselist`;
+// The public registry records this legislator under her Chinese name. Verified
+// against QueryData rows with Dept=立法院 and Title=立法委員 (2026-10-26).
+const REGISTERED_NAMES: Record<string, string> = { '伍麗華Saidhai‧Tahovecahe': '伍麗華' };
+export const cyQueryName = (target: Target): string => REGISTERED_NAMES[target.name] ?? target.name;
 
 /**
  * Strip every non-digit from a money-ish string and return the integer value.
@@ -136,6 +141,21 @@ export function parseCyRows(
   return out;
 }
 
+// Name searches can return different people (e.g. 許淑華 / 李柏毅). A matching
+// department and office are required before choosing the latest annual record.
+// Earlier records in other offices remain available for manual identity review.
+export function cyRowMatchesTarget(row: any, target: Target): boolean {
+  const name = (s: string) => normalizeNameChars(s).replace(/\s/gu, '');
+  if (![target.name, cyQueryName(target)].some(n => name(trim(row?.Name)) === name(n))) return false;
+  const dept = trim(row?.Dept).replace(/\s/gu, '').replaceAll('台', '臺');
+  const title = trim(row?.Title);
+  if (target.office === 'legislator') return dept === '立法院' && ['立法委員', '院長', '副院長'].includes(title);
+  const county = target.district.match(/^.*?[縣市]/u)?.[0]?.replaceAll('台', '臺');
+  if (!county) return false;
+  if (target.office === 'councilor') return dept === `${county}議會` && ['議員', '議長', '副議長'].includes(title);
+  return dept === `${county}政府` && ['市長', '縣長'].includes(title);
+}
+
 // The priso.cy.gov.tw search is a POST JSON API, so we cannot reuse fetchPolite (which
 // only issues GETs). This is a small polite POST with the same UA + a couple of retries.
 async function politePost(url: string, body: unknown, retries = 2, delayMs = 1500): Promise<Response> {
@@ -167,10 +187,12 @@ export const cyAdapter: SourceAdapter = {
   async fetchFor(target: Target): Promise<AdapterResult> {
     try {
       const res = await politePost(QUERY_DATA_URL, {
-        Data: { Method: '', Type: 'name', Value: target.name },
+        Data: { Method: '', Type: 'name', Value: cyQueryName(target) },
         Page: { PageNo: 1, PageSize: 100 },
       });
       const text = await res.text();
+      const envelope = JSON.parse(text);
+      if (envelope.Success === false || !Array.isArray(envelope?.Data?.Data)) throw new Error('CY query failed: unexpected response');
       const allPaired = parseCyRows(text, PUBLIC_PAGE, new Date().toISOString().slice(0, 10));
 
       // Keep only 01一般申報 (the full annual declaration). 02更補正/09變動申報 are partial
@@ -178,7 +200,9 @@ export const cyAdapter: SourceAdapter = {
       // with e.g. only 債權. Per year keep the highest-期別 一般申報 (newest correction of it).
       const byYear = new Map<number, (typeof allPaired)[number]>();
       for (const p of allPaired) {
+        if (!cyRowMatchesTarget(p.row, target)) continue;
         if (!String(p.row?.PublishType ?? '').includes('一般申報')) continue;
+        p.asset.source = { ...p.asset.source, title: `監察院財產申報公報｜${trim(p.row.Name)}｜${trim(p.row.Dept)} ${trim(p.row.Title)}｜第${trim(p.row.Period)}期` };
         const y = p.asset.year || 0;
         const cur = byYear.get(y);
         if (!cur || Number(p.row?.Period ?? 0) > Number(cur.row?.Period ?? 0)) byYear.set(y, p);

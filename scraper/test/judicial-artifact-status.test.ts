@@ -48,7 +48,7 @@ describe('judicial artifact freshness', () => {
     const { status, summary } = run('success', 'success');
     expect(status).toMatchObject({ stale: false, lastSuccessfulFeedRunId: '456', runAttempt: '2', maxFetch: '3000' });
     expect(status.lastSuccessfulFeedAt).toBe(status.checkedAt);
-    expect(summary).toContain('does not imply full coverage');
+    expect(summary).toContain('does not imply full historical coverage');
   });
   it('writes a status artifact on first-run failure with no cached candidates', () => {
     expect(run('', '', undefined, false).status).toMatchObject({ stale: true, candidatesPresent: false, feedOutcome: 'skipped' });

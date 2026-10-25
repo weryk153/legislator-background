@@ -1,5 +1,5 @@
 import { afterEach, describe, it, expect, vi } from 'vitest';
-import { authJudicial, fetchJList, flattenJList, judgmentFromJDoc, matchJudgment, defendantZones, type JDoc } from '../lib/judicial-feed';
+import { authJudicial, fetchJList, fetchJDoc, flattenJList, judgmentFromJDoc, matchJudgment, defendantZones, type JDoc } from '../lib/judicial-feed';
 import type { Target } from '../lib/types';
 
 afterEach(() => { vi.unstubAllGlobals(); vi.useRealTimers(); });
@@ -37,6 +37,14 @@ describe('judicial API responses', () => {
   it('accepts a genuine empty day', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response('[]')));
     await expect(fetchJList('test-token')).resolves.toEqual([]);
+  });
+  it('does not treat an expired token as a withdrawn judgment', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(JSON.stringify({ error: '驗證失敗' }))));
+    await expect(fetchJDoc('test-token', 'test-jid')).rejects.toThrow('JDoc failed');
+  });
+  it('recognizes the documented removal response', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(JSON.stringify({ error: '查無資料，本裁判可能未公開或已從系統移除，若您曾經下載過本裁判，亦請您將其移除！謝謝！' }))));
+    await expect(fetchJDoc('test-token', 'test-jid')).resolves.toBeNull();
   });
 });
 

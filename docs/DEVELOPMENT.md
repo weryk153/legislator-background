@@ -73,6 +73,30 @@ SEO：選舉總覽標題與縣市摘要包含候選人查詢及已收錄政見�
 
 排程刷新與司法院判決開放資料 feed 見 `.github/workflows/`。
 
+例行人物資料更新使用 `pnpm refresh:data`。它讀取既有 `officials.json`，對 1,043 個
+scraper targets 查詢經歷與財產來源，再增量合併；不再從空 Supabase 資料庫重建人物。
+人物固定 ID、slug、正名、任職狀態、照片、簡介、獻金、判決、爭議及名冊外的候選人
+全部保留。更名僅接受 `roster-confirmed.json` 中同職務、同選區、有來源的已確認紀錄。
+新的經歷依人物、機構、職稱、日期去重（相同日期的斜線與連字號視為相同）；財產只
+新增缺少年份或補入空白金額，不覆寫已有金額。判決及爭議即使出現在已核准 review
+中也不由此流程發布。
+
+監察院姓名搜尋可能包含同名者，財產紀錄須同時符合姓名、服務機關與職務才自動
+合併。例如臺北市議員許淑華不能套用南投縣長許淑華的公報；李柏毅的立法院與臺北市
+議會申報也分開。來源標題記錄機關、職務與期別。其他職務時期的歷史申報不因同名
+就自動新增，須另行查核；既有已整理的紀錄仍保留。
+
+每次重新抓取全部來源，最多三個 worker；逐人證據與完成／失敗報告存於
+`scraper/out-refresh/`（不提交 Git）。任一來源或身分驗證失敗，整批不寫入快照，日期
+也不前進。只有資料實際改變時才更新 `meta.json`，workflow 驗證並建置後將兩個檔案
+一起提交。人物資料彙整日、選舉名冊日、最新號次來源日分別顯示，不用單一日期暗示
+所有內容都在同一天查核。
+
+立法院資料改用[官方歷屆委員資料集 ID16](https://data.ly.gov.tw/getds.action?id=16)，
+每次執行只下載一次第 11 屆資料，依姓名與屆別精確篩選，避免匿名鏡像的頻率限制。
+官方舊 TLS 端點相容處理僅限固定公開資料 URL，仍驗證憑證與主機名稱，不修改全域
+TLS 設定，也不以該相容通道傳遞帳密。
+
 PDF 文字擷取需 Poppler：Ubuntu 使用 `sudo apt-get install poppler-utils`，macOS 使用
 `brew install poppler`。程式在轉換時依序找 `PDFTOTEXT_PATH`（完整執行檔路徑）、
 `PATH`；macOS 也會找 `HOMEBREW_PREFIX/bin`、`/opt/homebrew/bin`、`/usr/local/bin`。
@@ -83,13 +107,25 @@ PDF 文字擷取需 Poppler：Ubuntu 使用 `sudo apt-get install poppler-utils`
 `JUDICIAL_API_USER`、`JUDICIAL_API_PASSWORD`，並檢查 JList；不輸出密碼、token 或原始
 回應，失敗回傳非零結束碼。「驗證失敗」只表示帳號驗證未通過，不能據此判定密碼過期。
 請由帳號持有人確認平台帳號狀態及設定的憑證；不要把憑證貼在 issue、log 或聊天室。
+平台[常見問答](https://opendata.judicial.gov.tw/QA)說明會員每三個月須透過 email
+重新確認資格。API 使用平台會員帳密，無須另找 API key。重設後須同步本機 `.env`
+及 GitHub repository secrets；已登入網站不代表 `.env` 中的帳密仍有效。
 
-Judicial feed artifact 包含 `candidates.json`（若有）與 `status.json`。失敗、取消或僅量測
+日更改於台北時間 00:17 排程，為實際觀察到的 GitHub 延遲預留服務時間；runner
+啟動時若已超過 06:00，明確失敗且不更新 freshness。連線逾時與帳密被拒絕分開回報。
+手動執行可選 Ubuntu／macOS runner，以 `measure_only=true` 驗證 Auth 與 JList；
+排程使用 repository variable `JUDICIAL_RUNNER`，未設定時維持 Ubuntu。只有在實測
+確認特定 runner 能連線後才切換，不能以修改排程或測試通過代替 API 實際成功。
+
+Judicial feed artifact 包含 `candidates.json`（若有）、`status.json`，以及實際抓取後的
+`coverage.json`（清單數、成功／失敗數、未完成數及失敗 jid）。失敗、取消或僅量測
 的執行使用 `judicial-candidates-stale` 名稱，並在 job summary 標示 STALE。
 `status.json` 記錄本次步驟結果、來源快取 key、最後成功 feed 時間／run ID；舊快取沒有
-成功紀錄時為 `null`（未知），不可拿 artifact 上傳時間代替。只有成功完成 feed 才儲存
-新快取；量測成功不更新資料新鮮度。候選資料是跨次累積且仍需人工審核；成功完成不代表
-完整涵蓋所有判決（每次最多 3,000 筆，也可能有單筆抓取失敗），中斷的日更資料不會自動補齊。
+成功紀錄時為 `null`（未知），不可拿 artifact 上傳時間代替。只有當次清單全部完成才
+更新成功時間；部分抓取進度也會保留，但狀態仍為 stale，量測成功不更新資料新鮮度。
+同日重跑可接續；同一 jid 出現在另一天的異動清單會重新讀取並更新待查核紀錄，官方
+明確撤回者從待查核佇列移除。驗證失敗不能當作撤回。候選資料仍需人工審核；完成
+當日清單不代表完整歷史涵蓋，中斷的過去日更資料不會自動補齊。
 
 PR 的 `Data refresh checks` 會在 Ubuntu 測試 scraper、建置已提交快照，並另行從監察院
 下載一筆公開申報 PDF，經 `pdftotext` 與財產解析器檢查非空結果。可用

@@ -3,6 +3,8 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import "../styles/tokens.css";
 import { fitStyle } from "../lib/squash";
+import { dataFreshness } from "../lib/dataFreshness";
+import candidateRoster from "../../public/data/candidates/2026/national.json";
 import '@fontsource-variable/noto-serif-tc';
 import '@fontsource-variable/public-sans/wght.css';
 const DEFAULT_DESC = "以可查證、附出處的方式，公開現任政治人物的經歷、司法判決、爭議事件與財產申報。";
@@ -20,10 +22,12 @@ const {
 } = Astro.props;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.pathname;
 const ogImage = ogImageProp ?? (Astro.site ? new URL("/og.png", Astro.site).href : "/og.png");
-let dataDate = "";
+let dataMeta = {};
 try {
-  dataDate = JSON.parse(readFileSync(join(process.cwd(), "src", "data", "meta.json"), "utf8")).generatedAt ?? "";
+  dataMeta = JSON.parse(readFileSync(join(process.cwd(), "src", "data", "meta.json"), "utf8"));
 } catch { /* meta.json optional */ }
+const countyRosters = Object.values(import.meta.glob('../../public/data/candidates/2026/county/*.json', { eager: true, import: 'default' })) as Array<{ source: { stage: string; tableDate: string } }>;
+const dates = dataFreshness(dataMeta, candidateRoster, countyRosters);
 const SITE_NAME = "政治人物背景資料庫";
 const path = Astro.url.pathname;
 const isHome = path === "/";
@@ -79,7 +83,9 @@ const mastStyle = fitStyle(SITE_NAME, 0.62, 64, 94);
         <div class="mast-side">
           <p class="mast-date">
             <span id="mast-today" hidden></span>
-            {dataDate && <span>資料更新 {dataDate}</span>}
+            {path.startsWith('/elections')
+              ? dates.roster && <span>選舉名冊 {dates.roster}</span>
+              : dates.profiles && <span>人物資料彙整 {dates.profiles}</span>}
           </p>
           <button id="theme-toggle" type="button" class="toggle" aria-label="切換深色或淺色模式">
             <svg class="ic-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
@@ -104,7 +110,9 @@ const mastStyle = fitStyle(SITE_NAME, 0.62, 64, 94);
       <p class="disc">本站非官方網站，僅彙整公開資料並標註出處。判決與爭議資訊不代表最終定罪，未定讞前當事人受無罪推定保障；爭議報導未經逐筆查核，以官方資料為準。</p>
       <p class="foot-src">資料來源：立法院開放資料、中央選舉委員會、司法院裁判書系統、監察院公職人員財產申報、維基百科</p>
       <p class="foot-meta">
-        {dataDate && <span class="upd">資料更新 {dataDate}</span>}
+        {dates.profiles && <span class="upd">人物資料彙整 {dates.profiles}</span>}
+        {dates.roster && <span class="upd">選舉名冊 {dates.roster}</span>}
+        {dates.ballots && <span class="upd">號次來源最新日期 {dates.ballots}（各縣市進度見選舉頁）</span>}
         <a href="/about/">關於與免責</a>
         <a href="/about/#correction">更正</a>
         <a href="https://github.com/weryk153/legislator-background/issues" target="_blank" rel="noopener">回報問題</a>

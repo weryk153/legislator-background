@@ -86,7 +86,10 @@ export interface JDoc {
 // Returns the parsed JDoc, or null if the API says the judgment was removed / not public.
 export async function fetchJDoc(token: string, jid: string): Promise<JDoc | null> {
   const j = await postJson('JDoc', { token, j: jid });
-  if (!j || j.error) return null;
+  if (j?.error === '查無資料，本裁判可能未公開或已從系統移除，若您曾經下載過本裁判，亦請您將其移除！謝謝！') return null;
+  if (!j || j.error || typeof (j.JID ?? j.jid) !== 'string') {
+    throw new Error('JDoc failed: API error or unexpected response (body withheld)');
+  }
   // JDoc fields are uppercase per spec; tolerate lowercase defensively.
   return {
     jid: j.JID ?? j.jid ?? jid,

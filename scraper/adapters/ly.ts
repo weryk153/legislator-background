@@ -16,6 +16,8 @@
 //       是否離職, 離職日期, ...
 //   } ] }
 import { fetchPolite } from '../lib/fetchPolite';
+import { get } from 'node:https';
+import { constants } from 'node:crypto';
 import type { AdapterResult, CandidateCareer, EvidenceSource, SourceAdapter, Target } from '../lib/types';
 
 function arr(v: unknown): string[] {
@@ -72,17 +74,58 @@ export function parseLy(json: any, sourceUrl: string, retrievedAt: string): Cand
   return careers.filter((c) => c.organization.length > 0);
 }
 
+// The community mirror now rate-limits anonymous bulk requests. The official
+// dataset documents this whole-term JSON endpoint; fetch it once per process.
+const OFFICIAL_URL = 'https://data.ly.gov.tw/odw/ID16Action.action?term=11&fileType=json';
+let officialRows: Promise<any[]> | undefined;
+async function loadOfficialRows(): Promise<any[]> {
+  officialRows ??= (async () => {
+    let json: any;
+    try {
+      const res = await fetchPolite(OFFICIAL_URL, { retries: 0 });
+      json = await res.json();
+    } catch (error: any) {
+      if (error?.cause?.code !== 'ERR_SSL_UNSAFE_LEGACY_RENEGOTIATION_DISABLED') throw error;
+      // This public government endpoint lacks RFC 5746 support. Scope compatibility
+      // to this fixed URL; certificate/hostname verification stays enabled. Never
+      // change global TLS settings or use this transport for credentials.
+      json = await new Promise((resolve, reject) => {
+        const req = get(OFFICIAL_URL, { secureOptions: constants.SSL_OP_LEGACY_SERVER_CONNECT, signal: AbortSignal.timeout(30000) }, res => {
+          if (res.statusCode !== 200) { res.resume(); reject(new Error(`LY official dataset HTTP ${res.statusCode}`)); return; }
+          let body = '';
+          res.setEncoding('utf8');
+          res.on('data', chunk => {
+            body += chunk;
+            if (body.length > 10_000_000) req.destroy(new Error('LY response too large'));
+          });
+          res.on('error', reject);
+          res.on('end', () => { try { resolve(JSON.parse(body)); } catch { reject(new Error('LY official dataset: invalid JSON')); } });
+        });
+        req.on('error', reject);
+      });
+    }
+    if (!Array.isArray(json?.dataList) || !json.dataList.length) throw new Error('LY official dataset: unexpected/empty response');
+    return json.dataList;
+  })();
+  try { return await officialRows; }
+  catch (error) { officialRows = undefined; throw error; }
+}
+
+export function parseOfficialLy(rows: any[], name: string, retrievedAt: string): CandidateCareer[] {
+  const split = (s: unknown) => String(s ?? '').split(/[;；]/u).map(s => s.trim()).filter(Boolean);
+  const date = (s: unknown) => String(s ?? '').trim().replaceAll('/', '-');
+  const people = rows.filter(r => r.name === name && String(r.term) === '11').map(r => ({
+    屆: r.term, 委員姓名: r.name, 到職日: date(r.onboardDate), 離職日期: date(r.leaveDate),
+    委員會: split(r.committee), 經歷: split(r.experience),
+  }));
+  return parseLy({ legislators: people }, OFFICIAL_URL, retrievedAt);
+}
+
 export const lyAdapter: SourceAdapter = {
   name: 'ly',
   async fetchFor(target: Target): Promise<AdapterResult> {
     try {
-      const url = `https://ly.govapi.tw/v2/legislators?${new URLSearchParams({
-        屆: '11',
-        委員姓名: target.name,
-      }).toString()}`;
-      const res = await fetchPolite(url);
-      const json = await res.json();
-      const careers = parseLy(json, url, new Date().toISOString().slice(0, 10));
+      const careers = parseOfficialLy(await loadOfficialRows(), target.name, new Date().toISOString().slice(0, 10));
       return { source: 'ly', ok: true, careers };
     } catch (err) {
       return { source: 'ly', ok: false, error: err instanceof Error ? err.message : String(err) };

@@ -23,7 +23,7 @@ const status = {
   candidatesPresent: existsSync(join(dir, 'candidates.json')),
   maxFetch: process.env.MAX_FETCH ?? null,
   note: completed
-    ? 'Feed completed this run. Candidates accumulate across runs; completion does not imply full coverage (fetch cap and per-document failures may apply). Human review is required.'
+    ? 'The current feed list completed this run. Candidates accumulate across runs; completion does not imply full historical coverage. Human review is required.'
     : 'STALE: feed did not complete this run. Candidates may be restored or partially processed. Upload time is not data freshness. Null last-success fields mean unknown (legacy or no cache).',
 };
 mkdirSync(dir, { recursive: true });
