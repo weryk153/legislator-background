@@ -5,7 +5,7 @@ name: Refresh data
 on:
   workflow_dispatch:
   schedule:
-    - cron: "17 17 * * 0" # Monday 01:17 Taipei; avoid the busy top of the hour.
+    - cron: "17 17 * * *" # Daily 01:17 Taipei; avoid the busy top of the hour.
 
 permissions:
   contents: write
@@ -32,11 +32,15 @@ jobs:
           sudo apt-get install -y poppler-utils
           pdftotext -v
       - name: Fetch and merge verified factual records
-        run: pnpm exec tsx scraper/scripts/refresh-snapshot.ts
-      - name: Validate snapshot and build
+        id: refresh
         run: |
-          pnpm exec vitest run scraper/test/refreshSnapshot.test.ts
-          pnpm build
+          pnpm exec tsx scraper/scripts/refresh-snapshot.ts
+          node -e 'const fs = require("node:fs"); const status = JSON.parse(fs.readFileSync("scraper/out-refresh/status.json", "utf8")); fs.appendFileSync(process.env.GITHUB_OUTPUT, `changed=${status.changed}\n`);'
+      - name: Validate snapshot
+        run: pnpm exec vitest run scraper/test/refreshSnapshot.test.ts
+      - name: Build changed snapshot
+        if: steps.refresh.outputs.changed == 'true'
+        run: pnpm build
       - name: Upload refresh evidence
         if: always()
         uses: actions/upload-artifact@v4
