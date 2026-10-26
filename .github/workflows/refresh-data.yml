@@ -3,9 +3,8 @@
 name: Refresh data
 
 on:
+  # Dispatched by the daily 17:00 Taipei maintenance heartbeat alongside elections/policies.
   workflow_dispatch:
-  schedule:
-    - cron: "17 17 * * *" # Daily 01:17 Taipei; avoid the busy top of the hour.
 
 permissions:
   contents: write
