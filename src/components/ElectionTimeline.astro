@@ -10,8 +10,8 @@ const today = taipeiToday();
 const progress = timelineProgress(ELECTION_MILESTONES, today);
 const highlight = timelineHighlight(ELECTION_MILESTONES, today);
 const shortDate = (iso: string) => `${Number(iso.slice(5, 7))}/${Number(iso.slice(8, 10))}`;
-// 節點與「今天」標記攤成一串，畫成同一條線上的項目；今天正逢某節點時標記藏起來（仍輸出，
-// 讓瀏覽器端換日後有東西可搬）。
+// 節點與「今天」標記攤成一串。今天正逢某節點時，以該節點紅字表示；獨立標記先隱藏，
+// 保留供瀏覽器端換日後搬到節點之間。
 type TimelineItem = { kind: "node"; i: number } | { kind: "today" };
 const timelineItems: TimelineItem[] = [
   ...(progress.todayAfter === -1 ? [{ kind: "today" as const }] : []),
@@ -150,6 +150,7 @@ const SR_STATE = { done: "（已過）", current: "（進行中）", upcoming: "
 .tl-label { font-family: var(--serif); font-weight: 700; font-size: 0.9375rem; line-height: 1.4; }
 .tl-date { color: var(--muted); font-size: var(--t-sm); font-variant-numeric: tabular-nums; }
 .tl-today .tl-label, .tl-today .tl-date { color: var(--accent); }
+.tl-node.current .tl-label, .tl-node.current .tl-date { color: var(--accent); }
 @media (max-width: 640px) {
   .schedule-summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0; cursor: pointer; list-style: none; }
   .schedule-summary::-webkit-details-marker { display: none; }
