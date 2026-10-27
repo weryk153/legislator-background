@@ -3392,6 +3392,539 @@
           ]
         }
       ]
+    },
+    {
+      "slug": "cand-陳泓維-桃園市第2選舉區",
+      "name": "陳泓維",
+      "role": "桃園市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-council-55fbf6e6d3cc-campaign-platform",
+          "title": "本屆競選政策主張",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-27",
+          "source": {
+            "type": "campaign",
+            "title": "親民黨2026候選人專頁：陳泓維核心政見",
+            "url": "https://youth.pfpnext.com/2026/candidate-detail.php?id=pfp2026-003",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "公共運輸",
+              "summary": "爭取 A7 直達臺北車站公車，接駁班次配合機捷末班，並規劃串聯龜山舊城、鳳鳴車站及捷運站的環狀公車。"
+            },
+            {
+              "topic": "智慧號誌與道路",
+              "summary": "提出改善大坪頂、萬壽路及長壽路號誌，爭取壽山路拓寬整彎；要求華亞二期先提出聯外交通計畫，研究高架道路可行性。"
+            },
+            {
+              "topic": "交通承諾",
+              "summary": "承諾若下一任期四年內未改善龜山交通壅塞，將不再參選；專頁未列明量化判定標準。"
+            },
+            {
+              "topic": "捷運與舊城商圈",
+              "summary": "提出在棕線完工前改善步行、停車與轉乘環境，串聯龍華科大、嶺頂、后街及山鶯路等商圈，發展地方品牌與導覽。"
+            },
+            {
+              "topic": "迴龍與巷弄環境",
+              "summary": "爭取塔寮坑溪兩側懸臂停車空間、萬壽路騎樓整平與電桿地下化，改善商圈及住宅周邊道路。"
+            },
+            {
+              "topic": "青年與家庭",
+              "summary": "提出把 AI 學習資源帶入校園、社區，連結職訓及產業就業，並爭取托育與家庭補助；未載補助額度。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-黃舒琳-基隆市第5選舉區",
+      "name": "黃舒琳",
+      "role": "基隆市第5選舉區議員",
+      "records": [
+        {
+          "id": "2026-council-aeefc9bf4713-campaign-platform",
+          "title": "本屆競選政策主張",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-27",
+          "source": {
+            "type": "campaign",
+            "title": "親民黨2026候選人專頁：黃舒琳核心政見",
+            "url": "https://youth.pfpnext.com/2026/candidate-detail.php?id=pfp2026-008",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "通勤與候車",
+              "summary": "提出尖峰客運補助、跳蛙公車、候車雨遮與電子站牌，並提供車上剩餘座位資訊。"
+            },
+            {
+              "topic": "山海環境",
+              "summary": "反對協和電廠四接開發案，主張守護外木山、大武崙與葉鼻蝠生態，串聯在地觀光和保育。"
+            },
+            {
+              "topic": "醫療與生育支持",
+              "summary": "提出預立醫療、生育保存及產前篩檢補助；敬老卡改為點數制，結合健康篩檢與藝文、交通及疫苗使用。"
+            },
+            {
+              "topic": "步行與日常設施",
+              "summary": "提出移除人行道障礙、改善通學減速設施及防滑水溝蓋，調整公車扶手高度，並活化閒置空間增加停車位。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-蕭夙玲-新北市第3選舉區",
+      "name": "蕭夙玲",
+      "role": "新北市第3選舉區議員",
+      "records": [
+        {
+          "id": "2026-council-8c4d7845a375-campaign-platform",
+          "title": "本屆競選政策主張",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-27",
+          "source": {
+            "type": "campaign",
+            "title": "親民黨2026候選人專頁：蕭夙玲核心政見",
+            "url": "https://youth.pfpnext.com/2026/candidate-detail.php?id=pfp2026-006",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "校園與托育",
+              "summary": "提出反霸凌、反毒及 AI 教育，增設公共托育並改善育兒環境。"
+            },
+            {
+              "topic": "居住與照顧",
+              "summary": "爭取青年及弱勢居住選擇、社福服務，強化長照與照顧者喘息。"
+            },
+            {
+              "topic": "公共設施",
+              "summary": "爭取文高一用地設置聯合市民活動中心，監督塭仔圳開發時社福設施同步完成。"
+            },
+            {
+              "topic": "社區環境",
+              "summary": "主張改善交通、防洪與防災，升級公園綠地，推動在地文化與社區運動；專頁未列工程期程。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-黃朝淵-臺中市第4選舉區",
+      "name": "黃朝淵",
+      "role": "臺中市第4選舉區議員",
+      "records": [
+        {
+          "id": "2026-council-e9c20fbc3df1-campaign-platform",
+          "title": "本屆競選政策主張",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-27",
+          "source": {
+            "type": "campaign",
+            "title": "親民黨2026候選人專頁：黃朝淵核心政見",
+            "url": "https://youth.pfpnext.com/2026/candidate-detail.php?id=pfp2026-007",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "防詐與法律扶助",
+              "summary": "提出社區防詐宣導、改善消費申訴調解與基層法律諮詢轉介，協助弱勢處理勞資爭議。"
+            },
+            {
+              "topic": "交通與地方發展",
+              "summary": "主張監督東豐快速道路，爭取捷運延伸、道路改善及后里運動設施，活化豐原。"
+            },
+            {
+              "topic": "長照與兒少",
+              "summary": "提出改善醫療長照資源配置及敬老愛心卡使用，增加親子休憩、兒童運動空間與課後照顧。"
+            },
+            {
+              "topic": "公共空間與財政",
+              "summary": "主張簡化並公開文化社團補助、改善里活動中心，監督預算與行政效率，活化閒置空間支持青年創業。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-徐慈檉-桃園市第6選舉區",
+      "name": "徐慈檉",
+      "role": "桃園市第6選舉區議員",
+      "records": [
+        {
+          "id": "2026-council-f0544e18f2d9-campaign-platform",
+          "title": "本屆競選政策主張",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-27",
+          "source": {
+            "type": "campaign",
+            "title": "親民黨2026候選人專頁：徐慈檉核心政見",
+            "url": "https://youth.pfpnext.com/2026/candidate-detail.php?id=pfp2026-004",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "青年與地方就業",
+              "summary": "提出改善返鄉青年的創業、就業及成家支持，減緩人口外流。"
+            },
+            {
+              "topic": "文化與觀光",
+              "summary": "主張以城市行銷活化大溪古城及老街，結合文化保存、教育與觀光。"
+            },
+            {
+              "topic": "交通改善",
+              "summary": "提出通盤檢討大溪、復興的交通工程與觀光配套，改善壅塞。"
+            },
+            {
+              "topic": "在地教育",
+              "summary": "提出結合廟宇、民俗與翻轉式公民教育，增加學生的在地認識和公共參與。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "c-楊秀玉-親民黨-基隆市第07選舉區",
+      "name": "楊秀玉",
+      "role": "基隆市第7選舉區議員",
+      "records": [
+        {
+          "id": "2026-council-6505594481bd-campaign-platform",
+          "title": "本屆競選政策主張",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-27",
+          "source": {
+            "type": "campaign",
+            "title": "親民黨2026候選人專頁：楊秀玉核心政見",
+            "url": "https://youth.pfpnext.com/2026/candidate-detail.php?id=pfp2026-001",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "校園環境",
+              "summary": "提出改善七堵校園周邊環境及教育品質。"
+            },
+            {
+              "topic": "身障就業",
+              "summary": "爭取在七堵設置基隆第三處身障洗車中心。"
+            },
+            {
+              "topic": "綠能交通",
+              "summary": "爭取開元停車場與百福車站停車空間設置太陽能雨棚，增設汽機車充電及電池交換設施。"
+            },
+            {
+              "topic": "公園維護",
+              "summary": "提出強化社區公園設施維護與綠化管理。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-劉成謙-新北市第4選舉區",
+      "name": "劉成謙",
+      "role": "新北市第4選舉區議員",
+      "records": [
+        {
+          "id": "2026-council-45d10a4196df-campaign-platform",
+          "title": "本屆競選政策主張",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-27",
+          "source": {
+            "type": "campaign",
+            "title": "親民黨2026候選人專頁：劉成謙核心政見",
+            "url": "https://youth.pfpnext.com/2026/candidate-detail.php?id=pfp2026-002",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "交通路權",
+              "summary": "提出檢討三重、蘆洲聯外橋梁與機車道規劃，改善出行限制及交通安全。"
+            },
+            {
+              "topic": "社會住宅",
+              "summary": "主張增加社會住宅供給，補強青年居住支持。"
+            },
+            {
+              "topic": "青年支持",
+              "summary": "提出青年補貼與在地創業扶助，降低生活負擔；專頁未載補貼額度及資格。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-鄭素禎-基隆市第2選舉區",
+      "name": "鄭素禎",
+      "role": "基隆市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-council-1ba957138b7c-campaign-platform",
+          "title": "本屆競選政策主張",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-27",
+          "source": {
+            "type": "campaign",
+            "title": "親民黨2026候選人專頁：鄭素禎核心政見",
+            "url": "https://youth.pfpnext.com/2026/candidate-detail.php?id=pfp2026-009",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "道路交通",
+              "summary": "提出改善信義區主要幹道與巷弄瓶頸，修整路面以提升通行安全。"
+            },
+            {
+              "topic": "水電設施",
+              "summary": "主張檢修更新老舊水電管線，提高供應穩定性。"
+            },
+            {
+              "topic": "公辦都更",
+              "summary": "提出由市府引導危老重建及公辦都更，建立透明、公正的整合機制。"
+            },
+            {
+              "topic": "社區綠地",
+              "summary": "爭取街廓中的公園綠地與休憩設施，兼顧長者和兒童使用。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-陳傑麟-宜蘭縣第12選舉區（山地原住民）",
+      "name": "陳傑麟",
+      "role": "宜蘭縣第12選舉區（山地原住民）議員",
+      "records": [
+        {
+          "id": "2026-council-d8c1eb3de622-campaign-platform",
+          "title": "本屆競選政策主張",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-27",
+          "source": {
+            "type": "campaign",
+            "title": "親民黨2026候選人專頁：陳傑麟核心政見",
+            "url": "https://youth.pfpnext.com/2026/candidate-detail.php?id=pfp2026-005",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "部落農業",
+              "summary": "提出協助成立農業發展協會、爭取肥料供應據點，改善農路並監督施工品質。"
+            },
+            {
+              "topic": "文化觀光",
+              "summary": "主張推廣部落生態旅遊、文化體驗，爭取傳統祭儀及運動賽事資源。"
+            },
+            {
+              "topic": "照顧與防災",
+              "summary": "提出補強文化健康站及長照據點，協助都會原住民居住、就學與就業，並爭取消防演習和警消設備。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-林鈺梅-臺中市第5選舉區",
+      "name": "林鈺梅",
+      "role": "臺中市第5選舉區議員",
+      "records": [
+        {
+          "id": "2026-council-58cfdd535d0c-campaign-platform",
+          "title": "本屆競選政策主張",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-27",
+          "source": {
+            "type": "campaign",
+            "title": "林鈺梅競選官網：梅好政見",
+            "url": "https://yumeilin.tw/#policy",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "幼教影像查調",
+              "summary": "提出制定園所監視影像申請條件、期限與程序，採付費調閱，並由教育局協助檢視。"
+            },
+            {
+              "topic": "在地升學",
+              "summary": "爭取適合的既有國中升格完全中學，搭配升學銜接及通學運輸。"
+            },
+            {
+              "topic": "中科回饋公開",
+              "summary": "提出公開管理費與回饋經費的流向、分配及工程進度，訂定分配標準並辦理說明會。"
+            },
+            {
+              "topic": "通學安全",
+              "summary": "主張纜線地下化先從校園周邊施作，遷移阻礙人行道的電箱。"
+            },
+            {
+              "topic": "聯外道路",
+              "summary": "提出盤點潭雅神道路斷點與瓶頸，強化連接臺74、中科及市區的替代路線。"
+            },
+            {
+              "topic": "長者接駁",
+              "summary": "提出整合公部門、社區接送資源，按地方需求調整關懷據點路線和班次。"
+            },
+            {
+              "topic": "假日臨托",
+              "summary": "爭取試辦公立幼教園所假日臨托，按月重設補助並聘具相關資格或幼保實習背景的人員。"
+            },
+            {
+              "topic": "文化保存",
+              "summary": "提出盤點古蹟、爭取修繕，結合導覽和在地店家串聯文化路線。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-林妤芬-新竹市第1選舉區",
+      "name": "林妤芬",
+      "role": "新竹市第1選舉區議員",
+      "records": [
+        {
+          "id": "2026-council-b3105e21612e-campaign-platform",
+          "title": "本屆競選政策主張",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-27",
+          "source": {
+            "type": "campaign",
+            "title": "林妤芬2026競選官網：新竹234與早療主張",
+            "url": "https://yufenlovehsinchu.com/",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "公共運輸",
+              "summary": "推動大新竹輕軌分期建設及生活圈轉乘，監督時程與預算。"
+            },
+            {
+              "topic": "共乘與停車",
+              "summary": "提出尖峰智慧共乘及企業協作通勤，爭取停車場複合化並整合車位資訊。"
+            },
+            {
+              "topic": "校園與數位教育",
+              "summary": "主張納入社會情緒學習、強化反霸凌通報輔導，將數位設備授權及維護列為常態預算。"
+            },
+            {
+              "topic": "托育與早療",
+              "summary": "提出擴充臨時、夜間及到宅托育，推動入園發展篩檢與社區聯評；高風險個案優先轉介，目標30日內完成報告。"
+            },
+            {
+              "topic": "防詐制度",
+              "summary": "提出跨局處防詐小組、專職人力及預算，按季公開追蹤並提供被害人法律救濟。"
+            },
+            {
+              "topic": "長者照護",
+              "summary": "主張社區預防型長照及在地老化，提供醫療、遺囑與繼承法律規劃，強化關懷網。"
+            },
+            {
+              "topic": "文化與動保",
+              "summary": "提出商圈及公共空間活化，爭取提高寵物絕育補助並補充動保稽查人力。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "c-邱愛珊-國民黨-臺中市第04選舉區",
+      "name": "邱愛珊",
+      "role": "臺中市第4選舉區議員",
+      "records": [
+        {
+          "id": "2026-council-e64de5f547fd-campaign-platform",
+          "title": "本屆競選政策主張",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-27",
+          "source": {
+            "type": "campaign",
+            "title": "邱愛珊競選官網：八大政見圖卡",
+            "url": "https://5423chiu.tw/policy-platform/",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "交通與步行",
+              "summary": "爭取捷運銜接豐原並延伸后里，串聯自行車道，改善商圈人行空間及停車供給。"
+            },
+            {
+              "topic": "生育與家庭",
+              "summary": "提出生育力檢測、凍卵及婚育租金補助，擴充孕婦疫苗、諮商、臨托與到宅月子服務。"
+            },
+            {
+              "topic": "防災與治安",
+              "summary": "主張智慧監測積水、改善路平，補足警消救援及降溫設備，更新監視和照明。"
+            },
+            {
+              "topic": "醫療長照",
+              "summary": "提出衛生局設長照處、追蹤后里醫院，爭取疫苗補助、復康接送及愛心卡用途擴充。"
+            },
+            {
+              "topic": "運動與動保",
+              "summary": "爭取后里室內運動場館、共融公園及寵物友善設施，強化動物絕育與高齡照護。"
+            },
+            {
+              "topic": "產業觀光",
+              "summary": "主張協助店家數位轉型、增加青創及地方創生資源，發展農產和后豐觀光品牌。"
+            },
+            {
+              "topic": "公共空間",
+              "summary": "提出后里行政中心整合衛生托育，活化舊廳舍及閒置建物，並加速都市計畫檢討。"
+            },
+            {
+              "topic": "教育支持",
+              "summary": "主張改善校園硬體、特教及心理輔導，強化反暴力與跨單位合作。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "c-陳鴻源-國民黨-新北市第07選舉區",
+      "name": "陳鴻源",
+      "role": "新北市第7選舉區議員",
+      "records": [
+        {
+          "id": "2026-council-b70232733d1f-campaign-platform",
+          "title": "本屆競選政策主張",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-27",
+          "source": {
+            "type": "campaign",
+            "title": "陳鴻源競選官網：2026政見主軸",
+            "url": "https://loveaction.com.tw/%E6%94%BF%E8%A6%8B%E4%B8%BB%E8%BB%B8/",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "智慧防災",
+              "summary": "提出巷弄箱涵液位感測，將滯洪地下道導入自動抽排與水位監測，評估上方空間作口袋公園或充電站。"
+            },
+            {
+              "topic": "危老都更",
+              "summary": "主張放寬耐震不足公寓的容積獎勵，設實體公辦都更工作站提供專業整合協助。"
+            },
+            {
+              "topic": "捷運與步行",
+              "summary": "提出監督萬大線永和段工程及地下連通道，翻新校園通學步道並移除阻礙。"
+            },
+            {
+              "topic": "停車供給",
+              "summary": "倡議利用校園、公園地下空間建智慧停車場，釋出路邊空間改善人行道。"
+            },
+            {
+              "topic": "銀髮照顧",
+              "summary": "提出利用公有空間增設日照及銀髮俱樂部，加碼老公寓扶手、防跌地磚等無障礙補助。"
+            },
+            {
+              "topic": "運動與公園",
+              "summary": "爭取運動中心智慧設備與銀髮運動指導，將既有公園改造為全齡共融及無障礙空間。"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

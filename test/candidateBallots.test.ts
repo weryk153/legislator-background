@@ -10,12 +10,12 @@ const load = () => ({
   counties: readdirSync('public/data/candidates/2026/county').map(f => read(`public/data/candidates/2026/county/${f}`)) as CountyCandidates[],
 });
 describe('2026 審定與已查證選區號次', () => {
-  it('81 位首長、1492 位議員；685 位已核對號次，其他人不填猜測號碼', () => {
+  it('81 位首長、1492 位議員；776 位已核對號次，其他人不填猜測號碼', () => {
     const { national, counties } = load();
     expect(national.races.flatMap(r => r.candidates)).toHaveLength(81);
     expect(counties.flatMap(c => c.districts.flatMap(d => d.candidates))).toHaveLength(1492);
     const numbered = [...national.races.flatMap(r => r.candidates), ...counties.flatMap(c => c.districts.flatMap(d => d.candidates))].filter(c => c.number !== null);
-    expect(numbered).toHaveLength(685);
+    expect(numbered).toHaveLength(776);
     expect(candidacyIndex(national, counties).get(numbered.find(c => c.name === '陳玉珍')!.slug!)?.number).toBe(5);
     for (const b of verified.ballots) {
       const list = b.districtNo === null ? national.races.find(r => r.countyName === b.countyName)!.candidates

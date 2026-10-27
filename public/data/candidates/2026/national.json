@@ -3,7 +3,7 @@
   "stage": "certified",
   "url": "https://web.cec.gov.tw/central/article/65212",
   "tableDate": "2026-10-16",
-  "note": "已收錄 12/22 個首長選舉、88/221 個議員選區的完整號次；各選區保留查證來源，其他號次待核實。"
+  "note": "已收錄 13/22 個首長選舉、101/221 個議員選區的完整號次；各選區保留查證來源，其他號次待核實。"
  },
  "races": [
   {
@@ -237,40 +237,40 @@
    "isMunicipality": true,
    "candidates": [
     {
-     "name": "謝龍介",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "hsieh-lung-chieh",
-     "identity": "現任不分區立委"
-    },
-    {
      "name": "蕭燐洪",
      "partyName": "臺灣SoR無法黨",
      "partyCode": null,
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-01",
      "slug": "cand-蕭燐洪-臺南市",
      "identity": null
     },
     {
-     "name": "葉人文",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-葉人文-臺南市",
-     "identity": null
+     "name": "謝龍介",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 2,
+     "registeredOn": "2026-09-01",
+     "slug": "hsieh-lung-chieh",
+     "identity": "現任不分區立委"
     },
     {
      "name": "陳亭妃",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-02",
      "slug": "chen-ting-fei",
      "identity": "現任立委（臺南市第3選舉區）"
+    },
+    {
+     "name": "葉人文",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 4,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-葉人文-臺南市",
+     "identity": null
     }
    ],
    "incumbent2022": {
@@ -282,10 +282,11 @@
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
    },
    "source": {
-    "stage": "certified",
-    "url": "https://web.cec.gov.tw/central/article/65212",
-    "tableDate": "2026-10-16",
-    "note": "抽籤因颱風改至 2026-10-27；本站尚未收錄可核對的完整選區號次。"
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tnec/article/65387",
+    "tableDate": "2026-10-27",
+    "label": "臺南市選委會：市長及市議員抽籤結果",
+    "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
    }
   },
   {

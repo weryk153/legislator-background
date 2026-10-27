@@ -1,9 +1,10 @@
 {
  "source": {
-  "stage": "certified",
-  "url": "https://web.cec.gov.tw/central/article/65212",
-  "tableDate": "2026-10-16",
-  "note": "抽籤因颱風改至 2026-10-27；本站尚未收錄可核對的完整選區號次。"
+  "stage": "numbered",
+  "url": "https://web.cec.gov.tw/tnec/article/65387",
+  "tableDate": "2026-10-27",
+  "label": "臺南市選委會：市長及市議員抽籤結果",
+  "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
  },
  "countyCode": "67-000-00-000-0000",
  "countyName": "臺南市",
@@ -14,28 +15,28 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "李宗翰",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-李宗翰-民進黨-臺南市第01選舉區",
-     "identity": "現任議員（臺南市第1選舉區）"
+     "name": "陳詩薇",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": 1,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-陳詩薇-臺南市第1選舉區",
+     "identity": null
     },
     {
-     "name": "蔡育輝",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-蔡育輝-國民黨-臺南市第01選舉區",
-     "identity": "現任議員（臺南市第1選舉區）"
+     "name": "張新斛",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 2,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-張新斛-臺南市第1選舉區",
+     "identity": null
     },
     {
      "name": "侯陸太",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-01",
      "slug": "cand-侯陸太-臺南市第1選舉區",
      "identity": null
@@ -44,7 +45,7 @@
      "name": "沈家鳳",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-02",
      "slug": "c-沈家鳳-民進黨-臺南市第01選舉區",
      "identity": "現任議員（臺南市第1選舉區）"
@@ -53,7 +54,7 @@
      "name": "趙昆原",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-09-02",
      "slug": "c-趙昆原-無黨籍及未經政黨推薦-臺南市第01選舉區",
      "identity": "現任議員（臺南市第1選舉區）"
@@ -62,30 +63,37 @@
      "name": "王宣貿",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 6,
      "registeredOn": "2026-09-02",
      "slug": "c-王宣貿-民進黨-臺南市第01選舉區",
      "identity": "現任議員（臺南市第1選舉區）"
     },
     {
-     "name": "張新斛",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-張新斛-臺南市第1選舉區",
-     "identity": null
+     "name": "李宗翰",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 7,
+     "registeredOn": "2026-08-31",
+     "slug": "c-李宗翰-民進黨-臺南市第01選舉區",
+     "identity": "現任議員（臺南市第1選舉區）"
     },
     {
-     "name": "陳詩薇",
-     "partyName": "台灣民眾黨",
-     "partyCode": "350",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-陳詩薇-臺南市第1選舉區",
-     "identity": null
+     "name": "蔡育輝",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 8,
+     "registeredOn": "2026-08-31",
+     "slug": "c-蔡育輝-國民黨-臺南市第01選舉區",
+     "identity": "現任議員（臺南市第1選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tnec/article/65387",
+    "tableDate": "2026-10-27",
+    "label": "臺南市選委會：市長及市議員抽籤結果",
+    "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+   }
   },
   {
    "no": 2,
@@ -93,60 +101,67 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "謝舒凡",
+     "name": "王詩媛",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-王詩媛-臺南市第2選舉區",
+     "identity": null
+    },
+    {
+     "name": "蔡秋蘭",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-謝舒凡-民進黨-臺南市第02選舉區",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蔡秋蘭-民進黨-臺南市第02選舉區",
      "identity": "現任議員（臺南市第2選舉區）"
     },
     {
      "name": "蔡蘇秋金",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-02",
      "slug": "c-蔡蘇秋金-民進黨-臺南市第02選舉區",
-     "identity": "現任議員（臺南市第2選舉區）"
-    },
-    {
-     "name": "蔡秋蘭",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-蔡秋蘭-民進黨-臺南市第02選舉區",
-     "identity": "現任議員（臺南市第2選舉區）"
-    },
-    {
-     "name": "王詩媛",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-王詩媛-臺南市第2選舉區",
-     "identity": null
-    },
-    {
-     "name": "方一峰",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-方一峰-國民黨-臺南市第02選舉區",
      "identity": "現任議員（臺南市第2選舉區）"
     },
     {
      "name": "陳昆和",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-03",
      "slug": "c-陳昆和-無黨籍及未經政黨推薦-臺南市第02選舉區",
      "identity": "現任議員（臺南市第2選舉區）"
+    },
+    {
+     "name": "謝舒凡",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 5,
+     "registeredOn": "2026-08-31",
+     "slug": "c-謝舒凡-民進黨-臺南市第02選舉區",
+     "identity": "現任議員（臺南市第2選舉區）"
+    },
+    {
+     "name": "方一峰",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 6,
+     "registeredOn": "2026-09-03",
+     "slug": "c-方一峰-國民黨-臺南市第02選舉區",
+     "identity": "現任議員（臺南市第2選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tnec/article/65387",
+    "tableDate": "2026-10-27",
+    "label": "臺南市選委會：市長及市議員抽籤結果",
+    "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+   }
   },
   {
    "no": 3,
@@ -157,7 +172,7 @@
      "name": "吳通龍",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-08-31",
      "slug": "c-吳通龍-民進黨-臺南市第03選舉區",
      "identity": "現任議員（臺南市第3選舉區）"
@@ -166,30 +181,37 @@
      "name": "陳秋宏",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "c-陳秋宏-民進黨-臺南市第03選舉區",
      "identity": "現任議員（臺南市第3選舉區）"
     },
     {
-     "name": "尤淨寬",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-尤淨寬-臺南市第3選舉區",
-     "identity": null
-    },
-    {
      "name": "施朝清",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-03",
      "slug": "cand-施朝清-臺南市第3選舉區",
      "identity": null
+    },
+    {
+     "name": "尤淨寬",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-尤淨寬-臺南市第3選舉區",
+     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tnec/article/65387",
+    "tableDate": "2026-10-27",
+    "label": "臺南市選委會：市長及市議員抽籤結果",
+    "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+   }
   },
   {
    "no": 4,
@@ -200,7 +222,7 @@
      "name": "賴懋慶",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-08-31",
      "slug": "cand-賴懋慶-臺南市第4選舉區",
      "identity": null,
@@ -220,12 +242,19 @@
      "name": "周奕齊",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "c-周奕齊-無黨籍及未經政黨推薦-臺南市第04選舉區",
      "identity": "現任議員（臺南市第4選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tnec/article/65387",
+    "tableDate": "2026-10-27",
+    "label": "臺南市選委會：市長及市議員抽籤結果",
+    "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+   }
   },
   {
    "no": 5,
@@ -236,52 +265,16 @@
      "name": "陳碧玉",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-08-31",
      "slug": "c-陳碧玉-民進黨-臺南市第05選舉區",
      "identity": "現任議員（臺南市第5選舉區）"
     },
     {
-     "name": "余柷青",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-余柷青-民進黨-臺南市第05選舉區",
-     "identity": "現任議員（臺南市第5選舉區）"
-    },
-    {
-     "name": "李偉智",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-李偉智-民進黨-臺南市第05選舉區",
-     "identity": "現任議員（臺南市第5選舉區）"
-    },
-    {
-     "name": "林志展",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "c-林志展-民進黨-臺南市第05選舉區",
-     "identity": "現任議員（臺南市第5選舉區）"
-    },
-    {
-     "name": "李佳蓉",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-李佳蓉-臺南市第5選舉區",
-     "identity": null
-    },
-    {
      "name": "李文俊",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "c-李文俊-國民黨-臺南市第05選舉區",
      "identity": "現任議員（臺南市第5選舉區）"
@@ -290,12 +283,55 @@
      "name": "廖俊道",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-02",
      "slug": "cand-廖俊道-臺南市第5選舉區",
      "identity": null
+    },
+    {
+     "name": "李偉智",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 4,
+     "registeredOn": "2026-08-31",
+     "slug": "c-李偉智-民進黨-臺南市第05選舉區",
+     "identity": "現任議員（臺南市第5選舉區）"
+    },
+    {
+     "name": "林志展",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 5,
+     "registeredOn": "2026-09-01",
+     "slug": "c-林志展-民進黨-臺南市第05選舉區",
+     "identity": "現任議員（臺南市第5選舉區）"
+    },
+    {
+     "name": "余柷青",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 6,
+     "registeredOn": "2026-08-31",
+     "slug": "c-余柷青-民進黨-臺南市第05選舉區",
+     "identity": "現任議員（臺南市第5選舉區）"
+    },
+    {
+     "name": "李佳蓉",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 7,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-李佳蓉-臺南市第5選舉區",
+     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tnec/article/65387",
+    "tableDate": "2026-10-27",
+    "label": "臺南市選委會：市長及市議員抽籤結果",
+    "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+   }
   },
   {
    "no": 6,
@@ -303,87 +339,94 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "邱昭勝",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
+     "name": "蔡麗青",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 1,
      "registeredOn": "2026-09-02",
-     "slug": "c-邱昭勝-無黨籍及未經政黨推薦-臺南市第06選舉區",
+     "slug": "c-蔡麗青-民進黨-臺南市第06選舉區",
      "identity": "現任議員（臺南市第6選舉區）"
     },
     {
      "name": "郭信良",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "c-郭信良-無黨籍及未經政黨推薦-臺南市第06選舉區",
-     "identity": "現任議員（臺南市第6選舉區）"
-    },
-    {
-     "name": "李中岑",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-李中岑-國民黨-臺南市第06選舉區",
-     "identity": "現任議員（臺南市第6選舉區）"
-    },
-    {
-     "name": "唐儀靜",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-唐儀靜-臺南市第6選舉區",
-     "identity": null
-    },
-    {
-     "name": "郭品辰",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-郭品辰-臺南市第6選舉區",
-     "identity": null
-    },
-    {
-     "name": "姚正玉",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-姚正玉-臺南市第6選舉區",
-     "identity": null
-    },
-    {
-     "name": "蔡麗青",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-蔡麗青-民進黨-臺南市第06選舉區",
-     "identity": "現任議員（臺南市第6選舉區）"
-    },
-    {
-     "name": "黃麗招",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-黃麗招-無黨籍及未經政黨推薦-臺南市第06選舉區",
      "identity": "現任議員（臺南市第6選舉區）"
     },
     {
      "name": "林緯",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-03",
      "slug": "cand-林緯-臺南市第6選舉區",
      "identity": null
+    },
+    {
+     "name": "唐儀靜",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 4,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-唐儀靜-臺南市第6選舉區",
+     "identity": null
+    },
+    {
+     "name": "邱昭勝",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 5,
+     "registeredOn": "2026-09-02",
+     "slug": "c-邱昭勝-無黨籍及未經政黨推薦-臺南市第06選舉區",
+     "identity": "現任議員（臺南市第6選舉區）"
+    },
+    {
+     "name": "黃麗招",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 6,
+     "registeredOn": "2026-09-03",
+     "slug": "c-黃麗招-無黨籍及未經政黨推薦-臺南市第06選舉區",
+     "identity": "現任議員（臺南市第6選舉區）"
+    },
+    {
+     "name": "郭品辰",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 7,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-郭品辰-臺南市第6選舉區",
+     "identity": null
+    },
+    {
+     "name": "李中岑",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 8,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李中岑-國民黨-臺南市第06選舉區",
+     "identity": "現任議員（臺南市第6選舉區）"
+    },
+    {
+     "name": "姚正玉",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 9,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-姚正玉-臺南市第6選舉區",
+     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tnec/article/65387",
+    "tableDate": "2026-10-27",
+    "label": "臺南市選委會：市長及市議員抽籤結果",
+    "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+   }
   },
   {
    "no": 7,
@@ -391,105 +434,112 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "黄肇輝",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-黄肇輝-民進黨-臺南市第07選舉區",
+     "name": "林燕祝",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林燕祝-國民黨-臺南市第07選舉區",
      "identity": "現任議員（臺南市第7選舉區）"
     },
     {
-     "name": "林乃立",
-     "partyName": "台灣民眾黨",
-     "partyCode": "350",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-林乃立-臺南市第7選舉區",
-     "identity": null
-    },
-    {
-     "name": "周宏昌",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-周宏昌-臺南市第7選舉區",
+     "name": "吳依潔",
+     "partyName": "台灣基進",
+     "partyCode": "303",
+     "number": 2,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-吳依潔-臺南市第7選舉區",
      "identity": null
     },
     {
      "name": "楊中成",
      "partyName": "台聯黨",
      "partyCode": null,
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-02",
      "slug": "c-楊中成-台灣團結聯盟-臺南市第07選舉區",
      "identity": "現任議員（臺南市第7選舉區）"
     },
     {
-     "name": "林燕祝",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-林燕祝-國民黨-臺南市第07選舉區",
-     "identity": "現任議員（臺南市第7選舉區）"
-    },
-    {
-     "name": "陳秋萍",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-陳秋萍-民進黨-臺南市第07選舉區",
-     "identity": "現任議員（臺南市第7選舉區）"
-    },
-    {
-     "name": "朱正軒",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-朱正軒-民進黨-臺南市第07選舉區",
-     "identity": "現任議員（臺南市第7選舉區）"
-    },
-    {
-     "name": "李秉倫",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-李秉倫-臺南市第7選舉區",
-     "identity": null
-    },
-    {
      "name": "卞宗康",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-03",
      "slug": "cand-卞宗康-臺南市第7選舉區",
      "identity": null
     },
     {
-     "name": "吳依潔",
-     "partyName": "台灣基進",
-     "partyCode": "303",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-吳依潔-臺南市第7選舉區",
+     "name": "朱正軒",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 5,
+     "registeredOn": "2026-09-02",
+     "slug": "c-朱正軒-民進黨-臺南市第07選舉區",
+     "identity": "現任議員（臺南市第7選舉區）"
+    },
+    {
+     "name": "林乃立",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": 6,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-林乃立-臺南市第7選舉區",
      "identity": null
     },
     {
      "name": "林冠維",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 7,
      "registeredOn": "2026-09-03",
      "slug": "c-林冠維-無黨團結聯盟-臺南市第07選舉區",
      "identity": "現任議員（臺南市第7選舉區）"
+    },
+    {
+     "name": "陳秋萍",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 8,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳秋萍-民進黨-臺南市第07選舉區",
+     "identity": "現任議員（臺南市第7選舉區）"
+    },
+    {
+     "name": "黄肇輝",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 9,
+     "registeredOn": "2026-08-31",
+     "slug": "c-黄肇輝-民進黨-臺南市第07選舉區",
+     "identity": "現任議員（臺南市第7選舉區）"
+    },
+    {
+     "name": "李秉倫",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 10,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-李秉倫-臺南市第7選舉區",
+     "identity": null
+    },
+    {
+     "name": "周宏昌",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 11,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-周宏昌-臺南市第7選舉區",
+     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tnec/article/65387",
+    "tableDate": "2026-10-27",
+    "label": "臺南市選委會：市長及市議員抽籤結果",
+    "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+   }
   },
   {
    "no": 8,
@@ -497,10 +547,100 @@
    "type": "regional",
    "candidates": [
     {
+     "name": "許至椿",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "c-許至椿-國民黨-臺南市第08選舉區",
+     "identity": "現任議員（臺南市第8選舉區）"
+    },
+    {
+     "name": "江明宗",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": 2,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-江明宗-臺南市第8選舉區",
+     "identity": null
+    },
+    {
+     "name": "鄭方形",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 3,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-鄭方形-臺南市第8選舉區",
+     "identity": null
+    },
+    {
+     "name": "蔡宗豪",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-09-03",
+     "slug": "c-蔡宗豪-國民黨-臺南市第08選舉區",
+     "identity": "現任議員（臺南市第8選舉區）"
+    },
+    {
+     "name": "邱莉莉",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 5,
+     "registeredOn": "2026-09-02",
+     "slug": "c-邱莉莉-民進黨-臺南市第08選舉區",
+     "identity": "現任議員（臺南市第8選舉區）"
+    },
+    {
+     "name": "謝秉舟",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 6,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-謝秉舟-臺南市第8選舉區",
+     "identity": null
+    },
+    {
+     "name": "周嘉韋",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 7,
+     "registeredOn": "2026-09-02",
+     "slug": "c-周嘉韋-民進黨-臺南市第08選舉區",
+     "identity": "現任議員（臺南市第8選舉區）"
+    },
+    {
+     "name": "童小芸",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 8,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-童小芸-臺南市第8選舉區",
+     "identity": null
+    },
+    {
+     "name": "林建南",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 9,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-林建南-臺南市第8選舉區",
+     "identity": null
+    },
+    {
+     "name": "陳昌輝",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 10,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-陳昌輝-臺南市第8選舉區",
+     "identity": null
+    },
+    {
      "name": "沈震南",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 11,
      "registeredOn": "2026-08-31",
      "slug": "cand-沈震南-臺南市第8選舉區",
      "identity": null,
@@ -515,98 +655,15 @@
       "basis": "2026年登記報導明列賴懋慶、沈震南為首次參選者。",
       "reviewedOn": "2026-10-14"
      }
-    },
-    {
-     "name": "江明宗",
-     "partyName": "台灣民眾黨",
-     "partyCode": "350",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-江明宗-臺南市第8選舉區",
-     "identity": null
-    },
-    {
-     "name": "林建南",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-林建南-臺南市第8選舉區",
-     "identity": null
-    },
-    {
-     "name": "鄭方形",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-鄭方形-臺南市第8選舉區",
-     "identity": null
-    },
-    {
-     "name": "許至椿",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-許至椿-國民黨-臺南市第08選舉區",
-     "identity": "現任議員（臺南市第8選舉區）"
-    },
-    {
-     "name": "邱莉莉",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-邱莉莉-民進黨-臺南市第08選舉區",
-     "identity": "現任議員（臺南市第8選舉區）"
-    },
-    {
-     "name": "周嘉韋",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-周嘉韋-民進黨-臺南市第08選舉區",
-     "identity": "現任議員（臺南市第8選舉區）"
-    },
-    {
-     "name": "蔡宗豪",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-蔡宗豪-國民黨-臺南市第08選舉區",
-     "identity": "現任議員（臺南市第8選舉區）"
-    },
-    {
-     "name": "陳昌輝",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-陳昌輝-臺南市第8選舉區",
-     "identity": null
-    },
-    {
-     "name": "童小芸",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-童小芸-臺南市第8選舉區",
-     "identity": null
-    },
-    {
-     "name": "謝秉舟",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-謝秉舟-臺南市第8選舉區",
-     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tnec/article/65387",
+    "tableDate": "2026-10-27",
+    "label": "臺南市選委會：市長及市議員抽籤結果",
+    "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+   }
   },
   {
    "no": 9,
@@ -614,87 +671,94 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "陳冠諭",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-陳冠諭-臺南市第9選舉區",
+     "name": "李伯利",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 1,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-李伯利-臺南市第9選舉區",
      "identity": null
     },
     {
      "name": "林依婷",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-01",
      "slug": "c-林依婷-民進黨-臺南市第09選舉區",
-     "identity": "現任議員（臺南市第9選舉區）"
-    },
-    {
-     "name": "盧崑福",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-盧崑福-國民黨-臺南市第09選舉區",
      "identity": "現任議員（臺南市第9選舉區）"
     },
     {
      "name": "葉翰勲",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-02",
      "slug": "cand-葉翰勲-臺南市第9選舉區",
      "identity": null
     },
     {
-     "name": "呂維胤",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-呂維胤-臺南市第9選舉區",
-     "identity": null
-    },
-    {
-     "name": "周麗津",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-周麗津-民進黨-臺南市第09選舉區",
-     "identity": "現任議員（臺南市第9選舉區）"
-    },
-    {
-     "name": "李啓維",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-李啓維-民進黨-臺南市第09選舉區",
-     "identity": "現任議員（臺南市第9選舉區）"
-    },
-    {
      "name": "蕭漍華",
      "partyName": "台灣民眾黨",
      "partyCode": "350",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-02",
      "slug": "cand-蕭漍華-臺南市第9選舉區",
      "identity": null
     },
     {
-     "name": "李伯利",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-李伯利-臺南市第9選舉區",
+     "name": "李啓維",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 5,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李啓維-民進黨-臺南市第09選舉區",
+     "identity": "現任議員（臺南市第9選舉區）"
+    },
+    {
+     "name": "周麗津",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 6,
+     "registeredOn": "2026-09-02",
+     "slug": "c-周麗津-民進黨-臺南市第09選舉區",
+     "identity": "現任議員（臺南市第9選舉區）"
+    },
+    {
+     "name": "盧崑福",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 7,
+     "registeredOn": "2026-09-02",
+     "slug": "c-盧崑福-國民黨-臺南市第09選舉區",
+     "identity": "現任議員（臺南市第9選舉區）"
+    },
+    {
+     "name": "呂維胤",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 8,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-呂維胤-臺南市第9選舉區",
+     "identity": null
+    },
+    {
+     "name": "陳冠諭",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 9,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-陳冠諭-臺南市第9選舉區",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tnec/article/65387",
+    "tableDate": "2026-10-27",
+    "label": "臺南市選委會：市長及市議員抽籤結果",
+    "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+   }
   },
   {
    "no": 10,
@@ -702,19 +766,10 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "歐政豪",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-歐政豪-臺南市第10選舉區",
-     "identity": null
-    },
-    {
      "name": "蔡筱薇",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-蔡筱薇-民進黨-臺南市第10選舉區",
      "identity": "現任議員（臺南市第10選舉區）"
@@ -723,25 +778,16 @@
      "name": "陳金鐘",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "cand-陳金鐘-臺南市第10選舉區",
      "identity": null
     },
     {
-     "name": "王家貞",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-王家貞-國民黨-臺南市第10選舉區",
-     "identity": "現任議員（臺南市第10選舉區）"
-    },
-    {
      "name": "李宗霖",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-03",
      "slug": "c-李宗霖-台灣基進-臺南市第10選舉區",
      "identity": "現任議員（臺南市第10選舉區）"
@@ -750,21 +796,46 @@
      "name": "陳進男",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-04",
      "slug": "cand-陳進男-臺南市第10選舉區",
      "identity": null
     },
     {
+     "name": "歐政豪",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 5,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-歐政豪-臺南市第10選舉區",
+     "identity": null
+    },
+    {
+     "name": "王家貞",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 6,
+     "registeredOn": "2026-09-02",
+     "slug": "c-王家貞-國民黨-臺南市第10選舉區",
+     "identity": "現任議員（臺南市第10選舉區）"
+    },
+    {
      "name": "曾之婕",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 7,
      "registeredOn": "2026-09-04",
      "slug": "c-曾之婕-無黨籍及未經政黨推薦-臺南市第10選舉區",
      "identity": "現任議員（臺南市第10選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tnec/article/65387",
+    "tableDate": "2026-10-27",
+    "label": "臺南市選委會：市長及市議員抽籤結果",
+    "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+   }
   },
   {
    "no": 11,
@@ -772,73 +843,37 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "翁語含",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-翁語含-臺南市第11選舉區",
+     "name": "郭如芳",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-郭如芳-臺南市第11選舉區",
      "identity": null
     },
     {
      "name": "吳禹寰",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-08-31",
      "slug": "c-吳禹寰-無黨籍及未經政黨推薦-臺南市第11選舉區",
      "identity": "現任議員（臺南市第11選舉區）"
     },
     {
-     "name": "鄭佳欣",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-鄭佳欣-民進黨-臺南市第11選舉區",
-     "identity": "現任議員（臺南市第11選舉區）"
-    },
-    {
-     "name": "許又仁",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-許又仁-臺南市第11選舉區",
-     "identity": null
-    },
-    {
-     "name": "陳皇宇",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-陳皇宇-民進黨-臺南市第11選舉區",
-     "identity": "現任議員（臺南市第11選舉區）"
-    },
-    {
-     "name": "郭鴻儀",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-郭鴻儀-民進黨-臺南市第11選舉區",
-     "identity": "現任議員（臺南市第11選舉區）"
-    },
-    {
-     "name": "郭如芳",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-郭如芳-臺南市第11選舉區",
+     "name": "翁語含",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 3,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-翁語含-臺南市第11選舉區",
      "identity": null
     },
     {
      "name": "杜素吟",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-03",
      "slug": "c-杜素吟-無黨團結聯盟-臺南市第11選舉區",
      "identity": "現任議員（臺南市第11選舉區）"
@@ -847,12 +882,55 @@
      "name": "劉正昌",
      "partyName": "台聯黨",
      "partyCode": null,
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-09-04",
      "slug": "cand-劉正昌-臺南市第11選舉區",
      "identity": null
+    },
+    {
+     "name": "許又仁",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 6,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-許又仁-臺南市第11選舉區",
+     "identity": null
+    },
+    {
+     "name": "陳皇宇",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 7,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳皇宇-民進黨-臺南市第11選舉區",
+     "identity": "現任議員（臺南市第11選舉區）"
+    },
+    {
+     "name": "郭鴻儀",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 8,
+     "registeredOn": "2026-09-02",
+     "slug": "c-郭鴻儀-民進黨-臺南市第11選舉區",
+     "identity": "現任議員（臺南市第11選舉區）"
+    },
+    {
+     "name": "鄭佳欣",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 9,
+     "registeredOn": "2026-09-02",
+     "slug": "c-鄭佳欣-民進黨-臺南市第11選舉區",
+     "identity": "現任議員（臺南市第11選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tnec/article/65387",
+    "tableDate": "2026-10-27",
+    "label": "臺南市選委會：市長及市議員抽籤結果",
+    "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+   }
   },
   {
    "no": 12,
@@ -863,7 +941,7 @@
      "name": "李美素",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-03",
      "slug": "cand-李美素-臺南市第12選舉區（平地原住民）",
      "identity": null
@@ -872,12 +950,19 @@
      "name": "吳東明",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-04",
      "slug": "cand-吳東明-臺南市第12選舉區（平地原住民）",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tnec/article/65387",
+    "tableDate": "2026-10-27",
+    "label": "臺南市選委會：市長及市議員抽籤結果",
+    "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+   }
   },
   {
    "no": 13,
@@ -888,7 +973,7 @@
      "name": "施余興望Tjakumay Tagaw",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-01",
      "slug": "c-施余興望tjakumaytagaw-無黨籍及未經政黨推薦-臺南市第13選舉區",
      "identity": "現任議員（臺南市第13選舉區）"
@@ -897,12 +982,19 @@
      "name": "辛晴晴Langui Tamapima",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-03",
      "slug": "cand-辛晴晴Langui Tamapima-臺南市第13選舉區（山地原住民）",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tnec/article/65387",
+    "tableDate": "2026-10-27",
+    "label": "臺南市選委會：市長及市議員抽籤結果",
+    "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+   }
   }
  ],
  "townToDistrict": {

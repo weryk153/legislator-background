@@ -2047,6 +2047,279 @@
         "朱永煇",
         "許孟祥"
       ]
+    },
+    {
+      "countyName": "臺南市",
+      "districtNo": 1,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/tnec/article/65387",
+        "tableDate": "2026-10-27",
+        "label": "臺南市選委會：市長及市議員抽籤結果",
+        "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+      },
+      "namesByNumber": [
+        "陳詩薇",
+        "張新斛",
+        "侯陸太",
+        "沈家鳳",
+        "趙昆原",
+        "王宣貿",
+        "李宗翰",
+        "蔡育輝"
+      ]
+    },
+    {
+      "countyName": "臺南市",
+      "districtNo": 2,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/tnec/article/65387",
+        "tableDate": "2026-10-27",
+        "label": "臺南市選委會：市長及市議員抽籤結果",
+        "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+      },
+      "namesByNumber": [
+        "王詩媛",
+        "蔡秋蘭",
+        "蔡蘇秋金",
+        "陳昆和",
+        "謝舒凡",
+        "方一峰"
+      ]
+    },
+    {
+      "countyName": "臺南市",
+      "districtNo": 3,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/tnec/article/65387",
+        "tableDate": "2026-10-27",
+        "label": "臺南市選委會：市長及市議員抽籤結果",
+        "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+      },
+      "namesByNumber": [
+        "吳通龍",
+        "陳秋宏",
+        "施朝清",
+        "尤淨寬"
+      ]
+    },
+    {
+      "countyName": "臺南市",
+      "districtNo": 4,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/tnec/article/65387",
+        "tableDate": "2026-10-27",
+        "label": "臺南市選委會：市長及市議員抽籤結果",
+        "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+      },
+      "namesByNumber": [
+        "賴懋慶",
+        "周奕齊"
+      ]
+    },
+    {
+      "countyName": "臺南市",
+      "districtNo": 5,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/tnec/article/65387",
+        "tableDate": "2026-10-27",
+        "label": "臺南市選委會：市長及市議員抽籤結果",
+        "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+      },
+      "namesByNumber": [
+        "陳碧玉",
+        "李文俊",
+        "廖俊道",
+        "李偉智",
+        "林志展",
+        "余柷青",
+        "李佳蓉"
+      ]
+    },
+    {
+      "countyName": "臺南市",
+      "districtNo": 6,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/tnec/article/65387",
+        "tableDate": "2026-10-27",
+        "label": "臺南市選委會：市長及市議員抽籤結果",
+        "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+      },
+      "namesByNumber": [
+        "蔡麗青",
+        "郭信良",
+        "林緯",
+        "唐儀靜",
+        "邱昭勝",
+        "黃麗招",
+        "郭品辰",
+        "李中岑",
+        "姚正玉"
+      ]
+    },
+    {
+      "countyName": "臺南市",
+      "districtNo": 7,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/tnec/article/65387",
+        "tableDate": "2026-10-27",
+        "label": "臺南市選委會：市長及市議員抽籤結果",
+        "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+      },
+      "namesByNumber": [
+        "林燕祝",
+        "吳依潔",
+        "楊中成",
+        "卞宗康",
+        "朱正軒",
+        "林乃立",
+        "林冠維",
+        "陳秋萍",
+        "黄肇輝",
+        "李秉倫",
+        "周宏昌"
+      ]
+    },
+    {
+      "countyName": "臺南市",
+      "districtNo": 8,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/tnec/article/65387",
+        "tableDate": "2026-10-27",
+        "label": "臺南市選委會：市長及市議員抽籤結果",
+        "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+      },
+      "namesByNumber": [
+        "許至椿",
+        "江明宗",
+        "鄭方形",
+        "蔡宗豪",
+        "邱莉莉",
+        "謝秉舟",
+        "周嘉韋",
+        "童小芸",
+        "林建南",
+        "陳昌輝",
+        "沈震南"
+      ]
+    },
+    {
+      "countyName": "臺南市",
+      "districtNo": 9,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/tnec/article/65387",
+        "tableDate": "2026-10-27",
+        "label": "臺南市選委會：市長及市議員抽籤結果",
+        "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+      },
+      "namesByNumber": [
+        "李伯利",
+        "林依婷",
+        "葉翰勲",
+        "蕭漍華",
+        "李啓維",
+        "周麗津",
+        "盧崑福",
+        "呂維胤",
+        "陳冠諭"
+      ]
+    },
+    {
+      "countyName": "臺南市",
+      "districtNo": 10,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/tnec/article/65387",
+        "tableDate": "2026-10-27",
+        "label": "臺南市選委會：市長及市議員抽籤結果",
+        "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+      },
+      "namesByNumber": [
+        "蔡筱薇",
+        "陳金鐘",
+        "李宗霖",
+        "陳進男",
+        "歐政豪",
+        "王家貞",
+        "曾之婕"
+      ]
+    },
+    {
+      "countyName": "臺南市",
+      "districtNo": 11,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/tnec/article/65387",
+        "tableDate": "2026-10-27",
+        "label": "臺南市選委會：市長及市議員抽籤結果",
+        "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+      },
+      "namesByNumber": [
+        "郭如芳",
+        "吳禹寰",
+        "翁語含",
+        "杜素吟",
+        "劉正昌",
+        "許又仁",
+        "陳皇宇",
+        "郭鴻儀",
+        "鄭佳欣"
+      ]
+    },
+    {
+      "countyName": "臺南市",
+      "districtNo": 12,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/tnec/article/65387",
+        "tableDate": "2026-10-27",
+        "label": "臺南市選委會：市長及市議員抽籤結果",
+        "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+      },
+      "namesByNumber": [
+        "李美素",
+        "吳東明"
+      ]
+    },
+    {
+      "countyName": "臺南市",
+      "districtNo": 13,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/tnec/article/65387",
+        "tableDate": "2026-10-27",
+        "label": "臺南市選委會：市長及市議員抽籤結果",
+        "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+      },
+      "namesByNumber": [
+        "施余興望Tjakumay Tagaw",
+        "辛晴晴Langui Tamapima"
+      ]
+    },
+    {
+      "countyName": "臺南市",
+      "districtNo": null,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/tnec/article/65387",
+        "tableDate": "2026-10-27",
+        "label": "臺南市選委會：市長及市議員抽籤結果",
+        "note": "核對10/27公布之完整號次PDF，並與同日選委會新聞稿交叉核對；保留名冊完整姓名。"
+      },
+      "namesByNumber": [
+        "蕭燐洪",
+        "謝龍介",
+        "陳亭妃",
+        "葉人文"
+      ]
     }
   ]
 }
