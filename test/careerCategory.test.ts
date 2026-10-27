@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { categorizeCareer, careerText, careerPeriod, sharedSource } from '../src/lib/careerCategory';
+import { categorizeCareer, careerText, careerPeriod, groupCareerSources } from '../src/lib/careerCategory';
 
 describe('categorizeCareer：公職', () => {
   it('立法院委員會職務', () => {
@@ -152,23 +152,29 @@ describe('careerPeriod：起訖期間', () => {
   });
 });
 
-describe('sharedSource：整組共用同一出處時只印一次', () => {
-  const src = (url: string) => ({ id: url, url, type: 'wiki', title: '維基百科', retrievedAt: '2026-08-26' });
-  const item = (title: string, url: string) => ({ title, organization: '', startDate: '', endDate: null, source: src(url) });
+describe('groupCareerSources：依網址合併並保留對應關係', () => {
+  const item = (title: string, url: string, id = url) => ({ title, source: { id, url, title: '立法院開放資料' } });
 
-  it('全組同一出處 → 回傳該出處', () => {
-    const items = [item('甲會理事長', 'https://a'), item('乙會顧問', 'https://a'), item('丙宮主委', 'https://a')];
-    expect(sharedSource(items)?.url).toBe('https://a');
+  it('混合來源仍合併重複網址，保留經歷順序與來源編號', () => {
+    const items = [item('立委', 'https://a', 'one'), item('委員', 'https://a', 'two'), item('當選', 'https://b'), item('召委', 'https://a', 'three')];
+    const result = groupCareerSources(items);
+    expect(result.sources).toEqual([
+      { source: items[0].source, number: 1, count: 3 },
+      { source: items[2].source, number: 2, count: 1 },
+    ]);
+    expect(result.entries.map((entry) => entry.item)).toEqual(items);
+    expect(result.entries.map((entry) => entry.sourceNumber)).toEqual([1, 1, 2, 1]);
   });
-  it('只要有一筆出處不同 → 回傳 null，維持逐筆顯示', () => {
-    const items = [item('甲會理事長', 'https://a'), item('乙會顧問', 'https://b')];
-    expect(sharedSource(items)).toBeNull();
+  it('同名但網址不同的資料集不會被吞掉', () => {
+    const result = groupCareerSources([item('第5會期', 'https://a'), item('第6會期', 'https://b')]);
+    expect(result.sources.map((entry) => entry.source.url)).toEqual(['https://a', 'https://b']);
   });
-  it('單筆不合併——組層級只印一次反而讓版面多一列', () => {
-    expect(sharedSource([item('甲會理事長', 'https://a')])).toBeNull();
+  it('單筆與全組同來源都只保留一個來源', () => {
+    expect(groupCareerSources([item('甲', 'https://a')]).sources).toHaveLength(1);
+    expect(groupCareerSources([item('甲', 'https://a'), item('乙', 'https://a')]).sources[0].count).toBe(2);
   });
-  it('空陣列回傳 null', () => {
-    expect(sharedSource([])).toBeNull();
+  it('空經歷沒有來源或編號', () => {
+    expect(groupCareerSources([])).toEqual({ entries: [], sources: [] });
   });
 });
 

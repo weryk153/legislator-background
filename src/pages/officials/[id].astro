@@ -5,6 +5,7 @@ import Base from "../../layouts/Base.astro";
 import TitleCard from "../../components/TitleCard.astro";
 import SectionHead from "../../components/SectionHead.astro";
 import Sources from "../../components/Sources.astro";
+import CareerSources from "../../components/CareerSources.astro";
 import CandidateChannels from "../../components/CandidateChannels.astro";
 import { loadCandidateChannels } from "../../lib/candidateChannels";
 import CandidatePolicies from "../../components/CandidatePolicies.astro";
@@ -18,7 +19,7 @@ import { loadCandidatePolicies, loadPolicyReviews } from "../../lib/candidatePol
 import { loadOfficials } from "../../lib/data";
 import { egoSubgraph, RELATION_LABEL, FAMILY_RELATIONS, ENTITY_LABEL, OFFICE_LABEL } from "../../lib/graph";
 import { loadGraph } from "../../lib/loadGraph";
-import { categorizeCareer, careerText, careerPeriod, sharedSource, type CareerCategory } from "../../lib/careerCategory";
+import { categorizeCareer, careerText, careerPeriod, groupCareerSources, type CareerCategory } from "../../lib/careerCategory";
 import FirstRunBadge from '../../components/FirstRunBadge.svelte';
 import { loadCandidacies, excludedCandidacies } from "../../lib/candidacy";
 import { countyPagePath } from "../../lib/countyKeys";
@@ -63,8 +64,7 @@ const careersByCategory = CAREER_GROUPS.map((g) => {
   const items = o.careers.filter(
     (c) => c.title !== "解職" && !educationCareerIds.has(c.id) && categorizeCareer(careerText(c.organization, c.title)) === g.key,
   );
-  // 整組同一出處時掛在組層級，逐筆就不再重印同一行連結（見 sharedSource 的說明）。
-  return { ...g, items, shared: sharedSource(items) };
+  return { ...g, items, ...groupCareerSources(items) };
 }).filter((g) => g.items.length > 0);
 
 const centerKey = `official:${o.id}`;
@@ -257,18 +257,12 @@ const jsonLd = [
       <div class="career-group">
         <h3 class="career-group-head">{g.label}</h3>
         {g.note && <p class="note">{g.note}</p>}
-        {g.shared && (
-          <div class="group-source">
-            <Sources sources={[g.shared]} />
-            <span class="group-source-note">（本組各筆共同出處）</span>
-          </div>
-        )}
-        {g.items.map((c) => (
+        {g.entries.map(({ item: c, sourceNumber }) => (
           <div class="item">
-            <div>{careerPeriod(c.startDate, c.endDate) && <strong class="num">{careerPeriod(c.startDate, c.endDate)}　</strong>}{careerText(c.organization, c.title)}</div>
-            {!g.shared && <Sources sources={[c.source]} />}
+            <div>{careerPeriod(c.startDate, c.endDate) && <strong class="num">{careerPeriod(c.startDate, c.endDate)}　</strong>}{careerText(c.organization, c.title)}{g.sources.length > 1 && <sup class="career-ref"><a href={c.source.url} target="_blank" rel="noopener" aria-label={`${careerText(c.organization, c.title)}的出處 ${sourceNumber}`}>[{sourceNumber}]</a></sup>}</div>
           </div>
         ))}
+        <CareerSources sources={g.sources} label={`${g.label}經歷出處`} />
       </div>
     ))}
     {/* 參選人若只有登記參選那一筆，空著像是漏抓；如實說明本站尚未收錄（不宣稱查無），並交代何時補。 */}
@@ -436,10 +430,11 @@ const jsonLd = [
     .sec { margin-bottom: 42px; scroll-margin-top: 24px; }
     .sec :global(.sh) { margin-top: 0; }
     .note { font-size: var(--t-sm); color: var(--muted); margin: -4px 0 16px; }
-    .group-source { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; margin: -6px 0 12px; }
-    .group-source :global(.sources) { margin-top: 0; }
     .group-source-note { font-size: var(--t-xs); color: var(--faint); }
     .career-group + .career-group { margin-top: 22px; }
+    .career-ref { margin-left: 4px; font-size: 0.7em; font-weight: 400; color: var(--muted); }
+    .career-ref a { display: inline-block; min-width: 24px; line-height: 24px; text-align: center; }
+    .career-ref a:hover, .career-ref a:focus-visible { color: var(--accent); text-decoration: underline; }
     .career-group-head {
       font-family: var(--sans); font-size: var(--t-sm); font-weight: 700;
       color: var(--muted); letter-spacing: 0.06em;

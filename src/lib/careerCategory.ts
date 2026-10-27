@@ -120,13 +120,20 @@ export function careerPeriod(startDate: string, endDate: string | null): string 
   return '';
 }
 
-// 一組經歷若全部來自同一個出處，出處只需在組層級宣告一次。
-// 全站 2 筆以上的組有 85% 是單一出處（如某議員的 30 筆社團職務全來自同一個維基條目），
-// 逐筆重印同一行連結會讓讀者滑過一整片相同文字才看得完職務清單——噪音蓋過資訊。
-// 出處不同的組維持逐筆顯示：那些組裡「哪一筆來自哪裡」本身就是資訊，不能藏。
-// 單筆不合併——只有一筆時印在組層級反而多佔一列。
-export function sharedSource<T extends { source: { url: string } }>(items: T[]): T['source'] | null {
-  if (items.length < 2) return null;
-  const first = items[0].source;
-  return items.every((i) => i.source?.url === first.url) ? first : null;
+// 相同網址合併為一筆出處，保留原經歷順序與各筆對應的來源編號。
+// 不依標題合併：同名的「立法院開放資料」可能指向不同資料集。
+export function groupCareerSources<T extends { source: { url: string } }>(items: T[]) {
+  const sources: { source: T['source']; number: number; count: number }[] = [];
+  const byUrl = new Map<string, (typeof sources)[number]>();
+  const entries = items.map((item) => {
+    let entry = byUrl.get(item.source.url);
+    if (!entry) {
+      entry = { source: item.source, number: sources.length + 1, count: 0 };
+      byUrl.set(item.source.url, entry);
+      sources.push(entry);
+    }
+    entry.count++;
+    return { item, sourceNumber: entry.number };
+  });
+  return { entries, sources };
 }

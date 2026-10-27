@@ -3,6 +3,7 @@
   import ShareActions from './ShareActions.svelte';
   import { MAX_COMPARISON, readComparison, comparisonUrl, toggleComparison, swapComparison, readComparisonTopic, type ComparisonTopic, type ComparisonCandidate } from '../lib/candidateComparison';
   import type { Source } from '../lib/types';
+  import { groupCareerSources } from '../lib/careerCategory';
   let { candidates, canonical, heading }: { candidates: ComparisonCandidate[]; canonical: string; heading: string } = $props();
   let ids = $state<string[]>([]);
   let ready = $state(false);
@@ -239,8 +240,12 @@
               {/if}
               {#if person.careers.length}
                 <h5>經歷</h5>
-                {#each person.careers as career}
-                  <div class="reference-record"><p>{career.text}</p>{@render sourceLink(career.source)}</div>
+                {#each groupCareerSources(person.careers).sources as { source }}
+                  {@const careers = person.careers.filter(career => career.source.url === source.url)}
+                  <div class="reference-record career-reference-group">
+                    <ul>{#each careers as career}<li>{career.text}</li>{/each}</ul>
+                    {@render sourceLink({ ...source, retrievedAt: [...new Set(careers.map(career => career.source.retrievedAt).filter(Boolean))].join('、') })}
+                  </div>
                 {/each}
               {/if}
               {#if person.policies.length}

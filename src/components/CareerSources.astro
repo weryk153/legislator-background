@@ -1,0 +1,29 @@
+---
+import type { Source } from '../lib/types';
+interface Props {
+  sources: { source: Source; number: number; count: number }[];
+  label?: string;
+}
+const { sources, label = '經歷出處' } = Astro.props;
+---
+{sources.length > 1 ? <details class="career-sources" aria-label={label}>
+  <summary>出處 <span class="count">{sources.length} 個來源</span></summary>
+  <ul>{sources.map(({ source, number, count }) => (
+    <li><a href={source.url} target="_blank" rel="noopener"><span class="number">[{number}] </span>{source.title || source.url}</a><span class="count">（{count} 筆）</span></li>
+  ))}</ul>
+</details> : <div class="career-sources single" aria-label={label}>
+  <span class="label">出處</span>
+  {sources.map(({ source }) => <a href={source.url} target="_blank" rel="noopener">{source.title || source.url}</a>)}
+</div>}
+<style>
+  .career-sources { margin-top: 12px; color: var(--muted); font-size: var(--t-sm); }
+  .single { display: flex; align-items: baseline; gap: 8px; }
+  summary { cursor: pointer; min-height: 32px; align-content: center; font-size: var(--t-xs); }
+  summary .count { margin-left: 6px; }
+  .label { flex: none; color: var(--faint); font-size: var(--t-xs); letter-spacing: 0.1em; }
+  ul { display: flex; flex-wrap: wrap; gap: 4px 16px; list-style: none; margin: 4px 0 0; padding: 0; min-width: 0; }
+  li { overflow-wrap: anywhere; }
+  a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-strong); }
+  a:hover { color: var(--accent); }
+  .number, .count { color: var(--faint); font-size: var(--t-xs); }
+</style>

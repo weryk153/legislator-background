@@ -1,5 +1,6 @@
 ---
 import CandidateComparison from '../../../../components/CandidateComparison.svelte';
+import CareerSources from '../../../../components/CareerSources.astro';
 import CandidateReactions from '../../../../components/CandidateReactions.svelte';
 import { comparisonCandidate } from '../../../../lib/candidateComparisonData';
 import { loadCandidatePolicies } from '../../../../lib/candidatePolicies';
@@ -15,7 +16,7 @@ import { loadOfficials } from '../../../../lib/data';
 import { loadCandidateEducation, educationForDisplay } from '../../../../lib/candidateEducation';
 import { districtCardId, shareCardPath, portraitCardPath } from '../../../../lib/shareCardData';
 import { partyEmblem } from '../../../../lib/partyEmblems';
-import { careerText } from '../../../../lib/careerCategory';
+import { careerText, groupCareerSources } from '../../../../lib/careerCategory';
 
 export async function getStaticPaths() {
   const officials = await loadOfficials();
@@ -100,6 +101,7 @@ const jsonLd = [
         const record = records[0];
         const career = official?.careers.filter(item => !education?.excludedCareerIds.includes(item.id)
           && !/2026.*選舉登記參選/.test(item.title)).slice(0, 2) ?? [];
+        const careerSources = groupCareerSources(career);
         const emblem = partyEmblem(partyLabel(c));
         return <li>
           <article>
@@ -118,7 +120,8 @@ const jsonLd = [
             </div>
             {career.length > 0 && <div class="excerpt">
               <h4>經歷摘錄</h4>
-              <ul>{career.map(item => <li>{careerText(item.organization, item.title)}<a class="source" href={item.source.url} target="_blank" rel="noopener noreferrer"> 出處 ↗</a></li>)}</ul>
+              <ul>{careerSources.entries.map(({ item, sourceNumber }) => <li>{careerText(item.organization, item.title)}{careerSources.sources.length > 1 && <sup><a class="source" href={item.source.url} target="_blank" rel="noopener noreferrer" aria-label={`經歷出處 ${sourceNumber}`}> [{sourceNumber}]</a></sup>}</li>)}</ul>
+              <CareerSources sources={careerSources.sources} />
             </div>}
             {c.slug && <a class="profile-link" href={`/officials/${c.slug}/`}>查看完整人物資料 →</a>}
             {c.slug && <CandidateReactions client:visible candidate={c.slug} name={c.name} />}
