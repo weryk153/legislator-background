@@ -19,4 +19,11 @@ describe('dataset source dates', () => {
       { source: { stage: 'numbered', tableDate: '2026-10-27' } },
     ])).toMatchObject({ roster: '2026-10-16', ballots: '2026-10-27' });
   });
+  it('includes a numbered district while its county still has pending districts', () => {
+    expect(dataFreshness({}, { source: { tableDate: '2026-10-16' } }, [
+      { source: { stage: 'certified', tableDate: '2026-10-16' }, districts: [
+        { source: { stage: 'numbered', tableDate: '2026-10-27' } }, {},
+      ] },
+    ])).toMatchObject({ roster: '2026-10-16', ballots: '2026-10-27' });
+  });
 });

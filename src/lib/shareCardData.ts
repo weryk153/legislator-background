@@ -137,8 +137,8 @@ async function buildCards(): Promise<Map<string, ShareCardData>> {
       id, kind: 'district', heading: `${page.county.name}${page.district.label}`,
       subtitle: `2026 議員候選人・共 ${page.district.candidates.length} 人`,
       detail: districtAreaSummary(page.area),
-      note: candidateSourceLabel(page.council.source),
-      date: page.council.source.tableDate,
+      note: candidateSourceLabel(page.district.source ?? page.council.source),
+      date: (page.district.source ?? page.council.source).tableDate,
     });
   }
   return cards;

@@ -4,8 +4,8 @@ const validDate = (value: unknown): value is string => typeof value === 'string'
 
 // A source date describes that dataset only. A new build or a single numbered county
 // must never imply that all profiles or all counties were refreshed that day.
-export function dataFreshness(meta: { generatedAt?: string }, election: ElectionData, councils: Array<{ source?: CandidateSource }> = []) {
-  const sources = [election.source, ...(election.races ?? []).map(r => r.source), ...councils.map(c => c.source)].filter(Boolean) as CandidateSource[];
+export function dataFreshness(meta: { generatedAt?: string }, election: ElectionData, councils: Array<{ source?: CandidateSource; districts?: Array<{ source?: CandidateSource }> }> = []) {
+  const sources = [election.source, ...(election.races ?? []).map(r => r.source), ...councils.flatMap(c => [c.source, ...(c.districts ?? []).map(d => d.source)])].filter(Boolean) as CandidateSource[];
   const numbered = sources.filter(s => s.stage === 'numbered' || s.stage === 'announced')
     .map(s => s.tableDate).filter(validDate).sort();
   return {

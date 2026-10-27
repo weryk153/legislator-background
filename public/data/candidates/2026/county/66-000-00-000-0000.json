@@ -1,9 +1,10 @@
 {
  "source": {
-  "stage": "certified",
-  "url": "https://web.cec.gov.tw/central/article/65212",
-  "tableDate": "2026-10-16",
-  "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
+  "stage": "numbered",
+  "url": "https://web.cec.gov.tw/tcec/article/65351",
+  "tableDate": "2026-10-27",
+  "label": "臺中市選委會：10/27 抽籤號次",
+  "note": "已依選委會公布的完整選區名單核對。"
  },
  "countyCode": "66-000-00-000-0000",
  "countyName": "臺中市",
@@ -14,10 +15,19 @@
    "type": "regional",
    "candidates": [
     {
+     "name": "楊啓邦",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 1,
+     "registeredOn": "2026-08-31",
+     "slug": "c-楊啓邦-國民黨-臺中市第01選舉區",
+     "identity": "現任議員（臺中市第1選舉區）"
+    },
+    {
      "name": "吳中源",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-08-31",
      "slug": "cand-吳中源-臺中市第1選舉區",
      "identity": null,
@@ -34,33 +44,31 @@
      }
     },
     {
-     "name": "楊啓邦",
+     "name": "李文傑",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-楊啓邦-國民黨-臺中市第01選舉區",
+     "number": 3,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李文傑-國民黨-臺中市第01選舉區",
      "identity": "現任議員（臺中市第1選舉區）"
     },
     {
      "name": "施志昌",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-01",
      "slug": "c-施志昌-民進黨-臺中市第01選舉區",
      "identity": "現任議員（臺中市第1選舉區）"
-    },
-    {
-     "name": "李文傑",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-李文傑-國民黨-臺中市第01選舉區",
-     "identity": "現任議員（臺中市第1選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 2,
@@ -68,10 +76,46 @@
    "type": "regional",
    "candidates": [
     {
+     "name": "顏莉敏",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "c-顏莉敏-國民黨-臺中市第02選舉區",
+     "identity": "現任議員（臺中市第2選舉區）"
+    },
+    {
+     "name": "陳廷秀",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳廷秀-無黨籍及未經政黨推薦-臺中市第02選舉區",
+     "identity": "現任議員（臺中市第2選舉區）"
+    },
+    {
+     "name": "張清照",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 3,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張清照-國民黨-臺中市第02選舉區",
+     "identity": "現任議員（臺中市第2選舉區）"
+    },
+    {
+     "name": "楊典忠",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 4,
+     "registeredOn": "2026-09-02",
+     "slug": "c-楊典忠-民進黨-臺中市第02選舉區",
+     "identity": "現任議員（臺中市第2選舉區）"
+    },
+    {
      "name": "陳永祥",
      "partyName": "台灣民眾黨",
      "partyCode": "350",
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-08-31",
      "slug": "cand-陳永祥-臺中市第2選舉區",
      "identity": null
@@ -80,57 +124,28 @@
      "name": "王立任",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 6,
      "registeredOn": "2026-09-01",
      "slug": "c-王立任-民進黨-臺中市第02選舉區",
-     "identity": "現任議員（臺中市第2選舉區）"
-    },
-    {
-     "name": "顏莉敏",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-顏莉敏-國民黨-臺中市第02選舉區",
-     "identity": "現任議員（臺中市第2選舉區）"
-    },
-    {
-     "name": "楊典忠",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-楊典忠-民進黨-臺中市第02選舉區",
-     "identity": "現任議員（臺中市第2選舉區）"
-    },
-    {
-     "name": "張清照",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-張清照-國民黨-臺中市第02選舉區",
      "identity": "現任議員（臺中市第2選舉區）"
     },
     {
      "name": "陳怡潔",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 7,
      "registeredOn": "2026-09-02",
      "slug": "cand-陳怡潔-臺中市第2選舉區",
      "identity": null
-    },
-    {
-     "name": "陳廷秀",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-陳廷秀-無黨籍及未經政黨推薦-臺中市第02選舉區",
-     "identity": "現任議員（臺中市第2選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 3,
@@ -138,51 +153,58 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "曾威",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "c-曾威-民進黨-臺中市第03選舉區",
+     "name": "林孟令",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 1,
+     "registeredOn": "2026-09-03",
+     "slug": "c-林孟令-無黨籍及未經政黨推薦-臺中市第03選舉區",
      "identity": "現任議員（臺中市第3選舉區）"
     },
     {
      "name": "張家銨",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "c-張家銨-民進黨-臺中市第03選舉區",
-     "identity": "現任議員（臺中市第3選舉區）"
-    },
-    {
-     "name": "林孟令",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-林孟令-無黨籍及未經政黨推薦-臺中市第03選舉區",
-     "identity": "現任議員（臺中市第3選舉區）"
-    },
-    {
-     "name": "吳瓊華",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-04",
-     "slug": "c-吳瓊華-國民黨-臺中市第03選舉區",
      "identity": "現任議員（臺中市第3選舉區）"
     },
     {
      "name": "林汝洲",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-04",
      "slug": "cand-林汝洲-臺中市第3選舉區",
      "identity": null
+    },
+    {
+     "name": "曾威",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 4,
+     "registeredOn": "2026-09-01",
+     "slug": "c-曾威-民進黨-臺中市第03選舉區",
+     "identity": "現任議員（臺中市第3選舉區）"
+    },
+    {
+     "name": "吳瓊華",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 5,
+     "registeredOn": "2026-09-04",
+     "slug": "c-吳瓊華-國民黨-臺中市第03選舉區",
+     "identity": "現任議員（臺中市第3選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 4,
@@ -190,87 +212,94 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "連小華",
-     "partyName": "台灣民眾黨",
-     "partyCode": "350",
-     "number": null,
+     "name": "黃朝淵",
+     "partyName": "親民黨",
+     "partyCode": "90",
+     "number": 1,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-黃朝淵-臺中市第4選舉區",
+     "identity": null
+    },
+    {
+     "name": "連佳振",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-連佳振-臺中市第4選舉區",
+     "identity": null
+    },
+    {
+     "name": "蔡怡萱",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 3,
      "registeredOn": "2026-08-31",
-     "slug": "cand-連小華-臺中市第4選舉區",
+     "slug": "cand-蔡怡萱-臺中市第4選舉區",
      "identity": null
     },
     {
      "name": "邱愛珊",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-08-31",
      "slug": "c-邱愛珊-國民黨-臺中市第04選舉區",
      "identity": "現任議員（臺中市第4選舉區）"
     },
     {
-     "name": "蔡怡萱",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-蔡怡萱-臺中市第4選舉區",
-     "identity": null
-    },
-    {
      "name": "劉和豐",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-08-31",
      "slug": "cand-劉和豐-臺中市第4選舉區",
+     "identity": null
+    },
+    {
+     "name": "連小華",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": 6,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-連小華-臺中市第4選舉區",
      "identity": null
     },
     {
      "name": "謝志忠",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 7,
      "registeredOn": "2026-09-01",
      "slug": "c-謝志忠-民進黨-臺中市第04選舉區",
      "identity": "現任議員（臺中市第4選舉區）"
     },
     {
-     "name": "連佳振",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-連佳振-臺中市第4選舉區",
-     "identity": null
-    },
-    {
      "name": "王朝坤",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 8,
      "registeredOn": "2026-09-02",
      "slug": "cand-王朝坤-臺中市第4選舉區",
-     "identity": null
-    },
-    {
-     "name": "黃朝淵",
-     "partyName": "親民黨",
-     "partyCode": "90",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-黃朝淵-臺中市第4選舉區",
      "identity": null
     },
     {
      "name": "陳本添",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 9,
      "registeredOn": "2026-09-04",
      "slug": "c-陳本添-國民黨-臺中市第04選舉區",
      "identity": "現任議員（臺中市第4選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 5,
@@ -278,55 +307,73 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "蕭隆澤",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-蕭隆澤-民進黨-臺中市第05選舉區",
-     "identity": "現任議員（臺中市第5選舉區）"
-    },
-    {
-     "name": "吳呈賢",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-吳呈賢-國民黨-臺中市第05選舉區",
-     "identity": "現任議員（臺中市第5選舉區）"
-    },
-    {
-     "name": "陳清崧",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-陳清崧-臺中市第5選舉區",
-     "identity": null
-    },
-    {
-     "name": "陳映辰",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-陳映辰-臺中市第5選舉區",
+     "name": "林鈺梅",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-林鈺梅-臺中市第5選舉區",
      "identity": null
     },
     {
      "name": "張烱春",
      "partyName": "司法改革黨",
      "partyCode": null,
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-01",
      "slug": "cand-張烱春-臺中市第5選舉區",
+     "identity": null
+    },
+    {
+     "name": "陳映辰",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 3,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-陳映辰-臺中市第5選舉區",
+     "identity": null
+    },
+    {
+     "name": "吳呈賢",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-08-31",
+     "slug": "c-吳呈賢-國民黨-臺中市第05選舉區",
+     "identity": "現任議員（臺中市第5選舉區）"
+    },
+    {
+     "name": "蔡慧君",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 5,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-蔡慧君-臺中市第5選舉區",
+     "identity": null
+    },
+    {
+     "name": "蕭隆澤",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 6,
+     "registeredOn": "2026-08-31",
+     "slug": "c-蕭隆澤-民進黨-臺中市第05選舉區",
+     "identity": "現任議員（臺中市第5選舉區）"
+    },
+    {
+     "name": "陳清崧",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 7,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-陳清崧-臺中市第5選舉區",
      "identity": null
     },
     {
      "name": "賴朝國",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 8,
      "registeredOn": "2026-09-02",
      "slug": "c-賴朝國-國民黨-臺中市第05選舉區",
      "identity": "現任議員（臺中市第5選舉區）"
@@ -335,39 +382,28 @@
      "name": "周永鴻",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 9,
      "registeredOn": "2026-09-02",
      "slug": "c-周永鴻-民進黨-臺中市第05選舉區",
      "identity": "現任議員（臺中市第5選舉區）"
     },
     {
-     "name": "林鈺梅",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-林鈺梅-臺中市第5選舉區",
-     "identity": null
-    },
-    {
      "name": "徐瑄灃",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 10,
      "registeredOn": "2026-09-03",
      "slug": "c-徐瑄灃-無黨籍及未經政黨推薦-臺中市第05選舉區",
      "identity": "現任議員（臺中市第5選舉區）"
-    },
-    {
-     "name": "蔡慧君",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-04",
-     "slug": "cand-蔡慧君-臺中市第5選舉區",
-     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 6,
@@ -375,60 +411,67 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "陳淑華",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-陳淑華-民進黨-臺中市第06選舉區",
-     "identity": "現任議員（臺中市第6選舉區）"
-    },
-    {
-     "name": "劉芩妤",
-     "partyName": "台灣民眾黨",
-     "partyCode": "350",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-劉芩妤-臺中市第6選舉區",
-     "identity": null
-    },
-    {
-     "name": "楊大鋐",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-楊大鋐-國民黨-臺中市第06選舉區",
-     "identity": "現任議員（臺中市第6選舉區）"
-    },
-    {
      "name": "林祈烽",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-01",
      "slug": "c-林祈烽-民進黨-臺中市第06選舉區",
      "identity": "現任議員（臺中市第6選舉區）"
     },
     {
-     "name": "黃馨慧",
+     "name": "楊大鋐",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-黃馨慧-國民黨-臺中市第06選舉區",
+     "number": 2,
+     "registeredOn": "2026-08-31",
+     "slug": "c-楊大鋐-國民黨-臺中市第06選舉區",
+     "identity": "現任議員（臺中市第6選舉區）"
+    },
+    {
+     "name": "陳淑華",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 3,
+     "registeredOn": "2026-08-31",
+     "slug": "c-陳淑華-民進黨-臺中市第06選舉區",
      "identity": "現任議員（臺中市第6選舉區）"
     },
     {
      "name": "張廖乃綸",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-02",
      "slug": "c-張廖乃綸-國民黨-臺中市第06選舉區",
      "identity": "現任議員（臺中市第6選舉區）"
+    },
+    {
+     "name": "黃馨慧",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 5,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃馨慧-國民黨-臺中市第06選舉區",
+     "identity": "現任議員（臺中市第6選舉區）"
+    },
+    {
+     "name": "劉芩妤",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": 6,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-劉芩妤-臺中市第6選舉區",
+     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 7,
@@ -436,51 +479,58 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "劉士州",
+     "name": "朱暖英",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-劉士州-國民黨-臺中市第07選舉區",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "c-朱暖英-國民黨-臺中市第07選舉區",
      "identity": "現任議員（臺中市第7選舉區）"
     },
     {
      "name": "張耀中",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-01",
      "slug": "cand-張耀中-臺中市第7選舉區",
      "identity": null
     },
     {
-     "name": "朱暖英",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-朱暖英-國民黨-臺中市第07選舉區",
-     "identity": "現任議員（臺中市第7選舉區）"
-    },
-    {
      "name": "何文海",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-02",
      "slug": "c-何文海-民進黨-臺中市第07選舉區",
+     "identity": "現任議員（臺中市第7選舉區）"
+    },
+    {
+     "name": "劉士州",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-08-31",
+     "slug": "c-劉士州-國民黨-臺中市第07選舉區",
      "identity": "現任議員（臺中市第7選舉區）"
     },
     {
      "name": "吳佩芸",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-09-04",
      "slug": "c-吳佩芸-時代力量-臺中市第07選舉區",
      "identity": "現任議員（臺中市第7選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 8,
@@ -488,93 +538,46 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "邱于珊",
-     "partyName": "台灣民眾黨",
-     "partyCode": "350",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-邱于珊-臺中市第8選舉區",
+     "name": "彭振芳",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-彭振芳-臺中市第8選舉區",
      "identity": null
     },
     {
      "name": "賴順仁",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-08-31",
      "slug": "c-賴順仁-國民黨-臺中市第08選舉區",
      "identity": "現任議員（臺中市第8選舉區）"
     },
     {
-     "name": "謝家宜",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-謝家宜-民進黨-臺中市第08選舉區",
-     "identity": "現任議員（臺中市第8選舉區）"
-    },
-    {
-     "name": "沈佑蓮",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-沈佑蓮-國民黨-臺中市第08選舉區",
-     "identity": "現任議員（臺中市第8選舉區）"
-    },
-    {
-     "name": "段體佩",
+     "name": "楊政昱",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-段體佩-臺中市第8選舉區",
+     "number": 3,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-楊政昱-臺中市第8選舉區",
      "identity": null
     },
     {
-     "name": "彭振芳",
+     "name": "陳諭韋",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-02",
-     "slug": "cand-彭振芳-臺中市第8選舉區",
-     "identity": null
-    },
-    {
-     "name": "曾咨耀",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-曾咨耀-臺中市第8選舉區",
-     "identity": null,
-     "firstRun": {
-      "year": 2026,
-      "scope": "public-office",
-      "source": {
-       "title": "1150210立委王義川唯一推薦「正派台中隊」連線：市議會最強戰力 何敏誠決定由女兒何翊綾接棒 登記參選東南區 | 台灣廣播股份有限公司",
-       "url": "https://www.taiwanradio.com.tw/ec99/rwd1638/product.asp?prodid=113-115-663",
-       "publishedOn": "2026-02-10"
-      },
-      "basis": "報導明確記載曾咨耀在2026年選舉為首次參選；已核對選區與本人經歷，並交叉檢索歷屆候選人資料。",
-      "reviewedOn": "2026-10-14"
-     }
-    },
-    {
-     "name": "蔡佩珊",
-     "partyName": "小民參政歐巴桑聯盟",
-     "partyCode": "357",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-蔡佩珊-臺中市第8選舉區",
+     "slug": "cand-陳諭韋-臺中市第8選舉區",
      "identity": null
     },
     {
      "name": "陳信秀",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-09-02",
      "slug": "cand-陳信秀-臺中市第8選舉區",
      "identity": null,
@@ -591,28 +594,10 @@
      }
     },
     {
-     "name": "陳諭韋",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-陳諭韋-臺中市第8選舉區",
-     "identity": null
-    },
-    {
-     "name": "吳宗學",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-吳宗學-臺中市第8選舉區",
-     "identity": null
-    },
-    {
      "name": "許育璿",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 6,
      "registeredOn": "2026-09-03",
      "slug": "cand-許育璿-臺中市第8選舉區",
      "identity": null,
@@ -629,15 +614,87 @@
      }
     },
     {
-     "name": "楊政昱",
+     "name": "段體佩",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-04",
-     "slug": "cand-楊政昱-臺中市第8選舉區",
+     "number": 7,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-段體佩-臺中市第8選舉區",
+     "identity": null
+    },
+    {
+     "name": "謝家宜",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 8,
+     "registeredOn": "2026-08-31",
+     "slug": "c-謝家宜-民進黨-臺中市第08選舉區",
+     "identity": "現任議員（臺中市第8選舉區）"
+    },
+    {
+     "name": "曾咨耀",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 9,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-曾咨耀-臺中市第8選舉區",
+     "identity": null,
+     "firstRun": {
+      "year": 2026,
+      "scope": "public-office",
+      "source": {
+       "title": "1150210立委王義川唯一推薦「正派台中隊」連線：市議會最強戰力 何敏誠決定由女兒何翊綾接棒 登記參選東南區 | 台灣廣播股份有限公司",
+       "url": "https://www.taiwanradio.com.tw/ec99/rwd1638/product.asp?prodid=113-115-663",
+       "publishedOn": "2026-02-10"
+      },
+      "basis": "報導明確記載曾咨耀在2026年選舉為首次參選；已核對選區與本人經歷，並交叉檢索歷屆候選人資料。",
+      "reviewedOn": "2026-10-14"
+     }
+    },
+    {
+     "name": "沈佑蓮",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 10,
+     "registeredOn": "2026-09-02",
+     "slug": "c-沈佑蓮-國民黨-臺中市第08選舉區",
+     "identity": "現任議員（臺中市第8選舉區）"
+    },
+    {
+     "name": "蔡佩珊",
+     "partyName": "小民參政歐巴桑聯盟",
+     "partyCode": "357",
+     "number": 11,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-蔡佩珊-臺中市第8選舉區",
+     "identity": null
+    },
+    {
+     "name": "邱于珊",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": 12,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-邱于珊-臺中市第8選舉區",
+     "identity": null
+    },
+    {
+     "name": "吳宗學",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 13,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-吳宗學-臺中市第8選舉區",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 9,
@@ -645,42 +702,49 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "簡嘉佑",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-簡嘉佑-臺中市第9選舉區",
-     "identity": null
-    },
-    {
-     "name": "陳文政",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-陳文政-國民黨-臺中市第09選舉區",
-     "identity": "現任議員（臺中市第9選舉區）"
-    },
-    {
      "name": "陳政顯",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-陳政顯-國民黨-臺中市第09選舉區",
      "identity": "現任議員（臺中市第9選舉區）"
     },
     {
+     "name": "陳文政",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳文政-國民黨-臺中市第09選舉區",
+     "identity": "現任議員（臺中市第9選舉區）"
+    },
+    {
+     "name": "簡嘉佑",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 3,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-簡嘉佑-臺中市第9選舉區",
+     "identity": null
+    },
+    {
      "name": "陳俞融",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-02",
      "slug": "c-陳俞融-民進黨-臺中市第09選舉區",
      "identity": "現任議員（臺中市第9選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 10,
@@ -688,19 +752,10 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "張彥彤",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-張彥彤-國民黨-臺中市第10選舉區",
-     "identity": "現任議員（臺中市第10選舉區）"
-    },
-    {
      "name": "黃守達",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-01",
      "slug": "c-黃守達-民進黨-臺中市第10選舉區",
      "identity": "現任議員（臺中市第10選舉區）"
@@ -709,21 +764,37 @@
      "name": "林靈",
      "partyName": "勞動黨",
      "partyCode": "15",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "cand-林靈-臺中市第10選舉區",
      "identity": null
     },
     {
+     "name": "張彥彤",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 3,
+     "registeredOn": "2026-08-31",
+     "slug": "c-張彥彤-國民黨-臺中市第10選舉區",
+     "identity": "現任議員（臺中市第10選舉區）"
+    },
+    {
      "name": "江肇國",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-03",
      "slug": "c-江肇國-民進黨-臺中市第10選舉區",
      "identity": "現任議員（臺中市第10選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 11,
@@ -734,75 +805,82 @@
      "name": "楊寶楨",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-08-31",
      "slug": "cand-楊寶楨-臺中市第11選舉區",
-     "identity": null
-    },
-    {
-     "name": "陳雅惠",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-陳雅惠-民進黨-臺中市第11選舉區",
-     "identity": "現任議員（臺中市第11選舉區）"
-    },
-    {
-     "name": "鄭功進",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "c-鄭功進-民進黨-臺中市第11選舉區",
-     "identity": "現任議員（臺中市第11選舉區）"
-    },
-    {
-     "name": "林霈涵",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-林霈涵-國民黨-臺中市第11選舉區",
-     "identity": "現任議員（臺中市第11選舉區）"
-    },
-    {
-     "name": "李中",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-李中-國民黨-臺中市第11選舉區",
-     "identity": "現任議員（臺中市第11選舉區）"
-    },
-    {
-     "name": "何翊綾",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-何翊綾-臺中市第11選舉區",
-     "identity": null
-    },
-    {
-     "name": "林英成",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-林英成-臺中市第11選舉區",
      "identity": null
     },
     {
      "name": "周啓揚",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-04",
      "slug": "cand-周啓揚-臺中市第11選舉區",
      "identity": null
+    },
+    {
+     "name": "陳雅惠",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 3,
+     "registeredOn": "2026-08-31",
+     "slug": "c-陳雅惠-民進黨-臺中市第11選舉區",
+     "identity": "現任議員（臺中市第11選舉區）"
+    },
+    {
+     "name": "林霈涵",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林霈涵-國民黨-臺中市第11選舉區",
+     "identity": "現任議員（臺中市第11選舉區）"
+    },
+    {
+     "name": "鄭功進",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 5,
+     "registeredOn": "2026-09-01",
+     "slug": "c-鄭功進-民進黨-臺中市第11選舉區",
+     "identity": "現任議員（臺中市第11選舉區）"
+    },
+    {
+     "name": "何翊綾",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 6,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-何翊綾-臺中市第11選舉區",
+     "identity": null
+    },
+    {
+     "name": "李中",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 7,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李中-國民黨-臺中市第11選舉區",
+     "identity": "現任議員（臺中市第11選舉區）"
+    },
+    {
+     "name": "林英成",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 8,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-林英成-臺中市第11選舉區",
+     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 12,
@@ -810,69 +888,76 @@
    "type": "regional",
    "candidates": [
     {
+     "name": "蔡耀頡",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蔡耀頡-民進黨-臺中市第12選舉區",
+     "identity": "現任議員（臺中市第12選舉區）"
+    },
+    {
+     "name": "張書華",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 2,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-張書華-臺中市第12選舉區",
+     "identity": null
+    },
+    {
      "name": "許書豪",
      "partyName": "台灣民眾黨",
      "partyCode": "350",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-08-31",
      "slug": "cand-許書豪-臺中市第12選舉區",
      "identity": null
     },
     {
-     "name": "張玉嬿",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-張玉嬿-民進黨-臺中市第12選舉區",
-     "identity": "現任議員（臺中市第12選舉區）"
-    },
-    {
      "name": "黃佳恬",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-08-31",
      "slug": "c-黃佳恬-國民黨-臺中市第12選舉區",
+     "identity": "現任議員（臺中市第12選舉區）"
+    },
+    {
+     "name": "張玉嬿",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 5,
+     "registeredOn": "2026-08-31",
+     "slug": "c-張玉嬿-民進黨-臺中市第12選舉區",
      "identity": "現任議員（臺中市第12選舉區）"
     },
     {
      "name": "賴義鍠",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 6,
      "registeredOn": "2026-09-01",
      "slug": "c-賴義鍠-國民黨-臺中市第12選舉區",
-     "identity": "現任議員（臺中市第12選舉區）"
-    },
-    {
-     "name": "蔡耀頡",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-蔡耀頡-民進黨-臺中市第12選舉區",
      "identity": "現任議員（臺中市第12選舉區）"
     },
     {
      "name": "閻泰利",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 7,
      "registeredOn": "2026-09-02",
      "slug": "cand-閻泰利-臺中市第12選舉區",
      "identity": null
-    },
-    {
-     "name": "張書華",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-張書華-臺中市第12選舉區",
-     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 13,
@@ -880,28 +965,46 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "江和樹",
-     "partyName": "台灣民眾黨",
-     "partyCode": "350",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-江和樹-民眾黨-臺中市第13選舉區",
+     "name": "李天生",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李天生-民進黨-臺中市第13選舉區",
      "identity": "現任議員（臺中市第13選舉區）"
     },
     {
-     "name": "張芬郁",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-張芬郁-民進黨-臺中市第13選舉區",
+     "name": "段中仁",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 2,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-段中仁-臺中市第13選舉區",
+     "identity": null
+    },
+    {
+     "name": "鄒明諺",
+     "partyName": "時代力量",
+     "partyCode": "267",
+     "number": 3,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-鄒明諺-臺中市第13選舉區",
+     "identity": null
+    },
+    {
+     "name": "林碧秀",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林碧秀-國民黨-臺中市第13選舉區",
      "identity": "現任議員（臺中市第13選舉區）"
     },
     {
      "name": "林德宇",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-09-01",
      "slug": "c-林德宇-民進黨-臺中市第13選舉區",
      "identity": "現任議員（臺中市第13選舉區）"
@@ -910,7 +1013,7 @@
      "name": "張滄沂",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 6,
      "registeredOn": "2026-09-01",
      "slug": "cand-張滄沂-臺中市第13選舉區",
      "identity": null
@@ -919,48 +1022,37 @@
      "name": "蘇柏興",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 7,
      "registeredOn": "2026-09-02",
      "slug": "c-蘇柏興-國民黨-臺中市第13選舉區",
      "identity": "現任議員（臺中市第13選舉區）"
     },
     {
-     "name": "林碧秀",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-林碧秀-國民黨-臺中市第13選舉區",
+     "name": "江和樹",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": 8,
+     "registeredOn": "2026-08-31",
+     "slug": "c-江和樹-民眾黨-臺中市第13選舉區",
      "identity": "現任議員（臺中市第13選舉區）"
     },
     {
-     "name": "李天生",
+     "name": "張芬郁",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-李天生-民進黨-臺中市第13選舉區",
+     "number": 9,
+     "registeredOn": "2026-08-31",
+     "slug": "c-張芬郁-民進黨-臺中市第13選舉區",
      "identity": "現任議員（臺中市第13選舉區）"
-    },
-    {
-     "name": "鄒明諺",
-     "partyName": "時代力量",
-     "partyCode": "267",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-鄒明諺-臺中市第13選舉區",
-     "identity": null
-    },
-    {
-     "name": "段中仁",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-段中仁-臺中市第13選舉區",
-     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 14,
@@ -971,7 +1063,7 @@
      "name": "吳振嘉",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-吳振嘉-國民黨-臺中市第14選舉區",
      "identity": "現任議員（臺中市第14選舉區）"
@@ -980,7 +1072,7 @@
      "name": "詹智翔",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "cand-詹智翔-臺中市第14選舉區",
      "identity": null,
@@ -996,7 +1088,14 @@
       "reviewedOn": "2026-10-13"
      }
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 15,
@@ -1004,24 +1103,31 @@
    "type": "plainIndigenous",
    "candidates": [
     {
-     "name": "吳建德",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-吳建德-國民黨-臺中市第15選舉區",
-     "identity": "現任議員（臺中市第15選舉區）"
-    },
-    {
      "name": "楊玉花",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-03",
      "slug": "cand-楊玉花-臺中市第15選舉區（平地原住民）",
      "identity": null
+    },
+    {
+     "name": "吳建德",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 2,
+     "registeredOn": "2026-08-31",
+     "slug": "c-吳建德-國民黨-臺中市第15選舉區",
+     "identity": "現任議員（臺中市第15選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 16,
@@ -1032,7 +1138,7 @@
      "name": "古秀英",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-古秀英-無黨籍及未經政黨推薦-臺中市第16選舉區",
      "identity": "現任議員（臺中市第16選舉區）"
@@ -1041,12 +1147,19 @@
      "name": "黃永光",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-03",
      "slug": "cand-黃永光-臺中市第16選舉區（山地原住民）",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 17,
@@ -1057,39 +1170,46 @@
      "name": "呂秀惠",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-08-31",
      "slug": "cand-呂秀惠-臺中市第17選舉區（山地原住民）",
      "identity": null
     },
     {
-     "name": "柯靜志",
+     "name": "瓦力司．比尤",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-柯靜志-臺中市第17選舉區（山地原住民）",
+     "number": 2,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-瓦力司．比尤-臺中市第17選舉區（山地原住民）",
      "identity": null
     },
     {
      "name": "朱元宏",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-03",
      "slug": "c-朱元宏-無黨籍及未經政黨推薦-臺中市第17選舉區",
      "identity": "現任議員（臺中市第17選舉區）"
     },
     {
-     "name": "瓦力司．比尤",
+     "name": "柯靜志",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-瓦力司．比尤-臺中市第17選舉區（山地原住民）",
+     "number": 4,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-柯靜志-臺中市第17選舉區（山地原住民）",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tcec/article/65351",
+    "tableDate": "2026-10-27",
+    "label": "臺中市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   }
  ],
  "townToDistrict": {

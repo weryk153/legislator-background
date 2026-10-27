@@ -38,6 +38,7 @@ export async function getStaticPaths() {
 }
 const { page, candidates, comparison } = Astro.props;
 const { county, council, district, area } = page as DistrictPageData;
+const ballotSource = district.source ?? council.source;
 const heading = districtPageHeading(county.name, district);
 const title = `${heading}名單、學經歷｜政治人物背景資料庫`;
 const description = districtPageDescription(county.name, district, area);
@@ -49,7 +50,7 @@ const index = siblings.findIndex(p => p.district.no === district.no);
 const jsonLd = [
   {
     '@context': 'https://schema.org', '@type': 'CollectionPage', name: heading, description,
-    url: pageUrl, inLanguage: 'zh-Hant', dateModified: council.source.tableDate,
+    url: pageUrl, inLanguage: 'zh-Hant', dateModified: ballotSource.tableDate,
     mainEntity: {
       '@type': 'ItemList', numberOfItems: candidates.length,
       itemListElement: candidates.map(({ candidate }, i) => ({
@@ -87,7 +88,7 @@ const jsonLd = [
       ? <p class="note"><a href={`${area.source.pdfUrl}#page=${area.source.pages[0]}`} target="_blank" rel="noopener noreferrer">2026 中選會選區公告 ↗</a>・公告 {area.source.publishedOn}・本站核對 {area.source.reviewedOn}</p>
       : <p class="note">2026 範圍尚待本站核對，請以選委會公告為準。</p>}
     {area.note && area.towns.length > 0 && <p class="note">{area.note}</p>}
-    <p class="note">名單版本：<a href={council.source.url} target="_blank" rel="noopener noreferrer">{candidateSourceLabel(council.source)} ↗</a>・更新 {council.source.tableDate}。{council.source.note}</p>
+    <p class="note">名單版本：<a href={ballotSource.url} target="_blank" rel="noopener noreferrer">{candidateSourceLabel(ballotSource)} ↗</a>・更新 {ballotSource.tableDate}。{ballotSource.note}</p>
   </section>
 
   <section aria-labelledby="candidates-title">

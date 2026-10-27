@@ -175,8 +175,8 @@
   const sidebarSource = $derived.by(() => {
     if (!sidebarCandidates || !candNational) return null;
     if (sidebarCandidates.mode === 'chief') return sidebarCandidates.race?.source ?? candNational.source;
-    if (sidebarCandidates.mode === 'county') return sidebarCandidates.county?.source ?? sidebarCandidates.race?.source ?? candNational.source;
-    if (sidebarCandidates.mode === 'town' && layer && candCounty?.countyCode === focusCountyCode(layer.level, area, layer)) return candCounty.source;
+    if (sidebarCandidates.mode === 'county') return sidebarCandidates.highlight?.source ?? sidebarCandidates.county?.source ?? sidebarCandidates.race?.source ?? candNational.source;
+    if (sidebarCandidates.mode === 'town' && layer && candCounty?.countyCode === focusCountyCode(layer.level, area, layer)) return sidebarCandidates.district?.source ?? candCounty.source;
     return candNational.source;
   });
   const countyLoadFailed = $derived(

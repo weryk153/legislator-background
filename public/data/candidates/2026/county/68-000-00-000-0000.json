@@ -3,7 +3,7 @@
   "stage": "certified",
   "url": "https://web.cec.gov.tw/central/article/65212",
   "tableDate": "2026-10-16",
-  "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
+  "note": "已收錄 1/14 個議員選區的完整號次；來源見各選區，其餘號次待核實。"
  },
  "countyCode": "68-000-00-000-0000",
  "countyName": "桃園市",
@@ -14,10 +14,154 @@
    "type": "regional",
    "candidates": [
     {
+     "name": "徐千晴",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": 1,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-徐千晴-桃園市第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "余信憲",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "c-余信憲-民進黨-桃園市第01選舉區",
+     "identity": "現任議員（桃園市第1選舉區）"
+    },
+    {
+     "name": "張碩芳",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 3,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張碩芳-國民黨-桃園市第01選舉區",
+     "identity": "現任議員（桃園市第1選舉區）"
+    },
+    {
+     "name": "凌濤",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-09-01",
+     "slug": "c-凌濤-國民黨-桃園市第01選舉區",
+     "identity": "現任議員（桃園市第1選舉區）"
+    },
+    {
+     "name": "陳美梅",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 5,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳美梅-國民黨-桃園市第01選舉區",
+     "identity": "現任議員（桃園市第1選舉區）"
+    },
+    {
+     "name": "林政賢",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 6,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林政賢-國民黨-桃園市第01選舉區",
+     "identity": "現任議員（桃園市第1選舉區）"
+    },
+    {
+     "name": "黃瓊慧",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 7,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃瓊慧-民進黨-桃園市第01選舉區",
+     "identity": "現任議員（桃園市第1選舉區）"
+    },
+    {
+     "name": "沈佩玲",
+     "partyName": "小民參政歐巴桑聯盟",
+     "partyCode": "357",
+     "number": 8,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-沈佩玲-桃園市第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "于北辰",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 9,
+     "registeredOn": "2026-09-02",
+     "slug": "c-于北辰-無黨籍及未經政黨推薦-桃園市第01選舉區",
+     "identity": "現任議員（桃園市第1選舉區）"
+    },
+    {
+     "name": "黃家齊",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 10,
+     "registeredOn": "2026-09-03",
+     "slug": "c-黃家齊-民進黨-桃園市第01選舉區",
+     "identity": "現任議員（桃園市第1選舉區）"
+    },
+    {
+     "name": "詹江村",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 11,
+     "registeredOn": "2026-08-31",
+     "slug": "c-詹江村-國民黨-桃園市第01選舉區",
+     "identity": "現任議員（桃園市第1選舉區）"
+    },
+    {
+     "name": "王妃天崩開局穿越整頓霸凌者佀廣洋",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 12,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-王妃天崩開局穿越整頓霸凌者佀廣洋-桃園市第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "李凱倫",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 13,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-李凱倫-桃園市第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "佀廣洋",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 14,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-佀廣洋-桃園市第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "李光達",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 15,
+     "registeredOn": "2026-09-01",
+     "slug": "c-李光達-民進黨-桃園市第01選舉區",
+     "identity": "現任議員（桃園市第1選舉區）"
+    },
+    {
+     "name": "李柏瑟",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 16,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-李柏瑟-桃園市第1選舉區",
+     "identity": null
+    },
+    {
      "name": "黃婉如",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 17,
      "registeredOn": "2026-08-31",
      "slug": "c-黃婉如-國民黨-桃園市第01選舉區",
      "identity": "現任議員（桃園市第1選舉區）"
@@ -26,165 +170,28 @@
      "name": "朱永煇",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 18,
      "registeredOn": "2026-08-31",
      "slug": "cand-朱永煇-桃園市第1選舉區",
      "identity": null
     },
     {
-     "name": "詹江村",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-詹江村-國民黨-桃園市第01選舉區",
-     "identity": "現任議員（桃園市第1選舉區）"
-    },
-    {
-     "name": "徐千晴",
-     "partyName": "台灣民眾黨",
-     "partyCode": "350",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-徐千晴-桃園市第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "凌濤",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "c-凌濤-國民黨-桃園市第01選舉區",
-     "identity": "現任議員（桃園市第1選舉區）"
-    },
-    {
-     "name": "李光達",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "c-李光達-民進黨-桃園市第01選舉區",
-     "identity": "現任議員（桃園市第1選舉區）"
-    },
-    {
      "name": "許孟祥",
      "partyName": "勞動黨",
      "partyCode": "15",
-     "number": null,
+     "number": 19,
      "registeredOn": "2026-09-01",
      "slug": "cand-許孟祥-桃園市第1選舉區",
      "identity": null
-    },
-    {
-     "name": "陳美梅",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-陳美梅-國民黨-桃園市第01選舉區",
-     "identity": "現任議員（桃園市第1選舉區）"
-    },
-    {
-     "name": "于北辰",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-于北辰-無黨籍及未經政黨推薦-桃園市第01選舉區",
-     "identity": "現任議員（桃園市第1選舉區）"
-    },
-    {
-     "name": "余信憲",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-余信憲-民進黨-桃園市第01選舉區",
-     "identity": "現任議員（桃園市第1選舉區）"
-    },
-    {
-     "name": "林政賢",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-林政賢-國民黨-桃園市第01選舉區",
-     "identity": "現任議員（桃園市第1選舉區）"
-    },
-    {
-     "name": "李凱倫",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-李凱倫-桃園市第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "黃瓊慧",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-黃瓊慧-民進黨-桃園市第01選舉區",
-     "identity": "現任議員（桃園市第1選舉區）"
-    },
-    {
-     "name": "張碩芳",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-張碩芳-國民黨-桃園市第01選舉區",
-     "identity": "現任議員（桃園市第1選舉區）"
-    },
-    {
-     "name": "李柏瑟",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-李柏瑟-桃園市第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "黃家齊",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-黃家齊-民進黨-桃園市第01選舉區",
-     "identity": "現任議員（桃園市第1選舉區）"
-    },
-    {
-     "name": "沈佩玲",
-     "partyName": "小民參政歐巴桑聯盟",
-     "partyCode": "357",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-沈佩玲-桃園市第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "佀廣洋",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-佀廣洋-桃園市第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "王妃天崩開局穿越整頓霸凌者佀廣洋",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-04",
-     "slug": "cand-王妃天崩開局穿越整頓霸凌者佀廣洋-桃園市第1選舉區",
-     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://udn.com/vote2026/story/124652/9839154",
+    "tableDate": "2026-10-27",
+    "label": "聯合報：桃園市第1選舉區抽籤號次",
+    "note": "依10/27現場報導核對完整19人名單；其他議員選區另行核對。"
+   }
   },
   {
    "no": 2,

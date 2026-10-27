@@ -185,7 +185,14 @@
      "slug": "cand-楊忠俊-金門縣第1選舉區",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://www.kmdn.gov.tw/1117/1271/1272/591193/",
+    "tableDate": "2026-10-24",
+    "label": "金門日報：10/23 抽籤號次",
+    "note": "縣長及議員號次已核對；抽籤日期 2026-10-23。"
+   }
   },
   {
    "no": 2,
@@ -302,7 +309,14 @@
      "slug": "c-楊育菡-無黨籍及未經政黨推薦-金門縣第02選舉區",
      "identity": "前任議員（金門縣第2選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://www.kmdn.gov.tw/1117/1271/1272/591193/",
+    "tableDate": "2026-10-24",
+    "label": "金門日報：10/23 抽籤號次",
+    "note": "縣長及議員號次已核對；抽籤日期 2026-10-23。"
+   }
   },
   {
    "no": 3,
@@ -345,7 +359,14 @@
      "slug": "cand-洪毓壕-金門縣第3選舉區",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://www.kmdn.gov.tw/1117/1271/1272/591193/",
+    "tableDate": "2026-10-24",
+    "label": "金門日報：10/23 抽籤號次",
+    "note": "縣長及議員號次已核對；抽籤日期 2026-10-23。"
+   }
   }
  ],
  "townToDistrict": {

@@ -163,8 +163,8 @@ export function districtCardSvg(page: DistrictPageData, profiles: ReadonlyMap<st
     ${text(648, listTop + 28, 17, numbered ? '依正式號次，由左至右閱讀' : '依名冊順序，由左至右閱讀；非號次', false, '#fff')}
     ${roster}
     <line x1="56" y1="${footerTop}" x2="1024" y2="${footerTop}" stroke="#000" stroke-width="2"/>
-    ${text(56, footerTop + 32, 19, candidateSourceLabel(page.council.source), true, '#b3271e')}
-    ${text(56, footerTop + 62, 17, `製表 ${page.council.source.tableDate}・2026 應選席次尚待本站核對`, false, '#555')}
+    ${text(56, footerTop + 32, 19, candidateSourceLabel(page.district.source ?? page.council.source), true, '#b3271e')}
+    ${text(56, footerTop + 62, 17, `製表 ${(page.district.source ?? page.council.source).tableDate}・2026 應選席次尚待本站核對`, false, '#555')}
     ${text(56, footerTop + 92, 17, '當選年份依本站收錄，不代表完整任期或連續在任', false, '#555')}
     ${text(56, footerTop + 122, 17, '來源：中選會、議會網站等；照片與任職出處見人物頁', false, '#555')}
     ${text(56, footerTop + 183, 18, new URL(url).hostname, false, '#555')}

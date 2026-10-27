@@ -9,25 +9,40 @@ const load = () => ({
   national: read('public/data/candidates/2026/national.json') as NationalCandidates,
   counties: readdirSync('public/data/candidates/2026/county').map(f => read(`public/data/candidates/2026/county/${f}`)) as CountyCandidates[],
 });
-describe('2026 審定與金門號次', () => {
-  it('81 位首長、1492 位議員；41 位已核對號次，其他人不填猜測號碼', () => {
+describe('2026 審定與已查證選區號次', () => {
+  it('81 位首長、1492 位議員；685 位已核對號次，其他人不填猜測號碼', () => {
     const { national, counties } = load();
     expect(national.races.flatMap(r => r.candidates)).toHaveLength(81);
     expect(counties.flatMap(c => c.districts.flatMap(d => d.candidates))).toHaveLength(1492);
     const numbered = [...national.races.flatMap(r => r.candidates), ...counties.flatMap(c => c.districts.flatMap(d => d.candidates))].filter(c => c.number !== null);
-    expect(numbered).toHaveLength(41);
+    expect(numbered).toHaveLength(685);
     expect(candidacyIndex(national, counties).get(numbered.find(c => c.name === '陳玉珍')!.slug!)?.number).toBe(5);
     for (const b of verified.ballots) {
       const list = b.districtNo === null ? national.races.find(r => r.countyName === b.countyName)!.candidates
         : counties.find(c => c.countyName === b.countyName)!.districts.find(d => d.no === b.districtNo)!.candidates;
       expect(list.map(c => c.name)).toEqual(b.namesByNumber);
       expect(list.map(c => c.number)).toEqual(b.namesByNumber.map((_, i) => i + 1));
+      if (b.districtNo !== null) expect(counties.find(c => c.countyName === b.countyName)!.districts.find(d => d.no === b.districtNo)!.source).toEqual(b.source);
     }
-    for (const county of counties.filter(c => c.countyName !== '金門縣')) {
-      expect(county.districts.flatMap(d => d.candidates).every(c => c.number === null)).toBe(true);
-      expect(county.source.note).toContain('2026-10-27');
+    for (const county of counties) {
+      for (const district of county.districts.filter(d => !verified.ballots.some(b => b.countyName === county.countyName && b.districtNo === d.no))) {
+        expect(district.candidates.every(c => c.number === null)).toBe(true);
+      }
     }
+    expect(national.races.find(r => r.countyName === '臺北市')!.candidates.find(c => c.name === '蔣萬安')!.number).toBe(5);
+    expect(national.races.find(r => r.countyName === '高雄市')!.candidates.find(c => c.name === '賴瑞隆')!.number).toBe(5);
     for (const e of verified.excluded) expect(counties.find(c => c.countyName === e.countyName)!.districts.find(d => d.no === e.districtNo)!.candidates.some(c => c.name === e.name)).toBe(false);
+  });
+  it('部分議員選區先收錄時保留分區來源，其他選區仍待核實', () => {
+    const { national, counties } = load();
+    const county = counties.find(c => c.countyName === '嘉義市')!;
+    county.source = { ...verified.certification };
+    for (const d of county.districts) { delete d.source; for (const c of d.candidates) c.number = null; }
+    applyVerifiedBallots(national, counties, { ...verified, ballots: verified.ballots.filter(b => b.countyName !== '嘉義市' || b.districtNo !== 2) });
+    expect(county.source.stage).toBe('certified');
+    expect(county.districts[0].source?.url).toContain('65355');
+    expect(county.districts[1].source).toBeUndefined();
+    expect(county.districts[1].candidates.every(c => c.number === null)).toBe(true);
   });
   it('重跑不改結果，重建登記版也會重新套用號次', () => {
     const { national, counties } = load();

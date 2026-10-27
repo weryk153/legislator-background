@@ -205,6 +205,7 @@ const jsonLd = [
                   {t && t.length > 0 && <span class="d-towns">{t.join("、")}</span>}
                   <span class="d-count">{d.candidates.length} 人</span>
                 </DistrictHeading>
+                {d.source && <p class="note">號次來源：<a href={d.source.url} target="_blank" rel="noopener noreferrer">{candidateSourceLabel(d.source)}</a>・{d.source.tableDate}</p>}
                 {d.scope && (d.scope.length > 60
                   ? <details class="note"><summary>公告選區範圍（展開里名）</summary><p>{d.scope}</p></details>
                   : <p class="note">公告範圍：{d.scope}</p>)}

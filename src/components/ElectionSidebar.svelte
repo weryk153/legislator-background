@@ -208,6 +208,7 @@
               <summary>{d.label}<span class="count">{d.candidates.length} 人</span></summary>
               {#if d.scope}<p class="note">公告範圍：{d.scope}</p>{/if}
               {@render candList(d.candidates)}
+              {#if d.source}<p class="note"><a href={d.source.url} target="_blank" rel="noopener noreferrer">{candidateSourceLabel(d.source)}</a>・{d.source.tableDate}</p>{/if}
             </details>
           {/each}
           {#if grp.indigenous.length}
@@ -217,6 +218,7 @@
                 <summary>{d.label}<span class="count">{d.candidates.length} 人</span></summary>
                 {#if d.scope}<p class="note">公告範圍：{d.scope}</p>{/if}
                 {@render candList(d.candidates)}
+                {#if d.source}<p class="note"><a href={d.source.url} target="_blank" rel="noopener noreferrer">{candidateSourceLabel(d.source)}</a>・{d.source.tableDate}</p>{/if}
               </details>
             {/each}
           {/if}

@@ -26,7 +26,8 @@ describe('同縣市縣市長完整政見比較', () => {
     expect(topics).toContain('教師權益');
     expect(topics).toContain('青年育兒宅');
     expect(topics).toContain('長照補助');
-    expect(counties.flatMap(c => c.people).filter(p => p.records.length)).toHaveLength(policies.size);
+    const chiefSlugs = new Set(national.races.flatMap(r => r.candidates.map(p => p.slug)));
+    expect(counties.flatMap(c => c.people).filter(p => p.records.length)).toHaveLength([...policies.keys()].filter(slug => chiefSlugs.has(slug)).length);
   });
   it('沒有有效縣市時不帶入任何人或搜尋；不跨縣市、不讓左右同人', async () => {
     const { counties } = await loadChiefPolicyComparison();

@@ -63,7 +63,7 @@ export interface NationalCandidates { source: CandidateSource; races: ChiefRace[
 export interface DistrictSource {
   url: string; pdfUrl: string; publishedOn: string; reviewedOn: string; documentNo: string; pages: number[];
 }
-export interface CouncilDistrict { no: number; label: string; type: DistrictType; candidates: CandidateEntry[]; scope?: string }
+export interface CouncilDistrict { no: number; label: string; type: DistrictType; candidates: CandidateEntry[]; scope?: string; source?: CandidateSource }
 export interface CountyCandidates {
   source: CandidateSource;
   countyCode: string;

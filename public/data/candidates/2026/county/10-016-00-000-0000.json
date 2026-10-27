@@ -1,9 +1,10 @@
 {
  "source": {
-  "stage": "certified",
-  "url": "https://web.cec.gov.tw/central/article/65212",
-  "tableDate": "2026-10-16",
-  "note": "因颱風延期至 2026-10-27 抽籤；號次尚未收錄。"
+  "stage": "numbered",
+  "url": "https://web.cec.gov.tw/phec/article/65367",
+  "tableDate": "2026-10-27",
+  "label": "澎湖縣選委會：10/27 抽籤號次",
+  "note": "已依選委會公布的完整選區名單核對。"
  },
  "countyCode": "10-016-00-000-0000",
  "countyName": "澎湖縣",
@@ -17,34 +18,115 @@
      "name": "吳仁祥",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-08-31",
      "slug": "cand-吳仁祥-澎湖縣第1選舉區",
      "identity": null
     },
     {
-     "name": "顏家康",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-顏家康-澎湖縣第1選舉區",
+     "name": "藍凱元",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "c-藍凱元-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
+     "identity": "現任議員（澎湖縣第1選舉區）"
+    },
+    {
+     "name": "莊光大",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 3,
+     "registeredOn": "2026-09-03",
+     "slug": "c-莊光大-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
+     "identity": "現任議員（澎湖縣第1選舉區）"
+    },
+    {
+     "name": "陳偉澄",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 4,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-陳偉澄-澎湖縣第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "陳海山",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 5,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳海山-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
+     "identity": "現任議員（澎湖縣第1選舉區）"
+    },
+    {
+     "name": "呂光宇",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 6,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-呂光宇-澎湖縣第1選舉區",
      "identity": null
     },
     {
      "name": "蘇育德",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 7,
      "registeredOn": "2026-08-31",
      "slug": "c-蘇育德-民進黨-澎湖縣第01選舉區",
+     "identity": "現任議員（澎湖縣第1選舉區）"
+    },
+    {
+     "name": "蘇陳綉色",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 8,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蘇陳綉色-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
+     "identity": "現任議員（澎湖縣第1選舉區）"
+    },
+    {
+     "name": "張惠雅",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 9,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-張惠雅-澎湖縣第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "陳毓仁",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 10,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳毓仁-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
+     "identity": "現任議員（澎湖縣第1選舉區）"
+    },
+    {
+     "name": "許國政",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 11,
+     "registeredOn": "2026-09-02",
+     "slug": "c-許國政-國民黨-澎湖縣第01選舉區",
+     "identity": "現任議員（澎湖縣第1選舉區）"
+    },
+    {
+     "name": "呂黃春金",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 12,
+     "registeredOn": "2026-09-02",
+     "slug": "c-呂黃春金-民進黨-澎湖縣第01選舉區",
      "identity": "現任議員（澎湖縣第1選舉區）"
     },
     {
      "name": "歐松林",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 13,
      "registeredOn": "2026-09-01",
      "slug": "cand-歐松林-澎湖縣第1選舉區",
      "identity": null,
@@ -61,141 +143,67 @@
      }
     },
     {
-     "name": "林柏成",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-林柏成-澎湖縣第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "呂黃春金",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-呂黃春金-民進黨-澎湖縣第01選舉區",
-     "identity": "現任議員（澎湖縣第1選舉區）"
-    },
-    {
-     "name": "鄭清發",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-鄭清發-澎湖縣第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "藍凱元",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-藍凱元-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
-     "identity": "現任議員（澎湖縣第1選舉區）"
-    },
-    {
-     "name": "陳毓仁",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-陳毓仁-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
-     "identity": "現任議員（澎湖縣第1選舉區）"
-    },
-    {
-     "name": "蘇陳綉色",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-蘇陳綉色-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
-     "identity": "現任議員（澎湖縣第1選舉區）"
-    },
-    {
-     "name": "許國政",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-許國政-國民黨-澎湖縣第01選舉區",
-     "identity": "現任議員（澎湖縣第1選舉區）"
-    },
-    {
-     "name": "張惠雅",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-張惠雅-澎湖縣第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "呂光宇",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-呂光宇-澎湖縣第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "陳海山",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-陳海山-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
-     "identity": "現任議員（澎湖縣第1選舉區）"
-    },
-    {
      "name": "陳慧娟",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 14,
      "registeredOn": "2026-09-03",
      "slug": "cand-陳慧娟-澎湖縣第1選舉區",
      "identity": null
     },
     {
-     "name": "陳偉澄",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-陳偉澄-澎湖縣第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "莊光大",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-莊光大-無黨籍及未經政黨推薦-澎湖縣第01選舉區",
-     "identity": "現任議員（澎湖縣第1選舉區）"
-    },
-    {
      "name": "胡正仁",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 15,
      "registeredOn": "2026-09-03",
      "slug": "cand-胡正仁-澎湖縣第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "林柏成",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 16,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-林柏成-澎湖縣第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "顏家康",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 17,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-顏家康-澎湖縣第1選舉區",
      "identity": null
     },
     {
      "name": "莊國輝",
      "partyName": "台灣民眾黨",
      "partyCode": "350",
-     "number": null,
+     "number": 18,
      "registeredOn": "2026-09-04",
      "slug": "cand-莊國輝-澎湖縣第1選舉區",
      "identity": null
+    },
+    {
+     "name": "鄭清發",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 19,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-鄭清發-澎湖縣第1選舉區",
+     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/phec/article/65367",
+    "tableDate": "2026-10-27",
+    "label": "澎湖縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 2,
@@ -203,51 +211,58 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "李麗美",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-李麗美-澎湖縣第2選舉區",
-     "identity": null
-    },
-    {
-     "name": "蔡清續",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-蔡清續-民進黨-澎湖縣第02選舉區",
-     "identity": "現任議員（澎湖縣第2選舉區）"
-    },
-    {
-     "name": "許育愷",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-許育愷-無黨籍及未經政黨推薦-澎湖縣第02選舉區",
-     "identity": "現任議員（澎湖縣第2選舉區）"
-    },
-    {
      "name": "吳政杰",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-01",
      "slug": "c-吳政杰-國民黨-澎湖縣第02選舉區",
      "identity": "現任議員（澎湖縣第2選舉區）"
     },
     {
+     "name": "蔡清續",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 2,
+     "registeredOn": "2026-08-31",
+     "slug": "c-蔡清續-民進黨-澎湖縣第02選舉區",
+     "identity": "現任議員（澎湖縣第2選舉區）"
+    },
+    {
+     "name": "李麗美",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 3,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-李麗美-澎湖縣第2選舉區",
+     "identity": null
+    },
+    {
      "name": "廖璟華",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-02",
      "slug": "cand-廖璟華-澎湖縣第2選舉區",
      "identity": null
+    },
+    {
+     "name": "許育愷",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 5,
+     "registeredOn": "2026-08-31",
+     "slug": "c-許育愷-無黨籍及未經政黨推薦-澎湖縣第02選舉區",
+     "identity": "現任議員（澎湖縣第2選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/phec/article/65367",
+    "tableDate": "2026-10-27",
+    "label": "澎湖縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 3,
@@ -255,19 +270,10 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "許皆詳",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-許皆詳-澎湖縣第3選舉區",
-     "identity": null
-    },
-    {
      "name": "宋昀芝",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-宋昀芝-無黨籍及未經政黨推薦-澎湖縣第03選舉區",
      "identity": "現任議員（澎湖縣第3選舉區）"
@@ -276,21 +282,37 @@
      "name": "宋萬富",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "cand-宋萬富-澎湖縣第3選舉區",
+     "identity": null
+    },
+    {
+     "name": "許皆詳",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 3,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-許皆詳-澎湖縣第3選舉區",
      "identity": null
     },
     {
      "name": "魏睿宏",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-03",
      "slug": "c-魏睿宏-無黨籍及未經政黨推薦-澎湖縣第03選舉區",
      "identity": "現任議員（澎湖縣第3選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/phec/article/65367",
+    "tableDate": "2026-10-27",
+    "label": "澎湖縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 4,
@@ -301,30 +323,37 @@
      "name": "許月里",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-許月里-無黨籍及未經政黨推薦-澎湖縣第04選舉區",
      "identity": "現任議員（澎湖縣第4選舉區）"
     },
     {
-     "name": "李家萱",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-李家萱-澎湖縣第4選舉區",
-     "identity": null
-    },
-    {
      "name": "許嘉峻",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "cand-許嘉峻-澎湖縣第4選舉區",
      "identity": null
+    },
+    {
+     "name": "李家萱",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 3,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-李家萱-澎湖縣第4選舉區",
+     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/phec/article/65367",
+    "tableDate": "2026-10-27",
+    "label": "澎湖縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 5,
@@ -332,24 +361,31 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "陳佩真",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-陳佩真-無黨籍及未經政黨推薦-澎湖縣第05選舉區",
-     "identity": "現任議員（澎湖縣第5選舉區）"
-    },
-    {
      "name": "黃榮焜",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-04",
      "slug": "cand-黃榮焜-澎湖縣第5選舉區",
      "identity": null
+    },
+    {
+     "name": "陳佩真",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 2,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳佩真-無黨籍及未經政黨推薦-澎湖縣第05選舉區",
+     "identity": "現任議員（澎湖縣第5選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/phec/article/65367",
+    "tableDate": "2026-10-27",
+    "label": "澎湖縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 6,
@@ -360,7 +396,7 @@
      "name": "鄭淑卿",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-01",
      "slug": "cand-鄭淑卿-澎湖縣第6選舉區",
      "identity": null
@@ -369,7 +405,7 @@
      "name": "張仁和",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "c-張仁和-無黨籍及未經政黨推薦-澎湖縣第06選舉區",
      "identity": "現任議員（澎湖縣第6選舉區）"
@@ -378,12 +414,19 @@
      "name": "夏晨榮",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-03",
      "slug": "cand-夏晨榮-澎湖縣第6選舉區",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/phec/article/65367",
+    "tableDate": "2026-10-27",
+    "label": "澎湖縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   }
  ],
  "townToDistrict": {

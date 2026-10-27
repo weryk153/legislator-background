@@ -20,14 +20,15 @@ export function applyVerifiedBallots(national: NationalCandidates, counties: Cou
     if (!latest(county.source)) continue;
     district.candidates = district.candidates.filter(c => c.name !== excluded.name);
   }
-  const pending = `因颱風延期至 ${verified.postponement.date} 抽籤；號次尚未收錄。`;
+  const pending = `抽籤因颱風改至 ${verified.postponement.date}；本站尚未收錄可核對的完整選區號次。`;
   if (national.source.stage === 'registration') national.source = { ...verified.certification };
-  national.source.note = `金門已補號次；其餘縣市因颱風延期至 ${verified.postponement.date} 抽籤。`;
   for (const race of national.races) {
     if (!race.source || race.source.stage === 'registration') race.source = { ...verified.certification, note: pending };
+    else if (race.source.stage === 'certified' && latest(race.source)) race.source.note = pending;
   }
   for (const county of counties) {
     if (county.source.stage === 'registration') county.source = { ...verified.certification, note: pending };
+    else if (county.source.stage === 'certified' && latest(county.source)) county.source.note = pending;
   }
   const numberList = (list: CandidateEntry[], names: string[]): CandidateEntry[] => {
     if (new Set(names).size !== names.length || new Set(list.map(c => c.name)).size !== list.length
@@ -51,9 +52,19 @@ export function applyVerifiedBallots(national: NationalCandidates, counties: Cou
       const county = counties.find(c => c.countyName === ballot.countyName);
       const district = county?.districts.find(d => d.no === ballot.districtNo);
       if (!county || !district) throw new Error(`找不到議員選區：${ballot.countyName}/${ballot.districtNo}`);
-      if (!latest(county.source)) continue;
+      if (!latest(district.source ?? county.source)) continue;
       district.candidates = numberList(district.candidates, ballot.namesByNumber);
+      district.source = { ...ballot.source };
       if (county.districts.every(d => d.candidates.every(c => c.number !== null))) county.source = { ...ballot.source };
     }
   }
+  const chiefs = national.races.filter(r => r.candidates.every(c => c.number !== null)).length;
+  for (const county of counties) {
+    if (county.source.stage !== 'certified' || !latest(county.source)) continue;
+    const known = county.districts.filter(d => d.candidates.every(c => c.number !== null)).length;
+    if (known) county.source.note = `已收錄 ${known}/${county.districts.length} 個議員選區的完整號次；來源見各選區，其餘號次待核實。`;
+  }
+  const districts = counties.flatMap(c => c.districts);
+  const numbered = districts.filter(d => d.candidates.every(c => c.number !== null)).length;
+  national.source.note = `已收錄 ${chiefs}/${national.races.length} 個首長選舉、${numbered}/${districts.length} 個議員選區的完整號次；各選區保留查證來源，其他號次待核實。`;
 }
