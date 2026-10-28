@@ -1,9 +1,10 @@
 {
  "source": {
-  "stage": "certified",
-  "url": "https://web.cec.gov.tw/central/article/65212",
-  "tableDate": "2026-10-16",
-  "note": "已收錄 1/14 個議員選區的完整號次；來源見各選區，其餘號次待核實。"
+  "stage": "numbered",
+  "url": "https://web.cec.gov.tw/tyec/article/65400",
+  "tableDate": "2026-10-27",
+  "label": "桃園市選委會：10/27 抽籤號次",
+  "note": "已依選委會公布的完整選區名單核對。"
  },
  "countyCode": "68-000-00-000-0000",
  "countyName": "桃園市",
@@ -187,10 +188,10 @@
    ],
    "source": {
     "stage": "numbered",
-    "url": "https://udn.com/vote2026/story/124652/9839154",
+    "url": "https://web.cec.gov.tw/tyec/article/65400",
     "tableDate": "2026-10-27",
-    "label": "聯合報：桃園市第1選舉區抽籤號次",
-    "note": "依10/27現場報導核對完整19人名單；其他議員選區另行核對。"
+    "label": "桃園市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
    }
   },
   {
@@ -202,52 +203,61 @@
      "name": "呂學記",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-08-31",
      "slug": "cand-呂學記-桃園市第2選舉區",
      "identity": null
     },
     {
-     "name": "陳雅倫",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-陳雅倫-民進黨-桃園市第02選舉區",
-     "identity": "現任議員（桃園市第2選舉區）"
-    },
-    {
-     "name": "周曉芸",
-     "partyName": "台灣民眾黨",
-     "partyCode": "350",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-周曉芸-桃園市第2選舉區",
+     "name": "陳泓維",
+     "partyName": "親民黨",
+     "partyCode": "90",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-陳泓維-桃園市第2選舉區",
      "identity": null
     },
     {
      "name": "李宗豪",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-02",
      "slug": "c-李宗豪-民進黨-桃園市第02選舉區",
      "identity": "現任議員（桃園市第2選舉區）"
     },
     {
-     "name": "陳泓維",
-     "partyName": "親民黨",
-     "partyCode": "90",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-陳泓維-桃園市第2選舉區",
+     "name": "孫韻璇",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-09-03",
+     "slug": "c-孫韻璇-國民黨-桃園市第02選舉區",
+     "identity": "現任議員（桃園市第2選舉區）"
+    },
+    {
+     "name": "高華駿",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 5,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-高華駿-桃園市第2選舉區",
+     "identity": null
+    },
+    {
+     "name": "周曉芸",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": 6,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-周曉芸-桃園市第2選舉區",
      "identity": null
     },
     {
      "name": "林明義",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 7,
      "registeredOn": "2026-09-02",
      "slug": "cand-林明義-桃園市第2選舉區",
      "identity": null
@@ -256,30 +266,28 @@
      "name": "江冠妤",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 8,
      "registeredOn": "2026-09-02",
      "slug": "cand-江冠妤-桃園市第2選舉區",
      "identity": null
     },
     {
-     "name": "高華駿",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-高華駿-桃園市第2選舉區",
-     "identity": null
-    },
-    {
-     "name": "孫韻璇",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-孫韻璇-國民黨-桃園市第02選舉區",
+     "name": "陳雅倫",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 9,
+     "registeredOn": "2026-08-31",
+     "slug": "c-陳雅倫-民進黨-桃園市第02選舉區",
      "identity": "現任議員（桃園市第2選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tyec/article/65400",
+    "tableDate": "2026-10-27",
+    "label": "桃園市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 3,
@@ -287,10 +295,28 @@
    "type": "regional",
    "candidates": [
     {
+     "name": "劉茂羣",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-劉茂羣-桃園市第3選舉區",
+     "identity": null
+    },
+    {
+     "name": "許家睿",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "c-許家睿-民進黨-桃園市第03選舉區",
+     "identity": "現任議員（桃園市第3選舉區）"
+    },
+    {
      "name": "段林淑婷",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-08-31",
      "slug": "cand-段林淑婷-桃園市第3選舉區",
      "identity": null
@@ -299,7 +325,7 @@
      "name": "林晏良",
      "partyName": "台灣民眾黨",
      "partyCode": "350",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-01",
      "slug": "cand-林晏良-桃園市第3選舉區",
      "identity": null,
@@ -316,46 +342,19 @@
      }
     },
     {
-     "name": "許家睿",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-許家睿-民進黨-桃園市第03選舉區",
-     "identity": "現任議員（桃園市第3選舉區）"
-    },
-    {
-     "name": "劉茂羣",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-劉茂羣-桃園市第3選舉區",
-     "identity": null
-    },
-    {
      "name": "蔡永芳",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-09-02",
      "slug": "cand-蔡永芳-桃園市第3選舉區",
      "identity": null
     },
     {
-     "name": "朱珍瑤",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-朱珍瑤-國民黨-桃園市第03選舉區",
-     "identity": "現任議員（桃園市第3選舉區）"
-    },
-    {
      "name": "楊朝偉",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 6,
      "registeredOn": "2026-09-02",
      "slug": "c-楊朝偉-國民黨-桃園市第03選舉區",
      "identity": "現任議員（桃園市第3選舉區）"
@@ -364,12 +363,28 @@
      "name": "呂林小鳳",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 7,
      "registeredOn": "2026-09-02",
      "slug": "c-呂林小鳳-民進黨-桃園市第03選舉區",
      "identity": "現任議員（桃園市第3選舉區）"
+    },
+    {
+     "name": "朱珍瑤",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 8,
+     "registeredOn": "2026-09-02",
+     "slug": "c-朱珍瑤-國民黨-桃園市第03選舉區",
+     "identity": "現任議員（桃園市第3選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tyec/article/65400",
+    "tableDate": "2026-10-27",
+    "label": "桃園市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 4,
@@ -377,60 +392,67 @@
    "type": "regional",
    "candidates": [
     {
+     "name": "郭麗華",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-郭麗華-桃園市第4選舉區",
+     "identity": null
+    },
+    {
      "name": "許清順",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-08-31",
      "slug": "c-許清順-民進黨-桃園市第04選舉區",
      "identity": "現任議員（桃園市第4選舉區）"
     },
     {
-     "name": "胡家智",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-胡家智-桃園市第4選舉區",
-     "identity": null
-    },
-    {
      "name": "錢龍",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-02",
      "slug": "c-錢龍-國民黨-桃園市第04選舉區",
+     "identity": "現任議員（桃園市第4選舉區）"
+    },
+    {
+     "name": "張桂綿",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-09-03",
+     "slug": "c-張桂綿-國民黨-桃園市第04選舉區",
      "identity": "現任議員（桃園市第4選舉區）"
     },
     {
      "name": "劉勝全",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-09-02",
      "slug": "c-劉勝全-民進黨-桃園市第04選舉區",
      "identity": "現任議員（桃園市第4選舉區）"
     },
     {
-     "name": "郭麗華",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-郭麗華-桃園市第4選舉區",
+     "name": "胡家智",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 6,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-胡家智-桃園市第4選舉區",
      "identity": null
-    },
-    {
-     "name": "張桂綿",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-張桂綿-國民黨-桃園市第04選舉區",
-     "identity": "現任議員（桃園市第4選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tyec/article/65400",
+    "tableDate": "2026-10-27",
+    "label": "桃園市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 5,
@@ -441,30 +463,37 @@
      "name": "游吾和",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-游吾和-民進黨-桃園市第05選舉區",
-     "identity": "現任議員（桃園市第5選舉區）"
-    },
-    {
-     "name": "徐其萬",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-徐其萬-國民黨-桃園市第05選舉區",
      "identity": "現任議員（桃園市第5選舉區）"
     },
     {
      "name": "吳文凱",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-04",
      "slug": "cand-吳文凱-桃園市第5選舉區",
      "identity": null
+    },
+    {
+     "name": "徐其萬",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 3,
+     "registeredOn": "2026-09-02",
+     "slug": "c-徐其萬-國民黨-桃園市第05選舉區",
+     "identity": "現任議員（桃園市第5選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tyec/article/65400",
+    "tableDate": "2026-10-27",
+    "label": "桃園市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 6,
@@ -472,51 +501,58 @@
    "type": "regional",
    "candidates": [
     {
+     "name": "徐慈檉",
+     "partyName": "親民黨",
+     "partyCode": "90",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-徐慈檉-桃園市第6選舉區",
+     "identity": null
+    },
+    {
      "name": "陳治文",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-08-31",
      "slug": "c-陳治文-民進黨-桃園市第06選舉區",
+     "identity": "現任議員（桃園市第6選舉區）"
+    },
+    {
+     "name": "李柏坊",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 3,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李柏坊-國民黨-桃園市第06選舉區",
      "identity": "現任議員（桃園市第6選舉區）"
     },
     {
      "name": "劉儲禎",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-08-31",
      "slug": "cand-劉儲禎-桃園市第6選舉區",
      "identity": null
     },
     {
-     "name": "徐慈檉",
-     "partyName": "親民黨",
-     "partyCode": "90",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-徐慈檉-桃園市第6選舉區",
-     "identity": null
-    },
-    {
-     "name": "李柏坊",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-李柏坊-國民黨-桃園市第06選舉區",
-     "identity": "現任議員（桃園市第6選舉區）"
-    },
-    {
      "name": "江國輝",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-09-02",
      "slug": "cand-江國輝-桃園市第6選舉區",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tyec/article/65400",
+    "tableDate": "2026-10-27",
+    "label": "桃園市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 7,
@@ -524,19 +560,136 @@
    "type": "regional",
    "candidates": [
     {
+     "name": "彭俊豪",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "c-彭俊豪-民進黨-桃園市第07選舉區",
+     "identity": "現任議員（桃園市第7選舉區）"
+    },
+    {
+     "name": "劉安祺",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-劉安祺-桃園市第7選舉區",
+     "identity": null
+    },
+    {
+     "name": "葉明月",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 3,
+     "registeredOn": "2026-09-01",
+     "slug": "c-葉明月-國民黨-桃園市第07選舉區",
+     "identity": "現任議員（桃園市第7選舉區）"
+    },
+    {
+     "name": "魏筠",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 4,
+     "registeredOn": "2026-09-03",
+     "slug": "c-魏筠-民進黨-桃園市第07選舉區",
+     "identity": "現任議員（桃園市第7選舉區）"
+    },
+    {
      "name": "張曉昀",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-08-31",
      "slug": "c-張曉昀-民進黨-桃園市第07選舉區",
      "identity": "現任議員（桃園市第7選舉區）"
     },
     {
+     "name": "吳睿霖",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 6,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-吳睿霖-桃園市第7選舉區",
+     "identity": null
+    },
+    {
+     "name": "劉曾玉春",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 7,
+     "registeredOn": "2026-09-02",
+     "slug": "c-劉曾玉春-無黨籍及未經政黨推薦-桃園市第07選舉區",
+     "identity": "現任議員（桃園市第7選舉區）"
+    },
+    {
+     "name": "梁為超",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 8,
+     "registeredOn": "2026-09-02",
+     "slug": "c-梁為超-國民黨-桃園市第07選舉區",
+     "identity": "現任議員（桃園市第7選舉區）"
+    },
+    {
+     "name": "徐盛揚",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 9,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-徐盛揚-桃園市第7選舉區",
+     "identity": null
+    },
+    {
+     "name": "張兆恩",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 10,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-張兆恩-桃園市第7選舉區",
+     "identity": null
+    },
+    {
+     "name": "李欣",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 11,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-李欣-桃園市第7選舉區",
+     "identity": null
+    },
+    {
+     "name": "邱奕勝",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 12,
+     "registeredOn": "2026-09-02",
+     "slug": "c-邱奕勝-國民黨-桃園市第07選舉區",
+     "identity": "現任議員（桃園市第7選舉區）"
+    },
+    {
+     "name": "謝美英",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 13,
+     "registeredOn": "2026-09-03",
+     "slug": "c-謝美英-無黨籍及未經政黨推薦-桃園市第07選舉區",
+     "identity": "現任議員（桃園市第7選舉區）"
+    },
+    {
+     "name": "張仲方",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 14,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-張仲方-桃園市第7選舉區",
+     "identity": null
+    },
+    {
      "name": "彭康傑",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 15,
      "registeredOn": "2026-09-01",
      "slug": "cand-彭康傑-桃園市第7選舉區",
      "identity": null,
@@ -553,141 +706,31 @@
      }
     },
     {
-     "name": "葉明月",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "c-葉明月-國民黨-桃園市第07選舉區",
+     "name": "黃崇真",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 16,
+     "registeredOn": "2026-09-02",
+     "slug": "c-黃崇真-民進黨-桃園市第07選舉區",
      "identity": "現任議員（桃園市第7選舉區）"
     },
     {
      "name": "毛嘉慶",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 17,
      "registeredOn": "2026-09-01",
      "slug": "cand-毛嘉慶-桃園市第7選舉區",
      "identity": null
-    },
-    {
-     "name": "劉曾玉春",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-劉曾玉春-無黨籍及未經政黨推薦-桃園市第07選舉區",
-     "identity": "現任議員（桃園市第7選舉區）"
-    },
-    {
-     "name": "黃崇真",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-黃崇真-民進黨-桃園市第07選舉區",
-     "identity": "現任議員（桃園市第7選舉區）"
-    },
-    {
-     "name": "彭俊豪",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-彭俊豪-民進黨-桃園市第07選舉區",
-     "identity": "現任議員（桃園市第7選舉區）"
-    },
-    {
-     "name": "張兆恩",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-張兆恩-桃園市第7選舉區",
-     "identity": null
-    },
-    {
-     "name": "劉安祺",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-劉安祺-桃園市第7選舉區",
-     "identity": null
-    },
-    {
-     "name": "吳睿霖",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-吳睿霖-桃園市第7選舉區",
-     "identity": null
-    },
-    {
-     "name": "梁為超",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-梁為超-國民黨-桃園市第07選舉區",
-     "identity": "現任議員（桃園市第7選舉區）"
-    },
-    {
-     "name": "邱奕勝",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-邱奕勝-國民黨-桃園市第07選舉區",
-     "identity": "現任議員（桃園市第7選舉區）"
-    },
-    {
-     "name": "張仲方",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-張仲方-桃園市第7選舉區",
-     "identity": null
-    },
-    {
-     "name": "魏筠",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-魏筠-民進黨-桃園市第07選舉區",
-     "identity": "現任議員（桃園市第7選舉區）"
-    },
-    {
-     "name": "李欣",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-李欣-桃園市第7選舉區",
-     "identity": null
-    },
-    {
-     "name": "謝美英",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-謝美英-無黨籍及未經政黨推薦-桃園市第07選舉區",
-     "identity": "現任議員（桃園市第7選舉區）"
-    },
-    {
-     "name": "徐盛揚",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-徐盛揚-桃園市第7選舉區",
-     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tyec/article/65400",
+    "tableDate": "2026-10-27",
+    "label": "桃園市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 8,
@@ -695,96 +738,103 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "高宇彥",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-高宇彥-桃園市第8選舉區",
-     "identity": null
-    },
-    {
-     "name": "王珮毓",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-王珮毓-民進黨-桃園市第08選舉區",
-     "identity": "現任議員（桃園市第8選舉區）"
-    },
-    {
-     "name": "劉仁照",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-劉仁照-民進黨-桃園市第08選舉區",
-     "identity": "現任議員（桃園市第8選舉區）"
-    },
-    {
      "name": "舒翠玲",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-舒翠玲-國民黨-桃園市第08選舉區",
-     "identity": "現任議員（桃園市第8選舉區）"
-    },
-    {
-     "name": "陳韋曄",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-陳韋曄-國民黨-桃園市第08選舉區",
      "identity": "現任議員（桃園市第8選舉區）"
     },
     {
      "name": "黃敬平",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-03",
      "slug": "c-黃敬平-國民黨-桃園市第08選舉區",
      "identity": "現任議員（桃園市第8選舉區）"
     },
     {
-     "name": "白丞堯",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-白丞堯-桃園市第8選舉區",
-     "identity": null
-    },
-    {
      "name": "吳正吉",
      "partyName": "台灣民眾黨",
      "partyCode": "350",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-03",
      "slug": "cand-吳正吉-桃園市第8選舉區",
-     "identity": null
-    },
-    {
-     "name": "彭柏霖",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-04",
-     "slug": "cand-彭柏霖-桃園市第8選舉區",
      "identity": null
     },
     {
      "name": "羅文欽",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-04",
      "slug": "cand-羅文欽-桃園市第8選舉區",
      "identity": null
+    },
+    {
+     "name": "彭柏霖",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 5,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-彭柏霖-桃園市第8選舉區",
+     "identity": null
+    },
+    {
+     "name": "陳韋曄",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 6,
+     "registeredOn": "2026-09-02",
+     "slug": "c-陳韋曄-國民黨-桃園市第08選舉區",
+     "identity": "現任議員（桃園市第8選舉區）"
+    },
+    {
+     "name": "劉仁照",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 7,
+     "registeredOn": "2026-09-02",
+     "slug": "c-劉仁照-民進黨-桃園市第08選舉區",
+     "identity": "現任議員（桃園市第8選舉區）"
+    },
+    {
+     "name": "王珮毓",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 8,
+     "registeredOn": "2026-09-02",
+     "slug": "c-王珮毓-民進黨-桃園市第08選舉區",
+     "identity": "現任議員（桃園市第8選舉區）"
+    },
+    {
+     "name": "白丞堯",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 9,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-白丞堯-桃園市第8選舉區",
+     "identity": null
+    },
+    {
+     "name": "高宇彥",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 10,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-高宇彥-桃園市第8選舉區",
+     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tyec/article/65400",
+    "tableDate": "2026-10-27",
+    "label": "桃園市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 9,
@@ -792,55 +842,28 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "劉定唐",
+     "name": "黃盈淇",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-劉定唐-桃園市第9選舉區",
-     "identity": null
-    },
-    {
-     "name": "項柏翰",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-項柏翰-桃園市第9選舉區",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-黃盈淇-桃園市第9選舉區",
      "identity": null
     },
     {
      "name": "鄭淑方",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "c-鄭淑方-民進黨-桃園市第09選舉區",
      "identity": "現任議員（桃園市第9選舉區）"
     },
     {
-     "name": "李家興",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-李家興-無黨籍及未經政黨推薦-桃園市第09選舉區",
-     "identity": "現任議員（桃園市第9選舉區）"
-    },
-    {
-     "name": "黃盈淇",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-黃盈淇-桃園市第9選舉區",
-     "identity": null
-    },
-    {
      "name": "周玉琴",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-02",
      "slug": "c-周玉琴-國民黨-桃園市第09選舉區",
      "identity": "現任議員（桃園市第9選舉區）"
@@ -849,12 +872,46 @@
      "name": "古振豐",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-03",
      "slug": "cand-古振豐-桃園市第9選舉區",
      "identity": null
+    },
+    {
+     "name": "劉定唐",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 5,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-劉定唐-桃園市第9選舉區",
+     "identity": null
+    },
+    {
+     "name": "項柏翰",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 6,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-項柏翰-桃園市第9選舉區",
+     "identity": null
+    },
+    {
+     "name": "李家興",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 7,
+     "registeredOn": "2026-09-02",
+     "slug": "c-李家興-無黨籍及未經政黨推薦-桃園市第09選舉區",
+     "identity": "現任議員（桃園市第9選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tyec/article/65400",
+    "tableDate": "2026-10-27",
+    "label": "桃園市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 10,
@@ -862,51 +919,58 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "劉熒隆",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-劉熒隆-國民黨-桃園市第10選舉區",
-     "identity": "現任議員（桃園市第10選舉區）"
-    },
-    {
      "name": "吳平娥",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "cand-吳平娥-桃園市第10選舉區",
-     "identity": null
-    },
-    {
-     "name": "張贊聞",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-張贊聞-桃園市第10選舉區",
      "identity": null
     },
     {
      "name": "徐玉樹",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "c-徐玉樹-國民黨-桃園市第10選舉區",
+     "identity": "現任議員（桃園市第10選舉區）"
+    },
+    {
+     "name": "張贊聞",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 3,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-張贊聞-桃園市第10選舉區",
+     "identity": null
+    },
+    {
+     "name": "劉熒隆",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-08-31",
+     "slug": "c-劉熒隆-國民黨-桃園市第10選舉區",
      "identity": "現任議員（桃園市第10選舉區）"
     },
     {
      "name": "林昭賢",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-09-03",
      "slug": "cand-林昭賢-桃園市第10選舉區",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tyec/article/65400",
+    "tableDate": "2026-10-27",
+    "label": "桃園市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 11,
@@ -917,7 +981,7 @@
      "name": "陳睿生",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-08-31",
      "slug": "c-陳睿生-民進黨-桃園市第11選舉區",
      "identity": "現任議員（桃園市第11選舉區）"
@@ -926,12 +990,19 @@
      "name": "邱文威",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "cand-邱文威-桃園市第11選舉區",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tyec/article/65400",
+    "tableDate": "2026-10-27",
+    "label": "桃園市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 12,
@@ -939,33 +1010,40 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "張佩芸",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-張佩芸-桃園市第12選舉區",
-     "identity": null
-    },
-    {
      "name": "許更生",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-許更生-無黨籍及未經政黨推薦-桃園市第12選舉區",
      "identity": "現任議員（桃園市第12選舉區）"
     },
     {
+     "name": "張佩芸",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-張佩芸-桃園市第12選舉區",
+     "identity": null
+    },
+    {
      "name": "吳進昌",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-02",
      "slug": "c-吳進昌-國民黨-桃園市第12選舉區",
      "identity": "現任議員（桃園市第12選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tyec/article/65400",
+    "tableDate": "2026-10-27",
+    "label": "桃園市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 13,
@@ -973,60 +1051,67 @@
    "type": "plainIndigenous",
    "candidates": [
     {
-     "name": "王仙蓮",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "c-王仙蓮-國民黨-桃園市第13選舉區",
-     "identity": "現任議員（桃園市第13選舉區）"
-    },
-    {
      "name": "林志強",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-01",
      "slug": "c-林志強-民進黨-桃園市第13選舉區",
      "identity": "現任議員（桃園市第13選舉區）"
     },
     {
-     "name": "張秀菊",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-張秀菊-無黨籍及未經政黨推薦-桃園市第13選舉區",
-     "identity": "現任議員（桃園市第13選舉區）"
-    },
-    {
-     "name": "陳卉蓁",
+     "name": "王仙蓮",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-陳卉蓁-桃園市第13選舉區（平地原住民）",
-     "identity": null
-    },
-    {
-     "name": "楊進福",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-楊進福-無黨籍及未經政黨推薦-桃園市第13選舉區",
+     "number": 2,
+     "registeredOn": "2026-09-01",
+     "slug": "c-王仙蓮-國民黨-桃園市第13選舉區",
      "identity": "現任議員（桃園市第13選舉區）"
     },
     {
      "name": "李鴻志",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-03",
      "slug": "cand-李鴻志-桃園市第13選舉區（平地原住民）",
      "identity": null
+    },
+    {
+     "name": "楊進福",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 4,
+     "registeredOn": "2026-09-02",
+     "slug": "c-楊進福-無黨籍及未經政黨推薦-桃園市第13選舉區",
+     "identity": "現任議員（桃園市第13選舉區）"
+    },
+    {
+     "name": "陳卉蓁",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 5,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-陳卉蓁-桃園市第13選舉區（平地原住民）",
+     "identity": null
+    },
+    {
+     "name": "張秀菊",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 6,
+     "registeredOn": "2026-09-02",
+     "slug": "c-張秀菊-無黨籍及未經政黨推薦-桃園市第13選舉區",
+     "identity": "現任議員（桃園市第13選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tyec/article/65400",
+    "tableDate": "2026-10-27",
+    "label": "桃園市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 14,
@@ -1034,37 +1119,10 @@
    "type": "mountainIndigenous",
    "candidates": [
     {
-     "name": "陳瑛",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "c-陳瑛-國民黨-桃園市第14選舉區",
-     "identity": "現任議員（桃園市第14選舉區）"
-    },
-    {
-     "name": "謝卓儒",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-謝卓儒-桃園市第14選舉區（山地原住民）",
-     "identity": null
-    },
-    {
-     "name": "林秋霖",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-林秋霖-桃園市第14選舉區（山地原住民）",
-     "identity": null
-    },
-    {
      "name": "邱伯倫",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "cand-邱伯倫-桃園市第14選舉區（山地原住民）",
      "identity": null
@@ -1073,7 +1131,7 @@
      "name": "張倉豪",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "cand-張倉豪-桃園市第14選舉區（山地原住民）",
      "identity": null
@@ -1082,30 +1140,64 @@
      "name": "簡志偉",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-02",
      "slug": "c-簡志偉-國民黨-桃園市第14選舉區",
+     "identity": "現任議員（桃園市第14選舉區）"
+    },
+    {
+     "name": "謝卓儒",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 4,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-謝卓儒-桃園市第14選舉區（山地原住民）",
+     "identity": null
+    },
+    {
+     "name": "曾庭筠",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 5,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-曾庭筠-桃園市第14選舉區（山地原住民）",
+     "identity": null
+    },
+    {
+     "name": "陳瑛",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 6,
+     "registeredOn": "2026-09-01",
+     "slug": "c-陳瑛-國民黨-桃園市第14選舉區",
      "identity": "現任議員（桃園市第14選舉區）"
     },
     {
      "name": "蘇偉恩",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 7,
      "registeredOn": "2026-09-03",
      "slug": "c-蘇偉恩-無黨籍及未經政黨推薦-桃園市第14選舉區",
      "identity": "現任議員（桃園市第14選舉區）"
     },
     {
-     "name": "曾庭筠",
+     "name": "林秋霖",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-曾庭筠-桃園市第14選舉區（山地原住民）",
+     "number": 8,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-林秋霖-桃園市第14選舉區（山地原住民）",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/tyec/article/65400",
+    "tableDate": "2026-10-27",
+    "label": "桃園市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   }
  ],
  "townToDistrict": {

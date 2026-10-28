@@ -3,7 +3,7 @@
   "stage": "certified",
   "url": "https://web.cec.gov.tw/central/article/65212",
   "tableDate": "2026-10-16",
-  "note": "已收錄 13/22 個首長選舉、101/221 個議員選區的完整號次；各選區保留查證來源，其他號次待核實。"
+  "note": "已收錄 22/22 個首長選舉、201/221 個議員選區的完整號次；各選區保留查證來源，其他號次待核實。"
  },
  "races": [
   {
@@ -76,10 +76,10 @@
    },
    "source": {
     "stage": "numbered",
-    "url": "https://www.mirrordaily.news/story/93969",
+    "url": "https://web.cec.gov.tw/mect/article/65401",
     "tableDate": "2026-10-27",
-    "label": "鏡報：台北市長完整抽籤號次",
-    "note": "依現場報導核對完整首長名單；議員號次另行核對。"
+    "label": "臺北市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
    }
   },
   {
@@ -176,10 +176,10 @@
    },
    "source": {
     "stage": "numbered",
-    "url": "https://news.nextapple.com/politics/20261027/66A9B4C7F53367997C4944620A378295",
+    "url": "https://web.cec.gov.tw/tyec/article/65400",
     "tableDate": "2026-10-27",
-    "label": "壹蘋新聞網：桃園市長抽籤號次",
-    "note": "依現場報導核對完整首長名單；議員號次另行核對。"
+    "label": "桃園市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
    }
   },
   {
@@ -365,7 +365,7 @@
      "name": "王忠銘",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-08-31",
      "slug": "mayor-lienchiang",
      "identity": "現任連江縣長"
@@ -374,7 +374,7 @@
      "name": "曹爾元",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "cand-曹爾元-連江縣",
      "identity": null
@@ -389,10 +389,11 @@
     "termLimitReason": ""
    },
    "source": {
-    "stage": "certified",
-    "url": "https://web.cec.gov.tw/central/article/65212",
-    "tableDate": "2026-10-16",
-    "note": "抽籤因颱風改至 2026-10-27；本站尚未收錄可核對的完整選區號次。"
+    "stage": "numbered",
+    "url": "https://www.cna.com.tw/news/aloc/202610270054.aspx",
+    "tableDate": "2026-10-27",
+    "label": "中央社：10/27 連江縣長抽籤號次",
+    "note": "依中央社完整名單並與全國號次整理交叉核對；來源為新聞報導，非選委會公告檔案。"
    }
   },
   {
@@ -486,37 +487,10 @@
    "isMunicipality": false,
    "candidates": [
     {
-     "name": "陳宏毅",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-陳宏毅-宜蘭縣",
-     "identity": null
-    },
-    {
-     "name": "吳宗憲",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "wutsung-hsien",
-     "identity": "現任不分區立委"
-    },
-    {
-     "name": "劉燦輝",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-劉燦輝-宜蘭縣",
-     "identity": null
-    },
-    {
      "name": "林國漳",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "cand-林國漳-宜蘭縣",
      "identity": null,
@@ -533,10 +507,37 @@
      }
     },
     {
+     "name": "陳宏毅",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 2,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-陳宏毅-宜蘭縣",
+     "identity": null
+    },
+    {
+     "name": "吳宗憲",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 3,
+     "registeredOn": "2026-09-01",
+     "slug": "wutsung-hsien",
+     "identity": "現任不分區立委"
+    },
+    {
+     "name": "劉燦輝",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 4,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-劉燦輝-宜蘭縣",
+     "identity": null
+    },
+    {
      "name": "楊鉯婷",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-09-04",
      "slug": "cand-楊鉯婷-宜蘭縣",
      "identity": null
@@ -551,10 +552,11 @@
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
    },
    "source": {
-    "stage": "certified",
-    "url": "https://web.cec.gov.tw/central/article/65212",
-    "tableDate": "2026-10-16",
-    "note": "抽籤因颱風改至 2026-10-27；本站尚未收錄可核對的完整選區號次。"
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ilec/article/65391",
+    "tableDate": "2026-10-27",
+    "label": "宜蘭縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
    }
   },
   {
@@ -566,28 +568,28 @@
      "name": "鄭朝方",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "cand-鄭朝方-新竹縣",
-     "identity": null
-    },
-    {
-     "name": "朱定瑀",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-朱定瑀-新竹縣",
      "identity": null
     },
     {
      "name": "徐欣瑩",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-03",
      "slug": "hsu-hsin-ying",
      "identity": "現任立委（新竹縣第1選舉區）"
+    },
+    {
+     "name": "朱定瑀",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 3,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-朱定瑀-新竹縣",
+     "identity": null
     }
    ],
    "incumbent2022": {
@@ -599,10 +601,11 @@
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
    },
    "source": {
-    "stage": "certified",
-    "url": "https://web.cec.gov.tw/central/article/65212",
-    "tableDate": "2026-10-16",
-    "note": "抽籤因颱風改至 2026-10-27；本站尚未收錄可核對的完整選區號次。"
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/hccec/article/65398",
+    "tableDate": "2026-10-27",
+    "label": "新竹縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
    }
   },
   {
@@ -651,40 +654,40 @@
    "isMunicipality": false,
    "candidates": [
     {
-     "name": "陳重嘉",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "c-陳重嘉-民眾黨-彰化縣第05選舉區",
-     "identity": "現任議員（彰化縣第5選舉區）"
-    },
-    {
      "name": "陳素月",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "chensu-yueh",
      "identity": "現任立委（彰化縣第4選舉區）"
     },
     {
+     "name": "魏平政",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 2,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-魏平政-彰化縣",
+     "identity": null
+    },
+    {
      "name": "邱建富",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-03",
      "slug": "cand-邱建富-彰化縣",
      "identity": null
     },
     {
-     "name": "魏平政",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-魏平政-彰化縣",
-     "identity": null
+     "name": "陳重嘉",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 4,
+     "registeredOn": "2026-08-31",
+     "slug": "c-陳重嘉-民眾黨-彰化縣第05選舉區",
+     "identity": "現任議員（彰化縣第5選舉區）"
     }
    ],
    "incumbent2022": {
@@ -696,10 +699,11 @@
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
    },
    "source": {
-    "stage": "certified",
-    "url": "https://web.cec.gov.tw/central/article/65212",
-    "tableDate": "2026-10-16",
-    "note": "抽籤因颱風改至 2026-10-27；本站尚未收錄可核對的完整選區號次。"
+    "stage": "numbered",
+    "url": "https://www.cna.com.tw/news/aloc/202610270052.aspx",
+    "tableDate": "2026-10-27",
+    "label": "中央社：10/27 彰化縣長抽籤號次",
+    "note": "依中央社完整名單並與全國號次整理交叉核對；來源為新聞報導，非選委會公告檔案。"
    }
   },
   {
@@ -708,22 +712,22 @@
    "isMunicipality": false,
    "candidates": [
     {
-     "name": "温世政",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-温世政-南投縣",
-     "identity": null
-    },
-    {
      "name": "許淑華",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "mayor-nantou",
      "identity": "現任南投縣長"
+    },
+    {
+     "name": "温世政",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 2,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-温世政-南投縣",
+     "identity": null
     }
    ],
    "incumbent2022": {
@@ -735,10 +739,11 @@
     "termLimitReason": ""
    },
    "source": {
-    "stage": "certified",
-    "url": "https://web.cec.gov.tw/central/article/65212",
-    "tableDate": "2026-10-16",
-    "note": "抽籤因颱風改至 2026-10-27；本站尚未收錄可核對的完整選區號次。"
+    "stage": "numbered",
+    "url": "https://www.cna.com.tw/news/aloc/202610270052.aspx",
+    "tableDate": "2026-10-27",
+    "label": "中央社：10/27 南投縣長抽籤號次",
+    "note": "依中央社完整名單並與全國號次整理交叉核對；來源為新聞報導，非選委會公告檔案。"
    }
   },
   {
@@ -750,7 +755,7 @@
      "name": "吳炳輝",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-08-31",
      "slug": "cand-吳炳輝-雲林縣",
      "identity": null
@@ -759,7 +764,7 @@
      "name": "張嘉郡",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-03",
      "slug": "chang-chia-chun",
      "identity": "現任不分區立委"
@@ -768,7 +773,7 @@
      "name": "劉建國",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-04",
      "slug": "liu-chien-kuo",
      "identity": "現任立委（雲林縣第2選舉區）"
@@ -777,7 +782,7 @@
      "name": "林佳瑜",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-04",
      "slug": "cand-林佳瑜-雲林縣",
      "identity": null
@@ -792,10 +797,11 @@
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
    },
    "source": {
-    "stage": "certified",
-    "url": "https://web.cec.gov.tw/central/article/65212",
-    "tableDate": "2026-10-16",
-    "note": "抽籤因颱風改至 2026-10-27；本站尚未收錄可核對的完整選區號次。"
+    "stage": "numbered",
+    "url": "https://www.cna.com.tw/news/aipl/202610270048.aspx",
+    "tableDate": "2026-10-27",
+    "label": "中央社：10/27 雲林縣長抽籤號次",
+    "note": "依中央社完整名單並與全國號次整理交叉核對；來源為新聞報導，非選委會公告檔案。"
    }
   },
   {
@@ -807,7 +813,7 @@
      "name": "吳品叡",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-03",
      "slug": "cand-吳品叡-嘉義縣",
      "identity": null
@@ -816,7 +822,7 @@
      "name": "蔡易餘",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-03",
      "slug": "tsai-yi-yu",
      "identity": "現任立委（嘉義縣第1選舉區）"
@@ -831,10 +837,11 @@
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
    },
    "source": {
-    "stage": "certified",
-    "url": "https://web.cec.gov.tw/central/article/65212",
-    "tableDate": "2026-10-16",
-    "note": "抽籤因颱風改至 2026-10-27；本站尚未收錄可核對的完整選區號次。"
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/cycec/article/65399",
+    "tableDate": "2026-10-27",
+    "label": "嘉義縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
    }
   },
   {
@@ -883,37 +890,28 @@
    "isMunicipality": false,
    "candidates": [
     {
-     "name": "陳瑩",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "chen-ying",
-     "identity": "現任平地原住民選舉區立委"
-    },
-    {
-     "name": "吳秀華",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-吳秀華-國民黨-臺東縣第01選舉區",
-     "identity": "現任議員（臺東縣第1選舉區）"
-    },
-    {
      "name": "李吳穎智",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-04",
      "slug": "cand-李吳穎智-臺東縣",
      "identity": null
     },
     {
+     "name": "陳瑩",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "chen-ying",
+     "identity": "現任平地原住民選舉區立委"
+    },
+    {
      "name": "王志偉",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-04",
      "slug": "cand-王志偉-臺東縣",
      "identity": null,
@@ -928,6 +926,15 @@
       "basis": "2026年縣長登記報導明確記載本人過去未選村里長或民意代表，此次為首次參選公職。",
       "reviewedOn": "2026-10-14"
      }
+    },
+    {
+     "name": "吳秀華",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-09-02",
+     "slug": "c-吳秀華-國民黨-臺東縣第01選舉區",
+     "identity": "現任議員（臺東縣第1選舉區）"
     }
    ],
    "incumbent2022": {
@@ -939,10 +946,11 @@
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
    },
    "source": {
-    "stage": "certified",
-    "url": "https://web.cec.gov.tw/central/article/65212",
-    "tableDate": "2026-10-16",
-    "note": "抽籤因颱風改至 2026-10-27；本站尚未收錄可核對的完整選區號次。"
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
    }
   },
   {
@@ -951,37 +959,37 @@
    "isMunicipality": false,
    "candidates": [
     {
-     "name": "游淑貞",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-游淑貞-花蓮縣",
-     "identity": null
-    },
-    {
-     "name": "張峻",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-張峻-無黨籍及未經政黨推薦-花蓮縣第03選舉區",
-     "identity": "現任議員（花蓮縣第3選舉區）"
-    },
-    {
      "name": "魏嘉賢",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-03",
      "slug": "c-魏嘉賢-無黨籍及未經政黨推薦-花蓮縣第01選舉區",
      "identity": "現任議員（花蓮縣第1選舉區）"
     },
     {
+     "name": "張峻",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 2,
+     "registeredOn": "2026-09-03",
+     "slug": "c-張峻-無黨籍及未經政黨推薦-花蓮縣第03選舉區",
+     "identity": "現任議員（花蓮縣第3選舉區）"
+    },
+    {
+     "name": "游淑貞",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 3,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-游淑貞-花蓮縣",
+     "identity": null
+    },
+    {
      "name": "羅佩秦",
      "partyName": "台灣工黨",
      "partyCode": null,
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-03",
      "slug": "cand-羅佩秦-花蓮縣",
      "identity": null
@@ -996,10 +1004,11 @@
     "termLimitReason": "已連任一次（2018、2022 當選），依地方制度法不得再選"
    },
    "source": {
-    "stage": "certified",
-    "url": "https://web.cec.gov.tw/central/article/65212",
-    "tableDate": "2026-10-16",
-    "note": "抽籤因颱風改至 2026-10-27；本站尚未收錄可核對的完整選區號次。"
+    "stage": "numbered",
+    "url": "https://www.cna.com.tw/news/aipl/202610270081.aspx",
+    "tableDate": "2026-10-27",
+    "label": "中央社：10/27 花蓮縣長抽籤號次",
+    "note": "依中央社完整名單並與全國號次整理交叉核對；來源為新聞報導，非選委會公告檔案。"
    }
   },
   {
@@ -1121,10 +1130,10 @@
    },
    "source": {
     "stage": "numbered",
-    "url": "https://news.nextapple.com/politics/20261027/3A0A967F7CA60C0931E19DBE5F081BEA",
+    "url": "https://web.cec.gov.tw/klec/article/65421",
     "tableDate": "2026-10-27",
-    "label": "壹蘋新聞網：基隆市長完整抽籤號次",
-    "note": "依現場報導核對完整首長名單；議員號次另行核對。"
+    "label": "基隆市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
    }
   },
   {

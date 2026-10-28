@@ -1,9 +1,10 @@
 {
  "source": {
-  "stage": "certified",
-  "url": "https://web.cec.gov.tw/central/article/65212",
-  "tableDate": "2026-10-16",
-  "note": "抽籤因颱風改至 2026-10-27；本站尚未收錄可核對的完整選區號次。"
+  "stage": "numbered",
+  "url": "https://web.cec.gov.tw/ttec/article/65397",
+  "tableDate": "2026-10-27",
+  "label": "臺東縣選委會：10/27 抽籤號次",
+  "note": "已依選委會公布的完整選區名單核對。"
  },
  "countyCode": "10-014-00-000-0000",
  "countyName": "臺東縣",
@@ -14,64 +15,55 @@
    "type": "regional",
    "candidates": [
     {
+     "name": "吳景槐",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "c-吳景槐-無黨籍及未經政黨推薦-臺東縣第01選舉區",
+     "identity": "現任議員（臺東縣第1選舉區）"
+    },
+    {
+     "name": "黃治維",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 2,
+     "registeredOn": "2026-09-03",
+     "slug": "c-黃治維-民進黨-臺東縣第01選舉區",
+     "identity": "現任議員（臺東縣第1選舉區）"
+    },
+    {
      "name": "傅文鵬",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-08-31",
      "slug": "cand-傅文鵬-臺東縣第1選舉區",
      "identity": null
     },
     {
-     "name": "林文隆",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-林文隆-臺東縣第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "簡維國",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "c-簡維國-民進黨-臺東縣第01選舉區",
-     "identity": "現任議員（臺東縣第1選舉區）"
-    },
-    {
-     "name": "王文怡",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-王文怡-無黨籍及未經政黨推薦-臺東縣第01選舉區",
+     "name": "周達三",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-09-04",
+     "slug": "c-周達三-國民黨-臺東縣第01選舉區",
      "identity": "現任議員（臺東縣第1選舉區）"
     },
     {
      "name": "陳炫諭",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-09-02",
      "slug": "cand-陳炫諭-臺東縣第1選舉區",
      "identity": null
     },
     {
-     "name": "林參天",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-林參天-無黨籍及未經政黨推薦-臺東縣第01選舉區",
-     "identity": "現任議員（臺東縣第1選舉區）"
-    },
-    {
      "name": "王春梅",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 6,
      "registeredOn": "2026-09-02",
      "slug": "cand-王春梅-臺東縣第1選舉區",
      "identity": null,
@@ -88,55 +80,100 @@
      }
     },
     {
-     "name": "陳允萍",
+     "name": "江家榛",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-陳允萍-臺東縣第1選舉區",
+     "number": 7,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-江家榛-臺東縣第1選舉區",
      "identity": null
     },
     {
-     "name": "吳景槐",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-吳景槐-無黨籍及未經政黨推薦-臺東縣第01選舉區",
-     "identity": "現任議員（臺東縣第1選舉區）"
+     "name": "吳佩珊",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 8,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-吳佩珊-臺東縣第1選舉區",
+     "identity": null
     },
     {
      "name": "李哲",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 9,
      "registeredOn": "2026-09-02",
      "slug": "cand-李哲-臺東縣第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "陳允萍",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 10,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-陳允萍-臺東縣第1選舉區",
      "identity": null
     },
     {
      "name": "張國洲",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 11,
      "registeredOn": "2026-09-03",
      "slug": "c-張國洲-國民黨-臺東縣第01選舉區",
      "identity": "現任議員（臺東縣第1選舉區）"
     },
     {
-     "name": "江家榛",
+     "name": "林參天",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-江家榛-臺東縣第1選舉區",
+     "number": 12,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林參天-無黨籍及未經政黨推薦-臺東縣第01選舉區",
+     "identity": "現任議員（臺東縣第1選舉區）"
+    },
+    {
+     "name": "簡維國",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 13,
+     "registeredOn": "2026-09-01",
+     "slug": "c-簡維國-民進黨-臺東縣第01選舉區",
+     "identity": "現任議員（臺東縣第1選舉區）"
+    },
+    {
+     "name": "潘頤頻",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 14,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-潘頤頻-臺東縣第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "王文怡",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 15,
+     "registeredOn": "2026-09-02",
+     "slug": "c-王文怡-無黨籍及未經政黨推薦-臺東縣第01選舉區",
+     "identity": "現任議員（臺東縣第1選舉區）"
+    },
+    {
+     "name": "林文隆",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 16,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-林文隆-臺東縣第1選舉區",
      "identity": null
     },
     {
      "name": "饒慶鈺",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 17,
      "registeredOn": "2026-09-03",
      "slug": "cand-饒慶鈺-臺東縣第1選舉區",
      "identity": null,
@@ -151,44 +188,15 @@
       "basis": "2026年臺東選情報導明確記載饒慶鈺首度投入選舉。",
       "reviewedOn": "2026-10-14"
      }
-    },
-    {
-     "name": "黃治維",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-黃治維-民進黨-臺東縣第01選舉區",
-     "identity": "現任議員（臺東縣第1選舉區）"
-    },
-    {
-     "name": "潘頤頻",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-04",
-     "slug": "cand-潘頤頻-臺東縣第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "周達三",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-04",
-     "slug": "c-周達三-國民黨-臺東縣第01選舉區",
-     "identity": "現任議員（臺東縣第1選舉區）"
-    },
-    {
-     "name": "吳佩珊",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-04",
-     "slug": "cand-吳佩珊-臺東縣第1選舉區",
-     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 2,
@@ -196,24 +204,31 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "楊招信",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-楊招信-國民黨-臺東縣第02選舉區",
-     "identity": "現任議員（臺東縣第2選舉區）"
-    },
-    {
      "name": "張家瑋",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-03",
      "slug": "cand-張家瑋-臺東縣第2選舉區",
      "identity": null
+    },
+    {
+     "name": "楊招信",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "c-楊招信-國民黨-臺東縣第02選舉區",
+     "identity": "現任議員（臺東縣第2選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 3,
@@ -221,19 +236,10 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "林東滿",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-林東滿-國民黨-臺東縣第03選舉區",
-     "identity": "現任議員（臺東縣第3選舉區）"
-    },
-    {
      "name": "許進榮",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-許進榮-無黨籍及未經政黨推薦-臺東縣第03選舉區",
      "identity": "現任議員（臺東縣第3選舉區）"
@@ -242,12 +248,28 @@
      "name": "鄭銘顯",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "cand-鄭銘顯-臺東縣第3選舉區",
      "identity": null
+    },
+    {
+     "name": "林東滿",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 3,
+     "registeredOn": "2026-09-02",
+     "slug": "c-林東滿-國民黨-臺東縣第03選舉區",
+     "identity": "現任議員（臺東縣第3選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 4,
@@ -258,7 +280,7 @@
      "name": "潘貴蘭",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-01",
      "slug": "c-潘貴蘭-無黨籍及未經政黨推薦-臺東縣第04選舉區",
      "identity": "現任議員（臺東縣第4選舉區）"
@@ -267,12 +289,19 @@
      "name": "陳宏宗",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-03",
      "slug": "c-陳宏宗-無黨籍及未經政黨推薦-臺東縣第04選舉區",
      "identity": "現任議員（臺東縣第4選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 5,
@@ -280,24 +309,31 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "翁麗吟",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-翁麗吟-國民黨-臺東縣第05選舉區",
-     "identity": "現任議員（臺東縣第5選舉區）"
-    },
-    {
      "name": "廖雙穎",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-04",
      "slug": "cand-廖雙穎-臺東縣第5選舉區",
      "identity": null
+    },
+    {
+     "name": "翁麗吟",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "c-翁麗吟-國民黨-臺東縣第05選舉區",
+     "identity": "現任議員（臺東縣第5選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 6,
@@ -308,7 +344,7 @@
      "name": "王益凱",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "cand-王益凱-臺東縣第6選舉區",
      "identity": null
@@ -317,12 +353,19 @@
      "name": "謝賢裕",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-03",
      "slug": "cand-謝賢裕-臺東縣第6選舉區",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 7,
@@ -330,69 +373,76 @@
    "type": "plainIndigenous",
    "candidates": [
     {
+     "name": "林茂松",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 1,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-林茂松-臺東縣第7選舉區（平地原住民）",
+     "identity": null
+    },
+    {
      "name": "陳政宗",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-08-31",
      "slug": "c-陳政宗-無黨籍及未經政黨推薦-臺東縣第07選舉區",
-     "identity": "現任議員（臺東縣第7選舉區）"
-    },
-    {
-     "name": "陽奇良",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-陽奇良-臺東縣第7選舉區（平地原住民）",
-     "identity": null
-    },
-    {
-     "name": "陽昇宏",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-陽昇宏-臺東縣第7選舉區（平地原住民）",
-     "identity": null
-    },
-    {
-     "name": "方賢仁",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-方賢仁-國民黨-臺東縣第07選舉區",
      "identity": "現任議員（臺東縣第7選舉區）"
     },
     {
      "name": "林琮翰",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-03",
      "slug": "c-林琮翰-國民黨-臺東縣第07選舉區",
      "identity": "現任議員（臺東縣第7選舉區）"
     },
     {
-     "name": "林茂松",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-04",
-     "slug": "cand-林茂松-臺東縣第7選舉區（平地原住民）",
+     "name": "陽昇宏",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-陽昇宏-臺東縣第7選舉區（平地原住民）",
+     "identity": null
+    },
+    {
+     "name": "陽奇良",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 5,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-陽奇良-臺東縣第7選舉區（平地原住民）",
      "identity": null
     },
     {
      "name": "巫化‧巴阿立佑司",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 6,
      "registeredOn": "2026-09-04",
      "slug": "cand-巫化‧巴阿立佑司-臺東縣第7選舉區（平地原住民）",
      "identity": null
+    },
+    {
+     "name": "方賢仁",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 7,
+     "registeredOn": "2026-09-03",
+     "slug": "c-方賢仁-國民黨-臺東縣第07選舉區",
+     "identity": "現任議員（臺東縣第7選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 8,
@@ -403,7 +453,7 @@
      "name": "鄭崗山",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-鄭崗山-國民黨-臺東縣第08選舉區",
      "identity": "現任議員（臺東縣第8選舉區）"
@@ -412,12 +462,19 @@
      "name": "沙順恩",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-03",
      "slug": "cand-沙順恩-臺東縣第8選舉區（平地原住民）",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 9,
@@ -428,7 +485,7 @@
      "name": "羅春明",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "cand-羅春明-臺東縣第9選舉區（平地原住民）",
      "identity": null
@@ -437,12 +494,19 @@
      "name": "尤忠正",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-03",
      "slug": "c-尤忠正-國民黨-臺東縣第09選舉區",
      "identity": "現任議員（臺東縣第9選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 10,
@@ -453,12 +517,19 @@
      "name": "楊清順Cinsun Pawtawan",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-楊清順cinsunpawtawan-國民黨-臺東縣第10選舉區",
      "identity": "現任議員（臺東縣第10選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 11,
@@ -466,33 +537,40 @@
    "type": "plainIndigenous",
    "candidates": [
     {
-     "name": "楊秋珍",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-楊秋珍-國民黨-臺東縣第11選舉區",
-     "identity": "現任議員（臺東縣第11選舉區）"
-    },
-    {
      "name": "高美珠",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-高美珠-無黨籍及未經政黨推薦-臺東縣第11選舉區",
+     "identity": "現任議員（臺東縣第11選舉區）"
+    },
+    {
+     "name": "楊秋珍",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "c-楊秋珍-國民黨-臺東縣第11選舉區",
      "identity": "現任議員（臺東縣第11選舉區）"
     },
     {
      "name": "武雪恩",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-03",
      "slug": "cand-武雪恩-臺東縣第11選舉區（平地原住民）",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 12,
@@ -500,24 +578,31 @@
    "type": "mountainIndigenous",
    "candidates": [
     {
-     "name": "邱文俊",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-邱文俊-臺東縣第12選舉區（山地原住民）",
-     "identity": null
-    },
-    {
      "name": "温源田",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "cand-温源田-臺東縣第12選舉區（山地原住民）",
      "identity": null
+    },
+    {
+     "name": "邱文俊",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 2,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-邱文俊-臺東縣第12選舉區（山地原住民）",
+     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 13,
@@ -525,19 +610,19 @@
    "type": "mountainIndigenous",
    "candidates": [
     {
-     "name": "胡金至",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-胡金至-臺東縣第13選舉區（山地原住民）",
+     "name": "胡淑貞",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 1,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-胡淑貞-臺東縣第13選舉區（山地原住民）",
      "identity": null
     },
     {
      "name": "余桂花",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-03",
      "slug": "cand-余桂花-臺東縣第13選舉區（山地原住民）",
      "identity": null
@@ -546,21 +631,28 @@
      "name": "余瑋廷Kavas Ispalidaz",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-03",
      "slug": "cand-余瑋廷Kavas Ispalidaz-臺東縣第13選舉區（山地原住民）",
      "identity": null
     },
     {
-     "name": "胡淑貞",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-胡淑貞-臺東縣第13選舉區（山地原住民）",
+     "name": "胡金至",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-胡金至-臺東縣第13選舉區（山地原住民）",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 14,
@@ -571,7 +663,7 @@
      "name": "蔣爭光",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-03",
      "slug": "cand-蔣爭光-臺東縣第14選舉區（山地原住民）",
      "identity": null
@@ -580,12 +672,19 @@
      "name": "章正輝Lemaljiz‧Kusaza",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-03",
      "slug": "c-章正輝lemaljiz．kusaza-國民黨-臺東縣第14選舉區",
      "identity": "現任議員（臺東縣第14選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 15,
@@ -596,7 +695,7 @@
      "name": "林芳如",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-03",
      "slug": "cand-林芳如-臺東縣第15選舉區（山地原住民）",
      "identity": null
@@ -605,12 +704,19 @@
      "name": "包惠玲",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-03",
      "slug": "cand-包惠玲-臺東縣第15選舉區（山地原住民）",
      "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 16,
@@ -621,30 +727,37 @@
      "name": "董昌華",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-董昌華-無黨籍及未經政黨推薦-臺東縣第16選舉區",
      "identity": "現任議員（臺東縣第16選舉區）"
     },
     {
-     "name": "李奉祈",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-李奉祈-臺東縣第16選舉區（山地原住民）",
-     "identity": null
-    },
-    {
      "name": "鍾文明",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-04",
      "slug": "cand-鍾文明-臺東縣第16選舉區（山地原住民）",
      "identity": null
+    },
+    {
+     "name": "李奉祈",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 3,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-李奉祈-臺東縣第16選舉區（山地原住民）",
+     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/ttec/article/65397",
+    "tableDate": "2026-10-27",
+    "label": "臺東縣選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   }
  ],
  "townToDistrict": {

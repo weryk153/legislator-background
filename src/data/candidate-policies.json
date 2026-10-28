@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-10-27",
+  "updatedOn": "2026-10-28",
   "candidates": [
     {
       "slug": "cand-李四川-新北市",
@@ -1211,6 +1211,60 @@
             {
               "topic": "敬老交通補助",
               "summary": "提出將愛心敬老卡搭計程車的每趟補助上限提高至100點。"
+            }
+          ]
+        },
+        {
+          "id": "2026-tpp-216-campaign-platform",
+          "title": "2026競選網站個人政見",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-28",
+          "source": {
+            "type": "campaign",
+            "title": "台灣民眾黨2026競選網站：張啓楷個人政見",
+            "url": "https://www.tpp.org.tw/election2026/candidates/216",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "學童午餐",
+              "summary": "提出國中小營養午餐免費，並重視食品安全與營養。"
+            },
+            {
+              "topic": "長者健保與長照",
+              "summary": "提出65歲以上長者健保免費，並完善長照服務。"
+            },
+            {
+              "topic": "青年支持",
+              "summary": "提出青年住宅、未來帳戶，以及創業與就業支持。"
+            },
+            {
+              "topic": "生育與幼兒補助",
+              "summary": "提出第一胎補助5萬元、第二胎10萬元、第三胎20萬元，另給0至6歲幼兒每年2萬元生日禮金。"
+            },
+            {
+              "topic": "產業廊帶",
+              "summary": "提出打造北港路產業廊帶，以增加就業及財源。"
+            },
+            {
+              "topic": "交通建設",
+              "summary": "提出推動輕軌、鐵路高架化及完整路網建設。"
+            },
+            {
+              "topic": "商圈與觀光",
+              "summary": "提出振興商圈、市場與夜市，帶動觀光及消費。"
+            },
+            {
+              "topic": "數位治理",
+              "summary": "提出導入AI及數位治理，改善市政服務效率。"
+            },
+            {
+              "topic": "環境保護",
+              "summary": "提出守護蘭潭、減煤及降低空氣污染。"
+            },
+            {
+              "topic": "財政原則",
+              "summary": "提出善用新增財源，支持福利、建設與產業發展；本頁未列各項政策的經費估算與財源細項。"
             }
           ]
         }
@@ -3921,6 +3975,248 @@
             {
               "topic": "運動與公園",
               "summary": "爭取運動中心智慧設備與銀髮運動指導，將既有公園改造為全齡共融及無障礙空間。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-林廷翰-基隆市第1選舉區",
+      "name": "林廷翰",
+      "role": "基隆市第1選舉區議員",
+      "records": [
+        {
+          "id": "2026-tpp-190-campaign-platform",
+          "title": "2026競選網站個人政見",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-28",
+          "source": {
+            "type": "campaign",
+            "title": "台灣民眾黨2026競選網站：林廷翰個人政見",
+            "url": "https://www.tpp.org.tw/election2026/candidates/190",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "兒少與家庭支持",
+              "summary": "爭取中正區戶外共融遊戲場及親子空間，完善兒少表達意見的機制，強化家庭教育與親子支持。"
+            },
+            {
+              "topic": "青少年心理健康",
+              "summary": "推動心理支持網絡，爭取心理諮詢專線或線上服務，並建置提供課後陪伴、職涯探索及公共參與空間的青少年基地。"
+            },
+            {
+              "topic": "新豐街交通",
+              "summary": "提出短期調整號誌與標線、中期改善行人環境，長期評估替代聯外道路。"
+            },
+            {
+              "topic": "國道客運",
+              "summary": "爭取尖峰增班、週五及週六延後末班、假日提早首班，改善南京三民、1579客運候車處及主要轉乘節點。"
+            },
+            {
+              "topic": "行人安全",
+              "summary": "盤點學校、市場、社區出入口及生活街廓，改善人行道、騎樓、照明、坡道與行穿線。"
+            },
+            {
+              "topic": "長照與照顧者",
+              "summary": "強化社區長照、喘息服務、失智友善及家庭照顧者支持。"
+            },
+            {
+              "topic": "職業傷病與復工",
+              "summary": "提出職業傷病評估、復健及重返職場支持，提供勞工連續性的協助。"
+            },
+            {
+              "topic": "社區維護",
+              "summary": "加強道路巡檢與坑洞修補、側溝清淤、排水及夜間照明，整頓市場周邊環境。"
+            },
+            {
+              "topic": "服務案件追蹤",
+              "summary": "建立服務案件追蹤與定期回報機制，公開通報、承辦及處理進度。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-呂承祐-基隆市第4選舉區",
+      "name": "呂承祐",
+      "role": "基隆市第4選舉區議員",
+      "records": [
+        {
+          "id": "2026-tpp-188-campaign-platform",
+          "title": "2026競選網站個人政見",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-28",
+          "source": {
+            "type": "campaign",
+            "title": "台灣民眾黨2026競選網站：呂承祐個人政見",
+            "url": "https://www.tpp.org.tw/election2026/candidates/188",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "民生與交通",
+              "summary": "以中山區居住發展為方向，提出人本交通與停車、大眾運輸及水環境改善；本頁未載具體路線、工程或預算。"
+            },
+            {
+              "topic": "娛樂稅",
+              "summary": "主張廢除娛樂稅。"
+            },
+            {
+              "topic": "運動空間",
+              "summary": "提出推動極限運動公園。"
+            },
+            {
+              "topic": "觀光與會展",
+              "summary": "提出山海一線的基隆大縱走、24小時郵輪經濟圈，以及地標建築與會展經濟。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-李文耀-基隆市第5選舉區",
+      "name": "李文耀",
+      "role": "基隆市第5選舉區議員",
+      "records": [
+        {
+          "id": "2026-tpp-189-campaign-platform",
+          "title": "2026競選網站個人政見",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-28",
+          "source": {
+            "type": "campaign",
+            "title": "台灣民眾黨2026競選網站：李文耀個人政見",
+            "url": "https://www.tpp.org.tw/election2026/candidates/189",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "通勤運輸",
+              "summary": "督促市府改善通勤動線及運輸效率。"
+            },
+            {
+              "topic": "在地長照",
+              "summary": "提出補強安樂區長照量能，串聯社區據點與即時服務。"
+            },
+            {
+              "topic": "招商與就業",
+              "summary": "要求市府提出招商獎勵及補助機制，引進低耗能、可長期發展的產業進駐安樂區，增加在地就業。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-林蒼佑-宜蘭縣第1選舉區",
+      "name": "林蒼佑",
+      "role": "宜蘭縣第1選舉區議員",
+      "records": [
+        {
+          "id": "2026-tpp-178-campaign-platform",
+          "title": "2026競選網站個人政見",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-28",
+          "source": {
+            "type": "campaign",
+            "title": "台灣民眾黨2026競選網站：林蒼佑個人政見",
+            "url": "https://www.tpp.org.tw/election2026/candidates/178",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "社區藝術教育",
+              "summary": "結合學校、社區與在地文化工作者，在社區中心、廟埕及公園推動音樂、美術、舞蹈與體育等課程和活動。"
+            },
+            {
+              "topic": "在地師資",
+              "summary": "鼓勵在地教師及文化工作者共同教學，讓各年齡層在生活中接觸藝術人文。"
+            },
+            {
+              "topic": "行動藝術與展演",
+              "summary": "提出行動藝術車及社區表演日，將活動帶入巷弄。"
+            },
+            {
+              "topic": "在地音樂祭",
+              "summary": "提出每年辦一次音樂祭，邀請宜蘭在地樂團演出。"
+            },
+            {
+              "topic": "藝術市集",
+              "summary": "提出成立藝術市集，提供街頭藝人及在地藝術家展演空間。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cand-吳怡萱-臺北市第5選舉區",
+      "name": "吳怡萱",
+      "role": "臺北市第5選舉區議員",
+      "records": [
+        {
+          "id": "2026-tpp-168-campaign-platform",
+          "title": "2026競選網站個人政見",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-28",
+          "source": {
+            "type": "campaign",
+            "title": "台灣民眾黨2026競選網站：吳怡萱個人政見",
+            "url": "https://www.tpp.org.tw/election2026/candidates/168",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "女性生育檢測",
+              "summary": "提出補助25至40歲女性每年一次卵子庫存量檢測（AMH）。"
+            },
+            {
+              "topic": "產後支持",
+              "summary": "爭取坐月子補助金。"
+            },
+            {
+              "topic": "孕期心理服務",
+              "summary": "提出增加孕期免費心理諮商。"
+            },
+            {
+              "topic": "幼兒教育",
+              "summary": "推動幼兒園公共化及2至6歲逐年免學費，並主張制定2至6歲義務教育。"
+            },
+            {
+              "topic": "祖父母照顧支持",
+              "summary": "提出鼓勵祖父母考取照顧相關證照，並給予顧孫津貼。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "c-張志豪-民眾黨-臺北市第06選舉區",
+      "name": "張志豪",
+      "role": "臺北市第6選舉區議員",
+      "records": [
+        {
+          "id": "2026-tpp-170-campaign-platform",
+          "title": "2026競選網站個人政見",
+          "announcedOn": null,
+          "reviewedOn": "2026-10-28",
+          "source": {
+            "type": "campaign",
+            "title": "台灣民眾黨2026競選網站：張志豪個人政見",
+            "url": "https://www.tpp.org.tw/election2026/candidates/170",
+            "publishedOn": null
+          },
+          "proposals": [
+            {
+              "topic": "防災與社區安全",
+              "summary": "推動防災流程標準化、消防設備汰換與基層人力補足，整合AI監控及志工系統建立社區互助安全網。"
+            },
+            {
+              "topic": "教育與校園申訴",
+              "summary": "重視教育品質及特教資源，主張霸凌與性騷擾零容忍，落實公正的第三方申訴機制，並推動資源共享及青銀共學。"
+            },
+            {
+              "topic": "樂齡運動與醫護權益",
+              "summary": "提出樂齡運動處方箋，媒合教練進入長照據點，以肌力訓練預防失能與失智；同時主張改善護病比及夜班津貼。"
             }
           ]
         }

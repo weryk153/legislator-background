@@ -1,9 +1,10 @@
 {
  "source": {
-  "stage": "certified",
-  "url": "https://web.cec.gov.tw/central/article/65212",
-  "tableDate": "2026-10-16",
-  "note": "抽籤因颱風改至 2026-10-27；本站尚未收錄可核對的完整選區號次。"
+  "stage": "numbered",
+  "url": "https://web.cec.gov.tw/klec/article/65421",
+  "tableDate": "2026-10-27",
+  "label": "基隆市選委會：10/27 抽籤號次",
+  "note": "已依選委會公布的完整選區名單核對。"
  },
  "countyCode": "10-017-00-000-0000",
  "countyName": "基隆市",
@@ -14,79 +15,86 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "藍敏煌",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "c-藍敏煌-國民黨-基隆市第01選舉區",
-     "identity": "現任議員（基隆市第1選舉區）"
-    },
-    {
-     "name": "林孟泓",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-林孟泓-基隆市第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "呂美玲",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-呂美玲-國民黨-基隆市第01選舉區",
-     "identity": "現任議員（基隆市第1選舉區）"
-    },
-    {
-     "name": "林廷翰",
-     "partyName": "台灣民眾黨",
-     "partyCode": "350",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-林廷翰-基隆市第1選舉區",
-     "identity": null
-    },
-    {
-     "name": "張文彬",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-張文彬-基隆市第1選舉區",
-     "identity": null
-    },
-    {
      "name": "黃紀仁",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-03",
      "slug": "cand-黃紀仁-基隆市第1選舉區",
      "identity": null
     },
     {
-     "name": "王珍玨",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-王珍玨-基隆市第1選舉區",
+     "name": "林廷翰",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-林廷翰-基隆市第1選舉區",
      "identity": null
     },
     {
      "name": "江清容",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-03",
      "slug": "cand-江清容-基隆市第1選舉區",
      "identity": null
+    },
+    {
+     "name": "呂美玲",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-09-02",
+     "slug": "c-呂美玲-國民黨-基隆市第01選舉區",
+     "identity": "現任議員（基隆市第1選舉區）"
+    },
+    {
+     "name": "林孟泓",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 5,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-林孟泓-基隆市第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "王珍玨",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 6,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-王珍玨-基隆市第1選舉區",
+     "identity": null
+    },
+    {
+     "name": "藍敏煌",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 7,
+     "registeredOn": "2026-09-01",
+     "slug": "c-藍敏煌-國民黨-基隆市第01選舉區",
+     "identity": "現任議員（基隆市第1選舉區）"
+    },
+    {
+     "name": "張文彬",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 8,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-張文彬-基隆市第1選舉區",
+     "identity": null
     }
    ],
-   "scope": "中正區"
+   "scope": "中正區",
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/klec/article/65421",
+    "tableDate": "2026-10-27",
+    "label": "基隆市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 2,
@@ -94,28 +102,10 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "李嘉濠",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-李嘉濠-基隆市第2選舉區",
-     "identity": null
-    },
-    {
-     "name": "何淑萍",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-何淑萍-國民黨-基隆市第02選舉區",
-     "identity": "現任議員（基隆市第2選舉區）"
-    },
-    {
      "name": "韓世昱",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-韓世昱-國民黨-基隆市第02選舉區",
      "identity": "現任議員（基隆市第2選舉區）"
@@ -124,58 +114,83 @@
      "name": "李程祥",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "cand-李程祥-基隆市第2選舉區",
      "identity": null
     },
     {
-     "name": "黃申棟",
-     "partyName": "台灣民眾黨",
-     "partyCode": "350",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-黃申棟-基隆市第2選舉區",
-     "identity": null
-    },
-    {
-     "name": "鄭素禎",
-     "partyName": "親民黨",
-     "partyCode": "90",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-鄭素禎-基隆市第2選舉區",
-     "identity": null
+     "name": "陳宜",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 3,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳宜-民進黨-基隆市第02選舉區",
+     "identity": "現任議員（基隆市第2選舉區）"
     },
     {
      "name": "陳軍佐",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-03",
      "slug": "c-陳軍佐-民進黨-基隆市第02選舉區",
      "identity": "現任議員（基隆市第2選舉區）"
     },
     {
-     "name": "陳宜",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-陳宜-民進黨-基隆市第02選舉區",
+     "name": "何淑萍",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 5,
+     "registeredOn": "2026-09-02",
+     "slug": "c-何淑萍-國民黨-基隆市第02選舉區",
      "identity": "現任議員（基隆市第2選舉區）"
     },
     {
      "name": "林廷奕",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 6,
      "registeredOn": "2026-09-04",
      "slug": "cand-林廷奕-基隆市第2選舉區",
      "identity": null
+    },
+    {
+     "name": "黃申棟",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": 7,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-黃申棟-基隆市第2選舉區",
+     "identity": null
+    },
+    {
+     "name": "李嘉濠",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 8,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-李嘉濠-基隆市第2選舉區",
+     "identity": null
+    },
+    {
+     "name": "鄭素禎",
+     "partyName": "親民黨",
+     "partyCode": "90",
+     "number": 9,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-鄭素禎-基隆市第2選舉區",
+     "identity": null
     }
    ],
-   "scope": "信義區"
+   "scope": "信義區",
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/klec/article/65421",
+    "tableDate": "2026-10-27",
+    "label": "基隆市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 3,
@@ -186,16 +201,25 @@
      "name": "林杏潔",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-01",
      "slug": "cand-林杏潔-基隆市第3選舉區",
+     "identity": null
+    },
+    {
+     "name": "莊傑宇",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 2,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-莊傑宇-基隆市第3選舉區",
      "identity": null
     },
     {
      "name": "曾維祥",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-02",
      "slug": "cand-曾維祥-基隆市第3選舉區",
      "identity": null
@@ -204,22 +228,20 @@
      "name": "鄭文婷",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-03",
      "slug": "c-鄭文婷-民進黨-基隆市第03選舉區",
      "identity": "現任議員（基隆市第3選舉區）"
-    },
-    {
-     "name": "莊傑宇",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-04",
-     "slug": "cand-莊傑宇-基隆市第3選舉區",
-     "identity": null
     }
    ],
-   "scope": "仁愛區"
+   "scope": "仁愛區",
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/klec/article/65421",
+    "tableDate": "2026-10-27",
+    "label": "基隆市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 4,
@@ -227,73 +249,19 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "李昀靜",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-李昀靜-基隆市第4選舉區",
-     "identity": null
-    },
-    {
      "name": "莊敬聖",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "cand-莊敬聖-基隆市第4選舉區",
-     "identity": null
-    },
-    {
-     "name": "林祐德",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-林祐德-基隆市第4選舉區",
-     "identity": null
-    },
-    {
-     "name": "施偉政",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-施偉政-民進黨-基隆市第04選舉區",
-     "identity": "現任議員（基隆市第4選舉區）"
-    },
-    {
-     "name": "呂承祐",
-     "partyName": "台灣民眾黨",
-     "partyCode": "350",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-呂承祐-基隆市第4選舉區",
-     "identity": null
-    },
-    {
-     "name": "許孟修",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-許孟修-基隆市第4選舉區",
-     "identity": null
-    },
-    {
-     "name": "吳巧瀅",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-吳巧瀅-基隆市第4選舉區",
      "identity": null
     },
     {
      "name": "宋瑋莉",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-03",
      "slug": "c-宋瑋莉-國民黨-基隆市第04選舉區",
      "identity": "現任議員（基隆市第4選舉區）"
@@ -302,13 +270,74 @@
      "name": "郭美秀",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-04",
      "slug": "c-郭美秀-親民黨-基隆市第04選舉區",
      "identity": "現任議員（基隆市第4選舉區）"
+    },
+    {
+     "name": "吳巧瀅",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 4,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-吳巧瀅-基隆市第4選舉區",
+     "identity": null
+    },
+    {
+     "name": "林祐德",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 5,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-林祐德-基隆市第4選舉區",
+     "identity": null
+    },
+    {
+     "name": "李昀靜",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 6,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-李昀靜-基隆市第4選舉區",
+     "identity": null
+    },
+    {
+     "name": "許孟修",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 7,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-許孟修-基隆市第4選舉區",
+     "identity": null
+    },
+    {
+     "name": "施偉政",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 8,
+     "registeredOn": "2026-09-02",
+     "slug": "c-施偉政-民進黨-基隆市第04選舉區",
+     "identity": "現任議員（基隆市第4選舉區）"
+    },
+    {
+     "name": "呂承祐",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": 9,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-呂承祐-基隆市第4選舉區",
+     "identity": null
     }
    ],
-   "scope": "中山區"
+   "scope": "中山區",
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/klec/article/65421",
+    "tableDate": "2026-10-27",
+    "label": "基隆市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 5,
@@ -316,19 +345,91 @@
    "type": "regional",
    "candidates": [
     {
+     "name": "黃忠賢",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 1,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-黃忠賢-基隆市第5選舉區",
+     "identity": null
+    },
+    {
+     "name": "黃舒琳",
+     "partyName": "親民黨",
+     "partyCode": "90",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-黃舒琳-基隆市第5選舉區",
+     "identity": null
+    },
+    {
+     "name": "吳程澤",
+     "partyName": "台灣基進",
+     "partyCode": "303",
+     "number": 3,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-吳程澤-基隆市第5選舉區",
+     "identity": null
+    },
+    {
+     "name": "秦鉦",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 4,
+     "registeredOn": "2026-09-02",
+     "slug": "c-秦鉦-國民黨-基隆市第05選舉區",
+     "identity": "現任議員（基隆市第5選舉區）"
+    },
+    {
+     "name": "劉韋巡",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 5,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-劉韋巡-基隆市第5選舉區",
+     "identity": null
+    },
+    {
+     "name": "張之豪",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 6,
+     "registeredOn": "2026-09-03",
+     "slug": "c-張之豪-民進黨-基隆市第05選舉區",
+     "identity": "現任議員（基隆市第5選舉區）"
+    },
+    {
+     "name": "李文耀",
+     "partyName": "台灣民眾黨",
+     "partyCode": "350",
+     "number": 7,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-李文耀-基隆市第5選舉區",
+     "identity": null
+    },
+    {
      "name": "張家馨",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 8,
      "registeredOn": "2026-09-01",
      "slug": "cand-張家馨-基隆市第5選舉區",
      "identity": null
     },
     {
+     "name": "吳驊珈",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 9,
+     "registeredOn": "2026-09-04",
+     "slug": "c-吳驊珈-民進黨-基隆市第05選舉區",
+     "identity": "現任議員（基隆市第5選舉區）"
+    },
+    {
      "name": "黃永翔",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 10,
      "registeredOn": "2026-09-02",
      "slug": "cand-黃永翔-基隆市第5選舉區",
      "identity": null
@@ -337,94 +438,29 @@
      "name": "俞叁發",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 11,
      "registeredOn": "2026-09-02",
      "slug": "c-俞叁發-國民黨-基隆市第05選舉區",
-     "identity": "現任議員（基隆市第5選舉區）"
-    },
-    {
-     "name": "秦鉦",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-秦鉦-國民黨-基隆市第05選舉區",
-     "identity": "現任議員（基隆市第5選舉區）"
-    },
-    {
-     "name": "黃忠賢",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-黃忠賢-基隆市第5選舉區",
-     "identity": null
-    },
-    {
-     "name": "吳程澤",
-     "partyName": "台灣基進",
-     "partyCode": "303",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-吳程澤-基隆市第5選舉區",
-     "identity": null
-    },
-    {
-     "name": "李文耀",
-     "partyName": "台灣民眾黨",
-     "partyCode": "350",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-李文耀-基隆市第5選舉區",
-     "identity": null
-    },
-    {
-     "name": "黃舒琳",
-     "partyName": "親民黨",
-     "partyCode": "90",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-黃舒琳-基隆市第5選舉區",
-     "identity": null
-    },
-    {
-     "name": "張之豪",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-張之豪-民進黨-基隆市第05選舉區",
      "identity": "現任議員（基隆市第5選舉區）"
     },
     {
      "name": "鄭愷玲",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 12,
      "registeredOn": "2026-09-04",
      "slug": "c-鄭愷玲-國民黨-基隆市第05選舉區",
      "identity": "現任議員（基隆市第5選舉區）"
-    },
-    {
-     "name": "吳驊珈",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-04",
-     "slug": "c-吳驊珈-民進黨-基隆市第05選舉區",
-     "identity": "現任議員（基隆市第5選舉區）"
-    },
-    {
-     "name": "劉韋巡",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-04",
-     "slug": "cand-劉韋巡-基隆市第5選舉區",
-     "identity": null
     }
    ],
-   "scope": "安樂區"
+   "scope": "安樂區",
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/klec/article/65421",
+    "tableDate": "2026-10-27",
+    "label": "基隆市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 6,
@@ -432,52 +468,59 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "莫璦緁",
-     "partyName": "台灣進步黨",
-     "partyCode": null,
-     "number": null,
-     "registeredOn": "2026-08-31",
-     "slug": "cand-莫璦緁-基隆市第6選舉區",
-     "identity": null
-    },
-    {
      "name": "連恩典",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-連恩典-國民黨-基隆市第06選舉區",
      "identity": "現任議員（基隆市第6選舉區）"
     },
     {
+     "name": "莫璦緁",
+     "partyName": "台灣進步黨",
+     "partyCode": null,
+     "number": 2,
+     "registeredOn": "2026-08-31",
+     "slug": "cand-莫璦緁-基隆市第6選舉區",
+     "identity": null
+    },
+    {
      "name": "蔡長宏",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-03",
      "slug": "cand-蔡長宏-基隆市第6選舉區",
+     "identity": null
+    },
+    {
+     "name": "朱書昕",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 4,
+     "registeredOn": "2026-09-04",
+     "slug": "cand-朱書昕-基隆市第6選舉區",
      "identity": null
     },
     {
      "name": "陳冠羽",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-09-04",
      "slug": "c-陳冠羽-無黨籍及未經政黨推薦-基隆市第06選舉區",
      "identity": "現任議員（基隆市第6選舉區）"
-    },
-    {
-     "name": "朱書昕",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-04",
-     "slug": "cand-朱書昕-基隆市第6選舉區",
-     "identity": null
     }
    ],
-   "scope": "暖暖區"
+   "scope": "暖暖區",
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/klec/article/65421",
+    "tableDate": "2026-10-27",
+    "label": "基隆市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 7,
@@ -485,37 +528,19 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "蔡旺璉",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "c-蔡旺璉-國民黨-基隆市第07選舉區",
-     "identity": "現任議員（基隆市第7選舉區）"
-    },
-    {
      "name": "楊秀玉",
      "partyName": "親民黨",
      "partyCode": "90",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-楊秀玉-親民黨-基隆市第07選舉區",
      "identity": "現任議員（基隆市第7選舉區）"
     },
     {
-     "name": "陳安淇",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-陳安淇-基隆市第7選舉區",
-     "identity": null
-    },
-    {
      "name": "曾怡芳",
      "partyName": "民主進步黨",
      "partyCode": "16",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-03",
      "slug": "c-曾怡芳-民進黨-基隆市第07選舉區",
      "identity": "現任議員（基隆市第7選舉區）"
@@ -524,22 +549,47 @@
      "name": "張耿輝",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-03",
      "slug": "c-張耿輝-無黨籍及未經政黨推薦-基隆市第07選舉區",
+     "identity": "現任議員（基隆市第7選舉區）"
+    },
+    {
+     "name": "陳安淇",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 4,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-陳安淇-基隆市第7選舉區",
+     "identity": null
+    },
+    {
+     "name": "蔡旺璉",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 5,
+     "registeredOn": "2026-09-02",
+     "slug": "c-蔡旺璉-國民黨-基隆市第07選舉區",
      "identity": "現任議員（基隆市第7選舉區）"
     },
     {
      "name": "戴璟安",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 6,
      "registeredOn": "2026-09-04",
      "slug": "cand-戴璟安-基隆市第7選舉區",
      "identity": null
     }
    ],
-   "scope": "七堵區"
+   "scope": "七堵區",
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/klec/article/65421",
+    "tableDate": "2026-10-27",
+    "label": "基隆市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 8,
@@ -547,25 +597,32 @@
    "type": "plainIndigenous",
    "candidates": [
     {
-     "name": "陳明建",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-陳明建-無黨籍及未經政黨推薦-基隆市第08選舉區",
-     "identity": "現任議員（基隆市第8選舉區）"
-    },
-    {
      "name": "拔耐．茹妮老王",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-04",
      "slug": "cand-拔耐．茹妮老王-基隆市第8選舉區（平地原住民）",
      "identity": null
+    },
+    {
+     "name": "陳明建",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 2,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳明建-無黨籍及未經政黨推薦-基隆市第08選舉區",
+     "identity": "現任議員（基隆市第8選舉區）"
     }
    ],
-   "scope": "基隆市之平地原住民"
+   "scope": "基隆市之平地原住民",
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/klec/article/65421",
+    "tableDate": "2026-10-27",
+    "label": "基隆市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   },
   {
    "no": 9,
@@ -573,43 +630,50 @@
    "type": "mountainIndigenous",
    "candidates": [
     {
-     "name": "高願孝",
-     "partyName": "民主進步黨",
-     "partyCode": "16",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "cand-高願孝-基隆市第9選舉區（山地原住民）",
+     "name": "林崇道MotuQuyat",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 1,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-林崇道MotuQuyat-基隆市第9選舉區（山地原住民）",
      "identity": null
     },
     {
      "name": "徐馬政妘",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "cand-徐馬政妘-基隆市第9選舉區（山地原住民）",
      "identity": null
     },
     {
-     "name": "林崇道MotuQuyat",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-林崇道MotuQuyat-基隆市第9選舉區（山地原住民）",
+     "name": "高願孝",
+     "partyName": "民主進步黨",
+     "partyCode": "16",
+     "number": 3,
+     "registeredOn": "2026-09-01",
+     "slug": "cand-高願孝-基隆市第9選舉區（山地原住民）",
      "identity": null
     },
     {
      "name": "高李茂俊",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-04",
      "slug": "cand-高李茂俊-基隆市第9選舉區（山地原住民）",
      "identity": null
     }
    ],
-   "scope": "基隆市之山地原住民"
+   "scope": "基隆市之山地原住民",
+   "source": {
+    "stage": "numbered",
+    "url": "https://web.cec.gov.tw/klec/article/65421",
+    "tableDate": "2026-10-27",
+    "label": "基隆市選委會：10/27 抽籤號次",
+    "note": "已依選委會公布的完整選區名單核對。"
+   }
   }
  ],
  "townToDistrict": {

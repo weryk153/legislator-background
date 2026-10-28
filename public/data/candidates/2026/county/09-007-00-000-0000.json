@@ -1,9 +1,10 @@
 {
  "source": {
-  "stage": "certified",
-  "url": "https://web.cec.gov.tw/central/article/65212",
-  "tableDate": "2026-10-16",
-  "note": "抽籤因颱風改至 2026-10-27；本站尚未收錄可核對的完整選區號次。"
+  "stage": "numbered",
+  "url": "https://www.chukuang.gov.tw/Chhtml/Detail/2569?mcid=114024",
+  "tableDate": "2026-10-27",
+  "label": "馬祖日報／莒光鄉公所：10/27 四鄉議員抽籤結果",
+  "note": "10/28刊登的10/27抽籤新聞，逐鄉對應第1至4選區；為鄉公所轉載新聞，非選委會正式名冊公告。"
  },
  "countyCode": "09-007-00-000-0000",
  "countyName": "連江縣",
@@ -17,7 +18,7 @@
      "name": "曹丞君",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-01",
      "slug": "c-曹丞君-國民黨-連江縣第01選舉區",
      "identity": "現任議員（連江縣第1選舉區）"
@@ -26,57 +27,64 @@
      "name": "吳軾子",
      "partyName": "更生黨",
      "partyCode": null,
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-01",
      "slug": "cand-吳軾子-連江縣第1選舉區",
      "identity": null
     },
     {
-     "name": "曹以標",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-01",
-     "slug": "c-曹以標-無黨籍及未經政黨推薦-連江縣第01選舉區",
+     "name": "陳書建",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 3,
+     "registeredOn": "2026-09-03",
+     "slug": "c-陳書建-國民黨-連江縣第01選舉區",
      "identity": "現任議員（連江縣第1選舉區）"
     },
     {
      "name": "林惠萍",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 4,
      "registeredOn": "2026-09-01",
      "slug": "cand-林惠萍-連江縣第1選舉區",
      "identity": null
     },
     {
-     "name": "曹爾章",
+     "name": "曹以標",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 5,
      "registeredOn": "2026-09-01",
-     "slug": "c-曹爾章-無黨籍及未經政黨推薦-連江縣第01選舉區",
-     "identity": "現任議員（連江縣第1選舉區）"
-    },
-    {
-     "name": "陳書建",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "c-陳書建-國民黨-連江縣第01選舉區",
+     "slug": "c-曹以標-無黨籍及未經政黨推薦-連江縣第01選舉區",
      "identity": "現任議員（連江縣第1選舉區）"
     },
     {
      "name": "林明揚",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 6,
      "registeredOn": "2026-09-04",
      "slug": "c-林明揚-國民黨-連江縣第01選舉區",
      "identity": "現任議員（連江縣第1選舉區）"
+    },
+    {
+     "name": "曹爾章",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 7,
+     "registeredOn": "2026-09-01",
+     "slug": "c-曹爾章-無黨籍及未經政黨推薦-連江縣第01選舉區",
+     "identity": "現任議員（連江縣第1選舉區）"
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://www.chukuang.gov.tw/Chhtml/Detail/2569?mcid=114024",
+    "tableDate": "2026-10-27",
+    "label": "馬祖日報／莒光鄉公所：10/27 四鄉議員抽籤結果",
+    "note": "10/28刊登的10/27抽籤新聞，逐鄉對應第1至4選區；為鄉公所轉載新聞，非選委會正式名冊公告。"
+   }
   },
   {
    "no": 2,
@@ -87,7 +95,7 @@
      "name": "陳玉發",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-02",
      "slug": "c-陳玉發-國民黨-連江縣第02選舉區",
      "identity": "現任議員（連江縣第2選舉區）"
@@ -96,7 +104,7 @@
      "name": "周瑞國",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 2,
      "registeredOn": "2026-09-02",
      "slug": "c-周瑞國-國民黨-連江縣第02選舉區",
      "identity": "現任議員（連江縣第2選舉區）"
@@ -105,7 +113,7 @@
      "name": "謝秉軒",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 3,
      "registeredOn": "2026-09-04",
      "slug": "cand-謝秉軒-連江縣第2選舉區",
      "identity": null,
@@ -121,7 +129,14 @@
       "reviewedOn": "2026-10-14"
      }
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://www.chukuang.gov.tw/Chhtml/Detail/2569?mcid=114024",
+    "tableDate": "2026-10-27",
+    "label": "馬祖日報／莒光鄉公所：10/27 四鄉議員抽籤結果",
+    "note": "10/28刊登的10/27抽籤新聞，逐鄉對應第1至4選區；為鄉公所轉載新聞，非選委會正式名冊公告。"
+   }
   },
   {
    "no": 3,
@@ -129,24 +144,31 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "王孝榛",
-     "partyName": "無",
-     "partyCode": "999",
-     "number": null,
-     "registeredOn": "2026-09-02",
-     "slug": "cand-王孝榛-連江縣第3選舉區",
-     "identity": null
-    },
-    {
      "name": "陳貽斌",
      "partyName": "中國國民黨",
      "partyCode": "1",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-03",
      "slug": "c-陳貽斌-國民黨-連江縣第03選舉區",
      "identity": "現任議員（連江縣第3選舉區）"
+    },
+    {
+     "name": "王孝榛",
+     "partyName": "無",
+     "partyCode": "999",
+     "number": 2,
+     "registeredOn": "2026-09-02",
+     "slug": "cand-王孝榛-連江縣第3選舉區",
+     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://www.chukuang.gov.tw/Chhtml/Detail/2569?mcid=114024",
+    "tableDate": "2026-10-27",
+    "label": "馬祖日報／莒光鄉公所：10/27 四鄉議員抽籤結果",
+    "note": "10/28刊登的10/27抽籤新聞，逐鄉對應第1至4選區；為鄉公所轉載新聞，非選委會正式名冊公告。"
+   }
   },
   {
    "no": 4,
@@ -154,24 +176,31 @@
    "type": "regional",
    "candidates": [
     {
-     "name": "林德建",
-     "partyName": "中國國民黨",
-     "partyCode": "1",
-     "number": null,
-     "registeredOn": "2026-09-03",
-     "slug": "cand-林德建-連江縣第4選舉區",
-     "identity": null
-    },
-    {
      "name": "馮印才",
      "partyName": "無",
      "partyCode": "999",
-     "number": null,
+     "number": 1,
      "registeredOn": "2026-09-04",
      "slug": "cand-馮印才-連江縣第4選舉區",
      "identity": null
+    },
+    {
+     "name": "林德建",
+     "partyName": "中國國民黨",
+     "partyCode": "1",
+     "number": 2,
+     "registeredOn": "2026-09-03",
+     "slug": "cand-林德建-連江縣第4選舉區",
+     "identity": null
     }
-   ]
+   ],
+   "source": {
+    "stage": "numbered",
+    "url": "https://www.chukuang.gov.tw/Chhtml/Detail/2569?mcid=114024",
+    "tableDate": "2026-10-27",
+    "label": "馬祖日報／莒光鄉公所：10/27 四鄉議員抽籤結果",
+    "note": "10/28刊登的10/27抽籤新聞，逐鄉對應第1至4選區；為鄉公所轉載新聞，非選委會正式名冊公告。"
+   }
   }
  ],
  "townToDistrict": {
