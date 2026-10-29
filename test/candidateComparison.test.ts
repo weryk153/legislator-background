@@ -80,6 +80,6 @@ describe('同選區比較與分享', () => {
       const ids = people.slice(0, 4).map(p => p.id);
       expect(readComparison(new URL(comparisonUrl(`https://example.test${page.path}`, ids)).search, people).ids).toEqual(ids);
     }
-    expect(count).toBe(1492);
+    expect(count).toBe(1493);
   });
 });

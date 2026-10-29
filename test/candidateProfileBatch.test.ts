@@ -11,8 +11,14 @@ const registrationArchive = JSON.parse(readFileSync('scraper/candidate-registrat
 function registrationCounty(path: string): CountyCandidates {
   const c = JSON.parse(readFileSync(path, 'utf8')) as CountyCandidates;
   c.source = registrationArchive.registrationSource;
+  // Reconstruct the already-executed batch's original names, before later source corrections.
+  for (const district of c.districts) for (const candidate of district.candidates) {
+    const original = fullBatch.profiles.find(p => p.official.slug === candidate.slug);
+    if (original) candidate.name = original.official.name;
+  }
   for (const r of registrationArchive.records) if (r.countyCode === c.countyCode) {
-    c.districts.find(d => d.no === r.districtNo)!.candidates.push(r.candidate);
+    const candidates = c.districts.find(d => d.no === r.districtNo)!.candidates;
+    if (!candidates.some(p => p.slug === r.candidate.slug)) candidates.push(r.candidate);
   }
   return c;
 }

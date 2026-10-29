@@ -1,5 +1,5 @@
 {
-  "reviewedOn": "2026-10-28",
+  "reviewedOn": "2026-10-29",
   "certification": {
     "stage": "certified",
     "url": "https://web.cec.gov.tw/central/article/65212",
@@ -40,11 +40,6 @@
       "countyName": "嘉義縣",
       "districtNo": 6,
       "name": "何博倫"
-    },
-    {
-      "countyName": "花蓮縣",
-      "districtNo": 5,
-      "name": "周駿宥"
     },
     {
       "countyName": "金門縣",
@@ -3933,10 +3928,10 @@
       ],
       "source": {
         "stage": "numbered",
-        "url": "https://www.cna.com.tw/news/aloc/202610270052.aspx",
-        "tableDate": "2026-10-27",
-        "label": "中央社：10/27 彰化縣長抽籤號次",
-        "note": "依中央社完整名單並與全國號次整理交叉核對；來源為新聞報導，非選委會公告檔案。"
+        "url": "https://web.cec.gov.tw/chec/article/65435",
+        "tableDate": "2026-10-29",
+        "label": "彰化縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
       }
     },
     {
@@ -3950,10 +3945,10 @@
       ],
       "source": {
         "stage": "numbered",
-        "url": "https://www.cna.com.tw/news/aipl/202610270048.aspx",
+        "url": "https://web.cec.gov.tw/ylec/article/65422",
         "tableDate": "2026-10-27",
-        "label": "中央社：10/27 雲林縣長抽籤號次",
-        "note": "依中央社完整名單並與全國號次整理交叉核對；來源為新聞報導，非選委會公告檔案。"
+        "label": "雲林縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/28公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
       }
     },
     {
@@ -3967,10 +3962,10 @@
       ],
       "source": {
         "stage": "numbered",
-        "url": "https://www.cna.com.tw/news/aipl/202610270081.aspx",
-        "tableDate": "2026-10-27",
-        "label": "中央社：10/27 花蓮縣長抽籤號次",
-        "note": "依中央社完整名單並與全國號次整理交叉核對；來源為新聞報導，非選委會公告檔案。"
+        "url": "https://web.cec.gov.tw/hlec/article/65438",
+        "tableDate": "2026-10-29",
+        "label": "花蓮縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
       }
     },
     {
@@ -4013,10 +4008,10 @@
       ],
       "source": {
         "stage": "numbered",
-        "url": "https://udn.com/news/story/124652/9839415",
+        "url": "https://web.cec.gov.tw/ylec/article/65422",
         "tableDate": "2026-10-27",
-        "label": "聯合報：10/27 雲林縣議員抽籤完整號次",
-        "note": "與自由時報同日8選區完整報導逐項交叉核對；為新聞來源，非選委會公告。族名保留審定名冊原文。"
+        "label": "雲林縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/28公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
       }
     },
     {
@@ -4065,10 +4060,10 @@
       ],
       "source": {
         "stage": "numbered",
-        "url": "https://udn.com/news/story/124652/9839415",
+        "url": "https://web.cec.gov.tw/ylec/article/65422",
         "tableDate": "2026-10-27",
-        "label": "聯合報：10/27 雲林縣議員抽籤完整號次",
-        "note": "與自由時報同日8選區完整報導逐項交叉核對；為新聞來源，非選委會公告。族名保留審定名冊原文。"
+        "label": "雲林縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/28公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
       }
     },
     {
@@ -4115,10 +4110,10 @@
       ],
       "source": {
         "stage": "numbered",
-        "url": "https://udn.com/news/story/124652/9839415",
+        "url": "https://web.cec.gov.tw/ylec/article/65422",
         "tableDate": "2026-10-27",
-        "label": "聯合報：10/27 雲林縣議員抽籤完整號次",
-        "note": "與自由時報同日8選區完整報導逐項交叉核對；為新聞來源，非選委會公告。族名保留審定名冊原文。"
+        "label": "雲林縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/28公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
       }
     },
     {
@@ -4157,10 +4152,10 @@
       ],
       "source": {
         "stage": "numbered",
-        "url": "https://udn.com/news/story/124652/9839415",
+        "url": "https://web.cec.gov.tw/ylec/article/65422",
         "tableDate": "2026-10-27",
-        "label": "聯合報：10/27 雲林縣議員抽籤完整號次",
-        "note": "與自由時報同日8選區完整報導逐項交叉核對；為新聞來源，非選委會公告。族名保留審定名冊原文。"
+        "label": "雲林縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/28公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
       }
     },
     {
@@ -4202,10 +4197,10 @@
       ],
       "source": {
         "stage": "numbered",
-        "url": "https://udn.com/news/story/124652/9839415",
+        "url": "https://web.cec.gov.tw/ylec/article/65422",
         "tableDate": "2026-10-27",
-        "label": "聯合報：10/27 雲林縣議員抽籤完整號次",
-        "note": "與自由時報同日8選區完整報導逐項交叉核對；為新聞來源，非選委會公告。族名保留審定名冊原文。"
+        "label": "雲林縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/28公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
       }
     },
     {
@@ -4245,10 +4240,10 @@
       ],
       "source": {
         "stage": "numbered",
-        "url": "https://udn.com/news/story/124652/9839415",
+        "url": "https://web.cec.gov.tw/ylec/article/65422",
         "tableDate": "2026-10-27",
-        "label": "聯合報：10/27 雲林縣議員抽籤完整號次",
-        "note": "與自由時報同日8選區完整報導逐項交叉核對；為新聞來源，非選委會公告。族名保留審定名冊原文。"
+        "label": "雲林縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/28公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
       }
     },
     {
@@ -4276,10 +4271,10 @@
       ],
       "source": {
         "stage": "numbered",
-        "url": "https://udn.com/news/story/124652/9839415",
+        "url": "https://web.cec.gov.tw/ylec/article/65422",
         "tableDate": "2026-10-27",
-        "label": "聯合報：10/27 雲林縣議員抽籤完整號次",
-        "note": "與自由時報同日8選區完整報導逐項交叉核對；為新聞來源，非選委會公告。族名保留審定名冊原文。"
+        "label": "雲林縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/28公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
       }
     },
     {
@@ -4309,10 +4304,10 @@
       ],
       "source": {
         "stage": "numbered",
-        "url": "https://udn.com/news/story/124652/9839415",
+        "url": "https://web.cec.gov.tw/ylec/article/65422",
         "tableDate": "2026-10-27",
-        "label": "聯合報：10/27 雲林縣議員抽籤完整號次",
-        "note": "與自由時報同日8選區完整報導逐項交叉核對；為新聞來源，非選委會公告。族名保留審定名冊原文。"
+        "label": "雲林縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/28公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
       }
     },
     {
@@ -4394,6 +4389,439 @@
         "label": "馬祖日報／莒光鄉公所：10/27 四鄉議員抽籤結果",
         "note": "10/28刊登的10/27抽籤新聞，逐鄉對應第1至4選區；為鄉公所轉載新聞，非選委會正式名冊公告。"
       }
+    },
+    {
+      "countyName": "彰化縣",
+      "districtNo": 1,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/chec/article/65435",
+        "tableDate": "2026-10-29",
+        "label": "彰化縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "許雅琳",
+        "許原龍",
+        "陳銌銌",
+        "温芝樺",
+        "莊陞漢",
+        "黃玉如",
+        "黃千宴",
+        "顧勝敏",
+        "白玉如",
+        "李成濟",
+        "林世賢",
+        "林世明",
+        "吳韋達",
+        "楊子賢",
+        "謝宗樺"
+      ]
+    },
+    {
+      "countyName": "彰化縣",
+      "districtNo": 2,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/chec/article/65435",
+        "tableDate": "2026-10-29",
+        "label": "彰化縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "楊竣程",
+        "凃淑媚",
+        "蔣煙燈",
+        "藍駿宇",
+        "林英嘉",
+        "蔡匡威",
+        "許志宏",
+        "王信筌",
+        "郭燕陵"
+      ]
+    },
+    {
+      "countyName": "彰化縣",
+      "districtNo": 3,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/chec/article/65435",
+        "tableDate": "2026-10-29",
+        "label": "彰化縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "蘇智弦",
+        "蕭文雄",
+        "柯振杯",
+        "曾煥燁",
+        "周君綾",
+        "林明鴻",
+        "鍾雅茹",
+        "林宗翰",
+        "王國忠",
+        "林小琪"
+      ]
+    },
+    {
+      "countyName": "彰化縣",
+      "districtNo": 4,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/chec/article/65435",
+        "tableDate": "2026-10-29",
+        "label": "彰化縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "游筑凱",
+        "張雪如",
+        "陳秋蓉",
+        "張愉婕",
+        "曹嘉豪",
+        "賴澤民",
+        "張詩怡",
+        "張欣倩",
+        "黃正盛",
+        "劉惠娟",
+        "林俊毅",
+        "張詠勝",
+        "詹雅婷"
+      ]
+    },
+    {
+      "countyName": "彰化縣",
+      "districtNo": 5,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/chec/article/65435",
+        "tableDate": "2026-10-29",
+        "label": "彰化縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "許文萍",
+        "黃佳惠",
+        "楊仁彬",
+        "陳玉姫",
+        "劉珊伶",
+        "張春洋"
+      ]
+    },
+    {
+      "countyName": "彰化縣",
+      "districtNo": 6,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/chec/article/65435",
+        "tableDate": "2026-10-29",
+        "label": "彰化縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "蕭妤亘",
+        "彭世和",
+        "詹琬惠",
+        "蕭岳倫",
+        "許書維",
+        "鄭俊雄"
+      ]
+    },
+    {
+      "countyName": "彰化縣",
+      "districtNo": 7,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/chec/article/65435",
+        "tableDate": "2026-10-29",
+        "label": "彰化縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "鄭朝元",
+        "江熊一楓",
+        "謝典霖",
+        "李浩誠",
+        "劉淑芳",
+        "杜懿彩",
+        "陳世凱",
+        "李俊諭"
+      ]
+    },
+    {
+      "countyName": "彰化縣",
+      "districtNo": 8,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/chec/article/65435",
+        "tableDate": "2026-10-29",
+        "label": "彰化縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "張國棟",
+        "洪騰明",
+        "謝淑如",
+        "黄淑儀",
+        "洪雅婷",
+        "吳淑娟",
+        "曾温泉",
+        "洪子超",
+        "洪建興"
+      ]
+    },
+    {
+      "countyName": "彰化縣",
+      "districtNo": 9,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/chec/article/65435",
+        "tableDate": "2026-10-29",
+        "label": "彰化縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "陳明義",
+        "陳榮妹"
+      ]
+    },
+    {
+      "countyName": "彰化縣",
+      "districtNo": 10,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/chec/article/65435",
+        "tableDate": "2026-10-29",
+        "label": "彰化縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "謝秀美",
+        "張瑋婷",
+        "高采翎",
+        "肯當．迪洛安",
+        "王昌智Mac Lunai",
+        "高世鴻",
+        "金凱傑Ilia．Nangavulan",
+        "吳秋祿"
+      ]
+    },
+    {
+      "countyName": "花蓮縣",
+      "districtNo": 1,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/hlec/article/65438",
+        "tableDate": "2026-10-29",
+        "label": "花蓮縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "許願神",
+        "黃達祥",
+        "胡仁順",
+        "林宗昆",
+        "謝豪杰",
+        "洪士閔",
+        "田珍綺",
+        "韓林梅",
+        "徐子芳",
+        "謝國榮",
+        "莊依婕",
+        "江躍辰",
+        "陳財能",
+        "傅國淵",
+        "蔡翼陽"
+      ]
+    },
+    {
+      "countyName": "花蓮縣",
+      "districtNo": 2,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/hlec/article/65438",
+        "tableDate": "2026-10-29",
+        "label": "花蓮縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "鄭寶秀",
+        "張美華"
+      ]
+    },
+    {
+      "countyName": "花蓮縣",
+      "districtNo": 3,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/hlec/article/65438",
+        "tableDate": "2026-10-29",
+        "label": "花蓮縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "姜景文",
+        "鄭乾龍",
+        "楊悟空",
+        "孟繁嘉",
+        "劉靜文",
+        "陳思伃",
+        "徐雪玉",
+        "蘇文將",
+        "張宸瑋",
+        "吳建志",
+        "林則葹",
+        "黃宣寓",
+        "蔡文隆",
+        "彭建華"
+      ]
+    },
+    {
+      "countyName": "花蓮縣",
+      "districtNo": 4,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/hlec/article/65438",
+        "tableDate": "2026-10-29",
+        "label": "花蓮縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "詹金富",
+        "黃玲蘭",
+        "林宏熙",
+        "吳新文",
+        "鍾素政"
+      ]
+    },
+    {
+      "countyName": "花蓮縣",
+      "districtNo": 5,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/hlec/article/65438",
+        "tableDate": "2026-10-29",
+        "label": "花蓮縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "那莫諾虎NamohNofu",
+        "笛布斯．顗賚",
+        "周駿宥",
+        "陳進德",
+        "李正文"
+      ]
+    },
+    {
+      "countyName": "花蓮縣",
+      "districtNo": 6,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/hlec/article/65438",
+        "tableDate": "2026-10-29",
+        "label": "花蓮縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "萬中興",
+        "蔡依靜Lamen‧Panay",
+        "林正福",
+        "邱福順Kacaw．Folaw"
+      ]
+    },
+    {
+      "countyName": "花蓮縣",
+      "districtNo": 7,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/hlec/article/65438",
+        "tableDate": "2026-10-29",
+        "label": "花蓮縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "秀吉．撒夫洛",
+        "哈尼．噶照HaniKacaw",
+        "林玉芬"
+      ]
+    },
+    {
+      "countyName": "花蓮縣",
+      "districtNo": 8,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/hlec/article/65438",
+        "tableDate": "2026-10-29",
+        "label": "花蓮縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "田韻馨",
+        "王沈剛竹",
+        "王玫瑰Sitang Yuci"
+      ]
+    },
+    {
+      "countyName": "花蓮縣",
+      "districtNo": 9,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/hlec/article/65438",
+        "tableDate": "2026-10-29",
+        "label": "花蓮縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "伊布．達納畢瑪Ibu·Tanapinma",
+        "陳群"
+      ]
+    },
+    {
+      "countyName": "花蓮縣",
+      "districtNo": 10,
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/hlec/article/65438",
+        "tableDate": "2026-10-29",
+        "label": "花蓮縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      },
+      "namesByNumber": [
+        "金淑敏",
+        "李忠祥"
+      ]
+    }
+  ],
+  "reinstated": [
+    {
+      "countyName": "花蓮縣",
+      "districtNo": 5,
+      "candidate": {
+        "name": "周駿宥",
+        "partyName": "無",
+        "partyCode": "999",
+        "number": null,
+        "registeredOn": "2026-09-04",
+        "slug": "c-周駿宥-國民黨-花蓮縣第05選舉區",
+        "identity": "現任議員（花蓮縣第5選舉區）"
+      },
+      "source": {
+        "stage": "numbered",
+        "url": "https://web.cec.gov.tw/hlec/article/65438",
+        "tableDate": "2026-10-29",
+        "label": "花蓮縣選委會：10/27 抽籤號次",
+        "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
+      }
+    }
+  ],
+  "nameCorrections": [
+    {
+      "countyName": "彰化縣",
+      "districtNo": 8,
+      "slug": "cand-洪健興-彰化縣第8選舉區",
+      "previousName": "洪健興",
+      "name": "洪建興",
+      "sourceUrl": "https://web.cec.gov.tw/chec/article/65435"
     }
   ]
 }

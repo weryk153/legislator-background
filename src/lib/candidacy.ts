@@ -60,5 +60,6 @@ export function excludedCandidacies(): Map<string, { name: string; sourceUrl: st
   const archive = JSON.parse(readFileSync(join(process.cwd(), 'scraper/candidate-registrations-2026-excluded.json'), 'utf8')) as {
     source: { url: string }; records: { candidate: { slug: string | null; name: string } }[];
   };
-  return excludedCache = new Map(archive.records.filter(r => r.candidate.slug).map(r => [r.candidate.slug!, { name: r.candidate.name, sourceUrl: archive.source.url }]));
+  const current = loadCandidacies();
+  return excludedCache = new Map(archive.records.filter(r => r.candidate.slug && !current.has(r.candidate.slug)).map(r => [r.candidate.slug!, { name: r.candidate.name, sourceUrl: archive.source.url }]));
 }

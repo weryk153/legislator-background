@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-10-24",
+  "updatedOn": "2026-10-29",
   "candidates": [
     {
       "slug": "cand-郭璽-臺北市",
@@ -10678,7 +10678,7 @@
     },
     {
       "slug": "cand-洪健興-彰化縣第8選舉區",
-      "name": "洪健興",
+      "name": "洪建興",
       "role": "彰化縣第8選舉區議員",
       "records": [],
       "excludedCareerIds": []
@@ -31014,6 +31014,29 @@
           "note": "2022 年選舉登記的學歷程度；來源未載校名，不代表目前最高學歷。",
           "sourceYear": 2022,
           "id": "edu-15afb0a9a9688502"
+        }
+      ],
+      "excludedCareerIds": []
+    },
+    {
+      "slug": "c-周駿宥-國民黨-花蓮縣第05選舉區",
+      "name": "周駿宥",
+      "role": "花蓮縣第5選舉區（平地原住民）議員",
+      "records": [
+        {
+          "items": [
+            "碩士"
+          ],
+          "source": {
+            "url": "https://data.cec.gov.tw/選舉資料庫/votedata.zip",
+            "title": "中選會選舉資料庫：2022 年候選人學歷欄",
+            "type": "gov",
+            "retrievedAt": "2026-10-16",
+            "id": "edu-source-df5ba1148f09aa78"
+          },
+          "note": "2022 年選舉登記的學歷程度；來源未載校名，不代表目前最高學歷。",
+          "sourceYear": 2022,
+          "id": "edu-df5ba1148f09aa78"
         }
       ],
       "excludedCareerIds": []

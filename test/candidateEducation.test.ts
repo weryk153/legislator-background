@@ -56,8 +56,8 @@ describe('候選人學歷與公報優先規則', () => {
     const d = JSON.parse(readFileSync('src/data/candidate-education.json', 'utf8')) as EducationDataset;
     const officials = JSON.parse(readFileSync('src/data/officials.json', 'utf8')) as Official[];
     const map = indexCandidateEducation(d, officials, loadCandidacies());
-    expect(map.size).toBe(1573);
-    expect([...map.values()].filter(p => p.records.length).length).toBe(1164);
+    expect(map.size).toBe(1574);
+    expect([...map.values()].filter(p => p.records.length).length).toBe(1165);
     // A university job or a foundation named after a PhD must remain in careers.
     const forbidden = /基金會董事|兼任講師|家長會長/;
     for (const p of map.values()) {

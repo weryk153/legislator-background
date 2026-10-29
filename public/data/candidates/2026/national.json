@@ -3,7 +3,7 @@
   "stage": "certified",
   "url": "https://web.cec.gov.tw/central/article/65212",
   "tableDate": "2026-10-16",
-  "note": "已收錄 22/22 個首長選舉、201/221 個議員選區的完整號次；各選區保留查證來源，其他號次待核實。"
+  "note": "已收錄 22/22 個首長選舉、221/221 個議員選區的完整號次；各選區保留查證來源，持續核對後續正式公告及修正。"
  },
  "races": [
   {
@@ -700,10 +700,10 @@
    },
    "source": {
     "stage": "numbered",
-    "url": "https://www.cna.com.tw/news/aloc/202610270052.aspx",
-    "tableDate": "2026-10-27",
-    "label": "中央社：10/27 彰化縣長抽籤號次",
-    "note": "依中央社完整名單並與全國號次整理交叉核對；來源為新聞報導，非選委會公告檔案。"
+    "url": "https://web.cec.gov.tw/chec/article/65435",
+    "tableDate": "2026-10-29",
+    "label": "彰化縣選委會：10/27 抽籤號次",
+    "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
    }
   },
   {
@@ -798,10 +798,10 @@
    },
    "source": {
     "stage": "numbered",
-    "url": "https://www.cna.com.tw/news/aipl/202610270048.aspx",
+    "url": "https://web.cec.gov.tw/ylec/article/65422",
     "tableDate": "2026-10-27",
-    "label": "中央社：10/27 雲林縣長抽籤號次",
-    "note": "依中央社完整名單並與全國號次整理交叉核對；來源為新聞報導，非選委會公告檔案。"
+    "label": "雲林縣選委會：10/27 抽籤號次",
+    "note": "依選委會10/28公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
    }
   },
   {
@@ -1005,10 +1005,10 @@
    },
    "source": {
     "stage": "numbered",
-    "url": "https://www.cna.com.tw/news/aipl/202610270081.aspx",
-    "tableDate": "2026-10-27",
-    "label": "中央社：10/27 花蓮縣長抽籤號次",
-    "note": "依中央社完整名單並與全國號次整理交叉核對；來源為新聞報導，非選委會公告檔案。"
+    "url": "https://web.cec.gov.tw/hlec/article/65438",
+    "tableDate": "2026-10-29",
+    "label": "花蓮縣選委會：10/27 抽籤號次",
+    "note": "依選委會10/29公布的完整抽籤結果逐名核對；正式候選人名單仍以後續公告為準。"
    }
   },
   {

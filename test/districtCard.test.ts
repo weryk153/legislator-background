@@ -9,7 +9,7 @@ let profiles: Map<string, DistrictCardProfile>;
 beforeAll(async () => { profiles = await loadDistrictCardProfiles(); });
 
 describe('選區下載圖卡', () => {
-  it('221 區完整保留 1492 人與名冊順序，不依政黨或現任身分重排', () => {
+  it('221 區完整保留 1493 人與名冊順序，不依政黨或現任身分重排', () => {
     let total = 0;
     for (const page of loadDistrictPages()) {
       const svg = districtCardSvg(page, profiles);
@@ -19,7 +19,7 @@ describe('選區下載圖卡', () => {
       expect(svg).toContain('width="1080"');
       total += names.length;
     }
-    expect(total).toBe(1492);
+    expect(total).toBe(1493);
   });
   it('照片對應人物，選舉日期不誤標成任期', async () => {
     const officials = await loadOfficials();
@@ -36,14 +36,15 @@ describe('選區下載圖卡', () => {
     expect(councilService(example)).toEqual([{ label: '臺北市議員', value: '2014-12-25 至 2018-12-25' }]);
     expect(councilService({ ...example, careers: [{ ...example.careers[0], endDate: null }] })).toEqual([]);
   });
-  it('臺北第六區列出政黨人數、範圍年份與審定階段，不捏造席次或號次', () => {
+  it('臺北第六區列出政黨人數、範圍年份與已核對號次來源，不捏造席次', () => {
     const page = loadDistrictPages().find(p => p.county.key === 'taipei' && p.district.no === 6)!;
     const svg = districtCardSvg(page, profiles);
     expect(svg).toContain('國民黨 8 人');
     expect(svg).toContain('民進黨 4 人');
     expect(svg).toContain('行政區參考（2022 對照）');
-    expect(svg).toContain('中選會審定候選人名單');
+    expect(svg).toContain('臺北市選委會：10/27 抽籤號次');
     expect(svg).toContain('2026 應選席次尚待本站核對');
-    expect(svg).not.toMatch(/>\d+ 號/);
+    expect(svg).toContain('1 號');
+    expect(svg).toContain('18 號');
   });
 });
