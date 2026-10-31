@@ -134,7 +134,7 @@ describe('首長政見全名冊查核', () => {
     expect(data.rosterDate).toBe(national.source.tableDate);
     expect(reviews.size).toBe(81);
     expect(roster.filter((c: { slug: string }) => policies.has(c.slug))).toHaveLength(75);
-    expect([...policies.values()].filter(c => c.role.endsWith('議員'))).toHaveLength(33);
+    expect([...policies.values()].filter(c => c.role.endsWith('議員'))).toHaveLength(34);
     expect([...reviews.values()].filter(r => r.status === 'pending-source')).toHaveLength(6);
     expect(national.races.every((r: { candidates: { slug: string }[] }) => r.candidates.some(c => policies.has(c.slug)))).toBe(true);
   });
