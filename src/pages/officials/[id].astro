@@ -9,6 +9,7 @@ import CareerSources from "../../components/CareerSources.astro";
 import CandidateChannels from "../../components/CandidateChannels.astro";
 import { loadCandidateChannels } from "../../lib/candidateChannels";
 import CandidatePolicies from "../../components/CandidatePolicies.astro";
+import debateReviews from "../../data/debate-reviews.json";
 import CandidateEducation from "../../components/CandidateEducation.astro";
 import ShareActions from "../../components/ShareActions.svelte";
 import CandidateReactions from "../../components/CandidateReactions.svelte";
@@ -124,6 +125,7 @@ const photoCredit = candidatePhotoCredits().get(o.slug);
 const emblem = partyEmblem(o.party);
 const sections = [
   ...(candidacy ? [{ id: "policies", label: "2026 政見" }] : []),
+  ...(candidacy && policies && debateReviews.debates.some(debate => debate.participants.some(p => p.slug === o.slug)) ? [{ id: "debate-evidence", label: "辯論與查核" }] : []),
   ...(candidacy ? [{ id: "education", label: "學歷" }] : []),
   { id: "careers", label: "經歷" },
   { id: "judgments", label: "司法判決" },

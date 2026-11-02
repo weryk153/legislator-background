@@ -1,0 +1,162 @@
+{
+  "updatedOn": "2026-11-03",
+  "debates": [
+    {
+      "id": "taipei-1031",
+      "title": "10/31 台北市長辯論",
+      "heldOn": "2026-10-31",
+      "reviewedOn": "2026-11-03",
+      "participants": [
+        {
+          "slug": "shenpao-yang",
+          "name": "沈伯洋"
+        },
+        {
+          "slug": "mayor-taipei",
+          "name": "蔣萬安"
+        }
+      ],
+      "transcript": {
+        "title": "ETtoday：台北辯論全程文字直播／媒體整理逐字稿",
+        "url": "https://features.ettoday.net/taipei-debate-2026/"
+      },
+      "video": {
+        "title": "TVBS NEWS：2026台北市長候選人電視辯論會完整版",
+        "url": "https://www.youtube.com/watch?v=j4s2_44yHJE"
+      },
+      "scope": "已對照媒體整理逐字稿、政策報導及下列查核中心報告。查核結論歸屬台灣事實查核中心，本站提供摘要與適用範圍；不是全場所有發言的真偽評分。",
+      "videoNote": "影片尚未逐段核對時間；以逐字稿階段及議題定位，不提供推算的秒數連結。",
+      "claims": [
+        {
+          "id": "taipei-1031-1",
+          "candidateSlug": "shenpao-yang",
+          "topic": "7599動工件數",
+          "locator": "交叉詰問第1輪・沈伯洋回答",
+          "claim": "7599專案動工件數為零，並據此質疑推進成效。",
+          "result": "資料相符，但需要程序進度背景",
+          "summary": "查核中心指出，截至2026年10月31日確無動工案件，但虎林街60巷及南港產專區單元2-25已分別於8月、9月完成招商簽約；不能把零動工理解成完全沒有進展。",
+          "source": {
+            "title": "台灣事實查核中心：7599動工件數查核",
+            "url": "https://tfc-taiwan.org.tw/taipei-urban-renewal-7599-zero-construction-claim/",
+            "publishedOn": "2026-10-31",
+            "updatedOn": null
+          }
+        },
+        {
+          "id": "taipei-1031-2",
+          "candidateSlug": "mayor-taipei",
+          "topic": "康樂街專案與航高限制",
+          "locator": "交叉詰問第1輪・蔣萬安提問與追問",
+          "claim": "將康樂街案稱為7599首案，並以航高限制解釋部分都更困難。",
+          "result": "部分與資料不符",
+          "summary": "查核中心核對市府資料：康樂街136巷屬575專案，7599首案為虎林街60巷。斯文里二期還涉及產權、整合、財務與營建成本，不能只歸因於航高。",
+          "source": {
+            "title": "台灣事實查核中心：康樂街專案與航高限制查核",
+            "url": "https://tfc-taiwan.org.tw/kang-le-street-7599-project-songshan-airport-height-restrictions-claim/",
+            "publishedOn": "2026-10-31",
+            "updatedOn": null
+          }
+        },
+        {
+          "id": "taipei-1031-3",
+          "candidateSlug": "mayor-taipei",
+          "topic": "樹冠減少的原因",
+          "locator": "交叉詰問・樹木與市政管理答覆",
+          "claim": "樹冠減少不等於砍樹，並稱絕大部分出於私人用地開發。",
+          "result": "部分相符，原因比例仍缺證據",
+          "summary": "查核中心指出，樹冠變化確實不能直接換算為市府砍樹；但市府公布個別案例，未提供各種原因的面積比例，尚不足支持絕大部分來自私人開發。",
+          "source": {
+            "title": "台灣事實查核中心：樹冠減少的原因查核",
+            "url": "https://tfc-taiwan.org.tw/tree-canopy-loss-private-land-development-claim/",
+            "publishedOn": "2026-10-31",
+            "updatedOn": null
+          }
+        },
+        {
+          "id": "taipei-1031-4",
+          "candidateSlug": "mayor-taipei",
+          "topic": "校園餐點檢驗",
+          "locator": "交叉詰問・營養午餐答覆",
+          "claim": "對多校食安疑慮表示事後檢查完全合格。",
+          "result": "部分與資料不符",
+          "summary": "查核中心指出，成淵高中國中部熱食部留樣便當曾驗出腸毒素；金華國中送驗同批號食材，並非當日午餐。11月2日更新另補充延平中學向家長告知合格結果、未公開報告，不能概括為所有案件均已公開驗證合格。",
+          "source": {
+            "title": "台灣事實查核中心：校園餐點檢驗查核",
+            "url": "https://tfc-taiwan.org.tw/taipei-school-lunch-food-poisoning-and-safety-inspection-claims/",
+            "publishedOn": "2026-10-31",
+            "updatedOn": "2026-11-02"
+          }
+        },
+        {
+          "id": "taipei-1031-5",
+          "candidateSlug": "shenpao-yang",
+          "topic": "午餐招標與鮮乳兌換",
+          "locator": "交叉詰問・營養午餐提問",
+          "claim": "提到午餐招標延遲，以及鮮乳兌換率下降、弱勢領取率偏低。",
+          "result": "與所查資料相符，須保留年度",
+          "summary": "查核中心核對：2026年午餐招標較慢，8月底才全數完成；鮮乳數字指2025年計畫後期，弱勢學生兌換率低於整體。這不代表已發生斷炊，也不應將2025年數字當作2026年現況。",
+          "source": {
+            "title": "台灣事實查核中心：午餐招標與鮮乳兌換查核",
+            "url": "https://tfc-taiwan.org.tw/taipei-free-school-lunch-bidding-failures-and-fresh-milk-redemption-rates-claim/",
+            "publishedOn": "2026-10-31",
+            "updatedOn": null
+          }
+        },
+        {
+          "id": "taipei-1031-6",
+          "candidateSlug": "mayor-taipei",
+          "topic": "無菸政策滿意度",
+          "locator": "政見申論・蔣萬安",
+          "claim": "稱推動無菸城市獲市民接近九成正向評價。",
+          "result": "調查存在，但推論範圍過大",
+          "summary": "查核中心指出，91.0%及92.3%是年貨大街、台北燈節展區無菸環境的滿意度，不能代表整體無菸城市政策。另一份調查的53%是觀察到邊走邊吸菸減少，也不是政策滿意度。",
+          "source": {
+            "title": "台灣事實查核中心：無菸政策滿意度查核",
+            "url": "https://tfc-taiwan.org.tw/taipei-smoke-free-city-mayor-claim-check/",
+            "publishedOn": "2026-10-31",
+            "updatedOn": null
+          }
+        },
+        {
+          "id": "taipei-1031-7",
+          "candidateSlug": "mayor-taipei",
+          "topic": "減債金額",
+          "locator": "候選人結論・蔣萬安",
+          "claim": "稱任內減債超過400億元，金額為六都最多。",
+          "result": "與所查資料相符",
+          "summary": "查核中心比較2022年12月底至2026年9月底公共債務資料，北市餘額由約898億元降至468億元，減少約430億元，減債金額為六都最多；保留這段統計期間，不延伸為所有財政指標的排名。",
+          "source": {
+            "title": "台灣事實查核中心：減債金額查核",
+            "url": "https://tfc-taiwan.org.tw/chiang-taipei-debt-reduction-40-billion-facts/",
+            "publishedOn": "2026-10-31",
+            "updatedOn": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "kaohsiung-1030",
+      "title": "10/30 高雄市長辯論",
+      "heldOn": "2026-10-30",
+      "reviewedOn": "2026-11-03",
+      "participants": [
+        {
+          "slug": "laijui-lung",
+          "name": "賴瑞隆"
+        },
+        {
+          "slug": "ko-chih-en",
+          "name": "柯志恩"
+        }
+      ],
+      "transcript": null,
+      "video": {
+        "title": "公視台語台：2026高雄市長選舉辯論會完整版",
+        "url": "https://www.youtube.com/watch?v=30IBM6eCQMA"
+      },
+      "scope": "已對照中央社報導確認本頁所列政策主張。尚未取得可核對的全程逐字稿，也未完成整場統計與成效說法的查證；沒有列出查核結果不代表發言已獲證實。",
+      "videoNote": "公視完整影片供查閱；尚未逐段核對時間。",
+      "claims": []
+    }
+  ]
+}

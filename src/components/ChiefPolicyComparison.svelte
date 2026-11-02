@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount, tick } from 'svelte';
   import ShareActions from './ShareActions.svelte';
+  import debateReviews from '../data/debate-reviews.json';
   import { chiefPolicyUrl, filterChiefPolicies, readChiefPolicyState, type ChiefPolicyCounty, type ChiefPolicyState } from '../lib/chiefPolicyComparison';
   let { county, canonical }: { county: ChiefPolicyCounty; canonical: string } = $props();
   let state = $state<ChiefPolicyState>({ county: '', left: '', right: '', q: '' });
@@ -89,6 +90,9 @@
             {#if person}
               <h2>{#if person.slug}<a href={`/officials/${person.slug}/#policies`} aria-label={`${person.name}完整政見與人物資料`}>{person.name}</a>{:else}{person.name}{/if}</h2>
               <p class="party">{person.party}</p>
+              {#if person.slug && debateReviews.debates.some(debate => debate.participants.some(p => p.slug === person.slug))}
+                <p class="source"><a href={`/officials/${person.slug}/#debate-evidence`}>辯論原文與事實查核 →</a></p>
+              {/if}
             {/if}
           </th>
         {/each}
@@ -105,6 +109,8 @@
                     <details class="source">
                       <summary>來源與日期</summary>
                       <a href={record.source.url} target="_blank" rel="noopener noreferrer">{record.source.title} ↗</a>
+                      {#each record.supportingSources ?? [] as source}<p><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title} ↗</a></p>{/each}
+                      {#if record.verificationNote}<p>核對說明：{record.verificationNote}</p>{/if}
                       <p>{sourceTypes[record.source.type]}</p>
                       <p>發表：{record.announcedOn ?? '來源未載明'}<br />來源刊登：{record.source.publishedOn ?? '未載明'}<br />本站核對：{record.reviewedOn}</p>
                     </details>

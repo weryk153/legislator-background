@@ -15,6 +15,8 @@ export interface PolicyRecord {
     publishedOn: string | null;
   };
   proposals: { topic: string; summary: string }[];
+  supportingSources?: { title: string; url: string }[];
+  verificationNote?: string;
 }
 
 export interface CandidatePolicies {
@@ -71,6 +73,13 @@ export function indexCandidatePolicies(
         const url = new URL(record.source.url);
         if (!['https:', 'http:'].includes(url.protocol) || url.username || url.password) throw new Error();
       } catch { errors.push(`${label}：來源網址無效`); }
+      for (const source of record.supportingSources ?? []) {
+        try {
+          const url = new URL(source.url);
+          if (!hasText(source.title) || !['https:', 'http:'].includes(url.protocol) || url.username || url.password) throw new Error();
+        } catch { errors.push(`${label}：補充來源無效`); }
+      }
+      if (record.verificationNote !== undefined && !hasText(record.verificationNote)) errors.push(`${label}：核對說明不可空白`);
       if (!record.proposals.length || record.proposals.some(p => !hasText(p.topic) || !hasText(p.summary))) errors.push(`${label}：政見主題與摘要不可空白`);
     }
     index.set(key, { ...candidate, records: [...candidate.records].sort((a, b) => (b.announcedOn ?? b.source.publishedOn ?? b.reviewedOn).localeCompare(a.announcedOn ?? a.source.publishedOn ?? a.reviewedOn) || a.id.localeCompare(b.id)) });

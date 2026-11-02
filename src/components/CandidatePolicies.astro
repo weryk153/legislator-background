@@ -1,6 +1,7 @@
 ---
 import SectionHead from './SectionHead.astro';
 import Sources from './Sources.astro';
+import DebateEvidence from './DebateEvidence.astro';
 import { POLICY_SOURCE_LABEL, type CandidatePolicies, type PolicyReview } from '../lib/candidatePolicies';
 
 interface Props { policies?: CandidatePolicies; review?: PolicyReview }
@@ -26,6 +27,8 @@ const { policies, review } = Astro.props;
         type: record.source.type === 'news' ? 'news' : record.source.type === 'gazette' ? 'gazette' : 'website',
         retrievedAt: record.reviewedOn,
       }]} />
+      {record.supportingSources?.map(source => <p class="meta"><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title} ↗</a></p>)}
+      {record.verificationNote && <p class="meta">核對說明：{record.verificationNote}</p>}
       <p class="meta review">來源刊登：{record.source.publishedOn ? <time datetime={record.source.publishedOn}>{record.source.publishedOn}</time> : '未載日期'}・本站核對：<time datetime={record.reviewedOn}>{record.reviewedOn}</time></p>
     </article>
   )) : <div class="empty">
@@ -37,6 +40,7 @@ const { policies, review } = Astro.props;
     </>}
   </div>}
 </section>
+{policies && <DebateEvidence slug={policies.slug} />}
 
 <style>
   section { margin-bottom: 42px; scroll-margin-top: 24px; }

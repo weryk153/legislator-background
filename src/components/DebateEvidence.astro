@@ -1,0 +1,44 @@
+---
+import SectionHead from './SectionHead.astro';
+import data from '../data/debate-reviews.json';
+interface Props { slug: string }
+const debates = data.debates.filter(debate => debate.participants.some(p => p.slug === Astro.props.slug));
+---
+{debates.length > 0 && <section id="debate-evidence" aria-labelledby="debate-evidence-title">
+  <SectionHead id="debate-evidence-title" text="辯論原文與事實查核" />
+  <p class="note">政見是未來主張；事實查核針對可驗證的數字、制度與成果。確認說過，不等於內容已證實。</p>
+  {debates.map(debate => <div>
+    <h3>{debate.title}</h3>
+    <p class="meta">辯論：<time datetime={debate.heldOn}>{debate.heldOn}</time>・本站核對：<time datetime={debate.reviewedOn}>{debate.reviewedOn}</time></p>
+    <p>{debate.scope}</p>
+    <ul class="links">
+      {debate.transcript && <li><a href={debate.transcript.url} target="_blank" rel="noopener noreferrer">{debate.transcript.title} ↗</a></li>}
+      <li><a href={debate.video.url} target="_blank" rel="noopener noreferrer">{debate.video.title} ↗</a></li>
+    </ul>
+    <p class="meta">{debate.videoNote}</p>
+    {debate.claims.filter(claim => claim.candidateSlug === Astro.props.slug).map(claim => <article>
+      <h4>{claim.topic}</h4>
+      <p class="meta">發言位置：{claim.locator}</p>
+      <p>發言摘要：{claim.claim}</p>
+      <p><strong>查核中心結論摘要：{claim.result}</strong></p>
+      <p>{claim.summary}</p>
+      <a href={claim.source.url} target="_blank" rel="noopener noreferrer">{claim.source.title} ↗</a>
+      <p class="meta">報告刊登：{claim.source.publishedOn}{claim.source.updatedOn && `・報告更新：${claim.source.updatedOn}`}</p>
+    </article>)}
+  </div>)}
+</section>}
+
+<style>
+  section { margin-bottom: 42px; scroll-margin-top: 24px; }
+  section :global(.sh) { margin-top: 0; }
+  h3 { font-size: var(--t-md); margin: 16px 0 6px; }
+  h4 { font-size: 0.9375rem; margin: 0; }
+  p, li, a { font-size: 0.9375rem; line-height: 1.8; overflow-wrap: anywhere; }
+  p { margin: 8px 0; }
+  .note, .meta { color: var(--muted); font-size: var(--t-sm); }
+  .meta { font-size: var(--t-xs); }
+  .links { padding-left: 1.3em; }
+  article { border-bottom: 1px solid var(--line); padding: 20px 0; }
+  a { text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 760px) { section { margin-bottom: 32px; } }
+</style>

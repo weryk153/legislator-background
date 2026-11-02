@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-02",
+  "updatedOn": "2026-11-03",
   "candidates": [
     {
       "slug": "cand-李四川-新北市",
@@ -647,7 +647,7 @@
           "id": "2026-shen-debate-renewal-1031",
           "title": "老屋安全與都更：耐震初篩、到宅協助及資訊揭露",
           "announcedOn": "2026-10-31",
-          "reviewedOn": "2026-11-01",
+          "reviewedOn": "2026-11-03",
           "source": {
             "type": "news",
             "title": "中央社：媒體問都更 沈伯洋提3作法增韌性、蔣萬安舉都更八箭成果",
@@ -667,13 +667,19 @@
               "topic": "建物資訊與知情權",
               "summary": "提出揭露建物安全相關資訊，保障購屋者知情權；並主張借鏡東京的權利轉換制度處理老屋更新。"
             }
+          ],
+          "supportingSources": [
+            {
+              "title": "ETtoday：台北辯論全程文字直播／媒體整理逐字稿",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
           ]
         },
         {
           "id": "2026-shen-debate-connection-1031",
           "title": "市民大道人流串接與研究院構想",
           "announcedOn": "2026-10-31",
-          "reviewedOn": "2026-11-01",
+          "reviewedOn": "2026-11-03",
           "source": {
             "type": "news",
             "title": "中央社：蔣萬安問市民大道藝文廊帶 沈伯洋答縫合做人流串接",
@@ -688,6 +694,12 @@
             {
               "topic": "研究院與AI人才",
               "summary": "提出台北研究院可結合國科會等資源，在北士科設置園區，促進居民共榮、AI人才吸引與國際合作。"
+            }
+          ],
+          "supportingSources": [
+            {
+              "title": "ETtoday：台北辯論全程文字直播／媒體整理逐字稿",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
             }
           ]
         },
@@ -755,7 +767,7 @@
           "id": "2026-shen-first-100-days-1031",
           "title": "上任百日優先事項與市民參與",
           "announcedOn": "2026-10-31",
-          "reviewedOn": "2026-11-01",
+          "reviewedOn": "2026-11-03",
           "source": {
             "type": "news",
             "title": "中央社：沈伯洋談若上任重要工作 把樹種回來、解決兒虐並改善營養午餐",
@@ -771,13 +783,19 @@
               "topic": "市政共同解題",
               "summary": "提出以市政DeBug松匯集市民智慧處理市政問題，並持續透過科技工具整理1999與議員質詢等意見。"
             }
+          ],
+          "supportingSources": [
+            {
+              "title": "ETtoday：台北辯論全程文字直播／媒體整理逐字稿",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
           ]
         },
         {
           "id": "2026-shen-senior-fitness-1031",
           "title": "社區銀髮健身小巴",
           "announcedOn": "2026-10-31",
-          "reviewedOn": "2026-11-01",
+          "reviewedOn": "2026-11-03",
           "source": {
             "type": "news",
             "title": "中央社：蔣萬安勾勒未來台北新生活 沈伯洋盼翻新都市美感",
@@ -788,6 +806,12 @@
             {
               "topic": "到社區的健康服務",
               "summary": "提出讓敬老卡可用於健身小巴，將健身教練、營養師等專業服務送進社區，方便長者就近接受訓練。"
+            }
+          ],
+          "supportingSources": [
+            {
+              "title": "ETtoday：台北辯論全程文字直播／媒體整理逐字稿",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
             }
           ]
         },
@@ -974,7 +998,7 @@
           "id": "2026-chiang-renewal-1031",
           "title": "大街廓與5099公辦都更",
           "announcedOn": "2026-10-31",
-          "reviewedOn": "2026-11-01",
+          "reviewedOn": "2026-11-03",
           "source": {
             "type": "news",
             "title": "中央社：媒體問都更 沈伯洋提3作法增韌性、蔣萬安舉都更八箭成果",
@@ -984,15 +1008,26 @@
           "proposals": [
             {
               "topic": "都更誘因與進場協助",
-              "summary": "辯論中重申大街廓都更基準容積由225%提高至300%的新政，以及5099公辦都更由過半住戶同意即可讓市府進場試算的機制；此處過半指啟動協助，不等於可直接拆除重建。"
+              "summary": "辯論中重申大街廓都更新政；依10月16日市府公告，適用基地面積達3,000平方公尺以上，且鄰近捷運場站或水岸周邊的都更案件，提出基準容積由225%提高至300%，並要求部分增加容積回饋公共服務設施。5099則降低第一階段進場協助門檻，後續方案同意及選配仍有90%門檻；不等於過半同意即可拆除重建。"
             }
-          ]
+          ],
+          "supportingSources": [
+            {
+              "title": "ETtoday：台北辯論全程文字直播／媒體整理逐字稿",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            },
+            {
+              "title": "臺北市政府秘書處：10月16日都更5099及大街廓都更新政公告",
+              "url": "https://sec.gov.taipei/News_Content.aspx?n=49B4C3242CB7658C&sms=72544237BBE4C5F6&s=C628D074125A7699"
+            }
+          ],
+          "verificationNote": "中央社報導及市府公告記為225%提高至300%；ETtoday文字稿記為250提高到300。本站採官方公告整理政策數值，保留文字來源差異，不據此判定現場口誤；尚未逐段核對影片時間。"
         },
         {
           "id": "2026-chiang-future-city-1031",
           "title": "未來四年育兒、交通與生活設施願景",
           "announcedOn": "2026-10-31",
-          "reviewedOn": "2026-11-01",
+          "reviewedOn": "2026-11-03",
           "source": {
             "type": "news",
             "title": "中央社：蔣萬安勾勒未來台北新生活 沈伯洋盼翻新都市美感",
@@ -1014,7 +1049,7 @@
             },
             {
               "topic": "敬老卡消費與累積",
-              "summary": "提出敬老卡可用於超市、農會及超商，未用完點數可累積。"
+              "summary": "提出擴大敬老卡消費通路，並讓未用完點數可累積；超市、農會見於兩份文字來源，其餘通路有記載差異，待核對影音或正式方案。"
             },
             {
               "topic": "河岸與文化設施",
@@ -1028,7 +1063,14 @@
               "topic": "婚育居住穩定",
               "summary": "提出幸福住宅讓家庭可安心居住至孩子國小畢業，降低因居住變動而轉學區的負擔。"
             }
-          ]
+          ],
+          "supportingSources": [
+            {
+              "title": "ETtoday：台北辯論全程文字直播／媒體整理逐字稿",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ],
+          "verificationNote": "敬老卡通路在中央社報導記為超市、農會與超商，ETtoday文字稿記為超市、農會與藥局。摘要保留共同內容與差異；其餘項目為未來四年願景，尚不代表已實施或完成。"
         },
         {
           "id": "2026-chiang-labor-1101",
@@ -1532,7 +1574,7 @@
           "id": "2026-lai-debate-care-1030",
           "title": "學區公托與長照服務擴充",
           "announcedOn": "2026-10-30",
-          "reviewedOn": "2026-11-01",
+          "reviewedOn": "2026-11-03",
           "source": {
             "type": "news",
             "title": "中央社：市長選舉電視辯論 賴瑞隆指柯志恩未為高雄發聲",
@@ -1544,7 +1586,14 @@
               "topic": "學區托育與照顧支持",
               "summary": "辯論中提出一學區一公托，並擴大長照與喘息服務。"
             }
-          ]
+          ],
+          "supportingSources": [
+            {
+              "title": "公視台語台：2026高雄市長選舉辯論會完整版",
+              "url": "https://www.youtube.com/watch?v=30IBM6eCQMA"
+            }
+          ],
+          "verificationNote": "已對照中央社辯論報導確認所列政策主張；完整影片供查閱，尚未逐段核對時間，也未取得可核對的全程逐字稿。此筆核對不涵蓋整場發言中的統計數字與施政成效。"
         }
       ]
     },
@@ -1583,7 +1632,7 @@
           "id": "2026-ko-debate-actions-1030",
           "title": "反霸凌、縣市資源平衡與三項行動方案",
           "announcedOn": "2026-10-30",
-          "reviewedOn": "2026-11-01",
+          "reviewedOn": "2026-11-03",
           "source": {
             "type": "news",
             "title": "中央社：高雄市長選舉辯論 柯志恩拋設2辦公室、3行動方案",
@@ -1615,7 +1664,14 @@
               "topic": "205兵工廠開發",
               "summary": "提出四年內推動205兵工廠開發，結合商辦及住宅，作為三代共好城市示範。"
             }
-          ]
+          ],
+          "supportingSources": [
+            {
+              "title": "公視台語台：2026高雄市長選舉辯論會完整版",
+              "url": "https://www.youtube.com/watch?v=30IBM6eCQMA"
+            }
+          ],
+          "verificationNote": "已對照中央社辯論報導確認所列政策主張；完整影片供查閱，尚未逐段核對時間，也未取得可核對的全程逐字稿。此筆核對不涵蓋整場發言中的統計數字與施政成效。"
         }
       ]
     },

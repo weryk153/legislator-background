@@ -64,6 +64,15 @@ describe('2026 政見收錄檢核', () => {
     expect(() => index(data)).toThrow('摘要不可空白');
   });
 
+  it('補充逐字稿與公告沿用安全來源限制，不增加政見數量', () => {
+    const data = fixture();
+    const record = data.candidates[0].records[0];
+    record.supportingSources = [{ title: '逐字稿', url: 'https://example.com/transcript' }];
+    expect(policyCount(index(data).get('incumbent-legislator'))).toBe(1);
+    record.supportingSources[0].url = 'javascript:alert(1)';
+    expect(() => index(data)).toThrow('補充來源無效');
+  });
+
   it('拒絕無效日期、來源先於發表，以及核對早於來源的紀錄', () => {
     for (const announcedOn of ['2026-02-30', '2026-07-10']) {
       const data = fixture();

@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-02",
+  "updatedOn": "2026-11-03",
   "rosterDate": "2026-10-16",
   "candidates": [
     {
@@ -24,9 +24,9 @@
       "slug": "shenpao-yang",
       "name": "沈伯洋",
       "role": "臺北市長",
-      "reviewedOn": "2026-11-02",
+      "reviewedOn": "2026-11-03",
       "status": "collected",
-      "note": "已核對本屆競選來源及本人政策報導，增補部分具體主張與適用條件；不代表完整政見清單。",
+      "note": "本輪核對已收錄辯論政策及補充來源；政策主張、文字來源差異與第三方事實查核分開呈現。未重新核對全部既有政見，亦非全場查核。",
       "queries": [],
       "sources": [
         {
@@ -104,6 +104,10 @@
         {
           "title": "城市外交 — 沈伯洋台北市長競選官方網站",
           "url": "https://puma.taipei/policies/%E5%9F%8E%E5%B8%82%E5%A4%96%E4%BA%A4"
+        },
+        {
+          "title": "ETtoday：台北辯論全程文字直播／媒體整理逐字稿",
+          "url": "https://features.ettoday.net/taipei-debate-2026/"
         }
       ]
     },
@@ -149,9 +153,9 @@
       "slug": "mayor-taipei",
       "name": "蔣萬安",
       "role": "臺北市長",
-      "reviewedOn": "2026-11-01",
+      "reviewedOn": "2026-11-03",
       "status": "collected",
-      "note": "已核對本屆競選來源及本人政策報導，增補部分具體主張與適用條件；不代表完整政見清單。",
+      "note": "本輪核對已收錄辯論政策及補充來源；政策主張、文字來源差異與第三方事實查核分開呈現。未重新核對全部既有政見，亦非全場查核。",
       "queries": [],
       "sources": [
         {
@@ -169,6 +173,14 @@
         {
           "title": "中央廣播電臺：搶攻勞工選票！沈伯洋籲委外勿成常態 蔣萬安承諾速補人力",
           "url": "https://www.rti.org.tw/news?uid=3&pid=241178"
+        },
+        {
+          "title": "ETtoday：台北辯論全程文字直播／媒體整理逐字稿",
+          "url": "https://features.ettoday.net/taipei-debate-2026/"
+        },
+        {
+          "title": "臺北市政府秘書處：10月16日都更5099及大街廓都更新政公告",
+          "url": "https://sec.gov.taipei/News_Content.aspx?n=49B4C3242CB7658C&sms=72544237BBE4C5F6&s=C628D074125A7699"
         }
       ]
     },
@@ -482,9 +494,9 @@
       "slug": "laijui-lung",
       "name": "賴瑞隆",
       "role": "高雄市長",
-      "reviewedOn": "2026-11-01",
+      "reviewedOn": "2026-11-03",
       "status": "collected",
-      "note": "已核對本屆競選來源及本人政策報導，增補部分具體主張與適用條件；不代表完整政見清單。",
+      "note": "本輪核對已收錄辯論政策及補充來源；政策主張、文字來源差異與第三方事實查核分開呈現。未重新核對全部既有政見，亦非全場查核。",
       "queries": [],
       "sources": [
         {
@@ -514,6 +526,10 @@
         {
           "title": "中央社：市長選舉電視辯論 賴瑞隆指柯志恩未為高雄發聲",
           "url": "https://www.cna.com.tw/news/aloc/202610300316.aspx"
+        },
+        {
+          "title": "公視台語台：2026高雄市長選舉辯論會完整版",
+          "url": "https://www.youtube.com/watch?v=30IBM6eCQMA"
         }
       ]
     },
@@ -542,9 +558,9 @@
       "slug": "ko-chih-en",
       "name": "柯志恩",
       "role": "高雄市長",
-      "reviewedOn": "2026-11-01",
+      "reviewedOn": "2026-11-03",
       "status": "collected",
-      "note": "已核對本屆競選來源及本人政策報導，增補部分具體主張與適用條件；不代表完整政見清單。",
+      "note": "本輪核對已收錄辯論政策及補充來源；政策主張、文字來源差異與第三方事實查核分開呈現。未重新核對全部既有政見，亦非全場查核。",
       "queries": [],
       "sources": [
         {
@@ -554,6 +570,10 @@
         {
           "title": "中央社：高雄市長選舉辯論 柯志恩拋設2辦公室、3行動方案",
           "url": "https://www.cna.com.tw/news/aloc/202610300310.aspx"
+        },
+        {
+          "title": "公視台語台：2026高雄市長選舉辯論會完整版",
+          "url": "https://www.youtube.com/watch?v=30IBM6eCQMA"
         }
       ]
     },
