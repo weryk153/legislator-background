@@ -16,14 +16,18 @@ const debates = data.debates.filter(debate => debate.participants.some(p => p.sl
       <li><a href={debate.video.url} target="_blank" rel="noopener noreferrer">{debate.video.title} ↗</a></li>
     </ul>
     <p class="meta">{debate.videoNote}</p>
+    {!debate.claims.some(claim => claim.candidateSlug === Astro.props.slug) && <p class="note">本站目前未收錄本人的事實說法查核；不代表本場沒有可查核的發言，也不代表發言都已證實。</p>}
     {debate.claims.filter(claim => claim.candidateSlug === Astro.props.slug).map(claim => <article>
       <h4>{claim.topic}</h4>
       <p class="meta">發言位置：{claim.locator}</p>
       <p>發言摘要：{claim.claim}</p>
-      <p><strong>查核中心結論摘要：{claim.result}</strong></p>
+      <p><strong>{claim.reviewer}：{claim.result}</strong></p>
       <p>{claim.summary}</p>
+      {claim.statementSource && <p><a href={claim.statementSource.url} target="_blank" rel="noopener noreferrer">{claim.statementSource.title} ↗</a></p>}
       <a href={claim.source.url} target="_blank" rel="noopener noreferrer">{claim.source.title} ↗</a>
-      <p class="meta">報告刊登：{claim.source.publishedOn}{claim.source.updatedOn && `・報告更新：${claim.source.updatedOn}`}</p>
+      {claim.sourceLocation && <p class="meta">核對位置：{claim.sourceLocation}</p>}
+      {claim.additionalSources.map(source => <p><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title} ↗</a></p>)}
+      <p class="meta">來源發布：{claim.source.publishedOn}{claim.source.updatedOn && `・來源更新：${claim.source.updatedOn}`}</p>
     </article>)}
   </div>)}
 </section>}

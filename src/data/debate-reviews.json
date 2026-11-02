@@ -40,7 +40,11 @@
             "url": "https://tfc-taiwan.org.tw/taipei-urban-renewal-7599-zero-construction-claim/",
             "publishedOn": "2026-10-31",
             "updatedOn": null
-          }
+          },
+          "reviewer": "台灣事實查核中心（摘要）",
+          "statementSource": null,
+          "additionalSources": [],
+          "sourceLocation": null
         },
         {
           "id": "taipei-1031-2",
@@ -55,7 +59,11 @@
             "url": "https://tfc-taiwan.org.tw/kang-le-street-7599-project-songshan-airport-height-restrictions-claim/",
             "publishedOn": "2026-10-31",
             "updatedOn": null
-          }
+          },
+          "reviewer": "台灣事實查核中心（摘要）",
+          "statementSource": null,
+          "additionalSources": [],
+          "sourceLocation": null
         },
         {
           "id": "taipei-1031-3",
@@ -70,7 +78,11 @@
             "url": "https://tfc-taiwan.org.tw/tree-canopy-loss-private-land-development-claim/",
             "publishedOn": "2026-10-31",
             "updatedOn": null
-          }
+          },
+          "reviewer": "台灣事實查核中心（摘要）",
+          "statementSource": null,
+          "additionalSources": [],
+          "sourceLocation": null
         },
         {
           "id": "taipei-1031-4",
@@ -85,7 +97,11 @@
             "url": "https://tfc-taiwan.org.tw/taipei-school-lunch-food-poisoning-and-safety-inspection-claims/",
             "publishedOn": "2026-10-31",
             "updatedOn": "2026-11-02"
-          }
+          },
+          "reviewer": "台灣事實查核中心（摘要）",
+          "statementSource": null,
+          "additionalSources": [],
+          "sourceLocation": null
         },
         {
           "id": "taipei-1031-5",
@@ -100,7 +116,11 @@
             "url": "https://tfc-taiwan.org.tw/taipei-free-school-lunch-bidding-failures-and-fresh-milk-redemption-rates-claim/",
             "publishedOn": "2026-10-31",
             "updatedOn": null
-          }
+          },
+          "reviewer": "台灣事實查核中心（摘要）",
+          "statementSource": null,
+          "additionalSources": [],
+          "sourceLocation": null
         },
         {
           "id": "taipei-1031-6",
@@ -115,7 +135,11 @@
             "url": "https://tfc-taiwan.org.tw/taipei-smoke-free-city-mayor-claim-check/",
             "publishedOn": "2026-10-31",
             "updatedOn": null
-          }
+          },
+          "reviewer": "台灣事實查核中心（摘要）",
+          "statementSource": null,
+          "additionalSources": [],
+          "sourceLocation": null
         },
         {
           "id": "taipei-1031-7",
@@ -130,7 +154,11 @@
             "url": "https://tfc-taiwan.org.tw/chiang-taipei-debt-reduction-40-billion-facts/",
             "publishedOn": "2026-10-31",
             "updatedOn": null
-          }
+          },
+          "reviewer": "台灣事實查核中心（摘要）",
+          "statementSource": null,
+          "additionalSources": [],
+          "sourceLocation": null
         }
       ]
     },
@@ -154,9 +182,64 @@
         "title": "公視台語台：2026高雄市長選舉辯論會完整版",
         "url": "https://www.youtube.com/watch?v=30IBM6eCQMA"
       },
-      "scope": "已對照中央社報導確認本頁所列政策主張。尚未取得可核對的全程逐字稿，也未完成整場統計與成效說法的查證；沒有列出查核結果不代表發言已獲證實。",
+      "scope": "已對照中央社報導確認本頁所列政策主張，並以官方原始統計核對柯志恩的平均壽命與年薪說法；這兩項為本站資料核對，非台灣事實查核中心結論。尚未取得可核對的全程逐字稿，亦非整場查核；其他未列發言不代表已獲證實。",
       "videoNote": "公視完整影片供查閱；尚未逐段核對時間。",
-      "claims": []
+      "claims": [
+        {
+          "id": "kaohsiung-1030-life",
+          "candidateSlug": "ko-chih-en",
+          "topic": "台北與高雄平均壽命差距",
+          "locator": "政見申論（依中央社現場報導）",
+          "claim": "稱高雄平均餘命比台北少4.1年。",
+          "reviewer": "本站核對（官方統計）",
+          "result": "存在約四年差距，須補統計年度與精度",
+          "summary": "內政部2026年8月公布的114年（2025年）表列台北83.98歲、高雄79.80歲，按表列值相減為4.18年，若四捨五入至小數一位則為4.2年。報導未載發言採用哪一年度或取位方式，不能把4.1直接當作最新精確值。縣市平均壽命採2023至2025年三年合併人口資料編算；單一差距不直接證明某項政策或污染造成的影響。",
+          "source": {
+            "title": "內政部：115年第34週內政統計通報／114年平均壽命",
+            "url": "https://www.moi.gov.tw/News_Content.aspx?n=2905&sms=10305&s=340438",
+            "publishedOn": "2026-08-24",
+            "updatedOn": null
+          },
+          "sourceLocation": "附件表2「各縣市平均壽命」，第4頁，全體欄與註2。",
+          "statementSource": {
+            "title": "發言出處：中央社10/30高雄辯論報導（申論）",
+            "url": "https://www.cna.com.tw/news/aloc/202610300310.aspx"
+          },
+          "additionalSources": [
+            {
+              "title": "原始表格 PDF：第4頁表2",
+              "url": "https://ws.moi.gov.tw/Download.ashx?u=LzAwMS9VcGxvYWQvNDAwL3JlbGZpbGUvOTAwOS8zNDA0MzgvY2QyZWI4ZTEtZjI4ZC00Y2UyLWJiNWQtODIxYTZhNTQyN2IzLnBkZg%3d%3d&n=56ysMTE15bm056ysMzTpgLHlhafmlL%2fntbHoqIjpgJrloLFf55Sf5ZG96KGoLnBkZg%3d%3d#page=4"
+            }
+          ]
+        },
+        {
+          "id": "kaohsiung-1030-salary",
+          "candidateSlug": "ko-chih-en",
+          "topic": "台北與高雄平均年薪差距",
+          "locator": "政見申論（依中央社現場報導）",
+          "claim": "稱高雄平均年薪比台北少26萬元。",
+          "reviewer": "本站核對（官方統計）",
+          "result": "可對上2024年統計，須限定對象與工作地點",
+          "summary": "主計總處113年（2024年）表列台北平均全年總薪資94.7萬元、高雄68.7萬元，相差26萬元。統計對象是工業及服務業的本國籍全時受僱員工，按工作場所所在縣市分，排除外國籍與部分工時員工，總薪資含獎金等非經常性薪資；不是全體設籍市民收入。中位數為73.5萬與54.2萬，相差19.3萬，不能將26萬稱為中位數差距；也不應把2024年值改稱2026年全年實績。",
+          "source": {
+            "title": "主計總處：113年工業及服務業受僱員工全年總薪資中位數及分布統計結果",
+            "url": "https://www.dgbas.gov.tw/News_Content.aspx?n=3602&s=235514",
+            "publishedOn": "2025-11-25",
+            "updatedOn": null
+          },
+          "sourceLocation": "新聞稿第5頁及表7第18頁，平均數、中位數總計欄與註1、2。",
+          "statementSource": {
+            "title": "發言出處：中央社10/30高雄辯論報導（申論）",
+            "url": "https://www.cna.com.tw/news/aloc/202610300310.aspx"
+          },
+          "additionalSources": [
+            {
+              "title": "原始表格 PDF：第18頁表7",
+              "url": "https://ws.dgbas.gov.tw/001/Upload/463/relfile/10980/235514/113%E5%B9%B4%E5%8F%97%E5%83%B1%E5%93%A1%E5%B7%A5%E8%96%AA%E8%B3%87%E4%B8%AD%E4%BD%8D%E6%95%B8%E7%B5%B1%E8%A8%88%E7%B5%90%E6%9E%9C%E6%96%B0%E8%81%9E%E7%A8%BF.pdf#page=18"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
