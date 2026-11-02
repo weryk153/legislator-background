@@ -11,7 +11,7 @@ const { policies, review } = Astro.props;
   <SectionHead id="policies-title" text="2026 政見" />
   <p class="note">整理候選人已公開的政策主張，非完整政見清單，也不代表已實施或兌現。各筆附發表日期與來源，摘要請與原文對照。</p>
   {policies ? policies.records.map((record) => (
-    <article class="policy-record">
+    <article class="policy-record" id={`policy-${record.id}`}>
       <h3>{record.title}</h3>
       <p class="meta">
         {record.announcedOn ? <>發表：<time datetime={record.announcedOn}>{record.announcedOn}</time></> : '發表日期：來源未載明確日期'}

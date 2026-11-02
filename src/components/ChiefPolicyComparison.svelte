@@ -91,7 +91,7 @@
               <h2>{#if person.slug}<a href={`/officials/${person.slug}/#policies`} aria-label={`${person.name}完整政見與人物資料`}>{person.name}</a>{:else}{person.name}{/if}</h2>
               <p class="party">{person.party}</p>
               {#if person.slug && debateReviews.debates.some(debate => debate.participants.some(p => p.slug === person.slug))}
-                <p class="source"><a href={`/officials/${person.slug}/#debate-evidence`}>辯論原文與事實查核 →</a></p>
+                <p class="source"><a href={`/officials/${person.slug}/#debate-evidence`}>辯論內容與事實查核 →</a></p>
               {/if}
             {/if}
           </th>

@@ -160,7 +160,450 @@
           "additionalSources": [],
           "sourceLocation": null
         }
-      ]
+      ],
+      "topics": [
+        {
+          "id": "taipei-1031-opening",
+          "title": "開場：市民參與與施政成果",
+          "locator": "申論",
+          "question": "兩人如何說明自己的治理方式與選舉主軸？",
+          "statements": [
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "主張從市民陳情、街頭對話及協作活動形成政策；上任百日先處理樹木管理、兒少保護、校餐品質與公務員減壓。"
+            },
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "以大巨蛋、輝達投資、育兒補助、YouBike及都更等作為任內成果，提出以松機遷移與AI園區延續城市發展。"
+            }
+          ],
+          "note": "此處整理候選人的施政自述；成果數量與經濟效益並未全數查證。",
+          "policyIds": [
+            "2026-shen-first-100-days-1031",
+            "2026-chiang-wan-an-airport-1008"
+          ],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        },
+        {
+          "id": "taipei-1031-renewal",
+          "title": "都更卡關：進場門檻、航高與完工",
+          "locator": "交叉詰問第1輪",
+          "question": "斯文里與內湖都更為何難推？降低門檻後如何走到動工？",
+          "statements": [
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "以個案詢問卡關原因，指出松機航高限制，並強調7599已有政府試算及康樂街招商、簽約進度。"
+            },
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "認為審議件數不能取代動工與完工，要求單一窗口、全程陪伴、增加整宅基金及人力；追問航高等限制是否及早向住戶說明。"
+            }
+          ],
+          "note": "動工與招商、簽約是不同階段；7599件數及康樂街、航高說法另附查核。",
+          "policyIds": [
+            "2026-shen-urban-exchange-1101",
+            "2026-chiang-renewal-1031"
+          ],
+          "claimIds": [
+            "taipei-1031-1",
+            "taipei-1031-2"
+          ],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        },
+        {
+          "id": "taipei-1031-childcare",
+          "title": "臨托與雙導師：人力從哪裡來",
+          "locator": "交叉詰問第1輪追問",
+          "question": "免費臨托及雙導師是否有足夠人力、如何推行？",
+          "statements": [
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "質疑0至6歲每週免費臨托4小時所需保母人力，並問教師不足下如何實施雙導師。"
+            },
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "說明臨托先從0至2歲開始，依場地擴充、人員培訓與補充逐步推進；雙導師先試辦，再依第一線回饋調整。"
+            }
+          ],
+          "note": "階段推動與試辦是回答中的條件，不能解讀為立即全面實施。",
+          "policyIds": [
+            "shenpao-yang-direct-e7dcbf3323",
+            "shenpao-yang-direct-52b91b6217"
+          ],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        },
+        {
+          "id": "taipei-1031-meetings",
+          "title": "市長出席與跨局處治理",
+          "locator": "交叉詰問第2輪",
+          "question": "市長應如何掌握兒少、食安與其他重要委員會工作？",
+          "statements": [
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "以市長及局處首長的會議出席情形，質疑決策與監督是否到位，追問未出席的理由。"
+            },
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "回應市府採分層負責，重大事件即刻開專案會議，並由市政會議及治安、道安、公安會報統籌；也反問沈的立院參與。"
+            }
+          ],
+          "note": "本題保留治理方式的分歧；雙方引用的出席率尚未逐項對照會議紀錄。",
+          "policyIds": [],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        },
+        {
+          "id": "taipei-1031-industry",
+          "title": "AI產業與市民大道串接",
+          "locator": "交叉詰問第3輪",
+          "question": "科技廊帶的定位是什麼？藝文空間會不會排擠停車？",
+          "statements": [
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "質疑沈對跨縣市與市內科技廊帶採不同標準，要求說明市民大道可用空間、停車需求與配套。"
+            },
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "區分算力、軟體與應用產業，提出台北研究院及人才合作；說明市民大道構想著重商圈間人流串接，並非取消橋下停車格。"
+            }
+          ],
+          "note": "逐字稿中的回答未提出完整面積、停車位或成本盤點。",
+          "policyIds": [
+            "2026-shen-debate-connection-1031"
+          ],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        },
+        {
+          "id": "taipei-1031-commute",
+          "title": "內湖交通、自行車與公館圓環",
+          "locator": "交叉詰問第2、3、8輪",
+          "question": "交通方案能否服務跨市通勤？事故改善應如何衡量？",
+          "statements": [
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "質疑自行車橋能否滿足新北至內科通勤需求，也質疑狹窄條通種樹與車架配置；對公館圓環則主張應合併A1、A2、A3事故觀察。"
+            },
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "回應自行車橋涉及橋墩落點及通勤路線選擇，質疑松機遷移後的新橋能否處理高速公路車流；另以事故排名質疑圓環改造評估。"
+            }
+          ],
+          "note": "事故排名、件數與事故率的期間及範圍須一致才能比較，本頁尚未完成該項查核。",
+          "policyIds": [
+            "shenpao-yang-direct-f9c6d11b58"
+          ],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        },
+        {
+          "id": "taipei-1031-trees",
+          "title": "東門茄苳樹與樹冠管理",
+          "locator": "交叉詰問第4輪、結論補充",
+          "question": "樹木誤砍是哪一個程序失靈？樹冠減少能否等同市府砍樹？",
+          "statements": [
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "追問東門茄苳樹處置程序，並說明引用樹冠研究不等於指控全由市府砍伐，要求交代管理責任。"
+            },
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "主張樹冠變化涉及私人土地、中央及校園開發，並列舉植樹成果；結論時補充原要求移植、廠商卻移除，市府已處分相關人員與廠商。"
+            }
+          ],
+          "note": "樹冠變化的原因另附查核；處分與責任說明仍以候選人發言呈現。",
+          "policyIds": [
+            "2026-shen-urban-forest-1101"
+          ],
+          "claimIds": [
+            "taipei-1031-3"
+          ],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        },
+        {
+          "id": "taipei-1031-meals",
+          "title": "免費校餐、檢驗與鮮乳兌換",
+          "locator": "交叉詰問第4、6輪",
+          "question": "免費政策如何兼顧品質、採購與食安處理？",
+          "statements": [
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "質疑招標、兌換與食安執行，澄清自己支持免費午餐、要求的是品質及檢驗；另比較不同學校事件的處理。"
+            },
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "表示維持原有招標及午餐供應委員會把關，強調補助與鮮乳政策；對成淵事件說明停業解約、備援及法律支援。"
+            }
+          ],
+          "note": "不能把不同學校或不同批次的檢驗混為一談；檢驗、招標及兌換率另附查核。",
+          "policyIds": [
+            "2026-shen-school-meals-1101"
+          ],
+          "claimIds": [
+            "taipei-1031-4",
+            "taipei-1031-5"
+          ],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        },
+        {
+          "id": "taipei-1031-exchange",
+          "title": "雙城論壇與交流條件",
+          "locator": "交叉詰問第5輪",
+          "question": "過去對雙城論壇的批評，與保留交流是否矛盾？",
+          "statements": [
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "引用沈的過去發言，要求說明雙城論壇及其他政治主張的一致性，主張首都市長須接受檢驗。"
+            },
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "表示在沒有政治前提、資安疑慮下可做城市實務交流，但軍事威脅下應重新考慮；並反指蔣過去也曾提出停辦條件。"
+            }
+          ],
+          "note": "雙方對過去發言的引述尚未逐項核對原始全文。",
+          "policyIds": [
+            "2026-shen-city-diplomacy"
+          ],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        },
+        {
+          "id": "taipei-1031-budget",
+          "title": "財劃法與新增財源運用",
+          "locator": "交叉詰問第5輪追問",
+          "question": "反對修法與日後運用增加的地方財源，應如何區分？",
+          "statements": [
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "認為財劃法增加台北財源，能支應政見，質疑沈過去反對與現在提出支出的立場。"
+            },
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "表示反對重點是舉債、事權未同步移轉與預算程序；談到運用時偏向資本支出，避免新增人事負擔。"
+            }
+          ],
+          "note": "此處為雙方制度主張，並非本站對修法合法性或財政效果的法律判定。",
+          "policyIds": [],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        },
+        {
+          "id": "taipei-1031-protection",
+          "title": "兒少保護、心理支持與食安責任",
+          "locator": "交叉詰問第6輪",
+          "question": "不同受害家庭能否得到一致、及時的協助？",
+          "statements": [
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "質疑兒虐心理諮商與食安事件處理是否一致，追問資訊揭露及市長責任；表示支持托育專法，反對的是不符比例原則的刑罰提案。"
+            },
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "表示兒少受害是市長責任，列舉共訪、停業停聘、無預警稽查等改善；也說明寶林案採證、記者會及增補食安稽查人力。"
+            }
+          ],
+          "note": "各個案是否已獲足夠支持，仍需逐案追蹤；辯論中的制度說明不等於成效已證實。",
+          "policyIds": [
+            "2026-shen-first-100-days-1031"
+          ],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        },
+        {
+          "id": "taipei-1031-prevention",
+          "title": "酒駕毒駕：刑責與地方預防",
+          "locator": "交叉詰問第7輪",
+          "question": "加重刑罰與地方政府預防工作各應如何進行？",
+          "statements": [
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "以沈過去發言及修法投票質疑其是否重視被害者，主張加重刑罰並回應家屬期待。"
+            },
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "表示反對酒駕毒駕，但刑罰須符合比例原則；主張地方加強臨檢、校園拒毒、切斷來源及以問卷進行早期篩檢、介入。"
+            }
+          ],
+          "note": "候選人對法案與投票的描述尚未逐條核對，不作法律效果說明。",
+          "policyIds": [],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        },
+        {
+          "id": "taipei-1031-airport",
+          "title": "松機遷移、醫療後送與AI效益",
+          "locator": "交叉詰問第8輪",
+          "question": "遷移是否已有完整計畫？離島醫療、航班與產業效益如何處理？",
+          "statements": [
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "質疑計畫、會議與送中央程序不足，並追問桃園航班容量、醫療後送及AI效益估算是否混用營業額與產值。"
+            },
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "表示市府早已發文表達遷移立場，將以離島與醫療權益不打折為前提，提及保留直升機設施、桃園醫療量能及AI紅利。"
+            }
+          ],
+          "note": "表達立場、公文、可行性評估與核定計畫是不同層次；本頁未把遷移與效益估算列為已確定成果。",
+          "policyIds": [
+            "2026-chiang-wan-an-airport-1008"
+          ],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        },
+        {
+          "id": "taipei-1031-daily",
+          "title": "四年後的通勤、育兒與長者生活",
+          "locator": "媒體提問第1題（樊啓明）",
+          "question": "用一位要上班、接送小孩、照顧長輩的市民，描述四年後的生活。",
+          "statements": [
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "提出擴大育兒減工時、校校公托、無人自駕公車、捷運建設、各區第二座運動中心、敬老卡與文化設施等願景。"
+            },
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "從公車重整、捷運體檢及通學安全減少通勤負擔，再以家庭一站通、社區健身小巴及親子同行卡串接照顧與商圈活動。"
+            }
+          ],
+          "note": "建設時程與服務普及屬候選人願景；敬老卡適用場域的媒體文字差異保留於政見來源說明。",
+          "policyIds": [
+            "2026-chiang-future-city-1031",
+            "2026-shen-senior-fitness-1031",
+            "shenpao-yang-direct-a32a2b9e7c"
+          ],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        },
+        {
+          "id": "taipei-1031-safety",
+          "title": "高風險老屋與首都居住安全",
+          "locator": "媒體提問第2題（黃彥怡）",
+          "question": "高危險住戶談不攏時，市府如何主動介入並兼顧權益？",
+          "statements": [
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "提出由市府利用建管資料做耐震風險初篩，再由服務團到宅協助補強或更新，最後揭露資訊；也提及借鏡東京權利轉換。"
+            },
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "表示市府已有危險建物盤點、輔導與資訊揭露，並以大街廓、5099、防災型都更及海砂屋575提供誘因與進場協助。"
+            }
+          ],
+          "note": "5099過半同意是市府進場協助門檻，仍有後續程序；大街廓基地及回饋條件見政見來源。",
+          "policyIds": [
+            "2026-shen-debate-renewal-1031",
+            "2026-chiang-renewal-1031"
+          ],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        },
+        {
+          "id": "taipei-1031-closing",
+          "title": "結辯：治理一致性與市民感受",
+          "locator": "候選人結論",
+          "question": "兩人最後希望選民依什麼標準做選擇？",
+          "statements": [
+            {
+              "candidateSlug": "mayor-taipei",
+              "summary": "強調主張一致、執行能力與延續歷任市長基礎，並以減債、建設及城市團結爭取支持。"
+            },
+            {
+              "candidateSlug": "shenpao-yang",
+              "summary": "強調數字應連結市民的實際感受，以減少日常焦慮、市民參與及照顧支持作為治理主軸。"
+            }
+          ],
+          "note": "減債金額另有查核；價值主張不作真偽評分。",
+          "policyIds": [],
+          "claimIds": [
+            "taipei-1031-7"
+          ],
+          "sources": [
+            {
+              "title": "ETtoday：台北市長辯論文字直播",
+              "url": "https://features.ettoday.net/taipei-debate-2026/"
+            }
+          ]
+        }
+      ],
+      "contentNote": "依ETtoday媒體文字直播，按申論、8輪交叉詰問、2題媒體提問與結論整理為16個議題。摘要合併同議題不同輪次，並非逐字轉載；未逐段核對影音，來源文字有差異時保留說明。"
     },
     {
       "id": "kaohsiung-1030",
@@ -239,7 +682,329 @@
             }
           ]
         }
-      ]
+      ],
+      "topics": [
+        {
+          "id": "kaohsiung-1030-industry",
+          "title": "傳產升級與青年薪資",
+          "locator": "申論、媒體提問（政策並列）",
+          "question": "產業成長如何讓傳產與在地勞工受益？",
+          "statements": [
+            {
+              "candidateSlug": "ko-chih-en",
+              "summary": "提出傳產振興基金，串接半導體、無人機及航太技術，協助螺絲、扣件等產業導入智慧製程。"
+            },
+            {
+              "candidateSlug": "laijui-lung",
+              "summary": "主張傳產升級、AI算力及應用中心，並以農漁冷鏈與地方品牌拓展產業機會。"
+            }
+          ],
+          "note": "屬方向與政策主張，非已核定預算或薪資成長保證。",
+          "policyIds": [
+            "2026-ko-debate-actions-1030",
+            "laijui-lung-direct-5245424daf"
+          ],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "中央社：柯志恩兩辦公室、三行動方案",
+              "url": "https://www.cna.com.tw/news/aloc/202610300310.aspx"
+            },
+            {
+              "title": "中央社：媒體提問：派系、黨意與產業",
+              "url": "https://www.cna.com.tw/news/aloc/202610300334.aspx"
+            }
+          ]
+        },
+        {
+          "id": "kaohsiung-1030-transport",
+          "title": "捷運、公路與無宵禁機場",
+          "locator": "申論（政策並列）",
+          "question": "如何擴大高雄對外門戶與市內交通？",
+          "statements": [
+            {
+              "candidateSlug": "ko-chih-en",
+              "summary": "提出捷運及國道、快速道路建設，另規劃路竹至前鎮雙層高架與環城路網，並以大港計畫推動無宵禁機場。"
+            },
+            {
+              "candidateSlug": "laijui-lung",
+              "summary": "提出捷運延伸、黃線與紫線等軌道建設，升級小港航廈，並籌建24小時海上機場。"
+            }
+          ],
+          "note": "兩人的建設構想不等於工程已核定；跨機關協調、環評及財源仍須另外核對。",
+          "policyIds": [
+            "2026-ko-debate-actions-1030"
+          ],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "中央社：柯志恩兩辦公室、三行動方案",
+              "url": "https://www.cna.com.tw/news/aloc/202610300310.aspx"
+            },
+            {
+              "title": "報導者：高雄市長辯論分階段紀錄",
+              "url": "https://www.twreporter.org/a/2026-local-elections-kaohsiung-mayoral-televised-debate"
+            }
+          ]
+        },
+        {
+          "id": "kaohsiung-1030-care",
+          "title": "托育、長照與原縣市資源分配",
+          "locator": "申論（政策並列）",
+          "question": "照顧服務與醫療、交通資源如何更接近居民？",
+          "statements": [
+            {
+              "candidateSlug": "laijui-lung",
+              "summary": "提出每胎生育補助5萬元、加碼0至6歲育兒津貼、一學區一公托、每年60小時臨托，並擴大長照及喘息服務。"
+            },
+            {
+              "candidateSlug": "ko-chih-en",
+              "summary": "提出首月設反霸凌與高高平等辦公室，分別處理校園職場霸凌，以及原縣區觀光、交通、醫療資源差距。"
+            }
+          ],
+          "note": "這是同場不同政策的並列整理，並非兩人對同一題直接互答。",
+          "policyIds": [
+            "2026-lai-debate-care-1030",
+            "2026-lai-family-support-1101",
+            "2026-ko-debate-actions-1030"
+          ],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "中央社：賴瑞隆申論與照顧政策",
+              "url": "https://www.cna.com.tw/news/aloc/202610300316.aspx"
+            },
+            {
+              "title": "中央社：柯志恩兩辦公室、三行動方案",
+              "url": "https://www.cna.com.tw/news/aloc/202610300310.aspx"
+            }
+          ]
+        },
+        {
+          "id": "kaohsiung-1030-party",
+          "title": "派系、黨意與市政用人",
+          "locator": "媒體提問",
+          "question": "政黨或派系利益與高雄利益衝突時，如何選擇？",
+          "statements": [
+            {
+              "candidateSlug": "laijui-lung",
+              "summary": "表示以人才及高雄利益優先，拒絕以派系界定自己；反問柯能否抵抗黨團立場。"
+            },
+            {
+              "candidateSlug": "ko-chih-en",
+              "summary": "表示以高雄與中華民國立場為準，列舉黨內人士不會進入市府；並質疑賴的派系關係。"
+            }
+          ],
+          "note": "這是雙方的承諾與質疑，不能直接當作未來人事安排或派系控制已成事實。",
+          "policyIds": [],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "中央社：媒體提問：派系、黨意與產業",
+              "url": "https://www.cna.com.tw/news/aloc/202610300334.aspx"
+            }
+          ]
+        },
+        {
+          "id": "kaohsiung-1030-concerts",
+          "title": "演唱會經濟如何在地化",
+          "locator": "媒體提問",
+          "question": "觀光人潮與產業成長如何惠及更多地區及業者？",
+          "statements": [
+            {
+              "candidateSlug": "ko-chih-en",
+              "summary": "主張讓舞台、燈光與人員等在地供應鏈承接演唱會需求，而不只計算人次。"
+            },
+            {
+              "candidateSlug": "laijui-lung",
+              "summary": "主張延續產業轉型，挹注傳產及農漁業冷鏈、品牌等資源。"
+            }
+          ],
+          "note": "依媒體提問報導整理各自重點；未取得每項方案的規模與績效指標。",
+          "policyIds": [
+            "laijui-lung-direct-5245424daf"
+          ],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "中央社：媒體提問：派系、黨意與產業",
+              "url": "https://www.cna.com.tw/news/aloc/202610300334.aspx"
+            }
+          ]
+        },
+        {
+          "id": "kaohsiung-1030-funding",
+          "title": "財劃法：提案版本與三讀版本",
+          "locator": "申論、交叉詰問",
+          "question": "首都加3%的責任與南北財源分配，雙方如何回應？",
+          "statements": [
+            {
+              "candidateSlug": "laijui-lung",
+              "summary": "質疑修法加劇高雄財源與補助壓力，並以曾出現首都保留3%的提案追問柯的責任。"
+            },
+            {
+              "candidateSlug": "ko-chih-en",
+              "summary": "回應三讀通過版本沒有首都加3%，反駁以該條文指控。"
+            }
+          ],
+          "note": "爭點涉及曾提案的文字與最終通過版本，不能把兩者混同；本頁尚未完成法條及完整預算核算。",
+          "policyIds": [],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "中央社：賴瑞隆申論與照顧政策",
+              "url": "https://www.cna.com.tw/news/aloc/202610300316.aspx"
+            },
+            {
+              "title": "中央社：交叉詰問：205兵工廠、政治獻金與財劃法",
+              "url": "https://www.cna.com.tw/news/aloc/202610300335.aspx"
+            }
+          ]
+        },
+        {
+          "id": "kaohsiung-1030-donations",
+          "title": "政治獻金、公聽會與利益迴避",
+          "locator": "交叉詰問",
+          "question": "獻金申報之外，如何回應公聽會及利益關係的質疑？",
+          "statements": [
+            {
+              "candidateSlug": "ko-chih-en",
+              "summary": "質疑政治獻金與能源公聽會的利益關係，要求說明用人及利益迴避標準。"
+            },
+            {
+              "candidateSlug": "laijui-lung",
+              "summary": "表示獻金依法申報、公開透明，公聽會邀集產官學討論能源轉型，否認替特定業者背書。"
+            }
+          ],
+          "note": "此處記錄質疑與答辯，不將未證實指控寫成違法事實；也不把依法申報等同所有利益迴避問題均已釐清。",
+          "policyIds": [],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "中央社：交叉詰問：205兵工廠、政治獻金與財劃法",
+              "url": "https://www.cna.com.tw/news/aloc/202610300335.aspx"
+            }
+          ]
+        },
+        {
+          "id": "kaohsiung-1030-205",
+          "title": "205兵工廠：產業或市政專區",
+          "locator": "交叉詰問",
+          "question": "土地開發應優先創造就業，還是結合市政與商住機能？",
+          "statements": [
+            {
+              "candidateSlug": "laijui-lung",
+              "summary": "認為應保留產業與就業用途，追問市府、議會遷入的必要性與成本。"
+            },
+            {
+              "candidateSlug": "ko-chih-en",
+              "summary": "主張打造兼具商辦、住宅與公共機能的城市核心，以信義區及曼哈頓比喻願景。"
+            }
+          ],
+          "note": "所查報導未提供完整遷建成本答覆或核定開發方案。",
+          "policyIds": [
+            "2026-ko-debate-actions-1030"
+          ],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "中央社：交叉詰問：205兵工廠、政治獻金與財劃法",
+              "url": "https://www.cna.com.tw/news/aloc/202610300335.aspx"
+            },
+            {
+              "title": "中央社：柯志恩兩辦公室、三行動方案",
+              "url": "https://www.cna.com.tw/news/aloc/202610300310.aspx"
+            }
+          ]
+        },
+        {
+          "id": "kaohsiung-1030-sinkholes",
+          "title": "天坑、豪雨與城市安全",
+          "locator": "交叉詰問",
+          "question": "地層坑洞與交通安全，市府及民代應負哪些責任？",
+          "statements": [
+            {
+              "candidateSlug": "ko-chih-en",
+              "summary": "以賴長期在地任職卻仍發生坑洞，質疑治理與監督能力。"
+            },
+            {
+              "candidateSlug": "laijui-lung",
+              "summary": "回應強降雨沖刷造成坑洞，強調救災與解決問題，並將城市安全連結到財源需求。"
+            }
+          ],
+          "note": "致災原因須逐案檢查工程與調查報告，不能僅憑辯論歸因於天候或單一人士。",
+          "policyIds": [],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "中央社：交叉詰問：205兵工廠、政治獻金與財劃法",
+              "url": "https://www.cna.com.tw/news/aloc/202610300335.aspx"
+            }
+          ]
+        },
+        {
+          "id": "kaohsiung-1030-record",
+          "title": "爭取預算、揭弊與接棒",
+          "locator": "交叉詰問、結論",
+          "question": "對高雄的貢獻應如何衡量？",
+          "statements": [
+            {
+              "candidateSlug": "laijui-lung",
+              "summary": "以市府及國會資歷、爭取建設經費說明接棒能力，希望延續市政。"
+            },
+            {
+              "candidateSlug": "ko-chih-en",
+              "summary": "強調揭弊與監督的價值，反對把集體爭取的預算全算在單一立委名下，主張跨黨派延續市政。"
+            }
+          ],
+          "note": "預算歸功與政治評價不作真偽評分；所列個人貢獻仍須與預算及提案紀錄對照。",
+          "policyIds": [],
+          "claimIds": [],
+          "sources": [
+            {
+              "title": "中央社：交叉詰問：205兵工廠、政治獻金與財劃法",
+              "url": "https://www.cna.com.tw/news/aloc/202610300335.aspx"
+            },
+            {
+              "title": "中央社：媒體提問：派系、黨意與產業",
+              "url": "https://www.cna.com.tw/news/aloc/202610300334.aspx"
+            }
+          ]
+        },
+        {
+          "id": "kaohsiung-1030-indicators",
+          "title": "人口、壽命與薪資差距",
+          "locator": "申論",
+          "question": "產業發展是否轉化為居民生活改善？",
+          "statements": [
+            {
+              "candidateSlug": "ko-chih-en",
+              "summary": "以人口流失、空污、與台北的平均壽命及年薪差距質疑發展紅利分配。"
+            },
+            {
+              "candidateSlug": "laijui-lung",
+              "summary": "在申論提出產業、交通門戶與照顧政策；目前所查報導未呈現逐一回應上述統計的完整答覆。"
+            }
+          ],
+          "note": "已另核對壽命與年薪的官方統計；人口及空污口徑尚未完成核對。",
+          "policyIds": [],
+          "claimIds": [
+            "kaohsiung-1030-life",
+            "kaohsiung-1030-salary"
+          ],
+          "sources": [
+            {
+              "title": "中央社：柯志恩兩辦公室、三行動方案",
+              "url": "https://www.cna.com.tw/news/aloc/202610300310.aspx"
+            },
+            {
+              "title": "中央社：賴瑞隆申論與照顧政策",
+              "url": "https://www.cna.com.tw/news/aloc/202610300316.aspx"
+            }
+          ]
+        }
+      ],
+      "contentNote": "依中央社申論、媒體提問、交叉詰問報導及報導者分段紀錄，整理為11個議題。政策並列不代表現場直接互答；尚無可核對的全程逐字稿，未涵蓋所有發言。"
     }
   ]
 }

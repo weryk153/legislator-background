@@ -3,6 +3,32 @@ import data from '../src/data/debate-reviews.json';
 import policies from '../src/data/candidate-policies.json';
 
 describe('辯論證據資料', () => {
+  it('議題摘要保留雙方身分、出處與階段，政見和查核連結可解析', () => {
+    const ids = new Set<string>();
+    for (const debate of data.debates) {
+      expect(debate.contentNote).toBeTruthy();
+      for (const topic of debate.topics) {
+        expect(ids.has(topic.id)).toBe(false);
+        ids.add(topic.id);
+        expect(debate.claims.some(claim => claim.id === topic.id)).toBe(false);
+        expect([topic.title, topic.locator, topic.question].every(text => text.trim())).toBe(true);
+        expect(new Set(topic.statements.map(s => s.candidateSlug))).toEqual(new Set(debate.participants.map(p => p.slug)));
+        expect(topic.statements.every(s => s.summary.trim())).toBe(true);
+        expect(topic.sources.length).toBeGreaterThan(0);
+        for (const source of topic.sources) {
+          expect(new URL(source.url).protocol).toBe('https:');
+          expect(source.title).toBeTruthy();
+        }
+        for (const id of topic.policyIds) {
+          const owners = policies.candidates.filter(p => p.records.some(r => r.id === id));
+          expect(owners).toHaveLength(1);
+          expect(debate.participants.some(p => p.slug === owners[0].slug)).toBe(true);
+        }
+        for (const id of topic.claimIds) expect(debate.claims.some(c => c.id === id)).toBe(true);
+      }
+    }
+  });
+
   it('候選人、場次與報告來源均有可核對對應，查核不是政見計數', () => {
     const ids = new Set<string>();
     for (const debate of data.debates) {

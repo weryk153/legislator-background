@@ -1,11 +1,13 @@
 ---
 import SectionHead from './SectionHead.astro';
 import data from '../data/debate-reviews.json';
+import policies from '../data/candidate-policies.json';
 interface Props { slug: string }
 const debates = data.debates.filter(debate => debate.participants.some(p => p.slug === Astro.props.slug));
+const policyRecords = policies.candidates.flatMap(person => person.records.map(record => ({ ...record, slug: person.slug, name: person.name })));
 ---
 {debates.length > 0 && <section id="debate-evidence" aria-labelledby="debate-evidence-title">
-  <SectionHead id="debate-evidence-title" text="辯論原文與事實查核" />
+  <SectionHead id="debate-evidence-title" text="辯論內容與事實查核" />
   <p class="note">政見是未來主張；事實查核針對可驗證的數字、制度與成果。確認說過，不等於內容已證實。</p>
   {debates.map(debate => <div>
     <h3>{debate.title}</h3>
@@ -16,8 +18,43 @@ const debates = data.debates.filter(debate => debate.participants.some(p => p.sl
       <li><a href={debate.video.url} target="_blank" rel="noopener noreferrer">{debate.video.title} ↗</a></li>
     </ul>
     <p class="meta">{debate.videoNote}</p>
+    <h4 class="subheading">辯論內容與答覆 · {debate.topics.length}個議題</h4>
+    <p class="note">{debate.contentNote}</p>
+    <nav aria-label={`${debate.title}議題目錄`} class="topic-nav">
+      {debate.topics.map((topic, i) => <a href={`#${topic.id}`}>{i + 1}. {topic.title}</a>)}
+    </nav>
+    <div class="topic-actions">
+      <button type="button" data-debate-toggle="open" aria-controls={`${debate.id}-topics`}>展開全部議題</button>
+      <button type="button" data-debate-toggle="close" aria-controls={`${debate.id}-topics`}>收合全部議題</button>
+    </div>
+    <div id={`${debate.id}-topics`}>
+      {debate.topics.map((topic, i) => <details id={topic.id} class="debate-topic" open={i === 0}>
+        <summary><span class="meta">{topic.locator}</span><h5>{i + 1}. {topic.title}</h5><p>{topic.question}</p></summary>
+        <div class="topic-body">
+          <p class="meta">以下為發言摘要，非逐字引述；雙方說法不等於本站已證實。</p>
+          {topic.statements.map(statement => <div class:list={['statement', { current: statement.candidateSlug === Astro.props.slug }]}>
+            <h6><a href={`/officials/${statement.candidateSlug}/#${topic.id}`}>{debate.participants.find(p => p.slug === statement.candidateSlug)?.name}</a></h6>
+            <p>{statement.summary}</p>
+          </div>)}
+          {topic.note && <p class="note">閱讀提醒：{topic.note}</p>}
+          <ul class="links">
+            {topic.sources.map(source => <li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title} ↗</a></li>)}
+            {topic.policyIds.map(id => {
+              const record = policyRecords.find(record => record.id === id);
+              return record && <li><a href={`/officials/${record.slug}/#policy-${record.id}`}>相關政見：{record.name} · {record.title}</a></li>;
+            })}
+            {topic.claimIds.map(id => {
+              const claim = debate.claims.find(claim => claim.id === id);
+              return claim && <li><a href={`/officials/${claim.candidateSlug}/#${claim.id}`}>事實查核：{claim.topic}</a></li>;
+            })}
+          </ul>
+        </div>
+      </details>)}
+    </div>
+    <h4 class="subheading" id={`${debate.id}-checks`}>本人的事實說法查核 · {debate.claims.filter(claim => claim.candidateSlug === Astro.props.slug).length}項</h4>
+    <p class="note">以下針對可驗證的個別說法；上方的問答摘要不會自動成為查核結論。</p>
     {!debate.claims.some(claim => claim.candidateSlug === Astro.props.slug) && <p class="note">本站目前未收錄本人的事實說法查核；不代表本場沒有可查核的發言，也不代表發言都已證實。</p>}
-    {debate.claims.filter(claim => claim.candidateSlug === Astro.props.slug).map(claim => <article>
+    {debate.claims.filter(claim => claim.candidateSlug === Astro.props.slug).map(claim => <article id={claim.id}>
       <h4>{claim.topic}</h4>
       <p class="meta">發言位置：{claim.locator}</p>
       <p>發言摘要：{claim.claim}</p>
@@ -32,6 +69,28 @@ const debates = data.debates.filter(debate => debate.participants.some(p => p.sl
   </div>)}
 </section>}
 
+<script>
+  function revealDebateTopic() {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const topic = document.getElementById(id);
+    if (topic instanceof HTMLDetailsElement && topic.classList.contains('debate-topic')) topic.open = true;
+  }
+  document.querySelectorAll<HTMLButtonElement>('[data-debate-toggle]').forEach(button => {
+    button.addEventListener('click', () => {
+      const container = document.getElementById(button.getAttribute('aria-controls') || '');
+      container?.querySelectorAll('details').forEach(topic => { topic.open = button.dataset.debateToggle === 'open'; });
+    });
+  });
+  document.querySelectorAll<HTMLAnchorElement>('.topic-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      const topic = document.getElementById(link.hash.slice(1));
+      if (topic instanceof HTMLDetailsElement) topic.open = true;
+    });
+  });
+  window.addEventListener('hashchange', revealDebateTopic);
+  revealDebateTopic();
+</script>
+
 <style>
   section { margin-bottom: 42px; scroll-margin-top: 24px; }
   section :global(.sh) { margin-top: 0; }
@@ -44,5 +103,22 @@ const debates = data.debates.filter(debate => debate.participants.some(p => p.sl
   .links { padding-left: 1.3em; }
   article { border-bottom: 1px solid var(--line); padding: 20px 0; }
   a { text-decoration: underline; text-underline-offset: 3px; }
+  .subheading { margin: 28px 0 10px; }
+  .topic-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 20px; margin: 16px 0; }
+  .topic-nav a { font-size: var(--t-sm); }
+  .topic-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+  button { font: inherit; font-size: var(--t-sm); color: var(--ink); background: transparent; border: 1px solid var(--line); padding: 8px 12px; cursor: pointer; }
+  button:focus-visible, summary:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+  .debate-topic { border-bottom: 1px solid var(--line); padding: 16px 0; scroll-margin-top: 24px; }
+  summary { cursor: pointer; }
+  h5 { display: inline; font-size: 1rem; line-height: 1.7; }
+  summary > .meta { display: block; margin-bottom: 5px; }
+  summary p { margin-bottom: 0; }
+  .topic-body { padding-top: 10px; }
+  .statement { padding: 10px 14px; margin: 10px 0; border-left: 2px solid var(--line); }
+  .statement.current { border-left-color: var(--ink); }
+  h6 { font-size: 0.9375rem; margin: 0; }
+  article { scroll-margin-top: 24px; }
+  @media (max-width: 760px) { .topic-nav { grid-template-columns: 1fr; } }
   @media (max-width: 760px) { section { margin-bottom: 32px; } }
 </style>
