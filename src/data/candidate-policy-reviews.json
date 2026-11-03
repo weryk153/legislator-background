@@ -188,7 +188,7 @@
       "slug": "cand-林志成-臺北市",
       "name": "林志成",
       "role": "臺北市長",
-      "reviewedOn": "2026-11-02",
+      "reviewedOn": "2026-11-03",
       "status": "pending-source",
       "note": "已再查本屆市長參選、政策與社群線索，仍未取得可核對的2026市長具體政見；2024立委公報及其他縣市同名人物資料不移植。",
       "queries": [
@@ -805,7 +805,7 @@
       "slug": "cand-劉燦輝-宜蘭縣",
       "name": "劉燦輝",
       "role": "宜蘭縣長",
-      "reviewedOn": "2026-11-02",
+      "reviewedOn": "2026-11-03",
       "status": "pending-source",
       "note": "已再查宜蘭縣長政策與地方新聞，仍未取得可核對的2026本人主張；搜尋中的2019立委初選、2022鄉長及2024議員補選內容不移植。",
       "queries": [
@@ -851,7 +851,7 @@
       "slug": "cand-楊鉯婷-宜蘭縣",
       "name": "楊鉯婷",
       "role": "宜蘭縣長",
-      "reviewedOn": "2026-11-02",
+      "reviewedOn": "2026-11-03",
       "status": "pending-source",
       "note": "已再查宜蘭縣長政策、登記與公開承諾線索，仍未取得可核對的2026本人政策內容。搜尋結果多為名冊及其他候選人報導。",
       "queries": [
@@ -910,9 +910,9 @@
       "slug": "hsu-hsin-ying",
       "name": "徐欣瑩",
       "role": "新竹縣長",
-      "reviewedOn": "2026-10-16",
+      "reviewedOn": "2026-11-03",
       "status": "collected",
-      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "note": "核對2026競選官網六大主題，增補部分具體政策並保留合作、財源及評估條件；排除既有政績與跨頁重複項目，非完整政見清單。",
       "queries": [
         "\"徐欣瑩\" 2026 政見 新竹縣"
       ],
@@ -920,6 +920,30 @@
         {
           "title": "徐欣瑩拋新竹女力政見 首波鎖定健檢、就業與家暴支持",
           "url": "https://udn.com/vote2026/story/124652/9776101"
+        },
+        {
+          "title": "育兒、青年與高齡照顧 — 徐欣瑩競選官網",
+          "url": "https://www.shesinging.tw/politics/care/"
+        },
+        {
+          "title": "交通建設與跨縣市治理 — 徐欣瑩競選官網",
+          "url": "https://www.shesinging.tw/politics/traffic/"
+        },
+        {
+          "title": "產業、智慧縣政與醫療 — 徐欣瑩競選官網",
+          "url": "https://www.shesinging.tw/politics/tech/"
+        },
+        {
+          "title": "公共空間、環境與動物照護 — 徐欣瑩競選官網",
+          "url": "https://www.shesinging.tw/politics/life/"
+        },
+        {
+          "title": "觀光、客庄與文化傳承 — 徐欣瑩競選官網",
+          "url": "https://www.shesinging.tw/politics/tourism/"
+        },
+        {
+          "title": "教育量能、學習與師生支持 — 徐欣瑩競選官網",
+          "url": "https://www.shesinging.tw/politics/edu/"
         }
       ]
     },
@@ -1120,7 +1144,7 @@
       "slug": "cand-林佳瑜-雲林縣",
       "name": "林佳瑜",
       "role": "雲林縣長",
-      "reviewedOn": "2026-11-02",
+      "reviewedOn": "2026-11-03",
       "status": "pending-source",
       "note": "已再查本屆登記與政策資料，部分網路彙整主張可追溯至2018選舉公報，尚未確認2026重申，因此不移植為本屆政見。",
       "queries": [
@@ -1462,7 +1486,7 @@
       "slug": "cand-魏造文-基隆市",
       "name": "魏造文",
       "role": "基隆市長",
-      "reviewedOn": "2026-11-02",
+      "reviewedOn": "2026-11-03",
       "status": "pending-source",
       "note": "10月27日抽籤現場報導提到基隆永續發展願景，未載可整理的具體政策措施；本輪仍待補來源。",
       "queries": [
@@ -1659,9 +1683,9 @@
       "slug": "cand-王義成-嘉義市",
       "name": "王義成",
       "role": "嘉義市長",
-      "reviewedOn": "2026-11-02",
+      "reviewedOn": "2026-11-03",
       "status": "pending-source",
-      "note": "11/02再查仍未取得手寫公報原件或獨立交叉來源；10/27中時報導提及三項主張，但其號次與登記截止日有矛盾，維持待核對，不代表未發表。",
+      "note": "11/03再查仍未取得手寫公報原件或獨立交叉來源；10/27中時報導提及三項主張，但其號次與登記截止日有矛盾，維持待核對，不代表未發表。",
       "queries": [
         "\"王義成\" 2026 政見 嘉義市",
         "王義成 嘉義 政見",
