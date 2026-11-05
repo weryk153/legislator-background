@@ -130,6 +130,36 @@
         }
       },
       "updatedAt": "2026-10-20T12:14:25.353Z"
+    },
+    "/daily/": {
+      "targetKind": "new-ui",
+      "projectId": "57d694aa-59f8-495e-9425-43df69727604",
+      "activeDraftId": "2d62a112-44b5-4792-8eb2-ecf4d7174c3f",
+      "designSystemPath": ".superdesign/design-system.md",
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        "src/styles/tokens.css",
+        "src/layouts/Base.astro",
+        "src/components/TitleCard.astro",
+        "src/components/SectionHead.astro",
+        "src/lib/squash.ts"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "bdf8a846cfca21d5d833ac263c0e458fa48e7fca3d1740bd4c8f23adf4123661",
+        "src/styles/tokens.css": "9db1f5720f606ff4f8514a74abcce8dd582005f69f153007b950dabcbb246084",
+        "src/layouts/Base.astro": "b9805f7c7ebff6097dd5097bac86af783d8d6215573df537a60f70505485ddd3",
+        "src/components/TitleCard.astro": "b96301b5a373d8651f9206cdceae2c28b29674875e3c9daa57b6d73c72d10efb",
+        "src/components/SectionHead.astro": "e954ec13beb133071ed590383e2c8fa775b983095d1c8efae33671c3fa7cf4a5",
+        "src/lib/squash.ts": "6a8f4656a1675f2f89b1a0b799470ff06bffe90063ff1812e694710fceb40d62"
+      },
+      "drafts": {
+        "2d62a112-44b5-4792-8eb2-ecf4d7174c3f": {
+          "title": "每日快報｜2026.11.05 創刊號",
+          "visualDirection": "Approved Traditional Chinese newspaper daily political/election news, monochrome with vermilion; five sourced November 5 stories. Removed the introductory slogan per user request. Implemented at /daily/ with dated archives, source links, category filters and existing shared shell.",
+          "currentVersion": 3
+        }
+      },
+      "updatedAt": "2026-11-05T09:56:36.385363+00:00"
     }
   }
 }

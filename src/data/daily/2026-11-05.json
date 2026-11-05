@@ -1,0 +1,141 @@
+{
+  "date": "2026-11-05",
+  "number": 1,
+  "label": "晚間版",
+  "cutoffAt": "2026-11-05T17:26:00+08:00",
+  "publishedAt": "2026-11-05T17:47:00+08:00",
+  "updatedAt": "2026-11-05T17:47:00+08:00",
+  "stories": [
+    {
+      "id": "tainan",
+      "category": "policy",
+      "region": "台南市",
+      "shortTitle": "台南：政見公開與偏鄉基金承諾",
+      "title": "謝龍介政見網站上線，\n陳亭妃提出偏鄉基金承諾",
+      "summary": [
+        "台南市長選戰今天有兩項新動態：謝龍介集中公開競選主張，陳亭妃則提出選舉補助款的使用承諾。"
+      ],
+      "positions": [
+        {
+          "name": "謝龍介",
+          "party": "中國國民黨",
+          "text": "新網站彙整婚育住宅、育兒津貼、長者福利及治理主張，讓選民集中查閱。網站上線不等於每一項政策都在今天首次提出。"
+        },
+        {
+          "name": "陳亭妃",
+          "party": "民主進步黨",
+          "text": "承諾上任後捐出三成選舉補助款，交由市政府設置基金，支援偏鄉教育及醫療；實施以前提「當選上任」為條件。"
+        }
+      ],
+      "qualification": "候選人主張 · 尚非已實施政策",
+      "eventOn": "2026-11-05",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "謝龍介政見網站上線　陳亭妃允上任捐30％選舉補助款",
+          "url": "https://www.cna.com.tw/news/aipl/202611050186.aspx",
+          "publishedOn": "2026-11-05",
+          "reviewedAt": "2026-11-05T17:26:00+08:00"
+        }
+      ]
+    },
+    {
+      "id": "hsinchu",
+      "category": "policy",
+      "region": "新竹縣",
+      "shortTitle": "新竹縣：AI 交通治理",
+      "title": "徐欣瑩提 AI 交通治理，盼縮短尖峰通勤",
+      "summary": [
+        "徐欣瑩提出設立 AI 交通治理中心，先改善竹北瓶頸路口等區域，並倡議籌措 200 億元的大新竹交通治理基金。「通勤時間縮短兩成」是她提出的政策目標，目前並非實測成果。"
+      ],
+      "positions": [],
+      "qualification": "候選人主張 · 基金仍屬籌措倡議",
+      "eventOn": "2026-11-05",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "徐欣瑩提AI智慧交通政見　盼尖峰通勤時間縮短2成",
+          "url": "https://www.cna.com.tw/news/aloc/202611050151.aspx",
+          "publishedOn": "2026-11-05",
+          "reviewedAt": "2026-11-05T17:26:00+08:00"
+        }
+      ]
+    },
+    {
+      "id": "yunlin",
+      "category": "policy",
+      "region": "雲林縣",
+      "shortTitle": "雲林：建設與照顧政策",
+      "title": "張嘉郡談北港建設，劉建國提婦女與新住民支持",
+      "summary": [
+        "張嘉郡提出北港發展構想，包含活化糖廠及設置室內共融遊戲空間。劉建國則主張加強產後育兒、重返職場支持，並規劃新住民家庭服務中心。"
+      ],
+      "positions": [],
+      "qualification": "候選人主張 · 建設與服務均屬規劃",
+      "eventOn": "2026-11-05",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "張嘉郡擘畫北港施政願景　劉建國提婦女及新住民政見",
+          "url": "https://www.cna.com.tw/news/aloc/202611050213.aspx",
+          "publishedOn": "2026-11-05",
+          "reviewedAt": "2026-11-05T17:26:00+08:00"
+        }
+      ]
+    },
+    {
+      "id": "newtaipei",
+      "category": "election",
+      "region": "新北市",
+      "shortTitle": "新北：公辦政見會時程",
+      "title": "新北市長公辦電視政見會，11 月 13 日起登場",
+      "summary": [
+        "新北市選委會已公告市長公辦電視辯論式政見發表會自 11 月 13 日起舉行，並提供場次一覽表。想完整比較候選人主張，可先查看官方場次資訊。"
+      ],
+      "positions": [],
+      "qualification": "官方公告 · 本期列為提醒，非宣稱今天新公布",
+      "eventOn": "2026-11-13",
+      "reminder": true,
+      "sources": [
+        {
+          "publisher": "新北市選舉委員會",
+          "kind": "official",
+          "title": "新北市長公辦電視辯論式政見發表會 11/13起跑",
+          "url": "https://web.cec.gov.tw/tpcec/article/65575",
+          "publishedOn": null,
+          "reviewedAt": "2026-11-05T17:26:00+08:00"
+        }
+      ]
+    },
+    {
+      "id": "transparency",
+      "category": "public",
+      "region": "全國",
+      "shortTitle": "全國：民間選舉資訊",
+      "title": "台灣前進陣線推出民間選舉資訊網站",
+      "summary": [
+        "由四個政黨組成的台灣前進陣線推出「2026 民間版選舉公報」，整合候選人的財產、政治獻金等公開資料，並呼籲改善申報資料的可讀性與查核。這是民間彙整服務，與選委會正式選舉公報不同。"
+      ],
+      "positions": [],
+      "qualification": null,
+      "eventOn": "2026-11-05",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "台灣前進陣線公布民間版選舉公報　參選人資料一站看",
+          "url": "https://www.cna.com.tw/news/aipl/202611050085.aspx",
+          "publishedOn": "2026-11-05",
+          "reviewedAt": "2026-11-05T17:26:00+08:00"
+        }
+      ]
+    }
+  ]
+}

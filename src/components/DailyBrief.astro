@@ -1,0 +1,203 @@
+---
+import { NEWS_CATEGORY, displayDate, editionHref, weekday, type DailyEdition } from '../lib/dailyBrief';
+interface Props { issue: DailyEdition; editions: DailyEdition[] }
+const { issue, editions } = Astro.props;
+const categories = Object.entries(NEWS_CATEGORY).map(([key, label]) => ({ key, label, count: issue.stories.filter(s => s.category === key).length })).filter(c => c.count > 0);
+const upcoming = issue.stories.filter(s => s.reminder && s.category === 'election' && s.eventOn && s.eventOn > issue.date).sort((a, b) => a.eventOn!.localeCompare(b.eventOn!))[0];
+const issueIndex = editions.findIndex(e => e.date === issue.date);
+const previous = editions[issueIndex + 1];
+const next = editions[issueIndex - 1];
+const editionName = issue.number === 1 ? '創刊號' : `第 ${String(issue.number).padStart(3, '0')} 期`;
+const month = new Intl.DateTimeFormat('en', { month: 'long', timeZone: 'Asia/Taipei' }).format(new Date(`${issue.date}T12:00:00+08:00`)).toUpperCase();
+const count = (value: number) => String(value).padStart(2, '0');
+---
+<div class="daily-brief">
+  <section class="brief-head" aria-labelledby="brief-title">
+    <div class="brief-hero">
+      <div>
+        <p class="compact-date">{displayDate(issue.date)} · {weekday(issue.date)} · {editionName}</p>
+        <h1 id="brief-title">每日快報<span>。</span></h1>
+        <p class="brief-description">新事件、新政見，以及接下來值得留意的事。</p>
+      </div>
+      <div class="date-card" aria-label={`${displayDate(issue.date)} ${weekday(issue.date)} ${editionName}`}>
+        <p>{issue.date.slice(0, 4)} {month}</p>
+        <div><span class="day">{issue.date.slice(8)}</span><span class="day-caption">{weekday(issue.date)}<br />{editionName}</span></div>
+      </div>
+    </div>
+    <div class="edition-bar">
+      <p><time datetime={issue.date}>{displayDate(issue.date)}</time> {issue.label}<span class="separator">／</span>資料核對至 <time datetime={issue.cutoffAt}>{issue.cutoffAt.slice(11, 16)}</time>（台北時間）</p>
+      <details class="edition-picker">
+        <summary>閱讀其他日期</summary>
+        <nav aria-label="歷期快報">
+          {editions.map(e => <a href={editionHref(e.date)} aria-current={e.date === issue.date ? 'page' : undefined}>{displayDate(e.date)} · {e.number === 1 ? '創刊號' : `第 ${count(e.number)} 期`}</a>)}
+          {editions.length === 1 && <p>目前僅有本期，後續刊次會陸續加入。</p>}
+        </nav>
+      </details>
+    </div>
+    {issue.updatedAt !== issue.publishedAt && <p class="revision">本期修訂：<time datetime={issue.updatedAt}>{displayDate(issue.updatedAt.slice(0, 10))} {issue.updatedAt.slice(11, 16)}</time>（台北時間）</p>}
+  </section>
+
+  <div class="filter-bar">
+    <div class="brief-filters" role="group" aria-label="依消息類型篩選" hidden>
+      <button type="button" data-news-filter="all" aria-pressed="true">全部 <span>{count(issue.stories.length)}</span></button>
+      {categories.map(c => <button type="button" data-news-filter={c.key} aria-pressed="false">{c.label} <span>{count(c.count)}</span></button>)}
+    </div>
+    <p class="result-count" aria-live="polite">本期精選 {issue.stories.length} 則</p>
+  </div>
+
+  <div class="brief-columns">
+    <div class="stories">
+      {issue.stories.map((story, index) => <article id={`story-${story.id}`} class:list={['news-story', { lead: index === 0 }]} data-category={story.category}>
+        <div class="story-meta"><span class="story-number">{count(index + 1)}</span>{index === 0 && <strong>本日焦點</strong>}<span>{story.region} · {NEWS_CATEGORY[story.category]}{story.reminder ? '提醒' : ''}</span></div>
+        <h2>{index === 0 && story.title.includes('，')
+          ? <>{story.title.split('，')[0]}，<br class="lead-break" />{story.title.slice(story.title.indexOf('，') + 1).trim()}</>
+          : story.title}</h2>
+        {story.summary.map(paragraph => <p class="story-summary">{paragraph}</p>)}
+        {story.positions.length > 0 && <div class="positions">{story.positions.map(person => <div class="position">
+          <h3>{person.name}<span>{person.party}</span></h3>
+          <p>{person.text}</p>
+        </div>)}</div>}
+        {story.qualification && <p class="qualification">{story.qualification}</p>}
+        <div class="story-sources">
+          <p>{story.reminder ? '活動' : '事件'} {story.eventOn ? <time datetime={story.eventOn}>{displayDate(story.eventOn)}</time> : '原文未載明確日期'}{story.reminder && story.eventOn ? ' 起' : ''}</p>
+          {story.sources.map(source => <p>
+            <span>{source.publisher} · {source.publishedOn ? <time datetime={source.publishedOn}>{displayDate(source.publishedOn)}</time> : '原文未載發布日期'}</span>
+            <a href={source.url} target="_blank" rel="noopener noreferrer" title={source.title} aria-label={`${source.kind === 'official' ? '查看官方公告' : '閱讀來源'}：${source.title}`}>{source.kind === 'official' ? '查看官方公告' : '閱讀來源'} <span aria-hidden="true">↗</span></a>
+          </p>)}
+        </div>
+      </article>)}
+      <p class="reading-end">本期選讀至此。你可以開啟各則原文，查看完整說法與背景。</p>
+    </div>
+
+    <aside class="brief-aside" aria-label="本期導讀">
+      <div class="aside-inner">
+        <h2>今天，先看這些</h2>
+        <nav class="story-index" aria-label="本期新聞目錄">
+          {issue.stories.map((story, index) => <a href={`#story-${story.id}`} class="story-jump"><span>{count(index + 1)}</span><span>{story.shortTitle}</span></a>)}
+        </nav>
+        {upcoming && <div class="upcoming">
+          <p class="upcoming-label">選務日程</p>
+          <p class="upcoming-date">{upcoming.eventOn!.slice(5).replace('-', '.')} <span>起</span></p>
+          <p class="upcoming-title">{upcoming.title}</p>
+          <a href={`#story-${upcoming.id}`} class="story-jump">查看消息與官方來源 →</a>
+        </div>}
+        <div class="reading-note">
+          <h3>這份快報怎麼讀？</h3>
+          <p>每天挑選與選舉、政策及公共事務相關的消息，附上來源。候選人的承諾會明確標示，與已發生的事實分開。</p>
+          <p>本期是選讀，並未涵蓋所有縣市、候選人或當日新聞。</p>
+        </div>
+        <a class="policy-link" href="/elections/">延伸閱讀：找候選人、比較政見 →</a>
+      </div>
+    </aside>
+  </div>
+  <nav class="issue-navigation" aria-label="刊次切換">
+    <div>{previous && <a href={editionHref(previous.date)}>← 上一期 {displayDate(previous.date)}</a>}</div>
+    <a href={editionHref(issue.date)} class="permalink">{displayDate(issue.date)} ／ 第 {String(issue.number).padStart(3, '0')} 期</a>
+    <div>{next ? <a href={editionHref(next.date)}>下一期 {displayDate(next.date)} →</a> : <a href="#brief-title">回到本期開頭 ↑</a>}</div>
+  </nav>
+</div>
+
+<script>
+  const root = document.querySelector('.daily-brief');
+  if (root) {
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-news-filter]')];
+    const stories = [...root.querySelectorAll<HTMLElement>('article[data-category]')];
+    const resultCount = root.querySelector('.result-count');
+    const applyFilter = (category: string) => {
+      buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.newsFilter === category)));
+      stories.forEach(story => { story.hidden = category !== 'all' && story.dataset.category !== category; });
+      if (resultCount) resultCount.textContent = category === 'all' ? `本期精選 ${stories.length} 則` : `顯示 ${stories.filter(story => !story.hidden).length} 則`;
+    };
+    buttons.forEach(button => button.addEventListener('click', () => applyFilter(button.dataset.newsFilter!)));
+    root.querySelectorAll('.story-jump').forEach(link => link.addEventListener('click', () => applyFilter('all')));
+    // A browser Back/Forward or external fragment may target a story hidden by a filter.
+    const revealHash = () => {
+      const target = stories.find(story => `#${story.id}` === window.location.hash);
+      if (target?.hidden) { applyFilter('all'); target.scrollIntoView(); }
+    };
+    window.addEventListener('hashchange', revealHash);
+    root.querySelector<HTMLElement>('.brief-filters')!.hidden = false;
+  }
+</script>
+
+<style>
+  .daily-brief { font-size: 14px; }
+  .daily-brief p { margin: 0; }
+  .daily-brief a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .daily-brief :is(a,button,summary):focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  .brief-head { padding: 16px 0 24px; border-bottom: 4px solid var(--fg); }
+  .brief-hero { display: flex; justify-content: space-between; align-items: flex-end; gap: 28px; }
+  h1 { font: 900 clamp(56px, 7.5vw, 96px)/1.15 var(--serif); letter-spacing: -.055em; margin: 0; }
+  h1 span { color: var(--accent); }
+  .brief-description { margin-top: 16px !important; color: var(--muted); font-size: 16px; }
+  .compact-date { display: none; }
+  .date-card { flex: none; border-left: 1px solid var(--fg); padding-left: 20px; }
+  .date-card > p { font-size: 11px; font-weight: 700; letter-spacing: .16em; margin-bottom: 12px; }
+  .date-card > div { display: flex; align-items: flex-end; gap: 12px; }
+  .day { font-size: 92px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: .85; letter-spacing: -.07em; }
+  .day-caption { font-size: 12px; line-height: 2; }
+  .edition-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 28px; color: var(--muted); font-size: 11px; }
+  .separator { margin: 0 12px; }
+  .edition-picker { position: relative; }
+  .edition-picker summary { padding: 12px 0; cursor: pointer; font-size: 13px; font-weight: 700; }
+  .edition-picker nav { position: absolute; z-index: 2; right: 0; width: 260px; padding: 16px; border: 1px solid var(--fg); background: var(--bg); max-height: 320px; overflow-y: auto; }
+  .edition-picker a { display: block; padding: 12px 4px; font-size: 13px; }
+  .edition-picker a[aria-current] { font-weight: 700; color: var(--fg); }
+  .edition-picker nav p { font-size: 12px; line-height: 1.9; }
+  .revision { margin-top: 8px !important; color: var(--muted); font-size: 12px; }
+  .filter-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .brief-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .brief-filters[hidden], .news-story[hidden] { display: none; }
+  .brief-filters button { border: 1px solid var(--line); color: var(--fg); background: var(--bg); border-radius: 0; padding: 0 16px; min-height: 44px; cursor: pointer; font-size: 12px; font-weight: 700; }
+  .brief-filters button span { margin-left: 6px; }
+  .brief-filters button[aria-pressed=true] { background: var(--block-bg); color: var(--block-fg); border-color: var(--block-bg); }
+  .result-count { font-size: 12px; color: var(--muted); }
+  .brief-columns { display: grid; grid-template-columns: minmax(0,1fr) 270px; gap: 48px; padding-top: 32px; }
+  .stories { min-width: 0; }
+  .news-story { padding: 28px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 24px; }
+  .news-story.lead { padding-top: 0; padding-bottom: 32px; border-bottom-color: var(--fg); }
+  .story-meta { display: flex; gap: 12px; align-items: center; font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+  .story-meta strong,.story-number { color: var(--fg); font-weight: 700; }
+  .lead .story-number { background: var(--block-bg); color: var(--block-fg); padding: 4px 8px; }
+  .news-story h2 { font: 900 28px/1.4 var(--serif); letter-spacing: -.045em; text-wrap: balance; margin: 0; }
+  .lead h2 { font-size: clamp(32px,3.5vw,44px); }
+  .story-summary { font-size: 16px; line-height: 1.9; margin-top: 16px !important; }
+  .lead .story-summary { font-size: 18px; margin-top: 20px !important; }
+  .positions { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; margin-top: 24px; }
+  .position { border-top: 2px solid var(--fg); padding-top: 16px; }
+  .position h3 { font: 700 14px/1.7 var(--sans); margin: 0 0 8px; }
+  .position h3 span { font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 12px; }
+  .position p { line-height: 1.9; color: var(--muted); }
+  .qualification { color: var(--muted); font-size: 12px; line-height: 1.7; border-left: 2px solid var(--line); padding-left: 12px; margin-top: 20px !important; }
+  .story-sources { margin-top: 16px; color: var(--muted); font-size: 12px; line-height: 1.9; }
+  .story-sources p { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+  .story-sources a { font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+  .reading-end { font-size: 12px; color: var(--muted); margin-top: 24px !important; line-height: 1.9; }
+  .brief-aside { border-left: 1px solid var(--line); padding-left: 28px; }
+  .aside-inner { position: sticky; top: 28px; }
+  .brief-aside h2 { font: 900 20px/1.4 var(--serif); border-bottom: 2px solid var(--fg); padding-bottom: 12px; margin: 0; }
+  .story-index a { display: flex; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--line); line-height: 1.7; }
+  .story-index a:last-child { border-bottom: 0; }
+  .story-index a > span:first-child { color: var(--muted); font-weight: 700; }
+  .story-index a:first-child > span:first-child { color: var(--accent); }
+  .upcoming { margin-top: 28px; padding: 20px; background: var(--row-hover); border-top: 2px solid var(--fg); }
+  .upcoming-label { font-size: 11px; color: var(--muted); font-weight: 700; letter-spacing: .1em; }
+  .upcoming-date { font-size: 30px; font-weight: 800; letter-spacing: -.03em; margin-top: 12px !important; }
+  .upcoming-date span { font-size: 12px; font-weight: 400; color: var(--muted); }
+  .upcoming-title { font: 900 18px/1.6 var(--serif); margin-top: 12px !important; }
+  .upcoming a { display: inline-block; font-size: 12px; font-weight: 700; padding: 12px 0; margin-top: 8px; text-decoration: underline; text-underline-offset: 4px; }
+  .reading-note { margin-top: 32px; }
+  .reading-note h3 { font: 700 14px/1.5 var(--sans); margin: 0 0 12px; }
+  .reading-note p { font-size: 12px; color: var(--muted); line-height: 2.2; margin-top: 8px; }
+  .policy-link { display: inline-block; margin-top: 28px; padding-bottom: 8px; font-size: 12px; font-weight: 700; border-bottom: 1px solid var(--fg); }
+  .issue-navigation { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; border-top: 1px solid var(--fg); margin-top: 40px; padding-top: 20px; font-size: 12px; color: var(--muted); }
+  .issue-navigation a { display: inline-block; padding: 8px 0; }
+  @media(max-width:1023px) { .brief-columns { grid-template-columns: minmax(0,1fr); gap: 36px; }.brief-aside { border-left: 0; padding-left: 0; }.aside-inner { position: static; }.brief-aside .story-index { display: none; }.brief-aside > .aside-inner > h2 { display: none; } }
+  @media(max-width:639px) {
+    .brief-head { padding: 4px 0 20px; }.brief-hero { display: block; }.date-card { display: none; }.compact-date { display: block; font-size: 12px; color: var(--muted); margin-bottom: 12px !important; }
+    h1 { font-size: 56px; }.brief-description { font-size: 14px; line-height: 1.8; }.edition-bar { margin-top: 20px; gap: 4px; }.edition-picker nav { left: 0; right: auto; }
+    .brief-filters { gap: 8px; }.brief-filters button { padding: 0 12px; }.brief-filters button span { margin-left: 3px; }.filter-bar { gap: 12px; }
+    .news-story h2 { font-size: 24px; }.lead h2 { font-size: 29px; }.lead-break { display: none; }.lead .story-summary,.story-summary { font-size: 16px; }.positions { grid-template-columns: 1fr; }
+    .issue-navigation { gap: 4px 12px; }.issue-navigation > div:empty { display: none; }
+  }
+</style>

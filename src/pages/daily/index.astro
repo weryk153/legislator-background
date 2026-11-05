@@ -1,0 +1,10 @@
+---
+import Base from '../../layouts/Base.astro';
+import DailyBrief from '../../components/DailyBrief.astro';
+import { loadDailyEditions, displayDate } from '../../lib/dailyBrief';
+const editions = loadDailyEditions();
+const issue = editions[0];
+---
+<Base title={`每日快報 ${displayDate(issue.date)}｜政治人物背景資料庫`} description="選舉、政治與公共政策每日選讀。整理新事件、新政見與選務提醒，每則附來源與日期。" editionDate={issue.date}>
+  <DailyBrief {issue} {editions} />
+</Base>

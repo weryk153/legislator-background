@@ -8,6 +8,8 @@ import ElectionMargin from "../components/ElectionMargin.svelte";
 import { rosterDataset, marginsDataset } from "../lib/clientDatasets";
 import { queryList } from "../lib/filterSort";
 import { partiesBySeats } from "../lib/filterOptions";
+import { loadDailyEditions, displayDate } from "../lib/dailyBrief";
+const latestBrief = loadDailyEditions()[0];
 
 // 參選人檔案由選舉頁進入，不列入總覽（總覽收錄對象為現任公職）。
 const dataset = await rosterDataset();
@@ -53,6 +55,8 @@ const jsonLd = [
       <a class="go" href="/elections/">進入選舉專題 <span aria-hidden="true">→</span></a>
     </div>
   </section>
+
+  <a class="connection-entry" href="/daily/"><span class="connection-kicker">每日快報 · {displayDate(latestBrief.date)}</span><strong>{latestBrief.stories[0].title}</strong><span class="connection-hint">本期 {latestBrief.stories.length} 則消息與來源</span><span class="connection-arrow" aria-hidden="true">→</span></a>
 
   <ElectionMargin client:visible dataUrl={margins.url} year={margins.data.year} siteUrl={Astro.site?.href ?? Astro.url.origin} />
 

@@ -19,6 +19,7 @@ const {
   ogImageAlt,
   // 不該被索引的頁面（如 404）：輸出 robots noindex，並省略 canonical。
   noindex = false,
+  editionDate,
 } = Astro.props;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.pathname;
 const ogImage = ogImageProp ?? (Astro.site ? new URL("/og.png", Astro.site).href : "/og.png");
@@ -34,6 +35,7 @@ const isHome = path === "/";
 // 主選單包含獨立數據排行入口。
 const NAV = [
   { href: "/", label: "總覽", match: (p: string) => p === "/" },
+  { href: "/daily/", label: "每日快報", match: (p: string) => p.startsWith("/daily/") },
   { href: "/elections/", label: "九合一選舉", match: (p: string) => p.startsWith("/elections") },
   { href: "/rankings/", label: "數據排行", match: (p: string) => p.startsWith("/rankings") },
   { href: "/donors/", label: "政治獻金", match: (p: string) => p.startsWith("/donors") },
@@ -83,7 +85,9 @@ const mastStyle = fitStyle(SITE_NAME, 0.62, 64, 94);
         <div class="mast-side">
           <p class="mast-date">
             <span id="mast-today" hidden></span>
-            {path.startsWith('/elections')
+            {editionDate
+              ? <span>快報刊次 {editionDate}</span>
+              : path.startsWith('/elections')
               ? dates.roster && <span>選舉名冊 {dates.roster}</span>
               : dates.profiles && <span>人物資料彙整 {dates.profiles}</span>}
           </p>

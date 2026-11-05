@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import DailyBrief from '../../components/DailyBrief.astro';
+import { loadDailyEditions, displayDate } from '../../lib/dailyBrief';
+export function getStaticPaths() {
+  return loadDailyEditions().map(issue => ({ params: { date: issue.date }, props: { issue } }));
+}
+const { issue } = Astro.props;
+const editions = loadDailyEditions();
+---
+<Base title={`${displayDate(issue.date)} 每日快報｜政治人物背景資料庫`} description={issue.stories.map(s => s.title).join('；')} editionDate={issue.date}>
+  <DailyBrief {issue} {editions} />
+</Base>
