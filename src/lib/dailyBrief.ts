@@ -46,7 +46,7 @@ export function validateEditions(editions: DailyEdition[]): DailyEdition[] {
     if (!validDate(issue.date) || dates.has(issue.date) || !Number.isInteger(issue.number) || issue.number < 1 || numbers.has(issue.number)) throw new Error('快報日期或期號無效／重複');
     dates.add(issue.date); numbers.add(issue.number);
     if (!nonempty(issue.label) || !validTime(issue.cutoffAt) || !validTime(issue.publishedAt) || !validTime(issue.updatedAt)
-      || issue.cutoffAt.slice(0, 10) !== issue.date || issue.cutoffAt > issue.publishedAt || issue.publishedAt > issue.updatedAt) throw new Error('快報核對或發布時間不一致');
+      || issue.cutoffAt.slice(0, 10) !== issue.date || issue.cutoffAt > issue.updatedAt || issue.publishedAt > issue.updatedAt) throw new Error('快報核對或發布時間不一致');
     if (!issue.stories.length) throw new Error('不能以空白快報冒充已完成查核');
     const ids = new Set<string>();
     for (const story of issue.stories) {
@@ -68,8 +68,8 @@ export function validateEditions(editions: DailyEdition[]): DailyEdition[] {
         urls.add(source.url);
         if (!validTime(source.reviewedAt) || source.reviewedAt > issue.updatedAt
           || (source.publishedOn !== null && (!validDate(source.publishedOn) || source.publishedOn > source.reviewedAt.slice(0, 10)))) throw new Error('快報來源日期不一致');
-        // Later corrections may be reviewed after the original cutoff, but never silently enter the original edition.
-        if (source.reviewedAt > issue.cutoffAt && issue.updatedAt === issue.publishedAt) throw new Error('新增來源超過本期查核截止時間');
+        // Intraday updates advance the cutoff while preserving the first publication time.
+        if (source.reviewedAt > issue.cutoffAt) throw new Error('新增來源超過本期查核截止時間');
       }
     }
   }

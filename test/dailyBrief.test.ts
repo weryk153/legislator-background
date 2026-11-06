@@ -38,6 +38,28 @@ describe('每日快報發布資料', () => {
     issue.stories[1].id = issue.stories[0].id;
     expect(() => validateEditions([issue])).toThrow('ID');
   });
+  it('accepts later reporting in the same edition without changing its first publication time', () => {
+    const issue = copy();
+    const publishedAt = issue.publishedAt;
+    issue.cutoffAt = '2026-11-05T18:20:00+08:00';
+    issue.updatedAt = '2026-11-05T18:30:00+08:00';
+    issue.stories[0].sources[0].reviewedAt = '2026-11-05T18:15:00+08:00';
+    const [updated] = validateEditions([issue]);
+    expect(updated.publishedAt).toBe(publishedAt);
+    expect(updated.number).toBe(firstIssue.number);
+    expect(updated.cutoffAt).toBe(issue.cutoffAt);
+  });
+  it('rejects an updated edition whose new sources exceed its cutoff or whose cutoff exceeds publication', () => {
+    const issue = copy();
+    issue.updatedAt = '2026-11-05T18:30:00+08:00';
+    issue.stories[0].sources[0].reviewedAt = '2026-11-05T18:15:00+08:00';
+    expect(() => validateEditions([issue])).toThrow('截止時間');
+    issue.cutoffAt = '2026-11-05T18:31:00+08:00';
+    expect(() => validateEditions([issue])).toThrow('發布時間');
+    const firstPublication = copy();
+    firstPublication.cutoffAt = '2026-11-05T23:59:00+08:00';
+    expect(() => validateEditions([firstPublication])).toThrow('發布時間');
+  });
   it('sorts latest-first without changing existing archive dates', () => {
     const issue = copy();
     issue.date = '2026-11-06'; issue.number = 2;

@@ -34,7 +34,7 @@ const count = (value: number) => String(value).padStart(2, '0');
         </nav>
       </details>
     </div>
-    {issue.updatedAt !== issue.publishedAt && <p class="revision">本期修訂：<time datetime={issue.updatedAt}>{displayDate(issue.updatedAt.slice(0, 10))} {issue.updatedAt.slice(11, 16)}</time>（台北時間）</p>}
+    {issue.updatedAt !== issue.publishedAt && <p class="revision">本期更新：<time datetime={issue.updatedAt}>{displayDate(issue.updatedAt.slice(0, 10))} {issue.updatedAt.slice(11, 16)}</time>（台北時間）</p>}
   </section>
 
   <div class="filter-bar">
