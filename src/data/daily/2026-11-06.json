@@ -1,0 +1,164 @@
+{
+  "date": "2026-11-06",
+  "number": 2,
+  "label": "晚間版",
+  "cutoffAt": "2026-11-06T18:19:33+08:00",
+  "publishedAt": "2026-11-06T18:22:25+08:00",
+  "updatedAt": "2026-11-06T18:22:25+08:00",
+  "stories": [
+    {
+      "id": "hualien-cash-proposals",
+      "category": "policy",
+      "region": "花蓮縣",
+      "shortTitle": "花蓮：普發現金與財源討論",
+      "title": "游淑貞提普發2萬元，\n花蓮縣長選戰聚焦福利財源",
+      "summary": [
+        "游淑貞今天在政見說明會提出，當選後普發縣民每人2萬元。張峻與魏嘉賢則對財政負擔提出疑問，三人的福利主張與財源說法仍須分別檢視。"
+      ],
+      "positions": [
+        {
+          "name": "游淑貞",
+          "party": "中國國民黨",
+          "text": "主張普發2萬元，並稱已評估財政，不會擠壓建設與教育支出；這是候選人的評估說法。"
+        },
+        {
+          "name": "張峻",
+          "party": "無黨籍",
+          "text": "重申普發1萬元，稱可由財劃法修法後增加的經費支應；他估計約31萬人需31億元，並質疑提高給付後的財政壓力。"
+        },
+        {
+          "name": "魏嘉賢",
+          "party": "無黨籍",
+          "text": "要求提出財務可行性，並說明自己的「12本未來存摺」規劃交通、健康及教育等福利額度，並非普發現金。"
+        }
+      ],
+      "qualification": "候選人主張 · 報導未附完整財務試算，不能視為已核定財源或已開始發放。",
+      "eventOn": "2026-11-06",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "游淑貞改口普發2萬　張峻、魏嘉賢質疑財政可行性",
+          "url": "https://www.cna.com.tw/news/aloc/202611060106.aspx",
+          "publishedOn": "2026-11-06",
+          "reviewedAt": "2026-11-06T18:19:33+08:00"
+        }
+      ]
+    },
+    {
+      "id": "zhubei-industry-transit",
+      "category": "policy",
+      "region": "新竹縣竹北市",
+      "shortTitle": "竹北：農漁產業與通學接駁",
+      "title": "竹北市長參選人分提農漁升級、社區接駁與通學改善",
+      "summary": [
+        "吳旭智今天提出興建烏魚故事館，結合產地銷售、食農教育及觀光，並倡議青年返鄉基金、智慧水質監測與冷鏈設備。曾聖凱則提出公車APP與站牌升級、西區社區小巴，以及人行與校園周邊通學環境改善。"
+      ],
+      "positions": [],
+      "qualification": "候選人主張 · 建設與服務尚屬規劃；曾聖凱表示，跨區接駁與道路權責事項須與縣府等單位協調，依需求分階段推動。",
+      "eventOn": "2026-11-06",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "竹北市長選戰升溫　參選人提建設政見拚支持",
+          "url": "https://www.cna.com.tw/news/aloc/202611060164.aspx",
+          "publishedOn": "2026-11-06",
+          "reviewedAt": "2026-11-06T18:19:33+08:00"
+        }
+      ]
+    },
+    {
+      "id": "kaohsiung-new-resident-video",
+      "category": "policy",
+      "region": "高雄市",
+      "shortTitle": "高雄：新住民服務與商圈規劃",
+      "title": "賴瑞隆發布新住民政策影片，提出商圈與多語服務構想",
+      "summary": [
+        "高雄市長參選人賴瑞隆今天推出走訪南國商圈的影片，提出強化新住民專責服務、語言支持及文化交流；另以「幸福川計畫」規劃水環境、步行空間與街景改善，結合商圈輔導、品牌行銷及多語導覽。"
+      ],
+      "positions": [],
+      "qualification": "候選人主張 · 本日新動態是影片發布，不表示各項政策皆於今天首次提出，也不是已完成的建設。",
+      "eventOn": "2026-11-06",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "賴瑞隆與新住民拍片推商圈改造　柯志恩MV破百萬觀看",
+          "url": "https://www.cna.com.tw/news/aipl/202611060266.aspx",
+          "publishedOn": "2026-11-06",
+          "reviewedAt": "2026-11-06T18:19:33+08:00"
+        }
+      ]
+    },
+    {
+      "id": "farmer-allowance-third-reading",
+      "category": "public",
+      "region": "全國",
+      "shortTitle": "全國：老農津貼修法與財源",
+      "title": "老農津貼1.5萬元版本三讀，農業部提出財源疑慮",
+      "summary": [
+        "立法院今天三讀通過老農津貼修法，將每月金額訂為1萬5,000元，並調整排富門檻與物價連動機制；三讀條文列明相關給付條文回溯至今年7月1日。",
+        "國民黨、民眾黨團主張提高給付以回應生活成本；農業部則表示，較行政院1萬元版本，每年估計多需約320億元，應提出完整財源規劃。此經費差額為農業部估算。"
+      ],
+      "positions": [],
+      "qualification": "本則報導三讀版本及行政部門回應，不代表款項已發放；實際辦理須看後續正式公告。",
+      "eventOn": "2026-11-06",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "立院三讀老農津貼調高為每月1.5萬元　回溯至7/1生效",
+          "url": "https://www.cna.com.tw/news/aipl/202611060186.aspx",
+          "publishedOn": "2026-11-06",
+          "reviewedAt": "2026-11-06T18:19:33+08:00"
+        },
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "老農津貼三讀提高至1.5萬　農業部：缺完整財源規劃",
+          "url": "https://www.cna.com.tw/news/ahel/202611060263.aspx",
+          "publishedOn": "2026-11-06",
+          "reviewedAt": "2026-11-06T18:19:33+08:00"
+        }
+      ]
+    },
+    {
+      "id": "taoyuan-public-policy-sessions",
+      "category": "election",
+      "region": "桃園市",
+      "shortTitle": "桃園：市長與議員政見會提醒",
+      "title": "桃園市長政見會11月17日舉行，議員場次接續登場",
+      "summary": [
+        "桃園市選委會日程表列出，市長公辦電視政見會於11月17日上午9時舉行，不採辯論方式。市議員各選區場次安排在11月18日至25日，由桃園市有線電視第三公用頻道及YouTube同步直播。",
+        "第1與第7選區分時段進行，請按官方日程表確認自己的選區與候選人場次；附件另列復興區民代表政見會。"
+      ],
+      "positions": [],
+      "qualification": "官方場次提醒 · 活動尚未舉行；來源頁未載刊登日，本期不把它當作今天新公告。",
+      "eventOn": "2026-11-17",
+      "reminder": true,
+      "sources": [
+        {
+          "publisher": "桃園市選舉委員會",
+          "kind": "official",
+          "title": "115年地方公職人員選舉候選人公辦政見發表會日程表",
+          "url": "https://web.cec.gov.tw/tyec/article/65588",
+          "publishedOn": null,
+          "reviewedAt": "2026-11-06T18:19:33+08:00"
+        },
+        {
+          "publisher": "桃園市選舉委員會",
+          "kind": "official",
+          "title": "桃園市115年地方公職人員選舉候選人公辦政見發表會日程表（含復興區民代表）",
+          "url": "https://web.cec.gov.tw/api/file/6c978152-3e6b-44ce-83b6-dc850ec2abb2.pdf",
+          "publishedOn": null,
+          "reviewedAt": "2026-11-06T18:19:33+08:00"
+        }
+      ]
+    }
+  ]
+}
