@@ -1,10 +1,10 @@
 {
   "date": "2026-11-07",
   "number": 3,
-  "label": "午間版",
-  "cutoffAt": "2026-11-07T12:00:46+08:00",
+  "label": "晚間增補",
+  "cutoffAt": "2026-11-07T18:04:14+08:00",
   "publishedAt": "2026-11-07T12:01:45+08:00",
-  "updatedAt": "2026-11-07T12:01:45+08:00",
+  "updatedAt": "2026-11-07T18:04:14+08:00",
   "stories": [
     {
       "id": "farmer-allowance-cabinet-response",
@@ -111,6 +111,157 @@
           "url": "https://www.moi.gov.tw/News_Content.aspx?n=4&sms=9009&s=343024",
           "publishedOn": "2026-11-07",
           "reviewedAt": "2026-11-07T12:00:01+08:00"
+        }
+      ]
+    },
+    {
+      "id": "taichung-senior-health-premium",
+      "category": "policy",
+      "region": "臺中市",
+      "shortTitle": "台中：兩人承諾延續健保補助",
+      "title": "何欣純、江啟臣均承諾當選後延續長者健保補助",
+      "summary": [
+        "中央社11月7日下午報導，台中市長參選人何欣純與江啟臣當天受訪，均表示當選後將延續市府長者健保補助。兩人的回應出現在行政院前一天決定不副署老人福利法修法之後。"
+      ],
+      "positions": [
+        {
+          "name": "何欣純",
+          "party": "民主進步黨",
+          "text": "表示會延續長者健保補助，當選後照常執行明年度相關預算。"
+        },
+        {
+          "name": "江啟臣",
+          "party": "中國國民黨",
+          "text": "表示若當選，將接續盧秀燕市府的長者健保補助政策，讓補助不中斷。"
+        }
+      ],
+      "qualification": "候選人主張 · 本日新動態是兩人受訪回應，不表示補助政見今天首次提出。地方既有補助與中央修法須分開看，本則不將競選承諾當作新增給付已經上路。",
+      "eventOn": "2026-11-07",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "台中長者健保補助　何欣純、江啟臣承諾延續",
+          "url": "https://www.cna.com.tw/news/aloc/202611070082.aspx",
+          "publishedOn": "2026-11-07",
+          "reviewedAt": "2026-11-07T18:04:14+08:00"
+        }
+      ]
+    },
+    {
+      "id": "chiayi-anliao-soil-response",
+      "category": "public",
+      "region": "嘉義市",
+      "shortTitle": "嘉義：社宅土方處理待方案",
+      "title": "安寮好室土方清運受阻，住都中心回應議員關切",
+      "summary": [
+        "嘉義市議員陳家平對安寮好室社宅工程進度與工地揚塵提出關切後，國家住都中心11月7日說明，土方清運受去化政策及地方土資場收容情形影響；尚未運出的土方暫置現場，並進行土資媒合。",
+        "中心表示，仍督促統包商完成連續壁相關工項，並要求提出清運及施工方案。依10月29日協調會議，統包商預計11月13日前回覆後續辦理方式。"
+      ],
+      "positions": [],
+      "qualification": "本日新動態為住都中心回應；議員關切由中央社轉述前一日報導。11月13日是廠商預計回覆方式的期限，不是清運完成、復工或交屋日期，相關障礙尚待處理。",
+      "eventOn": "2026-11-07",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "國家住都中心：積極協調嘉義社宅土方去化問題",
+          "url": "https://www.cna.com.tw/news/aipl/202611070068.aspx",
+          "publishedOn": "2026-11-07",
+          "reviewedAt": "2026-11-07T18:04:14+08:00"
+        },
+        {
+          "publisher": "國家住宅及都市更新中心",
+          "kind": "official",
+          "title": "國家住都中心積極協調安寮好室社宅土方去化問題　持續督促工程推進",
+          "url": "https://www.hurc.org.tw/hurc/docDetail?uid=17&pid=10&doc_id=2046",
+          "publishedOn": "2026-11-07",
+          "reviewedAt": "2026-11-07T18:04:14+08:00"
+        }
+      ]
+    },
+    {
+      "id": "xinzhuang-council-campaign-launch",
+      "category": "election",
+      "region": "新北市新莊區",
+      "shortTitle": "新北：陳世軒競總成立",
+      "title": "陳世軒競總成立，侯友宜、李四川與黃國昌同台",
+      "summary": [
+        "民眾黨新北市議員陳世軒11月7日上午在新莊體育園區廣場舉行競選總部成立大會，市長侯友宜、國民黨新北市長參選人李四川及民眾黨主席黃國昌同台支持。中央社於下午刊出報導。",
+        "李四川表示，與黃國昌溝通順暢，盼延續選前與選後合作；黃國昌則說，期待民眾黨議員在議會監督市政及政見落實。"
+      ],
+      "positions": [],
+      "qualification": "本則記錄當日競選活動及當事人說法，不以同台推定所有選區的合作安排，也不將站台發言當作經獨立查證的施政成果。",
+      "eventOn": "2026-11-07",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "侯友宜、李四川、黃國昌同台　為陳世軒站台展藍白合",
+          "url": "https://www.cna.com.tw/news/aipl/202611070091.aspx",
+          "publishedOn": "2026-11-07",
+          "reviewedAt": "2026-11-07T18:04:14+08:00"
+        }
+      ]
+    },
+    {
+      "id": "workplace-bullying-local-investigators",
+      "category": "public",
+      "region": "全國各縣市",
+      "shortTitle": "全國：職場霸凌調查人力",
+      "title": "勞動部說明地方查察員進用，59人採分批訓練到任",
+      "summary": [
+        "中央社11月7日下午報導，勞動部補助地方政府增聘59名專職查察員，支援事業單位最高負責人涉職場霸凌的申訴調查。職安署官員表示，首批20多人已到地方服務，其餘人員將在訓練後分批報到。",
+        "職安署11月6日公告則確認，首梯教育訓練於11月5日至6日辦理，內容包括案件受理、訪談蒐證、事實認定及調查報告撰寫；各地方政府仍陸續招募進用。"
+      ],
+      "positions": [],
+      "qualification": "本日新動態是官員對進用進度的說明；59人為增聘規模，不能解讀為全數已到任。訓練公告發布於11月6日，並非今天才辦理訓練或開始施行防治專章。",
+      "eventOn": "2026-11-07",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "防治職場霸凌 勞動部助地方聘59名專職查察員",
+          "url": "https://www.cna.com.tw/news/ahel/202611070126.aspx",
+          "publishedOn": "2026-11-07",
+          "reviewedAt": "2026-11-07T18:04:14+08:00"
+        },
+        {
+          "publisher": "勞動部職業安全衛生署",
+          "kind": "official",
+          "title": "職安署辦理首梯新進職場霸凌查察員申訴調查教育訓練，提升案件調查處理專業知能",
+          "url": "https://www.osha.gov.tw/48110/48417/48423/215216/?cprint=pt",
+          "publishedOn": "2026-11-06",
+          "reviewedAt": "2026-11-07T18:04:14+08:00"
+        }
+      ]
+    },
+    {
+      "id": "senior-welfare-law-party-responses",
+      "category": "public",
+      "region": "全國",
+      "shortTitle": "全國：長者健保修法後續",
+      "title": "老人福利法不副署後，藍綠就家庭負擔與財源提出回應",
+      "summary": [
+        "行政院11月6日決定不副署老人福利法修法後，國民黨、民進黨立法院黨團7日各自回應。國民黨團主張，排富補助長者健保費能減輕替父母負擔保費的家庭壓力，要求政府承擔責任。",
+        "民進黨團則要求討論修法涉及的弱勢醫療保障、財源安排與健保永續，並回應能源支出爭議，表示政府也以平抑油氣與電價減輕生活成本。"
+      ],
+      "positions": [],
+      "qualification": "重要後續 · 本則呈現兩黨團的政策立場，不判定憲政爭議，也不表示全國長者已全面免繳健保費。這是老人福利法修法，與本期另一則老農津貼修法不同。",
+      "eventOn": "2026-11-07",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "政院不副署老人福利法修法　藍綠交鋒憲政與財政責任",
+          "url": "https://www.cna.com.tw/news/aipl/202611070146.aspx",
+          "publishedOn": "2026-11-07",
+          "reviewedAt": "2026-11-07T18:04:14+08:00"
         }
       ]
     }
