@@ -59,7 +59,7 @@ const count = (value: number) => String(value).padStart(2, '0');
         </div>)}</div>}
         {story.qualification && <p class="qualification">{story.qualification}</p>}
         <div class="story-sources">
-          <p>{story.reminder ? '活動' : '事件'} {story.eventOn ? <time datetime={story.eventOn}>{displayDate(story.eventOn)}</time> : '原文未載明確日期'}{story.reminder && story.eventOn ? ' 起' : ''}</p>
+          <p>{story.reminder ? '相關日期' : '事件'} {story.eventOn ? <time datetime={story.eventOn}>{displayDate(story.eventOn)}</time> : '原文未載明確日期'}</p>
           {story.sources.map(source => <p>
             <span>{source.publisher} · {source.publishedOn ? <time datetime={source.publishedOn}>{displayDate(source.publishedOn)}</time> : '原文未載發布日期'}</span>
             <a href={source.url} target="_blank" rel="noopener noreferrer" title={source.title} aria-label={`${source.kind === 'official' ? '查看官方公告' : '閱讀來源'}：${source.title}`}>{source.kind === 'official' ? '查看官方公告' : '閱讀來源'} <span aria-hidden="true">↗</span></a>
