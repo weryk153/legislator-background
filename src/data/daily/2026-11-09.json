@@ -1,10 +1,10 @@
 {
   "date": "2026-11-09",
   "number": 5,
-  "label": "早報",
-  "cutoffAt": "2026-11-09T10:06:34+08:00",
+  "label": "午間增補",
+  "cutoffAt": "2026-11-09T12:02:22+08:00",
   "publishedAt": "2026-11-09T10:06:34+08:00",
-  "updatedAt": "2026-11-09T10:06:34+08:00",
+  "updatedAt": "2026-11-09T12:02:22+08:00",
   "stories": [
     {
       "id": "tra-nov9-service-adjustments",
@@ -137,6 +137,72 @@
           "url": "https://www.cna.com.tw/news/aipl/202611080188.aspx",
           "publishedOn": "2026-11-08",
           "reviewedAt": "2026-11-09T10:04:19+08:00"
+        }
+      ]
+    },
+    {
+      "id": "fisheries-human-rights-phase-two",
+      "category": "public",
+      "region": "全國、遠洋漁業",
+      "shortTitle": "漁業：第二期人權計畫上路",
+      "title": "漁業人權計畫投入約10.3億元，聚焦工資保障、船員通訊與醫療",
+      "summary": [
+        "農業部11月9日宣布，行政院已核定2026至2029年的第二期「漁業與人權行動計畫」，規劃投入約10.3億元，延續勞動檢查並強化船員工資、通訊及醫療支持。",
+        "農業部表示，漁業署已輔導7個遠洋公、協、漁會建立工資墊償機制，搭配工資給付通報；船員使用衛星網路方面，除既有獎補助外，仍在規劃政策誘因。遠端醫療則已輔導2家漁業團體與醫療機構建立機制，後續也將與主要船員來源國洽談合作。"
+      ],
+      "positions": [],
+      "qualification": "本日新內容為主管機關公布計畫核定及推動方向；未載行政院實際核定日。10.3億元是四年計畫投入額，不是每年金額，也不表示所有船員已能使用網路或遠端醫療。既有工資墊償機制與仍在規劃的誘因分別記錄。",
+      "eventOn": "2026-11-09",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "農業部／漁業署",
+          "kind": "official",
+          "title": "深化漁業勞動權益保障 第二期「漁業與人權行動計畫」正式上路",
+          "url": "https://www.moa.gov.tw/theme_data.php?theme=news&sub_theme=agri&id=10347",
+          "publishedOn": "2026-11-09",
+          "reviewedAt": "2026-11-09T12:01:45+08:00"
+        },
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "改善漁業勞動權益 第2期計畫10.3億元上路",
+          "url": "https://www.cna.com.tw/news/ahel/202611090039.aspx",
+          "publishedOn": "2026-11-09",
+          "reviewedAt": "2026-11-09T12:00:30+08:00"
+        }
+      ]
+    },
+    {
+      "id": "dementia-basic-act-civic-safeguards",
+      "category": "public",
+      "region": "全國、立法院",
+      "shortTitle": "立法：失智者權益保障倡議",
+      "title": "失智症基本法預定逐條審查，協會提出司法支持、早期介入與自主規劃建議",
+      "summary": [
+        "台灣失智症協會11月9日發布聲明，呼籲失智症基本法納入司法程序支持、認知促進與延緩失智服務，以及醫療、財務和生活安排的預先規劃，並由跨部會共同承擔政策責任。",
+        "依協會聲明及中央社報導，立法院社會福利及衛生環境委員會預定11月11日至12日逐條審查，目前有15個草案版本。協會建議，不由衛福部單一主管，而由行政院依各事項指定相關機關辦理並協調。"
+      ],
+      "positions": [],
+      "qualification": "民間倡議與未來議程提醒 · 今日事件為協會提出建議，逐條審查預定在11月11日至12日進行。上述保障是倡議內容，並非已完成立法或生效條文；法案整合結果仍待審議。",
+      "eventOn": "2026-11-09",
+      "reminder": true,
+      "sources": [
+        {
+          "publisher": "台灣失智症協會",
+          "kind": "civic",
+          "title": "失智症基本法11月11日進入逐條審查，台灣失智症協會盼凝聚朝野共識、完善關鍵保障",
+          "url": "https://www.tada2002.org.tw/Messages/Content?Id=3465",
+          "publishedOn": "2026-11-09",
+          "reviewedAt": "2026-11-09T12:01:46+08:00"
+        },
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "失智症基本法將逐條審查　民團建議法案納3大保障",
+          "url": "https://www.cna.com.tw/news/ahel/202611090036.aspx",
+          "publishedOn": "2026-11-09",
+          "reviewedAt": "2026-11-09T12:00:31+08:00"
         }
       ]
     }
