@@ -17,7 +17,7 @@ const count = (value: number) => String(value).padStart(2, '0');
       <div>
         <p class="compact-date">{displayDate(issue.date)} · {weekday(issue.date)} · {editionName}</p>
         <h1 id="brief-title">每日快報<span>。</span></h1>
-        <p class="brief-description">新事件、新政見，以及接下來值得留意的事。</p>
+        <p class="brief-description">候選人政見、選戰進展與投票須知。</p>
       </div>
       <div class="date-card" aria-label={`${displayDate(issue.date)} ${weekday(issue.date)} ${editionName}`}>
         <p>{issue.date.slice(0, 4)} {month}</p>
