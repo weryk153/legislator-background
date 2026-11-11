@@ -1,10 +1,10 @@
 {
   "date": "2026-11-11",
   "number": 7,
-  "label": "早報",
-  "cutoffAt": "2026-11-11T06:59:33+08:00",
+  "label": "午間增補",
+  "cutoffAt": "2026-11-11T11:59:20+08:00",
   "publishedAt": "2026-11-11T06:59:33+08:00",
-  "updatedAt": "2026-11-11T06:59:33+08:00",
+  "updatedAt": "2026-11-11T11:59:20+08:00",
   "stories": [
     {
       "id": "penghu-farmland-agriculture-platform",
@@ -160,6 +160,31 @@
           "url": "https://news.nextapple.com/politics/20261110/1D298D71CFBE27594168E4EA9800773D",
           "publishedOn": "2026-11-10",
           "reviewedAt": "2026-11-11T06:59:33+08:00"
+        }
+      ]
+    },
+    {
+      "id": "taichung-mayor-council-broadcast-schedule",
+      "category": "election",
+      "region": "臺中市",
+      "shortTitle": "臺中：辯論與議員政見會收視資訊",
+      "title": "臺中市長辯論11月17日晚間直播，議員政見會18日至22日分區播出",
+      "summary": [
+        "臺中市選委會11月11日舉行宣傳記者會，說明市長候選人公辦電視政見發表會將於11月17日晚間7時以辯論形式進行，並在選委會YouTube同步直播；11月24日晚間6時另安排電視重播。",
+        "市議員候選人政見發表會依17個選區，於11月18日至20日分區錄影，每人15分鐘，並在18日至22日於各該選區播出一次。台灣佳光、大屯為CH04，豐盟、大台中數位及群健為CH20，各場提供手語翻譯。"
+      ],
+      "positions": [],
+      "qualification": "今日發布的未來活動提醒 · 11月11日為記者會及公告日，並非辯論已舉行。議員場次的錄影日與播出日不同，各選區確切收視時間請查看來源頁所附對應有線電視節目表；公告明載YouTube同步直播的是市長場次，不推定議員各場也同步網路直播。",
+      "eventOn": "2026-11-11",
+      "reminder": true,
+      "sources": [
+        {
+          "publisher": "臺中市政府（臺中市選舉委員會說明）",
+          "kind": "official",
+          "title": "台中市長候選人11/17電視辯論登場！ 市議員政見發表會11/18起接力播出",
+          "url": "https://www.taichung.gov.tw/3411469/post",
+          "publishedOn": "2026-11-11",
+          "reviewedAt": "2026-11-11T11:59:20+08:00"
         }
       ]
     }
