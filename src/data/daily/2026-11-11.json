@@ -1,10 +1,10 @@
 {
   "date": "2026-11-11",
   "number": 7,
-  "label": "午間增補",
-  "cutoffAt": "2026-11-11T11:59:20+08:00",
+  "label": "傍晚增補",
+  "cutoffAt": "2026-11-11T18:06:05+08:00",
   "publishedAt": "2026-11-11T06:59:33+08:00",
-  "updatedAt": "2026-11-11T11:59:20+08:00",
+  "updatedAt": "2026-11-11T18:06:05+08:00",
   "stories": [
     {
       "id": "penghu-farmland-agriculture-platform",
@@ -185,6 +185,106 @@
           "url": "https://www.taichung.gov.tw/3411469/post",
           "publishedOn": "2026-11-11",
           "reviewedAt": "2026-11-11T11:59:20+08:00"
+        }
+      ]
+    },
+    {
+      "id": "taipei-youth-forum-cancelled",
+      "category": "election",
+      "region": "臺北市",
+      "shortTitle": "臺北：青年論壇停辦",
+      "title": "青年論壇臺北場取消，主辦單位與兩陣營說明協調結果",
+      "summary": [
+        "青年思潮、台灣學生聯合會、青年民主協會等學生團體籌辦的市長候選人青年論壇，11月11日宣布取消臺北場。依中央社報導，主辦單位表示，國民黨蔣萬安與民進黨沈伯洋兩陣營近日均回覆婉拒出席。",
+        "沈伯洋競辦表示曾持續協調，希望兩位參選人都能參與，同台或分場皆願配合，但未能促成；蔣萬安競辦則表示以主辦單位聲明為主，並證實聲明內容。"
+      ],
+      "positions": [],
+      "qualification": "活動取消資訊 · 本則是學生團體論壇的停辦消息，不代表其他公辦政見會或辯論取消。主辦單位與競辦對協調過程的說明分別歸屬各方；來源未載替代場次或日期。",
+      "eventOn": "2026-11-11",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "青年論壇台北場取消　沈伯洋競辦：持續與青年對話",
+          "url": "https://www.cna.com.tw/news/ahel/202611110233.aspx",
+          "publishedOn": "2026-11-11",
+          "reviewedAt": "2026-11-11T18:06:05+08:00"
+        }
+      ]
+    },
+    {
+      "id": "yunlin-public-service-workload-platform",
+      "category": "policy",
+      "region": "雲林縣",
+      "shortTitle": "雲林：公教減負與退役轉職政見",
+      "title": "張嘉郡主張以AI減少行政作業，增補學校支援人力",
+      "summary": [
+        "國民黨雲林縣長參選人張嘉郡11月11日提出公教人員支持政見，主張檢視機關與學校重複填報流程，導入AI工具，並增加學校行政支援、提供數位教材，減少公務人員與教師的文書負擔。",
+        "她也提出與退輔及產學體系合作，協助退役軍警消接受職能訓練與就業媒合；退休給付方面，主張由中央考量物價與經濟變化，定期檢討調整機制。"
+      ],
+      "positions": [],
+      "qualification": "競選承諾 · 報導未載人力增補數量、AI導入成本、總預算及財源，也未說明資料保護與採購方式。退休給付調整屬向中央提出的主張，不是縣長已可單獨決定的給付變更。",
+      "eventOn": "2026-11-11",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "軍公教警消後援會成立 張嘉郡承諾做最堅強後盾",
+          "url": "https://www.cna.com.tw/news/aloc/202611110184.aspx",
+          "publishedOn": "2026-11-11",
+          "reviewedAt": "2026-11-11T18:06:05+08:00"
+        }
+      ]
+    },
+    {
+      "id": "kaohsiung-social-worker-support-pledge",
+      "category": "policy",
+      "region": "高雄市",
+      "shortTitle": "高雄：社工待遇與執業保障政見",
+      "title": "賴瑞隆簽社工支持承諾，擬設跨局處小組處理人力與安全",
+      "summary": [
+        "中央社11月11日下午報導，民進黨高雄市長參選人賴瑞隆在10日晚間與社工團體座談並簽署承諾書，主張盤點人力缺口、改善約聘僱社工專業加給，研議居住、生活及偏鄉交通補助。",
+        "他另提出簡化行政工作、加強外勤安全及法律與心理支持；若當選，擬由秘書長層級統籌跨局處工作小組，定期邀集勞資政代表討論。"
+      ],
+      "positions": [],
+      "qualification": "昨晚活動、今日報導 · 座談與簽署日為11月10日，並非今日新簽署。上述內容為參選承諾，來源未載加給或補助金額、總預算、財源及上路時間，不表示已可申請。",
+      "eventOn": "2026-11-10",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "賴瑞隆與社工團體座談　提五大承諾挺社工",
+          "url": "https://www.cna.com.tw/news/aipl/202611110189.aspx",
+          "publishedOn": "2026-11-11",
+          "reviewedAt": "2026-11-11T18:06:05+08:00"
+        }
+      ]
+    },
+    {
+      "id": "hualien-produce-market-logistics-platform",
+      "category": "policy",
+      "region": "花蓮縣",
+      "shortTitle": "花蓮：果菜市場與農產運銷政見",
+      "title": "張峻提改善市場動線與冷鏈，主張建立供需預警機制",
+      "summary": [
+        "無黨籍花蓮縣長參選人張峻11月11日到果菜市場，針對因履約爭議延宕的拍賣場工程，呼籲縣府協助合作社提出復工方案。",
+        "他承諾若當選，將改善集貨拍賣空間、交通與停車設施及冷鏈設備，並推動產銷資訊透明、供需預警和價格調節，以減少農產品損耗與價格波動。"
+      ],
+      "positions": [],
+      "qualification": "競選承諾 · 來源未交代復工爭議的解決進度、工程及冷鏈經費、財源或價格調節的具體工具；上述內容不代表工程已復工或相關機制已實施。",
+      "eventOn": "2026-11-11",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "花蓮縣長選情升溫 4參選人辦活動、政見會爭取支持",
+          "url": "https://www.cna.com.tw/news/aloc/202611110250.aspx",
+          "publishedOn": "2026-11-11",
+          "reviewedAt": "2026-11-11T18:06:05+08:00"
         }
       ]
     }
