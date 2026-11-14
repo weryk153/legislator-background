@@ -1,10 +1,10 @@
 {
   "date": "2026-11-14",
   "number": 10,
-  "label": "早報",
-  "cutoffAt": "2026-11-14T07:02:59+08:00",
+  "label": "午間增補",
+  "cutoffAt": "2026-11-14T11:58:11+08:00",
   "publishedAt": "2026-11-14T07:02:59+08:00",
-  "updatedAt": "2026-11-14T07:02:59+08:00",
+  "updatedAt": "2026-11-14T11:58:11+08:00",
   "stories": [
     {
       "id": "taipei-mayor-council-forum-nov14",
@@ -78,6 +78,31 @@
           "url": "https://www.cna.com.tw/news/asoc/202611130330.aspx",
           "publishedOn": "2026-11-13",
           "reviewedAt": "2026-11-14T07:02:59+08:00"
+        }
+      ]
+    },
+    {
+      "id": "yunlin-council-candidate-peanut-gift-investigation",
+      "category": "election",
+      "region": "雲林縣",
+      "shortTitle": "雲林：議員參選人涉贈禮案",
+      "title": "雲林議員參選人涉贈花生糖賄選，15萬元交保並表態盼釐清",
+      "summary": [
+        "中央社11月14日上午引述雲林地檢署新聞稿報導，一名陳姓雲林縣議員參選人涉嫌在今年4月的團體餐會，向與會者贈送每盒市價190元的花生糖禮盒，作為尋求選票支持的對價。檢方複訊後諭知15萬元交保，其餘到案人員請回。",
+        "報導也引述陳姓參選人的臉書回應：她表示未曾想過自己會與賄選扯上關係，尊重司法，並相信司法能釐清真相、還她清白。"
+      ],
+      "positions": [],
+      "qualification": "偵查進展，尚未定罪 · 贈禮與選票對價關係為檢方指控，交保不代表有罪；事件日記錄11月14日公布的偵查進展，並非涉嫌贈禮的發生日。來源未揭露完整姓名及選區，本則不以姓氏指認資料庫人物，也不推定候選資格已被撤銷。",
+      "eventOn": "2026-11-14",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "雲林議員參選人送190元花生糖涉賄選　15萬元交保",
+          "url": "https://www.cna.com.tw/news/asoc/202611140069.aspx",
+          "publishedOn": "2026-11-14",
+          "reviewedAt": "2026-11-14T11:58:11+08:00"
         }
       ]
     }
