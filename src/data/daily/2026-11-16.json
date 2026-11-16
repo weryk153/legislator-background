@@ -2,9 +2,9 @@
   "date": "2026-11-16",
   "number": 12,
   "label": "早報",
-  "cutoffAt": "2026-11-16T07:02:33+08:00",
+  "cutoffAt": "2026-11-16T12:02:10+08:00",
   "publishedAt": "2026-11-16T07:02:33+08:00",
-  "updatedAt": "2026-11-16T07:02:33+08:00",
+  "updatedAt": "2026-11-16T12:02:10+08:00",
   "stories": [
     {
       "id": "taipei-shen-shilin-beitou-ai-youth-platform",
@@ -103,6 +103,56 @@
           "url": "https://www.cna.com.tw/news/aloc/202611150113.aspx",
           "publishedOn": "2026-11-15",
           "reviewedAt": "2026-11-16T07:02:33+08:00"
+        }
+      ]
+    },
+    {
+      "id": "taitung-jinfeng-representative-election-vacancy",
+      "category": "election",
+      "region": "臺東縣金峰鄉",
+      "shortTitle": "金峰：鄉代選舉待重辦",
+      "title": "金峰鄉代第2選區候選人病故，選委會說明將公告停止選舉並重辦",
+      "summary": [
+        "中央社11月16日報導，金峰鄉第23屆鄉民代表第2選區應選2席，原由許政輝、賴念榮2人登記參選；許政輝於11月14日病故後，候選人數低於應選名額。",
+        "臺東縣選委會副總幹事邱聖芳表示，待收到金峰鄉公所正式公文，將公告停止該選區選舉，並另定日期重行辦理。影響範圍是金峰鄉代第2選區，不能推及全鄉其他公職選舉。"
+      ],
+      "positions": [],
+      "qualification": "選務進度待正式公告 · 病故發生於11月14日，本則的新進展是11月16日刊出的選委會說明。報導仍以收到公文後發布公告為程序，未載重行選舉日期；不將此報導寫成停止選舉公告已生效，也不推定剩餘候選人自動當選。選民應以選委會後續正式公告確認安排。",
+      "eventOn": "2026-11-16",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "台東金峰鄉代參選人許政輝病故　不足額將重行選舉",
+          "url": "https://www.cna.com.tw/news/aloc/202611160066.aspx",
+          "publishedOn": "2026-11-16",
+          "reviewedAt": "2026-11-16T12:02:10+08:00"
+        }
+      ]
+    },
+    {
+      "id": "taipei-candidate-false-post-investigation-bail",
+      "category": "election",
+      "region": "臺北市",
+      "shortTitle": "台北：涉不實貼文案交保",
+      "title": "涉散布沈伯洋不實訊息，黃姓民眾經北檢複訊後20萬元交保",
+      "summary": [
+        "中央社11月16日上午報導，一名黃姓民眾涉嫌在社群平台散布台北市長候選人沈伯洋的私德不實訊息，經被害人提出告訴、調查局查辦後，北檢於當日凌晨複訊，諭令20萬元交保。",
+        "依調查局對外說明，涉案者15日到案時坦承貼文造假，案件依涉嫌違反選罷法偵辦。本則僅報導調查進度，不轉述該貼文的私德指控內容。"
+      ],
+      "positions": [],
+      "qualification": "偵查中的選舉訊息案件 · 坦承造假及涉案帳號歸屬是調查局經報導轉述的說明；交保是偵查程序處置，不是法院定罪。來源未載起訴或判決結果，也未提供政黨、候選人陣營或境外勢力指使的證據，不作此類推論。",
+      "eventOn": "2026-11-16",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "女子網路造謠沈伯洋私德問題　北檢諭令20萬交保",
+          "url": "https://www.cna.com.tw/news/asoc/202611160021.aspx",
+          "publishedOn": "2026-11-16",
+          "reviewedAt": "2026-11-16T12:02:10+08:00"
         }
       ]
     }
