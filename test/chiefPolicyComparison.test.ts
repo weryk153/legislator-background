@@ -43,9 +43,13 @@ describe('同縣市縣市長完整政見比較', () => {
     expect(read({ county: newTaipei.key, left: a, right: b })).toMatchObject({ county: newTaipei.key, left: '', right: '' });
   });
   it('即使沒有政見仍保留同縣市候選人身分，不能找同名替代', async () => {
-    const { counties } = await loadChiefPolicyComparison();
-    const county = counties.find(c => c.people.some(p => !p.records.length))!;
-    const person = county.people.find(p => !p.records.length)!;
+    const national = JSON.parse(readFileSync('public/data/candidates/2026/national.json', 'utf8')) as NationalCandidates;
+    const policies = loadCandidatePolicies(await loadOfficials());
+    const target = national.races[0].candidates[0];
+    policies.delete(target.slug!);
+    const counties = buildChiefPolicyCounties(national, policies);
+    const county = counties[0];
+    const person = county.people.find(p => p.slug === target.slug)!;
     expect(readChiefPolicyState(new URLSearchParams({ county: county.key, left: person.id }).toString(), counties).left).toBe(person.id);
     expect(person.records).toEqual([]);
   });

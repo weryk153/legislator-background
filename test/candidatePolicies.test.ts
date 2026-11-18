@@ -142,9 +142,9 @@ describe('首長政見全名冊查核', () => {
     const reviews = indexPolicyReviews(data, roster, policies);
     expect(data.rosterDate).toBe(national.source.tableDate);
     expect(reviews.size).toBe(81);
-    expect(roster.filter((c: { slug: string }) => policies.has(c.slug))).toHaveLength(77);
-    expect([...policies.values()].filter(c => c.role.endsWith('議員'))).toHaveLength(62);
-    expect([...reviews.values()].filter(r => r.status === 'pending-source')).toHaveLength(4);
+    expect(roster.filter((c: { slug: string }) => policies.has(c.slug))).toHaveLength(81);
+    expect([...policies.values()].filter(c => c.role.endsWith('議員'))).toHaveLength(64);
+    expect([...reviews.values()].filter(r => r.status === 'pending-source')).toHaveLength(0);
     expect(national.races.every((r: { candidates: { slug: string }[] }) => r.candidates.some(c => policies.has(c.slug)))).toBe(true);
   });
   it('漏掉候選人、姓名錯置或重複都會阻止建置', () => {
@@ -158,7 +158,8 @@ describe('首長政見全名冊查核', () => {
   });
   it('不能把無政見者標為已收錄，也不能留下無查核依據的狀態', () => {
     const { data, roster, policies } = actual();
-    const pending = data.candidates.find((c: { status: string }) => c.status === 'pending-source');
+    const pending = data.candidates[0];
+    policies.delete(pending.slug);
     pending.status = 'collected';
     expect(() => indexPolicyReviews(data, roster, policies)).toThrow('狀態與收錄不符');
     pending.status = 'pending-source';
