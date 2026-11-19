@@ -1,10 +1,10 @@
 {
   "date": "2026-11-19",
   "number": 15,
-  "label": "早報・午間增補",
-  "cutoffAt": "2026-11-19T12:02:59+08:00",
+  "label": "早報・午晚增補",
+  "cutoffAt": "2026-11-19T18:05:35+08:00",
   "publishedAt": "2026-11-19T07:01:56+08:00",
-  "updatedAt": "2026-11-19T12:02:59+08:00",
+  "updatedAt": "2026-11-19T18:05:35+08:00",
   "stories": [
     {
       "id": "new-taipei-northeast-transport-healthcare",
@@ -152,6 +152,56 @@
           "url": "https://www.cna.com.tw/news/asoc/202611190085.aspx",
           "publishedOn": "2026-11-19",
           "reviewedAt": "2026-11-19T12:02:59+08:00"
+        }
+      ]
+    },
+    {
+      "id": "miaoli-forum-welfare-budget",
+      "category": "policy",
+      "region": "苗栗縣",
+      "shortTitle": "苗栗：福利財源交鋒",
+      "title": "苗栗縣長政見會：陳品安提社福加碼，鍾東錦強調還債與建設平衡",
+      "summary": [
+        "苗栗縣長候選人11月19日在公辦政見會交鋒。陳品安提出65歲以上免健保費、提高敬老愛心卡至1000點等主張，認為明年預算增加60億元可支持福利升級。",
+        "鍾東錦則表示縣府仍受財政控管，須兼顧還債與建設；他估計敬老愛心卡加碼每年需14億多元，並提出打通苗62-1線及興建縣總圖書館等規劃。"
+      ],
+      "positions": [],
+      "qualification": "今日政見會、午後報導 · 預算增額及政策成本均保留候選人說法歸屬，報導未附完整試算與財源配置；福利與工程主張不等於已核定或完成。",
+      "eventOn": "2026-11-19",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "苗栗縣長選舉政見會　陳品安談社福升級、鍾東錦喊務實均衡",
+          "url": "https://www.cna.com.tw/news/aipl/202611190207.aspx",
+          "publishedOn": "2026-11-19",
+          "reviewedAt": "2026-11-19T18:05:35+08:00"
+        }
+      ]
+    },
+    {
+      "id": "taipei-reservoir-solar-election-response",
+      "category": "policy",
+      "region": "雙北",
+      "shortTitle": "雙北：水庫光電攻防",
+      "title": "李四川、蔣萬安反對翡翠水庫設光電，水利署稱目前無續推計畫",
+      "summary": [
+        "李四川與蔣萬安11月19日共同舉行選舉記者會，表明反對翡翠水庫設置光電板，並主張雙北合作稽查淡水河系污染。",
+        "水利署回應目前沒有續推水庫水域型光電的計畫，並稱既有設施水質監測安全；蘇巧慧也表示經濟部沒有在翡翠水庫設置光電的計畫，批評這是選舉操作。"
+      ],
+      "positions": [],
+      "qualification": "今日選舉政策攻防 · 本則記錄候選人主張及主管機關回應，不表示翡翠水庫已有核定設置案，也不把候選人對水質的疑慮視為已證實污染。跨市稽查合作仍須釐清執行權責。",
+      "eventOn": "2026-11-19",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "李四川蔣萬安反對翡翠水庫設光電板　水利署：沒有要設",
+          "url": "https://www.cna.com.tw/news/aloc/202611190229.aspx",
+          "publishedOn": "2026-11-19",
+          "reviewedAt": "2026-11-19T18:05:35+08:00"
         }
       ]
     }
