@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-18",
+  "updatedOn": "2026-11-20",
   "rosterDate": "2026-10-16",
   "candidates": [
     {
@@ -24,9 +24,9 @@
       "slug": "shenpao-yang",
       "name": "沈伯洋",
       "role": "臺北市長",
-      "reviewedOn": "2026-11-15",
+      "reviewedOn": "2026-11-20",
       "status": "collected",
-      "note": "本輪閱讀本人官網政策目錄與新住民政策正文，增補多語服務、創業及在地服務站；保留研議條件與未知日期，未重新查核全部既有政見，不代表完整清單。",
+      "note": "本輪核對原文並增補部分主張，保留適用條件及未知日期；未重查全部既有來源，不代表完整政見清單。",
       "queries": [],
       "sources": [
         {
@@ -120,6 +120,10 @@
         {
           "title": "沈伯洋競選官網：新住民政策",
           "url": "https://puma.taipei/policies/新住民政策"
+        },
+        {
+          "title": "沈伯洋競選官網：原住民族政策",
+          "url": "https://puma.taipei/policies/原住民族政策"
         }
       ]
     },
@@ -299,14 +303,18 @@
       "slug": "cand-李四川-新北市",
       "name": "李四川",
       "role": "新北市長",
-      "reviewedOn": "2026-10-16",
+      "reviewedOn": "2026-11-20",
       "status": "collected",
-      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "note": "本輪核對原文並增補部分主張，保留適用條件及未知日期；未重查全部既有來源，不代表完整政見清單。",
       "queries": [],
       "sources": [
         {
           "title": "中央社：李四川提產業4箭打造AI廊帶 蘇巧慧推交通平權",
           "url": "https://www.cna.com.tw/news/aloc/202607080165.aspx"
+        },
+        {
+          "title": "中央社：李四川提青年創業貸款額度 200萬元提高到500萬元",
+          "url": "https://www.cna.com.tw/news/aloc/202611200172.aspx"
         }
       ]
     },
@@ -704,9 +712,9 @@
       "slug": "cand-李文良-金門縣",
       "name": "李文良",
       "role": "金門縣長",
-      "reviewedOn": "2026-10-16",
+      "reviewedOn": "2026-11-20",
       "status": "collected",
-      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "note": "本輪核對原文並增補部分主張，保留適用條件及未知日期；未重查全部既有來源，不代表完整政見清單。",
       "queries": [
         "\"李文良\" 2026 政見 金門縣"
       ],
@@ -714,6 +722,10 @@
         {
           "title": "競逐金門縣長 陳玉珍、李文良等人完成登記",
           "url": "https://www.cna.com.tw/news/aipl/202609020279.aspx"
+        },
+        {
+          "title": "中央社：陳玉珍構思金門青年專責局處 李文良提強化參與政策能力",
+          "url": "https://www.cna.com.tw/news/aipl/202611200163.aspx"
         }
       ]
     },
@@ -738,9 +750,9 @@
       "slug": "chenyu-jen",
       "name": "陳玉珍",
       "role": "金門縣長",
-      "reviewedOn": "2026-10-16",
+      "reviewedOn": "2026-11-20",
       "status": "collected",
-      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "note": "本輪核對原文並增補部分主張，保留適用條件及未知日期；未重查全部既有來源，不代表完整政見清單。",
       "queries": [
         "\"陳玉珍\" 2026 政見 金門縣"
       ],
@@ -748,6 +760,10 @@
         {
           "title": "張國威設服務處喊金門有望 李文良列白皮書、陳玉珍提教育政見",
           "url": "https://www.cna.com.tw/news/aipl/202609280094.aspx"
+        },
+        {
+          "title": "中央社：陳玉珍構思金門青年專責局處 李文良提強化參與政策能力",
+          "url": "https://www.cna.com.tw/news/aipl/202611200163.aspx"
         }
       ]
     },

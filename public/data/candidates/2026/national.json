@@ -389,11 +389,11 @@
     "termLimitReason": ""
    },
    "source": {
-    "stage": "numbered",
-    "url": "https://www.cna.com.tw/news/aloc/202610270054.aspx",
-    "tableDate": "2026-10-27",
-    "label": "中央社：10/27 連江縣長抽籤號次",
-    "note": "依中央社完整名單並與全國號次整理交叉核對；來源為新聞報導，非選委會公告檔案。"
+    "stage": "announced",
+    "url": "https://web.cec.gov.tw/lcec/article/66008",
+    "tableDate": "2026-11-17",
+    "label": "連江縣選委會：縣長及議員正式候選人名單",
+    "note": "11/17公告；11/20逐名逐號對讀掃描原件，縣長2人與4個議員選區14人均與原有號次一致。"
    }
   },
   {
