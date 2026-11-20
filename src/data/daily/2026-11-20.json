@@ -1,10 +1,10 @@
 {
   "date": "2026-11-20",
   "number": 16,
-  "label": "早報",
-  "cutoffAt": "2026-11-20T06:57:58+08:00",
+  "label": "早報・傍晚增補",
+  "cutoffAt": "2026-11-20T17:59:37+08:00",
   "publishedAt": "2026-11-20T06:57:58+08:00",
-  "updatedAt": "2026-11-20T06:57:58+08:00",
+  "updatedAt": "2026-11-20T17:59:37+08:00",
   "stories": [
     {
       "id": "new-taipei-mountain-trails-living-circle",
@@ -53,6 +53,106 @@
           "url": "https://www.cna.com.tw/news/asoc/202611190299.aspx",
           "publishedOn": "2026-11-19",
           "reviewedAt": "2026-11-20T06:57:58+08:00"
+        }
+      ]
+    },
+    {
+      "id": "new-taipei-youth-startup-loan",
+      "category": "policy",
+      "region": "新北市",
+      "shortTitle": "新北：青年創業貸款上限",
+      "title": "李四川提出青年創業貸款上限提高至500萬元",
+      "summary": [
+        "新北市長候選人李四川11月20日拜票受訪時，提出把新北青年創業貸款最高額度由200萬元提高至500萬元。",
+        "他另表示，若當選將與跨黨派立委合作，為軌道建設、都市更新等主張爭取預算及法規調整。"
+      ],
+      "positions": [],
+      "qualification": "貸款額度為競選主張，不是現金補助或已開辦方案；報導未載申請資格、利率、擔保方式、完整財源與實施日期。",
+      "eventOn": "2026-11-20",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "李四川提青年創業貸款額度 200萬元提高到500萬元",
+          "url": "https://www.cna.com.tw/news/aloc/202611200172.aspx",
+          "publishedOn": "2026-11-20",
+          "reviewedAt": "2026-11-20T17:59:37+08:00"
+        }
+      ]
+    },
+    {
+      "id": "kinmen-youth-policy-proposals",
+      "category": "policy",
+      "region": "金門縣",
+      "shortTitle": "金門：青年窗口與公共參與",
+      "title": "陳玉珍研議青年體育專責局處，李文良提公民教育與實習媒合",
+      "summary": [
+        "11月20日報導整理金門縣長候選人的青年政策。陳玉珍研議整合青年及體育事務的專責局處，並提出天使基金與政府共同投入的構想，協助創業資源、場域及品牌行銷。",
+        "李文良主張強化青年諮詢委員會和公民教育，整合高職生與地方企業需求媒合實習，並規劃SBIR2.0及由青年參與、持續營運的青少年藝文中心。"
+      ],
+      "positions": [],
+      "qualification": "陳玉珍的會談僅載「日前」，不能稱為20日舉行；組織調整須修正編制並經議會審議。李文良為20日受訪內容。兩方的基金、補助、場館預算及執行細則未完整載明，青年代表提出的參與式預算也不等同候選人已承諾。",
+      "eventOn": null,
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "陳玉珍構思金門青年專責局處 李文良提強化參與政策能力",
+          "url": "https://www.cna.com.tw/news/aipl/202611200163.aspx",
+          "publishedOn": "2026-11-20",
+          "reviewedAt": "2026-11-20T17:59:37+08:00"
+        }
+      ]
+    },
+    {
+      "id": "keelung-cleaning-team-allowances",
+      "category": "policy",
+      "region": "基隆市",
+      "shortTitle": "基隆：清潔隊員待遇主張",
+      "title": "童子瑋提清潔隊早夜點費目標，謝國樑以施政延續爭取連任",
+      "summary": [
+        "基隆市長候選人童子瑋11月20日承諾，若當選，將先盤點制度與預算，再逐步以早點費200元、夜點費400元為目標，並汰換老舊清潔車輛。",
+        "尋求連任的謝國樑同日與同黨議員候選人舉行記者會，以他所稱過去四年的12項建設成果爭取支持，主張市府與議會合作持續推進。"
+      ],
+      "positions": [],
+      "qualification": "童子瑋所提金額是先盤點預算再逐步推動的目標，非已核定待遇；報導未載財源與完成期限。謝國樑的建設成果為候選人自述，本則未獨立逐項核實，不列為今日新完成建設。",
+      "eventOn": "2026-11-20",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "謝國樑提政績盼求連任 童子瑋允諾提升清潔隊福利",
+          "url": "https://www.cna.com.tw/news/aipl/202611200220.aspx",
+          "publishedOn": "2026-11-20",
+          "reviewedAt": "2026-11-20T17:59:37+08:00"
+        }
+      ]
+    },
+    {
+      "id": "hualien-district1-gazette-correction",
+      "category": "election",
+      "region": "花蓮縣",
+      "shortTitle": "花蓮：議員公報文字勘誤",
+      "title": "花蓮選委會更正第1選區13號候選人政見誤字，提供修正版公報",
+      "summary": [
+        "花蓮縣選委會11月20日公告，第1選區13號候選人陳財能的公報政見有文字誤植，已重新印製更正後的第3至4頁。",
+        "選委會表示已函請花蓮市選務作業中心協助送達選區各家戶；選民也可由公告附件查看更正版。"
+      ],
+      "positions": [],
+      "qualification": "本則為選委會公報勘誤資訊，未涉及候選人姓名、號次或參選資格變更；附件是更正頁，並非全冊公報。",
+      "eventOn": "2026-11-20",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "花蓮縣選舉委員會",
+          "kind": "official",
+          "title": "臺灣省花蓮縣議會第21屆縣議員選舉第1選舉區選舉公報候選人13號陳財能先生政見勘誤",
+          "url": "https://web.cec.gov.tw/hlec/article/66135",
+          "publishedOn": "2026-11-20",
+          "reviewedAt": "2026-11-20T17:59:37+08:00"
         }
       ]
     }
