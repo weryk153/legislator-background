@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-20",
+  "updatedOn": "2026-11-21",
   "rosterDate": "2026-10-16",
   "candidates": [
     {
@@ -24,9 +24,9 @@
       "slug": "shenpao-yang",
       "name": "沈伯洋",
       "role": "臺北市長",
-      "reviewedOn": "2026-11-20",
+      "reviewedOn": "2026-11-21",
       "status": "collected",
-      "note": "本輪核對原文並增補部分主張，保留適用條件及未知日期；未重查全部既有來源，不代表完整政見清單。",
+      "note": "本輪核對本人運動政策正文，新增社區空間、場館可行性評估與海外實習等部分主張；未知日期保留null，既有小巴與驛站不重複，不代表完整收錄。",
       "queries": [],
       "sources": [
         {
@@ -124,6 +124,10 @@
         {
           "title": "沈伯洋競選官網：原住民族政策",
           "url": "https://puma.taipei/policies/原住民族政策"
+        },
+        {
+          "title": "沈伯洋競選官網：運動政策",
+          "url": "https://puma.taipei/policies/運動政策"
         }
       ]
     },
