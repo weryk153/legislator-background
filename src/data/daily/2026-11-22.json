@@ -1,10 +1,10 @@
 {
   "date": "2026-11-22",
   "number": 18,
-  "label": "早報",
-  "cutoffAt": "2026-11-22T06:58:54+08:00",
+  "label": "早報・午間更新",
+  "cutoffAt": "2026-11-22T11:56:13+08:00",
   "publishedAt": "2026-11-22T06:58:54+08:00",
-  "updatedAt": "2026-11-22T06:58:54+08:00",
+  "updatedAt": "2026-11-22T11:56:13+08:00",
   "stories": [
     {
       "id": "yilan-second-forum-public-service-environment",
@@ -113,6 +113,31 @@
           "url": "https://www.cna.com.tw/news/aloc/202611210208.aspx",
           "publishedOn": "2026-11-21",
           "reviewedAt": "2026-11-22T06:58:54+08:00"
+        }
+      ]
+    },
+    {
+      "id": "kinmen-council-vote-buying-two-cases",
+      "category": "election",
+      "region": "金門縣",
+      "shortTitle": "金門：議員選舉賄選案進展",
+      "title": "金門兩件議員選舉涉買票案：一名候選人及三名樁腳遭羈押禁見",
+      "summary": [
+        "中央社11月22日引述金門地檢署新聞稿報導，檢方偵辦兩件涉嫌以每票5,000元現金買票的議員選舉案件，第一選區莊姓候選人及段姓、林姓樁腳，以及另案呂姓樁腳，21日獲法院裁定羈押禁見。",
+        "第三選區相關案件於20日搜索，檢方循蔡姓樁腳供述追查呂姓樁腳；第一選區案件則在9日首波查緝後，20日進行第二波搜索與拘提。本次公布的是後續偵辦與羈押進展。"
+      ],
+      "positions": [],
+      "qualification": "今日公布、昨日裁定 · 兩案仍在偵查，羈押不等於有罪。報導僅列姓氏，本則不猜測候選人全名、不把不同案件混為一案，也不據此推定參選資格已變更。涉嫌買票與每票金額均為檢方說法。",
+      "eventOn": "2026-11-21",
+      "reminder": false,
+      "sources": [
+        {
+          "publisher": "中央社",
+          "kind": "news",
+          "title": "金門2件買票賄選案　議員候選人、樁腳等4人遭羈押",
+          "url": "https://www.cna.com.tw/news/asoc/202611220052.aspx",
+          "publishedOn": "2026-11-22",
+          "reviewedAt": "2026-11-22T11:56:13+08:00"
         }
       ]
     }
