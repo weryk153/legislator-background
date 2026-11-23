@@ -1,0 +1,122 @@
+{
+  "date": "2026-11-24",
+  "number": 20,
+  "label": "早報",
+  "publishedAt": "2026-11-24T07:05:08+08:00",
+  "updatedAt": "2026-11-24T07:05:08+08:00",
+  "cutoffAt": "2026-11-24T07:05:08+08:00",
+  "stories": [
+    {
+      "id": "keelung-forum-local-employment",
+      "region": "基隆市",
+      "category": "policy",
+      "shortTitle": "基隆：市長政見會談就業與防災",
+      "title": "基隆市長政見會，三位候選人談在地工作與海水倒灌風險",
+      "summary": [
+        "23 日晚間的公辦電視政見會上，尋求連任的謝國樑提出以未來捷運北五堵站為中心，逐步將倉儲空間改作研發與辦公使用。他也把 AI 產業園區及八斗子海洋觀光列為未來四年的方向。",
+        "童子瑋希望基隆人有更多在地就業選擇，主張市府先盤點產業優勢、規劃招商方向。魏造文則從防災談預算優先順序，主張優先規劃因應海水倒灌的措施。"
+      ],
+      "qualification": "三人的發言分別涉及土地使用、產業規劃與防災優先順序。報導未列各方案所需經費或核定進度。",
+      "people": [
+        {
+          "name": "謝國樑",
+          "slug": "mayor-keelung"
+        },
+        {
+          "name": "童子瑋",
+          "slug": "c-童子瑋-民進黨-基隆市第03選舉區"
+        },
+        {
+          "name": "魏造文",
+          "slug": "cand-魏造文-基隆市"
+        }
+      ],
+      "positions": [],
+      "sources": [
+        {
+          "title": "政見會交鋒 謝國樑、童子瑋聚焦產業發展",
+          "url": "https://tw.news.yahoo.com/%E6%94%BF%E8%A6%8B%E6%9C%83%E4%BA%A4%E9%8B%92-%E8%AC%9D%E5%9C%8B%E6%A8%91-%E7%AB%A5%E5%AD%90%E7%91%8B%E8%81%9A%E7%84%A6%E7%94%A2%E6%A5%AD%E7%99%BC%E5%B1%95-201000059.html",
+          "publishedOn": "2026-11-24",
+          "publisher": "Yahoo 新聞轉載",
+          "reviewedAt": "2026-11-24T07:05:08+08:00",
+          "kind": "news"
+        },
+        {
+          "title": "政見會交鋒童子瑋批施政跳票　謝國樑提論文質疑誠信",
+          "url": "https://www.cna.com.tw/news/aipl/202611230276.aspx",
+          "publishedOn": "2026-11-23",
+          "publisher": "中央社",
+          "reviewedAt": "2026-11-24T07:05:08+08:00",
+          "kind": "news"
+        }
+      ],
+      "eventOn": "2026-11-23",
+      "reminder": false
+    },
+    {
+      "id": "north-coast-tunnel-and-tourism",
+      "region": "新北市",
+      "category": "policy",
+      "shortTitle": "新北：萬雙隧道與北海岸觀光",
+      "title": "李四川擬重評萬雙隧道，蘇巧慧主張串聯山城與北海岸觀光",
+      "summary": [
+        "中央社 23 日晚間報導兩位市長候選人當天在北海岸的發言。李四川希望重新研究萬雙隧道，構想從萬里連通臺北市外雙溪，改善金山、萬里對外交通；另主張以周遊券整合交通、住宿與景點優惠。",
+        "蘇巧慧在金山、萬里一帶拜票時表示，希望透過「新皇冠海岸」與「鑽石山城」兩項觀光政見，把山區和海岸景點串成旅遊路線。"
+      ],
+      "qualification": "隧道仍是研議重啟規劃的主張。報導未載建設經費、跨市協調結果，或兩項觀光方案的執行時程。",
+      "people": [
+        {
+          "name": "李四川",
+          "slug": "cand-李四川-新北市"
+        },
+        {
+          "name": "蘇巧慧",
+          "slug": "suchiao-hui"
+        }
+      ],
+      "positions": [],
+      "sources": [
+        {
+          "title": "新北藍綠大車掃拜票　李四川、蘇巧慧北海岸拚場",
+          "url": "https://www.cna.com.tw/news/aipl/202611230290.aspx",
+          "publishedOn": "2026-11-23",
+          "publisher": "中央社",
+          "reviewedAt": "2026-11-24T07:05:08+08:00",
+          "kind": "news"
+        }
+      ],
+      "eventOn": "2026-11-23",
+      "reminder": false
+    },
+    {
+      "id": "chiayi-village-walking-tour",
+      "region": "嘉義縣",
+      "category": "policy",
+      "shortTitle": "嘉義縣：村落走讀與母語保存",
+      "title": "蔡易餘提出「嘉義百村小旅行」，讓地方故事成為旅遊路線",
+      "summary": [
+        "中央社 23 日晚間報導，嘉義縣長候選人蔡易餘當日上午發布影片，說明如何在全縣 18 個鄉鎮市發展村落觀光。他主張結合地方走讀、母語保存與創作者進駐，讓遊客從聚落歷史認識嘉義。"
+      ],
+      "qualification": "影片於 23 日上午發布，晚間報導補充方案內容。「百村」是政見名稱，報導未列入選村落、經費或上路日期。",
+      "people": [
+        {
+          "name": "蔡易餘",
+          "slug": "tsai-yi-yu"
+        }
+      ],
+      "positions": [],
+      "sources": [
+        {
+          "title": "鄭麗文讚吳品叡做事具魄力　蔡易餘拜票推觀光政見",
+          "url": "https://www.cna.com.tw/news/aipl/202611230265.aspx",
+          "publishedOn": "2026-11-23",
+          "publisher": "中央社",
+          "reviewedAt": "2026-11-24T07:05:08+08:00",
+          "kind": "news"
+        }
+      ],
+      "eventOn": "2026-11-23",
+      "reminder": false
+    }
+  ]
+}
