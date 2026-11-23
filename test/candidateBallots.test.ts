@@ -61,7 +61,7 @@ describe('2026 審定與已查證選區號次', () => {
     for (const d of county.districts) { delete d.source; for (const c of d.candidates) c.number = null; }
     applyVerifiedBallots(national, counties, { ...verified, ballots: verified.ballots.filter(b => b.countyName !== '嘉義市' || b.districtNo !== 2) });
     expect(county.source.stage).toBe('certified');
-    expect(county.districts[0].source?.url).toContain('65355');
+    expect(county.districts[0].source?.url).toContain('65991');
     expect(county.districts[1].source).toBeUndefined();
     expect(county.districts[1].candidates.every(c => c.number === null)).toBe(true);
   });

@@ -1,10 +1,10 @@
 {
  "source": {
-  "stage": "numbered",
-  "url": "https://web.cec.gov.tw/cyec/article/65382",
-  "tableDate": "2026-10-27",
-  "label": "嘉義市選委會：10/27 抽籤號次",
-  "note": "已依選委會公布的完整選區名單核對。"
+  "stage": "announced",
+  "url": "https://web.cec.gov.tw/cyec/article/65991",
+  "tableDate": "2026-11-17",
+  "label": "嘉義市選委會：11/17 市長及議員候選人名單公告",
+  "note": "已對讀正式公告中的候選人姓名與號次。"
  },
  "countyCode": "10-020-00-000-0000",
  "countyName": "嘉義市",
@@ -160,11 +160,11 @@
     }
    ],
    "source": {
-    "stage": "numbered",
-    "url": "https://web.cec.gov.tw/cyec/article/65355",
-    "tableDate": "2026-10-27",
-    "label": "嘉義市選委會：10/27 抽籤號次",
-    "note": "已依選委會公布的完整選區名單核對。"
+    "stage": "announced",
+    "url": "https://web.cec.gov.tw/cyec/article/65991",
+    "tableDate": "2026-11-17",
+    "label": "嘉義市選委會：11/17 市長及議員候選人名單公告",
+    "note": "已對讀正式公告中的候選人姓名與號次。"
    }
   },
   {
@@ -385,11 +385,11 @@
     }
    ],
    "source": {
-    "stage": "numbered",
-    "url": "https://web.cec.gov.tw/cyec/article/65382",
-    "tableDate": "2026-10-27",
-    "label": "嘉義市選委會：10/27 抽籤號次",
-    "note": "已依選委會公布的完整選區名單核對。"
+    "stage": "announced",
+    "url": "https://web.cec.gov.tw/cyec/article/65991",
+    "tableDate": "2026-11-17",
+    "label": "嘉義市選委會：11/17 市長及議員候選人名單公告",
+    "note": "已對讀正式公告中的候選人姓名與號次。"
    }
   }
  ],

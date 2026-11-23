@@ -4082,6 +4082,28 @@
               "summary": "主張免費營養午餐從幼兒園涵蓋至高中，國立、縣立及私立學校均適用。"
             }
           ]
+        },
+        {
+          "id": "2026-su-hakka-budget-1122",
+          "title": "六堆客家事務與縣府人事",
+          "announcedOn": "2026-11-22",
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "news",
+            "title": "中央社：蘇清泉造勢允諾客家經費10億元起跳",
+            "url": "https://www.cna.com.tw/news/aipl/202611220190.aspx",
+            "publishedOn": "2026-11-22"
+          },
+          "proposals": [
+            {
+              "topic": "客家事務預算",
+              "summary": "承諾若當選縣長，客家事務處經費將從10億元起算；報導未交代財源或編列期程。民進黨縣黨部回應，客庄建設經費分列於不同局處。"
+            },
+            {
+              "topic": "縣府人事",
+              "summary": "主張兩位副縣長與一位秘書長之中，至少一人具客家背景，並投入客家文化傳承與教育。"
+            }
+          ]
         }
       ]
     },
@@ -8574,6 +8596,64 @@
             {
               "topic": "交通與無障礙",
               "summary": "主張改善危險路口、通學環境及無障礙設施，並協助身障與弱勢家庭取得福利資源。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "c-顏色不分藍綠支持性專區顏色田慎節-無黨籍及未經政黨推薦-嘉義市第01選舉區",
+      "name": "顏翎熹",
+      "role": "嘉義市第1選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-east-gazette-1",
+          "title": "議員公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第1選區公報，第1頁1號",
+            "url": "https://web.cec.gov.tw/api/file/2c83bb46-bee1-4de2-a808-ea4544eca0fe.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "公車與市區路網",
+              "summary": "主張依人口、通勤及車站旅運量調整公車路線與班次，並持續開闢12米以下計畫道路以連通斷頭路。"
+            },
+            {
+              "topic": "助聽器與高齡照顧",
+              "summary": "主張補助有聽力需求、但不符既有補助資格的65歲以上長者購置助聽器，並結合社區推動防詐、肌少症篩檢與肌力運動。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "c-傅大偉-國民黨-嘉義市第01選舉區",
+      "name": "傅大偉",
+      "role": "嘉義市第1選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-east-gazette-2",
+          "title": "議員公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第1選區公報，第1頁2號",
+            "url": "https://web.cec.gov.tw/api/file/2c83bb46-bee1-4de2-a808-ea4544eca0fe.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "學前教育",
+              "summary": "主張增設市立托嬰中心與準公共幼兒園，提高幼兒教育補助，並爭取增聘外語教師參與共融教學。"
+            },
+            {
+              "topic": "社會住宅",
+              "summary": "主張加速興建社會住宅，讓無自有住宅者能更快租到可負擔的住宅。"
             }
           ]
         }

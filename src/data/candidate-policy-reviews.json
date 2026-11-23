@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-21",
+  "updatedOn": "2026-11-23",
   "rosterDate": "2026-10-16",
   "candidates": [
     {
@@ -1350,9 +1350,9 @@
       "slug": "su-ching-chuan",
       "name": "蘇清泉",
       "role": "屏東縣長",
-      "reviewedOn": "2026-10-16",
+      "reviewedOn": "2026-11-23",
       "status": "collected",
-      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "note": "已增列11月22日竹田公開提出的客家事務經費與核心人事主張。",
       "queries": [
         "\"蘇清泉\" 2026 政見 屏東縣"
       ],
@@ -1360,6 +1360,10 @@
         {
           "title": "蘇清泉政見 屏東營養午餐全面免費｜台灣民眾電子報",
           "url": "https://www.allnews.tw/news/95604"
+        },
+        {
+          "title": "中央社：蘇清泉造勢允諾客家經費10億元起跳",
+          "url": "https://www.cna.com.tw/news/aipl/202611220190.aspx"
         }
       ]
     },
