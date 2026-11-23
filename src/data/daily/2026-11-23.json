@@ -2,9 +2,9 @@
   "date": "2026-11-23",
   "number": 19,
   "label": "早報",
-  "cutoffAt": "2026-11-23T12:00:18+08:00",
+  "cutoffAt": "2026-11-23T18:05:37+08:00",
   "publishedAt": "2026-11-23T06:58:48+08:00",
-  "updatedAt": "2026-11-23T12:00:18+08:00",
+  "updatedAt": "2026-11-23T18:05:37+08:00",
   "stories": [
     {
       "id": "pingtung-hakka-budget-pledge-response",
@@ -170,6 +170,74 @@
           "reviewedAt": "2026-11-23T12:00:18+08:00"
         }
       ]
+    },
+    {
+      "id": "taipei-electorate-by-ballot",
+      "category": "election",
+      "region": "臺北市",
+      "shortTitle": "臺北：市長、議員與里長選舉人數",
+      "title": "北市公布選舉人數，市長與議員選舉各有逾 202 萬人",
+      "summary": [
+        "臺北市選委會 23 日公布，市長選舉有 2,031,431 名選舉人，市議員選舉有 2,026,809 人，里長選舉有 2,015,296 人。同日舉行的全國性公投第 22 案，臺北市有 2,072,492 名投票權人。",
+        "各項投票均於 11 月 28 日上午 8 時至下午 4 時舉行。"
+      ],
+      "qualification": "各數字對應不同選票的名冊，不能相加推算投票人數；實際投票人數須待投票結束後統計。",
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "115年九合一選舉　台北市長選舉人203萬1431人",
+          "url": "https://www.cna.com.tw/news/aloc/202611230136.aspx",
+          "publishedOn": "2026-11-23",
+          "reviewedAt": "2026-11-23T18:05:37+08:00"
+        }
+      ],
+      "positions": [],
+      "reminder": false,
+      "eventOn": "2026-11-23"
+    },
+    {
+      "id": "taipei-campaign-traffic-signals",
+      "category": "election",
+      "region": "臺北市",
+      "shortTitle": "臺北：車掃交管與號誌復原",
+      "title": "蔣萬安車隊通過後號誌未復原，警方申誡員警，兩位市長候選人回應",
+      "summary": [
+        "臺北市長候選人蔣萬安 22 日車隊掃街經過大安區路口後，員警未將號誌從手動切回自動。中央社 23 日午間報導，警方已申誡員警，並表示各候選人的交通疏導適用一致標準。",
+        "蔣萬安 23 日表示，候選人依規定申請交管，並稱會加強對支持者的安全宣導。對手沈伯洋質疑車掃動用交管的必要性，指出未恢復燈號影響市民，也表示自己的車掃希望避開通勤尖峰。"
+      ],
+      "qualification": "警方說明的處分對象為執勤員警。報導未指候選人因這次號誌操作受到裁罰。",
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "車掃被控違法控燈　蔣萬安：不分黨派做法一致",
+          "url": "https://www.cna.com.tw/news/aloc/202611230096.aspx",
+          "publishedOn": "2026-11-23",
+          "reviewedAt": "2026-11-23T18:05:37+08:00"
+        },
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "蔣萬安車掃交管惹議　沈伯洋：未調回燈號易生民怨",
+          "url": "https://www.cna.com.tw/news/aloc/202611230086.aspx",
+          "publishedOn": "2026-11-23",
+          "reviewedAt": "2026-11-23T18:05:37+08:00"
+        }
+      ],
+      "people": [
+        {
+          "name": "沈伯洋",
+          "slug": "shenpao-yang"
+        },
+        {
+          "name": "蔣萬安",
+          "slug": "mayor-taipei"
+        }
+      ],
+      "positions": [],
+      "reminder": false,
+      "eventOn": "2026-11-23"
     }
   ]
 }
