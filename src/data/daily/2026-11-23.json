@@ -2,9 +2,9 @@
   "date": "2026-11-23",
   "number": 19,
   "label": "早報",
-  "cutoffAt": "2026-11-23T06:58:48+08:00",
+  "cutoffAt": "2026-11-23T12:00:18+08:00",
   "publishedAt": "2026-11-23T06:58:48+08:00",
-  "updatedAt": "2026-11-23T06:58:48+08:00",
+  "updatedAt": "2026-11-23T12:00:18+08:00",
   "stories": [
     {
       "id": "pingtung-hakka-budget-pledge-response",
@@ -75,6 +75,99 @@
         {
           "name": "李四川",
           "slug": "cand-李四川-新北市"
+        }
+      ]
+    },
+    {
+      "id": "local-representative-campaign-period",
+      "category": "election",
+      "region": "全國",
+      "shortTitle": "村里長與地方民代競選期開始",
+      "title": "村里長、鄉鎮市民代表及原住民區民代表競選期開始，至 27 日止",
+      "summary": [
+        "11 月 23 日起，村里長、鄉鎮市民代表及直轄市山地原住民區民代表候選人進入法定競選活動期間，至 27 日止。縣市議員的競選期則已於 18 日開始。",
+        "以臺北市里長選舉為例，市選委會列出的每日競選活動時間為上午 7 時至晚間 10 時。"
+      ],
+      "positions": [],
+      "qualification": "本次進展是競選期於今日開始。臺北市所列時段適用於里長競選活動，並非投票所開放時間。",
+      "eventOn": "2026-11-23",
+      "reminder": false,
+      "sources": [
+        {
+          "kind": "official",
+          "publisher": "臺北市選舉委員會",
+          "title": "臺北市第9屆市長、第15屆議員及第15屆里長選舉工作進行程序表（第62、63項）",
+          "url": "https://web.cec.gov.tw/api/file/ae5afeb2-03b0-4616-b934-80ea020c1ac0.pdf",
+          "publishedOn": null,
+          "reviewedAt": "2026-11-23T11:59:30+08:00"
+        },
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "直轄市長競選11/13起跑　18日零時起不得發布選舉民調",
+          "url": "https://www.cna.com.tw/news/aipl/202611120161.aspx",
+          "publishedOn": "2026-11-12",
+          "reviewedAt": "2026-11-23T11:59:30+08:00"
+        }
+      ]
+    },
+    {
+      "id": "su-northern-cities-cooperation",
+      "category": "policy",
+      "region": "新北市",
+      "shortTitle": "新北：四市合作主張",
+      "title": "蘇巧慧談北北基桃合作，盼建立四市溝通機制",
+      "summary": [
+        "新北市長候選人蘇巧慧 23 日上午與同黨議員候選人在板橋拜票。被問到與臺北、基隆及桃園市長候選人的聯繫時，她表示四方已有溝通管道，希望未來透過跨市合作處理共同事務。"
+      ],
+      "qualification": "蘇巧慧所述的現有聯繫是候選人之間的交流。報導未列四市政府共同決策的程序、預算或時程。",
+      "eventOn": "2026-11-23",
+      "reminder": false,
+      "positions": [],
+      "people": [
+        {
+          "name": "蘇巧慧",
+          "slug": "suchiao-hui"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "蘇巧慧：北北基桃未來會有最順暢溝通",
+          "url": "https://www.cna.com.tw/news/aloc/202611230028.aspx",
+          "publishedOn": "2026-11-23",
+          "reviewedAt": "2026-11-23T12:00:18+08:00"
+        }
+      ]
+    },
+    {
+      "id": "hualien-wei-campaign-schedule",
+      "category": "election",
+      "region": "花蓮縣",
+      "shortTitle": "花蓮：魏家兄弟調整拜票行程",
+      "title": "花蓮縣長候選人魏嘉賢、市長候選人魏嘉彥因父喪調整拜票行程",
+      "summary": [
+        "花蓮市長候選人魏嘉彥 23 日上午接受中央社訪問，表示父親魏東河當天清晨過世，接下來會盡量減少拜票行程。中央社報導，哥哥魏嘉賢繼續競選縣長，魏嘉彥也繼續爭取市長連任。"
+      ],
+      "qualification": "行程調整由魏嘉彥說明，報導未列取消的具體場次。",
+      "eventOn": "2026-11-23",
+      "reminder": false,
+      "positions": [],
+      "people": [
+        {
+          "name": "魏嘉賢",
+          "slug": "c-魏嘉賢-無黨籍及未經政黨推薦-花蓮縣第01選舉區"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "父魏東河病逝　花蓮縣長候選人魏嘉賢盼完成遺願力爭勝選",
+          "url": "https://www.cna.com.tw/news/aipl/202611230034.aspx",
+          "publishedOn": "2026-11-23",
+          "reviewedAt": "2026-11-23T12:00:18+08:00"
         }
       ]
     }
