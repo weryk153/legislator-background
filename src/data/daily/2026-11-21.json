@@ -55,6 +55,16 @@
           "publishedOn": "2026-11-21",
           "reviewedAt": "2026-11-21T18:03:55+08:00"
         }
+      ],
+      "people": [
+        {
+          "name": "沈伯洋",
+          "slug": "shenpao-yang"
+        },
+        {
+          "name": "蔣萬安",
+          "slug": "mayor-taipei"
+        }
       ]
     },
     {
@@ -94,6 +104,16 @@
           "url": "https://www.cna.com.tw/news/aloc/202611210116.aspx",
           "publishedOn": "2026-11-21",
           "reviewedAt": "2026-11-21T18:03:55+08:00"
+        }
+      ],
+      "people": [
+        {
+          "name": "游淑貞",
+          "slug": "cand-游淑貞-花蓮縣"
+        },
+        {
+          "name": "張峻",
+          "slug": "c-張峻-無黨籍及未經政黨推薦-花蓮縣第03選舉區"
         }
       ]
     },
@@ -144,6 +164,16 @@
           "url": "https://www.cna.com.tw/news/aloc/202611200250.aspx",
           "publishedOn": "2026-11-20",
           "reviewedAt": "2026-11-21T07:01:13+08:00"
+        }
+      ],
+      "people": [
+        {
+          "name": "陳素月",
+          "slug": "chensu-yueh"
+        },
+        {
+          "name": "邱建富",
+          "slug": "cand-邱建富-彰化縣"
         }
       ]
     },

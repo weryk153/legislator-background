@@ -1,6 +1,7 @@
 ---
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { loadDailyEditions } from "../../lib/dailyBrief";
 import Base from "../../layouts/Base.astro";
 import TitleCard from "../../components/TitleCard.astro";
 import SectionHead from "../../components/SectionHead.astro";
@@ -38,9 +39,18 @@ export async function getStaticPaths() {
   const policyReviews = loadPolicyReviews(policies);
   const channels = loadCandidateChannels();
   const graph = loadGraph();
+  const news = loadDailyEditions().flatMap(issue => issue.stories.flatMap(story => (story.people ?? []).map(person => ({ slug: person.slug, date: issue.date, title: story.title, href: `/daily/${issue.date}/#story-${story.id}` }))));
+  const names = new Map(officials.map(person => [person.slug, person.name]));
+  for (const issue of loadDailyEditions()) {
+    for (const story of issue.stories) {
+      for (const person of story.people ?? []) {
+        if (names.get(person.slug) !== person.name) throw new Error(`快報人物連結無法核對：${story.id}／${person.name}`);
+      }
+    }
+  }
   return officials.map((o) => ({
     params: { id: o.slug },
-    props: { official: o, ego: egoSubgraph(graph, `official:${o.id}`, 2), policies: policies.get(o.slug), policyReview: policyReviews.get(o.slug), channels: channels.get(o.slug), education: education.get(o.slug) },
+    props: { official: o, news: news.filter(item => item.slug === o.slug).slice(0, 5), ego: egoSubgraph(graph, `official:${o.id}`, 2), policies: policies.get(o.slug), policyReview: policyReviews.get(o.slug), channels: channels.get(o.slug), education: education.get(o.slug) },
   }));
 }
 
@@ -249,6 +259,7 @@ const jsonLd = [
     <p class="nav-note">各筆資料皆附公開出處<br />請點選連結核對原文</p>
   </nav>
   <div class="profile-content">
+  {Astro.props.news.length > 0 && <section><h2>近期選舉快報</h2><ul>{Astro.props.news.map(item => <li><time>{item.date}</time> · <a href={item.href}>{item.title}</a></li>)}</ul></section>}
   {candidacy && <CandidatePolicies policies={policies} review={policyReview} />}
   {candidacy && <CandidateEducation education={education} />}
 

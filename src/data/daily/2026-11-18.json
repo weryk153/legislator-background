@@ -62,6 +62,16 @@
           "publishedOn": "2026-11-17",
           "reviewedAt": "2026-11-18T07:01:03+08:00"
         }
+      ],
+      "people": [
+        {
+          "name": "何欣純",
+          "slug": "ho-hsin-chun"
+        },
+        {
+          "name": "江啟臣",
+          "slug": "chiang-chi-chen"
+        }
       ]
     },
     {
@@ -95,6 +105,16 @@
           "publishedOn": "2026-11-17",
           "reviewedAt": "2026-11-18T07:01:03+08:00"
         }
+      ],
+      "people": [
+        {
+          "name": "陳亭妃",
+          "slug": "chen-ting-fei"
+        },
+        {
+          "name": "謝龍介",
+          "slug": "hsieh-lung-chieh"
+        }
       ]
     },
     {
@@ -119,6 +139,12 @@
           "url": "https://www.cna.com.tw/news/aloc/202611170265.aspx",
           "publishedOn": "2026-11-17",
           "reviewedAt": "2026-11-18T07:01:03+08:00"
+        }
+      ],
+      "people": [
+        {
+          "name": "吳宗憲",
+          "slug": "wutsung-hsien"
         }
       ]
     },
@@ -180,6 +206,20 @@
           "publishedOn": "2026-11-18",
           "reviewedAt": "2026-11-18T17:57:15+08:00"
         }
+      ],
+      "people": [
+        {
+          "name": "莊競程",
+          "slug": "cand-莊競程-新竹市"
+        },
+        {
+          "name": "何志勇",
+          "slug": "cand-何志勇-新竹市"
+        },
+        {
+          "name": "高虹安",
+          "slug": "mayor-hsinchu-city"
+        }
       ]
     },
     {
@@ -231,6 +271,16 @@
           "publishedOn": "2026-11-18",
           "reviewedAt": "2026-11-18T17:57:15+08:00"
         }
+      ],
+      "people": [
+        {
+          "name": "王忠銘",
+          "slug": "mayor-lienchiang"
+        },
+        {
+          "name": "曹爾元",
+          "slug": "cand-曹爾元-連江縣"
+        }
       ]
     },
     {
@@ -256,6 +306,16 @@
           "url": "https://www.cna.com.tw/news/aipl/202611180276.aspx",
           "publishedOn": "2026-11-18",
           "reviewedAt": "2026-11-18T17:57:15+08:00"
+        }
+      ],
+      "people": [
+        {
+          "name": "陳瑩",
+          "slug": "chen-ying"
+        },
+        {
+          "name": "吳秀華",
+          "slug": "c-吳秀華-國民黨-臺東縣第01選舉區"
         }
       ]
     }

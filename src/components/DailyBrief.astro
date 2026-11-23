@@ -53,6 +53,7 @@ const count = (value: number) => String(value).padStart(2, '0');
           ? <>{story.title.split('，')[0]}，<br class="lead-break" />{story.title.slice(story.title.indexOf('，') + 1).trim()}</>
           : story.title}</h2>
         {story.summary.map(paragraph => <p class="story-summary">{paragraph}</p>)}
+        {story.people?.length && <p>相關人物：{story.people.map(person => <a href={`/officials/${person.slug}/`}>{person.name} </a>)}</p>}
         {story.positions.length > 0 && <div class="positions">{story.positions.map(person => <div class="position">
           <h3>{person.name}<span>{person.party}</span></h3>
           <p>{person.text}</p>

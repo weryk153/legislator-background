@@ -39,6 +39,16 @@
           "publishedOn": "2026-11-21",
           "reviewedAt": "2026-11-22T06:58:54+08:00"
         }
+      ],
+      "people": [
+        {
+          "name": "吳宗憲",
+          "slug": "wutsung-hsien"
+        },
+        {
+          "name": "林國漳",
+          "slug": "cand-林國漳-宜蘭縣"
+        }
       ]
     },
     {
@@ -63,6 +73,12 @@
           "url": "https://www.cna.com.tw/news/aipl/202611210222.aspx",
           "publishedOn": "2026-11-21",
           "reviewedAt": "2026-11-22T06:58:54+08:00"
+        }
+      ],
+      "people": [
+        {
+          "name": "柯志恩",
+          "slug": "ko-chih-en"
         }
       ]
     },
@@ -89,6 +105,16 @@
           "publishedOn": "2026-11-21",
           "reviewedAt": "2026-11-22T06:58:54+08:00"
         }
+      ],
+      "people": [
+        {
+          "name": "李文良",
+          "slug": "cand-李文良-金門縣"
+        },
+        {
+          "name": "張國威",
+          "slug": "cand-張國威-金門縣"
+        }
       ]
     },
     {
@@ -113,6 +139,12 @@
           "url": "https://www.cna.com.tw/news/aloc/202611210208.aspx",
           "publishedOn": "2026-11-21",
           "reviewedAt": "2026-11-22T06:58:54+08:00"
+        }
+      ],
+      "people": [
+        {
+          "name": "陳振中",
+          "slug": "cand-陳振中-澎湖縣"
         }
       ]
     },
@@ -174,6 +206,16 @@
           "publishedOn": "2026-11-22",
           "reviewedAt": "2026-11-22T18:01:00+08:00"
         }
+      ],
+      "people": [
+        {
+          "name": "蘇清泉",
+          "slug": "su-ching-chuan"
+        },
+        {
+          "name": "周春米",
+          "slug": "mayor-pingtung"
+        }
       ]
     },
     {
@@ -198,6 +240,12 @@
           "url": "https://www.cna.com.tw/news/aipl/202611220140.aspx",
           "publishedOn": "2026-11-22",
           "reviewedAt": "2026-11-22T18:01:00+08:00"
+        }
+      ],
+      "people": [
+        {
+          "name": "鄭朝方",
+          "slug": "cand-鄭朝方-新竹縣"
         }
       ]
     }

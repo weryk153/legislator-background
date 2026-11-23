@@ -17,6 +17,7 @@ export interface BriefStory {
   shortTitle: string;
   title: string;
   summary: string[];
+  people?: { name: string; slug: string }[];
   positions: { name: string; party: string; text: string }[];
   qualification: string | null;
   eventOn: string | null;

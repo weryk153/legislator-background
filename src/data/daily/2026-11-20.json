@@ -29,6 +29,16 @@
           "publishedOn": "2026-11-19",
           "reviewedAt": "2026-11-20T06:57:58+08:00"
         }
+      ],
+      "people": [
+        {
+          "name": "李四川",
+          "slug": "cand-李四川-新北市"
+        },
+        {
+          "name": "蘇巧慧",
+          "slug": "suchiao-hui"
+        }
       ]
     },
     {
@@ -79,6 +89,12 @@
           "publishedOn": "2026-11-20",
           "reviewedAt": "2026-11-20T17:59:37+08:00"
         }
+      ],
+      "people": [
+        {
+          "name": "李四川",
+          "slug": "cand-李四川-新北市"
+        }
       ]
     },
     {
@@ -104,6 +120,16 @@
           "publishedOn": "2026-11-20",
           "reviewedAt": "2026-11-20T17:59:37+08:00"
         }
+      ],
+      "people": [
+        {
+          "name": "李文良",
+          "slug": "cand-李文良-金門縣"
+        },
+        {
+          "name": "陳玉珍",
+          "slug": "chenyu-jen"
+        }
       ]
     },
     {
@@ -128,6 +154,16 @@
           "url": "https://www.cna.com.tw/news/aipl/202611200220.aspx",
           "publishedOn": "2026-11-20",
           "reviewedAt": "2026-11-20T17:59:37+08:00"
+        }
+      ],
+      "people": [
+        {
+          "name": "謝國樑",
+          "slug": "mayor-keelung"
+        },
+        {
+          "name": "童子瑋",
+          "slug": "c-童子瑋-民進黨-基隆市第03選舉區"
         }
       ]
     },

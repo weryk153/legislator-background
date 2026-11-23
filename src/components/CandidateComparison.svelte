@@ -14,6 +14,12 @@
   const shareUrl = $derived(comparisonUrl(canonical, ids, topic));
   const money = (value: number) => Number.isFinite(value) ? `NT$ ${value.toLocaleString('zh-TW')}` : '金額待核對';
   const groups = [{ id: 'education', label: '學歷', short: '學歷' }, { id: 'careers', label: '經歷', short: '經歷' }, { id: 'policies', label: '2026 政見', short: '政見' }, { id: 'donations', label: '政治獻金', short: '獻金' }] as const;
+  function coverage(person: ComparisonCandidate, topic: ComparisonTopic) {
+    const records = person[topic];
+    if (!records.length) return '待補';
+    const dates = records.map(record => 'reviewedOn' in record ? record.reviewedOn : record.source.retrievedAt).filter(Boolean).sort();
+    return dates.length ? `已收錄（最近核對 ${dates.at(-1)}）` : '已收錄（未載核對日期）';
+  }
   const policyTypes = { news: '新聞報導', campaign: '候選人／政黨競選資訊', gazette: '選舉公報', civic: '公民團體公開紀錄' };
   onMount(() => {
     const restore = () => {
@@ -152,6 +158,9 @@
   {#if notice}<p class="notice" role="status">{notice}</p>{/if}
   {#if selected.length >= 2 && !selecting}
     <div id="comparison-results" class="results" tabindex="-1">
+      <details><summary>查看各候選人的資料收錄情形</summary>
+        {#each selected as person}<p><strong>{person.name}</strong>　{groups.map(group => group.short + '：' + coverage(person, group.id)).join('、')}</p>{/each}
+      </details>
       <div class="result-head"><div><p class="eyebrow">{heading}</p><h3>候選人比較 <span>{selected.length} 人</span></h3></div>
         <ShareActions title={`${heading}｜${selected.map(c => c.name).join('、')}比較`} url={shareUrl} />
       </div>

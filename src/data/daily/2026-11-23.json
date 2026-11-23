@@ -39,6 +39,12 @@
           "publishedOn": "2026-11-22",
           "reviewedAt": "2026-11-23T06:58:48+08:00"
         }
+      ],
+      "people": [
+        {
+          "name": "蘇清泉",
+          "slug": "su-ching-chuan"
+        }
       ]
     },
     {
@@ -63,6 +69,12 @@
           "url": "https://www.cna.com.tw/news/aloc/202611220166.aspx",
           "publishedOn": "2026-11-22",
           "reviewedAt": "2026-11-23T06:58:48+08:00"
+        }
+      ],
+      "people": [
+        {
+          "name": "李四川",
+          "slug": "cand-李四川-新北市"
         }
       ]
     }

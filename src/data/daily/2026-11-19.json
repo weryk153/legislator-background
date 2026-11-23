@@ -29,6 +29,16 @@
           "publishedOn": "2026-11-18",
           "reviewedAt": "2026-11-19T07:01:56+08:00"
         }
+      ],
+      "people": [
+        {
+          "name": "李四川",
+          "slug": "cand-李四川-新北市"
+        },
+        {
+          "name": "蘇巧慧",
+          "slug": "suchiao-hui"
+        }
       ]
     },
     {
@@ -53,6 +63,16 @@
           "url": "https://www.cna.com.tw/news/aipl/202611180330.aspx",
           "publishedOn": "2026-11-18",
           "reviewedAt": "2026-11-19T07:01:56+08:00"
+        }
+      ],
+      "people": [
+        {
+          "name": "吳宗憲",
+          "slug": "wutsung-hsien"
+        },
+        {
+          "name": "林國漳",
+          "slug": "cand-林國漳-宜蘭縣"
         }
       ]
     },
@@ -178,6 +198,16 @@
           "publishedOn": "2026-11-19",
           "reviewedAt": "2026-11-19T18:05:35+08:00"
         }
+      ],
+      "people": [
+        {
+          "name": "陳品安",
+          "slug": "c-陳品安-無黨籍及未經政黨推薦-苗栗縣第03選舉區"
+        },
+        {
+          "name": "鍾東錦",
+          "slug": "mayor-miaoli"
+        }
       ]
     },
     {
@@ -202,6 +232,16 @@
           "url": "https://www.cna.com.tw/news/aloc/202611190229.aspx",
           "publishedOn": "2026-11-19",
           "reviewedAt": "2026-11-19T18:05:35+08:00"
+        }
+      ],
+      "people": [
+        {
+          "name": "李四川",
+          "slug": "cand-李四川-新北市"
+        },
+        {
+          "name": "蔣萬安",
+          "slug": "mayor-taipei"
         }
       ]
     }

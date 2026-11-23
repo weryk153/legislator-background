@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+const resources = [
+  ['查投開票所', '進入中選會選舉專區，依戶籍地查詢投開票所。', 'https://info.cec.gov.tw/vote2026/'],
+  ['讀選舉公報', '選擇 115 年、縣市與選舉種類，查看所在地候選人的政見。', 'https://eebulletin.cec.gov.tw/?dir=115'],
+  ['核對領票與投票程序', '查詢投票資格、應帶證件及各地選票種類。', 'https://info.cec.gov.tw/vote2026/question/'],
+  ['看政見發表會日程', '依縣市查看官方場次與播出資訊。', 'https://info.cec.gov.tw/vote2026/article/content/?id=M0014&target=/article/A0094'],
+];
+---
+<Base title="2026 投票前查詢｜政治人物背景資料庫">
+  <div class="guide"><a href="/elections/">← 候選人查詢</a><h1>投票前查詢</h1>
+    <p>11 月 28 日地方公職人員選舉 · 全國適用</p>
+    {resources.map(([title, description, url]) => <section><h2><a href={url}>{title} ↗</a></h2><p>{description}</p></section>)}
+    <p>來源：中央選舉委員會 · 2026 年 11 月 23 日核對</p>
+  </div>
+</Base>
+<style>.guide{max-width:48rem;margin:2rem auto;padding:0 1rem}section{border-top:1px solid currentColor;padding:.6rem 0}h1{font-size:clamp(2rem,6vw,4rem)}</style>

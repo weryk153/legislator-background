@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-21",
+  "updatedOn": "2026-11-23",
   "candidates": [
     {
       "slug": "cand-李四川-新北市",
@@ -8197,6 +8197,385 @@
             }
           ],
           "verificationNote": "對讀本屆嘉義市第12屆議員第2選區公報第2頁，與現行名冊姓名、號次及既有slug核對。刊登日依11/12選委會公告，原文未載發表日，保留null；僅收錄部分政策方向，不代表完整政見。"
+        }
+      ]
+    },
+    {
+      "name": "陳品蓁",
+      "slug": "cand-陳品蓁-嘉義市第2選舉區",
+      "role": "嘉義市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-chen-pinzhen-gazette",
+          "title": "議員選舉公報主張",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第2選舉區公報，21號陳品蓁",
+            "url": "https://web.cec.gov.tw/api/file/3ff09b11-e53f-4cc9-9a50-feac32cf334a.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "proposals": [
+            {
+              "topic": "長照與共餐",
+              "summary": "主張各里設置 C 級長照據點與老人食堂，擴充長者共餐服務。"
+            },
+            {
+              "topic": "居住與防災",
+              "summary": "主張增建社會住宅，建置災害熱區管理系統，並增設雨水貯留設施。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "鄭光宏",
+      "slug": "c-鄭光宏-國民黨-嘉義市第02選舉區",
+      "role": "嘉義市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-west-gazette-3",
+          "title": "議員選舉公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第2選舉區公報，3號鄭光宏",
+            "url": "https://web.cec.gov.tw/api/file/3ff09b11-e53f-4cc9-9a50-feac32cf334a.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "人行安全",
+              "summary": "主張檢視學校、醫院與市場周邊人行空間，改善照明、標線及庇護島。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "林煒軒",
+      "slug": "c-林煒軒-民進黨-嘉義市第02選舉區",
+      "role": "嘉義市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-west-gazette-4",
+          "title": "議員選舉公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第2選舉區公報，4號林煒軒",
+            "url": "https://web.cec.gov.tw/api/file/3ff09b11-e53f-4cc9-9a50-feac32cf334a.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "交通與育兒",
+              "summary": "主張推動共享機車、擴增 YouBike 站點，並提升公共托育資源。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "李忠曆",
+      "slug": "c-李忠曆-無黨籍及未經政黨推薦-嘉義市第02選舉區",
+      "role": "嘉義市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-west-gazette-9",
+          "title": "議員選舉公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第2選舉區公報，9號李忠曆",
+            "url": "https://web.cec.gov.tw/api/file/3ff09b11-e53f-4cc9-9a50-feac32cf334a.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "排水防洪",
+              "summary": "主張全面檢討市區雨水下水道系統，優先解決低窪地區排水問題。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "陳致愷",
+      "slug": "cand-陳致愷-嘉義市第2選舉區",
+      "role": "嘉義市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-west-gazette-10",
+          "title": "議員選舉公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第2選舉區公報，10號陳致愷",
+            "url": "https://web.cec.gov.tw/api/file/3ff09b11-e53f-4cc9-9a50-feac32cf334a.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "交通與市政監督",
+              "summary": "主張依道路條件與交通數據檢討兩段式左轉，並公開市政預算資訊。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "魏志軒",
+      "slug": "cand-魏志軒-嘉義市第2選舉區",
+      "role": "嘉義市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-west-gazette-11",
+          "title": "議員選舉公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第2選舉區公報，11號魏志軒",
+            "url": "https://web.cec.gov.tw/api/file/3ff09b11-e53f-4cc9-9a50-feac32cf334a.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "動物收容與社區防詐",
+              "summary": "主張改善動物收容所環境與管理方式，並從社區推動預防詐騙宣導。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "陳姿妏",
+      "slug": "c-陳姿妏-無黨籍及未經政黨推薦-嘉義市第02選舉區",
+      "role": "嘉義市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-west-gazette-12",
+          "title": "議員選舉公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第2選舉區公報，12號陳姿妏",
+            "url": "https://web.cec.gov.tw/api/file/3ff09b11-e53f-4cc9-9a50-feac32cf334a.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "市政監督",
+              "summary": "公報以監督市政、聽取民意及服務市民為訴求，未列具體建設項目。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "蔡坤叡",
+      "slug": "c-蔡坤叡-無黨籍及未經政黨推薦-嘉義市第02選舉區",
+      "role": "嘉義市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-west-gazette-13",
+          "title": "議員選舉公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第2選舉區公報，13號蔡坤叡",
+            "url": "https://web.cec.gov.tw/api/file/3ff09b11-e53f-4cc9-9a50-feac32cf334a.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "校安與運動",
+              "summary": "主張加快校園霸凌與暴力事件通報，並評估利用市府閒置土地增加運動空間。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "黃敏修",
+      "slug": "c-黃敏修-民進黨-嘉義市第02選舉區",
+      "role": "嘉義市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-west-gazette-14",
+          "title": "議員選舉公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第2選舉區公報，14號黃敏修",
+            "url": "https://web.cec.gov.tw/api/file/3ff09b11-e53f-4cc9-9a50-feac32cf334a.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "防洪與居住",
+              "summary": "主張興建朴子溪沿岸堤防，改善北新里等地淹水，並擴大社會住宅興建規模。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "曾奕豪",
+      "slug": "cand-曾奕豪-嘉義市第2選舉區",
+      "role": "嘉義市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-west-gazette-15",
+          "title": "議員選舉公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第2選舉區公報，15號曾奕豪",
+            "url": "https://web.cec.gov.tw/api/file/3ff09b11-e53f-4cc9-9a50-feac32cf334a.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "教育與青年",
+              "summary": "主張支持青年創業及公共參與，並改善校園體育環境。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "孫貫志",
+      "slug": "c-孫貫志-無黨籍及未經政黨推薦-嘉義市第02選舉區",
+      "role": "嘉義市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-west-gazette-16",
+          "title": "議員選舉公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第2選舉區公報，16號孫貫志",
+            "url": "https://web.cec.gov.tw/api/file/3ff09b11-e53f-4cc9-9a50-feac32cf334a.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "全民運動與數位教育",
+              "summary": "主張依年齡推廣青少年運動、長者健身等活動，並推動依年齡分層的 AI 教育。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "蔡坤達",
+      "slug": "cand-蔡坤達-嘉義市第2選舉區",
+      "role": "嘉義市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-west-gazette-17",
+          "title": "議員選舉公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第2選舉區公報，17號蔡坤達",
+            "url": "https://web.cec.gov.tw/api/file/3ff09b11-e53f-4cc9-9a50-feac32cf334a.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "市政預算與服務",
+              "summary": "主張檢視預算、推動數位便民服務，並從基層蒐集市民訴求。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "黃大祐",
+      "slug": "c-黃大祐-民進黨-嘉義市第02選舉區",
+      "role": "嘉義市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-west-gazette-18",
+          "title": "議員選舉公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第2選舉區公報，18號黃大祐",
+            "url": "https://web.cec.gov.tw/api/file/3ff09b11-e53f-4cc9-9a50-feac32cf334a.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "食物援助與廚餘減量",
+              "summary": "主張在東、西區各設一座食物銀行，透過里辦公室配送物資，並爭取家戶廚餘機補助。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "林詩涵",
+      "slug": "cand-林詩涵-嘉義市第2選舉區",
+      "role": "嘉義市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-west-gazette-19",
+          "title": "議員選舉公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第2選舉區公報，19號林詩涵",
+            "url": "https://web.cec.gov.tw/api/file/3ff09b11-e53f-4cc9-9a50-feac32cf334a.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "托育與公共運輸",
+              "summary": "主張增設服務據點與臨托、延托及夜托，並協調尖峰公車增班。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "林子淨",
+      "slug": "cand-林子淨-嘉義市第2選舉區",
+      "role": "嘉義市第2選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-west-gazette-20",
+          "title": "議員選舉公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-23",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第2選舉區公報，20號林子淨",
+            "url": "https://web.cec.gov.tw/api/file/3ff09b11-e53f-4cc9-9a50-feac32cf334a.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "交通與無障礙",
+              "summary": "主張改善危險路口、通學環境及無障礙設施，並協助身障與弱勢家庭取得福利資源。"
+            }
+          ]
         }
       ]
     }

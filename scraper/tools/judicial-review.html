@@ -1,0 +1,42 @@
+<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>司法比對人工查核</title>
+<style>body{font:1rem/1.65 system-ui;max-width:56rem;margin:auto;padding:1rem}input,select,button,textarea{font:inherit}label,textarea{display:block;margin:.7rem 0}textarea{width:95%}article{border-top:1px solid;padding:1rem 0}output{display:block}</style>
+<h1>司法比對人工查核</h1><p>在本機開啟 candidates.json。比對結果可能涉及同名或不同當事人角色，請核對裁判全文及身分依據。完成後請匯出查核筆記。</p>
+<label>待查核檔案 <input type="file" id="file" accept=".json"></label>
+<label>搜尋姓名、選區或案號 <input id="query" type="search"></label>
+<button id="prev">上一筆</button> <button id="next">下一筆</button>
+<output id="status" aria-live="polite"></output><article id="card"></article><button id="download" disabled>匯出本次查核筆記</button>
+<script>
+const el = id => document.getElementById(id);
+let rows = [], visible = [], index = 0;
+const notes = new Map();
+function render() {
+  const row = visible[index];
+  const card = el('card'); card.replaceChildren();
+  el('prev').disabled = index <= 0; el('next').disabled = index + 1 >= visible.length;
+  el('status').textContent = row ? `第 ${index + 1} 筆，共 ${visible.length} 筆` : '沒有可顯示的紀錄';
+  if (!row) return;
+  const j = row.judgment;
+  const key = JSON.stringify([row.targetId, j.judgmentUrl]);
+  const note = notes.get(key);
+  const add = (tag, value) => {const n = document.createElement(tag); n.textContent = value; card.append(n); return n};
+  add('h2', row.targetName);
+  add('p', row.targetId);
+  add('p', [j.court, j.caseNumber, j.judgmentDate, j.caseReason].filter(Boolean).join(' · '));
+  add('p', '來源解析的被告姓名：' + (j.defendantNames?.join('、') || '未辨識'));
+  add('p', j.outcome || '未擷取主文');
+  const url = new URL(j.judgmentUrl);
+  if (url.origin === 'https://judgment.judicial.gov.tw') {const a = add('a', '開啟司法院裁判原文'); a.href=url.href; a.target='_blank'; a.rel='noopener noreferrer'}
+  const label=add('label','人工判讀 '), select=document.createElement('select'); label.append(select);
+  for (const option of ['待查核','同名或無關','證據不足','身分與角色已核對']) select.add(new Option(option,option));
+  select.value=note?.decision || '待查核';
+  const reason=add('label','身分、當事人角色及判斷依據'), input=document.createElement('textarea'); reason.append(input); input.value=note?.reason || '';
+  const save=()=>{notes.set(key,{targetId:row.targetId,judgmentUrl:j.judgmentUrl,decision:select.value,reason:input.value}); el('download').disabled=false};
+  select.onchange=save; input.oninput=save;
+}
+function filter(){const term=el('query').value.trim(); visible=rows.filter(r=>[r.targetName,r.targetId,r.judgment.caseNumber].some(v=>v?.includes(term)));index=0;render()}
+el('file').onchange=async e=>{try{const data=JSON.parse(await e.target.files[0].text()); if(!Array.isArray(data)||data.some(r=>!r.targetId||!r.judgment?.judgmentUrl||!URL.canParse(r.judgment.judgmentUrl)))throw Error();rows=data.filter(r=>r.approved===false);filter()}catch{el('status').textContent='讀取失敗，請選擇有效的候選比對 JSON。'}};
+el('query').oninput=filter; el('prev').onclick=()=>{index--;render()}; el('next').onclick=()=>{index++;render()};
+el('download').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify([...notes.values()],null,2)],{type:'application/json'}));a.download='judicial-review-notes.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+render();
+</script></html>
