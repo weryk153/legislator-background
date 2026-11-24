@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-23",
+  "updatedOn": "2026-11-24",
   "candidates": [
     {
       "slug": "cand-李四川-新北市",
@@ -4055,6 +4055,24 @@
             {
               "topic": "觀光",
               "summary": "串聯山海與林鐵文化，發展漁港特色旅遊、中埔溫泉及梅山至太平雲梯纜車等路線。"
+            }
+          ]
+        },
+        {
+          "id": "2026-tsai-chiayi-village-tours-1123",
+          "title": "嘉義百村小旅行",
+          "announcedOn": "2026-11-23",
+          "reviewedOn": "2026-11-24",
+          "source": {
+            "type": "news",
+            "title": "中央社：鄭麗文讚吳品叡做事具魄力　蔡易餘拜票推觀光政見",
+            "url": "https://www.cna.com.tw/news/aipl/202611230265.aspx",
+            "publishedOn": "2026-11-23"
+          },
+          "proposals": [
+            {
+              "topic": "村落走讀與母語保存",
+              "summary": "主張從全縣18個鄉鎮市的聚落歷史發展走讀，結合母語保存與創作者進駐，形成地方文化品牌。報導未列村落名單、經費或期程。"
             }
           ]
         }
@@ -8654,6 +8672,72 @@
             {
               "topic": "社會住宅",
               "summary": "主張加速興建社會住宅，讓無自有住宅者能更快租到可負擔的住宅。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "黃露慧",
+      "slug": "c-黃露慧-民進黨-嘉義市第01選舉區",
+      "role": "嘉義市第1選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-east-gazette-3",
+          "title": "本屆議員公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-24",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第1選區公報，第1頁3號",
+            "url": "https://web.cec.gov.tw/api/file/2c83bb46-bee1-4de2-a808-ea4544eca0fe.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "長者福利",
+              "summary": "主張將健保補助年齡降至65歲、補助免費假牙，並推動敬老卡直接扣點。"
+            },
+            {
+              "topic": "校園情緒教育",
+              "summary": "主張在國中小推行社會情緒學習，並落實情緒教育師資培訓及防霸凌。"
+            },
+            {
+              "topic": "文體建設",
+              "summary": "主張推動市立圖書總館於2030年完工，也提出培育電競產業及街舞文化。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "張敏琪",
+      "slug": "c-張敏琪-國民黨-嘉義市第01選舉區",
+      "role": "嘉義市第1選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-east-gazette-4",
+          "title": "本屆議員公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-24",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第1選區公報，第1頁4號",
+            "url": "https://web.cec.gov.tw/api/file/2c83bb46-bee1-4de2-a808-ea4544eca0fe.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "健保與育兒",
+              "summary": "主張由市府全額負擔嘉義市65歲以上長輩健保費，原住民門檻為55歲以上；另主張生育補助提高至每胎至少5萬元。"
+            },
+            {
+              "topic": "有條件發放現金",
+              "summary": "提出發放6,000元現金的構想，明列須視財政狀況許可。"
+            },
+            {
+              "topic": "校園食安",
+              "summary": "主張加強校園食品安全，把關學童飲食。"
             }
           ]
         }

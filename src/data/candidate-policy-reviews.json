@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-23",
+  "updatedOn": "2026-11-24",
   "rosterDate": "2026-10-16",
   "candidates": [
     {
@@ -1333,9 +1333,9 @@
       "slug": "tsai-yi-yu",
       "name": "蔡易餘",
       "role": "嘉義縣長",
-      "reviewedOn": "2026-10-16",
+      "reviewedOn": "2026-11-24",
       "status": "collected",
-      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "note": "11月23日公開影片所述村落走讀政策依中央社報導核對。已收錄部分觀光及產業主張。",
       "queries": [
         "\"蔡易餘\" 2026 政見 嘉義縣"
       ],
@@ -1343,6 +1343,10 @@
         {
           "title": "綠嘉義縣長初選政見會 蔡易餘提邁向下個黃金10年",
           "url": "https://www.cna.com.tw/news/aipl/202601040117.aspx"
+        },
+        {
+          "title": "中央社：鄭麗文讚吳品叡做事具魄力　蔡易餘拜票推觀光政見",
+          "url": "https://www.cna.com.tw/news/aipl/202611230265.aspx"
         }
       ]
     },
