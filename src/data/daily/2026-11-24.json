@@ -3,8 +3,8 @@
   "number": 20,
   "label": "早報",
   "publishedAt": "2026-11-24T07:05:08+08:00",
-  "updatedAt": "2026-11-24T11:58:02+08:00",
-  "cutoffAt": "2026-11-24T11:58:02+08:00",
+  "updatedAt": "2026-11-24T17:57:54+08:00",
+  "cutoffAt": "2026-11-24T17:57:54+08:00",
   "stories": [
     {
       "id": "keelung-forum-local-employment",
@@ -175,6 +175,66 @@
         {
           "name": "蔣萬安",
           "slug": "mayor-taipei"
+        }
+      ]
+    },
+    {
+      "eventOn": "2026-11-24",
+      "positions": [],
+      "people": [],
+      "id": "yunlin-herbs-lunbei-development",
+      "region": "雲林縣",
+      "category": "policy",
+      "shortTitle": "雲林：本土藥材與崙背產業",
+      "title": "劉建國提土庫、虎尾藥材基地，張嘉郡在崙背談酪農與客家文化",
+      "summary": [
+        "雲林縣長候選人劉建國 24 日在土庫提出，以土庫、虎尾為本土藥材生產基地，串聯彰化與嘉義。他主張從農民培訓、藥材檢驗做到倉儲加工，並爭取農業部輔導。",
+        "同日，縣長候選人張嘉郡在崙背提出六項地方發展方向，希望與鄉長候選人蔡旺源及地方團隊合作，結合酪農、洋香瓜產業與詔安客家文化推動農遊，並改善交通及親子生活環境。"
+      ],
+      "qualification": "劉建國表示藥材基地仍在選址，行政院副秘書長阮昭雄表示將協助跨部會協調。兩篇報導均未列出方案預算或完成期限。",
+      "reminder": false,
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "劉建國提中醫藥草產業廊帶　串聯雲嘉彰建台草藥專區",
+          "url": "https://www.cna.com.tw/news/aloc/202611240179.aspx",
+          "publishedOn": "2026-11-24",
+          "reviewedAt": "2026-11-24T17:57:54+08:00"
+        },
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "張嘉郡崙背掃街　提6行動盼再造風華",
+          "url": "https://www.cna.com.tw/news/aloc/202611240153.aspx",
+          "publishedOn": "2026-11-24",
+          "reviewedAt": "2026-11-24T17:57:54+08:00"
+        }
+      ]
+    },
+    {
+      "eventOn": "2026-11-24",
+      "positions": [],
+      "people": [],
+      "id": "new-taipei-voting-order-campaign-items",
+      "region": "新北市",
+      "category": "election",
+      "shortTitle": "新北：投票順序與競選小物提醒",
+      "title": "新北選委會說明投票順序，提醒選民避免攜帶可辨識候選人的小物",
+      "summary": [
+        "新北市選委會 24 日說明，這次新北市長選舉有 14 萬 4,461 名首投族。11 月 28 日上午 8 時至下午 4 時投票，同時參與地方選舉及公投的選民先領選舉票，再領公投票，接著圈選、投票。",
+        "選委會提醒，投票日凌晨零時起禁止競選及助選，包含在通訊軟體或社群轉傳助選圖文。前往投票時，應避免穿戴或攜帶能辨識特定候選人的競選小物。"
+      ],
+      "qualification": "選委會說明，若競選小物遭檢舉，會由監察小組討論，再由委員會依個案審議。",
+      "reminder": true,
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "新北首投族逾14萬人　投票日勿帶競選小物避免觸法",
+          "url": "https://www.cna.com.tw/news/aloc/202611240181.aspx",
+          "publishedOn": "2026-11-24",
+          "reviewedAt": "2026-11-24T17:57:54+08:00"
         }
       ]
     }
