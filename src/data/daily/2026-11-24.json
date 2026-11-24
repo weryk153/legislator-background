@@ -3,8 +3,8 @@
   "number": 20,
   "label": "早報",
   "publishedAt": "2026-11-24T07:05:08+08:00",
-  "updatedAt": "2026-11-24T07:05:08+08:00",
-  "cutoffAt": "2026-11-24T07:05:08+08:00",
+  "updatedAt": "2026-11-24T11:58:02+08:00",
+  "cutoffAt": "2026-11-24T11:58:02+08:00",
   "stories": [
     {
       "id": "keelung-forum-local-employment",
@@ -117,6 +117,66 @@
       ],
       "eventOn": "2026-11-23",
       "reminder": false
+    },
+    {
+      "id": "nationwide-vote-buying-investigations",
+      "region": "全國",
+      "category": "election",
+      "shortTitle": "全國：查賄與起訴件數",
+      "title": "最高檢統計：全國查賄 3,933 件，其中 111 件已起訴",
+      "summary": [
+        "中央社 24 日上午報導最高檢察署統計，截至 23 日，全國檢察機關就本屆選舉查辦的賄選案件涉及 4,597 人，其中已有 108 人遭起訴。",
+        "按涉嫌手法區分，以贈送禮品的 1,460 件最多，其次為現金買票的 1,412 件。這兩類分別有 34 件與 55 件已起訴。"
+      ],
+      "qualification": "件數與人數分開計算。統計反映檢方查辦及起訴進度，有罪與否仍須由法院審理。",
+      "eventOn": "2026-11-23",
+      "positions": [],
+      "reminder": false,
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "九合一選舉查賄3933件　已起訴111件",
+          "url": "https://www.cna.com.tw/news/asoc/202611240055.aspx",
+          "publishedOn": "2026-11-24",
+          "reviewedAt": "2026-11-24T11:58:02+08:00"
+        }
+      ]
+    },
+    {
+      "id": "taipei-campaign-traffic-guidance",
+      "region": "臺北市",
+      "category": "election",
+      "shortTitle": "臺北：兩組車掃行經八區",
+      "title": "臺北兩位市長候選人車掃，警方說明八區交通疏導方式",
+      "summary": [
+        "繼 22 日車掃後路口號誌未復原引發爭議，臺北市交通警察大隊說明 24 日的勤務安排。蔣萬安車隊預計行經松山、信義、中山、大同；沈伯洋車隊預計行經萬華、中正、文山、大安。",
+        "警方公布的預計活動時段為上午 9 時至下午 5 時，可能提早或延後。警方將依現場車流調整號誌，提醒觀看車隊的民眾留在人行道上，駕駛人配合現場指揮。"
+      ],
+      "qualification": "八區為兩隊預計行經的範圍，實際通行時間及路口疏導依現場狀況調整。",
+      "eventOn": "2026-11-24",
+      "positions": [],
+      "reminder": false,
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "蔣萬安、沈伯洋連3天車掃　警：彈性調整號誌並籲民眾站人行道",
+          "url": "https://www.cna.com.tw/news/aloc/202611240053.aspx",
+          "publishedOn": "2026-11-24",
+          "reviewedAt": "2026-11-24T11:58:02+08:00"
+        }
+      ],
+      "people": [
+        {
+          "name": "沈伯洋",
+          "slug": "shenpao-yang"
+        },
+        {
+          "name": "蔣萬安",
+          "slug": "mayor-taipei"
+        }
+      ]
     }
   ]
 }
