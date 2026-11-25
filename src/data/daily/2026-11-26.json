@@ -1,0 +1,87 @@
+{
+  "number": 22,
+  "date": "2026-11-26",
+  "label": "早報",
+  "cutoffAt": "2026-11-26T07:03:12+08:00",
+  "publishedAt": "2026-11-26T07:03:12+08:00",
+  "updatedAt": "2026-11-26T07:03:12+08:00",
+  "stories": [
+    {
+      "id": "taipei-renai-event-cancelled",
+      "region": "臺北市",
+      "category": "election",
+      "shortTitle": "臺北：仁愛路市民之夜取消",
+      "title": "沈伯洋取消原訂 27 日在仁愛路舉行的市民之夜",
+      "summary": [
+        "臺北市長候選人沈伯洋 25 日晚間宣布，原訂 27 日晚間 6 時在仁愛路四段、國父紀念館旁舉辦的市民之夜取消，並決定立即拆除舞台。當天上午起的交通管制造成通勤與住戶出入不便，競選辦公室已向受影響民眾致歉。"
+      ],
+      "qualification": "沈伯洋表示，團隊會再討論其他活動形式。截至這次聲明，尚未公布替代場次。",
+      "eventOn": "2026-11-25",
+      "reminder": false,
+      "positions": [],
+      "people": [],
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "沈伯洋取消仁愛路選前之夜　舞台晚間拆除、活動重新規劃",
+          "url": "https://www.cna.com.tw/news/aipl/202611250340.aspx",
+          "publishedOn": "2026-11-25",
+          "reviewedAt": "2026-11-26T07:03:12+08:00"
+        }
+      ]
+    },
+    {
+      "id": "pingtung-hengchun-energy-pledge",
+      "region": "屏東縣",
+      "category": "policy",
+      "shortTitle": "屏東：恆春簽署能源承諾",
+      "title": "蘇清泉與恆春鎮長、縣議員候選人簽署五項能源承諾",
+      "summary": [
+        "屏東縣長候選人蘇清泉 25 日晚間在恆春與鎮長候選人盧玟欣、縣議員候選人張榮志共同簽署承諾，主張牡丹水庫不設光電板、老埤農場不開發大面積光電。",
+        "三人也主張全面檢視屏鵝公路沿線光電設施並復原景觀、讓離岸光電撤出屏東海域，以及加速重啟核三廠。蘇清泉邀請縣長候選人周春米共同簽署。"
+      ],
+      "qualification": "報導未載周春米對邀請的答覆，也未列出各項承諾的執行程序或期程。",
+      "eventOn": "2026-11-25",
+      "reminder": false,
+      "positions": [],
+      "people": [],
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "周春米掃街喊攜手推進長治建設　蘇清泉恆春簽光電5承諾",
+          "url": "https://www.cna.com.tw/news/aipl/202611250317.aspx",
+          "publishedOn": "2026-11-25",
+          "reviewedAt": "2026-11-26T07:03:12+08:00"
+        }
+      ]
+    },
+    {
+      "id": "chiayi-night-duty-allowance",
+      "region": "嘉義縣",
+      "category": "policy",
+      "shortTitle": "嘉義縣：警消夜勤津貼",
+      "title": "吳品叡提警消夜勤每小時補貼 100 元，依實際勤務發放",
+      "summary": [
+        "嘉義縣長候選人吳品叡 25 日發文提出，警消在凌晨零時至上午 6 時執勤，每小時補貼 100 元，值滿六小時最高 600 元。他也主張調整排班，讓執勤人員有合理的休息時間。",
+        "吳品叡主張將行政協辦事項交回主管局處，讓警察集中處理治安與交通，消防人員專責救災與救護。"
+      ],
+      "qualification": "補貼按實際值勤時數計算。報導未列預算來源或實施日期。",
+      "eventOn": "2026-11-25",
+      "reminder": false,
+      "positions": [],
+      "people": [],
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "陳其邁赴嘉義陪同蔡易餘車掃　吳品叡提出警消升級政策",
+          "url": "https://www.cna.com.tw/news/aipl/202611250299.aspx",
+          "publishedOn": "2026-11-25",
+          "reviewedAt": "2026-11-26T07:03:12+08:00"
+        }
+      ]
+    }
+  ]
+}
