@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-24",
+  "updatedOn": "2026-11-25",
   "rosterDate": "2026-10-16",
   "candidates": [
     {
@@ -1250,9 +1250,9 @@
       "slug": "liu-chien-kuo",
       "name": "劉建國",
       "role": "雲林縣長",
-      "reviewedOn": "2026-11-05",
+      "reviewedOn": "2026-11-25",
       "status": "collected",
-      "note": "本輪核對並增補部分本屆公開主張；保留條件、來源與日期限制，未重新查核全部既有政見，非完整清單。",
+      "note": "已增列11月24日在土庫提出的本土藥材產業規劃。",
       "queries": [
         "\"劉建國\" 2026 政見 雲林縣"
       ],
@@ -1264,6 +1264,10 @@
         {
           "title": "中央社：張嘉郡擘畫北港施政願景 劉建國提婦女及新住民政見",
           "url": "https://www.cna.com.tw/news/aloc/202611050213.aspx"
+        },
+        {
+          "title": "中央社：劉建國提中醫藥草產業廊帶，串聯雲嘉彰建台草藥專區",
+          "url": "https://www.cna.com.tw/news/aloc/202611240179.aspx"
         }
       ]
     },

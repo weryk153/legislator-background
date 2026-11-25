@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-24",
+  "updatedOn": "2026-11-25",
   "candidates": [
     {
       "slug": "cand-李四川-新北市",
@@ -4018,6 +4018,24 @@
             {
               "topic": "文化創業與新二代",
               "summary": "主張支持新住民文化創造商機，並讓新二代發揮語言與文化專長；報導未列具體計畫或財源。"
+            }
+          ]
+        },
+        {
+          "id": "2026-liu-yunlin-medicinal-herbs",
+          "title": "土庫、虎尾本土藥材產業規劃",
+          "announcedOn": "2026-11-24",
+          "reviewedOn": "2026-11-25",
+          "source": {
+            "type": "news",
+            "title": "中央社：劉建國提中醫藥草產業廊帶，串聯雲嘉彰建台草藥專區",
+            "url": "https://www.cna.com.tw/news/aloc/202611240179.aspx",
+            "publishedOn": "2026-11-24"
+          },
+          "proposals": [
+            {
+              "topic": "藥材生產與檢驗",
+              "summary": "提出以土庫、虎尾為核心，培訓藥材種植農民、建立檢驗基地，再銜接倉儲、加工與銷售。劉建國表示仍在尋找適合地點，將爭取農業部輔導並串聯彰化及嘉義；跨縣市合作尚待協調。"
             }
           ]
         }
@@ -8738,6 +8756,72 @@
             {
               "topic": "校園食安",
               "summary": "主張加強校園食品安全，把關學童飲食。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "洪斐昭",
+      "slug": "cand-洪斐昭-嘉義市第1選舉區",
+      "role": "嘉義市第1選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-east-gazette-5",
+          "title": "本屆議員公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-25",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第1選區公報，第1頁5號",
+            "url": "https://web.cec.gov.tw/api/file/2c83bb46-bee1-4de2-a808-ea4544eca0fe.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "學區托育",
+              "summary": "主張擴充學區托育據點，並要求嚴格督促審核合法保母資格。"
+            },
+            {
+              "topic": "社區長者照護",
+              "summary": "主張推廣社區健康醫療健檢、協助活化老舊社區，並監督長者健保補助的落實。"
+            },
+            {
+              "topic": "動物救援與認養",
+              "summary": "主張強化動物救援通報機制，並督促落實動物保護收容場所的認養機制。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "黃盈智",
+      "slug": "c-黃盈智-民進黨-嘉義市第01選舉區",
+      "role": "嘉義市第1選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-east-gazette-6",
+          "title": "本屆議員公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-25",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第1選區公報，第1頁6號",
+            "url": "https://web.cec.gov.tw/api/file/2c83bb46-bee1-4de2-a808-ea4544eca0fe.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "長者健保與假牙",
+              "summary": "主張讓年滿65歲市民免繳健保費，並為嘉義市65歲以上長者免費裝設全口假牙。"
+            },
+            {
+              "topic": "科技產業與林業觀光",
+              "summary": "提出設置 AI 科技軟體園區，並以嘉義林業文化發展觀光。"
+            },
+            {
+              "topic": "鐵路高架後的市區連通",
+              "summary": "主張監督市府在鐵路高架化後重新連接鐵路兩側市區。"
             }
           ]
         }
