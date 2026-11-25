@@ -2,9 +2,9 @@
   "number": 21,
   "date": "2026-11-25",
   "label": "早報",
-  "cutoffAt": "2026-11-25T07:05:07+08:00",
+  "cutoffAt": "2026-11-25T12:01:09+08:00",
   "publishedAt": "2026-11-25T07:05:07+08:00",
-  "updatedAt": "2026-11-25T07:05:07+08:00",
+  "updatedAt": "2026-11-25T12:01:09+08:00",
   "stories": [
     {
       "eventOn": "2026-11-24",
@@ -63,6 +63,49 @@
           "url": "https://www.cna.com.tw/news/aipl/202611240290.aspx",
           "publishedOn": "2026-11-24",
           "reviewedAt": "2026-11-25T07:05:07+08:00"
+        }
+      ]
+    },
+    {
+      "id": "new-taipei-campaign-volunteer-suspended",
+      "region": "新北市",
+      "category": "election",
+      "shortTitle": "新北：議員團隊暫停志工助選",
+      "title": "志工拜票時以生理期貶抑女性，李四川致歉、蘇巧慧批評言論",
+      "summary": [
+        "24 日，新北市長候選人李四川的妻子在市場拜票時，隨行的議員團隊志工以女性的生理期為由，呼籲選民別投給女性。李四川 25 日受訪時譴責這番話，並向市民致歉。他的競選總部表示，議員團隊已暫停這名志工參與輔選行程。",
+        "新北市長候選人蘇巧慧同日上午受訪時表示，生理期是自然現象，以此貶抑女性，是不良的教育示範。新北市議員林國春則在公開貼文表示，他當場制止了志工的發言，並表示自己有責任引導團隊志工。"
+      ],
+      "qualification": "發言者為隨行志工。暫停輔選的處置由李四川競選總部轉述議員團隊的說明。",
+      "eventOn": "2026-11-25",
+      "people": [
+        {
+          "name": "李四川",
+          "slug": "cand-李四川-新北市"
+        },
+        {
+          "name": "蘇巧慧",
+          "slug": "suchiao-hui"
+        }
+      ],
+      "positions": [],
+      "reminder": false,
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "藍營志工發言涉性別歧視　李四川譴責、蘇巧慧批不良示範",
+          "url": "https://www.cna.com.tw/news/aipl/202611250072.aspx",
+          "publishedOn": "2026-11-25",
+          "reviewedAt": "2026-11-25T12:01:09+08:00"
+        },
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "民進黨質疑歧視女性　李四川譴責、暫停志工參與輔選",
+          "url": "https://www.cna.com.tw/news/aipl/202611250073.aspx",
+          "publishedOn": "2026-11-25",
+          "reviewedAt": "2026-11-25T12:01:09+08:00"
         }
       ]
     }
