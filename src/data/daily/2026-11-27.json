@@ -1,0 +1,61 @@
+{
+  "number": 23,
+  "date": "2026-11-27",
+  "label": "早報",
+  "cutoffAt": "2026-11-27T07:05:15+08:00",
+  "publishedAt": "2026-11-27T07:05:15+08:00",
+  "updatedAt": "2026-11-27T07:05:15+08:00",
+  "stories": [
+    {
+      "id": "taipei-election-eve-livestream",
+      "region": "臺北市",
+      "category": "election",
+      "shortTitle": "臺北：選前之夜改為直播",
+      "title": "沈伯洋公布替代方案：27 日白天走訪臺北，晚間選前之夜改為直播",
+      "summary": [
+        "臺北市長候選人沈伯洋 26 日晚間與前總統蔡英文直播時，確認取消仁愛路四段實體晚會後的安排。27 日白天，他將分時段到市內不同地點與民眾交談，晚間改以線上直播舉行選前之夜。"
+      ],
+      "qualification": "沈伯洋表示，團隊會另行公布白天的時間與地點。報導提到的晚間 7 時至 10 時是原實體晚會時段，直播開始時間尚待確認。",
+      "eventOn": "2026-11-26",
+      "reminder": true,
+      "positions": [],
+      "people": [],
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "沈伯洋合體蔡英文　公布27日白天赴多地與市民聊天、晚間線上直播",
+          "url": "https://www.cna.com.tw/news/aipl/202611260295.aspx",
+          "publishedOn": "2026-11-26",
+          "reviewedAt": "2026-11-27T07:05:15+08:00"
+        }
+      ]
+    },
+    {
+      "id": "miaoli-election-eve-plans",
+      "region": "苗栗縣",
+      "category": "election",
+      "shortTitle": "苗栗：兩陣營公布選前夜安排",
+      "title": "苗栗縣長選前夜，陳品安邀公民團體出席，鍾東錦競總表示不辦造勢",
+      "summary": [
+        "苗栗縣長候選人陳品安 26 日表示，27 日晚間將辦「公民團結之夜」，邀請公民團體代表參加。",
+        "爭取連任的鍾東錦於 26 日晚間在苗栗市出席祈福音樂會。其競選總部表示，這是選前最後一場大型活動，27 日晚間不另辦造勢。"
+      ],
+      "qualification": "以上是兩陣營於 26 日說明的安排。報導未列陳品安晚會的地點及開始時間。",
+      "eventOn": "2026-11-26",
+      "reminder": true,
+      "positions": [],
+      "people": [],
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "苗栗選前衝刺　鍾東錦辦感恩音樂會、陳品安籲公民團結",
+          "url": "https://www.cna.com.tw/news/aipl/202611260297.aspx",
+          "publishedOn": "2026-11-26",
+          "reviewedAt": "2026-11-27T07:05:15+08:00"
+        }
+      ]
+    }
+  ]
+}
