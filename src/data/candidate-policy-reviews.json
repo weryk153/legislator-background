@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-25",
+  "updatedOn": "2026-11-26",
   "rosterDate": "2026-10-16",
   "candidates": [
     {
@@ -1320,9 +1320,9 @@
       "slug": "cand-吳品叡-嘉義縣",
       "name": "吳品叡",
       "role": "嘉義縣長",
-      "reviewedOn": "2026-10-16",
+      "reviewedOn": "2026-11-26",
       "status": "collected",
-      "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
+      "note": "已核對11月25日報導所載的警消夜勤補貼與勤務分工主張。",
       "queries": [
         "\"吳品叡\" 2026 政見 嘉義縣"
       ],
@@ -1330,6 +1330,10 @@
         {
           "title": "蔡易餘公布醫療社福政見 吳品叡推長者健保補助",
           "url": "https://www.cna.com.tw/news/aipl/202610010197.aspx"
+        },
+        {
+          "title": "中央社：吳品叡提出警消升級政策",
+          "url": "https://www.cna.com.tw/news/aipl/202611250299.aspx"
         }
       ]
     },

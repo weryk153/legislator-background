@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-25",
+  "updatedOn": "2026-11-26",
   "candidates": [
     {
       "slug": "cand-李四川-新北市",
@@ -4997,6 +4997,28 @@
               "summary": "承諾當選後推動65歲以上長者健保費補助，透過新增財源、預算排序及財政管理支應，減輕家庭照顧負擔。"
             }
           ]
+        },
+        {
+          "id": "2026-wu-chiayi-night-duty",
+          "title": "警消夜間勤務與人力調度",
+          "announcedOn": "2026-11-25",
+          "reviewedOn": "2026-11-26",
+          "source": {
+            "type": "news",
+            "title": "中央社：吳品叡提出警消升級政策",
+            "url": "https://www.cna.com.tw/news/aipl/202611250299.aspx",
+            "publishedOn": "2026-11-25"
+          },
+          "proposals": [
+            {
+              "topic": "夜勤津貼",
+              "summary": "主張凌晨零時至上午6時依實際勤務每小時補貼100元，值滿六小時最高600元。報導未載預算來源或實施日期。"
+            },
+            {
+              "topic": "排班與行政分工",
+              "summary": "主張調整勤務安排，保障休息時間，並把行政協辦交回主管局處，讓警察專責治安與交通、消防人員專責救災與救護。"
+            }
+          ]
         }
       ]
     },
@@ -8822,6 +8844,72 @@
             {
               "topic": "鐵路高架後的市區連通",
               "summary": "主張監督市府在鐵路高架化後重新連接鐵路兩側市區。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "郭定緯",
+      "slug": "c-郭定緯-國民黨-嘉義市第01選舉區",
+      "role": "嘉義市第1選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-east-gazette-7",
+          "title": "本屆議員公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-26",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第1選區公報，第2頁7號",
+            "url": "https://web.cec.gov.tw/api/file/2c83bb46-bee1-4de2-a808-ea4544eca0fe.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "青年創業與住宅",
+              "summary": "主張放寬青年創業補助門檻、發展創業募資平台，並利用閒置公有地增建青年住宅。"
+            },
+            {
+              "topic": "學校體育",
+              "summary": "主張增加重點體育學校的經費，用於培育選手。"
+            },
+            {
+              "topic": "長者健保與敬老卡",
+              "summary": "主張爭取65歲以上長者免繳健保費，並擴大敬老卡的優惠與使用範圍。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "陳玥妗",
+      "slug": "cand-陳玥妗-嘉義市第1選舉區",
+      "role": "嘉義市第1選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-east-gazette-8",
+          "title": "本屆議員公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-26",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第1選區公報，第2頁8號",
+            "url": "https://web.cec.gov.tw/api/file/2c83bb46-bee1-4de2-a808-ea4544eca0fe.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "教師支持與親職教育",
+              "summary": "主張建立教師支持系統、減輕行政負擔，並將親職教育列為公共服務。"
+            },
+            {
+              "topic": "通學與行人安全",
+              "summary": "主張劃設通學安全區，以學童安全作為交通治理起點，交通建設以行人優先。"
+            },
+            {
+              "topic": "議會監督與資訊公開",
+              "summary": "主張加強議會監督與市政資訊公開。"
             }
           ]
         }
