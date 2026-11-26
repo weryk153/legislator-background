@@ -1,5 +1,6 @@
 ---
 import { PARTY_VAR, type MapArea } from '../lib/mapTypes';
+import SectionHead from './SectionHead.astro';
 import { normalizeParty } from '../lib/partyNames';
 
 interface Props { areas: MapArea[] }
@@ -24,46 +25,49 @@ const parties = [...seats].sort((a, b) => b[1].count - a[1].count);
 const total = parties.reduce((sum, [, party]) => sum + party.count, 0);
 const color = (code: string) => `var(${PARTY_VAR[code] ?? '--party-other'})`;
 ---
-<section class="results" aria-label="2022 全國選舉結果圖解">
-  <section class="chiefs">
-    <h2>縣市長當選分布</h2>
-    <p>每格代表一個縣市，點選可查看得票結果。</p>
+<section class="results" aria-labelledby="distribution-title">
+  <SectionHead id="distribution-title" text="縣市長當選分布" />
+  <dl class="chiefs">
     {chiefs.map(([code, { name, counties }]) => (
-      <div class="party-row" style={`--ink:${color(code)}`}>
-        <div class="label"><i></i>{name} <strong>{counties.length}</strong></div>
-        <div class="tiles">{counties.map(county => <a href={`#county-${county.code}`}>{county.name}</a>)}</div>
+      <div class="column">
+        <dt><i style={`--ink:${color(code)}`} aria-hidden="true"></i>{name}</dt>
+        <dd class="figure">{counties.length}<small>縣市</small></dd>
+        <dd class="places">{counties.map(county => <a href={`#county-${county.code}`}>{county.name}</a>)}</dd>
       </div>
     ))}
-  </section>
-  <section class="councils">
-    <h2>全國議會席次分布</h2>
-    <p>合計 {areas.length} 個縣市議會</p>
-    <div class="total">{total.toLocaleString('zh-TW')}<small>席</small></div>
-    <div class="bar" aria-hidden="true">{parties.map(([code, party]) => <span style={`flex:${party.count};background:${color(code)}`}></span>)}</div>
-    <ul>{parties.slice(0, 4).map(([code, party]) => <li><i style={`--ink:${color(code)}`}></i>{party.name}<b>{party.count} 席</b></li>)}</ul>
-    {parties.length > 4 && <details><summary>其餘 {parties.length - 4} 黨席次</summary><ul>{parties.slice(4).map(([code, party]) => <li><i style={`--ink:${color(code)}`}></i>{party.name}<b>{party.count} 席</b></li>)}</ul></details>}
+  </dl>
+  <section class="seats" aria-label="全國議會席次分布">
+    <h3>議會席次 <small>共 {total.toLocaleString('zh-TW')} 席</small></h3>
+    <div class="breakdown">
+      <div class="bar" aria-hidden="true">{parties.map(([code, party]) => <span style={`flex:${party.count};background:${color(code)}`}></span>)}</div>
+      <ul>{parties.slice(0, 4).map(([code, party]) => <li><i style={`--ink:${color(code)}`}></i>{party.name} <b>{party.count}</b></li>)}</ul>
+      {parties.length > 4 && <details><summary>其餘 {parties.length - 4} 黨席次</summary><ul>{parties.slice(4).map(([code, party]) => <li><i style={`--ink:${color(code)}`}></i>{party.name} <b>{party.count}</b></li>)}</ul></details>}
+    </div>
   </section>
 </section>
 <style>
-  .results { display:grid; grid-template-columns:1.45fr 1fr; margin:24px 0; border:1px solid var(--line); border-top:3px solid var(--line-strong); }
-  .results section { min-width:0; padding:clamp(16px,2.2vw,34px); }
-  h2 { font:900 clamp(20px,2vw,30px)/1.35 var(--serif); margin:0; }
-  p { color:var(--muted); font-size:13px; margin:7px 0 20px; }
-  .party-row { display:grid; grid-template-columns:95px 1fr; gap:12px; align-items:baseline; border-top:1px solid var(--line); padding:10px 0; }
-  .label, li { display:flex; align-items:center; gap:6px; font-size:14px; }
-  .label strong { margin-left:auto; }
-  i { width:9px; height:9px; background:var(--ink); flex:none; }
-  .tiles { display:flex; flex-wrap:wrap; gap:4px; }
-  .tiles a { color:var(--fg); border-bottom:2px solid var(--ink); background:color-mix(in srgb,var(--ink) 14%,var(--surface)); padding:6px 8px; text-decoration:none; font-size:13px; }
-  .tiles a:hover,.tiles a:focus-visible { outline:1px solid var(--ink); }
-  .councils { border-left:1px solid var(--line); background:var(--row-hover); }
-  .total { font:800 clamp(50px,5vw,78px)/1 var(--sans); letter-spacing:-.065em; }
-  .total small { font:700 16px var(--serif); margin-left:8px; }
-  .bar { display:flex; height:24px; margin:12px 0 20px; overflow:hidden; }
-  ul { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 22px; list-style:none; padding:0; margin:0; }
-  li b { margin-left:auto; white-space:nowrap; font-variant-numeric:tabular-nums; }
-  details { margin-top:16px; border-top:1px solid var(--line); font-size:13px; }
-  summary { padding:12px 0; cursor:pointer; }
-  @media(max-width:800px) { .results { grid-template-columns:1fr; } .councils { border-left:0; border-top:1px solid var(--line); } }
-  @media(max-width:520px) { .party-row { grid-template-columns:1fr; gap:6px; } .label strong { margin-left:3px; } .tiles a { padding:8px; } }
+  .results { margin-block:30px; }
+  .chiefs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin:24px 0; }
+  .column { padding-inline:clamp(12px,2vw,30px); border-inline-start:1px solid var(--line); }
+  .column:first-child { padding-inline-start:0; border:0; }
+  dt, li { display:flex; align-items:center; gap:7px; }
+  dt { font-weight:700; }
+  i { display:inline-block; width:8px; height:8px; background:var(--ink); flex:none; }
+  dd { margin:0; }
+  .figure { font:900 clamp(38px,4.5vw,68px)/1.15 var(--serif); letter-spacing:-.05em; margin:4px 0 8px; }
+  .figure small,h3 small { font:400 13px var(--sans); letter-spacing:normal; margin-left:6px; color:var(--muted); }
+  .places { color:var(--muted); font:400 14px/1.9 var(--serif); }
+  .places a { display:inline-block; margin-inline-end:0.8em; white-space:nowrap; text-underline-offset:3px; }
+  .places a:hover,summary:hover { color:var(--accent); }
+  .seats { display:grid; grid-template-columns:max-content 1fr; align-items:baseline; gap:24px; border-block:1px solid var(--line); padding:16px 0; }
+  h3 { margin:0; font:900 20px var(--serif); }
+  .bar { display:flex; height:8px; }
+  ul { display:flex; flex-wrap:wrap; gap:8px 24px; margin:9px 0 0; padding:0; }
+  li,summary { font-size:13px; }
+  summary { color:var(--muted); cursor:pointer; width:fit-content; margin-top:8px; }
+  @media(max-width:760px) {
+    .chiefs { grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px 0; }
+    .column:nth-child(odd) { padding-inline-start:0; border:0; }
+    .seats { grid-template-columns:1fr; gap:12px; }
+  }
 </style>
