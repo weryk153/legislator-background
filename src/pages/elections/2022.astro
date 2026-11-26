@@ -1,6 +1,8 @@
 ---
 // 2022 年九合一選舉結果一覽。原本附在 /elections 底部；/elections 改以 2026 為主軸後
 // 使用者要求另外放（2026-10-05），這裡獨立成頁，內容與資料來源不變。
+import ElectionResultsOverview from "../../components/ElectionResultsOverview.astro";
+import { countyByCode, countyPagePath } from "../../lib/countyKeys";
 import Base from "../../layouts/Base.astro";
 import TitleCard from "../../components/TitleCard.astro";
 import { partyEmblem } from "../../lib/partyEmblems";
@@ -102,6 +104,8 @@ const jsonLd = [
   </header>
   <nav class="section-nav" aria-label="選舉頁段落"><a href="#election-map">地圖查詢</a><a href="#overview-title">22 縣市結果</a></nav>
 
+  <ElectionResultsOverview areas={national.areas} />
+
   <details class="map-disclosure" id="election-map" open>
     <summary><span>選舉結果地圖</span><small>點選縣市，逐層查閱首長、席次與得票</small><span class="expand" aria-hidden="true">＋</span></summary>
     <div class="map-stage"><ElectionPanel client:visible {years} initialYear={2022} yearHref={YEAR_HREF} embedded /></div>
@@ -134,8 +138,8 @@ const jsonLd = [
         </thead>
         <tbody>
           {overviewRows.map((r) => (
-            <tr>
-              <td data-label="縣市" class="county-name">{r.name}</td>
+            <tr id={`county-${r.code}`}>
+              <td data-label="縣市" class="county-name">{r.name}{countyByCode(r.code) && <a class="next-election" href={countyPagePath(countyByCode(r.code)!.key)} aria-label={`查看${r.name} 2026 候選人`}>2026 候選人 →</a>}</td>
               <td data-label="縣市長" class="chief-name">
                 {r.chiefName
                   ? (r.chiefSlug ? <a href={`/officials/${r.chiefSlug}/`}>{r.chiefName}</a> : r.chiefName)
@@ -145,8 +149,8 @@ const jsonLd = [
               <td data-label="議會席次" class="num">{fmtInt(r.seatsTotal)}</td>
               <td data-label="最大黨">{r.largestParty ? `${r.largestParty.name}（${fmtInt(r.largestParty.seats)}）` : "—"}</td>
               <td data-label="當選得票數" class="num">{r.electedVotes === null ? "—" : fmtInt(r.electedVotes)}</td>
-              <td data-label="當選得票率" class="num">{fmtPercent(r.electedShare)}</td>
-              <td data-label="投票率" class="num">{fmtPercent(r.turnout)}</td>
+              <td data-label="當選得票率" class="num">{fmtPercent(r.electedShare)}{r.electedShare !== null && <span class="meter" aria-hidden="true"><i style={`width:${r.electedShare}%`}></i></span>}</td>
+              <td data-label="投票率" class="num">{fmtPercent(r.turnout)}{r.turnout !== null && <span class="meter turnout" aria-hidden="true"><i style={`width:${r.turnout}%`}></i></span>}</td>
             </tr>
           ))}
         </tbody>
@@ -179,6 +183,12 @@ const jsonLd = [
   .party-cell { display:flex;align-items:center;gap:6px; }
   .party-cell img { object-fit:contain; }
   .county-name,.chief-name { font-weight:700; }
+  .next-election { display:block; font:500 12px/1.8 var(--sans); }
+  tbody tr:target { outline:2px solid var(--accent); outline-offset:-2px; background:var(--accent-wash); scroll-margin-top:24px; }
+  .meter { display:block; margin:5px 0 0 auto; width:76px; height:4px; background:var(--line); }
+  .meter i { display:block; height:100%; background:var(--fg); }
+  .turnout i { background:var(--faint); }
+  @media(max-width:600px) { .meter { margin-left:0; } }
   .overview-note { color: var(--muted); font-size: 0.9375rem; line-height: 1.7; max-width: 72ch; margin: 0 0 20px; }
   .overview-note a { text-decoration: underline; text-underline-offset: 2px; }
   .table-scroll { overflow-x: auto; }
