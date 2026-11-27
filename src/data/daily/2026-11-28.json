@@ -1,0 +1,77 @@
+{
+  "number": 24,
+  "date": "2026-11-28",
+  "label": "早報",
+  "cutoffAt": "2026-11-28T06:58:49+08:00",
+  "publishedAt": "2026-11-28T06:58:49+08:00",
+  "updatedAt": "2026-11-28T06:58:49+08:00",
+  "stories": [
+    {
+      "id": "local-election-polling-day-2026",
+      "region": "全國",
+      "category": "election",
+      "shortTitle": "投票日：時間與地點",
+      "title": "地方選舉與第 22 案公投今天投票，上午 8 時至下午 4 時受理",
+      "summary": [
+        "11 月 28 日是地方公職人員選舉與全國性公民投票第 22 案的投票日。出門前請查看投票通知單上的地點，並備妥國民身分證、印章及投票通知單。",
+        "中選會特別提醒，部分村里只有一名原住民選舉人，為保障秘密投票，相關選民須依通知單所列地點分赴投票所。"
+      ],
+      "qualification": "投票日提醒。中選會於 27 日記者會重申投票時間與注意事項。",
+      "eventOn": "2026-11-28",
+      "reminder": true,
+      "positions": [],
+      "people": [],
+      "sources": [
+        {
+          "kind": "official",
+          "publisher": "中央選舉委員會",
+          "title": "1128提早出門投票！本會提醒投票9大注意事項",
+          "url": "https://web.cec.gov.tw/central/article/66382",
+          "publishedOn": "2026-11-27",
+          "reviewedAt": "2026-11-28T06:58:49+08:00"
+        },
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "九合一選舉11/28登場　中選會提醒28日零時起禁助選",
+          "url": "https://www.cna.com.tw/news/aipl/202611270090.aspx",
+          "publishedOn": "2026-11-27",
+          "reviewedAt": "2026-11-28T06:58:49+08:00"
+        }
+      ]
+    },
+    {
+      "id": "ballot-marking-tools-fact-check",
+      "region": "全國",
+      "category": "election",
+      "shortTitle": "圈票：使用現場工具",
+      "title": "選票如何圈選？用投票所備妥的圈選章和印泥即可",
+      "summary": [
+        "台灣事實查核中心 27 日查證網路流傳的選票墨水說法。臺北市選委會說明，本屆市長與議員選票依規格採購；新北市選委會表示，圈選使用一般印泥。選民在投票時段內前往即可，無須自備紫外線燈驗票。"
+      ],
+      "qualification": "中選會提醒，自備圈選工具若造成選票污損，可能被認定為無效票。",
+      "eventOn": "2026-11-27",
+      "reminder": true,
+      "positions": [],
+      "people": [],
+      "sources": [
+        {
+          "kind": "civic",
+          "publisher": "台灣事實查核中心",
+          "title": "投票日前，網路流傳「選票有隱形墨水」老謠言。中選會建議：無須自備印泥或UV燈投票，以免污染選票。",
+          "url": "https://tfc-taiwan.org.tw/fact-check-reports/invisible-ink-ballot-rumor-cec-warning-facts/",
+          "publishedOn": "2026-11-27",
+          "reviewedAt": "2026-11-28T06:58:49+08:00"
+        },
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "媒體識讀／網傳隱形墨水作票　查核中心：選票與印泥皆依法製備",
+          "url": "https://www.cna.com.tw/news/aipl/202611270257.aspx",
+          "publishedOn": "2026-11-27",
+          "reviewedAt": "2026-11-28T06:58:49+08:00"
+        }
+      ]
+    }
+  ]
+}
