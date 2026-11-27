@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-26",
+  "updatedOn": "2026-11-27",
   "rosterDate": "2026-10-16",
   "candidates": [
     {
@@ -967,7 +967,7 @@
       "slug": "cand-鄭朝方-新竹縣",
       "name": "鄭朝方",
       "role": "新竹縣長",
-      "reviewedOn": "2026-10-16",
+      "reviewedOn": "2026-11-27",
       "status": "collected",
       "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
       "queries": [
@@ -977,6 +977,10 @@
         {
           "title": "鄭朝方提竹縣交通及農產政見 徐欣瑩17日競總將揭牌",
           "url": "https://www.cna.com.tw/news/aloc/202610150297.aspx"
+        },
+        {
+          "title": "鄭朝方赴五峰矮靈祭　提原鄉政策盼部落參與決策",
+          "url": "https://www.cna.com.tw/news/aloc/202611260141.aspx"
         }
       ]
     },

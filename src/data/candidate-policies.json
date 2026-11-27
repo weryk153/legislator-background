@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-26",
+  "updatedOn": "2026-11-27",
   "candidates": [
     {
       "slug": "cand-李四川-新北市",
@@ -3137,6 +3137,32 @@
             {
               "topic": "農業與照顧",
               "summary": "協助農業缺工及東方美人茶、桶柑銷售通路，補強兩鄉長者就醫交通、長照資源與兒童活動空間。"
+            }
+          ]
+        },
+        {
+          "id": "2026-hsinchu-cheng-tribal-participation",
+          "title": "原鄉決策、接駁與文化傳承",
+          "announcedOn": "2026-11-26",
+          "reviewedOn": "2026-11-27",
+          "source": {
+            "type": "news",
+            "title": "鄭朝方赴五峰矮靈祭　提原鄉政策盼部落參與決策",
+            "url": "https://www.cna.com.tw/news/aloc/202611260141.aspx",
+            "publishedOn": "2026-11-26"
+          },
+          "proposals": [
+            {
+              "topic": "部落參與預算與建設",
+              "summary": "主張擬定原鄉政策、編列預算前，先和部落、原住民族團體及鄉公所討論，涉及土地或文化的工程也要提前溝通。"
+            },
+            {
+              "topic": "部落接駁與照護",
+              "summary": "主張依各部落的就醫、通學及返家需求安排彈性接駁，並加強巡迴醫療與長照服務。"
+            },
+            {
+              "topic": "族語與文化傳承",
+              "summary": "主張由部落自主推動族語傳承和文化紀錄，縣府提供經費與行政支援。"
             }
           ]
         }
@@ -8910,6 +8936,72 @@
             {
               "topic": "議會監督與資訊公開",
               "summary": "主張加強議會監督與市政資訊公開。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "凌子楚",
+      "slug": "cand-凌子楚-嘉義市第1選舉區",
+      "role": "嘉義市第1選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-east-gazette-9",
+          "title": "本屆議員公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-27",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第1選區公報，第2頁9號",
+            "url": "https://web.cec.gov.tw/api/file/2c83bb46-bee1-4de2-a808-ea4544eca0fe.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "青年租屋",
+              "summary": "主張爭取市府加碼青年租屋補貼。"
+            },
+            {
+              "topic": "弱勢就醫",
+              "summary": "主張爭取由政府補助弱勢民眾的掛號費與醫療部分負擔。"
+            },
+            {
+              "topic": "臨托與喘息服務",
+              "summary": "主張建立線上預約系統，讓家長可預約臨時托育與喘息服務。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "柯莉絲汀",
+      "slug": "cand-柯莉絲汀-嘉義市第1選舉區",
+      "role": "嘉義市第1選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-east-gazette-10",
+          "title": "本屆議員公報主張選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-27",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第1選區公報，第2頁10號",
+            "url": "https://web.cec.gov.tw/api/file/2c83bb46-bee1-4de2-a808-ea4544eca0fe.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "傳統市場與商圈",
+              "summary": "主張依市場需求改善環境、動線與周邊停車，並督促市府將大型活動與商圈、市場和旅宿串聯。"
+            },
+            {
+              "topic": "小型創業補助",
+              "summary": "主張調整青年創業補助，讓小店、工作室與微型創業者能取得資源。"
+            },
+            {
+              "topic": "通學安全",
+              "summary": "主張改善學區危險路口、通學步道及接送動線。"
             }
           ]
         }
