@@ -2,9 +2,9 @@
   "number": 23,
   "date": "2026-11-27",
   "label": "早報",
-  "cutoffAt": "2026-11-27T12:05:08+08:00",
+  "cutoffAt": "2026-11-27T18:01:52+08:00",
   "publishedAt": "2026-11-27T07:05:15+08:00",
-  "updatedAt": "2026-11-27T12:05:08+08:00",
+  "updatedAt": "2026-11-27T18:01:52+08:00",
   "stories": [
     {
       "id": "taipei-election-eve-livestream",
@@ -71,6 +71,32 @@
           "url": "https://www.cna.com.tw/news/aipl/202611260297.aspx",
           "publishedOn": "2026-11-26",
           "reviewedAt": "2026-11-27T07:05:15+08:00"
+        }
+      ]
+    },
+    {
+      "id": "kinmen-wuqiu-voting-ferry-cancelled",
+      "region": "金門縣",
+      "category": "election",
+      "shortTitle": "烏坵：投票專船停航",
+      "title": "烏坵投票專船取消，大小坵兩處投開票所照常辦理",
+      "summary": [
+        "烏坵鄉公所 27 日宣布，因預報海象不佳，取消原訂 28 日從臺灣本島前往烏坵的投票專船。金門縣選委會主委陳祥麟受訪時表示，共有 304 名鄉民登記搭船，停航影響他們返鄉投票。",
+        "陳祥麟說，選票與選務人員已抵達烏坵，大坵、小坵兩處投開票所可照常辦理投開票。"
+      ],
+      "qualification": "304 人是專船登記人數。陳祥麟建議未來在烏坵試辦不在籍投票，本次選舉仍依原定投票方式辦理。",
+      "eventOn": "2026-11-27",
+      "reminder": false,
+      "positions": [],
+      "people": [],
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "金門烏坵投票專船因天候取消　逾300名選民無法投票",
+          "url": "https://www.cna.com.tw/news/aloc/202611270134.aspx",
+          "publishedOn": "2026-11-27",
+          "reviewedAt": "2026-11-27T18:01:52+08:00"
         }
       ]
     }
