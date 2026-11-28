@@ -2,10 +2,35 @@
   "number": 24,
   "date": "2026-11-28",
   "label": "早報",
-  "cutoffAt": "2026-11-28T12:02:41+08:00",
+  "cutoffAt": "2026-11-28T17:57:51+08:00",
   "publishedAt": "2026-11-28T06:58:49+08:00",
-  "updatedAt": "2026-11-28T12:02:41+08:00",
+  "updatedAt": "2026-11-28T17:57:51+08:00",
   "stories": [
+    {
+      "id": "lienchiang-wang-election-night-statement",
+      "region": "連江縣",
+      "category": "election",
+      "shortTitle": "連江：王忠銘自行宣布當選",
+      "title": "連江縣長選舉開票，王忠銘自行宣布當選",
+      "summary": [
+        "中央社 28 日傍晚報導，國民黨連江縣長候選人王忠銘已自行宣布當選。"
+      ],
+      "qualification": "這是候選人本人的宣布。正式當選結果以中央選舉委員會公告為準。",
+      "eventOn": "2026-11-28",
+      "reminder": false,
+      "positions": [],
+      "people": [],
+      "sources": [
+        {
+          "kind": "news",
+          "publisher": "中央社",
+          "title": "連江縣長選舉　王忠銘自行宣布當選",
+          "url": "https://www.cna.com.tw/news/aipl/202611280089.aspx",
+          "publishedOn": "2026-11-28",
+          "reviewedAt": "2026-11-28T17:57:51+08:00"
+        }
+      ]
+    },
     {
       "id": "local-election-polling-day-2026",
       "region": "全國",
