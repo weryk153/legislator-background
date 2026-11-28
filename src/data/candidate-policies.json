@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-27",
+  "updatedOn": "2026-11-28",
   "candidates": [
     {
       "slug": "cand-李四川-新北市",
@@ -4843,6 +4843,28 @@
               "summary": "提出步行、公園、十字廊帶、超低底盤運輸及垃圾資源等政策方向；本篇未提供細部執行及經費規劃。"
             }
           ]
+        },
+        {
+          "id": "2026-chiayi-mayor-gazette-2",
+          "title": "本屆選舉公報政見選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-28",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆市長公報，第1頁2號",
+            "url": "https://web.cec.gov.tw/api/file/7776fb6c-7d6c-49c6-9528-8b8dee9f5d2d.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "公共投資評估",
+              "summary": "主張用投入產出模型估算公共投資效益，並在制定政策前模擬市場、園區與商圈的人流、產值及碳足跡。"
+            },
+            {
+              "topic": "地方創生資金",
+              "summary": "主張以容積獎勵、地方創生引導基金及跨產業合作引入民間資金，並以城市數位模型輔助投資判斷。"
+            }
+          ]
         }
       ]
     },
@@ -9002,6 +9024,72 @@
             {
               "topic": "通學安全",
               "summary": "主張改善學區危險路口、通學步道及接送動線。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "梁樹綸",
+      "slug": "cand-梁樹綸-嘉義市第1選舉區",
+      "role": "嘉義市第1選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-east-gazette-11",
+          "title": "本屆選舉公報政見選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-28",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第1選區公報，第2頁11號",
+            "url": "https://web.cec.gov.tw/api/file/2c83bb46-bee1-4de2-a808-ea4544eca0fe.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "托育與福利卡",
+              "summary": "主張增加公共托育設施，並擴大敬老卡及愛心卡的使用範圍。"
+            },
+            {
+              "topic": "家庭教育",
+              "summary": "主張強化家庭教育中心的功能，從教育端預防家暴並維護子女權益。"
+            },
+            {
+              "topic": "步行與公共自行車",
+              "summary": "主張增加公共自行車站點，督促市府儘速完成人行道工程。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "吳宗泓",
+      "slug": "cand-吳宗泓-嘉義市第1選舉區",
+      "role": "嘉義市第1選舉區議員",
+      "records": [
+        {
+          "id": "2026-chiayi-east-gazette-12",
+          "title": "本屆選舉公報政見選錄",
+          "announcedOn": null,
+          "reviewedOn": "2026-11-28",
+          "source": {
+            "type": "gazette",
+            "title": "嘉義市選委會：第12屆議員第1選區公報，第2頁12號",
+            "url": "https://web.cec.gov.tw/api/file/2c83bb46-bee1-4de2-a808-ea4544eca0fe.pdf",
+            "publishedOn": "2026-11-12"
+          },
+          "proposals": [
+            {
+              "topic": "在地職訓與就業",
+              "summary": "主張設置產業園區與職訓營運區，結合學校教育和職能培訓，串聯人才培育與就業。"
+            },
+            {
+              "topic": "醫護職場安全",
+              "summary": "主張建立一站式醫護職場安全服務，整合職場安全與危害管理支援。"
+            },
+            {
+              "topic": "智慧城市示範",
+              "summary": "主張在小型城市適合的場域試行智慧城市技術，涵蓋交通、防災、消防救災與城市碳盤查。"
             }
           ]
         }

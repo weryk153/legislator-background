@@ -1,6 +1,6 @@
 {
   "electionYear": 2026,
-  "updatedOn": "2026-11-27",
+  "updatedOn": "2026-11-28",
   "rosterDate": "2026-10-16",
   "candidates": [
     {
@@ -1835,7 +1835,7 @@
       "slug": "cand-陳愷璜-嘉義市",
       "name": "陳愷璜",
       "role": "嘉義市長",
-      "reviewedOn": "2026-10-16",
+      "reviewedOn": "2026-11-28",
       "status": "collected",
       "note": "已核對並收錄部分公開政策主張，非完整政見清單。",
       "queries": [
@@ -1845,6 +1845,10 @@
         {
           "title": "嘉市長選戰倒數百日 台藝大前校長陳愷璜提十大經濟政見虛實整合策略",
           "url": "https://udn.com/vote2026/story/124652/9703532"
+        },
+        {
+          "title": "嘉義市選委會：第12屆市長公報，第1頁2號",
+          "url": "https://web.cec.gov.tw/api/file/7776fb6c-7d6c-49c6-9528-8b8dee9f5d2d.pdf"
         }
       ]
     },
